@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NexusMail | Elite Privacy System</title>
+    <title>NexusMail | Ultra Secure Inbox</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,14 +14,14 @@
             --primary: #6366f1;
             --primary-dark: #4f46e5;
             --accent: #d946ef;
-            --surface: rgba(20, 20, 25, 0.6);
-            --surface-border: rgba(255, 255, 255, 0.08);
+            --surface: rgba(20, 20, 25, 0.7);
+            --surface-border: rgba(255, 255, 255, 0.1);
             --text-main: #ffffff;
             --text-sec: #94a3b8;
             --success: #10b981;
             --danger: #ef4444;
-            --blur: 20px;
-            --radius: 16px;
+            --blur: 25px;
+            --radius: 18px;
         }
 
         * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
@@ -34,212 +34,225 @@
             display: flex; flex-direction: column; align-items: center;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(217, 70, 239, 0.15) 0%, transparent 40%);
+                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(217, 70, 239, 0.15) 0%, transparent 50%);
         }
 
-        /* --- UI Components --- */
+        /* --- Layout --- */
         .container { 
             max-width: 600px; width: 100%; 
             padding: 15px; 
-            margin: 0 auto; padding-bottom: 100px;
+            margin: 0 auto; padding-bottom: 120px;
         }
 
         /* Brand Header */
         .brand {
-            text-align: center; margin: 20px 0 30px;
+            text-align: center; margin: 30px 0 35px;
             position: relative;
         }
         .brand h1 {
-            font-size: 2rem; margin: 0; font-weight: 700; letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #fff, #a5b4fc);
+            font-size: 2.2rem; margin: 0; font-weight: 800; letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff 20%, #818cf8);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .live-badge {
-            font-size: 0.7rem; background: rgba(16, 185, 129, 0.1); color: var(--success);
-            padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.2);
-            display: inline-flex; align-items: center; gap: 5px; margin-top: 8px;
+        .status-badge {
+            font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--success);
+            padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.2);
+            display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
         }
-        .pulse-dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; animation: pulse 1.5s infinite; }
+        .pulse-dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success); animation: pulse 2s infinite; }
 
-        /* Glass Card */
+        /* Main Glass Card */
         .glass-card {
             background: var(--surface);
             backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur));
             border: 1px solid var(--surface-border);
             border-radius: var(--radius);
-            padding: 20px;
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+            padding: 25px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
             position: relative; overflow: hidden;
         }
 
-        /* Email Display (Hero Section) */
-        .email-display-wrapper {
-            background: rgba(0,0,0,0.3); border: 1px solid var(--surface-border);
-            border-radius: 12px; padding: 4px; display: flex; align-items: center;
-            margin-bottom: 20px; transition: 0.3s; position: relative;
+        /* Email Display Box */
+        .email-box {
+            background: rgba(0,0,0,0.4); border: 1px solid var(--surface-border);
+            border-radius: 14px; padding: 5px; display: flex; align-items: center;
+            margin-bottom: 25px; transition: 0.3s; position: relative;
         }
-        .email-display-wrapper:focus-within { border-color: var(--primary); box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); }
+        .email-box:focus-within { border-color: var(--primary); box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
         
         .email-input {
             width: 100%; background: transparent; border: none; color: var(--text-main);
-            font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; padding: 12px 15px;
-            font-weight: 500; text-align: center;
+            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; padding: 14px 15px;
+            font-weight: 500; text-align: center; letter-spacing: 0.5px;
         }
-        .action-icon {
-            padding: 12px; color: var(--text-sec); cursor: pointer; transition: 0.2s;
-            font-size: 1.1rem;
+        .copy-btn {
+            padding: 12px 15px; color: var(--text-sec); cursor: pointer; transition: 0.2s; font-size: 1.1rem;
         }
-        .action-icon:hover { color: white; }
-        .action-icon:active { transform: scale(0.9); }
+        .copy-btn:hover { color: white; transform: scale(1.1); }
+        .copy-btn:active { transform: scale(0.95); }
 
-        /* Control Grid */
-        .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        /* Buttons Grid */
+        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
         
         .btn {
-            border: none; border-radius: 12px; padding: 12px;
-            font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem;
+            border: none; border-radius: 12px; padding: 14px;
+            font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.95rem;
             cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: 0.2s; color: white;
+            transition: all 0.2s; color: white;
         }
         .btn-primary { 
             background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+            grid-column: span 2;
         }
-        .btn-primary:active { transform: scale(0.97); }
+        .btn-primary:active { transform: scale(0.98); }
         
-        .btn-glass { background: rgba(255,255,255,0.05); border: 1px solid var(--surface-border); }
-        .btn-glass:hover { background: rgba(255,255,255,0.1); }
+        .btn-secondary { background: rgba(255,255,255,0.05); border: 1px solid var(--surface-border); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+        .btn-secondary:active { transform: scale(0.96); }
 
-        .btn-full { grid-column: span 2; }
+        /* Tabs (Random/Custom) */
+        .tab-switcher {
+            display: flex; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 4px; margin-bottom: 25px;
+        }
+        .tab-btn {
+            flex: 1; padding: 10px; text-align: center; font-size: 0.85rem; color: var(--text-sec);
+            cursor: pointer; border-radius: 10px; transition: 0.3s; font-weight: 500;
+        }
+        .tab-btn.active { background: var(--surface-border); color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
 
-        /* Custom Mode Toggle */
-        .mode-switch {
-            display: flex; background: rgba(0,0,0,0.2); border-radius: 10px; p: 4px; margin-bottom: 20px;
+        /* Custom Input Area */
+        #customArea { 
+            display: none; flex-direction: column; gap: 12px; margin-bottom: 15px; 
+            animation: fadeInDown 0.3s ease;
         }
-        .mode-btn {
-            flex: 1; padding: 8px; text-align: center; font-size: 0.85rem; color: var(--text-sec);
-            cursor: pointer; border-radius: 8px; transition: 0.3s; font-weight: 500;
-        }
-        .mode-btn.active { background: var(--surface-border); color: white; }
-
-        /* Custom Setup Form */
-        #customSetup { 
-            display: none; flex-direction: column; gap: 10px; margin-bottom: 15px; 
-            animation: slideDown 0.3s ease;
-        }
-        .input-row { display: flex; gap: 8px; }
-        .nexus-input {
-            background: rgba(0,0,0,0.3); border: 1px solid var(--surface-border);
-            color: white; padding: 12px; border-radius: 10px; width: 100%;
+        .dual-input { display: flex; gap: 10px; }
+        .nexus-field {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--surface-border);
+            color: white; padding: 12px; border-radius: 12px; width: 100%;
             font-family: 'JetBrains Mono'; font-size: 0.9rem;
         }
+        .nexus-field:focus { border-color: var(--primary); }
 
-        /* Inbox List */
-        .inbox-title {
+        /* Inbox Section */
+        .inbox-header {
             display: flex; justify-content: space-between; align-items: center;
-            margin: 25px 0 15px; padding: 0 5px;
+            margin: 30px 0 15px; padding: 0 8px;
         }
-        .inbox-title h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+        .inbox-header h3 { margin: 0; font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
         
-        .mail-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+        .mail-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
         
-        .mail-card {
+        .mail-item {
             background: var(--surface); border: 1px solid var(--surface-border);
-            padding: 15px; border-radius: 14px; cursor: pointer;
-            display: grid; grid-template-columns: 45px 1fr auto; gap: 12px; align-items: center;
-            transition: all 0.2s; position: relative; overflow: hidden;
+            padding: 16px; border-radius: 16px; cursor: pointer;
+            display: grid; grid-template-columns: 48px 1fr auto; gap: 15px; align-items: center;
+            transition: transform 0.2s; position: relative; overflow: hidden;
         }
-        .mail-card::before {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+        .mail-item::after {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
             background: var(--primary); opacity: 0;
         }
-        .mail-card.unread { background: rgba(25, 25, 35, 0.8); }
-        .mail-card.unread::before { opacity: 1; }
+        .mail-item.unread { background: rgba(20, 20, 30, 0.85); border-color: rgba(99, 102, 241, 0.3); }
+        .mail-item.unread::after { opacity: 1; }
+        .mail-item:active { transform: scale(0.99); }
         
-        .sender-avatar {
-            width: 45px; height: 45px; border-radius: 12px;
+        .avatar {
+            width: 48px; height: 48px; border-radius: 14px;
             background: linear-gradient(135deg, #334155, #1e293b);
             display: flex; align-items: center; justify-content: center;
             font-weight: 700; font-size: 1.2rem; color: #e2e8f0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
         }
         
-        .mail-info { min-width: 0; }
-        .mail-subject { 
-            margin: 0 0 4px; font-size: 0.95rem; font-weight: 600; color: #f1f5f9;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
-        }
-        .mail-from { 
-            margin: 0; font-size: 0.8rem; color: var(--text-sec); 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
-        .mail-time { font-size: 0.75rem; color: var(--text-sec); background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 6px; }
+        .mail-content { min-width: 0; }
+        .subject { margin: 0 0 5px; font-size: 0.95rem; font-weight: 600; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .sender { margin: 0; font-size: 0.85rem; color: var(--text-sec); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .time { font-size: 0.75rem; color: var(--text-sec); background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 8px; }
 
         /* Empty State */
-        .empty-inbox {
-            text-align: center; padding: 50px 20px; opacity: 0.5;
+        .empty-state {
+            text-align: center; padding: 60px 20px; opacity: 0.5;
             display: flex; flex-direction: column; align-items: center; gap: 15px;
         }
-        .empty-inbox i { font-size: 3rem; color: var(--primary); filter: drop-shadow(0 0 10px rgba(99,102,241,0.5)); }
+        .empty-state i { font-size: 3.5rem; color: var(--primary); filter: drop-shadow(0 0 15px rgba(99,102,241,0.4)); margin-bottom: 10px; }
 
-        /* Modal */
-        .modal {
-            position: fixed; inset: 0; z-index: 1000;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+        /* Modal (Email View) */
+        .modal-overlay {
+            position: fixed; inset: 0; z-index: 2000;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
             display: none; justify-content: center; align-items: flex-end;
         }
-        .modal.open { display: flex; animation: fadeIn 0.2s ease; }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
         
-        .modal-sheet {
-            width: 100%; max-width: 600px; height: 85vh;
+        .modal-card {
+            width: 100%; max-width: 600px; height: 90vh;
             background: #0f0f12; border-top: 1px solid var(--surface-border);
             border-radius: 24px 24px 0 0;
             display: flex; flex-direction: column; overflow: hidden;
-            animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+            animation: slideUp 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 -10px 50px rgba(0,0,0,0.7);
         }
         
-        .sheet-header {
-            padding: 20px; background: #18181b; border-bottom: 1px solid var(--surface-border);
+        .modal-header {
+            padding: 20px 25px; background: #18181b; border-bottom: 1px solid var(--surface-border);
             display: flex; justify-content: space-between; align-items: flex-start;
         }
-        .header-details h2 { margin: 0 0 5px; font-size: 1.1rem; color: white; line-height: 1.4; }
-        .header-details p { margin: 0; color: var(--text-sec); font-size: 0.85rem; }
+        .header-text h2 { margin: 0 0 6px; font-size: 1.1rem; color: white; line-height: 1.4; }
+        .header-text p { margin: 0; color: var(--text-sec); font-size: 0.9rem; }
         
-        .sheet-actions { display: flex; gap: 10px; }
-        .icon-btn {
-            width: 36px; height: 36px; border-radius: 10px; border: none;
-            background: rgba(255,255,255,0.1); color: white; cursor: pointer;
-            display: grid; place-items: center; font-size: 1rem;
+        .modal-tools { display: flex; gap: 10px; }
+        .tool-btn {
+            width: 40px; height: 40px; border-radius: 12px; border: none;
+            background: rgba(255,255,255,0.08); color: white; cursor: pointer;
+            display: grid; place-items: center; font-size: 1.1rem; transition: 0.2s;
         }
-        .icon-btn.close { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        .tool-btn:hover { background: var(--primary); }
+        .tool-btn.close { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        .tool-btn.close:hover { background: #ef4444; color: white; }
 
-        .sheet-body { flex: 1; background: #fff; width: 100%; border: none; }
+        .email-body-frame { flex: 1; background: #fff; width: 100%; border: none; }
         
         /* Loading Bar */
-        .loader-line {
-            height: 2px; width: 100%; background: #1e1e24;
+        .progress-container {
+            height: 3px; width: 100%; background: rgba(255,255,255,0.05);
             position: absolute; top: 0; left: 0; overflow: hidden;
         }
-        .loader-bar {
+        .progress-bar {
             height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
-            width: 0%; transition: width 0.5s linear;
+            width: 0%; transition: width 0.1s linear;
+            box-shadow: 0 0 10px var(--primary);
         }
 
-        /* Toast */
+        /* History Panel */
+        .history-panel {
+            display: none; padding: 10px; background: rgba(0,0,0,0.3); 
+            border-top: 1px solid var(--surface-border);
+            animation: slideDown 0.2s ease;
+        }
+        .history-row {
+            padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; color: var(--text-sec); font-family: 'JetBrains Mono'; font-size: 0.9rem;
+        }
+        .history-row:hover { color: white; background: rgba(255,255,255,0.02); }
+
+        /* Toast Notification */
         .toast {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: rgba(20, 20, 25, 0.95); backdrop-filter: blur(10px);
-            border: 1px solid var(--surface-border); padding: 12px 20px;
-            border-radius: 30px; color: white; font-size: 0.9rem;
-            display: flex; align-items: center; gap: 10px; z-index: 2000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: floatUp 0.3s ease;
+            background: rgba(25, 25, 30, 0.95); backdrop-filter: blur(12px);
+            border: 1px solid var(--surface-border); padding: 14px 24px;
+            border-radius: 50px; color: white; font-size: 0.9rem; font-weight: 500;
+            display: flex; align-items: center; gap: 12px; z-index: 3000;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6); animation: floatUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes floatUp { from { transform: translate(-50%, 20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+        @keyframes slideDown { from { height: 0; opacity: 0; } to { height: auto; opacity: 1; } }
+        @keyframes floatUp { from { transform: translate(-50%, 40px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
 
     </style>
 </head>
@@ -250,82 +263,81 @@
     <div class="container">
         
         <div class="brand">
-            <h1>NEXUS</h1>
-            <div class="live-badge"><span class="pulse-dot"></span>Secure & Anonymous</div>
+            <h1>NEXUS<span>MAIL</span></h1>
+            <div class="status-badge"><span class="pulse-dot"></span>Secure Server Active</div>
         </div>
 
         <div class="glass-card">
-            <div class="loader-line"><div id="refreshBar" class="loader-bar"></div></div>
+            <div class="progress-container"><div id="refreshBar" class="progress-bar"></div></div>
 
-            <div class="mode-switch">
-                <div class="mode-btn active" id="tabRandom" onclick="setMode('random')">Random ID</div>
-                <div class="mode-btn" id="tabCustom" onclick="setMode('custom')">Custom ID</div>
+            <div class="tab-switcher">
+                <div class="tab-btn active" id="tabRandom" onclick="switchMode('random')">Random ID</div>
+                <div class="tab-btn" id="tabCustom" onclick="switchMode('custom')">Custom ID</div>
             </div>
 
-            <div class="email-display-wrapper">
+            <div class="email-box">
                 <input type="text" id="emailDisplay" class="email-input" value="Connecting..." readonly>
-                <i class="fa-regular fa-copy action-icon" onclick="copyEmail()" title="Copy"></i>
+                <i class="fa-regular fa-copy copy-btn" onclick="copyEmail()" title="Copy Address"></i>
             </div>
 
-            <div id="customSetup">
-                <div class="input-row">
-                    <input type="text" id="customUser" class="nexus-input" placeholder="User (e.g. hero)">
-                    <select id="customDomain" class="nexus-input" style="flex: 0.7;">
+            <div id="customArea">
+                <div class="dual-input">
+                    <input type="text" id="customUser" class="nexus-field" placeholder="username">
+                    <select id="customDomain" class="nexus-field" style="flex: 0.7;">
                         <option value="1secmail.com">@1secmail.com</option>
                         <option value="1secmail.net">@1secmail.net</option>
                         <option value="1secmail.org">@1secmail.org</option>
                     </select>
                 </div>
-                <button class="btn btn-primary" onclick="applyCustomEmail()" style="width:100%; margin-top:5px;">Create Custom ID</button>
+                <button class="btn btn-primary" onclick="createCustomID()" style="width:100%">Activate Custom ID</button>
             </div>
 
-            <div class="control-grid" id="randomControls">
-                <button class="btn btn-primary btn-full" onclick="generateNew()">
-                    <i class="fa-solid fa-arrows-rotate" id="spinIcon"></i> Generate New Identity
+            <div class="action-grid" id="randomControls">
+                <button class="btn btn-primary" onclick="generateRandomID()">
+                    <i class="fa-solid fa-shuffle" id="spinIcon"></i> Generate New Identity
                 </button>
-                <button class="btn btn-glass" onclick="manualRefresh()">
-                    <i class="fa-solid fa-rotate-right"></i> Refresh
+                <button class="btn btn-secondary" onclick="manualRefresh()">
+                    <i class="fa-solid fa-arrows-rotate"></i> Refresh
                 </button>
-                <button class="btn btn-glass" onclick="toggleHistory()">
+                <button class="btn btn-secondary" onclick="toggleHistory()">
                     <i class="fa-solid fa-clock-rotate-left"></i> History
                 </button>
             </div>
 
-            <div id="historyPanel" style="display:none; border-top:1px solid var(--surface-border); padding-top:10px; max-height:150px; overflow-y:auto;">
-                <small style="color:var(--text-sec);">Recent Accounts:</small>
-                <div id="historyList" style="margin-top:5px;"></div>
+            <div id="historyPanel" class="history-panel">
+                <div id="historyList"></div>
             </div>
         </div>
 
-        <div class="inbox-title">
-            <h3>Inbox Messages</h3>
-            <small style="color:var(--text-sec)" id="lastUpdate">Syncing...</small>
+        <div class="inbox-header">
+            <h3>Inbox</h3>
+            <small style="color:var(--text-sec)" id="lastUpdate">Connecting...</small>
         </div>
 
         <div id="inboxContainer">
-            <div class="empty-inbox">
+            <div class="empty-state">
                 <i class="fa-solid fa-satellite-dish"></i>
-                <p>Waiting for incoming transmission...<br><span style="font-size:0.8rem">Auto-refresh active</span></p>
+                <p>Waiting for incoming transmission...<br><span style="font-size:0.8rem; color:#64748b">Auto-refresh is active</span></p>
             </div>
         </div>
 
     </div>
 
-    <div id="mailModal" class="modal">
-        <div class="modal-sheet">
-            <div class="sheet-header">
-                <div class="header-details">
+    <div id="mailModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="header-text">
                     <h2 id="modalSubject">Subject</h2>
                     <p id="modalFrom">sender@example.com</p>
                 </div>
-                <div class="sheet-actions">
-                    <button class="icon-btn" onclick="downloadEmail()"><i class="fa-solid fa-download"></i></button>
-                    <button class="icon-btn close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div class="modal-tools">
+                    <button class="tool-btn" onclick="downloadEmail()" title="Download"><i class="fa-solid fa-download"></i></button>
+                    <button class="tool-btn close" onclick="closeModal()" title="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div id="attachmentArea" style="padding:10px 20px; background:#18181b; display:none; gap:10px; overflow-x:auto;"></div>
+            <div id="attachmentArea" style="padding:10px 20px; background:#18181b; display:none; gap:10px; overflow-x:auto; border-bottom:1px solid rgba(255,255,255,0.05);"></div>
             
-            <iframe id="emailFrame" class="sheet-body" sandbox="allow-same-origin allow-popups"></iframe>
+            <iframe id="emailFrame" class="email-body-frame" sandbox="allow-same-origin allow-popups"></iframe>
         </div>
     </div>
 
@@ -333,17 +345,21 @@
 
     <script>
         /**
-         * NEXUS MAIL CORE ENGINE
-         * Optimized for Mobile & Stability
+         * NEXUS MAIL ENGINE v3.0 (Stability Update)
+         * Features: Multi-Proxy Fallback, CORS Fix, Mobile Optimization
          */
         
-        // Configuration
+        // API Base
         const API_BASE = 'https://www.1secmail.com/api/v1/';
-        // List of proxies to handle CORS and Network Failures
+        
+        // --- PROXY SYSTEM (The Fix) ---
+        // যদি একটি প্রক্সি ফেইল করে, কোড অটোমেটিক পরেরটি ট্রাই করবে।
         const PROXY_LIST = [
-            'https://api.allorigins.win/raw?url=',
-            'https://corsproxy.io/?',
-            'https://thingproxy.freeboard.io/fetch/' 
+            'https://api.allorigins.win/raw?url=',          // Proxy 1: AllOrigins (Stable)
+            'https://corsproxy.io/?',                       // Proxy 2: CorsProxy (Fast)
+            'https://api.codetabs.com/v1/proxy?quest=',     // Proxy 3: CodeTabs (Backup)
+            'https://thingproxy.freeboard.io/fetch/',       // Proxy 4: ThingProxy (Backup)
+            ''                                              // Proxy 5: Direct (Fallback)
         ];
         
         let state = {
@@ -355,93 +371,103 @@
             currentHtml: ''
         };
 
-        // --- Network Handler (The Fix for "Network Error") ---
+        // --- Core: Robust Fetcher ---
         async function robustFetch(url) {
             let lastError;
-            // First try: Direct (might work if CORS policy changes)
-            // try { return await fetch(url); } catch(e) {}
-
-            // Try Proxies sequentially
+            
+            // Loop through proxies until one works
             for (const proxy of PROXY_LIST) {
                 try {
-                    const target = proxy + encodeURIComponent(url);
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 6000); // 6s timeout
+                    // Construct URL
+                    const target = proxy ? (proxy + encodeURIComponent(url)) : url;
                     
+                    // Set timeout (5 seconds max per proxy)
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 5000);
+                    
+                    // Fetch
                     const res = await fetch(target, { signal: controller.signal });
                     clearTimeout(timeoutId);
                     
-                    if (res.ok) return res;
+                    if (res.ok) {
+                        return res; // Success! Return the response
+                    }
                 } catch (e) {
-                    console.warn(`Proxy ${proxy} failed.`);
+                    // Proxy failed, try next...
+                    console.warn(`Proxy failed: ${proxy || "Direct"}`);
                     lastError = e;
                 }
             }
+            // If all fail
             throw lastError || new Error("Connection failed");
         }
 
-        // --- Initialization ---
+        // --- Init ---
         document.addEventListener('DOMContentLoaded', () => {
             const savedUser = localStorage.getItem('nexus_user');
             const savedDomain = localStorage.getItem('nexus_domain');
             
+            updateHistoryUI();
+
             if(savedUser && savedDomain) {
                 setIdentity(savedUser, savedDomain, false);
             } else {
-                generateNew();
+                generateRandomID();
             }
             
-            startTimer();
+            startAutoRefresh();
             if(Notification.permission !== "granted") Notification.requestPermission();
         });
 
-        // --- Identity Management ---
-        function setMode(mode) {
+        // --- Logic ---
+        function switchMode(mode) {
             state.isCustom = (mode === 'custom');
-            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             
             if(state.isCustom) {
                 document.getElementById('tabCustom').classList.add('active');
-                document.getElementById('customSetup').style.display = 'flex';
+                document.getElementById('customArea').style.display = 'flex';
                 document.getElementById('randomControls').style.display = 'none';
             } else {
                 document.getElementById('tabRandom').classList.add('active');
-                document.getElementById('customSetup').style.display = 'none';
+                document.getElementById('customArea').style.display = 'none';
                 document.getElementById('randomControls').style.display = 'grid';
             }
         }
 
-        async function generateNew() {
-            document.getElementById('spinIcon').classList.add('fa-spin');
+        async function generateRandomID() {
+            const icon = document.getElementById('spinIcon');
+            icon.classList.add('fa-spin');
+            showToast("Generating secure ID...", "info");
+
             try {
                 const res = await robustFetch(`${API_BASE}?action=genRandomMailbox&count=1`);
                 const data = await res.json();
                 const [user, domain] = data[0].split('@');
                 setIdentity(user, domain);
-                showToast("New secure ID generated");
+                showToast("Identity Created Successfully");
             } catch (e) {
                 showToast("Network Weak. Retrying...", "error");
                 // Retry automatically once
-                setTimeout(() => { if(!state.user) generateNew(); }, 2000);
+                setTimeout(() => { if(!state.user) generateRandomID(); }, 2000);
             } finally {
-                document.getElementById('spinIcon').classList.remove('fa-spin');
+                icon.classList.remove('fa-spin');
             }
         }
 
-        function applyCustomEmail() {
+        function createCustomID() {
             const user = document.getElementById('customUser').value.trim().toLowerCase();
             const domain = document.getElementById('customDomain').value;
             
-            if(user.length < 3 || !/^[a-z0-9.]+$/.test(user)) {
-                return showToast("Invalid username (min 3 chars, a-z0-9)", "error");
-            }
-            
+            if(user.length < 3) return showToast("Username too short (min 3)", "error");
+            if(!/^[a-z0-9.]+$/.test(user)) return showToast("Use letters/numbers only", "error");
+
             setIdentity(user, domain);
-            setMode('random'); // Switch back to view controls
-            showToast("Custom ID activated");
+            switchMode('random'); // Return to main view
+            showToast("Custom ID Activated");
         }
 
-        function setIdentity(user, domain, save = true) {
+        function setIdentity(user, domain, saveToHistory = true) {
             state.user = user;
             state.domain = domain;
             state.mails = [];
@@ -452,13 +478,13 @@
             
             document.getElementById('emailDisplay').value = `${user}@${domain}`;
             
-            if(save) updateHistory(user, domain);
-            renderInbox([]); // Clear inbox visually
-            checkMail(true);
+            if(saveToHistory) addToHistory(user, domain);
+            
+            renderInbox([]); // Clear UI
+            checkInbox(true); // Initial check
         }
 
-        // --- Inbox Logic ---
-        async function checkMail(isManual = false) {
+        async function checkInbox(manual = false) {
             if(!state.user) return;
             
             try {
@@ -468,24 +494,26 @@
                 
                 document.getElementById('lastUpdate').innerText = "Updated: " + new Date().toLocaleTimeString();
 
-                // Detect new mail
+                // Check for updates
                 if(data.length > 0) {
-                    if(data.length !== state.mails.length || (data[0].id !== state.lastId)) {
+                    // If first email ID is different, we have new mail
+                    if(state.mails.length === 0 || data[0].id !== state.lastId) {
                         if(state.lastId && data[0].id !== state.lastId) {
-                            playNotif();
+                            playNotification();
                         }
                         state.mails = data;
                         state.lastId = data[0].id;
                         renderInbox(data);
                     }
                 } else {
-                    if(state.mails.length > 0) { // If inbox was cleared remotely
+                    // If inbox emptied on server
+                    if(state.mails.length > 0) {
                         state.mails = [];
                         renderInbox([]);
                     }
                 }
             } catch (e) {
-                console.log("Sync skipped (Network)");
+                console.log("Sync skipped (Silent)");
             }
         }
 
@@ -494,7 +522,7 @@
             
             if(mails.length === 0) {
                 container.innerHTML = `
-                <div class="empty-inbox">
+                <div class="empty-state">
                     <i class="fa-solid fa-satellite-dish"></i>
                     <p>No messages received yet<br><small>Inbox is ready...</small></p>
                 </div>`;
@@ -502,18 +530,18 @@
             }
 
             container.innerHTML = `<ul class="mail-list">` + mails.map(mail => `
-                <li class="mail-card ${mail.id === state.lastId ? 'unread' : ''}" onclick="readMail(${mail.id})">
-                    <div class="sender-avatar">${mail.from.charAt(0).toUpperCase()}</div>
-                    <div class="mail-info">
-                        <h4 class="mail-subject">${escapeHtml(mail.subject) || '(No Subject)'}</h4>
-                        <p class="mail-from">${escapeHtml(mail.from)}</p>
+                <li class="mail-item ${mail.id === state.lastId ? 'unread' : ''}" onclick="openEmail(${mail.id})">
+                    <div class="avatar">${mail.from.charAt(0).toUpperCase()}</div>
+                    <div class="mail-content">
+                        <h4 class="subject">${escapeHtml(mail.subject) || '(No Subject)'}</h4>
+                        <p class="sender">${escapeHtml(mail.from)}</p>
                     </div>
-                    <div class="mail-time">${mail.date.split(' ')[1]}</div>
+                    <div class="time">${mail.date.split(' ')[1]}</div>
                 </li>
             `).join('') + `</ul>`;
         }
 
-        async function readMail(id) {
+        async function openEmail(id) {
             showToast("Decrypting message...", "info");
             
             try {
@@ -524,55 +552,58 @@
                 document.getElementById('modalSubject').innerText = data.subject || '(No Subject)';
                 document.getElementById('modalFrom').innerText = data.from;
                 
-                const iframe = document.getElementById('emailFrame');
-                
-                // Better Mobile HTML Injection
-                const css = `<style>
-                    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding:15px; color:#111; word-wrap:break-word; }
-                    img { max-width: 100% !important; height: auto !important; border-radius: 8px; }
-                    a { color: #6366f1; text-decoration: none; font-weight: bold; }
-                    table { width: 100% !important; }
-                </style>`;
-                
-                state.currentHtml = data.htmlBody || data.body;
-                iframe.srcdoc = css + (data.htmlBody || `<pre style="white-space:pre-wrap; font-family:inherit">${data.body}</pre>`);
-
-                // Attachments
+                // --- Attachments Logic ---
                 const attArea = document.getElementById('attachmentArea');
                 attArea.innerHTML = '';
                 if(data.attachments && data.attachments.length > 0) {
                     attArea.style.display = 'flex';
                     data.attachments.forEach(file => {
+                        // Download link construction
                         const link = `https://www.1secmail.com/api/v1/?action=download&login=${state.user}&domain=${state.domain}&id=${id}&file=${file.filename}`;
-                        attArea.innerHTML += `<a href="${link}" target="_blank" style="color:#a5b4fc; text-decoration:none; background:rgba(255,255,255,0.1); padding:5px 10px; border-radius:5px; font-size:0.8rem; white-space:nowrap;"><i class="fa-solid fa-paperclip"></i> ${file.filename}</a>`;
+                        attArea.innerHTML += `
+                            <a href="${link}" target="_blank" style="color:#a5b4fc; text-decoration:none; background:rgba(255,255,255,0.1); padding:6px 12px; border-radius:8px; font-size:0.8rem; white-space:nowrap; display:flex; align-items:center; gap:5px;">
+                                <i class="fa-solid fa-paperclip"></i> ${file.filename}
+                            </a>`;
                     });
                 } else {
                     attArea.style.display = 'none';
                 }
 
-                document.getElementById('mailModal').classList.add('open');
+                // --- Iframe Injection (Mobile Optimized) ---
+                const iframe = document.getElementById('emailFrame');
+                const css = `<style>
+                    body { font-family: -apple-system, sans-serif; padding:20px; color:#111; word-wrap:break-word; line-height:1.5; }
+                    img { max-width: 100% !important; height: auto !important; border-radius: 6px; }
+                    a { color: #6366f1; font-weight: 600; }
+                    table { width: 100% !important; display: block; overflow-x: auto; }
+                </style>`;
+                
+                state.currentHtml = data.htmlBody || data.body;
+                iframe.srcdoc = css + (data.htmlBody || `<pre style="white-space:pre-wrap; font-family:inherit; color:#333;">${data.body}</pre>`);
+
+                document.getElementById('mailModal').classList.add('active');
             } catch (e) {
-                showToast("Failed to load content", "error");
+                showToast("Failed to load email", "error");
             }
         }
 
         // --- Utilities ---
-        function startTimer() {
+        function startAutoRefresh() {
             const bar = document.getElementById('refreshBar');
             let w = 0;
             setInterval(() => {
                 w += 1;
                 if(w > 100) {
                     w = 0;
-                    checkMail();
+                    checkInbox();
                 }
                 bar.style.width = w + "%";
-            }, 50); // 5 second cycle (50ms * 100)
+            }, 50); // 5 seconds cycle
         }
 
         function manualRefresh() {
             document.getElementById('refreshBar').style.width = "0%";
-            checkMail(true);
+            checkInbox(true);
             showToast("Inbox synchronized");
         }
 
@@ -581,34 +612,38 @@
             el.select();
             el.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(el.value);
-            showToast("Address copied to clipboard");
+            showToast("Address Copied!");
         }
 
         function showToast(msg, type = 'success') {
             const box = document.getElementById('toast-container');
             const el = document.createElement('div');
             el.className = 'toast';
-            el.style.borderLeft = type === 'error' ? '3px solid #ef4444' : '3px solid #10b981';
-            el.innerHTML = `<i class="fa-solid ${type === 'error' ? 'fa-triangle-exclamation' : 'fa-check-circle'}" style="color:${type === 'error' ? '#ef4444' : '#10b981'}"></i> ${msg}`;
+            el.style.borderLeft = type === 'error' ? '4px solid #ef4444' : '4px solid #10b981';
+            
+            let icon = type === 'error' ? 'fa-triangle-exclamation' : (type === 'info' ? 'fa-circle-info' : 'fa-check-circle');
+            let color = type === 'error' ? '#ef4444' : (type === 'info' ? '#60a5fa' : '#10b981');
+
+            el.innerHTML = `<i class="fa-solid ${icon}" style="color:${color}"></i> <span>${msg}</span>`;
             box.appendChild(el);
             setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, 3000);
         }
 
-        function playNotif() {
+        function playNotification() {
             document.getElementById('notifSound').play().catch(()=>{});
             showToast("New Message Received!");
         }
 
         function closeModal() {
-            document.getElementById('mailModal').classList.remove('open');
+            document.getElementById('mailModal').classList.remove('active');
             setTimeout(() => { document.getElementById('emailFrame').srcdoc = ''; }, 300);
         }
-        
+
         function downloadEmail() {
             const blob = new Blob([state.currentHtml], {type: "text/html"});
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
-            a.download = `email-${state.lastId}.html`;
+            a.download = `nexus-mail-${state.lastId || 'msg'}.html`;
             a.click();
         }
 
@@ -616,32 +651,36 @@
             if (!text) return text;
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
-        
-        // History Logic
-        function updateHistory(user, domain) {
-            let hist = JSON.parse(localStorage.getItem('nexus_hist') || '[]');
+
+        // History Manager
+        function addToHistory(user, domain) {
+            let hist = JSON.parse(localStorage.getItem('nexus_history') || '[]');
             const id = `${user}@${domain}`;
             hist = hist.filter(x => `${x.u}@${x.d}` !== id);
             hist.unshift({u:user, d:domain});
             if(hist.length > 5) hist.pop();
-            localStorage.setItem('nexus_hist', JSON.stringify(hist));
-            renderHistory();
+            localStorage.setItem('nexus_history', JSON.stringify(hist));
+            updateHistoryUI();
         }
-        
-        function renderHistory() {
-            const hist = JSON.parse(localStorage.getItem('nexus_hist') || '[]');
+
+        function updateHistoryUI() {
+            const hist = JSON.parse(localStorage.getItem('nexus_history') || '[]');
             const list = document.getElementById('historyList');
+            if(hist.length === 0) {
+                list.innerHTML = '<div style="padding:10px; text-align:center; opacity:0.5">No recent history</div>';
+                return;
+            }
             list.innerHTML = hist.map(h => `
-                <div style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer; display:flex; justify-content:space-between;" onclick="setIdentity('${h.u}', '${h.d}', false); toggleHistory()">
-                    <span style="font-family:'JetBrains Mono'; color:#cbd5e1">${h.u}@${h.d}</span>
-                    <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--primary)"></i>
+                <div class="history-row" onclick="setIdentity('${h.u}', '${h.d}', false); toggleHistory()">
+                    <span>${h.u}@${h.d}</span>
+                    <i class="fa-solid fa-chevron-right" style="font-size:0.7rem"></i>
                 </div>
             `).join('');
         }
-        
+
         function toggleHistory() {
             const p = document.getElementById('historyPanel');
-            p.style.display = p.style.display === 'none' ? 'block' : 'none';
+            p.style.display = p.style.display === 'block' ? 'none' : 'block';
         }
 
     </script>
