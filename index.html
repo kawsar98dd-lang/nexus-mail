@@ -134,6 +134,7 @@
             font-family: 'JetBrains Mono'; font-size: 0.9rem;
         }
         .nexus-field:focus { border-color: var(--primary); }
+        select.nexus-field { background: #18181b; } /* Fix for select dropdown visibility */
 
         /* Inbox Section */
         .inbox-header {
@@ -276,7 +277,7 @@
             </div>
 
             <div class="email-box">
-                <input type="text" id="emailDisplay" class="email-input" value="Connecting..." readonly>
+                <input type="text" id="emailDisplay" class="email-input" value="Initializing..." readonly>
                 <i class="fa-regular fa-copy copy-btn" onclick="copyEmail()" title="Copy Address"></i>
             </div>
 
@@ -284,9 +285,7 @@
                 <div class="dual-input">
                     <input type="text" id="customUser" class="nexus-field" placeholder="username">
                     <select id="customDomain" class="nexus-field" style="flex: 0.7;">
-                        <option value="1secmail.com">@1secmail.com</option>
-                        <option value="1secmail.net">@1secmail.net</option>
-                        <option value="1secmail.org">@1secmail.org</option>
+                        <option>Loading...</option>
                     </select>
                 </div>
                 <button class="btn btn-primary" onclick="createCustomID()" style="width:100%">Activate Custom ID</button>
@@ -345,76 +344,63 @@
 
     <script>
         /**
-         * NEXUS MAIL ENGINE v4.0 (Enhanced Connectivity)
-         * Fixed: Network Weak/CORS Issues via Smart Proxy Rotation
-         * Optimization: Aggressive Cache Busting & Extended Timeout
+         * NEXUS MAIL ENGINE v5.0 (API Upgrade)
+         * Powered by: Mail.tm API
+         * Features: Live Domains, JWT Auth, Persistent Sessions
          */
         
-        const API_BASE = 'https://www.1secmail.com/api/v1/';
-        
-        // --- UPDATED PROXY LIST (Prioritizing High Success Rates) ---
-        // These proxies are more reliable for JSON data fetching.
-        const PROXY_LIST = [
-            'https://api.allorigins.win/raw?url=',          // Best for raw JSON
-            'https://api.codetabs.com/v1/proxy?quest=',     // Strong backup
-            'https://corsproxy.io/?',                       // Fast but sometimes strict
-            ''                                              // Direct (Last resort)
-        ];
-        
+        const API_BASE = 'https://api.mail.tm';
+        const STORAGE_KEY = 'nexus_auth_token';
+        const HISTORY_KEY = 'nexus_history';
+        const ACCOUNT_KEY = 'nexus_account_info';
+
         let state = {
-            user: '',
-            domain: '',
+            token: '',
+            email: '',
+            id: '',
             mails: [],
-            lastId: null,
+            availableDomains: [],
             isCustom: false,
-            currentHtml: ''
+            currentHtml: '',
+            refreshTimer: null
         };
 
-        // --- Core: Smart Fetcher with Cache Busting ---
-        async function robustFetch(url) {
-            let lastError;
+        // --- Core: API Handler ---
+        async function apiCall(endpoint, method = 'GET', body = null, auth = false) {
+            const headers = { 'Content-Type': 'application/json' };
+            if (auth && state.token) headers['Authorization'] = `Bearer ${state.token}`;
             
-            // Add Timestamp to prevent caching (Crucial for live refresh)
-            const timestamp = `&_t=${Date.now()}`;
-            const cleanUrl = url.includes('?') ? (url + timestamp) : (url + '?v=1' + timestamp);
-
-            for (const proxy of PROXY_LIST) {
-                try {
-                    const target = proxy ? (proxy + encodeURIComponent(cleanUrl)) : cleanUrl;
-                    
-                    // Increased timeout to 8s for slower proxies
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 8000);
-                    
-                    // fetch with 'no-store' to force network request
-                    const res = await fetch(target, { 
-                        signal: controller.signal,
-                        cache: "no-store",
-                        headers: { 'Cache-Control': 'no-cache' }
-                    });
-                    
-                    clearTimeout(timeoutId);
-                    
-                    if (res.ok) {
-                        return res; 
-                    }
-                } catch (e) {
-                    console.warn(`Proxy skipped: ${proxy || "Direct"}`);
-                    lastError = e;
+            try {
+                const config = { method, headers };
+                if (body) config.body = JSON.stringify(body);
+                
+                const res = await fetch(`${API_BASE}${endpoint}`, config);
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.message || 'API Error');
                 }
+                return method === 'DELETE' ? true : await res.json();
+            } catch (e) {
+                console.warn("API Error:", e);
+                throw e;
             }
-            throw lastError || new Error("All connections failed");
         }
 
         // --- Init ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedUser = localStorage.getItem('nexus_user');
-            const savedDomain = localStorage.getItem('nexus_domain');
-            
+        document.addEventListener('DOMContentLoaded', async () => {
+            await fetchDomains();
             updateHistoryUI();
 
-            if(savedUser && savedDomain) {
-                setIdentity(savedUser, savedDomain, false);
+            const savedToken = localStorage.getItem(STORAGE_KEY);
+            const savedAccount = JSON.parse(localStorage.getItem(ACCOUNT_KEY));
+
+            if (savedToken && savedAccount) {
+                // Restore session
+                state.token = savedToken;
+                state.email = savedAccount.address;
+                state.id = savedAccount.id;
+                document.getElementById('emailDisplay').value = state.email;
+                checkInbox(true);
             } else {
                 generateRandomID();
             }
@@ -423,101 +409,142 @@
             if(Notification.permission !== "granted") Notification.requestPermission();
         });
 
-        // --- Logic ---
-        function switchMode(mode) {
-            state.isCustom = (mode === 'custom');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            
-            if(state.isCustom) {
-                document.getElementById('tabCustom').classList.add('active');
-                document.getElementById('customArea').style.display = 'flex';
-                document.getElementById('randomControls').style.display = 'none';
-            } else {
-                document.getElementById('tabRandom').classList.add('active');
-                document.getElementById('customArea').style.display = 'none';
-                document.getElementById('randomControls').style.display = 'grid';
+        // --- Identity Management ---
+        async function fetchDomains() {
+            try {
+                const data = await apiCall('/domains');
+                state.availableDomains = data['hydra:member'];
+                
+                // Populate Custom Dropdown
+                const select = document.getElementById('customDomain');
+                select.innerHTML = state.availableDomains.map(d => 
+                    `<option value="${d.domain}">@${d.domain}</option>`
+                ).join('');
+            } catch (e) {
+                showToast("Server unreachable", "error");
             }
         }
 
         async function generateRandomID() {
             const icon = document.getElementById('spinIcon');
             icon.classList.add('fa-spin');
-            showToast("Establishing secure link...", "info");
-
+            
             try {
-                const res = await robustFetch(`${API_BASE}?action=genRandomMailbox&count=1`);
-                const data = await res.json();
-                const [user, domain] = data[0].split('@');
-                setIdentity(user, domain);
-                showToast("Identity Created Successfully");
+                if(state.availableDomains.length === 0) await fetchDomains();
+                
+                // Pick random domain
+                const domain = state.availableDomains[Math.floor(Math.random() * state.availableDomains.length)].domain;
+                const user = Math.random().toString(36).substring(2, 10);
+                const password = "NexusSecure" + Math.random().toString(36).substring(2);
+                
+                await createAccount(user + '@' + domain, password);
+                
             } catch (e) {
-                console.error(e);
-                showToast("Network busy. Retrying...", "error");
-                // Retry automatically with a slight delay
-                setTimeout(() => { if(!state.user) generateRandomID(); }, 3000);
+                showToast("Failed to create ID. Retrying...", "error");
+                setTimeout(generateRandomID, 2000);
             } finally {
                 icon.classList.remove('fa-spin');
             }
         }
 
-        function createCustomID() {
+        async function createCustomID() {
             const user = document.getElementById('customUser').value.trim().toLowerCase();
             const domain = document.getElementById('customDomain').value;
             
-            if(user.length < 3) return showToast("Username too short (min 3)", "error");
-            if(!/^[a-z0-9.]+$/.test(user)) return showToast("Use letters/numbers only", "error");
+            if(user.length < 3) return showToast("Username too short", "error");
+            if(!/^[a-z0-9.]+$/.test(user)) return showToast("Invalid characters", "error");
 
-            setIdentity(user, domain);
-            switchMode('random'); 
-            showToast("Custom ID Activated");
-        }
+            const email = `${user}@${domain}`;
+            const password = "NexusCustom" + user; // Deterministic password for recovery if needed
 
-        function setIdentity(user, domain, saveToHistory = true) {
-            state.user = user;
-            state.domain = domain;
-            state.mails = [];
-            state.lastId = null;
-            
-            localStorage.setItem('nexus_user', user);
-            localStorage.setItem('nexus_domain', domain);
-            
-            document.getElementById('emailDisplay').value = `${user}@${domain}`;
-            
-            if(saveToHistory) addToHistory(user, domain);
-            
-            renderInbox([]); 
-            checkInbox(true); 
-        }
-
-        async function checkInbox(manual = false) {
-            if(!state.user) return;
-            
             try {
-                const url = `${API_BASE}?action=getMessages&login=${state.user}&domain=${state.domain}`;
-                const res = await robustFetch(url);
-                const data = await res.json();
-                
-                document.getElementById('lastUpdate').innerText = "Live: " + new Date().toLocaleTimeString();
-
-                if(data.length > 0) {
-                    // Check if strictly new ID exists
-                    if(state.mails.length === 0 || data[0].id !== state.lastId) {
-                        if(state.lastId && data[0].id !== state.lastId) {
-                            playNotification();
-                        }
-                        state.mails = data;
-                        state.lastId = data[0].id;
-                        renderInbox(data);
+                showToast("Registering Custom ID...", "info");
+                await createAccount(email, password);
+                switchMode('random');
+            } catch (e) {
+                if(e.message.includes('already exists')) {
+                    // Try to login if exists
+                    try {
+                        await login(email, password);
+                    } catch(loginErr) {
+                        showToast("Username taken & protected", "error");
                     }
                 } else {
-                    if(state.mails.length > 0) {
+                    showToast(e.message, "error");
+                }
+            }
+        }
+
+        async function createAccount(email, password) {
+            try {
+                // 1. Create Account
+                await apiCall('/accounts', 'POST', { address: email, password: password });
+                
+                // 2. Login to get Token
+                await login(email, password);
+                
+            } catch (e) {
+                throw e;
+            }
+        }
+
+        async function login(email, password) {
+            try {
+                const data = await apiCall('/token', 'POST', { address: email, password: password });
+                state.token = data.token;
+                state.email = email;
+                
+                // Get Account ID details
+                const accInfo = await apiCall('/me', 'GET', null, true);
+                state.id = accInfo.id;
+
+                // Persist
+                localStorage.setItem(STORAGE_KEY, state.token);
+                localStorage.setItem(ACCOUNT_KEY, JSON.stringify(accInfo));
+                
+                // UI Update
+                document.getElementById('emailDisplay').value = email;
+                addToHistory(email);
+                renderInbox([]);
+                checkInbox(true);
+                showToast("Identity Secure & Active");
+            } catch(e) {
+                throw e;
+            }
+        }
+
+        // --- Inbox Logic ---
+        async function checkInbox(manual = false) {
+            if(!state.token) return;
+
+            try {
+                const data = await apiCall('/messages?page=1', 'GET', null, true);
+                const messages = data['hydra:member'];
+
+                document.getElementById('lastUpdate').innerText = "Live: " + new Date().toLocaleTimeString();
+
+                if (messages.length > 0) {
+                    const newestId = messages[0].id;
+                    if (state.mails.length === 0 || newestId !== state.mails[0]?.id) {
+                        if (state.mails.length > 0 && newestId !== state.mails[0].id) {
+                            playNotification();
+                        }
+                        state.mails = messages;
+                        renderInbox(messages);
+                    }
+                } else {
+                    if (state.mails.length > 0) {
                         state.mails = [];
                         renderInbox([]);
                     }
                 }
             } catch (e) {
-                // Silent fail on auto-refresh to avoid user annoyance
-                if(manual) showToast("Connection unstable, retrying...", "error");
+                if(manual) showToast("Sync Error", "error");
+                if(e.message.includes('401')) {
+                    // Token expired
+                    localStorage.removeItem(STORAGE_KEY);
+                    showToast("Session Expired", "error");
+                }
             }
         }
 
@@ -534,69 +561,106 @@
             }
 
             container.innerHTML = `<ul class="mail-list">` + mails.map(mail => `
-                <li class="mail-item ${mail.id === state.lastId ? 'unread' : ''}" onclick="openEmail(${mail.id})">
-                    <div class="avatar">${mail.from.charAt(0).toUpperCase()}</div>
+                <li class="mail-item ${!mail.seen ? 'unread' : ''}" onclick="openEmail('${mail.id}')">
+                    <div class="avatar">${mail.from.name ? mail.from.name.charAt(0) : mail.from.address.charAt(0)}</div>
                     <div class="mail-content">
                         <h4 class="subject">${escapeHtml(mail.subject) || '(No Subject)'}</h4>
-                        <p class="sender">${escapeHtml(mail.from)}</p>
+                        <p class="sender">${escapeHtml(mail.from.address)}</p>
                     </div>
-                    <div class="time">${mail.date.split(' ')[1]}</div>
+                    <div class="time">${new Date(mail.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
                 </li>
             `).join('') + `</ul>`;
         }
 
         async function openEmail(id) {
-            showToast("Downloading message...", "info");
+            showToast("Decrypting message...", "info");
             
             try {
-                const url = `${API_BASE}?action=readMessage&login=${state.user}&domain=${state.domain}&id=${id}`;
-                const res = await robustFetch(url);
-                const data = await res.json();
+                const data = await apiCall(`/messages/${id}`, 'GET', null, true);
                 
                 document.getElementById('modalSubject').innerText = data.subject || '(No Subject)';
-                document.getElementById('modalFrom').innerText = data.from;
+                document.getElementById('modalFrom').innerText = `${data.from.name || ''} <${data.from.address}>`;
                 
+                // Attachments
                 const attArea = document.getElementById('attachmentArea');
                 attArea.innerHTML = '';
                 if(data.attachments && data.attachments.length > 0) {
                     attArea.style.display = 'flex';
                     data.attachments.forEach(file => {
-                        const link = `https://www.1secmail.com/api/v1/?action=download&login=${state.user}&domain=${state.domain}&id=${id}&file=${file.filename}`;
+                        const link = `${API_BASE}${file.downloadUrl}`; // Requires Bearer Token usually, might fetch blob
+                        // Mail.tm attachment links act differently, usually need auth. 
+                        // For simplicity in this UI, we just link it. Browser might ask for auth or download directly if public.
+                        // Better approach: fetch blob and create object URL.
                         attArea.innerHTML += `
-                            <a href="${link}" target="_blank" style="color:#a5b4fc; text-decoration:none; background:rgba(255,255,255,0.1); padding:6px 12px; border-radius:8px; font-size:0.8rem; white-space:nowrap; display:flex; align-items:center; gap:5px;">
+                            <div style="cursor:pointer; color:#a5b4fc; background:rgba(255,255,255,0.1); padding:6px 12px; border-radius:8px; font-size:0.8rem; display:flex; align-items:center; gap:5px;" onclick="downloadAttachment('${file.downloadUrl}', '${file.filename}')">
                                 <i class="fa-solid fa-paperclip"></i> ${file.filename}
-                            </a>`;
+                            </div>`;
                     });
                 } else {
                     attArea.style.display = 'none';
                 }
 
+                // Body
                 const iframe = document.getElementById('emailFrame');
-                // Mobile Optimized CSS for Email Content
                 const css = `<style>
-                    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding:15px; color:#1f2937; word-wrap:break-word; line-height:1.6; font-size: 16px; }
-                    img { max-width: 100% !important; height: auto !important; border-radius: 8px; display: block; margin: 10px 0; }
+                    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding:20px; color:#1f2937; word-wrap:break-word; line-height:1.6; }
+                    img { max-width: 100% !important; height: auto !important; border-radius: 8px; margin: 10px 0; }
                     a { color: #4f46e5; text-decoration: none; font-weight: 600; }
-                    p { margin-bottom: 1em; }
-                    table { width: 100% !important; display: block; overflow-x: auto; border-collapse: collapse; }
                 </style>`;
                 
-                state.currentHtml = data.htmlBody || data.body;
-                iframe.srcdoc = css + (data.htmlBody || `<pre style="white-space:pre-wrap; font-family:inherit; color:#333;">${data.body}</pre>`);
+                // Prefer HTML, fallback to text
+                const bodyContent = data.html ? data.html : `<pre style="white-space:pre-wrap; font-family:inherit;">${data.text}</pre>`;
+                state.currentHtml = bodyContent;
+                iframe.srcdoc = css + bodyContent;
 
                 document.getElementById('mailModal').classList.add('active');
+                
+                // Mark as seen locally for UI
+                const mailItem = state.mails.find(m => m.id === id);
+                if(mailItem) mailItem.seen = true;
+                
             } catch (e) {
                 showToast("Failed to load email", "error");
             }
         }
 
+        async function downloadAttachment(url, filename) {
+            showToast("Downloading attachment...", "info");
+            try {
+                const res = await fetch(`${API_BASE}${url}`, {
+                    headers: { 'Authorization': `Bearer ${state.token}` }
+                });
+                const blob = await res.blob();
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
+            } catch(e) {
+                showToast("Download failed", "error");
+            }
+        }
+
         // --- Utilities ---
+        function switchMode(mode) {
+            state.isCustom = (mode === 'custom');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            if(state.isCustom) {
+                document.getElementById('tabCustom').classList.add('active');
+                document.getElementById('customArea').style.display = 'flex';
+                document.getElementById('randomControls').style.display = 'none';
+            } else {
+                document.getElementById('tabRandom').classList.add('active');
+                document.getElementById('customArea').style.display = 'none';
+                document.getElementById('randomControls').style.display = 'grid';
+            }
+        }
+
         function startAutoRefresh() {
             const bar = document.getElementById('refreshBar');
             let w = 0;
-            // Slightly faster refresh cycle (4s instead of 5s) for better responsiveness
             setInterval(() => {
-                w += 1.25; 
+                w += 1; 
                 if(w > 100) {
                     w = 0;
                     checkInbox();
@@ -608,7 +672,7 @@
         function manualRefresh() {
             document.getElementById('refreshBar').style.width = "0%";
             checkInbox(true);
-            showToast("Checking server...");
+            showToast("Checking cloud...");
         }
 
         function copyEmail() {
@@ -637,7 +701,7 @@
             const audio = document.getElementById('notifSound');
             audio.currentTime = 0;
             audio.play().catch(()=>{});
-            showToast("New Message Received!");
+            showToast("New Transmission Received!");
         }
 
         function closeModal() {
@@ -649,7 +713,7 @@
             const blob = new Blob([state.currentHtml], {type: "text/html"});
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
-            a.download = `nexus-mail-${state.lastId || 'msg'}.html`;
+            a.download = `nexus-mail-${Date.now()}.html`;
             a.click();
         }
 
@@ -659,27 +723,29 @@
         }
 
         // History Manager
-        function addToHistory(user, domain) {
-            let hist = JSON.parse(localStorage.getItem('nexus_history') || '[]');
-            const id = `${user}@${domain}`;
-            hist = hist.filter(x => `${x.u}@${x.d}` !== id);
-            hist.unshift({u:user, d:domain});
+        function addToHistory(email) {
+            let hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            hist = hist.filter(h => h !== email);
+            hist.unshift(email);
             if(hist.length > 5) hist.pop();
-            localStorage.setItem('nexus_history', JSON.stringify(hist));
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(hist));
             updateHistoryUI();
         }
 
         function updateHistoryUI() {
-            const hist = JSON.parse(localStorage.getItem('nexus_history') || '[]');
+            const hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
             const list = document.getElementById('historyList');
             if(hist.length === 0) {
                 list.innerHTML = '<div style="padding:10px; text-align:center; opacity:0.5">No recent history</div>';
                 return;
             }
+            // Note: Since Mail.tm requires password for login, we can only easily restore current session.
+            // History here acts more like a visual log unless we store passwords (insecure) or tokens (expire).
+            // For this version, clicking history just copies the email.
             list.innerHTML = hist.map(h => `
-                <div class="history-row" onclick="setIdentity('${h.u}', '${h.d}', false); toggleHistory()">
-                    <span>${h.u}@${h.d}</span>
-                    <i class="fa-solid fa-chevron-right" style="font-size:0.7rem"></i>
+                <div class="history-row" onclick="navigator.clipboard.writeText('${h}'); showToast('Copied from history')">
+                    <span>${h}</span>
+                    <i class="fa-regular fa-copy" style="font-size:0.7rem"></i>
                 </div>
             `).join('');
         }
