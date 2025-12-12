@@ -62,7 +62,6 @@
         }
         .pulse-dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success); animation: pulse 2s infinite; }
         
-        /* Mute State Style */
         .status-badge.muted .pulse-dot { background: var(--text-sec); box-shadow: none; animation: none; }
         .status-badge.muted { border-color: var(--surface-border); color: var(--text-sec); background: rgba(255,255,255,0.05); }
 
@@ -365,31 +364,32 @@
 
     <script>
         /**
-         * NEXUS MAIL ENGINE v7.0 (Pro Security Update)
-         * Added: Manual Login, Custom Passwords, Delete Account, Mute Toggle
-         * Optimized: Polling pauses when hidden
+         * NEXUS MAIL ENGINE v8.0 (Unbreakable Edition)
+         * Added: Auto-Token Renewal, Credential Persistence, Retry Logic
+         * Fix: Solves "Session Expired" by auto-logging in background.
          */
         
         const API_BASE = 'https://api.mail.tm';
-        const STORAGE_KEY = 'nexus_auth_token';
+        const STORAGE_KEY = 'nexus_secure_session'; // Changed to store full creds
         const HISTORY_KEY = 'nexus_history';
-        const ACCOUNT_KEY = 'nexus_account_info';
         const SETTINGS_KEY = 'nexus_settings';
 
         let state = {
             token: '',
             email: '',
+            password: '', // Stored in memory for auto-renewal
             id: '',
             mails: [],
             availableDomains: [],
-            mode: 'random', // random, custom, login
+            mode: 'random',
             currentHtml: '',
             isFetching: false,
-            isMuted: false
+            isMuted: false,
+            retryAttempts: 0
         };
 
-        // --- Core: Robust API Handler ---
-        async function apiCall(endpoint, method = 'GET', body = null, auth = false) {
+        // --- Core: Robust API Handler with Auto-Renewal ---
+        async function apiCall(endpoint, method = 'GET', body = null, auth = false, retry = true) {
             const headers = { 'Content-Type': 'application/json' };
             if (auth) {
                 if(!state.token) throw new Error("No Auth Token");
@@ -402,6 +402,20 @@
             try {
                 const res = await fetch(`${API_BASE}${endpoint}`, config);
                 
+                // CRITICAL: Auto-Renew on 401
+                if (res.status === 401 && retry && state.email && state.password) {
+                    console.warn("Session expired. Attempting auto-renewal...");
+                    showToast("Renewing secure session...", "info");
+                    
+                    const success = await login(state.email, state.password, true); // Silent login
+                    if(success) {
+                        // Retry the original request with new token
+                        return await apiCall(endpoint, method, body, auth, false); 
+                    } else {
+                        throw new Error("Session Expired Permanently");
+                    }
+                }
+
                 if (res.status === 401) {
                     handleSessionExpiry();
                     throw new Error("Session Expired");
@@ -413,7 +427,7 @@
                     throw new Error(err.message || `API Error ${res.status}`);
                 }
                 
-                if(res.status === 204) return true; // No content (Delete success)
+                if(res.status === 204) return true; 
                 return await res.json();
             } catch (e) {
                 console.error(`API Fail [${endpoint}]:`, e);
@@ -427,18 +441,20 @@
             updateHistoryUI();
             loadSettings();
 
-            const savedToken = localStorage.getItem(STORAGE_KEY);
-            const savedAccount = JSON.parse(localStorage.getItem(ACCOUNT_KEY));
+            const savedSession = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-            if (savedToken && savedAccount) {
-                // Restore session
-                state.token = savedToken;
-                state.email = savedAccount.address;
-                state.id = savedAccount.id;
-                document.getElementById('emailDisplay').value = state.email;
-                toggleDeleteBtn(true);
-                showToast("Session Restored");
-                checkInbox(true);
+            if (savedSession && savedSession.email && savedSession.password) {
+                // Restore secure session
+                state.email = savedSession.email;
+                state.password = savedSession.password;
+                
+                // Attempt login to get fresh token
+                try {
+                    await login(state.email, state.password, true); // Silent login
+                    showToast("Secure Connection Restored");
+                } catch(e) {
+                    generateRandomID(); // If saved creds fail, new ID
+                }
             } else {
                 generateRandomID();
             }
@@ -488,7 +504,6 @@
                 }
             } catch (e) {
                 console.log("Domain fetch fallback");
-                // Hard fallback if API fails
                 const select = document.getElementById('customDomain');
                 select.innerHTML = '<option value="bugfoo.com">@bugfoo.com</option>'; 
             }
@@ -528,10 +543,8 @@
             try {
                 showToast("Registering Custom ID...", "info");
                 await createAccount(email, password);
-                
-                // Clear inputs for security
                 document.getElementById('customPass').value = '';
-                switchMode('random'); // Return to main view
+                switchMode('random'); 
             } catch (e) {
                 showToast(e.message || "ID Taken or Error", "error");
             }
@@ -546,8 +559,6 @@
             try {
                 showToast("Authenticating...", "info");
                 await login(email, password);
-                
-                // Clear sensitive data
                 document.getElementById('loginPass').value = '';
                 switchMode('random'); 
             } catch(e) {
@@ -556,25 +567,27 @@
         }
 
         async function createAccount(email, password) {
-            // 1. Create
             await apiCall('/accounts', 'POST', { address: email, password: password });
-            // 2. Login
             await login(email, password);
         }
 
-        async function login(email, password) {
+        async function login(email, password, silent = false) {
             try {
                 const data = await apiCall('/token', 'POST', { address: email, password: password });
                 state.token = data.token;
                 state.email = email;
+                state.password = password; // Save for auto-renewal
                 
-                // Get Account ID details
+                // Get Account ID
                 const accInfo = await apiCall('/me', 'GET', null, true);
                 state.id = accInfo.id;
 
-                // Persist
-                localStorage.setItem(STORAGE_KEY, state.token);
-                localStorage.setItem(ACCOUNT_KEY, JSON.stringify(accInfo));
+                // Secure Save
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    email: email,
+                    password: password,
+                    id: state.id
+                }));
                 
                 // UI Update
                 document.getElementById('emailDisplay').value = email;
@@ -582,19 +595,25 @@
                 addToHistory(email);
                 
                 // Reset Inbox
-                state.mails = [];
-                renderInbox([]);
-                checkInbox(true);
+                if(!silent) {
+                    state.mails = [];
+                    renderInbox([]);
+                    showToast("Identity Secure");
+                }
                 
-                showToast("Access Granted");
+                checkInbox(true);
+                return true;
             } catch(e) {
-                localStorage.removeItem(STORAGE_KEY);
-                throw e;
+                if(!silent) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    throw e;
+                }
+                return false;
             }
         }
 
         async function deleteAccount() {
-            if(!confirm("⚠️ Are you sure? This will permanently delete this email address and all messages.")) return;
+            if(!confirm("⚠️ Are you sure? This will permanently delete this email address.")) return;
             
             try {
                 showToast("Destroying Identity...", "info");
@@ -602,18 +621,16 @@
                     await apiCall(`/accounts/${state.id}`, 'DELETE', null, true);
                 }
                 
-                // Logout Logic
                 localStorage.removeItem(STORAGE_KEY);
-                localStorage.removeItem(ACCOUNT_KEY);
                 state.token = '';
                 state.email = '';
+                state.password = '';
                 
                 document.getElementById('emailDisplay').value = "Identity Destroyed";
                 toggleDeleteBtn(false);
                 renderInbox([]);
                 showToast("Account Deleted", "success");
                 
-                // Auto generate new one after delay
                 setTimeout(generateRandomID, 1500);
             } catch(e) {
                 showToast("Deletion Failed", "error");
@@ -621,9 +638,8 @@
         }
 
         function handleSessionExpiry() {
-            localStorage.removeItem(STORAGE_KEY);
-            state.token = '';
-            document.getElementById('emailDisplay').value = "Session Expired";
+            // Only called if auto-renew fails
+            document.getElementById('emailDisplay').value = "Connection Lost";
             toggleDeleteBtn(false);
             showToast("Session expired", "error");
         }
@@ -632,10 +648,9 @@
         
         function startInboxPoller() {
             setInterval(() => {
-                // Stop polling if tab is hidden to save resources/API limits
                 if(document.hidden || !state.token) return; 
                 checkInbox();
-            }, 4000);
+            }, 5000); // 5s interval to be safe
         }
 
         async function checkInbox(manual = false) {
@@ -755,7 +770,6 @@
         async function downloadAttachment(url, filename) {
             showToast("Downloading attachment...", "info");
             try {
-                // Secure Fetch with Token
                 const res = await fetch(`${API_BASE}${url}`, {
                     headers: { 'Authorization': `Bearer ${state.token}` }
                 });
@@ -771,7 +785,6 @@
                 document.body.removeChild(link);
             } catch(e) {
                 showToast("Download failed - trying direct link", "error");
-                // Fallback (might fail if API requires header auth strictly)
                 window.open(`${API_BASE}${url}?token=${state.token}`, '_blank');
             }
         }
@@ -785,16 +798,15 @@
             document.getElementById(`tab${mode.charAt(0).toUpperCase() + mode.slice(1)}`).classList.add('active');
             
             const btnGen = document.getElementById('btnGen');
-            const mainCtrls = document.getElementById('mainControls');
             
             if(mode === 'custom') {
                 document.getElementById('customArea').classList.add('active-area');
-                btnGen.style.display = 'none'; // Hide random gen button in custom mode
+                btnGen.style.display = 'none';
             } else if(mode === 'login') {
                 document.getElementById('loginArea').classList.add('active-area');
                 btnGen.style.display = 'none';
             } else {
-                btnGen.style.display = 'flex'; // Show in Random mode
+                btnGen.style.display = 'flex';
             }
         }
 
@@ -802,7 +814,6 @@
             const btn = document.getElementById('btnDel');
             if(show) {
                 btn.style.display = 'flex';
-                // Adjust grid to fit delete button at bottom
                 btn.style.gridColumn = "span 2";
             } else {
                 btn.style.display = 'none';
@@ -813,11 +824,11 @@
             const bar = document.getElementById('refreshBar');
             let w = 0;
             setInterval(() => {
-                if(document.hidden) return; // Pause visual if hidden
+                if(document.hidden) return; 
                 w += 1; 
                 if(w > 100) w = 0;
                 bar.style.width = w + "%";
-            }, 40); 
+            }, 50); // Slightly slower visual to match 5s poll
         }
 
         function manualRefresh() {
