@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NexusMail | Ultra Secure Inbox</title>
+    <title>NexusMail | Pro Secure Inbox</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -58,9 +58,13 @@
         .status-badge {
             font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--success);
             padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.2);
-            display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+            display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; cursor: pointer;
         }
         .pulse-dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success); animation: pulse 2s infinite; }
+        
+        /* Mute State Style */
+        .status-badge.muted .pulse-dot { background: var(--text-sec); box-shadow: none; animation: none; }
+        .status-badge.muted { border-color: var(--surface-border); color: var(--text-sec); background: rgba(255,255,255,0.05); }
 
         /* Main Glass Card */
         .glass-card {
@@ -112,7 +116,10 @@
         .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
         .btn-secondary:active { transform: scale(0.96); }
 
-        /* Tabs (Random/Custom) */
+        .btn-danger { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--danger); }
+        .btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
+
+        /* Tabs */
         .tab-switcher {
             display: flex; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 4px; margin-bottom: 25px;
         }
@@ -122,18 +129,20 @@
         }
         .tab-btn.active { background: var(--surface-border); color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
 
-        /* Custom Input Area */
-        #customArea { 
+        /* Input Areas */
+        .input-area { 
             display: none; flex-direction: column; gap: 12px; margin-bottom: 15px; 
             animation: fadeInDown 0.3s ease;
         }
+        .active-area { display: flex; }
+
         .dual-input { display: flex; gap: 10px; }
         .nexus-field {
             background: rgba(255,255,255,0.03); border: 1px solid var(--surface-border);
             color: white; padding: 12px; border-radius: 12px; width: 100%;
-            font-family: 'JetBrains Mono'; font-size: 0.9rem;
+            font-family: 'JetBrains Mono'; font-size: 0.9rem; transition: 0.2s;
         }
-        .nexus-field:focus { border-color: var(--primary); }
+        .nexus-field:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
         select.nexus-field { background: #18181b; } 
 
         /* Inbox Section */
@@ -265,15 +274,18 @@
         
         <div class="brand">
             <h1>NEXUS<span>MAIL</span></h1>
-            <div class="status-badge"><span class="pulse-dot"></span>Secure Server Active</div>
+            <div class="status-badge" id="soundToggle" onclick="toggleMute()">
+                <span class="pulse-dot"></span><span id="soundText">Sound Active</span>
+            </div>
         </div>
 
         <div class="glass-card">
             <div class="progress-container"><div id="refreshBar" class="progress-bar"></div></div>
 
             <div class="tab-switcher">
-                <div class="tab-btn active" id="tabRandom" onclick="switchMode('random')">Random ID</div>
+                <div class="tab-btn active" id="tabRandom" onclick="switchMode('random')">Random</div>
                 <div class="tab-btn" id="tabCustom" onclick="switchMode('custom')">Custom ID</div>
+                <div class="tab-btn" id="tabLogin" onclick="switchMode('login')">Login</div>
             </div>
 
             <div class="email-box">
@@ -281,25 +293,35 @@
                 <i class="fa-regular fa-copy copy-btn" onclick="copyEmail()" title="Copy Address"></i>
             </div>
 
-            <div id="customArea">
+            <div id="customArea" class="input-area">
                 <div class="dual-input">
-                    <input type="text" id="customUser" class="nexus-field" placeholder="username">
+                    <input type="text" id="customUser" class="nexus-field" placeholder="Username (e.g. admin)">
                     <select id="customDomain" class="nexus-field" style="flex: 0.7;">
                         <option>Loading...</option>
                     </select>
                 </div>
-                <button class="btn btn-primary" onclick="createCustomID()" style="width:100%">Activate Custom ID</button>
+                <input type="password" id="customPass" class="nexus-field" placeholder="Create Password (Required for secure access)">
+                <button class="btn btn-primary" onclick="createCustomID()" style="width:100%">Create Custom ID</button>
             </div>
 
-            <div class="action-grid" id="randomControls">
-                <button class="btn btn-primary" onclick="generateRandomID()">
-                    <i class="fa-solid fa-shuffle" id="spinIcon"></i> Generate New Identity
+            <div id="loginArea" class="input-area">
+                <input type="email" id="loginEmail" class="nexus-field" placeholder="Full Email Address">
+                <input type="password" id="loginPass" class="nexus-field" placeholder="Password">
+                <button class="btn btn-primary" onclick="performLogin()" style="width:100%">Access Account</button>
+            </div>
+
+            <div class="action-grid" id="mainControls">
+                <button class="btn btn-primary" onclick="generateRandomID()" id="btnGen">
+                    <i class="fa-solid fa-shuffle" id="spinIcon"></i> New Identity
                 </button>
                 <button class="btn btn-secondary" onclick="manualRefresh()">
                     <i class="fa-solid fa-arrows-rotate"></i> Refresh
                 </button>
                 <button class="btn btn-secondary" onclick="toggleHistory()">
                     <i class="fa-solid fa-clock-rotate-left"></i> History
+                </button>
+                <button class="btn btn-danger" onclick="deleteAccount()" id="btnDel" style="display:none; grid-column: span 2;">
+                    <i class="fa-solid fa-trash-can"></i> Delete & Destroy ID
                 </button>
             </div>
 
@@ -330,12 +352,11 @@
                     <p id="modalFrom">sender@example.com</p>
                 </div>
                 <div class="modal-tools">
-                    <button class="tool-btn" onclick="downloadEmail()" title="Download"><i class="fa-solid fa-download"></i></button>
+                    <button class="tool-btn" onclick="downloadEmail()" title="Download HTML"><i class="fa-solid fa-download"></i></button>
                     <button class="tool-btn close" onclick="closeModal()" title="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
             <div id="attachmentArea" style="padding:10px 20px; background:#18181b; display:none; gap:10px; overflow-x:auto; border-bottom:1px solid rgba(255,255,255,0.05); white-space:nowrap;"></div>
-            
             <iframe id="emailFrame" class="email-body-frame" sandbox="allow-same-origin allow-popups"></iframe>
         </div>
     </div>
@@ -344,15 +365,16 @@
 
     <script>
         /**
-         * NEXUS MAIL ENGINE v6.0 (Enhanced Stability)
-         * Powered by: Mail.tm API
-         * Fixes: Sync issues, Token management, Attachment downloads
+         * NEXUS MAIL ENGINE v7.0 (Pro Security Update)
+         * Added: Manual Login, Custom Passwords, Delete Account, Mute Toggle
+         * Optimized: Polling pauses when hidden
          */
         
         const API_BASE = 'https://api.mail.tm';
         const STORAGE_KEY = 'nexus_auth_token';
         const HISTORY_KEY = 'nexus_history';
         const ACCOUNT_KEY = 'nexus_account_info';
+        const SETTINGS_KEY = 'nexus_settings';
 
         let state = {
             token: '',
@@ -360,9 +382,10 @@
             id: '',
             mails: [],
             availableDomains: [],
-            isCustom: false,
+            mode: 'random', // random, custom, login
             currentHtml: '',
-            isFetching: false
+            isFetching: false,
+            isMuted: false
         };
 
         // --- Core: Robust API Handler ---
@@ -380,19 +403,18 @@
                 const res = await fetch(`${API_BASE}${endpoint}`, config);
                 
                 if (res.status === 401) {
-                    // Token expired or invalid
                     handleSessionExpiry();
                     throw new Error("Session Expired");
                 }
                 
                 if (!res.ok) {
-                    // Handle rate limits (429) silently by waiting, or throw
-                    if(res.status === 429) console.warn("Rate limit hit, slowing down...");
-                    const err = await res.json();
-                    throw new Error(err.message || 'API Error');
+                    if(res.status === 429) console.warn("Rate limit hit");
+                    const err = await res.json().catch(() => ({}));
+                    throw new Error(err.message || `API Error ${res.status}`);
                 }
                 
-                return method === 'DELETE' || method === 'PATCH' ? true : await res.json();
+                if(res.status === 204) return true; // No content (Delete success)
+                return await res.json();
             } catch (e) {
                 console.error(`API Fail [${endpoint}]:`, e);
                 throw e;
@@ -403,6 +425,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             await fetchDomains();
             updateHistoryUI();
+            loadSettings();
 
             const savedToken = localStorage.getItem(STORAGE_KEY);
             const savedAccount = JSON.parse(localStorage.getItem(ACCOUNT_KEY));
@@ -413,18 +436,41 @@
                 state.email = savedAccount.address;
                 state.id = savedAccount.id;
                 document.getElementById('emailDisplay').value = state.email;
+                toggleDeleteBtn(true);
                 showToast("Session Restored");
                 checkInbox(true);
             } else {
                 generateRandomID();
             }
             
-            // Start the visual and logical loops
             startVisualTimer();
             startInboxPoller();
-            
-            if(Notification.permission !== "granted") Notification.requestPermission();
         });
+
+        // --- Settings (Mute) ---
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+            state.isMuted = !!settings.muted;
+            updateMuteUI();
+        }
+
+        function toggleMute() {
+            state.isMuted = !state.isMuted;
+            localStorage.setItem(SETTINGS_KEY, JSON.stringify({ muted: state.isMuted }));
+            updateMuteUI();
+        }
+
+        function updateMuteUI() {
+            const badge = document.getElementById('soundToggle');
+            const txt = document.getElementById('soundText');
+            if(state.isMuted) {
+                badge.classList.add('muted');
+                txt.innerText = "Sound Muted";
+            } else {
+                badge.classList.remove('muted');
+                txt.innerText = "Sound Active";
+            }
+        }
 
         // --- Identity Management ---
         async function fetchDomains() {
@@ -441,9 +487,10 @@
                     select.innerHTML = '<option>No Domains</option>';
                 }
             } catch (e) {
-                console.log("Domain fetch failed, using fallback if possible");
-                showToast("Network Issue: Retrying...", "error");
-                setTimeout(fetchDomains, 3000);
+                console.log("Domain fetch fallback");
+                // Hard fallback if API fails
+                const select = document.getElementById('customDomain');
+                select.innerHTML = '<option value="bugfoo.com">@bugfoo.com</option>'; 
             }
         }
 
@@ -454,9 +501,9 @@
             try {
                 if(!state.availableDomains || state.availableDomains.length === 0) await fetchDomains();
                 
-                const domain = state.availableDomains[Math.floor(Math.random() * state.availableDomains.length)].domain;
+                const domain = state.availableDomains[Math.floor(Math.random() * state.availableDomains.length)].domain || "bugfoo.com";
                 const user = Math.random().toString(36).substring(2, 12);
-                const password = "Nexus" + Math.random().toString(36).substring(2) + "!";
+                const password = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
                 
                 await createAccount(user + '@' + domain, password);
                 
@@ -470,28 +517,41 @@
         async function createCustomID() {
             const userInput = document.getElementById('customUser').value.trim().toLowerCase();
             const domain = document.getElementById('customDomain').value;
+            const password = document.getElementById('customPass').value;
             
             if(userInput.length < 3) return showToast("Username too short", "error");
             if(!/^[a-z0-9.]+$/.test(userInput)) return showToast("Invalid characters", "error");
+            if(password.length < 4) return showToast("Password too short", "error");
 
             const email = `${userInput}@${domain}`;
-            const password = "NexusPass" + userInput + "!"; 
 
             try {
                 showToast("Registering Custom ID...", "info");
                 await createAccount(email, password);
-                switchMode('random'); // Switch view back to main
+                
+                // Clear inputs for security
+                document.getElementById('customPass').value = '';
+                switchMode('random'); // Return to main view
             } catch (e) {
-                if(e.message && e.message.includes('already exists')) {
-                    try {
-                        // Attempt login if exists
-                        await login(email, password);
-                    } catch(loginErr) {
-                        showToast("ID Taken or Wrong Password", "error");
-                    }
-                } else {
-                    showToast(e.message || "Error creating ID", "error");
-                }
+                showToast(e.message || "ID Taken or Error", "error");
+            }
+        }
+
+        async function performLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPass').value;
+
+            if(!email || !password) return showToast("Credentials required", "error");
+
+            try {
+                showToast("Authenticating...", "info");
+                await login(email, password);
+                
+                // Clear sensitive data
+                document.getElementById('loginPass').value = '';
+                switchMode('random'); 
+            } catch(e) {
+                showToast("Login Failed: Check creds", "error");
             }
         }
 
@@ -518,6 +578,7 @@
                 
                 // UI Update
                 document.getElementById('emailDisplay').value = email;
+                toggleDeleteBtn(true);
                 addToHistory(email);
                 
                 // Reset Inbox
@@ -525,10 +586,37 @@
                 renderInbox([]);
                 checkInbox(true);
                 
-                showToast("Identity Secure & Active");
+                showToast("Access Granted");
             } catch(e) {
                 localStorage.removeItem(STORAGE_KEY);
                 throw e;
+            }
+        }
+
+        async function deleteAccount() {
+            if(!confirm("⚠️ Are you sure? This will permanently delete this email address and all messages.")) return;
+            
+            try {
+                showToast("Destroying Identity...", "info");
+                if(state.id) {
+                    await apiCall(`/accounts/${state.id}`, 'DELETE', null, true);
+                }
+                
+                // Logout Logic
+                localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem(ACCOUNT_KEY);
+                state.token = '';
+                state.email = '';
+                
+                document.getElementById('emailDisplay').value = "Identity Destroyed";
+                toggleDeleteBtn(false);
+                renderInbox([]);
+                showToast("Account Deleted", "success");
+                
+                // Auto generate new one after delay
+                setTimeout(generateRandomID, 1500);
+            } catch(e) {
+                showToast("Deletion Failed", "error");
             }
         }
 
@@ -536,16 +624,18 @@
             localStorage.removeItem(STORAGE_KEY);
             state.token = '';
             document.getElementById('emailDisplay').value = "Session Expired";
-            showToast("Session expired, please regenerate", "error");
+            toggleDeleteBtn(false);
+            showToast("Session expired", "error");
         }
 
-        // --- Inbox Logic (Enhanced) ---
+        // --- Inbox Logic (Optimized) ---
         
         function startInboxPoller() {
-            // Polling interval separate from visual bar
             setInterval(() => {
-                if(state.token) checkInbox();
-            }, 4000); // Check every 4 seconds
+                // Stop polling if tab is hidden to save resources/API limits
+                if(document.hidden || !state.token) return; 
+                checkInbox();
+            }, 4000);
         }
 
         async function checkInbox(manual = false) {
@@ -558,17 +648,15 @@
 
                 document.getElementById('lastUpdate').innerText = "Live: " + new Date().toLocaleTimeString();
 
-                // Logic to detect new messages
                 if (messages.length > 0) {
                     const currentTopId = state.mails.length > 0 ? state.mails[0].id : null;
                     const newTopId = messages[0].id;
 
                     if (newTopId !== currentTopId) {
-                        if (currentTopId !== null) playNotification(); // Only sound if it's a new arrival, not first load
+                        if (currentTopId !== null) playNotification(); 
                         state.mails = messages;
                         renderInbox(messages);
                     } else if (messages.length !== state.mails.length) {
-                         // Fallback check if IDs matched but count didn't (deletions etc)
                          state.mails = messages;
                          renderInbox(messages);
                     }
@@ -613,19 +701,15 @@
             showToast("Opening message...", "info");
             
             try {
-                // 1. Mark as read on server immediately
                 if(!wasSeen) {
                     apiCall(`/messages/${id}`, 'PATCH', { seen: true }, true).catch(err => console.log("Mark read failed"));
-                    
-                    // Update local UI state
                     const localMail = state.mails.find(m => m.id === id);
                     if(localMail) {
                         localMail.seen = true;
-                        renderInbox(state.mails); // Re-render to remove "unread" style
+                        renderInbox(state.mails);
                     }
                 }
 
-                // 2. Fetch full content
                 const data = await apiCall(`/messages/${id}`, 'GET', null, true);
                 
                 document.getElementById('modalSubject').innerText = data.subject || '(No Subject)';
@@ -638,7 +722,6 @@
                 if(data.attachments && data.attachments.length > 0) {
                     attArea.style.display = 'flex';
                     data.attachments.forEach(file => {
-                        // Create a closure-safe onclick handler
                         const btn = document.createElement('div');
                         btn.style.cssText = "cursor:pointer; color:#a5b4fc; background:rgba(255,255,255,0.1); padding:6px 12px; border-radius:8px; font-size:0.8rem; display:flex; align-items:center; gap:5px;";
                         btn.innerHTML = `<i class="fa-solid fa-paperclip"></i> ${file.filename} (${formatBytes(file.size)})`;
@@ -649,7 +732,7 @@
                     attArea.style.display = 'none';
                 }
 
-                // Body Handling
+                // Body
                 const iframe = document.getElementById('emailFrame');
                 const css = `<style>
                     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding:20px; color:#1f2937; word-wrap:break-word; line-height:1.6; background:white; }
@@ -658,7 +741,6 @@
                     blockquote { border-left: 3px solid #ddd; padding-left: 10px; color: #555; }
                 </style>`;
                 
-                // Fallback logic: HTML -> Text -> Placeholder
                 const bodyContent = data.html ? data.html : (data.text ? `<pre style="white-space:pre-wrap; font-family:inherit;">${data.text}</pre>` : '<i>No Content</i>');
                 state.currentHtml = bodyContent;
                 iframe.srcdoc = css + bodyContent;
@@ -667,13 +749,13 @@
                 
             } catch (e) {
                 showToast("Failed to load email", "error");
-                console.error(e);
             }
         }
 
         async function downloadAttachment(url, filename) {
             showToast("Downloading attachment...", "info");
             try {
+                // Secure Fetch with Token
                 const res = await fetch(`${API_BASE}${url}`, {
                     headers: { 'Authorization': `Bearer ${state.token}` }
                 });
@@ -688,35 +770,54 @@
                 link.click();
                 document.body.removeChild(link);
             } catch(e) {
-                showToast("Download failed", "error");
+                showToast("Download failed - trying direct link", "error");
+                // Fallback (might fail if API requires header auth strictly)
+                window.open(`${API_BASE}${url}?token=${state.token}`, '_blank');
             }
         }
 
-        // --- Utilities ---
+        // --- UI Utilities ---
         function switchMode(mode) {
-            state.isCustom = (mode === 'custom');
+            state.mode = mode;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.input-area').forEach(a => a.classList.remove('active-area'));
             
-            if(state.isCustom) {
-                document.getElementById('tabCustom').classList.add('active');
-                document.getElementById('customArea').style.display = 'flex';
-                document.getElementById('randomControls').style.display = 'none';
+            document.getElementById(`tab${mode.charAt(0).toUpperCase() + mode.slice(1)}`).classList.add('active');
+            
+            const btnGen = document.getElementById('btnGen');
+            const mainCtrls = document.getElementById('mainControls');
+            
+            if(mode === 'custom') {
+                document.getElementById('customArea').classList.add('active-area');
+                btnGen.style.display = 'none'; // Hide random gen button in custom mode
+            } else if(mode === 'login') {
+                document.getElementById('loginArea').classList.add('active-area');
+                btnGen.style.display = 'none';
             } else {
-                document.getElementById('tabRandom').classList.add('active');
-                document.getElementById('customArea').style.display = 'none';
-                document.getElementById('randomControls').style.display = 'grid';
+                btnGen.style.display = 'flex'; // Show in Random mode
+            }
+        }
+
+        function toggleDeleteBtn(show) {
+            const btn = document.getElementById('btnDel');
+            if(show) {
+                btn.style.display = 'flex';
+                // Adjust grid to fit delete button at bottom
+                btn.style.gridColumn = "span 2";
+            } else {
+                btn.style.display = 'none';
             }
         }
 
         function startVisualTimer() {
-            // Visual only - decoupled from logic to prevent lag
             const bar = document.getElementById('refreshBar');
             let w = 0;
             setInterval(() => {
+                if(document.hidden) return; // Pause visual if hidden
                 w += 1; 
                 if(w > 100) w = 0;
                 bar.style.width = w + "%";
-            }, 40); // 40ms * 100 = 4000ms (matches the logic polling)
+            }, 40); 
         }
 
         function manualRefresh() {
@@ -727,7 +828,7 @@
 
         function copyEmail() {
             const el = document.getElementById('emailDisplay');
-            if(el.value === "Initializing..." || el.value.includes("Error")) return;
+            if(el.value.includes("...") || el.value.includes("Error")) return;
             
             el.select();
             el.setSelectionRange(0, 99999);
@@ -750,6 +851,7 @@
         }
 
         function playNotification() {
+            if(state.isMuted) return;
             const audio = document.getElementById('notifSound');
             audio.currentTime = 0;
             audio.play().catch(()=>{});
@@ -786,7 +888,6 @@
         // History Manager
         function addToHistory(email) {
             let hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
-            // Avoid duplicates
             if(hist.includes(email)) return;
             hist.unshift(email);
             if(hist.length > 5) hist.pop();
