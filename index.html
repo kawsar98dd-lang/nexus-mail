@@ -2,614 +2,526 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NexusMail | Pro Secure Inbox</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d0d0d">
+    <title>File Corrupter Pro | Ultimate Edition</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* --- Theme Variables --- */
         :root {
-            --bg-deep: #050507;
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --accent: #d946ef;
-            --surface: rgba(20, 20, 25, 0.7);
-            --surface-border: rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --text-sec: #94a3b8;
-            --success: #10b981;
-            --danger: #ef4444;
-            --blur: 25px;
-            --radius: 18px;
+            --bg-color: #0d0d0d;
+            --card-bg: #161b22;
+            --text-main: #c9d1d9;
+            --accent: #ff4757; 
+            --accent-glow: rgba(255, 71, 87, 0.4);
+            --recover: #2ecc71; /* Green for recovery */
+            --recover-glow: rgba(46, 204, 113, 0.4);
+            --success: #00e5ff;
+            --warning: #ffa502;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --radius: 12px;
+            --telegram: #0088cc;
         }
 
-        * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            margin: 0; min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(217, 70, 239, 0.15) 0%, transparent 50%);
+            background-color: var(--bg-color); color: var(--text-main);
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px; flex-direction: column; position: relative;
+            padding-bottom: 80px;
         }
 
-        /* --- Layout --- */
-        .container { 
-            max-width: 600px; width: 100%; 
-            padding: 15px; 
-            margin: 0 auto; padding-bottom: 120px;
+        /* --- Panic & Contact --- */
+        .panic-btn {
+            position: fixed; bottom: 20px; right: 20px; background: #e74c3c;
+            color: white; border: none; width: 50px; height: 50px; border-radius: 50%;
+            cursor: pointer; z-index: 999; box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+            display: flex; align-items: center; justify-content: center; font-size: 24px;
+            transition: transform 0.2s;
         }
+        .panic-btn:hover { transform: scale(1.1); }
 
-        /* Brand Header */
-        .brand {
-            text-align: center; margin: 30px 0 35px;
-            position: relative;
-        }
-        .brand h1 {
-            font-size: 2.2rem; margin: 0; font-weight: 800; letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff 20%, #818cf8);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .status-badge {
-            font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--success);
-            padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.2);
-            display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; cursor: pointer;
-        }
-        .pulse-dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success); animation: pulse 2s infinite; }
-        
-        .status-badge.muted .pulse-dot { background: var(--text-sec); box-shadow: none; animation: none; }
-        .status-badge.muted { border-color: var(--surface-border); color: var(--text-sec); background: rgba(255,255,255,0.05); }
-
-        /* Main Glass Card */
-        .glass-card {
-            background: var(--surface);
-            backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur));
-            border: 1px solid var(--surface-border);
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
-            position: relative; overflow: hidden;
-        }
-
-        /* Email Display Box */
-        .email-box {
-            background: rgba(0,0,0,0.4); border: 1px solid var(--surface-border);
-            border-radius: 14px; padding: 5px; display: flex; align-items: center;
-            margin-bottom: 25px; transition: 0.3s; position: relative;
-        }
-        .email-box:focus-within { border-color: var(--primary); box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
-        
-        .email-input {
-            width: 100%; background: transparent; border: none; color: var(--text-main);
-            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; padding: 14px 15px;
-            font-weight: 500; text-align: center; letter-spacing: 0.5px;
-        }
-        .copy-btn {
-            padding: 12px 15px; color: var(--text-sec); cursor: pointer; transition: 0.2s; font-size: 1.1rem;
-        }
-        .copy-btn:hover { color: white; transform: scale(1.1); }
-        .copy-btn:active { transform: scale(0.95); }
-
-        /* Buttons Grid */
-        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
-        
-        .btn {
-            border: none; border-radius: 12px; padding: 14px;
-            font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.95rem;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: all 0.2s; color: white;
-        }
-        .btn-primary { 
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
-            grid-column: span 2;
-        }
-        .btn-primary:active { transform: scale(0.98); }
-        
-        .btn-secondary { background: rgba(255,255,255,0.05); border: 1px solid var(--surface-border); }
-        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
-        .btn-secondary:active { transform: scale(0.96); }
-
-        /* Inbox Section */
-        .inbox-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin: 30px 0 15px; padding: 0 8px;
-        }
-        .inbox-header h3 { margin: 0; font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
-        
-        .mail-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-        
-        .mail-item {
-            background: var(--surface); border: 1px solid var(--surface-border);
-            padding: 16px; border-radius: 16px; cursor: pointer;
-            display: grid; grid-template-columns: 48px 1fr auto; gap: 15px; align-items: center;
-            transition: transform 0.2s; position: relative; overflow: hidden; animation: fadeInDown 0.3s ease;
-        }
-        .mail-item::after {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-            background: var(--primary); opacity: 0;
-        }
-        .mail-item.unread { background: rgba(20, 20, 30, 0.85); border-color: rgba(99, 102, 241, 0.3); }
-        .mail-item.unread::after { opacity: 1; }
-        .mail-item:active { transform: scale(0.99); }
-        
-        .avatar {
-            width: 48px; height: 48px; border-radius: 14px;
-            background: linear-gradient(135deg, #334155, #1e293b);
+        .floating-contact {
+            position: fixed; bottom: 20px; left: 20px; background: var(--telegram);
+            color: white; width: 50px; height: 50px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 1.2rem; color: #e2e8f0;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            text-decoration: none; z-index: 999; box-shadow: 0 0 20px rgba(0, 136, 204, 0.6);
+            font-size: 24px; transition: transform 0.2s;
         }
+        .floating-contact:hover { transform: scale(1.1); }
+
+        /* --- Navigation --- */
+        .top-nav {
+            position: absolute; top: 0; left: 0; width: 100%; padding: 20px 30px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+        }
+        .nav-logo { font-size: 1.5rem; font-weight: bold; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+        .nav-logo span { color: var(--accent); }
+        .home-btn {
+            background: transparent; border: 1px solid var(--accent); color: var(--accent);
+            padding: 8px 20px; border-radius: 6px; text-decoration: none; font-weight: 600;
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .home-btn:hover { background: var(--accent); color: white; box-shadow: 0 0 15px var(--accent-glow); }
+
+        /* --- Main Container --- */
+        .tool-container {
+            background: var(--card-bg); width: 100%; max-width: 700px;
+            border-radius: var(--radius); border: var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;
+            margin-top: 80px; position: relative;
+        }
+
+        /* --- Tabs --- */
+        .tabs { display: flex; background: #0d1117; border-bottom: 1px solid #30363d; }
+        .tab-btn {
+            flex: 1; padding: 15px; background: none; border: none; color: #8b949e;
+            font-weight: 600; cursor: pointer; transition: 0.3s; position: relative;
+        }
+        .tab-btn i { margin-right: 8px; }
+        .tab-btn.active { color: #fff; background: #21262d; }
+        .tab-btn.active::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
+        }
+        .tab-corrupt.active::after { background: var(--accent); }
+        .tab-recover.active::after { background: var(--recover); }
+
+        /* --- Content Area --- */
+        .tab-content { padding: 30px; display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
         
-        .mail-content { min-width: 0; }
-        .subject { margin: 0 0 5px; font-size: 0.95rem; font-weight: 600; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .sender { margin: 0; font-size: 0.85rem; color: var(--text-sec); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .time { font-size: 0.75rem; color: var(--text-sec); background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 8px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Empty State */
-        .empty-state {
-            text-align: center; padding: 60px 20px; opacity: 0.5;
-            display: flex; flex-direction: column; align-items: center; gap: 15px;
+        /* --- Upload --- */
+        .upload-area {
+            border: 2px dashed #30363d; border-radius: var(--radius);
+            padding: 40px; text-align: center; cursor: pointer;
+            background: #0d1117; transition: 0.3s; margin-bottom: 20px;
         }
-        .empty-state i { font-size: 3.5rem; color: var(--primary); filter: drop-shadow(0 0 15px rgba(99,102,241,0.4)); margin-bottom: 10px; }
+        .upload-area:hover { border-color: #58a6ff; background: rgba(88, 166, 255, 0.05); }
+        .upload-icon { font-size: 40px; color: #8b949e; margin-bottom: 15px; }
 
-        /* Modal (Email View) */
-        .modal-overlay {
-            position: fixed; inset: 0; z-index: 2000;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-            display: none; justify-content: center; align-items: flex-end;
+        /* --- Mode Switcher --- */
+        .mode-switcher {
+            display: flex; background: #0d1117; padding: 5px; border-radius: 8px;
+            margin-bottom: 20px; border: 1px solid #30363d;
         }
-        .modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
-        
-        .modal-card {
-            width: 100%; max-width: 600px; height: 90vh;
-            background: #0f0f12; border-top: 1px solid var(--surface-border);
-            border-radius: 24px 24px 0 0;
-            display: flex; flex-direction: column; overflow: hidden;
-            animation: slideUp 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 0 -10px 50px rgba(0,0,0,0.7);
+        .mode-btn {
+            flex: 1; padding: 10px; border: none; background: none; color: #8b949e;
+            border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.2s;
         }
-        
-        .modal-header {
-            padding: 20px 25px; background: #18181b; border-bottom: 1px solid var(--surface-border);
-            display: flex; justify-content: space-between; align-items: flex-start;
-        }
-        .header-text h2 { margin: 0 0 6px; font-size: 1.1rem; color: white; line-height: 1.4; }
-        .header-text p { margin: 0; color: var(--text-sec); font-size: 0.9rem; }
-        
-        .modal-tools { display: flex; gap: 10px; }
-        .tool-btn {
-            width: 40px; height: 40px; border-radius: 12px; border: none;
-            background: rgba(255,255,255,0.08); color: white; cursor: pointer;
-            display: grid; place-items: center; font-size: 1.1rem; transition: 0.2s;
-        }
-        .tool-btn:hover { background: var(--primary); }
-        .tool-btn.close { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
-        .tool-btn.close:hover { background: #ef4444; color: white; }
+        .mode-btn.active-perm { background: var(--accent); color: white; box-shadow: 0 0 10px var(--accent-glow); }
+        .mode-btn.active-rev { background: var(--recover); color: white; box-shadow: 0 0 10px var(--recover-glow); }
 
-        .email-body-frame { flex: 1; background: #fff; width: 100%; border: none; }
-        
-        /* Loading Bar */
-        .progress-container {
-            height: 3px; width: 100%; background: rgba(255,255,255,0.05);
-            position: absolute; top: 0; left: 0; overflow: hidden;
+        /* --- Inputs & Options --- */
+        .control-group { margin-bottom: 15px; }
+        .control-label { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 8px; display: block; }
+        input[type="text"], input[type="password"] {
+            width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d;
+            color: #fff; border-radius: 6px; outline: none; transition: 0.3s;
         }
-        .progress-bar {
-            height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
-            width: 0%; transition: width 1s linear;
-            box-shadow: 0 0 10px var(--primary);
+        input:focus { border-color: #58a6ff; }
+
+        /* Range Slider */
+        input[type="range"] {
+            width: 100%; height: 6px; background: #30363d; border-radius: 5px;
+            outline: none; -webkit-appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 18px; height: 18px; background: var(--accent);
+            border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--accent);
         }
 
-        /* History Panel */
-        .history-panel {
-            display: none; padding: 10px; background: rgba(0,0,0,0.3); 
-            border-top: 1px solid var(--surface-border);
-            animation: slideDown 0.2s ease;
-            max-height: 150px; overflow-y: auto;
+        /* --- Hex Preview --- */
+        .hex-preview {
+            background: #000; color: #00ff00; font-family: 'Courier New', monospace;
+            padding: 10px; font-size: 12px; height: 80px; overflow: hidden;
+            border-radius: 6px; margin-bottom: 15px; opacity: 0.7; position: relative;
         }
-        .history-row {
-            padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; color: var(--text-sec); font-family: 'JetBrains Mono'; font-size: 0.9rem;
-        }
-        .history-row:hover { color: white; background: rgba(255,255,255,0.02); }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: rgba(25, 25, 30, 0.95); backdrop-filter: blur(12px);
-            border: 1px solid var(--surface-border); padding: 14px 24px;
-            border-radius: 50px; color: white; font-size: 0.9rem; font-weight: 500;
-            display: flex; align-items: center; gap: 12px; z-index: 3000;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6); animation: floatUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .hex-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 40px;
+            background: linear-gradient(to top, #000, transparent);
         }
 
-        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes slideDown { from { height: 0; opacity: 0; } to { height: auto; opacity: 1; } }
-        @keyframes floatUp { from { transform: translate(-50%, 40px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+        /* --- Action Button --- */
+        .action-btn {
+            width: 100%; padding: 15px; border: none; border-radius: 30px;
+            font-size: 16px; font-weight: 700; cursor: pointer; color: white;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-corrupt { background: linear-gradient(45deg, #ff4757, #ff6b81); box-shadow: 0 5px 15px var(--accent-glow); }
+        .btn-recover { background: linear-gradient(45deg, #2ecc71, #27ae60); box-shadow: 0 5px 15px var(--recover-glow); }
+        .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .action-btn:hover:not(:disabled) { transform: translateY(-2px); }
 
+        /* --- Footer --- */
+        footer { margin-top: auto; text-align: center; color: #8b949e; font-size: 0.9rem; }
+        .footer-link { color: var(--accent); text-decoration: none; }
+
+        /* --- Animations --- */
+        @keyframes glitch {
+            0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); } 100% { transform: translate(0); }
+        }
+        .glitching { animation: glitch 0.3s infinite; }
+        .hidden { display: none !important; }
+
+        .warning-box {
+            background: rgba(255, 71, 87, 0.1); border-left: 3px solid var(--accent);
+            padding: 10px; font-size: 12px; color: #ff6b81; margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
 
-    <audio id="notifSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+    <button class="panic-btn" id="panic-btn" title="Emergency Exit"><i class="fas fa-door-open"></i></button>
+    <a href="https://t.me/Md_Kawser2" target="_blank" class="floating-contact"><i class="fa-brands fa-telegram"></i></a>
 
-    <div class="container">
-        
-        <div class="brand">
-            <h1>NEXUS<span>MAIL</span></h1>
-            <div class="status-badge" id="soundToggle" onclick="toggleMute()">
-                <span class="pulse-dot"></span><span id="soundText">Sound Active</span>
-            </div>
+    <nav class="top-nav">
+        <div class="nav-logo">FILE <span>CORRUPTER</span></div>
+        <a href="index.html" class="home-btn"><i class="fas fa-home"></i> Home</a>
+    </nav>
+
+    <div class="tool-container">
+        <div class="tabs">
+            <button class="tab-btn tab-corrupt active" onclick="switchTab('corrupt')">
+                <i class="fas fa-skull"></i> CORRUPT
+            </button>
+            <button class="tab-btn tab-recover" onclick="switchTab('recover')">
+                <i class="fas fa-recycle"></i> RECOVER
+            </button>
         </div>
 
-        <div class="glass-card">
-            <div class="progress-container"><div id="refreshBar" class="progress-bar"></div></div>
-
-            <div class="email-box">
-                <input type="text" id="emailDisplay" class="email-input" value="Initializing..." readonly>
-                <i class="fa-regular fa-copy copy-btn" onclick="copyEmail()" title="Copy Address"></i>
+        <div id="corrupt-tab" class="tab-content active">
+            <div class="upload-area" id="drop-zone-c">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <div>Drop file to <span style="color:var(--accent)">DESTROY</span></div>
+                <input type="file" id="file-input-c" hidden>
             </div>
 
-            <div class="action-grid" id="mainControls">
-                <button class="btn btn-primary" onclick="generateNewIdentity()" id="btnGen">
-                    <i class="fa-solid fa-shuffle" id="spinIcon"></i> New Identity
+            <div id="settings-c" class="hidden">
+                <div class="file-info" style="margin-bottom:15px; color:#fff; font-weight:bold;">
+                    Target: <span id="filename-c" style="color:var(--accent)"></span>
+                    <span id="filesize-warning" style="color:#ffa502; font-size:11px; display:none; margin-left:10px;">(Big File!)</span>
+                </div>
+
+                <div class="mode-switcher">
+                    <button class="mode-btn active-perm" id="btn-perm" onclick="setMode('perm')">💀 Permanent (No Recovery)</button>
+                    <button class="mode-btn" id="btn-rev" onclick="setMode('rev')">🔄 Reversible (Safemode)</button>
+                </div>
+
+                <div id="perm-options">
+                    <div class="control-group">
+                        <label class="control-label">Destruction Intensity</label>
+                        <input type="range" id="intensity" min="1" max="3" value="3">
+                        <div style="display:flex; justify-content:space-between; font-size:10px; color:#666;">
+                            <span>Glitch</span><span>Damage</span><span>Annihilate</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i> 
+                        <b>WARNING:</b> This mode physically overwrites data with random noise. Recovery is impossible.
+                    </div>
+                </div>
+
+                <div id="rev-options" class="hidden">
+                    <div class="control-group">
+                        <label class="control-label">Recovery Password (Required to restore)</label>
+                        <input type="text" id="corrupt-pass" placeholder="Enter a secret key..." value="1234">
+                    </div>
+                    <div class="warning-box" style="border-color:var(--recover); color: #2ecc71; background: rgba(46,204,113,0.1);">
+                        <i class="fas fa-info-circle"></i> 
+                        File will act corrupted but can be restored using the "Recover" tab with the password above.
+                    </div>
+                </div>
+
+                <div class="hex-preview">
+                    <div id="hex-view">LOADING HEX PREVIEW...</div>
+                    <div class="hex-overlay"></div>
+                </div>
+
+                <button class="action-btn btn-corrupt" id="btn-execute-c">
+                    <i class="fas fa-biohazard"></i> EXECUTE CORRUPTION
                 </button>
-                <button class="btn btn-secondary" onclick="manualRefresh()">
-                    <i class="fa-solid fa-arrows-rotate"></i> Refresh
+            </div>
+        </div>
+
+        <div id="recover-tab" class="tab-content">
+            <div class="upload-area" id="drop-zone-r" style="border-color: var(--recover);">
+                <i class="fas fa-file-medical upload-icon" style="color:var(--recover)"></i>
+                <div>Drop file to <span style="color:var(--recover)">RESTORE</span></div>
+                <input type="file" id="file-input-r" hidden>
+            </div>
+
+            <div id="settings-r" class="hidden">
+                <div class="file-info" style="margin-bottom:15px; color:#fff;">
+                    Target: <span id="filename-r" style="color:var(--recover)"></span>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Decryption Password</label>
+                    <input type="password" id="recover-pass" placeholder="Enter the key used during corruption">
+                </div>
+
+                <button class="action-btn btn-recover" id="btn-execute-r">
+                    <i class="fas fa-check-circle"></i> RECOVER FILE
                 </button>
-                <button class="btn btn-secondary" onclick="toggleHistory()">
-                    <i class="fa-solid fa-clock-rotate-left"></i> History
-                </button>
-            </div>
-
-            <div id="historyPanel" class="history-panel">
-                <div id="historyList"></div>
+                <div id="recover-msg" style="margin-top:10px; font-size:12px; text-align:center;"></div>
             </div>
         </div>
-
-        <div class="inbox-header">
-            <h3>Inbox</h3>
-            <small style="color:var(--text-sec)" id="lastUpdate">Connecting...</small>
-        </div>
-
-        <div id="inboxContainer">
-            <div class="empty-state">
-                <i class="fa-solid fa-satellite-dish"></i>
-                <p>Waiting for incoming transmission...<br><span style="font-size:0.8rem; color:#64748b">Auto-refresh is active</span></p>
-            </div>
-        </div>
-
     </div>
 
-    <div id="mailModal" class="modal-overlay">
-        <div class="modal-card">
-            <div class="modal-header">
-                <div class="header-text">
-                    <h2 id="modalSubject">Subject</h2>
-                    <p id="modalFrom">sender@example.com</p>
-                </div>
-                <div class="modal-tools">
-                    <button class="tool-btn close" onclick="closeModal()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div>
-            <iframe id="emailFrame" class="email-body-frame" sandbox="allow-same-origin allow-popups"></iframe>
-        </div>
-    </div>
-
-    <div id="toast-container"></div>
+    <footer>
+        &copy; 2026 Trusted Tools Web | Built by <a href="#" class="footer-link">MD.KAWSER</a>
+    </footer>
 
     <script>
-        /**
-         * NEXUS MAIL ENGINE v9.0 (Hybrid Edition)
-         * UI: NexusMail (Glassmorphism)
-         * Backend: Dropmail.me GraphQL API (Robust & Fast)
-         * Features: History, Sound, Auto-Recovery
-         */
-        
-        const API_ENDPOINT = 'https://dropmail.me/api/graphql/web-test-20220125';
-        const STORAGE_ID_KEY = 'nexus_dm_session';
-        const STORAGE_EMAIL_KEY = 'nexus_dm_email';
-        const HISTORY_KEY = 'nexus_history';
-        const SETTINGS_KEY = 'nexus_settings';
+        // --- State ---
+        let currentFile = null;
+        let corruptionMode = 'perm'; // 'perm' or 'rev'
 
-        let state = {
-            sessionId: localStorage.getItem(STORAGE_ID_KEY),
-            email: localStorage.getItem(STORAGE_EMAIL_KEY),
-            mails: [],
-            isMuted: false,
-            timer: null
+        // --- DOM Elements ---
+        const tabCorrupt = document.querySelector('.tab-corrupt');
+        const tabRecover = document.querySelector('.tab-recover');
+        const contentCorrupt = document.getElementById('corrupt-tab');
+        const contentRecover = document.getElementById('recover-tab');
+        
+        // --- Tab Switching ---
+        function switchTab(tab) {
+            if(tab === 'corrupt') {
+                tabCorrupt.classList.add('active');
+                tabRecover.classList.remove('active');
+                contentCorrupt.classList.add('active');
+                contentRecover.classList.remove('active');
+            } else {
+                tabCorrupt.classList.remove('active');
+                tabRecover.classList.add('active');
+                contentCorrupt.classList.remove('active');
+                contentRecover.classList.add('active');
+            }
+            resetTool();
+        }
+
+        // --- Mode Switching ---
+        function setMode(mode) {
+            corruptionMode = mode;
+            document.getElementById('btn-perm').className = `mode-btn ${mode === 'perm' ? 'active-perm' : ''}`;
+            document.getElementById('btn-rev').className = `mode-btn ${mode === 'rev' ? 'active-rev' : ''}`;
+            
+            if(mode === 'perm') {
+                document.getElementById('perm-options').classList.remove('hidden');
+                document.getElementById('rev-options').classList.add('hidden');
+            } else {
+                document.getElementById('perm-options').classList.add('hidden');
+                document.getElementById('rev-options').classList.remove('hidden');
+            }
+        }
+
+        // --- File Handling (Corrupt) ---
+        const dzC = document.getElementById('drop-zone-c');
+        const inpC = document.getElementById('file-input-c');
+        
+        dzC.onclick = () => inpC.click();
+        inpC.onchange = (e) => loadFile(e.target.files[0], 'c');
+        
+        dzC.ondragover = (e) => { e.preventDefault(); dzC.style.background = '#1c2128'; };
+        dzC.ondragleave = () => dzC.style.background = '#0d1117';
+        dzC.ondrop = (e) => {
+            e.preventDefault();
+            loadFile(e.dataTransfer.files[0], 'c');
         };
 
-        // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            loadSettings();
-            updateHistoryUI();
+        // --- File Handling (Recover) ---
+        const dzR = document.getElementById('drop-zone-r');
+        const inpR = document.getElementById('file-input-r');
+        
+        dzR.onclick = () => inpR.click();
+        inpR.onchange = (e) => loadFile(e.target.files[0], 'r');
+        
+        dzR.ondragover = (e) => { e.preventDefault(); dzR.style.background = '#1c2128'; };
+        dzR.ondragleave = () => dzR.style.background = '#0d1117';
+        dzR.ondrop = (e) => {
+            e.preventDefault();
+            loadFile(e.dataTransfer.files[0], 'r');
+        };
+
+        function loadFile(file, type) {
+            if(!file) return;
             
-            if (state.sessionId && state.email) {
-                document.getElementById('emailDisplay').value = state.email;
-                startInboxCycle();
+            // Check file size warning (>50MB)
+            if(file.size > 50 * 1024 * 1024) {
+                 document.getElementById('filesize-warning').style.display = 'inline';
             } else {
-                generateNewIdentity();
+                 document.getElementById('filesize-warning').style.display = 'none';
             }
-        });
 
-        // --- Core Dropmail API Functions ---
+            currentFile = file;
+            if(type === 'c') {
+                document.getElementById('settings-c').classList.remove('hidden');
+                document.getElementById('filename-c').innerText = file.name;
+                dzC.classList.add('hidden');
+                generateHexPreview();
+            } else {
+                document.getElementById('settings-r').classList.remove('hidden');
+                document.getElementById('filename-r').innerText = file.name;
+                dzR.classList.add('hidden');
+            }
+        }
 
-        async function generateNewIdentity() {
-            const icon = document.getElementById('spinIcon');
-            const display = document.getElementById('emailDisplay');
+        function resetTool() {
+            currentFile = null;
+            document.getElementById('settings-c').classList.add('hidden');
+            document.getElementById('settings-r').classList.add('hidden');
+            dzC.classList.remove('hidden');
+            dzR.classList.remove('hidden');
+            document.getElementById('file-input-c').value = '';
+            document.getElementById('file-input-r').value = '';
+            document.getElementById('filesize-warning').style.display = 'none';
+        }
+
+        // --- Hex Preview Gen ---
+        function generateHexPreview() {
+            const lines = [];
+            const chars = "0123456789ABCDEF";
+            for(let i=0; i<10; i++) {
+                let line = "0x" + Math.floor(Math.random()*99999).toString(16).padStart(8,'0') + ": ";
+                for(let j=0; j<8; j++) line += chars[Math.floor(Math.random()*16)] + chars[Math.floor(Math.random()*16)] + " ";
+                lines.push(line);
+            }
+            document.getElementById('hex-view').innerText = lines.join('\n');
+        }
+
+        // --- CORE LOGIC: EXECUTE CORRUPTION (ENHANCED) ---
+        document.getElementById('btn-execute-c').onclick = async () => {
+            if(!currentFile) return;
             
-            icon.classList.add('fa-spin');
-            display.value = "Generating Secure ID...";
-            
-            const query = `mutation {
-                introduceSession {
-                    id,
-                    expiresAt,
-                    addresses { address }
-                }
-            }`;
+            const btn = document.getElementById('btn-execute-c');
+            btn.innerHTML = '<i class="fas fa-cog fa-spin"></i> DESTROYING...';
+            document.querySelector('.tool-container').classList.add('glitching');
 
-            try {
-                const res = await fetch(API_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ query })
-                });
+            await new Promise(r => setTimeout(r, 600)); // Slight delay for UX
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const buffer = e.target.result;
+                let view = new Uint8Array(buffer);
                 
-                const data = await res.json();
-                
-                if(data.data && data.data.introduceSession) {
-                    state.sessionId = data.data.introduceSession.id;
-                    state.email = data.data.introduceSession.addresses[0].address;
+                if(corruptionMode === 'perm') {
+                    // --- MODE 1: PERMANENT DESTRUCTION (UPGRADED) ---
+                    const intensity = parseInt(document.getElementById('intensity').value);
                     
-                    // Save Session
-                    localStorage.setItem(STORAGE_ID_KEY, state.sessionId);
-                    localStorage.setItem(STORAGE_EMAIL_KEY, state.email);
-                    addToHistory(state.email);
-                    
-                    // UI Reset
-                    display.value = state.email;
-                    state.mails = [];
-                    renderInbox([]);
-                    showToast("New Identity Secured");
-                    
-                    startInboxCycle();
+                    // 1. HEADER NUKE: Completely randomize first 1KB (Files will not open)
+                    const headerLimit = Math.min(1024, view.length);
+                    for(let i=0; i<headerLimit; i++) view[i] = Math.floor(Math.random() * 255);
+
+                    // 2. PAYLOAD DESTRUCTION
+                    if(intensity === 3) {
+                        // Level 3: ANNIHILATION (High Density Noise)
+                        // Fill large chunks with random noise efficiently
+                        const chunkSize = 1024; // 1KB chunks
+                        for(let i=headerLimit; i<view.length; i+=chunkSize) {
+                            if(Math.random() > 0.1) { // 90% chance to corrupt chunk
+                                const end = Math.min(i + chunkSize, view.length);
+                                const tempChunk = new Uint8Array(end - i);
+                                window.crypto.getRandomValues(tempChunk);
+                                view.set(tempChunk, i);
+                            }
+                        }
+                    } else if (intensity === 2) {
+                         // Level 2: DAMAGE (Medium Noise)
+                         for(let i=headerLimit; i<view.length; i+=100) {
+                            view[i] = Math.floor(Math.random() * 255);
+                            if(i+1 < view.length) view[i+1] = 0; // Null byte injection
+                         }
+                    } else {
+                        // Level 1: GLITCH (Sparse Noise)
+                        for(let i=headerLimit; i<view.length; i+=500) {
+                            view[i] = Math.floor(Math.random() * 255);
+                        }
+                    }
                 } else {
-                    throw new Error("API Limit");
-                }
-            } catch (e) {
-                showToast("Generation Failed. Retrying...", "error");
-                console.error(e);
-            } finally {
-                icon.classList.remove('fa-spin');
-            }
-        }
-
-        async function checkInbox(manual = false) {
-            if (!state.sessionId) return;
-            
-            const query = `query {
-                session(id: "${state.sessionId}") {
-                    mails {
-                        id,
-                        fromAddr,
-                        toAddr,
-                        headerSubject,
-                        text,
-                        html,
-                        receivedAt
+                    // --- MODE 2: REVERSIBLE (XOR Encryption) ---
+                    const pass = document.getElementById('corrupt-pass').value || "1234";
+                    const keyBytes = new TextEncoder().encode(pass);
+                    
+                    // XOR Logic
+                    for(let i=0; i<view.length; i++) {
+                        view[i] = view[i] ^ keyBytes[i % keyBytes.length];
                     }
                 }
-            }`;
 
-            try {
-                if(manual) showToast("Syncing with cloud...");
-                
-                const res = await fetch(API_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ query })
-                });
-
-                const data = await res.json();
-                document.getElementById('lastUpdate').innerText = "Live: " + new Date().toLocaleTimeString();
-                
-                if (data.data && data.data.session) {
-                    const newMails = data.data.session.mails;
-                    
-                    if (newMails.length > state.mails.length) {
-                        playNotification();
-                    }
-                    
-                    state.mails = newMails;
-                    renderInbox(state.mails);
-                }
-            } catch (e) {
-                console.error("Inbox Error", e);
-            }
-        }
-
-        // --- UI Rendering ---
-
-        function renderInbox(mails) {
-            const container = document.getElementById('inboxContainer');
+                downloadFile(view, currentFile.name);
+                btn.innerHTML = '<i class="fas fa-biohazard"></i> EXECUTE CORRUPTION';
+                document.querySelector('.tool-container').classList.remove('glitching');
+            };
             
-            if(!mails || mails.length === 0) {
-                container.innerHTML = `
-                <div class="empty-state">
-                    <i class="fa-solid fa-satellite-dish"></i>
-                    <p>No messages received yet<br><small>Inbox is ready...</small></p>
-                </div>`;
+            reader.onerror = function() {
+                alert("Error reading file!");
+                btn.innerHTML = '<i class="fas fa-exclamation"></i> ERROR';
+                document.querySelector('.tool-container').classList.remove('glitching');
+            }
+            
+            reader.readAsArrayBuffer(currentFile);
+        };
+
+        // --- CORE LOGIC: RECOVER ---
+        document.getElementById('btn-execute-r').onclick = async () => {
+            if(!currentFile) return;
+
+            const btn = document.getElementById('btn-execute-r');
+            const pass = document.getElementById('recover-pass').value;
+            const msg = document.getElementById('recover-msg');
+
+            if(!pass) {
+                msg.innerText = "Password required!";
+                msg.style.color = "#e74c3c";
                 return;
             }
 
-            // Reverse to show newest first
-            const sortedMails = [...mails].reverse();
+            btn.innerHTML = '<i class="fas fa-cog fa-spin"></i> DECRYPTING...';
+            await new Promise(r => setTimeout(r, 600));
 
-            container.innerHTML = `<ul class="mail-list">` + sortedMails.map((mail, index) => `
-                <li class="mail-item ${index === 0 ? 'unread' : ''}" onclick="openEmail('${mail.id}')">
-                    <div class="avatar">${mail.fromAddr.charAt(0).toUpperCase()}</div>
-                    <div class="mail-content">
-                        <h4 class="subject">${escapeHtml(mail.headerSubject || '(No Subject)')}</h4>
-                        <p class="sender">${escapeHtml(mail.fromAddr)}</p>
-                    </div>
-                    <div class="time">Now</div>
-                </li>
-            `).join('') + `</ul>`;
-        }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const buffer = e.target.result;
+                let view = new Uint8Array(buffer);
+                const keyBytes = new TextEncoder().encode(pass);
 
-        function openEmail(id) {
-            const mail = state.mails.find(m => m.id === id);
-            if(!mail) return;
-
-            document.getElementById('modalSubject').innerText = mail.headerSubject || '(No Subject)';
-            document.getElementById('modalFrom').innerText = mail.fromAddr;
-            
-            const iframe = document.getElementById('emailFrame');
-            // Advanced HTML rendering
-            const content = mail.html || `<pre style="padding:20px; font-family:inherit; white-space:pre-wrap;">${mail.text}</pre>`;
-            
-            iframe.srcdoc = `
-                <style>
-                    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; padding:20px; color:#1f2937; line-height:1.6; }
-                    img { max-width: 100%; height: auto; }
-                    a { color: #4f46e5; }
-                </style>
-                ${content}
-            `;
-
-            document.getElementById('mailModal').classList.add('active');
-        }
-
-        // --- Utilities & Logic ---
-
-        function startInboxCycle() {
-            if(state.timer) clearInterval(state.timer);
-            checkInbox(); // Initial check
-            
-            // Visual Timer + Fetch every 10 seconds
-            let width = 0;
-            const bar = document.getElementById('refreshBar');
-            
-            state.timer = setInterval(() => {
-                width += 1; // 1% every 100ms = 10s total
-                bar.style.width = width + "%";
-                
-                if(width >= 100) {
-                    width = 0;
-                    checkInbox();
+                // XOR Reversal
+                for(let i=0; i<view.length; i++) {
+                    view[i] = view[i] ^ keyBytes[i % keyBytes.length];
                 }
-            }, 100);
+
+                downloadFile(view, "Recovered_" + currentFile.name);
+                
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> RECOVER FILE';
+                msg.innerText = "File processed. If password was correct, it works.";
+                msg.style.color = "var(--recover)";
+            };
+            reader.readAsArrayBuffer(currentFile);
+        };
+
+        function downloadFile(data, name) {
+            const blob = new Blob([data], { type: currentFile.type });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
         }
 
-        function manualRefresh() {
-            checkInbox(true);
-        }
-
-        function copyEmail() {
-            const el = document.getElementById('emailDisplay');
-            if(el.value.includes("...") || el.value.includes("Error")) return;
-            
-            el.select();
-            el.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(el.value);
-            showToast("Address Copied!");
-        }
-
-        // --- History Manager ---
-        function addToHistory(email) {
-            let hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
-            // Avoid duplicates at top
-            if(hist[0] !== email) {
-                hist.unshift(email);
-                if(hist.length > 5) hist.pop();
-                localStorage.setItem(HISTORY_KEY, JSON.stringify(hist));
-            }
-            updateHistoryUI();
-        }
-
-        function updateHistoryUI() {
-            const hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
-            const list = document.getElementById('historyList');
-            if(hist.length === 0) {
-                list.innerHTML = '<div style="padding:10px; text-align:center; opacity:0.5">No recent history</div>';
-                return;
-            }
-            list.innerHTML = hist.map(h => `
-                <div class="history-row" onclick="navigator.clipboard.writeText('${h}'); showToast('Copied from history')">
-                    <span>${h}</span>
-                    <i class="fa-regular fa-copy" style="font-size:0.7rem"></i>
-                </div>
-            `).join('');
-        }
-
-        function toggleHistory() {
-            const p = document.getElementById('historyPanel');
-            p.style.display = p.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // --- Settings & UI Helpers ---
-        function loadSettings() {
-            const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
-            state.isMuted = !!settings.muted;
-            updateMuteUI();
-        }
-
-        function toggleMute() {
-            state.isMuted = !state.isMuted;
-            localStorage.setItem(SETTINGS_KEY, JSON.stringify({ muted: state.isMuted }));
-            updateMuteUI();
-        }
-
-        function updateMuteUI() {
-            const badge = document.getElementById('soundToggle');
-            const txt = document.getElementById('soundText');
-            if(state.isMuted) {
-                badge.classList.add('muted');
-                txt.innerText = "Sound Muted";
-            } else {
-                badge.classList.remove('muted');
-                txt.innerText = "Sound Active";
-            }
-        }
-
-        function playNotification() {
-            if(state.isMuted) return;
-            const audio = document.getElementById('notifSound');
-            audio.currentTime = 0;
-            try { audio.play(); } catch(e){}
-            showToast("New Email Received!");
-        }
-
-        function showToast(msg, type = 'success') {
-            const box = document.getElementById('toast-container');
-            const el = document.createElement('div');
-            el.className = 'toast';
-            el.style.borderLeft = type === 'error' ? '4px solid #ef4444' : '4px solid #10b981';
-            
-            el.innerHTML = `<i class="fa-solid fa-check-circle" style="color:#10b981"></i> <span>${msg}</span>`;
-            box.appendChild(el);
-            setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, 3000);
-        }
-
-        function closeModal() {
-            document.getElementById('mailModal').classList.remove('active');
-            setTimeout(() => { document.getElementById('emailFrame').srcdoc = ''; }, 300);
-        }
-
-        function escapeHtml(text) {
-            if (!text) return text;
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
+        // Panic Button
+        document.getElementById('panic-btn').addEventListener('click', () => {
+            window.location.href = "https://google.com";
+        });
+        document.addEventListener('keydown', (e) => {
+            if(e.key === "Escape") window.location.href = "https://google.com";
+        });
 
     </script>
 </body>
