@@ -115,35 +115,6 @@
         .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
         .btn-secondary:active { transform: scale(0.96); }
 
-        .btn-danger { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--danger); }
-        .btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
-
-        /* Tabs */
-        .tab-switcher {
-            display: flex; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 4px; margin-bottom: 25px;
-        }
-        .tab-btn {
-            flex: 1; padding: 10px; text-align: center; font-size: 0.85rem; color: var(--text-sec);
-            cursor: pointer; border-radius: 10px; transition: 0.3s; font-weight: 500;
-        }
-        .tab-btn.active { background: var(--surface-border); color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-
-        /* Input Areas */
-        .input-area { 
-            display: none; flex-direction: column; gap: 12px; margin-bottom: 15px; 
-            animation: fadeInDown 0.3s ease;
-        }
-        .active-area { display: flex; }
-
-        .dual-input { display: flex; gap: 10px; }
-        .nexus-field {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--surface-border);
-            color: white; padding: 12px; border-radius: 12px; width: 100%;
-            font-family: 'JetBrains Mono'; font-size: 0.9rem; transition: 0.2s;
-        }
-        .nexus-field:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
-        select.nexus-field { background: #18181b; } 
-
         /* Inbox Section */
         .inbox-header {
             display: flex; justify-content: space-between; align-items: center;
@@ -157,7 +128,7 @@
             background: var(--surface); border: 1px solid var(--surface-border);
             padding: 16px; border-radius: 16px; cursor: pointer;
             display: grid; grid-template-columns: 48px 1fr auto; gap: 15px; align-items: center;
-            transition: transform 0.2s; position: relative; overflow: hidden;
+            transition: transform 0.2s; position: relative; overflow: hidden; animation: fadeInDown 0.3s ease;
         }
         .mail-item::after {
             content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
@@ -230,7 +201,7 @@
         }
         .progress-bar {
             height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
-            width: 0%; transition: width 0.1s linear;
+            width: 0%; transition: width 1s linear;
             box-shadow: 0 0 10px var(--primary);
         }
 
@@ -239,6 +210,7 @@
             display: none; padding: 10px; background: rgba(0,0,0,0.3); 
             border-top: 1px solid var(--surface-border);
             animation: slideDown 0.2s ease;
+            max-height: 150px; overflow-y: auto;
         }
         .history-row {
             padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -281,36 +253,13 @@
         <div class="glass-card">
             <div class="progress-container"><div id="refreshBar" class="progress-bar"></div></div>
 
-            <div class="tab-switcher">
-                <div class="tab-btn active" id="tabRandom" onclick="switchMode('random')">Random</div>
-                <div class="tab-btn" id="tabCustom" onclick="switchMode('custom')">Custom ID</div>
-                <div class="tab-btn" id="tabLogin" onclick="switchMode('login')">Login</div>
-            </div>
-
             <div class="email-box">
                 <input type="text" id="emailDisplay" class="email-input" value="Initializing..." readonly>
                 <i class="fa-regular fa-copy copy-btn" onclick="copyEmail()" title="Copy Address"></i>
             </div>
 
-            <div id="customArea" class="input-area">
-                <div class="dual-input">
-                    <input type="text" id="customUser" class="nexus-field" placeholder="Username (e.g. admin)">
-                    <select id="customDomain" class="nexus-field" style="flex: 0.7;">
-                        <option>Loading...</option>
-                    </select>
-                </div>
-                <input type="password" id="customPass" class="nexus-field" placeholder="Create Password (Required for secure access)">
-                <button class="btn btn-primary" onclick="createCustomID()" style="width:100%">Create Custom ID</button>
-            </div>
-
-            <div id="loginArea" class="input-area">
-                <input type="email" id="loginEmail" class="nexus-field" placeholder="Full Email Address">
-                <input type="password" id="loginPass" class="nexus-field" placeholder="Password">
-                <button class="btn btn-primary" onclick="performLogin()" style="width:100%">Access Account</button>
-            </div>
-
             <div class="action-grid" id="mainControls">
-                <button class="btn btn-primary" onclick="generateRandomID()" id="btnGen">
+                <button class="btn btn-primary" onclick="generateNewIdentity()" id="btnGen">
                     <i class="fa-solid fa-shuffle" id="spinIcon"></i> New Identity
                 </button>
                 <button class="btn btn-secondary" onclick="manualRefresh()">
@@ -318,9 +267,6 @@
                 </button>
                 <button class="btn btn-secondary" onclick="toggleHistory()">
                     <i class="fa-solid fa-clock-rotate-left"></i> History
-                </button>
-                <button class="btn btn-danger" onclick="deleteAccount()" id="btnDel" style="display:none; grid-column: span 2;">
-                    <i class="fa-solid fa-trash-can"></i> Delete & Destroy ID
                 </button>
             </div>
 
@@ -351,11 +297,9 @@
                     <p id="modalFrom">sender@example.com</p>
                 </div>
                 <div class="modal-tools">
-                    <button class="tool-btn" onclick="downloadEmail()" title="Download HTML"><i class="fa-solid fa-download"></i></button>
                     <button class="tool-btn close" onclick="closeModal()" title="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div id="attachmentArea" style="padding:10px 20px; background:#18181b; display:none; gap:10px; overflow-x:auto; border-bottom:1px solid rgba(255,255,255,0.05); white-space:nowrap;"></div>
             <iframe id="emailFrame" class="email-body-frame" sandbox="allow-same-origin allow-popups"></iframe>
         </div>
     </div>
@@ -364,106 +308,256 @@
 
     <script>
         /**
-         * NEXUS MAIL ENGINE v8.0 (Unbreakable Edition)
-         * Added: Auto-Token Renewal, Credential Persistence, Retry Logic
-         * Fix: Solves "Session Expired" by auto-logging in background.
+         * NEXUS MAIL ENGINE v9.0 (Hybrid Edition)
+         * UI: NexusMail (Glassmorphism)
+         * Backend: Dropmail.me GraphQL API (Robust & Fast)
+         * Features: History, Sound, Auto-Recovery
          */
         
-        const API_BASE = 'https://api.mail.tm';
-        const STORAGE_KEY = 'nexus_secure_session'; // Changed to store full creds
+        const API_ENDPOINT = 'https://dropmail.me/api/graphql/web-test-20220125';
+        const STORAGE_ID_KEY = 'nexus_dm_session';
+        const STORAGE_EMAIL_KEY = 'nexus_dm_email';
         const HISTORY_KEY = 'nexus_history';
         const SETTINGS_KEY = 'nexus_settings';
 
         let state = {
-            token: '',
-            email: '',
-            password: '', // Stored in memory for auto-renewal
-            id: '',
+            sessionId: localStorage.getItem(STORAGE_ID_KEY),
+            email: localStorage.getItem(STORAGE_EMAIL_KEY),
             mails: [],
-            availableDomains: [],
-            mode: 'random',
-            currentHtml: '',
-            isFetching: false,
             isMuted: false,
-            retryAttempts: 0
+            timer: null
         };
 
-        // --- Core: Robust API Handler with Auto-Renewal ---
-        async function apiCall(endpoint, method = 'GET', body = null, auth = false, retry = true) {
-            const headers = { 'Content-Type': 'application/json' };
-            if (auth) {
-                if(!state.token) throw new Error("No Auth Token");
-                headers['Authorization'] = `Bearer ${state.token}`;
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSettings();
+            updateHistoryUI();
+            
+            if (state.sessionId && state.email) {
+                document.getElementById('emailDisplay').value = state.email;
+                startInboxCycle();
+            } else {
+                generateNewIdentity();
             }
-            
-            const config = { method, headers };
-            if (body) config.body = JSON.stringify(body);
-            
-            try {
-                const res = await fetch(`${API_BASE}${endpoint}`, config);
-                
-                // CRITICAL: Auto-Renew on 401
-                if (res.status === 401 && retry && state.email && state.password) {
-                    console.warn("Session expired. Attempting auto-renewal...");
-                    showToast("Renewing secure session...", "info");
-                    
-                    const success = await login(state.email, state.password, true); // Silent login
-                    if(success) {
-                        // Retry the original request with new token
-                        return await apiCall(endpoint, method, body, auth, false); 
-                    } else {
-                        throw new Error("Session Expired Permanently");
-                    }
-                }
+        });
 
-                if (res.status === 401) {
-                    handleSessionExpiry();
-                    throw new Error("Session Expired");
+        // --- Core Dropmail API Functions ---
+
+        async function generateNewIdentity() {
+            const icon = document.getElementById('spinIcon');
+            const display = document.getElementById('emailDisplay');
+            
+            icon.classList.add('fa-spin');
+            display.value = "Generating Secure ID...";
+            
+            const query = `mutation {
+                introduceSession {
+                    id,
+                    expiresAt,
+                    addresses { address }
                 }
+            }`;
+
+            try {
+                const res = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query })
+                });
                 
-                if (!res.ok) {
-                    if(res.status === 429) console.warn("Rate limit hit");
-                    const err = await res.json().catch(() => ({}));
-                    throw new Error(err.message || `API Error ${res.status}`);
+                const data = await res.json();
+                
+                if(data.data && data.data.introduceSession) {
+                    state.sessionId = data.data.introduceSession.id;
+                    state.email = data.data.introduceSession.addresses[0].address;
+                    
+                    // Save Session
+                    localStorage.setItem(STORAGE_ID_KEY, state.sessionId);
+                    localStorage.setItem(STORAGE_EMAIL_KEY, state.email);
+                    addToHistory(state.email);
+                    
+                    // UI Reset
+                    display.value = state.email;
+                    state.mails = [];
+                    renderInbox([]);
+                    showToast("New Identity Secured");
+                    
+                    startInboxCycle();
+                } else {
+                    throw new Error("API Limit");
                 }
-                
-                if(res.status === 204) return true; 
-                return await res.json();
             } catch (e) {
-                console.error(`API Fail [${endpoint}]:`, e);
-                throw e;
+                showToast("Generation Failed. Retrying...", "error");
+                console.error(e);
+            } finally {
+                icon.classList.remove('fa-spin');
             }
         }
 
-        // --- Init ---
-        document.addEventListener('DOMContentLoaded', async () => {
-            await fetchDomains();
-            updateHistoryUI();
-            loadSettings();
-
-            const savedSession = JSON.parse(localStorage.getItem(STORAGE_KEY));
-
-            if (savedSession && savedSession.email && savedSession.password) {
-                // Restore secure session
-                state.email = savedSession.email;
-                state.password = savedSession.password;
-                
-                // Attempt login to get fresh token
-                try {
-                    await login(state.email, state.password, true); // Silent login
-                    showToast("Secure Connection Restored");
-                } catch(e) {
-                    generateRandomID(); // If saved creds fail, new ID
-                }
-            } else {
-                generateRandomID();
-            }
+        async function checkInbox(manual = false) {
+            if (!state.sessionId) return;
             
-            startVisualTimer();
-            startInboxPoller();
-        });
+            const query = `query {
+                session(id: "${state.sessionId}") {
+                    mails {
+                        id,
+                        fromAddr,
+                        toAddr,
+                        headerSubject,
+                        text,
+                        html,
+                        receivedAt
+                    }
+                }
+            }`;
 
-        // --- Settings (Mute) ---
+            try {
+                if(manual) showToast("Syncing with cloud...");
+                
+                const res = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query })
+                });
+
+                const data = await res.json();
+                document.getElementById('lastUpdate').innerText = "Live: " + new Date().toLocaleTimeString();
+                
+                if (data.data && data.data.session) {
+                    const newMails = data.data.session.mails;
+                    
+                    if (newMails.length > state.mails.length) {
+                        playNotification();
+                    }
+                    
+                    state.mails = newMails;
+                    renderInbox(state.mails);
+                }
+            } catch (e) {
+                console.error("Inbox Error", e);
+            }
+        }
+
+        // --- UI Rendering ---
+
+        function renderInbox(mails) {
+            const container = document.getElementById('inboxContainer');
+            
+            if(!mails || mails.length === 0) {
+                container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    <p>No messages received yet<br><small>Inbox is ready...</small></p>
+                </div>`;
+                return;
+            }
+
+            // Reverse to show newest first
+            const sortedMails = [...mails].reverse();
+
+            container.innerHTML = `<ul class="mail-list">` + sortedMails.map((mail, index) => `
+                <li class="mail-item ${index === 0 ? 'unread' : ''}" onclick="openEmail('${mail.id}')">
+                    <div class="avatar">${mail.fromAddr.charAt(0).toUpperCase()}</div>
+                    <div class="mail-content">
+                        <h4 class="subject">${escapeHtml(mail.headerSubject || '(No Subject)')}</h4>
+                        <p class="sender">${escapeHtml(mail.fromAddr)}</p>
+                    </div>
+                    <div class="time">Now</div>
+                </li>
+            `).join('') + `</ul>`;
+        }
+
+        function openEmail(id) {
+            const mail = state.mails.find(m => m.id === id);
+            if(!mail) return;
+
+            document.getElementById('modalSubject').innerText = mail.headerSubject || '(No Subject)';
+            document.getElementById('modalFrom').innerText = mail.fromAddr;
+            
+            const iframe = document.getElementById('emailFrame');
+            // Advanced HTML rendering
+            const content = mail.html || `<pre style="padding:20px; font-family:inherit; white-space:pre-wrap;">${mail.text}</pre>`;
+            
+            iframe.srcdoc = `
+                <style>
+                    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; padding:20px; color:#1f2937; line-height:1.6; }
+                    img { max-width: 100%; height: auto; }
+                    a { color: #4f46e5; }
+                </style>
+                ${content}
+            `;
+
+            document.getElementById('mailModal').classList.add('active');
+        }
+
+        // --- Utilities & Logic ---
+
+        function startInboxCycle() {
+            if(state.timer) clearInterval(state.timer);
+            checkInbox(); // Initial check
+            
+            // Visual Timer + Fetch every 10 seconds
+            let width = 0;
+            const bar = document.getElementById('refreshBar');
+            
+            state.timer = setInterval(() => {
+                width += 1; // 1% every 100ms = 10s total
+                bar.style.width = width + "%";
+                
+                if(width >= 100) {
+                    width = 0;
+                    checkInbox();
+                }
+            }, 100);
+        }
+
+        function manualRefresh() {
+            checkInbox(true);
+        }
+
+        function copyEmail() {
+            const el = document.getElementById('emailDisplay');
+            if(el.value.includes("...") || el.value.includes("Error")) return;
+            
+            el.select();
+            el.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(el.value);
+            showToast("Address Copied!");
+        }
+
+        // --- History Manager ---
+        function addToHistory(email) {
+            let hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            // Avoid duplicates at top
+            if(hist[0] !== email) {
+                hist.unshift(email);
+                if(hist.length > 5) hist.pop();
+                localStorage.setItem(HISTORY_KEY, JSON.stringify(hist));
+            }
+            updateHistoryUI();
+        }
+
+        function updateHistoryUI() {
+            const hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            const list = document.getElementById('historyList');
+            if(hist.length === 0) {
+                list.innerHTML = '<div style="padding:10px; text-align:center; opacity:0.5">No recent history</div>';
+                return;
+            }
+            list.innerHTML = hist.map(h => `
+                <div class="history-row" onclick="navigator.clipboard.writeText('${h}'); showToast('Copied from history')">
+                    <span>${h}</span>
+                    <i class="fa-regular fa-copy" style="font-size:0.7rem"></i>
+                </div>
+            `).join('');
+        }
+
+        function toggleHistory() {
+            const p = document.getElementById('historyPanel');
+            p.style.display = p.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // --- Settings & UI Helpers ---
         function loadSettings() {
             const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
             state.isMuted = !!settings.muted;
@@ -488,363 +582,12 @@
             }
         }
 
-        // --- Identity Management ---
-        async function fetchDomains() {
-            try {
-                const data = await apiCall('/domains');
-                state.availableDomains = data['hydra:member'];
-                
-                const select = document.getElementById('customDomain');
-                if(state.availableDomains.length > 0) {
-                    select.innerHTML = state.availableDomains.map(d => 
-                        `<option value="${d.domain}">@${d.domain}</option>`
-                    ).join('');
-                } else {
-                    select.innerHTML = '<option>No Domains</option>';
-                }
-            } catch (e) {
-                console.log("Domain fetch fallback");
-                const select = document.getElementById('customDomain');
-                select.innerHTML = '<option value="bugfoo.com">@bugfoo.com</option>'; 
-            }
-        }
-
-        async function generateRandomID() {
-            const icon = document.getElementById('spinIcon');
-            icon.classList.add('fa-spin');
-            
-            try {
-                if(!state.availableDomains || state.availableDomains.length === 0) await fetchDomains();
-                
-                const domain = state.availableDomains[Math.floor(Math.random() * state.availableDomains.length)].domain || "bugfoo.com";
-                const user = Math.random().toString(36).substring(2, 12);
-                const password = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
-                
-                await createAccount(user + '@' + domain, password);
-                
-            } catch (e) {
-                showToast("Creation failed. Retrying...", "error");
-            } finally {
-                icon.classList.remove('fa-spin');
-            }
-        }
-
-        async function createCustomID() {
-            const userInput = document.getElementById('customUser').value.trim().toLowerCase();
-            const domain = document.getElementById('customDomain').value;
-            const password = document.getElementById('customPass').value;
-            
-            if(userInput.length < 3) return showToast("Username too short", "error");
-            if(!/^[a-z0-9.]+$/.test(userInput)) return showToast("Invalid characters", "error");
-            if(password.length < 4) return showToast("Password too short", "error");
-
-            const email = `${userInput}@${domain}`;
-
-            try {
-                showToast("Registering Custom ID...", "info");
-                await createAccount(email, password);
-                document.getElementById('customPass').value = '';
-                switchMode('random'); 
-            } catch (e) {
-                showToast(e.message || "ID Taken or Error", "error");
-            }
-        }
-
-        async function performLogin() {
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPass').value;
-
-            if(!email || !password) return showToast("Credentials required", "error");
-
-            try {
-                showToast("Authenticating...", "info");
-                await login(email, password);
-                document.getElementById('loginPass').value = '';
-                switchMode('random'); 
-            } catch(e) {
-                showToast("Login Failed: Check creds", "error");
-            }
-        }
-
-        async function createAccount(email, password) {
-            await apiCall('/accounts', 'POST', { address: email, password: password });
-            await login(email, password);
-        }
-
-        async function login(email, password, silent = false) {
-            try {
-                const data = await apiCall('/token', 'POST', { address: email, password: password });
-                state.token = data.token;
-                state.email = email;
-                state.password = password; // Save for auto-renewal
-                
-                // Get Account ID
-                const accInfo = await apiCall('/me', 'GET', null, true);
-                state.id = accInfo.id;
-
-                // Secure Save
-                localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                    email: email,
-                    password: password,
-                    id: state.id
-                }));
-                
-                // UI Update
-                document.getElementById('emailDisplay').value = email;
-                toggleDeleteBtn(true);
-                addToHistory(email);
-                
-                // Reset Inbox
-                if(!silent) {
-                    state.mails = [];
-                    renderInbox([]);
-                    showToast("Identity Secure");
-                }
-                
-                checkInbox(true);
-                return true;
-            } catch(e) {
-                if(!silent) {
-                    localStorage.removeItem(STORAGE_KEY);
-                    throw e;
-                }
-                return false;
-            }
-        }
-
-        async function deleteAccount() {
-            if(!confirm("⚠️ Are you sure? This will permanently delete this email address.")) return;
-            
-            try {
-                showToast("Destroying Identity...", "info");
-                if(state.id) {
-                    await apiCall(`/accounts/${state.id}`, 'DELETE', null, true);
-                }
-                
-                localStorage.removeItem(STORAGE_KEY);
-                state.token = '';
-                state.email = '';
-                state.password = '';
-                
-                document.getElementById('emailDisplay').value = "Identity Destroyed";
-                toggleDeleteBtn(false);
-                renderInbox([]);
-                showToast("Account Deleted", "success");
-                
-                setTimeout(generateRandomID, 1500);
-            } catch(e) {
-                showToast("Deletion Failed", "error");
-            }
-        }
-
-        function handleSessionExpiry() {
-            // Only called if auto-renew fails
-            document.getElementById('emailDisplay').value = "Connection Lost";
-            toggleDeleteBtn(false);
-            showToast("Session expired", "error");
-        }
-
-        // --- Inbox Logic (Optimized) ---
-        
-        function startInboxPoller() {
-            setInterval(() => {
-                if(document.hidden || !state.token) return; 
-                checkInbox();
-            }, 5000); // 5s interval to be safe
-        }
-
-        async function checkInbox(manual = false) {
-            if(!state.token || state.isFetching) return;
-            state.isFetching = true;
-
-            try {
-                const data = await apiCall('/messages?page=1', 'GET', null, true);
-                const messages = data['hydra:member'];
-
-                document.getElementById('lastUpdate').innerText = "Live: " + new Date().toLocaleTimeString();
-
-                if (messages.length > 0) {
-                    const currentTopId = state.mails.length > 0 ? state.mails[0].id : null;
-                    const newTopId = messages[0].id;
-
-                    if (newTopId !== currentTopId) {
-                        if (currentTopId !== null) playNotification(); 
-                        state.mails = messages;
-                        renderInbox(messages);
-                    } else if (messages.length !== state.mails.length) {
-                         state.mails = messages;
-                         renderInbox(messages);
-                    }
-                } else {
-                    if (state.mails.length > 0) {
-                        state.mails = [];
-                        renderInbox([]);
-                    }
-                }
-            } catch (e) {
-                if(manual) showToast("Sync Error", "error");
-            } finally {
-                state.isFetching = false;
-            }
-        }
-
-        function renderInbox(mails) {
-            const container = document.getElementById('inboxContainer');
-            
-            if(mails.length === 0) {
-                container.innerHTML = `
-                <div class="empty-state">
-                    <i class="fa-solid fa-satellite-dish"></i>
-                    <p>No messages received yet<br><small>Inbox is ready...</small></p>
-                </div>`;
-                return;
-            }
-
-            container.innerHTML = `<ul class="mail-list">` + mails.map(mail => `
-                <li class="mail-item ${!mail.seen ? 'unread' : ''}" onclick="openEmail('${mail.id}', ${mail.seen})">
-                    <div class="avatar">${mail.from.name ? mail.from.name.charAt(0).toUpperCase() : mail.from.address.charAt(0).toUpperCase()}</div>
-                    <div class="mail-content">
-                        <h4 class="subject">${escapeHtml(mail.subject) || '(No Subject)'}</h4>
-                        <p class="sender">${escapeHtml(mail.from.address)}</p>
-                    </div>
-                    <div class="time">${new Date(mail.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-                </li>
-            `).join('') + `</ul>`;
-        }
-
-        async function openEmail(id, wasSeen) {
-            showToast("Opening message...", "info");
-            
-            try {
-                if(!wasSeen) {
-                    apiCall(`/messages/${id}`, 'PATCH', { seen: true }, true).catch(err => console.log("Mark read failed"));
-                    const localMail = state.mails.find(m => m.id === id);
-                    if(localMail) {
-                        localMail.seen = true;
-                        renderInbox(state.mails);
-                    }
-                }
-
-                const data = await apiCall(`/messages/${id}`, 'GET', null, true);
-                
-                document.getElementById('modalSubject').innerText = data.subject || '(No Subject)';
-                document.getElementById('modalFrom').innerText = `${data.from.name || ''} <${data.from.address}>`;
-                
-                // Attachments
-                const attArea = document.getElementById('attachmentArea');
-                attArea.innerHTML = '';
-                
-                if(data.attachments && data.attachments.length > 0) {
-                    attArea.style.display = 'flex';
-                    data.attachments.forEach(file => {
-                        const btn = document.createElement('div');
-                        btn.style.cssText = "cursor:pointer; color:#a5b4fc; background:rgba(255,255,255,0.1); padding:6px 12px; border-radius:8px; font-size:0.8rem; display:flex; align-items:center; gap:5px;";
-                        btn.innerHTML = `<i class="fa-solid fa-paperclip"></i> ${file.filename} (${formatBytes(file.size)})`;
-                        btn.onclick = () => downloadAttachment(file.downloadUrl, file.filename);
-                        attArea.appendChild(btn);
-                    });
-                } else {
-                    attArea.style.display = 'none';
-                }
-
-                // Body
-                const iframe = document.getElementById('emailFrame');
-                const css = `<style>
-                    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding:20px; color:#1f2937; word-wrap:break-word; line-height:1.6; background:white; }
-                    img { max-width: 100% !important; height: auto !important; border-radius: 8px; margin: 10px 0; }
-                    a { color: #4f46e5; text-decoration: none; font-weight: 600; }
-                    blockquote { border-left: 3px solid #ddd; padding-left: 10px; color: #555; }
-                </style>`;
-                
-                const bodyContent = data.html ? data.html : (data.text ? `<pre style="white-space:pre-wrap; font-family:inherit;">${data.text}</pre>` : '<i>No Content</i>');
-                state.currentHtml = bodyContent;
-                iframe.srcdoc = css + bodyContent;
-
-                document.getElementById('mailModal').classList.add('active');
-                
-            } catch (e) {
-                showToast("Failed to load email", "error");
-            }
-        }
-
-        async function downloadAttachment(url, filename) {
-            showToast("Downloading attachment...", "info");
-            try {
-                const res = await fetch(`${API_BASE}${url}`, {
-                    headers: { 'Authorization': `Bearer ${state.token}` }
-                });
-                
-                if(!res.ok) throw new Error("Download failed");
-                
-                const blob = await res.blob();
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = filename;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            } catch(e) {
-                showToast("Download failed - trying direct link", "error");
-                window.open(`${API_BASE}${url}?token=${state.token}`, '_blank');
-            }
-        }
-
-        // --- UI Utilities ---
-        function switchMode(mode) {
-            state.mode = mode;
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.input-area').forEach(a => a.classList.remove('active-area'));
-            
-            document.getElementById(`tab${mode.charAt(0).toUpperCase() + mode.slice(1)}`).classList.add('active');
-            
-            const btnGen = document.getElementById('btnGen');
-            
-            if(mode === 'custom') {
-                document.getElementById('customArea').classList.add('active-area');
-                btnGen.style.display = 'none';
-            } else if(mode === 'login') {
-                document.getElementById('loginArea').classList.add('active-area');
-                btnGen.style.display = 'none';
-            } else {
-                btnGen.style.display = 'flex';
-            }
-        }
-
-        function toggleDeleteBtn(show) {
-            const btn = document.getElementById('btnDel');
-            if(show) {
-                btn.style.display = 'flex';
-                btn.style.gridColumn = "span 2";
-            } else {
-                btn.style.display = 'none';
-            }
-        }
-
-        function startVisualTimer() {
-            const bar = document.getElementById('refreshBar');
-            let w = 0;
-            setInterval(() => {
-                if(document.hidden) return; 
-                w += 1; 
-                if(w > 100) w = 0;
-                bar.style.width = w + "%";
-            }, 50); // Slightly slower visual to match 5s poll
-        }
-
-        function manualRefresh() {
-            document.getElementById('refreshBar').style.width = "0%";
-            checkInbox(true);
-            showToast("Checking cloud...");
-        }
-
-        function copyEmail() {
-            const el = document.getElementById('emailDisplay');
-            if(el.value.includes("...") || el.value.includes("Error")) return;
-            
-            el.select();
-            el.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(el.value);
-            showToast("Address Copied!");
+        function playNotification() {
+            if(state.isMuted) return;
+            const audio = document.getElementById('notifSound');
+            audio.currentTime = 0;
+            try { audio.play(); } catch(e){}
+            showToast("New Email Received!");
         }
 
         function showToast(msg, type = 'success') {
@@ -853,20 +596,9 @@
             el.className = 'toast';
             el.style.borderLeft = type === 'error' ? '4px solid #ef4444' : '4px solid #10b981';
             
-            let icon = type === 'error' ? 'fa-triangle-exclamation' : (type === 'info' ? 'fa-circle-info' : 'fa-check-circle');
-            let color = type === 'error' ? '#ef4444' : (type === 'info' ? '#60a5fa' : '#10b981');
-
-            el.innerHTML = `<i class="fa-solid ${icon}" style="color:${color}"></i> <span>${msg}</span>`;
+            el.innerHTML = `<i class="fa-solid fa-check-circle" style="color:#10b981"></i> <span>${msg}</span>`;
             box.appendChild(el);
             setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, 3000);
-        }
-
-        function playNotification() {
-            if(state.isMuted) return;
-            const audio = document.getElementById('notifSound');
-            audio.currentTime = 0;
-            audio.play().catch(()=>{});
-            showToast("New Transmission Received!");
         }
 
         function closeModal() {
@@ -874,56 +606,9 @@
             setTimeout(() => { document.getElementById('emailFrame').srcdoc = ''; }, 300);
         }
 
-        function downloadEmail() {
-            const blob = new Blob([state.currentHtml], {type: "text/html"});
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `nexus-mail-${Date.now()}.html`;
-            a.click();
-        }
-
         function escapeHtml(text) {
             if (!text) return text;
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
-        
-        function formatBytes(bytes, decimals = 2) {
-            if (!+bytes) return '0 Bytes';
-            const k = 1024;
-            const dm = decimals < 0 ? 0 : decimals;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-        }
-
-        // History Manager
-        function addToHistory(email) {
-            let hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
-            if(hist.includes(email)) return;
-            hist.unshift(email);
-            if(hist.length > 5) hist.pop();
-            localStorage.setItem(HISTORY_KEY, JSON.stringify(hist));
-            updateHistoryUI();
-        }
-
-        function updateHistoryUI() {
-            const hist = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
-            const list = document.getElementById('historyList');
-            if(hist.length === 0) {
-                list.innerHTML = '<div style="padding:10px; text-align:center; opacity:0.5">No recent history</div>';
-                return;
-            }
-            list.innerHTML = hist.map(h => `
-                <div class="history-row" onclick="navigator.clipboard.writeText('${h}'); showToast('Copied from history')">
-                    <span>${h}</span>
-                    <i class="fa-regular fa-copy" style="font-size:0.7rem"></i>
-                </div>
-            `).join('');
-        }
-
-        function toggleHistory() {
-            const p = document.getElementById('historyPanel');
-            p.style.display = p.style.display === 'block' ? 'none' : 'block';
         }
 
     </script>
