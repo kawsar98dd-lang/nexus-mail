@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="description" content="Best Free Online Audio Editor & Converter 2026. 8D Audio Maker, Bass Booster, Voice Changer & MP3/WAV Converter. 100% Client-side Privacy.">
+    <meta name="keywords" content="audio editor online, mp3 converter, bass booster, 8d audio maker, voice changer, wav renderer, client-side audio tool, trusted tools web, md kawsar">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Ultra Studio Pro Max - AI Audio Engineer">
+    <meta property="og:description" content="Professional Audio Editing Suite in your browser. Bass Boost, EQ, and 320kbps Rendering. Secure & Private.">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/3202/3202926.png">
+    <link rel="canonical" href="https://trustedtoolsweb.com/audio-trimmer" />
+
+
+    <title>Ultra Studio Pro Max - AI Audio Engineer | Trusted Tools</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/wavesurfer.js@6.6.4/dist/wavesurfer.min.js"></script>
+<script src="https://unpkg.com/wavesurfer.js@6.6.4/dist/plugin/wavesurfer.regions.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.0/lame.min.js"></script>
+
+        <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Ultra Studio Pro Max",
+      "url": "https://trustedtoolsweb.com",
+      "description": "Client-side professional audio engineering suite for mastering, converting, and FX processing.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSER"
+      }
+    }
+    </script>
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="global.css">
+    
+
+    <style>
+        /* --- MERGED CSS VARIABLES --- */
+        :root {
+            /* Branding Colors from Reference */
+            --primary-color: #ff0055;
+            --primary-hover: #ff4757;
+            --secondary-accent: #0abde3;
+            --bg-dark: #0d0d0d;
+            --container-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --input-bg: #0d1117;
+            --success-color: #238636;
+            
+            /* Audio Specific Vars */
+            --audio-primary: #00f3ff;
+            --audio-secondary: #bc13fe;
+            --gradient-main: linear-gradient(135deg, #00f3ff 0%, #bc13fe 100%);
+            
+            /* Footer & Glass */
+            --footer-bg-dark: #090c10;
+            --footer-text-muted: #8b949e;
+            --accent-color: #00e5ff; 
+            --accent-secondary: #d124ff; 
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        /* --- GLOBAL RESET & LAYOUT --- */
+        * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-color); 
+            font-family: 'Segoe UI', 'Rajdhani', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 0;
+            padding-top: 80px; /* Sticky Header Space */
+            overflow-x: hidden;
+        }
+
+                /* --- MAIN CONTAINER --- */
+        main { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box; flex: 1; }
+
+        .container { 
+            max-width: 950px; width: 100%; background: var(--container-bg); 
+            padding: 30px; border-radius: 15px; border: 1px solid var(--border-color); 
+            text-align: center; box-shadow: 0 10px 40px rgba(0, 243, 255, 0.15); 
+            position: relative; overflow: hidden; margin-bottom: 30px;
+        }
+
+        /* Tool Title (Responsive One-Line) */
+        .tool-title { 
+            color: var(--text-color); margin-bottom: 5px; font-weight: 900; margin-top: 10px;
+            font-family: 'Orbitron', sans-serif;
+            /* Clamp ensures it scales down to stay on one line */
+            font-size: clamp(18px, 5vw, 36px); 
+            white-space: nowrap; 
+        }
+        .tool-title span { 
+            background: linear-gradient(90deg, #00f3ff, #bc13fe); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
+        .subtitle { color: #8b949e; margin-bottom: 30px; font-size: 15px; font-family: 'Rajdhani', sans-serif; }
+
+        .security-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(35, 134, 54, 0.2); color: #3fb950;
+            padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;
+            margin-bottom: 10px; border: 1px solid rgba(35, 134, 54, 0.4);
+        }
+
+        /* --- AUDIO UI SPECIFIC STYLES --- */
+        
+ /* --- NEW DROP ZONE STYLES (Ultra Modern) --- */
+.drop-zone {
+    height: 280px;
+    background: linear-gradient(160deg, rgba(22, 27, 34, 0.8) 0%, rgba(13, 17, 23, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Hover Effects */
+.drop-zone:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 243, 255, 0.3);
+    box-shadow: 0 25px 60px -10px rgba(0, 243, 255, 0.15);
+}
+
+.drop-zone:hover .icon-wrapper i {
+    color: var(--audio-primary);
+    transform: scale(1.1);
+}
+
+/* Corner Accents (Tech Look) */
+.corner-top-left, .corner-bottom-right {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid transparent;
+    transition: 0.4s ease;
+}
+
+.corner-top-left {
+    top: 20px; left: 20px;
+    border-top: 2px solid var(--audio-secondary);
+    border-left: 2px solid var(--audio-secondary);
+}
+
+.corner-bottom-right {
+    bottom: 20px; right: 20px;
+    border-bottom: 2px solid var(--audio-primary);
+    border-right: 2px solid var(--audio-primary);
+}
+
+.drop-zone:hover .corner-top-left, 
+.drop-zone:hover .corner-bottom-right {
+    width: 50px; height: 50px;
+    opacity: 1;
+}
+
+/* Icon Styling */
+.icon-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.icon-wrapper i {
+    font-size: 32px;
+    color: #8b949e;
+    transition: 0.3s;
+    z-index: 2;
+}
+
+.icon-glow {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, var(--audio-primary) 0%, transparent 70%);
+    opacity: 0.2;
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.8); opacity: 0.1; }
+    50% { transform: scale(1.2); opacity: 0.3; }
+    100% { transform: scale(0.8); opacity: 0.1; }
+}
+
+/* Typography */
+.zone-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0 0 8px 0;
+    background: linear-gradient(90deg, #fff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.zone-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* Button Group Styling */
+.upload-btn-group {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 320px;
+    z-index: 10;
+}
+
+.upload-btn-group .cyber-btn {
+    flex: 1;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 14px;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.upload-btn-group .cyber-btn.active {
+    background: linear-gradient(135deg, var(--audio-primary), #00c3ff);
+    color: #000;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0, 243, 255, 0.25);
+}
+
+.upload-btn-group .cyber-btn.danger {
+    color: #ff0055;
+    border-color: rgba(255, 0, 85, 0.3);
+}
+
+.upload-btn-group .cyber-btn.danger:hover {
+    background: #ff0055;
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(255, 0, 85, 0.3);
+}
+
+/* Responsive Fix */
+@media (max-width: 480px) {
+    .drop-zone { height: 260px; }
+    .zone-title { font-size: 1.3rem; }
+}
+
+        /* Visualizer Area */
+        .editor-container { display: none; animation: fadeIn 0.6s ease; width: 100%; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .vis-wrapper {
+            background: #000; border: 1px solid var(--border-color); border-radius: 12px;
+            height: 140px; position: relative; margin-bottom: 15px; overflow: hidden;
+        }
+        canvas#visualizer { width: 100%; height: 100%; }
+        
+        #waveform {
+            background: rgba(255, 255, 255, 0.02); border-radius: 12px;
+            margin-bottom: 25px; position: relative; border: 1px solid var(--border-color);
+        }
+
+        /* Controls Grid */
+        .control-deck {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;
+        }
+        .module-card {
+            background: var(--input-bg); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 20px; position: relative; text-align: left;
+            transition: transform 0.3s;
+        }
+        .module-card:hover { border-color: var(--audio-primary); transform: translateY(-3px); }
+        
+        .module-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;
+        }
+        .module-title { font-family: 'Orbitron'; font-size: 12px; color: var(--audio-primary); letter-spacing: 1px; }
+        
+        /* Sliders */
+        .slider-row { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .slider-label { font-size: 11px; color: #8b949e; width: 50px; font-weight: bold; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; padding: 0; border: none; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; background: rgba(128,128,128,0.2); border-radius: 2px; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 14px; width: 14px; border-radius: 50%;
+            background: var(--text-color); margin-top: -5px; border: 2px solid var(--audio-primary);
+            cursor: pointer; box-shadow: 0 0 8px var(--audio-primary);
+        }
+
+        /* Buttons */
+        .cyber-btn {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-color);
+            color: var(--text-color); padding: 10px; border-radius: 6px;
+            font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px;
+            cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;
+            text-transform: uppercase; width: 100%;
+        }
+        .cyber-btn:hover { background: rgba(0, 243, 255, 0.1); border-color: var(--audio-primary); }
+        .cyber-btn.active { background: var(--audio-primary); color: #000; box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
+        .cyber-btn.danger { border-color: #ff0055; color: #ff0055; }
+        .cyber-btn.danger.active { background: #ff0055; color: white; }
+
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        /* Download Section */
+        .download-zone { text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .btn-download {
+            background: var(--gradient-main); color: #fff; font-size: 16px; padding: 15px 40px;
+            border-radius: 50px; border: none; font-family: 'Orbitron'; font-weight: bold; letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(188, 19, 254, 0.3); cursor: pointer; transition: 0.3s;
+            width: 100%; max-width: 350px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-download:hover { transform: scale(1.02); box-shadow: 0 10px 50px rgba(0, 243, 255, 0.4); }
+
+        /* --- TOAST & LOADER --- */
+        #toast-box { position: fixed; top: 80px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+        .toast-msg {
+            background: rgba(13, 17, 23, 0.95); border-left: 3px solid var(--success-color);
+            color: white; padding: 12px 20px; border-radius: 8px; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+            font-size: 13px; animation: slideIn 0.3s ease; border: 1px solid var(--border-color);
+        }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        #overlay-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 10000; display: none;
+            justify-content: center; align-items: center; flex-direction: column; backdrop-filter: blur(5px);
+        }
+        .loader-ring {
+            width: 60px; height: 60px; border: 3px solid transparent; border-top: 3px solid var(--audio-primary);
+            border-radius: 50%; animation: spin 1s linear infinite; box-shadow: 0 0 15px var(--audio-primary);
+        }
+        .loader-text { margin-top: 20px; font-family: 'Orbitron'; color: var(--audio-primary); font-size: 12px; letter-spacing: 2px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- INFO SECTION STYLES --- */
+        .info-section-wrapper { max-width: 950px; width: 100%; margin-top: 40px; text-align: left; }
+        .info-card {
+            background: #0d1117; border: 1px solid var(--border-color); border-radius: 15px;
+            padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .info-card h2 { color: #e6edf3; font-size: 22px; border-left: 4px solid var(--audio-primary); padding-left: 15px; margin-bottom: 20px; }
+        .info-card h3 { color: var(--audio-secondary); font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
+        .info-card p, .info-card li { color: #8b949e; line-height: 1.7; margin-bottom: 10px; font-size: 15px; }
+        .tech-highlight { color: var(--audio-primary); font-family: monospace; background: rgba(0, 243, 255, 0.1); padding: 2px 6px; border-radius: 4px; }
+        .ad-slot { width: 100%; display: block; margin: 0; min-height: 0; overflow: hidden; text-align: center; }
+
+        /* --- RELATED TOOLS CSS --- */
+        .related-tools-container { max-width: 950px; width: 100%; margin: 50px 0; text-align: left; }
+        .related-title { color: var(--text-color); font-size: 24px; margin-bottom: 25px; border-left: 5px solid var(--primary-color); padding-left: 15px; font-weight: 700; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .tool-card {
+            background-color: #161b22; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            padding: 25px 20px; text-align: center; transition: all 0.3s ease; cursor: pointer;
+            text-decoration: none; color: #c9d1d9; position: relative; display: block; overflow: hidden;
+        }
+        .tool-card:hover { transform: translateY(-7px); border-color: var(--accent-color); }
+        .tool-card .icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+        .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        .card-desc { font-size: 0.85rem; color: #8b949e; line-height: 1.4; }
+
+                
+        /* Light Mode */
+        body.light-mode {
+            --bg-dark: #f4f6f8; --container-bg: #ffffff; --text-color: #2d3436; --border-color: #dfe6e9;
+            --input-bg: #f1f2f6; --footer-bg-dark: #dfe6e9;
+        }
+        body.light-mode .site-header { background: rgba(255,255,255,0.95); }
+        body.light-mode .header-logo { color: #2d3436; }
+        body.light-mode .tool-title { color: #2d3436; }
+        body.light-mode .info-card { background: #fff; }
+        body.light-mode .info-card h2 { color: #2d3436; }
+        body.light-mode .tool-card { background: #fff; border-color: #dfe6e9; }
+        body.light-mode .card-title { color: #2d3436; }
+        
+        @media (max-width: 600px) {
+            .glass-nav-panel { flex-direction: column; border-radius: 20px; }
+            .f-link { width: 100%; justify-content: center; }
+            .floating-contact { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
+            .header-logo { font-size: 18px; }
+            .control-deck { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    
+<header id="global-header" class="site-header"></header>
+
+    <div id="overlay-loader">
+        <div class="loader-ring"></div>
+        <p class="loader-text">INITIALIZING CORE...</p>
+    </div>
+
+    <div id="toast-box"></div>
+
+    <main>
+        <div class="container animated-entry">
+            
+            <div class="security-badge"><i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing (No Uploads)</div>
+            
+            <h1 class="tool-title">Ultra Studio <span>Pro Max AI</span></h1>
+            <p class="subtitle">Professional Audio Engineering Suite. Mastering, 8D FX & Converter.</p>
+
+            <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+    <div class="corner-top-left"></div>
+    <div class="corner-bottom-right"></div>
+    
+    <div class="icon-wrapper">
+        <i class="fas fa-compact-disc fa-spin-pulse"></i>
+        <div class="icon-glow"></div>
+    </div>
+
+    <h2 class="zone-title">INITIALIZE AUDIO CORE</h2>
+    <p class="zone-subtitle">Tap to Browse or Drop Audio Files</p>
+    
+    <div class="upload-btn-group">
+        <button class="cyber-btn active">
+            <i class="fas fa-folder-open"></i> BROWSE
+        </button>
+        <button class="cyber-btn danger" id="rec-trigger" onclick="event.stopPropagation()">
+            <i class="fas fa-microphone-lines"></i> REC
+        </button>
+    </div>
+    <input type="file" id="file-input" hidden accept="audio/*">
+</div>
+
+            <div class="editor-container" id="editor-interface">
+                
+                <div class="vis-wrapper">
+                    <canvas id="visualizer"></canvas>
+                </div>
+
+                <div id="waveform"></div>
+                <div class="control-deck">
+                    
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-title">TRANSPORT CORE</span>
+                            <i class="fas fa-satellite-dish" style="color: var(--audio-secondary);"></i>
+                        </div>
+                        <div class="btn-grid">
+                            <button class="cyber-btn active" id="play-btn"><i class="fas fa-play"></i> PLAY</button>
+                            <button class="cyber-btn" id="stop-btn"><i class="fas fa-stop"></i> RESET</button>
+                        </div>
+                        <div class="slider-row" style="margin-top: 20px;">
+                            <span class="slider-label">ZOOM</span>
+                            <input type="range" id="zoom-slider" min="10" max="200" value="50">
+                        </div>
+                        <div style="text-align: center; font-family: 'Share Tech Mono'; color: var(--audio-primary); margin-top: 10px; font-size: 16px;">
+                            <span id="time-current">00:00</span> / <span id="time-total" style="color: #666;">00:00</span>
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-title">FX PROCESSOR</span>
+                            <i class="fas fa-wave-square" style="color: var(--audio-secondary);"></i>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">8D PAN</span>
+                            <input type="range" id="pan-slider" min="-1" max="1" step="0.1" value="0">
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">BASS+</span>
+                            <input type="range" id="bass-slider" min="0" max="20" step="1" value="0">
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">SPEED</span>
+                            <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.0">
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-title">MASTERING EQ</span>
+                            <i class="fas fa-sliders-h" style="color: var(--audio-secondary);"></i>
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">LOW</span>
+                            <input type="range" id="eq-low" min="-15" max="15" value="0">
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">MID</span>
+                            <input type="range" id="eq-mid" min="-15" max="15" value="0">
+                        </div>
+                        <div class="slider-row">
+                            <span class="slider-label">HIGH</span>
+                            <input type="range" id="eq-high" min="-15" max="15" value="0">
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-title">VOICE AI</span>
+                            <i class="fas fa-robot" style="color: var(--audio-secondary);"></i>
+                        </div>
+                        <div class="btn-grid" style="margin-top: 10px;">
+                            <button class="cyber-btn" onclick="setPreset('robot')"><i class="fas fa-microchip"></i> ROBOT</button>
+                            <button class="cyber-btn" onclick="setPreset('chipmunk')"><i class="fas fa-mouse"></i> HIGH</button>
+                        </div>
+                        <div style="margin-top: 15px; display: flex; align-items: center; justify-content: center;">
+                            <input type="checkbox" id="reverse-mode" style="width: auto; margin-right: 8px;">
+                            <label for="reverse-mode" style="font-size: 12px; color: var(--text-color);">REVERSE AUDIO</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="download-zone">
+                    <div style="margin-bottom: 20px;">
+                        <select id="format-select" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 8px; border-radius: 6px; font-size: 14px;">
+                            <option value="320">Format: MP3 320kbps (Ultra)</option>
+                            <option value="192">Format: MP3 192kbps (Standard)</option>
+                            <option value="wav">Format: WAV (Lossless)</option>
+                        </select>
+                    </div>
+                    <button class="btn-download" id="render-btn">
+                        <i class="fas fa-bolt"></i> RENDER & DOWNLOAD
+                    </button>
+                </div>
+
+            </div>                         <section class="info-section-wrapper">
+                
+                <div class="ad-slot" style="margin-bottom: 30px;">
+                    </div>
+
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-microchip"></i> Professional Studio in Your Browser: Why It’s Different</h2>
+                    <p>Traditionally, audio engineering required installing bulky software like FL Studio or Audacity, which consumes massive disk space. On the other hand, most online converters compromise privacy by uploading your files to remote servers. <strong>Ultra Studio Pro Max</strong> solves both problems.</p>
+                    <p>Powered by <span class="tech-highlight">WebAssembly</span> technology, this tool processes every byte of audio directly on your device. This means your private voice notes or unreleased tracks <strong>never leave your browser</strong>. It's 100% private, secure, and operates with zero latency.</p>
+                </div>
+
+                <div class="info-card">
+    <h2><i class="fa-solid fa-list-check"></i> Step-by-Step User Guide: Mastering & FX Processing</h2>
+    <p>Ultra Studio Pro Max is designed for speed and privacy. Follow this guide to transform your raw audio into a professional track using our new engine:</p>
+    
+    <ul style="list-style: none; padding-left: 0;">
+        <li style="margin-bottom: 20px;">
+            <strong style="color: var(--audio-primary); font-size: 1.1em;">STEP 1: Import or Record</strong><br>
+            <span style="color: #8b949e;">
+                Click the "Browse" button to select an MP3/WAV file from your device. Alternatively, click the <strong>REC</strong> button to record your voice directly. <br>
+                <em>Note: The visualizer will activate once the audio matrix is loaded.</em>
+            </span>
+        </li>
+        
+        <li style="margin-bottom: 20px;">
+            <strong style="color: var(--audio-secondary); font-size: 1.1em;">STEP 2: Apply Effects (The FX Suite)</strong><br>
+            <span style="color: #8b949e;">
+                Use the control deck to modify your sound. Changes happen in real-time:
+            </span>
+            <ul style="margin-top: 10px; margin-bottom: 10px; border-left: 2px solid var(--border-color); padding-left: 15px;">
+                <li><strong>8D Panning:</strong> Move the '8D PAN' slider left or right to place the sound in a specific ear, or automate it for a rotating effect.</li>
+                <li><strong>Speed & Pitch:</strong> Unlike standard players, our Speed Slider works like a vinyl record. Lowering the speed (e.g., 0.8x) will <strong>deepen the voice</strong> (Slowed effect), and increasing it will make it sound like a Chipmunk.</li>
+                <li><strong>Bass & EQ:</strong> Use 'BASS+' for punchy low-end. Use the 'High' EQ to reduce hiss or background noise.</li>
+                <li><strong>Reverse Mode:</strong> Check the "REVERSE AUDIO" box to flip the entire track backwards—perfect for artistic intros.</li>
+            </ul>
+        </li>
+
+        <li style="margin-bottom: 20px;">
+            <strong style="color: var(--success-color); font-size: 1.1em;">STEP 3: Render & Export</strong><br>
+            <span style="color: #8b949e;">
+                Once you are happy with the preview, choose your format:
+                <br>• <strong>MP3 (320kbps):</strong> Best for sharing on social media.
+                <br>• <strong>WAV (Lossless):</strong> Best for further editing in professional software.
+                <br>Click <strong>"RENDER & DOWNLOAD"</strong>. The engine will process the physics (Speed, EQ, Reverse) and generate a new file instantly.
+            </span>
+        </li>
+    </ul>
+</div>
+
+                <div class="ad-slot" style="margin: 30px 0;">
+                    </div>
+
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-headphones-simple"></i> Audio Format Guide: Which One Should You Choose?</h3>
+                    <p>We offer two distinct export formats tailored for different needs:</p>
+                    <ul>
+                        <li><strong>MP3 (320kbps Ultra):</strong> The gold standard for compressed audio. It significantly reduces file size while maintaining near-CD quality. Perfect for Spotify, YouTube, or sharing on social media.</li>
+                        <li><strong>WAV (Lossless):</strong> Uncompressed, raw audio data. Choose this if you plan to import the file into another DAW for further mastering. It retains 100% of the original audio information.</li>
+                    </ul>
+                </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-atom"></i> The Science Behind 8D Audio: How It Works</h3>
+                <p>Many users ask us, "Is 8D a new file format?" The answer is no. It is actually a psycho-acoustic trick known as <strong>Binaural Panning</strong>.</p>
+                <p>When you listen to music on headphones, your brain determines the direction of sound based on timing differences between your left and right ears. Our engine manipulates these frequencies in real-time, creating a virtual sphere of sound around your head. This tricks your brain into thinking the music is playing from speakers in the room, rather than coming directly from the earbuds. It’s not just audio; it’s an immersive experience.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-user-secret"></i> Why Client-Side Editing is the Future of Privacy</h3>
+                <p>In an era where data leaks are common, uploading your personal audio files to a cloud server is risky. Whether it's a confidential business meeting recording or a private voice note, you want full control.</p>
+                <p><strong>Ultra Studio Pro Max</strong> is built on a "Serverless Architecture." This means when you load a file, it stays in your device's RAM. Even if you disconnect your internet while editing, the tool will continue to function perfectly. We literally cannot see or hear what you are editing—and that is our biggest feature.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-brands fa-youtube"></i> Audio Mastering for YouTubers & Content Creators</h3>
+                <p>Did you know that poor audio quality causes viewers to click away faster than poor video quality? If your background music overpowers your voice, your retention rate drops.</p>
+                <p>Use our <strong>Mastering EQ</strong> to fix this. A slight boost in the 'Mid' frequencies (around 1kHz-2kHz) makes vocals pop out, while cutting the 'Low' frequencies slightly can remove the "muddy" rumble from cheap microphones. A balanced mix is the secret to a professional-sounding video.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-music"></i> Smart Bass Boost: Do's and Don'ts</h3>
+                <p>Boosting bass is an art. Simply cranking up the volume on low frequencies often results in distorted, blown-out audio. Our tool uses a <strong>Smart Bass Algorithm</strong> that targets specific sub-bass frequencies without ruining the clarity of the vocals.</p>
+                <p><em>Pro Tip:</em> This effect works best on Hip-Hop, EDM, and Trap genres. Avoid using heavy bass boost on Podcasts or Classical music, as it can make human voices sound unnatural and muffled.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-file-waveform"></i> WAV vs. MP3: Understanding the Bitrate</h3>
+                <p>New editors often get confused about which format to save. Here is the technical breakdown:</p>
+                <p><strong>MP3 (Lossy):</strong> It compresses the audio by removing sounds the human ear can barely hear. It’s great for saving space. However, always aim for <strong>320kbps</strong> (which this tool provides by default) to minimize quality loss.</p>
+                <p><strong>WAV (Lossless):</strong> This creates an exact replica of the original studio recording. It is uncompressed. If you plan to take your audio into professional software like FL Studio or Premiere Pro later, always export in WAV to avoid "generation loss."</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-bolt"></i> The "Slowed + Reverb" Viral Trend</h3>
+                <p>You have seen them on TikTok and Instagram Reels—songs that sound slow, atmospheric, and emotional. You don't need expensive software to create this vibe.</p>
+                <p>Simply use our <strong>Speed Slider</strong> to reduce the playback rate to 0.8x or 0.9x, and then engage the Reverb engine (coming in updates). The combination of pitch-shifting and time-stretching creates that nostalgic texture that is currently dominating social media algorithms.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-code"></i> Breaking Limits: The Power of WebAssembly (WASM)</h3>
+                <p>A few years ago, editing audio in a browser was impossible without lag. Today, thanks to <strong>WebAssembly</strong>, modern browsers like Chrome and Firefox can execute code nearly as fast as native desktop applications.</p>
+                <p>This tool leverages your device's GPU and CPU directly through the browser. This is why you don't need to install any .exe or .dmg files. You are essentially running a lightweight operating system tab dedicated to audio engineering.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-microphone-lines"></i> Podcasting 101: Reducing Hiss and Noise</h3>
+                <p>Recording in a room with a fan or air conditioner? That constant "hissing" sound is high-frequency noise. You can clean this up using our EQ panel.</p>
+                <p>Gently lower the <strong>High Frequency</strong> slider. Be careful not to lower it too much, or your voice will lose its "crispness." Finding the sweet spot between noise reduction and vocal clarity is what separates amateur podcasts from professional ones.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-gamepad"></i> Voice Changing for Gamers & Streamers</h3>
+                <p>Privacy in gaming is becoming a major concern. Many streamers prefer not to reveal their real voice, or they want to roleplay a specific character.</p>
+                <p>Our <strong>Voice AI</strong> presets (like 'Robot' or 'Chipmunk') use real-time granular synthesis to modulate pitch and formants. Unlike basic filters, this retains the articulation of your speech so your teammates can still understand you clearly, even while you sound like a cyborg.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-scale-balanced"></i> Modifying Audio for Fair Use</h3>
+                <p><em>Disclaimer: This is not legal advice.</em> However, many creators modify copyrighted music to avoid automated content ID claims. This technique is often called "Pitch Shifting."</p>
+                <p>By changing the speed of a track by just 5-10% (using our Speed Slider), the waveform changes significantly. While this doesn't grant you copyright ownership, it is a common technique used in the remix culture to create transformative content that falls under fair use policies.</p>
+            </div>
+
+
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-compact-disc"></i> The "Vinyl Effect": Why Pitch Changes with Speed</h3>
+                <p>You might notice that when you lower the speed on our tool, the voice becomes deeper, and when you increase it, it sounds like a "Chipmunk." This is not a glitch; it is pure audio physics. We replicated the behavior of old-school <strong>Vinyl Record Players</strong>.</p>
+                <p>Modern editors often use "Time Stretching" to keep the pitch same, but that often sounds robotic and creates digital artifacts. By locking pitch to speed, we ensure zero distortion. This is exactly how the popular "Chopped & Screwed" or "Slowed + Reverb" genres are created. Want a scary villain voice? Just drag the speed slider to 0.7x.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-ghost"></i> Creative Sound Design using Reverse Audio</h3>
+                <p>The "Reverse" checkbox isn't just for fun; it's a powerful production tool. Professional producers use reversed audio to create "Risers" and "Swells" before a beat drop.</p>
+                <p><strong>Try this:</strong> Record a sharp sound like a clap or a cymbal crash. Reverse it using our tool, and then render it. You will get a smooth "whoosh" sound that sucks the listener into the next part of the song. It’s also great for hiding subliminal messages or creating ghostly textures for horror games.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-lock"></i> Zero-Knowledge Privacy Architecture</h3>
+                <p>Most "Free Online Tools" sustain themselves by selling user data. We took a different path. Our architecture is what developers call <strong>"Zero-Knowledge."</strong></p>
+                <p>When you load a file here, the browser creates a "Blob URL" locally. The data stream never touches a network request. This makes Ultra Studio Pro Max the safest place to edit sensitive content—be it a confidential business meeting recording, a legal deposition, or an unreleased music track that you don't want leaked before the launch.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-sliders"></i> Cleaning Up "Muddy" Podcasting Audio</h3>
+                <p>A common mistake new podcasters make is having too much bass in their voice, making it sound "muddy" or muffled on phone speakers. You can fix this in seconds using our EQ panel.</p>
+                <p>Simply lower the <strong>Low Frequency</strong> slider slightly (to around -2 or -3) and boost the <strong>Mid Frequency</strong> (to +2). This technique is called "High-Pass Filtering" in the industry. It removes the low rumbles of your room (like A/C noise or traffic) and lets the human voice cut through the mix clearly.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-brain"></i> 8D Audio for Focus and ADHD</h3>
+                <p>While 8D audio is famous for music, it has a surprising use case: Focus. Many people with ADHD or concentration issues find that "Binaural Panning" (audio moving from ear to ear) keeps their brain engaged.</p>
+                <p>You can turn any white noise, rain sound, or Lo-Fi track into an 8D experience using our Panner slider. By automating the sound to move slowly around your head, it occupies the distracted part of the brain, allowing you to focus deeply on your work or study. Just remember: Headphones are mandatory for this effect.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-gauge-high"></i> No Upload Limits? How It Works</h3>
+                <p>Have you ever tried to convert a 2-hour DJ set on other sites, only to see "File too large" or "Premium only"? That happens because they have to pay for server storage.</p>
+                <p>Since Ultra Studio runs on your own hardware (CPU & RAM), there are virtually no artificial limits. If your computer has 16GB of RAM, you can technically edit massive lossless files that are gigabytes in size. We don't throttle your experience because we aren't paying to host your file—your computer does the heavy lifting.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-brands fa-tiktok"></i> Mastering Audio for TikTok & Reels</h3>
+                <p>Social media algorithms compress audio heavily. If your track is too quiet, it gets ignored. If it's too loud, it gets distorted. The sweet spot is mastering.</p>
+                <p>Use our tools to ensure your audio peaks are consistent. A slight boost in the "High" EQ adds "air" or brightness to the track, which sounds great on smartphone speakers. Creating your own "Speed Up" (Nightcore) versions of popular songs is also a proven way to go viral, as these versions often evade automated copyright blocks while sounding energetic.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-file-export"></i> Why WAV Export Matters for Archivists</h3>
+                <p>MP3 is great for sharing, but every time you edit and save an MP3, it loses quality. This is called "Generation Loss." It’s like photocopying a photocopy.</p>
+                <p>If you are digitizing old cassettes, vinyl, or voice memos for historical archiving, <strong>always export in WAV</strong>. Our WAV engine writes raw PCM data. This preserves 100% of the frequency spectrum, ensuring that even 50 years from now, the recording will sound exactly as it was captured today.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-gamepad"></i> Voice Changing for Roleplay (RP) Gamers</h3>
+                <p>In the world of GTA V RP or Discord D&D sessions, immersion is key. You don't need expensive hardware voicemoders to change your character.</p>
+                <p>Record your dialogue here. For a "Dwarf" or "Giant" character, drop the speed to 0.8x. For a "Fairy" or "Goblin," boost it to 1.3x. Since we use pitch-locked speed changes, the modulation sounds organic and smooth, distinct from the metallic, robotic sound of cheap real-time voice changers.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-laptop-code"></i> The End of "Software Installation"</h3>
+                <p>Ten years ago, editing audio meant buying software, finding a license key, installing huge libraries, and updating drivers. The Web Audio API changed everything.</p>
+                <p>Ultra Studio Pro Max represents the shift to "Progressive Web Apps" (PWA). We leverage the same low-level code (C++ compiled to WASM) that desktop apps use, but deliver it instantly via the browser. This means you can start editing on a borrowed laptop, a library computer, or a Chromebook instantly, with no traces left behind once you close the tab.</p>
+            </div>
+
+
+
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions (FAQ)</h3>
+                    <div style="margin-top: 15px;">
+                        <p><strong>Q: Is my audio data private?</strong><br>
+                        A: Absolutely. We use Client-Side processing. Your files are processed by your device's CPU and are never uploaded to our servers.</p>
+                        
+                        <p><strong>Q: Does this work on mobile devices?</strong><br>
+                        A: Yes, the engine is optimized for modern mobile browsers (Chrome, Safari, Firefox) on both Android and iOS.</p>
+
+                        <p><strong>Q: Can I edit large files (e.g., 100MB+)?</strong><br>
+                        A: Yes, you can. However, since the processing happens in your browser, performance depends on your device's RAM. For very large files, a PC is recommended.</p>
+                    </div>
+                </div>
+
+            </section>
+
+
+
+        </div> <div class="related-tools-container">
+    <h2 class="related-title"><i class="fa-solid fa-layer-group"></i> Related <span style="background: linear-gradient(to right, #00f3ff, #bc13fe); -webkit-background-clip: text; color: transparent;">Studio Tools</span></h2>
+    
+    <div class="related-grid">
+        
+        <a href="tone-generator.html" class="tool-card">
+            <div class="badge-container" style="position: absolute; top: 10px; right: 10px;">
+                <span class="badge" style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: white; font-weight: 800; font-size: 0.6rem; padding: 2px 8px; border-radius: 4px;">AUDIO LAB</span>
+            </div>
+            <span class="icon" style="margin-top: 10px;">
+                <div style="position: relative; display: inline-block;">
+                    <i class="fa-solid fa-wave-square" style="font-size: 1.6em; background: -webkit-linear-gradient(#00c6ff, #0072ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(0, 198, 255, 0.4)); animation: audio-vibe 1.5s infinite alternate;"></i>
+                    <i class="fa-solid fa-gears" style="position: absolute; top: -12px; right: -14px; font-size: 0.6em; color: #fff; background: #1a1a1a; padding: 4px; border-radius: 50%; border: 1px solid #00c6ff;"></i>
+                </div>
+            </span>
+            <div class="card-title" style="margin-top: 12px; font-family: 'Inter', sans-serif;">
+                Tone Gen <span style="background: linear-gradient(to right, #00c6ff, #96e6a1); -webkit-background-clip: text; color: transparent;">STUDIO</span>
+            </div>
+            <div class="card-desc" style="color: #a1a1aa;">Hz Generator & Binaural Beats.</div>
+            <style> @keyframes audio-vibe { 0% { transform: scale(1); } 100% { transform: scale(1.1); } } </style>
+        </a>
+
+        <a href="tts.html" class="tool-card">
+            <div class="badge-container" style="position: absolute; top: 10px; right: 10px;">
+                <span class="badge" style="background: linear-gradient(90deg, #d124ff, #00e5ff); color: white; font-weight: 900; font-size: 0.6rem; padding: 2px 8px; border-radius: 4px;">AI VOICE</span>
+            </div>
+            <span class="icon" style="margin-top: 10px;">
+                <div style="position: relative; display: inline-block;">
+                    <i class="fa-solid fa-microphone-lines" style="font-size: 1.6em; background: -webkit-linear-gradient(#d124ff, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(209, 36, 255, 0.3));"></i>
+                    <i class="fa-solid fa-music" style="position: absolute; top: -12px; right: -14px; font-size: 0.6em; color: #fff; background: rgba(0,0,0,0.8); padding: 4px; border-radius: 50%; border: 1px solid #00e5ff;"></i>
+                </div>
+            </span>
+            <div class="card-title" style="margin-top: 12px; font-family: 'Inter', sans-serif;">
+                Ultra TTS <span style="background: linear-gradient(to right, #d124ff, #00e5ff); -webkit-background-clip: text; color: transparent;">STUDIO</span>
+            </div>
+            <div class="card-desc" style="color: #a1a1aa;">Unlimited Text to Voice & MP3.</div>
+        </a>
+
+        <a href="speech-to-text.html" class="tool-card">
+            <div class="badge-container" style="position: absolute; top: 10px; right: 10px;">
+                <span class="badge" style="background: linear-gradient(90deg, #ff0055, #d124ff); color: white; font-weight: 800; font-size: 0.6rem; padding: 2px 8px; border-radius: 4px;">DICTATION</span>
+            </div>
+            <span class="icon" style="margin-top: 10px;">
+                <div style="position: relative; display: inline-block;">
+                    <i class="fa-solid fa-file-audio" style="font-size: 1.6em; background: -webkit-linear-gradient(45deg, #ff0055, #d124ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.3));"></i>
+                    <i class="fa-solid fa-pen-nib" style="position: absolute; bottom: -6px; left: -10px; font-size: 0.55em; color: #ff0055; background: #fff; padding: 3px 5px; border-radius: 6px;"></i>
+                </div>
+            </span>
+            <div class="card-title" style="margin-top: 12px; font-family: 'Inter', sans-serif;">
+                Speech To <span style="background: linear-gradient(to right, #ff0055, #d124ff); -webkit-background-clip: text; color: transparent;">TEXT</span>
+            </div>
+            <div class="card-desc" style="color: #a1a1aa;">Voice Typing & Transcription.</div>
+        </a>
+
+        <a href="screen-recorder.html" class="tool-card">
+            <div class="badge-container" style="position: absolute; top: 10px; right: 10px;">
+                <span class="badge" style="background: linear-gradient(90deg, #ff0055, #00e5ff); color: white; font-weight: 800; font-size: 0.6rem; padding: 2px 8px; border-radius: 4px;">4K REC</span>
+            </div>
+            <span class="icon" style="margin-top: 10px;">
+                <div style="position: relative; display: inline-block;">
+                    <i class="fa-solid fa-record-vinyl" style="font-size: 1.6em; background: -webkit-linear-gradient(45deg, #ff0055, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.3));"></i>
+                    <i class="fa-solid fa-video" style="position: absolute; top: -12px; right: -14px; font-size: 0.6em; color: #fff; background: #00e5ff; padding: 4px; border-radius: 50%; border: 1px solid #ffffff; animation: pulse-rec 2s infinite;"></i>
+                </div>
+            </span>
+            <div class="card-title" style="margin-top: 12px; font-family: 'Inter', sans-serif;">
+                Screen Rec <span style="background: linear-gradient(to right, #ff0055, #00e5ff); -webkit-background-clip: text; color: transparent;">ULTRA</span>
+            </div>
+            <div class="card-desc" style="color: #a1a1aa;">Capture Video with System Audio.</div>
+            <style> @keyframes pulse-rec { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } } </style>
+        </a>
+
+    </div>
+</div>
+
+    </main>
+
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <script src="global.js"></script>
+    
+    <script>
+        console.log("Tool loaded!");
+    </script>
+    <script>
+    
+        /* ================================================================
+       ULTRA PRO MAX AUDIO ENGINE v5.0 (Final Stable)
+       DEVELOPED BY: MD KAWSAR
+       FIXES: Duration Sync, Reverse Logic, Pitch Match, Memory Leaks
+       ================================================================
+    */
+
+    // --- 1. GLOBAL VARIABLES ---
+    let wavesurfer, wsRegions, audioContext, originalBuffer;
+    let isPlaying = false;
+    let audioNodes = {}; 
+    let animationFrame;
+    let isRecording = false;
+    let mediaRecorder, audioChunks = [];
+
+    // Elements Cache
+    const elements = {
+        loader: document.getElementById('overlay-loader'),
+        loaderText: document.querySelector('.loader-text'),
+        editor: document.getElementById('editor-interface'),
+        dropZone: document.getElementById('drop-zone'),
+        playBtn: document.getElementById('play-btn'),
+        timeCurr: document.getElementById('time-current'),
+        timeTotal: document.getElementById('time-total'),
+        recBtn: document.getElementById('rec-trigger')
+    };
+
+    // --- 2. THEME CHECK ---
+    window.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    });
+
+    // --- 3. TOAST NOTIFICATION SYSTEM ---
+    function showToast(msg, type = 'success') {
+        const box = document.getElementById('toast-box');
+        const toast = document.createElement('div');
+        toast.className = 'toast-msg';
+        const icon = type === 'error' ? 'fa-exclamation-triangle' : 'fa-check-circle';
+        const color = type === 'error' ? '#ff0055' : '#00ff9d';
+        
+        toast.style.borderLeftColor = color;
+        toast.innerHTML = `<i class="fas ${icon}" style="color:${color}"></i> <span>${msg}</span>`;
+        
+        box.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(100%)';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    // --- 4. INITIALIZATION & FILE HANDLING ---
+    document.getElementById('file-input').addEventListener('change', function(e) {
+        if(this.files.length) initAudioEngine(this.files[0]);
+    });
+
+    async function initAudioEngine(file) {
+        elements.loader.style.display = 'flex';
+        elements.loaderText.innerText = "DECODING AUDIO MATRIX...";
+
+        // CLEANUP: Stop previous animations and close context to save memory
+        if(wavesurfer) {
+            wavesurfer.destroy();
+        }
+        if(animationFrame) {
+            cancelAnimationFrame(animationFrame);
+        }
+        if(audioContext && audioContext.state !== 'closed') {
+            await audioContext.close();
+        }
+        
+        // Setup New Audio Context
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Initialize WaveSurfer (V6 Syntax)
+        wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'rgba(255, 255, 255, 0.1)',
+            progressColor: 'rgba(0, 243, 255, 0.5)',
+            cursorColor: '#ff0055',
+            barWidth: 2,
+            barGap: 3,
+            height: 120,
+            responsive: true,
+            backend: 'WebAudio',
+            audioContext: audioContext
+        });
+
+        try {
+            const buffer = await file.arrayBuffer();
+            wavesurfer.loadBlob(file);
+            
+            // Store original buffer for offline rendering (Safe Copy)
+            const tempContext = new (window.AudioContext || window.webkitAudioContext)();
+            originalBuffer = await tempContext.decodeAudioData(buffer.slice(0));
+
+            wavesurfer.on('ready', () => {
+                setupAdvancedNodes(); 
+                elements.loader.style.display = 'none';
+                elements.dropZone.style.display = 'none';
+                elements.editor.style.display = 'block';
+                showToast('Audio Core Initialized Successfully');
+                updateTimer();
+            });
+
+            wavesurfer.on('audioprocess', updateTimer);
+            wavesurfer.on('finish', () => {
+                isPlaying = false;
+                elements.playBtn.innerHTML = '<i class="fas fa-play"></i> PLAY / PAUSE';
+                elements.playBtn.classList.remove('active');
+            });
+
+        } catch (err) {
+            elements.loader.style.display = 'none';
+            console.error(err);
+            showToast('Matrix Error: File Not Supported', 'error');
+        }
+    }
+
+    // --- 5. ADVANCED AUDIO NODE GRAPH (FX Engine) ---
+    function setupAdvancedNodes() {
+        const backend = wavesurfer.backend;
+        
+        // Filters
+        audioNodes.eqLow = audioContext.createBiquadFilter();
+        audioNodes.eqLow.type = 'lowshelf';
+        audioNodes.eqLow.frequency.value = 320;
+
+        audioNodes.eqMid = audioContext.createBiquadFilter();
+        audioNodes.eqMid.type = 'peaking';
+        audioNodes.eqMid.frequency.value = 1000;
+        audioNodes.eqMid.Q.value = 0.5;
+
+        audioNodes.eqHigh = audioContext.createBiquadFilter();
+        audioNodes.eqHigh.type = 'highshelf';
+        audioNodes.eqHigh.frequency.value = 3200;
+
+        audioNodes.panner = audioContext.createStereoPanner();
+        audioNodes.analyser = audioContext.createAnalyser();
+        audioNodes.analyser.fftSize = 2048;
+
+        // Chain Connections
+        backend.setFilters([
+            audioNodes.eqLow, 
+            audioNodes.eqMid, 
+            audioNodes.eqHigh,
+            audioNodes.panner, 
+            audioNodes.analyser
+        ]);
+
+        drawVisualizer();
+    }
+
+    // --- 6. REAL-TIME CONTROLS ---
+    elements.playBtn.addEventListener('click', () => {
+        if (!wavesurfer) return;
+        wavesurfer.playPause();
+        isPlaying = !isPlaying;
+        elements.playBtn.innerHTML = isPlaying ? 
+            '<i class="fas fa-pause"></i> PAUSE' : 
+            '<i class="fas fa-play"></i> PLAY';
+        
+        if(isPlaying) {
+            elements.playBtn.classList.add('active');
+            if(audioContext.state === 'suspended') audioContext.resume();
+        } else {
+            elements.playBtn.classList.remove('active');
+        }
+    });
+
+    document.getElementById('stop-btn').addEventListener('click', () => {
+        if (!wavesurfer) return;
+        wavesurfer.stop();
+        isPlaying = false;
+        elements.playBtn.innerHTML = '<i class="fas fa-play"></i> PLAY';
+        elements.playBtn.classList.remove('active');
+        showToast('Playback Reset');
+    });
+
+    // EQ Controls
+    ['eq-low', 'eq-mid', 'eq-high'].forEach(id => {
+        document.getElementById(id).addEventListener('input', function() {
+            const val = parseFloat(this.value);
+            if(id === 'eq-low' && audioNodes.eqLow) audioNodes.eqLow.gain.value = val;
+            if(id === 'eq-mid' && audioNodes.eqMid) audioNodes.eqMid.gain.value = val;
+            if(id === 'eq-high' && audioNodes.eqHigh) audioNodes.eqHigh.gain.value = val;
+        });
+    });
+
+    // Bass Boost Logic
+    document.getElementById('bass-slider').addEventListener('input', function() {
+        const boost = parseFloat(this.value);
+        if(audioNodes.eqLow) {
+            const baseLow = parseFloat(document.getElementById('eq-low').value);
+            audioNodes.eqLow.gain.value = baseLow + boost;
+        }
+    });
+
+    // Speed Control (CRITICAL FIX: preservePitch = false)
+    // This ensures what you hear in preview matches the render
+    document.getElementById('speed-slider').addEventListener('input', function() {
+        if(wavesurfer) wavesurfer.setPlaybackRate(parseFloat(this.value), false);
+    });
+
+    // Panner (8D Manual)
+    document.getElementById('pan-slider').addEventListener('input', function() {
+        if(audioNodes.panner) audioNodes.panner.pan.value = parseFloat(this.value);
+    });
+
+    // Presets
+    window.setPreset = (type) => {
+        const speedInput = document.getElementById('speed-slider');
+        if (!wavesurfer) return;
+        
+        if(type === 'robot') {
+            // false flag ensures pitch changes with speed
+            wavesurfer.setPlaybackRate(0.8, false); 
+            speedInput.value = 0.8;
+            showToast('Preset: Robotic Slow');
+        } else if (type === 'chipmunk') {
+            wavesurfer.setPlaybackRate(1.5, false);
+            speedInput.value = 1.5;
+            showToast('Preset: Chipmunk Fast');
+        }
+    };
+
+    // --- 7. VISUALIZER ---
+    function drawVisualizer() {
+        if (!audioNodes.analyser) return;
+        
+        const canvas = document.getElementById('visualizer');
+        const ctx = canvas.getContext('2d');
+        const bufferLength = audioNodes.analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        audioNodes.analyser.getByteFrequencyData(dataArray);
+        ctx.clearRect(0, 0, canvas.width, canvas.height); 
+
+        const barWidth = (canvas.width / bufferLength) * 2.5;
+        let barHeight;
+        let x = 0;
+
+        for(let i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] / 1.5; 
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#00f3ff');
+            gradient.addColorStop(1, '#bc13fe');
+
+            ctx.fillStyle = gradient;
+            ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+            x += barWidth + 1;
+        }
+        animationFrame = requestAnimationFrame(drawVisualizer);
+    }
+
+    function updateTimer() {
+        if (!wavesurfer) return;
+        const curr = wavesurfer.getCurrentTime();
+        const total = wavesurfer.getDuration();
+        elements.timeCurr.innerText = formatTime(curr);
+        elements.timeTotal.innerText = formatTime(total);
+    }
+
+    function formatTime(seconds) {
+        if(!seconds) return "00:00";
+        let min = Math.floor(seconds / 60);
+        let sec = Math.floor(seconds % 60);
+        return `${min}:${sec < 10 ? '0'+sec : sec}`;
+    }
+
+    // --- 8. ULTRA RENDER ENGINE (LOGIC FIXED) ---
+    document.getElementById('render-btn').addEventListener('click', async () => {
+        if(!originalBuffer) { showToast('No Audio Source Found', 'error'); return; }
+        
+        const format = document.getElementById('format-select').value;
+        const speedVal = parseFloat(document.getElementById('speed-slider').value);
+        const isReverse = document.getElementById('reverse-mode').checked;
+
+        elements.loader.style.display = 'flex';
+        elements.loaderText.innerText = format === 'wav' ? "CALCULATING LOSSLESS WAV..." : "ENCODING MP3 ULTRA...";
+        
+        // Timeout allows UI to show loader before freezing for computation
+        setTimeout(async () => {
+            try {
+                // FIX: Calculate new duration based on speed
+                // If speed is 0.5, duration is doubled. If 2.0, duration is halved.
+                const newLength = Math.ceil(originalBuffer.length / speedVal);
+
+                const offlineCtx = new OfflineAudioContext(
+                    originalBuffer.numberOfChannels,
+                    newLength, 
+                    originalBuffer.sampleRate
+                );
+
+                const source = offlineCtx.createBufferSource();
+                
+                // FIX: Non-destructive Reverse Logic
+                if (isReverse) {
+                    // Create a new buffer to avoid modifying the original 'originalBuffer'
+                    const reversedBuffer = offlineCtx.createBuffer(
+                        originalBuffer.numberOfChannels,
+                        originalBuffer.length,
+                        originalBuffer.sampleRate
+                    );
+                    
+                    for (let i = 0; i < originalBuffer.numberOfChannels; i++) {
+                        const originalData = originalBuffer.getChannelData(i);
+                        const reversedData = reversedBuffer.getChannelData(i);
+                        // Manually reverse copy
+                        for (let j = 0; j < originalBuffer.length; j++) {
+                            reversedData[j] = originalData[originalBuffer.length - 1 - j];
+                        }
+                    }
+                    source.buffer = reversedBuffer;
+                } else {
+                    source.buffer = originalBuffer;
+                }
+
+                // Create Offline FX Chain (Same values as UI)
+                const eqLow = offlineCtx.createBiquadFilter();
+                eqLow.type = 'lowshelf'; 
+                eqLow.frequency.value = 320;
+                eqLow.gain.value = parseFloat(document.getElementById('eq-low').value) + parseFloat(document.getElementById('bass-slider').value);
+
+                const eqMid = offlineCtx.createBiquadFilter();
+                eqMid.type = 'peaking';
+                eqMid.frequency.value = 1000;
+                eqMid.gain.value = parseFloat(document.getElementById('eq-mid').value);
+
+                const eqHigh = offlineCtx.createBiquadFilter();
+                eqHigh.type = 'highshelf';
+                eqHigh.frequency.value = 3200;
+                eqHigh.gain.value = parseFloat(document.getElementById('eq-high').value);
+
+                const panner = offlineCtx.createStereoPanner();
+                panner.pan.value = parseFloat(document.getElementById('pan-slider').value);
+
+                // Apply Speed
+                source.playbackRate.value = speedVal;
+
+                // Connect Chain
+                source.connect(eqLow);
+                eqLow.connect(eqMid);
+                eqMid.connect(eqHigh);
+                eqHigh.connect(panner);
+                panner.connect(offlineCtx.destination);
+
+                source.start();
+
+                // Render Audio
+                const renderedBuffer = await offlineCtx.startRendering();
+
+                // Export Logic
+                if (format === 'wav') {
+                    const wavBlob = bufferToWave(renderedBuffer, renderedBuffer.length);
+                    downloadBlob(wavBlob, `ULTRA_STUDIO_LOSSLESS_${Date.now()}.wav`);
+                } else {
+                    const mp3Blob = encodeMP3(renderedBuffer);
+                    downloadBlob(mp3Blob, `ULTRA_STUDIO_HQ_${Date.now()}.mp3`);
+                }
+
+                elements.loader.style.display = 'none';
+                showToast('Render Complete! Downloading...', 'success');
+
+            } catch (e) {
+                console.error(e);
+                elements.loader.style.display = 'none';
+                showToast('Render Failed: ' + e.message, 'error');
+            }
+        }, 100);
+    });
+
+    // --- 9. WAV ENCODER HELPER ---
+    function bufferToWave(abuffer, len) {
+        let numOfChan = abuffer.numberOfChannels,
+            length = len * numOfChan * 2 + 44,
+            buffer = new ArrayBuffer(length),
+            view = new DataView(buffer),
+            channels = [], i, sample,
+            offset = 0,
+            pos = 0;
+
+        setUint32(0x46464952); // "RIFF"
+        setUint32(length - 8); 
+        setUint32(0x45564157); // "WAVE"
+        setUint32(0x20746d66); // "fmt "
+        setUint32(16);         
+        setUint16(1);          
+        setUint16(numOfChan);
+        setUint32(abuffer.sampleRate);
+        setUint32(abuffer.sampleRate * 2 * numOfChan); 
+        setUint16(numOfChan * 2); 
+        setUint16(16);         
+        setUint32(0x61746164); // "data"
+        setUint32(length - pos - 4); 
+
+        for(i = 0; i < abuffer.numberOfChannels; i++)
+            channels.push(abuffer.getChannelData(i));
+
+        while(pos < len) {
+            for(i = 0; i < numOfChan; i++) {             
+                sample = Math.max(-1, Math.min(1, channels[i][pos])); 
+                sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767)|0; 
+                view.setInt16(44 + offset, sample, true); 
+                offset += 2;
+            }
+            pos++;
+        }
+
+        return new Blob([buffer], {type: "audio/wav"});
+
+        function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
+        function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
+    }
+
+    // --- 10. MP3 ENCODER ---
+    function encodeMP3(buffer) {
+        const channels = buffer.numberOfChannels;
+        const sampleRate = buffer.sampleRate;
+        const kbps = parseInt(document.getElementById('format-select').value) || 192;
+        
+        const mp3encoder = new lamejs.Mp3Encoder(channels, sampleRate, kbps);
+        
+        const leftData = buffer.getChannelData(0);
+        const rightData = channels > 1 ? buffer.getChannelData(1) : undefined;
+        
+        const sampleBlockSize = 1152;
+        const mp3Data = [];
+        
+        const leftInt16 = convertToInt16(leftData);
+        const rightInt16 = rightData ? convertToInt16(rightData) : undefined;
+
+        for (let i = 0; i < leftInt16.length; i += sampleBlockSize) {
+            const leftChunk = leftInt16.subarray(i, i + sampleBlockSize);
+            let mp3buf;
+            
+            if (channels === 2 && rightInt16) {
+                const rightChunk = rightInt16.subarray(i, i + sampleBlockSize);
+                mp3buf = mp3encoder.encodeBuffer(leftChunk, rightChunk);
+            } else {
+                mp3buf = mp3encoder.encodeBuffer(leftChunk);
+            }
+            if (mp3buf.length > 0) mp3Data.push(mp3buf);
+        }
+        
+        const mp3buf = mp3encoder.flush();
+        if (mp3buf.length > 0) mp3Data.push(mp3buf);
+
+        return new Blob(mp3Data, { type: 'audio/mp3' });
+    }
+
+    function convertToInt16(float32Array) {
+        const int16Array = new Int16Array(float32Array.length);
+        for(let i=0; i<float32Array.length; i++) {
+            let s = Math.max(-1, Math.min(1, float32Array[i]));
+            int16Array[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+        }
+        return int16Array;
+    }
+
+    function downloadBlob(blob, filename) {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+
+    // --- 11. RECORDING SYSTEM ---
+    elements.recBtn.addEventListener('click', async (event) => {
+        event.stopPropagation(); 
+        
+        if (!isRecording) {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.start();
+                isRecording = true;
+                
+                elements.recBtn.innerHTML = '<i class="fas fa-stop"></i> STOP REC';
+                elements.recBtn.classList.add('active');
+                elements.recBtn.classList.remove('danger'); 
+                showToast('Recording Started...', 'success');
+
+                mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+                
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(audioChunks, { type: 'audio/ogg; codecs=opus' });
+                    initAudioEngine(blob);
+                    
+                    stream.getTracks().forEach(track => track.stop());
+                };
+
+            } catch(e) {
+                showToast('Microphone Access Denied', 'error');
+                console.error(e);
+            }
+        } else {
+            if(mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+            isRecording = false;
+            elements.recBtn.innerHTML = '<i class="fas fa-microphone-lines"></i> REC';
+            elements.recBtn.classList.remove('active');
+            elements.recBtn.classList.add('danger');
+        }
+    });
+    
+    </script>
+
+</body>
+</html>

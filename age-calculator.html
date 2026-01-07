@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Ultra Age AI God Mode v4.0 - Advanced Biological & Chronological Analytics Engine. Calculate exact age, life progress, cosmic age, and consumption stats instantly.">
+    <meta name="keywords" content="age calculator pro, biological age checker, life progress bar, death timer, zodiac finder, cosmic age calculator, ultra age ai, online tools bd, trusted tools web, client-side analytics">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Ultra Age AI v4.0 - God Mode Analytics">
+    <meta property="og:description" content="Discover your exact age down to the second, consumption stats, and bio-rhythms. 100% Client-side privacy.">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/2921/2921226.png">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://trustedtoolsweb.com/age-calculator.html" />
+
+    <title>Ultra Age AI - God Mode Analytics | Trusted Tools</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="global.css">
+    
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Ultra Age AI God Mode",
+      "url": "Trustedtooolsweb.com",
+      "description": "An advanced client-side age analytics tool providing biological, cosmic, and consumption statistics.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSAR"
+      }
+    }
+    </script>
+
+    <style>
+    :root {
+        /* Theme Variables */
+        --primary-color: #ff0055;
+        --primary-hover: #ff4757;
+        --secondary-accent: #0abde3;
+        --bg-dark: #0d0d0d;
+        --container-bg: #161b22;
+        --border-color: #30363d;
+        --text-color: #c9d1d9;
+        --input-bg: #0d1117;
+        --success-color: #238636;
+        
+        /* Footer & Effects */
+        --footer-bg-dark: #090c10;
+        --footer-text-muted: #8b949e;
+        --accent-color: #00e5ff; 
+        --accent-secondary: #d124ff; 
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    body { 
+        background-color: var(--bg-dark); 
+        color: var(--text-color); 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        min-height: 100vh; 
+        margin: 0; 
+        padding: 0; 
+        overflow-x: hidden;
+    }
+
+    /* --- UPDATED STICKY HEADER --- */
+    .site-header {
+        width: 100%;
+        background: rgba(9, 12, 16, 0.85); /* Slight transparency */
+        backdrop-filter: blur(12px); /* Glass effect on scroll */
+        -webkit-backdrop-filter: blur(12px); /* Safari support */
+        border-bottom: 1px solid var(--border-color);
+        padding: 15px 0;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        
+        /* STICKY PROPERTIES */
+        position: sticky; 
+        top: 0;
+        z-index: 1000; /* Keeps it on top of everything */
+    }
+
+    .header-content {
+        max-width: 950px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    .header-logo {
+        font-size: 20px; /* Adjusted for mobile fit */
+        font-weight: 800;
+        color: var(--text-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+    }
+    .header-logo span { color: var(--accent-secondary); }
+    .header-logo i { color: var(--primary-color); }
+
+    .home-btn {
+        text-decoration: none;
+        color: var(--accent-color);
+        border: 1px solid var(--accent-color);
+        padding: 6px 15px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+    }
+    .home-btn:hover {
+        background: rgba(0, 229, 255, 0.1);
+        box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    /* --- MAIN CONTAINER --- */
+    main { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box; flex: 1;}
+
+    .container { 
+        max-width: 950px; 
+        width: 100%; 
+        background: var(--container-bg); 
+        padding: 30px; 
+        border-radius: 15px; 
+        border: 1px solid var(--border-color); 
+        text-align: center; 
+        box-shadow: 0 10px 40px rgba(255, 0, 85, 0.15); 
+        position: relative;
+        overflow: hidden; /* Important for single line text */
+        margin-bottom: 30px;
+    }
+
+    /* --- UPDATED SINGLE LINE TITLE --- */
+    .tool-title { 
+        color: var(--text-color); 
+        margin-bottom: 5px; 
+        font-weight: 700; 
+        margin-top: 10px;
+        
+        /* Force Single Line Logic */
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        
+        /* Responsive Font Size: Scale between 18px and 32px based on screen width */
+        font-size: clamp(16px, 4.5vw, 32px); 
+        line-height: 1.2;
+    }
+    
+    /* Mobile specific adjustments for the icon and text */
+    @media (max-width: 480px) {
+        .tool-title i {
+            display: none; /* Hide icon on very small screens to save space for text */
+        }
+        .container {
+            padding: 20px 15px; /* Reduce padding on mobile to give text more room */
+        }
+    }
+
+    .tool-title span { background: linear-gradient(90deg, #ff0055, #d124ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { color: #8b949e; margin-bottom: 30px; font-size: 15px; }
+    
+    .security-badge {
+        display: inline-flex; align-items: center; gap: 5px;
+        background: rgba(35, 134, 54, 0.2); color: #3fb950;
+        padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;
+        margin-bottom: 10px; border: 1px solid rgba(35, 134, 54, 0.4);
+    }
+
+    /* --- INPUT & BUTTON STYLES --- */
+    .input-wrapper {
+        background: #0d1117;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 25px;
+        text-align: left;
+    }
+    
+    .multi-input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .multi-input-grid { grid-template-columns: 1fr; } }
+
+    label { display: block; margin-bottom: 8px; color: #8b949e; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    input { 
+        width: 100%; padding: 14px 15px; background: var(--container-bg); border: 1px solid var(--border-color); 
+        color: white; border-radius: 8px; box-sizing: border-box; outline: none; transition: 0.3s; font-size: 15px;
+    }
+    input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(255, 0, 85, 0.1); }
+    
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+        filter: invert(1); cursor: pointer;
+    }
+
+    .btn-area { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+    
+    button.action-btn { 
+        background: linear-gradient(135deg, var(--primary-color), #d124ff); 
+        color: white; border: none; padding: 15px 40px; 
+        border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; 
+        font-size: 16px; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 10px;
+        box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+        width: 100%; max-width: 300px;
+    }
+    button.action-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 25px rgba(209, 36, 255, 0.5); filter: brightness(1.1); }
+
+    /* --- RESULT SECTION STYLES --- */
+    #resultBox { display: none; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 30px; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-age {
+        text-align: center; padding: 30px; background: rgba(0,0,0,0.2);
+        border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 25px;
+        background-image: radial-gradient(circle at center, rgba(255,0,85,0.05) 0%, transparent 70%);
+    }
+    .exact-age {
+        font-size: 3rem; font-weight: 800; margin: 10px 0;
+        background: linear-gradient(90deg, #fff, #c9d1d9);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    @media (max-width: 480px) { .exact-age { font-size: 2rem; } }
+
+    .timer-box {
+        font-family: 'Courier New', monospace; color: var(--primary-color);
+        font-size: 1.4rem; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255,0,85,0.4);
+    }
+    @media (max-width: 480px) { .timer-box { font-size: 1.1rem; letter-spacing: 1px; } }
+
+    /* Card Grid */
+    .grid-system {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;
+    }
+    .card {
+        background: #0d1117; padding: 25px; border-radius: 12px;
+        border: 1px solid var(--border-color); transition: 0.3s; position: relative; overflow: hidden;
+        text-align: left;
+    }
+    .card:hover { 
+        transform: translateY(-5px); border-color: var(--primary-color);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .card-header { 
+        display: flex; align-items: center; gap: 10px; margin-bottom: 20px; 
+        font-size: 1.1rem; font-weight: 700; color: #fff;
+    }
+    .stat-row {
+        display: flex; justify-content: space-between; padding: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: #8b949e;
+    }
+    .stat-val { color: var(--accent-color); font-weight: 600; }
+    
+    /* Progress Bar */
+    .progress-track {
+        height: 10px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin-top: 15px;
+    }
+    .progress-fill {
+        height: 100%; background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+        width: 0%; transition: width 1.5s ease-in-out;
+    }
+
+    /* --- FOOTER & INFO STYLES --- */
+    .info-section-wrapper { max-width: 950px; width: 100%; margin-top: 40px; text-align: left; }
+    .info-card {
+        background: #0d1117; border: 1px solid var(--border-color); border-radius: 15px;
+        padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .info-card h2 { color: #e6edf3; font-size: 22px; border-left: 4px solid var(--primary-color); padding-left: 15px; margin-bottom: 20px; }
+    .info-card h3 { color: var(--accent-color); font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
+    .info-card p, .info-card li { color: #8b949e; line-height: 1.7; font-size: 15px; }
+    .tech-highlight { color: #58a6ff; font-family: monospace; background: rgba(56, 139, 253, 0.1); padding: 2px 6px; border-radius: 4px; }
+    
+    /* --- LIGHT MODE VARIABLES & OVERRIDES --- */
+    body.light-mode {
+        --bg-dark: #f0f2f5;           /* হালকা ব্যাকগ্রাউন্ড */
+        --container-bg: #ffffff;      /* সাদা কন্টেইনার */
+        --text-color: #2c3e50;        /* কালচে টেক্সট */
+        --border-color: #dcdde1;      /* হালকা বর্ডার */
+        --input-bg: #ffffff;          /* ইনপুট সাদা */
+        --footer-bg-dark: #dfe4ea;    /* ফুটার লাইট */
+        --footer-text-muted: #636e72;
+        --glass-bg: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Light Mode Specific Adjustments */
+    body.light-mode .site-header {
+        background: rgba(255, 255, 255, 0.85);
+        border-bottom: 1px solid #dcdde1;
+    }
+    body.light-mode .card, 
+    body.light-mode .input-wrapper, 
+    body.light-mode .info-card {
+        background: #ffffff;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border-color: #dcdde1;
+    }
+    body.light-mode input {
+        color: #333;
+        background: #f1f2f6;
+    }
+    body.light-mode .tool-title,
+    body.light-mode .header-logo,
+    body.light-mode .card-header,
+    body.light-mode .info-card h2 {
+        color: #2c3e50;
+    }
+    body.light-mode .stat-row {
+        border-bottom: 1px solid #eee;
+    }
+    /* Light Mode Theme Button Color Swap */
+    body.light-mode .floating-contact.theme-pos {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af) !important;
+    }
+
+
+/* --- RELATED TOOLS SECTION --- */
+.related-wrapper {
+    margin-top: 50px;
+    width: 100%;
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+}
+
+.sec-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+}
+.sec-title i { color: var(--accent-color); }
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* অটো রেসপন্সিভ গ্রিড */
+    gap: 20px;
+}
+
+.tool-link-card {
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-link-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.tool-icon-box {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 0, 85, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+.tool-link-card:hover .tool-icon-box {
+    background: var(--primary-color);
+    color: white;
+}
+
+.t-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.t-desc {
+    font-size: 13px;
+    color: #8b949e;
+    line-height: 1.5;
+}
+
+/* Light Mode Support for Related Tools */
+body.light-mode .tool-link-card {
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+body.light-mode .t-name, 
+body.light-mode .sec-title {
+    color: #2c3e50;
+}
+
+/* --- USER GUIDE LIST STYLE --- */
+.guide-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.guide-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.guide-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.guide-list li i {
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--accent-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.guide-list li strong {
+    color: #fff; /* White title for dark mode */
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+/* Light Mode Support */
+body.light-mode .guide-list li strong {
+    color: #2c3e50; /* Dark title for light mode */
+}
+body.light-mode .guide-list li {
+    border-bottom: 1px solid #eee;
+}
+
+
+/* --- TOAST NOTIFICATION STYLES --- */
+#toast-box {
+    position: fixed;
+    top: 80px; /* হেডার থেকে একটু নিচে */
+    right: 20px;
+    z-index: 10000; /* সবকিছুর উপরে থাকার জন্য */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: rgba(22, 27, 34, 0.95); /* আপনার কন্টেইনার ব্যাকগ্রাউন্ডের সাথে মিল */
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-color); /* আপনার প্রাইমারি কালার */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px); /* গ্লাস ইফেক্ট */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 280px;
+    transform: translateX(120%); /* শুরুতে স্ক্রিনের বাইরে থাকবে */
+    animation: slideIn 0.4s ease forwards, fadeOut 0.5s ease 3s forwards;
+}
+
+.toast i {
+    font-size: 18px;
+}
+
+/* Success এবং Error এর জন্য আলাদা রং */
+.toast.error { border-left-color: #ff0055; }
+.toast.success { border-left-color: #238636; }
+
+/* মোবাইল রেসপন্সিভ */
+@media (max-width: 480px) {
+    #toast-box {
+        left: 20px;
+        right: 20px;
+        top: 20px; /* মোবাইলে একটু উপরে */
+    }
+    .toast {
+        width: 100%; /* মোবাইলে ফুল উইডথ */
+    }
+}
+
+/* এনিমেশন */
+@keyframes slideIn {
+    to { transform: translateX(0); }
+}
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-20px); pointer-events: none; }
+}
+
+
+
+</style>
+
+</head>
+<body>
+        
+        
+        <div id="toast-box"></div>
+
+
+<header id="global-header" class="site-header"></header>
+
+
+    <main>
+        <div class="container animated-entry">
+            
+            <div class="security-badge"><i class="fa-solid fa-shield-halved"></i> 100% Client-Side Privacy</div>
+            
+            <h1 class="tool-title"><i class="fa-solid fa-clock-rotate-left"></i> Ultra Age AI <span>God Mode</span></h1>
+            <p class="subtitle">Advanced Biological & Chronological Analytics. Calculated in Real-Time.</p>
+            
+            <div class="input-wrapper">
+                <div class="multi-input-grid">
+                    <div>
+                        <label><i class="fa-regular fa-calendar"></i> Date of Birth</label>
+                        <input type="date" id="dobInput">
+                    </div>
+                    <div>
+                        <label><i class="fa-regular fa-clock"></i> Time of Birth (Optional)</label>
+                        <input type="time" id="tobInput" value="00:00">
+                    </div>
+                </div>
+                
+                <div class="btn-area">
+                    <button class="action-btn" onclick="startAnalysis()">
+                        <i class="fa-solid fa-rocket"></i> Analyze Life Stream
+                    </button>
+                </div>
+            </div>
+            <div id="resultBox">
+                
+                <div class="hero-age">
+                    <div style="color:var(--primary-color); letter-spacing:2px; font-size:12px; font-weight:700;">CURRENT EXISTENCE DURATION</div>
+                    <div class="exact-age" id="mainAge">0 Years</div>
+                    <div class="timer-box" id="liveTimer">00:00:00:00</div>
+                    
+                    <div style="margin-top:25px; text-align:left;">
+                        <div style="display:flex; justify-content:space-between; color:#8b949e; font-size:12px; margin-bottom:5px;">
+                            <span>Life Progress (Assuming 80 Years)</span>
+                            <span id="progressText" style="color:white">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="lifeProgressBar"></div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; color:#666; font-size:10px; margin-top:5px;">
+                            <span>Birth</span>
+                            <span>80 Yrs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-system">
+                    <div class="card">
+                        <div class="card-header"><i class="fa-regular fa-clock" style="color:var(--primary-color)"></i> Time Expansion</div>
+                        <div class="stat-row"><span>Months Alive</span> <span class="stat-val" id="totalMonths">0</span></div>
+                        <div class="stat-row"><span>Weeks Alive</span> <span class="stat-val" id="totalWeeks">0</span></div>
+                        <div class="stat-row"><span>Days Alive</span> <span class="stat-val" id="totalDays">0</span></div>
+                        <div class="stat-row"><span>Hours Alive</span> <span class="stat-val" id="totalHours">0</span></div>
+                        <div class="stat-row"><span>Minutes Alive</span> <span class="stat-val" id="totalMinutes">0</span></div>
+                        <div class="stat-row"><span>Seconds Alive</span> <span class="stat-val" id="totalSeconds">0</span></div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><i class="fa-solid fa-utensils" style="color:#ff9f43"></i> Estimated Consumption</div>
+                        <div class="stat-row"><span>Food Eaten</span> <span class="stat-val" id="foodKg">0 kg</span></div>
+                        <div class="stat-row"><span>Water Drank</span> <span class="stat-val" id="waterL">0 L</span></div>
+                        <div class="stat-row"><span>Steps Walked</span> <span class="stat-val" id="steps">0</span></div>
+                        <div class="stat-row"><span>Dreams Seen</span> <span class="stat-val" id="dreams">0</span></div>
+                        <div class="stat-row"><span>Words Spoken</span> <span class="stat-val" id="words">0</span></div>
+                        <div class="stat-row" style="color:#666; font-size:11px; margin-top:5px;">*Based on global human averages</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><i class="fa-solid fa-heart-pulse" style="color:var(--success-color)"></i> Bio-Engine Status</div>
+                        <div class="stat-row"><span>Heartbeats</span> <span class="stat-val" style="color:var(--primary-color)" id="bioHearts">0</span></div>
+                        <div class="stat-row"><span>Breaths Taken</span> <span class="stat-val" id="bioBreaths">0</span></div>
+                        <div class="stat-row"><span>Blood Pumped</span> <span class="stat-val" id="bioBlood">0 L</span></div>
+                        <div class="stat-row"><span>Hair Growth</span> <span class="stat-val" id="bioHair">0 m</span></div>
+                        <div class="stat-row"><span>Cells Replaced</span> <span class="stat-val">~ Billions</span></div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><i class="fa-solid fa-user-astronaut" style="color:var(--secondary-accent)"></i> Cosmic Age</div>
+                        <div class="stat-row"><span>Mercury Age</span> <span class="stat-val" id="ageMerc">0</span></div>
+                        <div class="stat-row"><span>Venus Age</span> <span class="stat-val" id="ageVen">0</span></div>
+                        <div class="stat-row"><span>Mars Age</span> <span class="stat-val" id="ageMars">0</span></div>
+                        <div class="stat-row"><span>Jupiter Age</span> <span class="stat-val" id="ageJup">0</span></div>
+                        <div class="stat-row" style="border-top:1px solid #333; margin-top:5px; padding-top:10px;">
+                            <span>Next Birthday:</span> <span class="stat-val" style="color:var(--success-color)" id="nextBday">--</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><i class="fa-solid fa-wand-magic-sparkles" style="color:#d124ff"></i> Mystical Stats</div>
+                        <div class="stat-row"><span>Dog Years</span> <span class="stat-val" id="dogAge">0</span></div>
+                        <div class="stat-row"><span>Cat Years</span> <span class="stat-val" id="catAge">0</span></div>
+                        <div class="stat-row"><span>Zodiac Sign</span> <span class="stat-val" style="color:var(--accent-color)" id="zodiac">--</span></div>
+                        <div class="stat-row"><span>Birthstone</span> <span class="stat-val" id="stone">--</span></div>
+                        <div class="stat-row"><span>Season (BD)</span> <span class="stat-val" id="season">--</span></div>
+                    </div>
+                </div>
+
+                <div class="btn-area">
+                    <button class="action-btn" onclick="downloadTxt()" style="background:#238636;">
+                        <i class="fa-solid fa-file-export"></i> Export Report
+                    </button>
+                    <button class="action-btn" onclick="window.print()" style="background:#1f6feb;">
+                        <i class="fa-solid fa-print"></i> Print Data
+                    </button>
+                </div>
+            </div>
+
+                        <section class="info-section-wrapper">
+  
+  
+     <div class="info-card">
+    <h2><i class="fa-solid fa-circle-question"></i> User Guide: How to Operate</h2>
+    <p><strong>Ultra Age AI God Mode</strong> generates complex chronological and biological analytics in real-time. Follow these steps to extract your life data:</p>
+    
+    <ul class="guide-list">
+        <li>
+            <i class="fa-solid fa-calendar-check"></i>
+            <div>
+                <strong>Step 1: Input Biological Data</strong>
+                <br>Click on the calendar icon in the first box and accurately select your <strong>Date of Birth</strong> (Year, Month, and Day).
+            </div>
+        </li>
+        
+        <li>
+            <i class="fa-solid fa-clock"></i>
+            <div>
+                <strong>Step 2: Time Synchronization (Optional)</strong>
+                <br>For precision down to the second, enter your exact <strong>Time of Birth</strong>. If unknown, you can leave it at default (00:00).
+            </div>
+        </li>
+
+        <li>
+            <i class="fa-solid fa-rocket"></i>
+            <div>
+                <strong>Step 3: Initiate Analysis</strong>
+                <br>Click the <strong>"Analyze Life Stream"</strong> button. The AI engine will instantly calculate your biological and cosmic age metrics.
+            </div>
+        </li>
+
+        <li>
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <div>
+                <strong>Step 4: Export Data</strong>
+                <br>Once the results are generated, you can use the <strong>"Export Report"</strong> button to download a detailed `.txt` file of your life stats for offline storage.
+            </div>
+        </li>
+    </ul>
+</div>
+          
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-microchip"></i> Technical Architecture: How It Works</h2>
+                    <p><strong>Ultra Age AI God Mode</strong> is not a standard date calculator. It is built upon a high-precision <span class="tech-highlight">Client-Side JavaScript Engine</span> that utilizes your device's processing power to render analytics in real-time.</p>
+                    
+                    <h3>1. Precision Time Calculation</h3>
+                    <p>The system calculates the exact delta between your input `Date of Birth` and the current atomic time (`Date.now()`). Unlike basic calculators, our algorithm explicitly accounts for Leap Years (366 days) and the Gregorian calendar's varying month lengths (28, 30, or 31 days) to prevent rounding errors.</p>
+                    
+                    <h3>2. Real-Time Logic Loop</h3>
+                    <p>Using the JavaScript `setInterval` method, the engine refreshes the data every 1000 milliseconds (1 second). This allows you to watch your life's duration tick upwards in real-time without refreshing the page.</p>
+                </div>
+
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-heart-pulse"></i> Biological & Vital Algorithms</h2>
+                    <p>The numbers displayed in the "Bio-Engine Status" and "Consumption" cards are derived from global medical averages applied to your specific lifespan:</p>
+                    <ul>
+                        <li><strong>Heart & Breath:</strong> Calculated using the medical baseline of 75 heartbeats/min and 16 breaths/min. We multiply your total minutes alive by these constants.</li>
+                        <li><strong>Metabolic Output:</strong> Based on the average human consumption of 1.5kg of food and 2 Liters of water per day.</li>
+                        <li><strong>Cellular Growth:</strong> Estimates hair growth based on the biological average of 0.4mm (0.0004 meters) per day.</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-user-astronaut"></i> Cosmic Relativity (Space Time)</h2>
+                    <p>Time is relative to your location in the solar system. We calculate your "Cosmic Age" using orbital constants relative to Earth:</p>
+                    <ul>
+                        <li><strong>Mars Age:</strong> Since Mars takes 1.88 Earth years to orbit the Sun, your age is divided by 1.88.</li>
+                        <li><strong>Jupiter Age:</strong> Jupiter's orbit is much slower (11.86 Earth years), making you significantly younger there.</li>
+                        <li><strong>Venus Age:</strong> Venus orbits faster (0.62 Earth years), making you older on Venus than on Earth.</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Seasonal & Fun Analytics</h2>
+                    <p>This section analyzes your birth month to determine your Zodiac sign, Birthstone, and the specific Season (based on the 6-Season cycle used in South Asia/Bangladesh). Additionally, it uses complex tiered formulas to calculate accurate <strong>Dog Years</strong> and <strong>Cat Years</strong> (accounting for rapid maturation in the first 2 years of a pet's life).</p>
+                </div>
+
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-calendar-days"></i> The Leap Year Anomaly: Why Precision Matters</h2>
+    <p>Most simple age calculators fail because they treat every year as 365 days. However, the Earth actually takes 365.2422 days to orbit the Sun. To fix this drift, the Gregorian calendar adds a 29th day to February every four years.</p>
+    <p><strong>Ultra Age AI</strong> accounts for every single leap year (366 days) that has occurred since your birth. Whether you were born on a leap day or just lived through them, our engine adds those extra 24 hours to your total survival time, ensuring your "Total Hours" and "Seconds" are mathematically perfect.</p>
+</div>
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-heart-pulse"></i> Your Heart: The Biological Metronome</h2>
+    <p>The human heart is a tireless engine. On average, it beats about 100,000 times a day. The figure displayed in your results is based on a resting heart rate of 75 beats per minute (BPM). </p>
+    <p>While this is an average, athletes may have lower numbers, and stress can raise them. Seeing this number in the millions or billions puts into perspective just how much work your body does automatically, every single second, to keep you alive. It’s a reminder to take care of your cardiovascular health.</p>
+</div>
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-hourglass-half"></i> Why Count in Seconds?</h2>
+    <p>We usually measure our lives in years, which makes time feel slow and abundant. But when you switch the metric to seconds or weeks, the perspective shifts dramatically.</p>
+    <p>Seeing your age tick up in real-time (Seconds Alive) creates a psychological effect known as <strong>"Temporal Salience."</strong> It makes the passing of time feel tangible and urgent. This tool isn't just about counting numbers; it's about visualizing the flow of your life to inspire better time management and productivity.</p>
+</div>
+
+
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-planet-ringed"></i> Time Relativity: Age is Just a Number (on Earth)</h2>
+    <p>Your age is strictly defined by how many times Earth has orbited the Sun since you were born. But if you lived on another planet, your age would be radically different due to "Orbital Periods."</p>
+    <ul>
+        <li><strong>Mercury:</strong> Orbits the sun in just 88 days. If you are 20 on Earth, you’d be an elder of 83 on Mercury!</li>
+        <li><strong>Jupiter:</strong> Takes nearly 12 Earth years to complete one orbit. A 24-year-old human would be a mere toddler of 2 years old on the Gas Giant.</li>
+    </ul>
+    <p>This section of the tool uses real NASA orbital data to calculate your extraterrestrial age.</p>
+</div>
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-user-shield"></i> Why Client-Side Processing is Safer</h2>
+    <p>In an era where data breaches are common, <strong>Ultra Age AI</strong> takes a different approach. Traditional tools send your birth date to a backend server to calculate the result. This creates a digital footprint.</p>
+    <p>Our "God Mode" engine runs 100% on your device's browser (Client-Side). Your personal date of birth never leaves your phone or computer. Once the page loads, you can even turn off your internet, and the tool will continue to function perfectly. This is the gold standard of digital privacy.</p>
+</div>
+
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-bed"></i> The Third of Your Life You Don't Remember</h2>
+    <p>Humans spend approximately 33% of their lives sleeping. If our tool shows you have lived for 30 years, you have likely spent about 10 of those years asleep!</p>
+    <p>The "Dreams Seen" statistic in our tool is based on the REM (Rapid Eye Movement) cycle. An average person has 3 to 5 dreams per night, though most are forgotten immediately. Over a lifetime, this adds up to hundreds of thousands of mental voyages that exist only in your subconscious.</p>
+</div>
+
+  
+  <div class="info-card">
+    <h2><i class="fa-solid fa-glass-water"></i> Hydration Analytics: Your Water Footprint</h2>
+    <p>Water is the essence of biology. The average adult needs about 2 to 2.5 liters of water daily for optimal kidney function and cellular health. The "Water Drank" stat calculates your lifetime fluid intake.</p>
+    <p>Interestingly, this number only accounts for direct drinking. If we included the water used to grow the food you've eaten (virtual water footprint), the number would be 100 times higher! This metric serves as a fun reminder to stay hydrated.</p>
+</div>
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-battery-half"></i> Decoding the "Life Progress" Bar</h2>
+    <p>You might notice a percentage bar showing your life's progress. We use a baseline of <strong>80 Years</strong> for this calculation. Why?</p>
+    <p>According to global life expectancy data (which varies from 72 to 85 depending on the region), 80 is a standard statistical average for a modern human lifespan. This bar isn't a prediction of mortality but a visualization of time spent versus time remaining, designed to motivate you to make the most of the remaining percentage.</p>
+</div>
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-paw"></i> The Myth of "7 Dog Years"</h2>
+    <p>A common myth is that one human year equals seven dog years. Science tells us it's more complex. Pets mature very quickly in their first two years.</p>
+    <p><strong>Ultra Age AI</strong> uses the newer "ln-scale" formula. For example, a 1-year-old dog is physiologically similar to a 15-year-old human teenager, not a 7-year-old child. Our tool applies this non-linear aging curve to give you a scientifically accurate comparison of your age in the animal kingdom.</p>
+</div>
+
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-bolt"></i> Performance: 0.001ms Latency</h2>
+    <p>We optimized the JavaScript code to ensure zero lag. When you input your date, the calculation happens in less than a millisecond.</p>
+    <p>The real-time timer uses the browser's `requestAnimationFrame` or `setInterval` method to sync with your system clock. This ensures that the "Seconds Alive" counter doesn't drift over time, keeping your analytics accurate to the atomic second as long as the tab remains open.</p>
+</div>
+
+
+<div class="info-card">
+    <h2><i class="fa-solid fa-utensils"></i> A Mountain of Food</h2>
+    <p>The "Food Eaten" stat might shock you. An average human consumes about 1.5kg to 2kg of food daily. Over a lifetime of 80 years, this accumulates to nearly 30-50 tonnes of organic matter!</p>
+    <p>To visualize this: 30 tonnes is roughly the weight of 5 adult African Elephants. Your body has processed this massive amount of energy to keep your heart beating and your brain thinking every single day since you were born.</p>
+</div>
+
+  
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-shield-halved"></i> Privacy & Data Policy</h2>
+                    <ol>
+                        <li><strong>Zero Data Collection:</strong> This tool is "Client-Side Only." Your birth date is processed locally in your browser and is <strong>never</strong> sent to any server or database.</li>
+                        <li><strong>Offline Capable:</strong> Once loaded, the tool works entirely without an internet connection, ensuring maximum privacy.</li>
+                        <li><strong>Data Sovereignty:</strong> You can download your data using the "Export Report" feature, which generates a purely local `.txt` file on your device.</li>
+                    </ol>
+                </div>
+
+
+
+
+
+<div class="info-card" style="border-left: 4px solid #f1c40f;">
+    <h2 style="border-left: none; padding-left: 0;">
+        <i class="fa-solid fa-triangle-exclamation" style="color:#f1c40f;"></i> Disclaimer & Data Accuracy
+    </h2>
+    <p>Please note the following regarding the analytics generated by <strong>Ultra Age AI</strong>:</p>
+    
+    <ul style="list-style: disc; padding-left: 20px; color: #8b949e; line-height: 1.6;">
+        <li style="margin-bottom: 10px;">
+            <strong>Not Medical Advice:</strong> The biological statistics displayed (Heartbeats, Breaths, Blood Pumped, etc.) are mathematical approximations based on global medical averages (e.g., average heart rate of 75 bpm). This tool <strong>does not</strong> measure your actual physiological state and should strictly be used for educational or entertainment purposes only.
+        </li>
+        <li style="margin-bottom: 10px;">
+            <strong>Estimation Logic:</strong> Consumption metrics (Food, Water, Steps) are derived from standard human activity models. Your actual lifestyle and habits may vary significantly from these estimated figures.
+        </li>
+        <li>
+            <strong>No Liability:</strong> Trusted Tools Web is not responsible for any decisions made based on these calculations. The "Death Timer" or "Life Progress" features are hypothetical visualizations based on an average human lifespan of 80 years.
+        </li>
+    </ul>
+</div>
+
+
+            </section>
+            
+                              <div class="related-wrapper">
+                <h3 class="sec-title"><i class="fa-solid fa-layer-group"></i> Explore More Trusted Tools</h3>
+                
+                <div class="tools-grid">
+                    
+                    <a href="unit-converter.html" class="tool-link-card">
+                        <div class="tool-icon-box" style="color: #06b6d4; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);">
+                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="t-name">Omni Convert <span style="font-size:10px; background:linear-gradient(90deg, #6366f1, #06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900;">ULTRA</span></div>
+                        <div class="t-desc">All-in-one Unit Converter, Currency Exchange & Scientific Calculator.</div>
+                    </a>
+
+                    <a href="authenticator.html" class="tool-link-card">
+                        <div class="tool-icon-box" style="color: #6366f1; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2);">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="t-name">Titan Auth <span style="font-size:10px; background:linear-gradient(90deg, #00e5ff, #d124ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900;">PRO MAX</span></div>
+                        <div class="t-desc">Military-grade 2FA TOTP Generator with offline secure backup vault.</div>
+                    </a>
+
+                    <a href="password-generator.html" class="tool-link-card">
+                        <div class="tool-icon-box" style="color: #00c6ff; background: rgba(0, 198, 255, 0.1); border: 1px solid rgba(0, 198, 255, 0.2);">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <div class="t-name">Password <span style="font-size:10px; background:linear-gradient(90deg, #00c6ff, #0072ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900;">VAULT</span></div>
+                        <div class="t-desc">Generate strong, high-entropy passwords securely offline.</div>
+                    </a>
+
+                    <a href="qr-generator.html" class="tool-link-card">
+                        <div class="tool-icon-box" style="color: #ff0055; background: rgba(255, 0, 85, 0.1); border: 1px solid rgba(255, 0, 85, 0.2);">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </div>
+                        <div class="t-name">QR Studio <span style="font-size:10px; background:linear-gradient(90deg, #ff0055, #d124ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900;">MAX</span></div>
+                        <div class="t-desc">Create custom QR codes with logos, colors, and vector quality.</div>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    
+
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <script src="global.js"></script>
+    
+    <script>
+        console.log("Tool loaded!");
+    </script>
+    
+    
+    <script>
+    // --- ১. কনফিগারেশন এবং ভেরিয়েবল ---
+    let timerInterval;
+    const ZODIACS = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"];
+    const STONES = ["Garnet", "Amethyst", "Aquamarine", "Diamond", "Emerald", "Pearl", "Ruby", "Peridot", "Sapphire", "Opal", "Topaz", "Turquoise"];
+    // বাংলাদেশের ৬ ঋতু (সঠিক লজিক)
+    const SEASONS_BD = ["শীত (Winter)", "শীত (Winter)", "বসন্ত (Spring)", "বসন্ত (Spring)", "গ্রীষ্ম (Summer)", "গ্রীষ্ম (Summer)", "বর্ষা (Monsoon)", "বর্ষা (Monsoon)", "শরৎ (Autumn)", "শরৎ (Autumn)", "হেমন্ত (Late Autumn)", "হেমন্ত (Late Autumn)"];
+
+    // সংখ্যা ফরম্যাটিং হেল্পার (কমা যুক্ত করার জন্য)
+    const fmt = (num) => num.toLocaleString('en-US');
+
+    // --- ২. পেজ লোড হওয়ার পর সেটআপ ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // ফিউচার ডেট ব্লক করা
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('dobInput').setAttribute('max', today);
+        
+        // টোস্ট কন্টেইনার না থাকলে তৈরি করা (সেফটি চেক)
+        if (!document.getElementById('toast-box')) {
+            const toastBox = document.createElement('div');
+            toastBox.id = 'toast-box';
+            document.body.prepend(toastBox);
+        }
+
+        // থিম চেক করা
+        const savedTheme = localStorage.getItem('siteTheme');
+        const icon = document.getElementById('themeIcon');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            if(icon) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    });
+
+    // --- ৩. টোস্ট নোটিফিকেশন সিস্টেম ---
+    function showToast(msg, type) {
+        let box = document.getElementById('toast-box');
+        let toast = document.createElement('div');
+        
+        // আইকন নির্বাচন
+        let icon = type === 'error' 
+            ? '<i class="fa-solid fa-circle-exclamation"></i>' 
+            : '<i class="fa-solid fa-circle-check"></i>';
+
+        toast.classList.add('toast');
+        toast.classList.add(type); // CSS এ .error বা .success ক্লাস ধরবে
+        
+        toast.innerHTML = `${icon} <span>${msg}</span>`;
+        
+        box.appendChild(toast);
+
+        // ৩.৫ সেকেন্ড পর মুছে ফেলা
+        setTimeout(() => {
+            toast.remove();
+        }, 3500);
+    }
+
+    // --- ৪. মেইন অ্যানালাইসিস ফাংশন ---
+    function startAnalysis() {
+        const dateVal = document.getElementById('dobInput').value;
+        const timeVal = document.getElementById('tobInput').value || "00:00";
+
+        // ভ্যালিডেশন ১: ইনপুট খালি কিনা
+        if (!dateVal) {
+            showToast("Please select your Date of Birth first!", "error");
+            return;
+        }
+
+        const dob = new Date(`${dateVal}T${timeVal}`);
+        const now = new Date();
+
+        // ভ্যালিডেশন ২: ফিউচার ডেট কিনা
+        if (dob > now) {
+            showToast("Future birthdates are invalid!", "error");
+            return;
+        }
+
+        // রেজাল্ট বক্স দেখানো
+        const resultBox = document.getElementById('resultBox');
+        resultBox.style.display = 'block';
+        
+        // স্মুথ স্ক্রল
+        setTimeout(() => {
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+
+        // আগের টাইমার ক্লিয়ার করা (বাফারিং রোধ করতে)
+        if(timerInterval) clearInterval(timerInterval);
+
+        // ক্যালকুলেশন শুরু
+        calculateStaticMetrics(dob);
+        updateRealTime(dob); // সাথে সাথে একবার রান হবে
+        
+        // প্রতি সেকেন্ডে আপডেট হবে
+        timerInterval = setInterval(() => updateRealTime(dob), 1000);
+        
+        // সাকসেস মেসেজ (অপশনাল)
+        // showToast("Calculation Successful!", "success");
+    }
+
+    // --- ৫. স্ট্যাটিক বা স্থির ক্যালকুলেশন ---
+    function calculateStaticMetrics(dob) {
+        const now = new Date();
+        const diffTime = Math.abs(now - dob);
+        const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const totalYears = totalDays / 365.2422; 
+
+        // Time Expansion
+        document.getElementById('totalMonths').innerText = fmt((totalDays / 30.437).toFixed(0));
+        document.getElementById('totalWeeks').innerText = fmt(Math.floor(totalDays / 7));
+        document.getElementById('totalDays').innerText = fmt(totalDays);
+        document.getElementById('totalHours').innerText = fmt(Math.floor(diffTime / (1000 * 60 * 60)));
+        document.getElementById('totalMinutes').innerText = fmt(Math.floor(diffTime / (1000 * 60)));
+        
+        // Consumption Analytics
+        document.getElementById('foodKg').innerText = fmt((totalDays * 1.8).toFixed(0)) + " kg";
+        document.getElementById('waterL').innerText = fmt((totalDays * 2.5).toFixed(0)) + " L";
+        document.getElementById('steps').innerText = fmt(Math.floor(totalDays * 5000));
+        document.getElementById('dreams').innerText = fmt(Math.floor(totalDays * 4));
+        document.getElementById('words').innerText = fmt(Math.floor(totalDays * 15000));
+
+        // Bio Stats
+        const totalMins = Math.floor(diffTime / (1000 * 60));
+        document.getElementById('bioHearts').innerText = fmt(totalMins * 70); 
+        document.getElementById('bioBreaths').innerText = fmt(totalMins * 16); 
+        document.getElementById('bioBlood').innerText = fmt(totalDays * 7000) + " L"; 
+        document.getElementById('bioHair').innerText = (totalDays * 0.0004).toFixed(3) + " m"; 
+
+        // Cosmic Age
+        document.getElementById('ageMerc').innerText = (totalYears / 0.24).toFixed(2) + " Yrs";
+        document.getElementById('ageVen').innerText = (totalYears / 0.62).toFixed(2) + " Yrs";
+        document.getElementById('ageMars').innerText = (totalYears / 1.88).toFixed(2) + " Yrs";
+        document.getElementById('ageJup').innerText = (totalYears / 11.86).toFixed(2) + " Yrs";
+
+        // Mystical Stats (Dog/Cat Years)
+        let dogY = 0;
+        if(totalYears <= 1) dogY = totalYears * 15;
+        else if(totalYears <= 2) dogY = 15 + (totalYears-1)*9;
+        else dogY = 24 + (totalYears-2)*5;
+        
+        let catY = 0;
+        if(totalYears <= 2) catY = totalYears * 12.5;
+        else catY = 25 + (totalYears-2)*4;
+
+        document.getElementById('dogAge').innerText = Math.floor(dogY) + " yrs";
+        document.getElementById('catAge').innerText = Math.floor(catY) + " yrs";
+
+        // Zodiac & Stone Logic
+        const d = dob.getDate();
+        const m = dob.getMonth(); 
+        const zodiacCutoffs = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
+        let zIndex = m;
+        if (d >= zodiacCutoffs[m]) {
+            zIndex = (m + 1) % 12;
+        }
+        
+        document.getElementById('zodiac').innerText = ZODIACS[zIndex];
+        document.getElementById('stone').innerText = STONES[m];
+        document.getElementById('season').innerText = SEASONS_BD[m];
+
+        // Life Progress Bar
+        const progress = (totalYears / 80) * 100;
+        const safeProgress = progress > 100 ? 100 : progress;
+        document.getElementById('lifeProgressBar').style.width = safeProgress + "%";
+        document.getElementById('progressText').innerText = safeProgress.toFixed(4) + "%";
+    }
+
+    // --- ৬. রিয়েল-টাইম টাইমার ---
+    function updateRealTime(dob) {
+        const now = new Date();
+        const diff = now - dob;
+
+        // বয়স বের করার সঠিক লজিক (Y-M-D)
+        let y = now.getFullYear() - dob.getFullYear();
+        let m = now.getMonth() - dob.getMonth();
+        let d = now.getDate() - dob.getDate();
+
+        if (d < 0) {
+            m--;
+            // আগের মাসের দিন সংখ্যা যোগ করা
+            d += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        }
+        if (m < 0) {
+            y--;
+            m += 12;
+        }
+        document.getElementById('mainAge').innerText = `${y} Years ${m} Months ${d} Days`;
+
+        // টাইমার (ঘণ্টা:মিনিট:সেকেন্ড)
+        const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const min = Math.floor((diff / (1000 * 60)) % 60);
+        const sec = Math.floor((diff / 1000) % 60);
+        
+        // টোটাল সেকেন্ড আপডেট
+        document.getElementById('totalSeconds').innerText = fmt(Math.floor(diff/1000));
+
+        if (diff > 0) {
+            document.getElementById('liveTimer').innerText = 
+                `${hrs.toString().padStart(2,'0')}h : ${min.toString().padStart(2,'0')}m : ${sec.toString().padStart(2,'0')}s`;
+        }
+
+        // --- জন্মদিনের লজিক ---
+        const dobMonth = dob.getMonth();
+        const dobDay = dob.getDate();
+        
+        // আজ কি জন্মদিন?
+        if (now.getMonth() === dobMonth && now.getDate() === dobDay) {
+            const bdayElem = document.getElementById('nextBday');
+            bdayElem.innerText = "🎂 Happy Birthday! 🎉";
+            bdayElem.style.color = "#ff0055";
+            bdayElem.style.fontWeight = "900";
+        } else {
+            // না হলে কাউন্টডাউন
+            let nextBday = new Date(now.getFullYear(), dobMonth, dobDay);
+            if (now > nextBday) {
+                nextBday.setFullYear(now.getFullYear() + 1);
+            }
+            const diffBday = nextBday - now;
+            const daysToBday = Math.ceil(diffBday / (1000 * 60 * 60 * 24));
+            document.getElementById('nextBday').innerText = daysToBday + " Days Left";
+            document.getElementById('nextBday').style.color = "var(--success-color)";
+        }
+    }
+
+    // --- ৭. এক্সপোর্ট এবং থিম ফাংশন ---
+    function downloadTxt() {
+        const date = document.getElementById('dobInput').value;
+        const age = document.getElementById('mainAge').innerText;
+        const hearts = document.getElementById('bioHearts').innerText;
+        const nextBday = document.getElementById('nextBday').innerText;
+
+        const data = `
+ULTRA AGE AI GOD MODE - REPORT
+================================
+Generated on: ${new Date().toLocaleString()}
+
+[ CORE IDENTITY ]
+Date of Birth: ${date}
+Exact Age: ${age}
+Zodiac: ${document.getElementById('zodiac').innerText}
+Next Birthday: ${nextBday}
+
+[ BIOLOGICAL STATS ]
+Heartbeats: ${hearts}
+Breaths Taken: ${document.getElementById('bioBreaths').innerText}
+Fluid Processed: ${document.getElementById('bioBlood').innerText}
+
+[ ESTIMATED LIFETIME ACTIVITY ]
+Steps Walked: ${document.getElementById('steps').innerText}
+Words Spoken: ${document.getElementById('words').innerText}
+Food Consumed: ${document.getElementById('foodKg').innerText}
+
+--------------------------------
+Generated by Trusted Tools Web
+https://trustedtoolsweb.com
+`;
+        const blob = new Blob([data], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Life_Report_${Date.now()}.txt`;
+        a.click();
+    }
+    
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('themeIcon');
+        
+        body.classList.toggle('light-mode');
+        const isLight = body.classList.contains('light-mode');
+        
+        localStorage.setItem('siteTheme', isLight ? 'light' : 'dark');
+        
+        if (icon) {
+            if (isLight) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+    }
+</script>
+
+
+ </body>
+</html>

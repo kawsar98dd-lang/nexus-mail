@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#090c10">
+    
+    <meta name="description" content="Best Free Online 2FA Authenticator for 2026. Secure your Google, Facebook & Binance accounts with military-grade AES-256 encryption. Trusted Tools Web offers 100% client-side, offline TOTP generation.">
+    <meta name="keywords" content="2FA authenticator online, trusted tools web, secure totp generator, aes-256 vault, google authenticator alternative, desktop 2fa, offline authenticator, privacy focused tools, MD KAWSAR">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    <meta property="og:title" content="Titan Authenticator Pro - Secure 2FA Vault | Trusted Tools Web">
+    <meta property="og:description" content="Store your 2FA keys securely in your browser with AES-256 encryption. No cloud leaks. 100% Private & Offline Capable via Trusted Tools Web.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/images/titan-auth-cover.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/authenticator">
+    <link rel="canonical" href="https://trustedtoolsweb.com/authenticator" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Titan Authenticator Pro | Trusted Tools Web">
+    <meta name="twitter:description" content="Military-grade, client-side 2FA authenticator. Secure your digital life locally.">
+
+    <title>Titan Authenticator Pro - Secure 2FA Vault | Trusted Tools Web</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/otpauth/9.1.2/otpauth.umd.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="global.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Titan Authenticator Pro",
+      "url": "https://trustedtoolsweb.com/authenticator",
+      "description": "A military-grade, client-side 2FA authenticator with AES-256 encryption and offline backup capabilities provided by Trusted Tools Web.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "AES-256 Encryption, Offline TOTP, QR Scanning, JSON Backup",
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSAR",
+        "url": "https://trustedtoolsweb.com"
+      }
+    }
+    </script>
+
+    <style>
+        /* --- CORE VARIABLES (Tool Specific) --- */
+        :root {
+            --primary-color: #00e5ff;
+            --primary-hover: #00b8cc;
+            --secondary-accent: #d124ff;
+            --bg-dark: #0d0d0d;
+            --container-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --input-bg: #0d1117;
+            --success-color: #238636;
+            --danger-color: #ff0055;
+            
+            /* Layers */
+            --z-modal: 3000;
+            --z-lock: 9999;
+        }
+
+        /* --- GLOBAL RESET FOR TOOL --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+        .selectable { user-select: text; }
+
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-color); 
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        main { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box; flex: 1; }
+
+        .container { 
+            max-width: 600px;
+            width: 100%; 
+            background: var(--container-bg); 
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid var(--border-color); 
+            text-align: center; 
+            box-shadow: 0 10px 40px rgba(0, 229, 255, 0.1); 
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            margin-top: 20px; /* Added spacing from global header */
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        /* --- TOOL TITLE --- */
+        .tool-title { 
+            color: var(--text-color); 
+            margin-bottom: 5px; 
+            font-size: 32px; 
+            font-weight: 700; 
+            margin-top: 10px;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis; 
+            display: block;
+        }
+        .tool-title span { background: linear-gradient(90deg, var(--primary-color), var(--secondary-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .subtitle { color: #8b949e; margin-bottom: 30px; font-size: 15px; }
+
+        .security-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(35, 134, 54, 0.2); color: #3fb950;
+            padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;
+            margin-bottom: 10px; border: 1px solid rgba(35, 134, 54, 0.4);
+        }
+
+        /* --- TABS / TOOLBAR --- */
+        .tabs { 
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 25px; 
+            background: #0d1117; padding: 10px; border-radius: 12px; border: 1px solid var(--border-color);
+        }
+        .tab-btn {
+            background: transparent; border: none; color: var(--text-color);
+            padding: 12px 5px; border-radius: 8px; cursor: pointer; transition: 0.3s; 
+            font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 6px;
+        }
+        .tab-btn i { font-size: 18px; margin-bottom: 2px; }
+        .tab-btn:hover { background: rgba(255, 255, 255, 0.05); color: white; }
+        .tab-btn.active { 
+            background: linear-gradient(135deg, var(--primary-color), #00b8cc); 
+            color: #000; 
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4); 
+        }
+
+        /* --- INPUTS & ADD FORM --- */
+        .add-card {
+            background: #0d1117; border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 0 20px; margin-bottom: 20px;
+            overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 0; opacity: 0; transform: translateY(-10px);
+        }
+        .add-card.expanded { max-height: 600px; opacity: 1; transform: translateY(0); padding: 20px; border-color: var(--primary-color); }
+        
+        input { 
+            width: 100%; padding: 12px 15px; background: var(--input-bg); border: 1px solid var(--border-color); 
+            color: white; border-radius: 8px; box-sizing: border-box; outline: none; transition: 0.3s; font-size: 14px; margin-bottom: 12px;
+        }
+        input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1); }
+
+        .big-btn {
+            padding: 15px; border-radius: 12px; border: 1px dashed var(--border-color); 
+            color: #e6edf3; cursor: pointer; background: rgba(22, 27, 34, 0.5);
+            display: flex; flex-direction: column; align-items: center; gap: 10px; 
+            font-size: 13px; font-weight: 600; transition: 0.3s; width: 100%;
+        }
+        .big-btn:hover { border-color: var(--primary-color); background: rgba(0, 229, 255, 0.05); }
+
+        /* --- ACCOUNT LIST ITEMS --- */
+        .account-item {
+            background: rgba(22, 27, 34, 0.6); border: 1px solid var(--border-color); border-radius: 12px;
+            margin-bottom: 15px; position: relative; overflow: hidden; text-align: left;
+            transition: transform 0.2s, box-shadow 0.2s; backdrop-filter: blur(5px);
+        }
+        .account-item:hover { transform: translateY(-2px); border-color: var(--primary-color); }
+        .acc-main { display: flex; align-items: center; padding: 16px; gap: 15px; }
+        .acc-icon {
+            width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: #fff; background: linear-gradient(135deg, #21262d, #0d1117);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .acc-details { flex: 1; min-width: 0; }
+        .acc-details h4 { margin: 0; font-size: 17px; color: #e6edf3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .otp-section { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+        .otp-code {
+            font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 700;
+            color: var(--primary-color); letter-spacing: 2px; cursor: pointer;
+            filter: blur(5px); transition: filter 0.3s;
+        }
+        .otp-code.revealed { filter: blur(0); }
+        
+        /* --- LOCK SCREEN --- */
+        #lock-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #050608; z-index: var(--z-lock);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.4s;
+        }
+        .pin-dots { display: flex; gap: 15px; margin: 30px 0; }
+        .dot { width: 14px; height: 14px; border-radius: 50%; background: #21262d; border: 1px solid #30363d; transition: 0.2s; }
+        .dot.filled { background: var(--primary-color); box-shadow: 0 0 15px var(--primary-color); border-color: var(--primary-color); }
+        
+        .numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; z-index: 2; }
+        .num-key {
+            width: 75px; height: 75px; border-radius: 50%; background: rgba(22, 27, 34, 0.8);
+            border: 1px solid var(--border-color); color: white; font-size: 24px; font-weight: 500;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            transition: all 0.1s; backdrop-filter: blur(4px);
+        }
+        .num-key:active { background: var(--primary-color); color: black; transform: scale(0.9); }
+
+        /* --- INFO SECTION STYLES (Retained for Layout) --- */
+        .info-section-wrapper { max-width: 950px; width: 100%; margin-top: 40px; text-align: left; }
+        .info-card {
+            background: #0d1117; border: 1px solid var(--border-color); border-radius: 15px;
+            padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+        }
+        .info-card h2 { color: #e6edf3; font-size: 22px; border-left: 4px solid var(--primary-color); padding-left: 15px; margin-bottom: 20px; }
+        .info-card h3 { color: var(--primary-color); font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
+        .info-card p, .info-card li { color: #8b949e; line-height: 1.7; font-size: 15px; }
+        .tech-highlight { color: #58a6ff; font-family: monospace; background: rgba(56, 139, 253, 0.1); padding: 2px 6px; border-radius: 4px; }
+
+        /* --- UTILS --- */
+        .hidden { display: none !important; }
+        .animated-entry { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s forwards ease-out; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        
+        .timer-svg { width: 24px; height: 24px; transform: rotate(-90deg); }
+        .timer-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 3; }
+        .timer-progress { fill: none; stroke: var(--primary-color); stroke-width: 3; stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+
+        /* --- LIGHT MODE VARIABLES (Theme Override for Tool Elements) --- */
+        body.light-mode {
+            --bg-dark: #f0f2f5;           /* Light Gray Background */
+            --container-bg: #ffffff;      /* White Container */
+            --border-color: #dcdde1;      /* Light Grey Border */
+            --text-color: #2c3e50;        /* Dark Text */
+            --input-bg: #ffffff;          /* Light Input BG */
+        }
+        
+        /* Light Mode Special Fixes */
+        body.light-mode .header-logo, body.light-mode .tool-title { color: #2c3e50; }
+        body.light-mode input { color: #333; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); }
+        body.light-mode .info-card { background: #ffffff; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        body.light-mode .info-card h2 { color: #2c3e50; }
+        body.light-mode .account-item { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        body.light-mode .tab-btn:hover { background: rgba(0,0,0,0.1); color: #000; }
+        body.light-mode .add-card { background: #ffffff; }
+        
+        /* --- RELATED TOOLS SECTION STYLES --- */
+        .related-tools-container { max-width: 950px; width: 100%; margin: 40px auto 60px; padding: 0 20px; }
+        .section-header { text-align: left; margin-bottom: 25px; }
+        .section-header h2 { color: var(--text-color); font-size: 24px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .section-header h2 i { color: var(--secondary-accent); }
+        .line-divider { height: 3px; width: 60px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-accent)); border-radius: 2px; }
+        
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .tool-card {
+            background-color: #161b22; background: var(--container-bg); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 25px; text-align: center; transition: all 0.3s ease;
+            cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+        }
+        .tool-card:hover { transform: translateY(-7px); box-shadow: 0 10px 25px rgba(0, 229, 255, 0.1); }
+        
+        .badge-container { position: absolute; top: 15px; right: 15px; }
+        .badge { color: white; font-weight: 800; font-size: 0.6rem; padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); letter-spacing: 0.5px; }
+        .tool-name { font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 15px; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tool-desc-text { font-size: 0.85rem; color: #8b949e; margin-top: 5px; }
+        
+        /* Effects */
+        .pass-card:hover { border-color: #00cc00; box-shadow: 0 10px 30px rgba(0, 204, 0, 0.2); }
+        @keyframes float-key { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-4px) rotate(-10deg); } 100% { transform: translateY(0px) rotate(0deg); } }
+        
+        .cyber-intel-card:hover { border-color: #00f3ff; box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2); }
+        @keyframes pulse-radar { 0% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(0, 243, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0); } }
+        
+        .qr-studio-card:hover { border-color: #d124ff; box-shadow: 0 10px 30px rgba(209, 36, 255, 0.2); }
+        @keyframes float-brush { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-5px) rotate(15deg); } 100% { transform: translateY(0px) rotate(0deg); } }
+
+        /* Light Mode Fixes for Related Tools */
+        body.light-mode .section-header h2 { color: #2c3e50; }
+        body.light-mode .tool-card { background: #ffffff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        body.light-mode .tool-name { color: #2c3e50; }
+
+        @media (max-width: 600px) {
+            .tabs { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+            .tab-btn { font-size: 10px; padding: 8px 4px; }
+            .tool-title { font-size: 22px; margin-top: 5px; }
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false;">
+
+    <div id="lock-screen" class="hidden">
+        <div style="text-align:center; margin-bottom: 20px; z-index: 2;">
+            <div style="width: 80px; height: 80px; background: rgba(0, 229, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid var(--primary-color); box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);">
+                <i class="fa-solid fa-fingerprint" style="font-size: 40px; color: var(--primary-color);"></i>
+            </div>
+            <h2 style="margin: 0; color: white; font-family: 'JetBrains Mono'; letter-spacing: 2px;">SECURITY LOCK</h2>
+            <p style="margin: 10px 0 0; color: #8b949e; font-size: 14px;">Enter your PIN to decrypt the vault</p>
+        </div>
+        
+        <div class="pin-dots" id="pin-display">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        
+        <div class="numpad">
+            
+            <div style="margin-top: 25px; cursor: pointer; color: #ff0055; font-size: 13px; font-weight: 600; text-decoration: underline; opacity: 0.8;" onclick="resetVault()">
+    Forgot PIN? Reset Vault
+</div>
+
+            <div class="num-key" onclick="handlePinInput(1)">1</div>
+            <div class="num-key" onclick="handlePinInput(2)">2</div>
+            <div class="num-key" onclick="handlePinInput(3)">3</div>
+            <div class="num-key" onclick="handlePinInput(4)">4</div>
+            <div class="num-key" onclick="handlePinInput(5)">5</div>
+            <div class="num-key" onclick="handlePinInput(6)">6</div>
+            <div class="num-key" onclick="handlePinInput(7)">7</div>
+            <div class="num-key" onclick="handlePinInput(8)">8</div>
+            <div class="num-key" onclick="handlePinInput(9)">9</div>
+            <div class="num-key" style="opacity:0; pointer-events:none"></div>
+            <div class="num-key" onclick="handlePinInput(0)">0</div>
+            <div class="num-key" onclick="handlePinInput(-1)" style="color:var(--danger-color); border-color:var(--danger-color);"><i class="fa-solid fa-delete-left"></i></div>
+        </div>
+    </div>
+
+
+<button class="tab-btn" onclick="toggleTheme()">
+    <i id="theme-icon" class="fa-solid fa-moon"></i> Theme
+</button>
+
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+        <div class="container animated-entry" id="main-app">
+            
+            <div class="security-badge"><i class="fa-solid fa-shield-halved"></i> Military-Grade AES-256 Encryption</div>
+            
+            <h1 class="tool-title"><i class="fa-solid fa-key"></i> Titan Auth <span>Pro Max</span></h1>
+            <p class="subtitle">Secure Client-Side 2FA Vault. No Cloud. No Leaks. Offline Capable.</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" id="btn-add" onclick="toggleAddMenu()">
+                    <i class="fa-solid fa-plus-circle"></i> Add
+                </button>
+                <button class="tab-btn" onclick="openSecuritySettings()">
+                    <i class="fa-solid fa-user-lock"></i> Security
+                </button>
+                <button class="tab-btn" onclick="exportVault()">
+                    <i class="fa-solid fa-file-export"></i> Backup
+                </button>
+                <button class="tab-btn" onclick="document.getElementById('import-file').click()">
+                    <i class="fa-solid fa-file-import"></i> Restore
+                </button>
+                <input type="file" id="import-file" hidden accept=".json" onchange="importVault(this)">
+            </div>
+            <div class="add-card" id="add-card">
+                <h3 style="margin: 0 0 15px 0; color: white; text-align: left; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+                    Add New Account
+                </h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                    <button class="big-btn" onclick="startScanner()">
+                        <i class="fa-solid fa-qrcode" style="font-size:22px; color: var(--primary-color);"></i>
+                        Scan QR Code
+                    </button>
+                    <button class="big-btn" onclick="document.getElementById('qr-upload').click()">
+                        <i class="fa-solid fa-image" style="font-size:22px; color: var(--secondary-accent);"></i>
+                        Upload Image
+                    </button>
+                    <input type="file" id="qr-upload" hidden accept="image/*" onchange="processQrImage(this)">
+                </div>
+
+                <div style="text-align: left;">
+                    <label style="font-size: 12px; color: #8b949e; font-weight: 700; display:block; margin-bottom:5px;">MANUAL ENTRY</label>
+                    <input type="text" id="inp-issuer" placeholder="Service Name (e.g. Facebook, Binance)" autocomplete="off">
+<input type="text" id="inp-secret" placeholder="Secret Key (Base32)" style="padding-right: 45px;" autocomplete="off">
+
+                    
+                    <div style="position: relative;">
+                        <input type="text" id="inp-secret" placeholder="Secret Key (Base32)" style="padding-right: 45px;">
+                        <i class="fa-regular fa-clipboard" onclick="pasteClipboard()" style="position:absolute; right:15px; top:12px; color:var(--primary-color); cursor:pointer;" title="Paste"></i>
+                    </div>
+                    
+                    <button class="big-btn" style="background: var(--success-color); border:none; margin-top:10px; color:white;" onclick="addManualAccount()">
+                        <i class="fa-solid fa-check-circle"></i> Save to Vault
+                    </button>
+                </div>
+            </div>
+
+            <div style="position: relative; margin-bottom: 20px;">
+                <i class="fa-solid fa-search" style="position:absolute; left:15px; top:50%; transform:translateY(-50%); color:#8b949e;"></i>
+                <input type="text" style="padding-left:45px; border-radius: 50px; margin-bottom:0;" placeholder="Search your keys..." onkeyup="filterAccounts(this.value)">
+            </div>
+
+            <div id="account-list-container">
+                </div>
+            
+            <div id="empty-state" class="hidden" style="padding: 40px 0; opacity: 0.6;">
+                <i class="fa-solid fa-shield-cat" style="font-size: 50px; margin-bottom: 15px; color: #30363d;"></i>
+                <p style="color: #8b949e;">Vault is empty.<br>Add your first 2FA account securely.</p>
+            </div>
+
+        </div>
+
+        <section class="info-section-wrapper">
+            
+    <div class="info-card animated-entry delay-1">
+        <h2><i class="fa-solid fa-shield-virus"></i> Why Passwords Are No Longer Enough?</h2>
+        <p>In the current digital landscape, relying solely on passwords is like locking your front door but leaving the window wide open. Data breaches happen daily. If you use the same password for multiple sites, a leak in one platform puts your entire digital life—Facebook, Gmail, Binance, and Bank accounts—at risk.</p>
+        <p>This is where <strong>Two-Factor Authentication (2FA)</strong> becomes your digital bodyguard. Even if a hacker steals your password, they cannot access your account without the rotating 6-digit code generated by <strong>Titan Authenticator Pro</strong>. It adds a second layer of verification that is time-sensitive and unique to your device.</p>
+    </div>
+
+
+<div class="info-card animated-entry">
+    <h2><i class="fa-solid fa-book-open"></i> How to Use Titan Authenticator: A Step-by-Step Guide</h2>
+    
+    <h3>1. Setting Up Your Security PIN</h3>
+    <p>When you first open the tool, go to the <strong>Security</strong> tab. Create a 4-digit PIN. This PIN is used to encrypt your database. Without this PIN, your saved keys are just gibberish code that no one can read.</p>
+
+    <h3>2. Adding Accounts (2 Ways)</h3>
+    <ul>
+        <li><strong>QR Scan:</strong> Click "Add" > "Scan QR Code". Point your camera at the QR code provided by Facebook, Gmail, or Binance. If successful, the fields will auto-fill.</li>
+        <li><strong>Manual Entry:</strong> If you are on the same device, copy the "Secret Key" (Base32) from the service and paste it into the "Secret Key" box. Give it a name and click <strong>Save to Vault</strong>.</li>
+    </ul>
+
+    <h3>3. Backing Up Your Data (Crucial!)</h3>
+    <p>Since we don't store your data on cloud servers, you must backup your vault. Click the <strong>Backup</strong> button to download a <code>.json</code> file. Store this file on a USB drive or secure cloud storage. This is your only lifeline if you lose your device.</p>
+
+    <h3>4. Restoring & Merging</h3>
+    <p>Got a new phone? Click <strong>Restore</strong> and select your backup file. You will get two options:</p>
+    <ul>
+        <li><strong>REPLACE:</strong> Wipes the current list and loads the backup.</li>
+        <li><strong>MERGE:</strong> Keeps your current accounts and adds new ones from the backup file (Great for syncing two devices).</li>
+    </ul>
+
+    <h3>5. Emergency Reset</h3>
+    <p>Forgot your PIN? On the Lock Screen, click "Forgot PIN? Reset Vault". <strong>Warning:</strong> This will wipe all data to let you start fresh. Use this only if you have a backup file ready to restore.</p>
+</div>
+
+
+
+    <div class="info-card animated-entry delay-1">
+        <h2><i class="fa-solid fa-scale-balanced"></i> Titan Auth vs. Google Authenticator: What's the Difference?</h2>
+        <p>Many users ask, <em>"Why should I use Titan Auth over the standard Google Authenticator or Authy?"</em> The answer lies in <strong>Data Sovereignty and Privacy</strong>.</p>
+        
+        <div style="margin-top: 20px;">
+            <h3 style="color: #e6edf3; font-size: 16px;"><i class="fa-brands fa-google" style="color: #ea4335;"></i> Cloud-Based Authenticators (Google/Authy)</h3>
+            <p>Most popular apps sync your secret keys to their cloud servers. While convenient, this creates a centralized target for hackers. If their cloud servers are breached (which has happened to major password managers), your 2FA keys could be exposed. Additionally, you need an internet connection to sync.</p>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <h3 style="color: #e6edf3; font-size: 16px;"><i class="fa-solid fa-user-shield" style="color: var(--primary-color);"></i> Titan Authenticator Pro (Client-Side)</h3>
+            <p>Titan Auth takes a <strong>Zero-Trust</strong> approach. We do not have servers. We do not have a database. Your secret keys are:</p>
+            <ul style="color: #8b949e; line-height: 1.8;">
+                <li>Stored strictly in your browser's <span class="tech-highlight">LocalStorage</span>.</li>
+                <li>Encrypted using <strong>AES-256</strong> (Military Grade) before storage.</li>
+                <li>Accessible ONLY by you via your PIN.</li>
+            </ul>
+            <p>This means you are in total control. No "Big Tech" company is holding your keys. Plus, it works 100% offline, making it perfect for travel or areas with poor connectivity.</p>
+        </div>
+    </div>
+
+    <div class="info-card animated-entry delay-2">
+        <h2><i class="fa-solid fa-microchip"></i> Under the Hood: The Security Architecture</h2>
+        <p>Transparency is key to trust. Here is exactly how we handle your sensitive data without sending it to any server:</p>
+        
+        <h3>1. The Encryption Engine</h3>
+        <p>When you set a PIN, we use it as a "Salt" to encrypt your vault. We utilize the <strong>CryptoJS</strong> library to perform <span class="tech-highlight">AES-256-CBC</span> encryption. The result is a meaningless string of characters that can only be unlocked with your specific PIN.</p>
+
+        <h3>2. TOTP Generation (RFC 6238)</h3>
+        <p>We follow the global industry standard for Time-Based One-Time Passwords. The tool calculates a unique hash based on the current Unix Time and your Secret Key. This calculation happens locally in your device's CPU/Processor, ensuring zero latency.</p>
+
+        <h3>3. Portable Backup System</h3>
+        <p>Since we don't store your data in the cloud, we provide a robust <strong>JSON Backup</strong> feature. You can export your encrypted vault and store it on a USB drive or secure cloud storage of your choice. This gives you the freedom to move between devices without being locked into a specific ecosystem.</p>
+    </div>
+
+    <div class="info-card animated-entry delay-2">
+        <h2><i class="fa-solid fa-check-double"></i> Expert Recommendations for Maximum Security</h2>
+        <p>To get the most out of Titan Authenticator Pro, we recommend following these security protocols:</p>
+        <ul>
+            <li><strong>Regular Backups:</strong> Since this is an offline tool, if you clear your browser cache effectively, you might lose data. Always download a backup file after adding a new important account.</li>
+            <li><strong>Strong PIN:</strong> Do not use simple PINs like "1234" or "0000". Your PIN is the only key to decrypt your vault.</li>
+            <li><strong>Use HTTPS:</strong> Always ensure you are accessing this tool via a secure HTTPS connection (look for the lock icon in the address bar) to prevent man-in-the-middle attacks.</li>
+        </ul>
+        <p style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+            <em><strong>Disclaimer:</strong> This tool is an open-source, client-side utility designed for privacy enthusiasts. While we use top-tier encryption standards, the security of your device (malware/viruses) is ultimately your responsibility.</em>
+        </p>
+    </div>
+    
+    <div class="info-card animated-entry">
+    <h2><i class="fa-solid fa-user-lock"></i> The "Password-Only" Era is Dead. Here is Why.</h2>
+    <p>Let's be honest for a second. How many of us use the same password for Facebook, Instagram, and maybe even a crypto wallet? It’s a common habit, but in 2026, it is a digital death sentence.</p>
+    <p>Hackers don't sit and guess your password anymore. They buy millions of leaked credentials from the dark web and run automated bots to break into accounts. This is where <strong>Titan Authenticator</strong> acts as your fail-safe. Even if a hacker has your password, they are powerless without the rotating 6-digit code that lives strictly on your device.</p>
+    <p>Think of it like a bank vault: The password is the key, but the 2FA code is the retinal scan. You need both to get in.</p>
+</div>
+
+<div class="info-card animated-entry">
+    <h2><i class="fa-solid fa-cloud-bolt"></i> The Hidden Dangers of Cloud Sync</h2>
+    <p>Convenience often comes at the cost of security. Popular apps like Authy or Google Authenticator urge you to sync your keys to the cloud. Sounds great until you realize that cloud servers are a centralized target for attackers.</p>
+    <p>We took a different path with <strong>Titan Auth Pro</strong>. We believe in <span class="tech-highlight">Data Sovereignty</span>. By keeping everything <strong>Client-Side (Local)</strong>, we eliminate the risk of a mass server breach. If our website disappears tomorrow, or if hackers attack the internet infrastructure, your keys remain safe in your browser’s encrypted storage. You own your data, not us.</p>
+</div>
+
+<div class="info-card animated-entry">
+    <h2><i class="fa-solid fa-mobile-screen-button"></i> Why SMS Verification is No Longer Safe?</h2>
+    <p>If you are still using SMS for your 2FA codes, stop immediately. There is a growing threat called <strong>"SIM Swapping"</strong>. Hackers can trick your mobile carrier into transferring your phone number to their SIM card. Once they have your number, they get your OTPs.</p>
+    <p>Titan Authenticator generates codes mathematically using the <strong>TOTP Protocol</strong> locally on your device. It doesn't care about your phone number, carrier signals, or SIM cards. This makes it completely immune to SIM swapping attacks, making it the preferred choice for Binance traders and banking apps.</p>
+</div>
+
+<div class="info-card animated-entry">
+    <h2><i class="fa-solid fa-floppy-disk"></i> "I Lost My Phone!" – How to Prevent Disaster</h2>
+    <p>The biggest fear with offline authenticators is losing the device. Since we don't spy on your data, we can't recover it for you. But don't worry, we built a robust solution.</p>
+    <h3>The Golden Rule of Backups:</h3>
+    <p>Whenever you add a high-value account (like Gmail or Coinbase), immediately use our <strong>Export/Backup</strong> feature. It downloads a `.json` file containing your encrypted vault.</p>
+    <ul style="margin-top: 10px;">
+        <li><strong>Step 1:</strong> Download the backup file.</li>
+        <li><strong>Step 2:</strong> Rename it to something boring (e.g., `biology_notes_2025.json`) so nobody gets curious.</li>
+        <li><strong>Step 3:</strong> Store it on a USB drive or a secure cloud storage like Google Drive.</li>
+    </ul>
+    <p>If your phone breaks, simply upload this file to Titan Auth on a new device, enter your PIN, and you are back in business instantly.</p>
+</div>
+
+<div class="info-card animated-entry">
+    <h2><i class="fa-solid fa-eye-slash"></i> A Zero-Knowledge Architecture</h2>
+    <p>In a world where apps track your every move, <strong>Titan Authenticator</strong> is a ghost. We built this tool with a "Zero-Knowledge" architecture.</p>
+    <p>What does that mean? It means the code runs 100% in your browser. When you type your secret key or scan a QR code, that data never leaves your device. We don't have analytics, we don't have a database, and we don't have admin panels to view your keys. It is just you and the algorithm.</p>
+    <p>This transparency is why security professionals prefer web-based, open-source solutions over closed-source mobile apps that might be sending telemetry data behind your back.</p>
+</div>
+
+
+<div class="info-card animated-entry">
+    <h2><i class="fa-solid fa-plane-slash"></i> The "Airplane Mode" Security Test</h2>
+    <p>Do you trust this tool? You shouldn't trust blindly. We encourage you to perform the <strong>"Airplane Mode Test"</strong>.</p>
+    <p>Load this page, then immediately turn off your internet or switch to Airplane Mode. Now, try to generate codes or add a new secret key. You will see that <strong>Titan Authenticator works perfectly without internet</strong>.</p>
+    <p>Why does this matter? Most phishing sites require an active connection to send your stolen data to their servers. Since our logic runs entirely in your browser's RAM (Client-Side), there is no "secret tunnel" sending your keys to us. Your data never leaves your device.</p>
+</div>
+
+
+</section>
+
+
+        <section class="related-tools-container animated-entry delay-2">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-layer-group"></i> You May Also Like</h2>
+                <div class="line-divider"></div>
+            </div>
+
+            <div class="related-grid">
+
+                <a href="password-generator.html" class="tool-card pass-card" style="text-decoration: none;">
+                    <div class="badge-container">
+                        <span class="badge" style="background: linear-gradient(90deg, #00c6ff, #0072ff); box-shadow: 0 0 10px rgba(0, 198, 255, 0.4);">CYBER VAULT</span>
+                    </div>
+                    <span class="icon">
+                        <div style="position: relative; display: inline-block;">
+                            <i class="fa-solid fa-shield-halved" style="font-size: 3rem; background: -webkit-linear-gradient(#00c6ff, #0072ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(0, 114, 255, 0.3));"></i>
+                            <i class="fa-solid fa-key" style="position: absolute; top: -5px; right: -10px; font-size: 1rem; color: #fff; background: #000; padding: 4px; border-radius: 50%; border: 1px solid #00c6ff; animation: float-key 3s ease-in-out infinite;"></i>
+                        </div>
+                    </span>
+                    <div class="card-content">
+                        <div class="tool-name">Password <span style="background: linear-gradient(to right, #00c6ff, #0072ff); -webkit-background-clip: text; color: transparent;">ULTRA</span></div>
+                        <div class="tool-desc-text">Military Grade • Offline • Secure</div>
+                    </div>
+                </a>
+
+                <a href="cyber-intel.html" class="tool-card cyber-intel-card" style="text-decoration: none;">
+                    <div class="badge-container">
+                        <span class="badge" style="background: linear-gradient(90deg, #bf00ff, #00f3ff); box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);">ELITE MOD</span>
+                    </div>
+                    <span class="icon">
+                        <div style="position: relative; display: inline-block;">
+                            <i class="fa-solid fa-fingerprint" style="font-size: 3rem; background: -webkit-linear-gradient(45deg, #00f3ff, #bf00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.4));"></i>
+                            <i class="fa-solid fa-location-crosshairs" style="position: absolute; top: -5px; right: -10px; font-size: 1rem; color: #000; background: #00f3ff; padding: 4px; border-radius: 50%; border: 1px solid #fff; animation: pulse-radar 2s infinite;"></i>
+                        </div>
+                    </span>
+                    <div class="card-content">
+                        <div class="tool-name">Cyber <span style="background: linear-gradient(to right, #00f3ff, #bf00ff); -webkit-background-clip: text; color: transparent;">INTEL</span></div>
+                        <div class="tool-desc-text">IP Track • GPS Node • Spyware</div>
+                    </div>
+                </a>
+
+                <a href="qr-generator.html" class="tool-card qr-studio-card" style="text-decoration: none;">
+                    <div class="badge-container">
+                        <span class="badge" style="background: linear-gradient(90deg, #d124ff, #ff0055); box-shadow: 0 0 10px rgba(209, 36, 255, 0.5);">STUDIO MAX</span>
+                    </div>
+                    <span class="icon">
+                        <div style="position: relative; display: inline-block;">
+                            <i class="fa-solid fa-qrcode" style="font-size: 3rem; background: -webkit-linear-gradient(45deg, #ff0055, #d124ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.4));"></i>
+                            <i class="fa-solid fa-paintbrush" style="position: absolute; top: -5px; right: -10px; font-size: 1rem; color: #fff; background: #d124ff; padding: 4px; border-radius: 50%; border: 1px solid #ffffff; animation: float-brush 3s ease-in-out infinite;"></i>
+                        </div>
+                    </span>
+                    <div class="card-content">
+                        <div class="tool-name">QR Studio <span style="background: linear-gradient(to right, #ff0055, #d124ff); -webkit-background-clip: text; color: transparent;">PRO</span></div>
+                        <div class="tool-desc-text">Custom Logo • 4K Res • Vector</div>
+                    </div>
+                </a>
+
+            </div>
+            
+            
+            
+        </section>
+
+    </main>
+
+    <footer id="global-footer" class="cyber-footer"></footer>
+    
+    <script src="global.js"></script>
+
+    <div id="scanner-overlay" class="hidden" style="position:fixed; inset:0; background:black; z-index:4000; flex-direction:column; align-items:center; justify-content:center;">
+        <div style="position:absolute; top:30px; right:30px; z-index:4001;">
+            <button onclick="stopScanner()" style="background:rgba(255,0,0,0.5); color:white; border:1px solid white; padding:10px 20px; border-radius:30px; font-weight:bold;">CLOSE X</button>
+        </div>
+        <div id="reader" style="width:100%; height:100%;"></div>
+        <p style="position:absolute; bottom:50px; color:white; z-index:4001; background:rgba(0,0,0,0.5); padding:5px 10px; border-radius:5px;">Point camera at QR Code</p>
+    </div>
+
+<script>
+    /**
+     * TITAN AUTHENTICATOR PRO - CORE ENGINE (OPTIMIZED)
+     * Author: MD KAWSAR
+     * Security: AES-256 Client-Side Encryption
+     * Updated: 2026-01-07
+     */
+
+    // --- CONSTANTS & STATE VARIABLES ---
+    const DB_KEY = 'titan_vault_secure_v1';
+    const PIN_HASH_KEY = 'titan_auth_pin_hash_sha256';
+    const THEME_KEY = 'titan_theme';
+
+    let accounts = [];
+    let currentPin = null; // Stores the PIN strictly in memory only
+    let pinBuffer = "";
+    let totpCache = {}; // Caches OTP objects to reduce CPU load
+    let lastEpoch = 0;
+    let cameraObj = null;
+    let isScanning = false;
+
+    // --- INITIALIZATION ---
+    window.onload = () => {
+        loadTheme();
+        preventBrowserSaves();
+        checkSecurityLock();
+        requestAnimationFrame(animateLoop);
+    };
+
+    // --- SECURITY: PREVENT BROWSER AUTOFILL ---
+    function preventBrowserSaves() {
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(inp => {
+            inp.setAttribute('autocomplete', 'off');
+            inp.setAttribute('autocorrect', 'off');
+            inp.setAttribute('spellcheck', 'false');
+        });
+    }
+
+    // --- THEME MANAGEMENT ---
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('theme-icon');
+        
+        body.classList.toggle('light-mode');
+        
+        if(body.classList.contains('light-mode')) {
+            localStorage.setItem(THEME_KEY, 'light');
+            if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        } else {
+            localStorage.setItem(THEME_KEY, 'dark');
+            if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+        }
+    }
+
+    function loadTheme() {
+        const savedTheme = localStorage.getItem(THEME_KEY);
+        const icon = document.getElementById('theme-icon');
+        
+        if(savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        }
+    }
+
+    // --- LOCK SCREEN & PIN LOGIC ---
+    function checkSecurityLock() {
+        const savedHash = localStorage.getItem(PIN_HASH_KEY);
+        if(savedHash) {
+            // LOCKED MODE
+            document.getElementById('main-app').style.display = 'none';
+            document.getElementById('lock-screen').classList.remove('hidden');
+            document.getElementById('lock-screen').style.display = 'flex';
+        } else {
+            // UNLOCKED MODE
+            document.getElementById('lock-screen').style.display = 'none';
+            document.getElementById('main-app').style.display = 'block'; // Ensure visibility
+            loadAccounts();
+        }
+    }
+
+    function handlePinInput(num) {
+        const dots = document.querySelectorAll('.dot');
+        
+        // Handle Backspace
+        if(num === -1) {
+            pinBuffer = pinBuffer.slice(0, -1);
+        } else if(pinBuffer.length < 4) {
+            pinBuffer += num;
+        }
+
+        // UI Update (Dots)
+        dots.forEach((d, i) => {
+            if(i < pinBuffer.length) d.classList.add('filled');
+            else d.classList.remove('filled');
+        });
+
+        // Verify Logic (Auto-submit on 4th digit)
+        if(pinBuffer.length === 4) {
+            setTimeout(() => verifyPin(), 100);
+        }
+    }
+
+    function verifyPin() {
+        const savedHash = localStorage.getItem(PIN_HASH_KEY);
+        const inputHash = CryptoJS.SHA256(pinBuffer).toString();
+
+        if(inputHash === savedHash) {
+            currentPin = pinBuffer; // Store PIN in RAM for decryption
+            
+            // Unlock Animation
+            const lockScreen = document.getElementById('lock-screen');
+            lockScreen.style.transition = "opacity 0.4s";
+            lockScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                lockScreen.style.display = 'none';
+                document.getElementById('main-app').style.display = 'block';
+                loadAccounts();
+            }, 400);
+        } else {
+            // Error Animation (Shake Effect)
+            const pad = document.getElementById('pin-display');
+            pad.style.transform = "translateX(10px)";
+            setTimeout(() => { pad.style.transform = "translateX(-10px)"; }, 100);
+            setTimeout(() => { 
+                pad.style.transform = "translateX(0)"; 
+                pinBuffer = "";
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('filled'));
+            }, 200);
+        }
+    }
+
+    // --- EMERGENCY RESET (NEW FEATURE) ---
+    function resetVault() {
+        if(confirm("⚠️ CRITICAL WARNING ⚠️\n\nYou are about to RESET Titan Authenticator.\n\nThis will PERMANENTLY DELETE all your 2FA accounts and your PIN.\n\nThis action cannot be undone. Are you sure?")) {
+            const confirmText = prompt("To confirm deletion, type 'DELETE' in the box below:");
+            if(confirmText === 'DELETE') {
+                localStorage.removeItem(DB_KEY);
+                localStorage.removeItem(PIN_HASH_KEY);
+                alert("Vault has been reset. Starting fresh.");
+                location.reload();
+            } else {
+                alert("Reset Cancelled. Your data is safe.");
+            }
+        }
+    }
+
+    // --- DATA MANAGEMENT (CRUD) ---
+    function loadAccounts() {
+        totpCache = {}; // Clear cache on reload
+        const raw = localStorage.getItem(DB_KEY);
+        
+        if (!raw) { 
+            accounts = []; 
+            renderList(); 
+            return; 
+        }
+
+        try {
+            if(currentPin) {
+                // DECRYPT DATA
+                const bytes = CryptoJS.AES.decrypt(raw, currentPin);
+                const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+                
+                if(!decryptedData) throw new Error("Decryption fail");
+                
+                accounts = JSON.parse(decryptedData);
+            } else {
+                // LOAD PLAIN DATA (If no PIN set)
+                accounts = JSON.parse(raw);
+            }
+            renderList();
+        } catch (e) {
+            console.error("Decryption Failed:", e);
+            alert("Decryption Error! Please check your PIN or Reset the Vault.");
+            // We don't clear data here to prevent accidental loss
+        }
+    }
+
+    function saveVault() {
+        try {
+            let dataToSave;
+            if(currentPin) {
+                // ENCRYPT DATA BEFORE SAVING
+                dataToSave = CryptoJS.AES.encrypt(JSON.stringify(accounts), currentPin).toString();
+            } else {
+                dataToSave = JSON.stringify(accounts);
+            }
+            localStorage.setItem(DB_KEY, dataToSave);
+            renderList();
+        } catch(e) {
+            alert("Storage Error: LocalStorage might be full.");
+        }
+    }
+
+    function addManualAccount() {
+        const issuerInput = document.getElementById('inp-issuer');
+        const secretInput = document.getElementById('inp-secret');
+        
+        const issuer = issuerInput.value.trim();
+        const secret = secretInput.value.trim();
+        
+        if(!secret) { alert("Secret Key is required!"); return; }
+
+        try {
+            // Clean Secret (Remove spaces, hyphens, make uppercase)
+            const cleanedSecret = secret.replace(/[\s\-]/g, '').toUpperCase();
+            
+            // Validate Secret by attempting to generate a code
+            new OTPAuth.TOTP({ secret: OTPAuth.Secret.fromBase32(cleanedSecret) }).generate(); 
+
+            // DUPLICATE CHECK
+            const exists = accounts.some(acc => acc.secret === cleanedSecret);
+            if(exists) {
+                alert("This account already exists in your vault!");
+                return;
+            }
+
+            const newAcc = { 
+                id: Date.now(), 
+                issuer: issuer || "Unknown Service", 
+                secret: cleanedSecret 
+            };
+            
+            accounts.push(newAcc);
+            saveVault();
+            
+            // Reset UI
+            if(document.getElementById('add-card').classList.contains('expanded')) {
+                toggleAddMenu();
+            }
+            issuerInput.value = "";
+            secretInput.value = "";
+            showToast("Account Added Successfully!");
+            
+        } catch(e) {
+            alert("Invalid Base32 Secret Key. Please check if you copied it correctly.");
+        }
+    }
+
+    function deleteAccount(id) {
+        if(confirm("PERMANENT ACTION: Delete this key from vault?")) {
+            accounts = accounts.filter(a => a.id !== id);
+            saveVault();
+            // Clear from cache
+            delete totpCache[id];
+        }
+    }
+
+    // --- UI RENDERING ---
+    function renderList(filterText = "") {
+        const listContainer = document.getElementById('account-list-container');
+        listContainer.innerHTML = "";
+        
+        const filtered = accounts.filter(a => a.issuer.toLowerCase().includes(filterText.toLowerCase()));
+        
+        // Empty State Logic
+        const emptyState = document.getElementById('empty-state');
+        if(accounts.length === 0) {
+            emptyState.classList.remove('hidden');
+            emptyState.innerHTML = '<i class="fa-solid fa-shield-cat" style="font-size: 50px; margin-bottom: 15px; color: #30363d;"></i><p>Vault is empty</p>';
+        } else if (filtered.length === 0) {
+            emptyState.classList.remove('hidden');
+            emptyState.innerHTML = '<p>No results found.</p>';
+        } else {
+            emptyState.classList.add('hidden');
+        }
+
+        filtered.forEach(acc => {
+            // Dynamic Brand Icons
+            let iconHtml = acc.issuer.charAt(0).toUpperCase();
+            const n = acc.issuer.toLowerCase();
+            
+            const brands = {
+                'google': 'fa-google', 'facebook': 'fa-facebook', 'twitter': 'fa-twitter',
+                'binance': 'fa-bitcoin', 'discord': 'fa-discord', 'github': 'fa-github',
+                'amazon': 'fa-amazon', 'microsoft': 'fa-microsoft', 'apple': 'fa-apple',
+                'instagram': 'fa-instagram', 'linkedin': 'fa-linkedin', 'telegram': 'fa-telegram'
+            };
+
+            for (const [key, val] of Object.entries(brands)) {
+                if (n.includes(key)) {
+                    iconHtml = `<i class="fa-brands ${val}"></i>`;
+                    break;
+                }
+            }
+
+            const el = document.createElement('div');
+            el.className = 'account-item animated-entry';
+            
+            el.innerHTML = `
+                <div class="acc-main">
+                    <div class="acc-icon">${iconHtml}</div>
+                    <div class="acc-details">
+                        <h4 title="${sanitize(acc.issuer)}">${sanitize(acc.issuer)}</h4>
+                        <p style="font-family:monospace; color:#666; font-size:11px;">***-***-${acc.secret.slice(-4)}</p>
+                    </div>
+                    <div class="otp-section">
+                        <div class="otp-code" id="otp-${acc.id}" onclick="copyCode(this, '${acc.id}')">------</div>
+                        <svg class="timer-svg" viewBox="0 0 36 36">
+                            <path class="timer-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="timer-progress" id="ring-${acc.id}" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                    </div>
+                </div>
+                <div style="display:flex; border-top:1px solid var(--border-color);">
+                    <button style="flex:1; background:none; border:none; color:#8b949e; padding:10px; cursor:pointer; border-right:1px solid var(--border-color); font-size:13px;" onclick="copyToClipboard('${acc.id}')"><i class="fa-regular fa-copy"></i> Copy</button>
+                    <button style="flex:1; background:none; border:none; color:var(--danger-color); padding:10px; cursor:pointer; font-size:13px;" onclick="deleteAccount(${acc.id})"><i class="fa-solid fa-trash"></i> Delete</button>
+                </div>
+            `;
+            listContainer.appendChild(el);
+        });
+        
+        lastEpoch = -1; // Force immediate update
+        updateTick();
+    }
+
+    function sanitize(str) {
+        const temp = document.createElement('div');
+        temp.textContent = str;
+        return temp.innerHTML;
+    }
+
+    // --- ANIMATION & TOTP ENGINE ---
+    function animateLoop() {
+        if(document.visibilityState === 'visible') {
+            updateTick();
+        }
+        requestAnimationFrame(animateLoop);
+    }
+
+    function updateTick() {
+        const nowSec = Date.now() / 1000;
+        const period = 30; 
+        const epoch = Math.floor(nowSec / period);
+        const remainder = period - (nowSec % period);
+        const offset = ((period - remainder) / period) * 100;
+        
+        const shouldRegenerate = epoch !== lastEpoch;
+        if(shouldRegenerate) lastEpoch = epoch;
+
+        accounts.forEach(acc => {
+            // Ring Update
+            const ring = document.getElementById(`ring-${acc.id}`);
+            if(ring) {
+                ring.style.strokeDashoffset = offset;
+                // Color transition from Blue to Red in last 5 seconds
+                ring.style.stroke = remainder < 5 ? '#ff0055' : '#00e5ff';
+            }
+
+            // Code Update (Only recalculate when epoch changes)
+            if(shouldRegenerate) {
+                const el = document.getElementById(`otp-${acc.id}`);
+                if(el) {
+                    try {
+                        if(!totpCache[acc.id]) {
+                            // Initialize object once per session
+                            totpCache[acc.id] = new OTPAuth.TOTP({ secret: OTPAuth.Secret.fromBase32(acc.secret) });
+                        }
+                        const token = totpCache[acc.id].generate();
+                        el.innerText = token.slice(0,3) + " " + token.slice(3);
+                    } catch(e) { el.innerText = "ERROR"; }
+                }
+            }
+        });
+    }
+
+    // --- QR SCANNER (ROBUST) ---
+    function startScanner() {
+        if(isScanning) return; // Prevent double click
+
+        const overlay = document.getElementById('scanner-overlay');
+        overlay.classList.remove('hidden');
+        overlay.style.display = 'flex';
+        isScanning = true;
+
+        const html5QrCode = new Html5Qrcode("reader");
+        cameraObj = html5QrCode;
+        
+        const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+        
+        html5QrCode.start({ facingMode: "environment" }, config,
+            (decodedText) => {
+                // Success Callback
+                handleScannedData(decodedText);
+                stopScanner(); 
+            },
+            (errorMessage) => { 
+                // Ignore frame parse errors
+            }
+        ).catch(err => {
+            console.error(err);
+            alert("Camera Access Error: Please use HTTPS and allow camera permissions.");
+            stopScanner();
+        });
+    }
+
+    function stopScanner() {
+        if(cameraObj && isScanning) {
+            cameraObj.stop().then(() => {
+                cameraObj.clear();
+                closeScannerOverlay();
+            }).catch(err => {
+                console.error("Failed to stop camera", err);
+                closeScannerOverlay();
+            });
+        } else {
+            closeScannerOverlay();
+        }
+    }
+
+    function closeScannerOverlay() {
+        document.getElementById('scanner-overlay').style.display = 'none';
+        cameraObj = null;
+        isScanning = false;
+    }
+
+    function handleScannedData(uri) {
+        try {
+            if(uri.startsWith("otpauth://")) {
+                const url = new URL(uri);
+                const params = new URLSearchParams(url.search);
+                const secret = params.get('secret');
+                let issuer = params.get('issuer');
+                
+                // Fallback if issuer is in path
+                if(!issuer) {
+                    const pathParts = url.pathname.replace(/^\//, '').split(':');
+                    issuer = pathParts[0] || "Unknown";
+                }
+                
+                if(secret) {
+                    const cleanedSecret = secret.replace(/[\s\-]/g, '').toUpperCase();
+                    
+                    // CHECK DUPLICATE BEFORE FILLING
+                    const exists = accounts.some(acc => acc.secret === cleanedSecret);
+                    if(exists) {
+                        alert("This account is already in your vault!");
+                        return;
+                    }
+
+                    const issuerField = document.getElementById('inp-issuer');
+                    const secretField = document.getElementById('inp-secret');
+                    
+                    issuerField.value = decodeURIComponent(issuer);
+                    secretField.value = cleanedSecret;
+                    
+                    // Show Add Menu if not visible
+                    const addCard = document.getElementById('add-card');
+                    if(!addCard.classList.contains('expanded')) {
+                        toggleAddMenu();
+                    }
+                    
+                    showToast("QR Scanned! Please click 'Save to Vault'");
+                } else { alert("Invalid QR: No secret key found."); }
+            } else { alert("Not a valid Google Authenticator QR Code."); }
+        } catch(e) { alert("QR Parsing Error."); }
+    }
+
+    function processQrImage(input) {
+        if (input.files.length === 0) return;
+        const file = input.files[0];
+        const html5QrCode = new Html5Qrcode("reader"); 
+        
+        html5QrCode.scanFile(file, true)
+            .then(decodedText => { handleScannedData(decodedText); })
+            .catch(err => { alert("Could not read QR code from image. Try a clearer image."); });
+            
+        input.value = ''; // Reset to allow same file selection again
+    }
+
+    // --- UI UTILITIES ---
+    function toggleAddMenu() {
+        const card = document.getElementById('add-card');
+        const btn = document.getElementById('btn-add');
+        
+        if(card.classList.contains('expanded')) {
+            card.classList.remove('expanded');
+            btn.classList.remove('active');
+        } else {
+            card.classList.add('expanded');
+            btn.classList.add('active');
+            // Auto focus on issuer
+            setTimeout(() => document.getElementById('inp-issuer').focus(), 300);
+        }
+    }
+
+    function copyCode(el, id) {
+        el.classList.add('revealed');
+        // Auto-hide code after 5 seconds for security
+        setTimeout(() => el.classList.remove('revealed'), 5000); 
+        copyToClipboard(id);
+    }
+
+    function copyToClipboard(id) {
+        const acc = accounts.find(a => a.id == id);
+        if(acc) {
+            // Generate FRESH code for copy
+            const otpObj = new OTPAuth.TOTP({ secret: OTPAuth.Secret.fromBase32(acc.secret) });
+            const code = otpObj.generate();
+            
+            // Try Modern Async API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(code)
+                    .then(() => showToast(code))
+                    .catch(() => copyFallback(code));
+            } else {
+                copyFallback(code);
+            }
+        }
+    }
+
+    // Fallback for non-https or older browsers
+    function copyFallback(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        
+        // Ensure textarea is not visible but part of DOM
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            const successful = document.execCommand('copy');
+            if(successful) showToast(text);
+            else alert("Copy failed. Please manually type the code.");
+        } catch (err) {
+            alert("Copy not supported on this browser.");
+        }
+        
+        document.body.removeChild(textArea);
+    }
+
+    function showToast(msg) {
+        // Format if it's a code (XXX XXX)
+        const formatted = (msg.length === 6 && !isNaN(msg)) ? "Copied: " + msg.slice(0,3) + " " + msg.slice(3) : msg;
+        
+        // Remove existing toast if any
+        const existing = document.querySelector('.titan-toast');
+        if(existing) existing.remove();
+
+        const t = document.createElement('div');
+        t.className = 'titan-toast';
+        t.innerText = formatted;
+        t.style.cssText = "position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:#238636; color:white; padding:12px 24px; border-radius:30px; z-index:5000; font-size:14px; font-weight:bold; box-shadow: 0 5px 20px rgba(0,0,0,0.4); pointer-events:none; animation: fadeUp 0.3s ease-out;";
+        document.body.appendChild(t);
+        
+        setTimeout(() => {
+            t.style.opacity = '0';
+            setTimeout(() => t.remove(), 300);
+        }, 2000);
+    }
+
+    function pasteClipboard() {
+        if(navigator.clipboard) {
+            navigator.clipboard.readText().then(text => {
+                document.getElementById('inp-secret').value = text;
+            }).catch(e => alert("Clipboard access denied. Please paste manually (Ctrl+V)."));
+        } else {
+            alert("Paste not supported. Please use Ctrl+V.");
+        }
+    }
+
+    function filterAccounts(q) { renderList(q); }
+
+    // --- BACKUP & RESTORE ---
+    function exportVault() {
+        if(accounts.length === 0) { alert("Vault is empty. Nothing to backup."); return; }
+
+        if(!confirm("⚠️ SECURITY WARNING ⚠️\n\nThis will download your 2FA keys in an UNENCRYPTED JSON file.\n\nAnyone with this file can access your accounts.\n\nDo you want to proceed?")) return;
+        
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(accounts));
+        const dl = document.createElement('a');
+        const date = new Date().toISOString().slice(0,10);
+        dl.setAttribute("href", dataStr);
+        dl.setAttribute("download", `Titan_Vault_Backup_${date}.json`);
+        document.body.appendChild(dl);
+        dl.click();
+        dl.remove();
+    }
+
+    function importVault(input) {
+        const file = input.files[0];
+        if(!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const json = JSON.parse(e.target.result);
+                if(Array.isArray(json)) {
+                    // Ask User Strategy
+                    const action = prompt("Backup File Detected!\n\nType 'REPLACE' to overwrite current data.\nType 'MERGE' to add new accounts only.\n\n(Default is Cancel)");
+                    
+                    if(action && action.toUpperCase() === 'REPLACE') {
+                        if(confirm("Are you sure? All current data will be lost.")) {
+                            accounts = json;
+                            saveVault();
+                            alert("Vault Replaced Successfully!");
+                        }
+                    } 
+                    else if (action && action.toUpperCase() === 'MERGE') {
+                        let added = 0;
+                        json.forEach(newAcc => {
+                            // Check existing by Secret Key
+                            const exists = accounts.some(old => old.secret === newAcc.secret);
+                            if(!exists) {
+                                newAcc.id = Date.now() + Math.random(); // Ensure unique ID
+                                accounts.push(newAcc);
+                                added++;
+                            }
+                        });
+                        saveVault();
+                        alert(`Merge Complete! ${added} new accounts added.`);
+                    }
+                } else alert("Invalid Backup File Format.");
+            } catch(err) { alert("Error parsing file. It might be corrupted."); }
+        };
+        reader.readAsText(file);
+        input.value = ''; // Reset input
+    }
+
+    // --- SECURITY SETTINGS ---
+    function openSecuritySettings() {
+        const hasPin = localStorage.getItem(PIN_HASH_KEY);
+        
+        if(hasPin) {
+            // Remove PIN
+            if(confirm("Vault is currently ENCRYPTED.\n\nDo you want to REMOVE the PIN protection?\n(Warning: Data will be stored as plaintext)")) {
+                const p = prompt("Enter your current PIN to confirm:");
+                if(p === currentPin) {
+                    localStorage.removeItem(PIN_HASH_KEY);
+                    currentPin = null;
+                    saveVault(); // Re-save as plaintext
+                    alert("Encryption Removed. Vault is now unlocked.");
+                } else if(p) {
+                    alert("Incorrect PIN.");
+                }
+            }
+        } else {
+            // Set PIN
+            const p = prompt("Set a new 4-digit PIN to encrypt your vault:");
+            if(p && p.length === 4 && !isNaN(p)) {
+                // Confirm PIN
+                const p2 = prompt("Confirm your PIN:");
+                if(p === p2) {
+                    currentPin = p;
+                    const hash = CryptoJS.SHA256(p).toString();
+                    localStorage.setItem(PIN_HASH_KEY, hash);
+                    saveVault(); // Re-save as encrypted
+                    alert("Success! Your vault is now Encrypted with AES-256.");
+                } else {
+                    alert("PINs did not match.");
+                }
+            } else if(p) {
+                alert("PIN must be exactly 4 digits.");
+            }
+        }
+    }
+</script>
+
+
+    </body>
+</html>

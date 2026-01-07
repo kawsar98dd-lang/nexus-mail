@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Netscape to JSON Cookie Converter - Secure & Free | Trusted Tools Web</title>
+    <meta name="description" content="Best free online Cookie Converter tool. Convert Netscape HTTP cookies to JSON and vice versa securely. 100% Client-side privacy for Selenium & cURL debugging.">
+    <meta name="keywords" content="cookie converter, netscape to json, json to netscape, selenium cookie import, curl cookie format, trusted tools web, md kawser, freegentools">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Cookie Converter Pro - Trusted Tools Web">
+    <meta property="og:description" content="Convert and clean cookie formats instantly. 100% Client-side privacy. Developed by MD KAWSAR.">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/1047/1047711.png">
+    <meta property="og:url" content="https://trustedtoolsweb.com/cookie-converter">
+    <meta property="og:type" content="website">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/cookie-converter" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="global.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Cookie Converter Pro",
+      "url": "https://trustedtoolsweb.com/cookie-converter",
+      "description": "A secure, client-side tool to convert cookie formats between JSON and Netscape.",
+      "applicationCategory": "DeveloperTool",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSAR"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+<style>
+    /* --- TOOL SPECIFIC STYLES (FIXED FOR MOBILE) --- */
+    
+    :root {
+        /* Tool Specific Colors */
+        --primary-color: #ff0055;
+        --secondary-accent: #0abde3;
+        --container-bg: #161b22; 
+        --border-color: #30363d;
+        --text-color: #c9d1d9;
+        --input-bg: #0d1117;
+        --success-color: #238636;
+        --accent-color: #00e5ff; 
+        --accent-secondary: #d124ff; 
+    }
+
+    /* Global Box Sizing Fix */
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Main Container Override */
+    .container { 
+        max-width: 1000px; 
+        width: 95%; /* মোবাইলে যাতে স্ক্রিনের বাইরে না যায় তাই 100% এর বদলে 95% */
+        margin: 20px auto; /* মাঝখানে রাখার জন্য auto */
+        background: var(--container-bg, #161b22); 
+        padding: 30px; 
+        border-radius: 15px; 
+        border: 1px solid var(--border-color, #30363d); 
+        text-align: center; 
+        box-shadow: 0 10px 40px rgba(255, 0, 85, 0.15); 
+        position: relative; 
+        overflow: hidden; 
+    }
+
+    /* Tool Title Styling */
+    .tool-title { 
+        color: var(--text-color); 
+        margin-bottom: 5px; 
+        font-size: 32px; 
+        font-weight: 700; 
+        margin-top: 10px;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+    .tool-title span { background: linear-gradient(90deg, #ff0055, #d124ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    .subtitle { color: #8b949e; margin-bottom: 25px; font-size: 15px; }
+
+    .security-badge {
+        display: inline-flex; align-items: center; gap: 5px;
+        background: rgba(35, 134, 54, 0.2); color: #3fb950;
+        padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;
+        margin-bottom: 10px; border: 1px solid rgba(35, 134, 54, 0.4);
+    }
+
+    /* Grid & Inputs */
+    .converter-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; margin-top: 20px;
+    }
+
+    .box-label { 
+        color: var(--accent-color); font-weight: bold; margin-bottom: 8px; 
+        display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; 
+    }
+
+    textarea {
+        width: 100%; height: 350px;
+        background: var(--input-bg);
+        border: 1px solid var(--border-color);
+        color: #e6edf3;
+        padding: 15px; border-radius: 10px;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 13px; resize: vertical; white-space: pre;
+        transition: 0.3s; 
+    }
+    textarea:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1); }
+
+    /* Buttons */
+    .btn-area { display: flex; gap: 12px; justify-content: center; margin: 25px 0; flex-wrap: wrap; }
+    
+    button { 
+        border: none; padding: 12px 25px; 
+        border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; 
+        font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    button:hover { transform: translateY(-2px); }
+
+    .btn-action { background: linear-gradient(135deg, var(--accent-color), #0088cc); color: #000; min-width: 160px; box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2); }
+    .btn-action:hover { box-shadow: 0 8px 25px rgba(0, 229, 255, 0.4); }
+
+    .btn-secondary { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-color); }
+    .btn-secondary:hover { border-color: var(--accent-secondary); color: var(--accent-secondary); background: transparent; }
+
+    .btn-danger { background: rgba(255, 68, 68, 0.1); border: 1px solid #ff4444; color: #ff4444; }
+    .btn-danger:hover { background: #ff4444; color: white; }
+
+    .btn-copy-dl { width: 100%; margin-top: 10px; padding: 10px; font-size: 13px; }
+
+    /* --- INFO SECTION STYLING (FIXED) --- */
+    .info-section-wrapper { 
+        max-width: 1000px; /* কন্টেইনারের সমান সাইজ */
+        width: 95%; /* কন্টেইনারের সমান উইথ */
+        margin: 40px auto; /* মাঝখানে এলাইনমেন্ট */
+        text-align: left; 
+    }
+    
+    .info-card { 
+        background: var(--input-bg); 
+        border: 1px solid var(--border-color); 
+        border-radius: 15px; 
+        padding: 30px; 
+        margin-bottom: 30px; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+    }
+
+    .info-card h2 { color: #e6edf3; font-size: 22px; border-left: 4px solid var(--primary-color); padding-left: 15px; margin-bottom: 20px; }
+    .info-card h3 { color: var(--accent-color); font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
+    .info-card p, .info-card li { color: #8b949e; line-height: 1.7; margin-bottom: 15px; font-size: 15px; }
+
+    /* Related Tools Styling */
+    .related-tools-container { 
+        max-width: 1000px; 
+        width: 95%; 
+        margin: 50px auto; 
+        text-align: left; 
+    }
+    .related-title { color: var(--text-color); font-size: 24px; margin-bottom: 25px; border-left: 5px solid var(--primary-color); padding-left: 15px; font-weight: 700; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .tool-card { background-color: #161b22; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 25px 20px; text-align: center; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: #c9d1d9; display: block; overflow: hidden; }
+    .tool-card:hover { transform: translateY(-7px); border-color: var(--accent-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+    /* Toast Notification */
+    #toast-box {
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        background: rgba(22, 27, 34, 0.95); backdrop-filter: blur(10px);
+        border: 1px solid var(--accent-color); border-radius: 12px;
+        padding: 15px 25px; display: flex; align-items: center; gap: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5); z-index: 9999;
+        opacity: 0; visibility: hidden; transition: all 0.4s ease;
+    }
+    #toast-box.show { opacity: 1; visibility: visible; top: 90px; }
+    .toast-success i { color: var(--success-color); }
+    .toast-error i { color: var(--primary-color); }
+
+    /* Animation */
+    .animated-entry { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s forwards ease-out; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* --- MOBILE RESPONSIVE FIXES (IMPORTANT) --- */
+    @media (max-width: 768px) {
+        .container {
+            width: 95%; /* মোবাইল স্ক্রিনে একটু মার্জিন থাকবে */
+            padding: 15px; /* প্যাডিং কমানো হলো যাতে কন্টেন্ট জায়গা পায় */
+            margin-top: 20px;
+        }
+
+        .info-section-wrapper {
+            width: 95%; /* কন্টেইনারের সাথে মিল রাখা হলো */
+            margin-top: 30px;
+        }
+
+        .info-card {
+            padding: 20px 15px; /* কার্ডের ভেতরের প্যাডিং কমানো হলো */
+        }
+
+        .tool-title { 
+            font-size: 22px; /* টাইটেল সাইজ এডজাস্টমেন্ট */
+            white-space: normal; /* ছোট স্ক্রিনে যাতে টাইটেল ভেঙ্গে নিচে নামে */
+        }
+        
+        .converter-grid { 
+            grid-template-columns: 1fr; /* মোবাইল কলাম ১টি হবে */
+        }
+
+        textarea {
+            height: 250px; /* হাইট একটু কমানো হলো */
+        }
+        
+        .btn-action, button {
+            width: 100%; /* বাটনগুলো মোবাইলে ফুল উইথ হবে */
+        }
+    }
+</style>
+</head>
+<body>
+
+    <header id="global-header" class="site-header"></header>
+
+    <div id="toast-box">
+        <i id="toast-icon" class="fa-solid fa-circle-check"></i>
+        <span id="toast-msg" style="font-weight: 600; font-size: 14px;">Notification</span>
+    </div>
+
+    <main>
+        <div class="container animated-entry">
+            
+            <div class="security-badge"><i class="fa-solid fa-shield-cat"></i> 100% Client-Side Processing</div>
+            
+            <h1 class="tool-title"><i class="fa-solid fa-cookie"></i> Cookie Converter <span>Pro Max</span></h1>
+            <p class="subtitle">Securely Convert Netscape to JSON & Vice Versa. Edit & Clean Cookies Instantly.</p>
+            
+            
+            <div class="btn-area">
+                <button class="btn-secondary" onclick="pasteInput()"><i class="fa-solid fa-paste"></i> Paste Input</button>
+                <button class="btn-action" onclick="convertCookies()"><i class="fa-solid fa-bolt"></i> CONVERT NOW</button>
+                <button class="btn-secondary" onclick="cleanExpired()"><i class="fa-solid fa-broom"></i> Clean Expired</button>
+                <button class="btn-danger" onclick="clearAll()"><i class="fa-solid fa-trash"></i> Reset</button>
+            </div>
+
+            <div class="converter-grid">
+                
+                <div class="box-wrapper">
+                    <label class="box-label">
+                        <span><i class="fa-solid fa-file-code"></i> INPUT DATA</span>
+                        <span style="font-size:11px; color:#8b949e; font-weight:normal;">(Netscape / JSON Auto-Detect)</span>
+                    </label>
+                    <textarea id="inputBox" placeholder="Paste your cookie data here...
+Example JSON: [{ 'domain': '.google.com', ... }]
+Example Netscape: .google.com TRUE / FALSE ..."></textarea>
+                </div>
+
+                <div class="box-wrapper">
+                    <label class="box-label">
+                        <span><i class="fa-solid fa-code"></i> OUTPUT RESULT</span>
+                    </label>
+                    <textarea id="outputBox" readonly placeholder="Converted result will appear here..."></textarea>
+                    
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn-secondary btn-copy-dl" onclick="copyResult()"><i class="fa-solid fa-copy"></i> Copy Result</button>
+                        <button class="btn-secondary btn-copy-dl" onclick="downloadResult()"><i class="fa-solid fa-download"></i> Download File</button>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <section class="info-section-wrapper animated-entry">
+  
+    <div class="info-card">
+        <h2><i class="fa-solid fa-signs-post"></i> How to Use This Tool (Step-by-Step)</h2>
+        <p>Converting cookies between JSON and Netscape formats is seamless. Follow this 4-step guide for accurate results:</p>
+        
+        <div style="margin-top: 20px;">
+            <h3 style="font-size: 18px; color: var(--accent-color); margin-bottom: 10px;">
+                <span style="border: 1px solid var(--accent-color); border-radius: 50%; padding: 2px 8px; margin-right: 8px;">1</span> 
+                Input Session Data
+            </h3>
+            <p>Copy your cookie data from your browser developer tools or extension. Paste the content into the <strong>Left Box</strong>. You can also click the <i class="fa-solid fa-paste"></i> <strong>Paste Input</strong> button for quick access.</p>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <h3 style="font-size: 18px; color: var(--accent-color); margin-bottom: 10px;">
+                <span style="border: 1px solid var(--accent-color); border-radius: 50%; padding: 2px 8px; margin-right: 8px;">2</span> 
+                Auto-Process
+            </h3>
+            <p>Click the <i class="fa-solid fa-bolt"></i> <strong>CONVERT NOW</strong> button. Our engine will automatically detect the input format (JSON or Netscape) and transform it instantly in the <strong>Right Box</strong>.</p>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <h3 style="font-size: 18px; color: var(--accent-color); margin-bottom: 10px;">
+                <span style="border: 1px solid var(--accent-color); border-radius: 50%; padding: 2px 8px; margin-right: 8px;">3</span> 
+                Optimize Session (Recommended)
+            </h3>
+            <p>Before exporting, click the <i class="fa-solid fa-broom"></i> <strong>Clean Expired</strong> button. This filters out invalid or expired tokens based on the current timestamp, ensuring your session file is clean and error-free.</p>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <h3 style="font-size: 18px; color: var(--accent-color); margin-bottom: 10px;">
+                <span style="border: 1px solid var(--accent-color); border-radius: 50%; padding: 2px 8px; margin-right: 8px;">4</span> 
+                Export Data
+            </h3>
+            <p>Finally, click <i class="fa-solid fa-copy"></i> <strong>Copy Result</strong> or use <i class="fa-solid fa-download"></i> <strong>Download File</strong> to save the output as <code>.json</code> or <code>.txt</code> for use in your development environment.</p>
+        </div>
+    </div>
+
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-shield-halved"></i> Privacy & Security Architecture</h2>
+        <p>Data privacy is critical when handling session tokens. Unlike many online converters that upload data to a backend server, <strong>Trusted Tools Web</strong> is engineered for privacy.</p>
+        
+        <p><strong>Client-Side Processing Technology:</strong></p>
+        <ul>
+            <li><i class="fa-solid fa-check" style="color:var(--success-color)"></i> <strong>Zero Data Transfer:</strong> Your data never leaves your device. All conversions happen locally within your browser's JavaScript engine.</li>
+            <li><i class="fa-solid fa-check" style="color:var(--success-color)"></i> <strong>Offline Capability:</strong> This tool functions 100% offline. You can disconnect your internet after loading the page to verify that no external requests are made.</li>
+        </ul>
+    </div>
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-laptop-code"></i> Supported Formats</h2>
+        
+        <div style="margin-bottom: 20px;">
+            <h3 style="color:var(--secondary-accent)">1. Netscape HTTP Cookie File</h3>
+            <p>The industry standard for command-line tools. It allows utilities like <strong>cURL, Wget, and Python Requests</strong> to authenticate requests using a simple text file.</p>
+            <p><em>Structure:</em> Tab-separated values: Domain, Flag, Path, Secure, Expiration, Name, Value.</p>
+        </div>
+
+        <div>
+            <h3 style="color:var(--secondary-accent)">2. JSON (JavaScript Object Notation)</h3>
+            <p>The modern standard used by browser extensions and JavaScript frameworks. It provides a structured, readable format that allows developers to easily inspect and modify session attributes.</p>
+        </div>
+    </div>
+
+    
+    <div class="info-card">
+        <h2><i class="fa-solid fa-lightbulb"></i> Use Cases for Developers</h2>
+        <p>This utility is an essential part of a web developer's toolkit. Common scenarios include:</p>
+        <ol>
+            <li><strong>Cross-Browser Testing:</strong> Migrate session states between Chrome (JSON) and Firefox/Safari (Netscape) to test application behavior without re-authenticating.</li>
+            <li><strong>API Debugging:</strong> Generate valid cookie files for <code>cURL</code> or Postman to test authenticated API endpoints directly from the terminal.</li>
+            <li><strong>Automation Scripts:</strong> format cookies for use with Selenium WebDriver or Puppeteer to simulate user sessions in automated testing pipelines.</li>
+        </ol>
+    </div>
+
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-terminal"></i> Integration with cURL & Wget</h2>
+        <p>For DevOps engineers, the Netscape format is a requirement for many CLI tools. For example, <code>wget</code> uses the <code>--load-cookies</code> flag which requires a specifically formatted text file.</p>
+        <p>This tool bridges the gap between browser data (JSON) and terminal applications, allowing seamless session import for debugging server responses.</p>
+    </div>
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-robot"></i> Selenium & Automation Support</h2>
+        <p>Automation frameworks like **Selenium WebDriver** often require cookies in a specific JSON structure (array of dictionaries). Legacy data sources, however, might provide Netscape text files.</p>
+        <p>This converter transforms legacy Netscape files into JSON arrays compatible with `driver.add_cookie()`, streamlining the setup process for test automation suites.</p>
+    </div>
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-filter"></i> Importance of Cleaning Expired Sessions</h2>
+        <p>Importing expired cookies can cause authentication failures in scripts. Browsers handle this automatically, but raw text files do not.</p>
+        <p>Our <strong>Clean Expired</strong> algorithm parses timestamps and removes any entries that are no longer valid. This ensures your exported file contains only active session tokens, reducing debugging time.</p>
+    </div>
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-lock"></i> Handling 'HttpOnly' & 'Secure' Attributes</h2>
+        <p>The `HttpOnly` flag is a vital security feature protecting cookies from XSS attacks. Standard Netscape files do not have a dedicated column for this.</p>
+        <p>To maintain security integrity, we follow the convention of prepending <code>#HttpOnly_</code> to the domain name. This ensures that tools respecting this convention will treat the cookie with the appropriate security level.</p>
+    </div>
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-network-wired"></i> API Testing & Environment Migration</h2>
+        <p>Developers often need to verify how their applications behave under different user sessions. Migrating a session from a mobile browser to a desktop environment allows for easier debugging.</p>
+        <p>By converting mobile session exports (JSON) to Netscape format, developers can import these sessions into desktop testing tools to analyze responsive design behavior and user-specific data rendering.</p>
+    </div>
+    <div class="info-card">
+        <h2><i class="fa-solid fa-bug"></i> Troubleshooting Common Errors</h2>
+        <p>If you encounter parsing errors, verify the input integrity. A common issue is "Line Wrapping" where long strings break into new lines.</p>
+        <p>Ensure your input does not contain raw HTTP headers (e.g., `Cookie: ...`). This tool expects raw JSON objects or standard tab-separated Netscape lines.</p>
+    </div>
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-user-shield"></i> GDPR & Data Compliance</h2>
+        <p>For developers operating under GDPR or CCPA regulations, data sovereignty is paramount. Since <strong>Trusted Tools Web</strong> processes data strictly Client-Side, no user data is transferred to external processors.</p>
+        <p>This architecture helps maintain compliance with data privacy standards while utilizing external productivity tools.</p>
+    </div>
+
+    <div class="info-card">
+        <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</h2>
+        
+        <h3 style="font-size: 16px; color: #e6edf3;">Q: Why do I see an "Invalid Format" error?</h3>
+        <p>Ensure your JSON array starts/ends with brackets <code>[]</code>. For Netscape, ensure tabs are used as separators, not spaces.</p>
+
+        <h3 style="font-size: 16px; color: #e6edf3;">Q: Does this preserve the 'Secure' flag?</h3>
+        <p>Yes. The converter accurately maps the `secure` boolean between formats, ensuring HTTPS-only cookies remain restricted.</p>
+
+        <h3 style="font-size: 16px; color: #e6edf3;">Q: Is this tool suitable for production data?</h3>
+        <p>This tool is designed for development and debugging. We recommend sanitizing sensitive data before use in any third-party environment, even with client-side tools.</p>
+    </div>
+
+
+    <div class="info-card" style="border-left: 4px solid #ff4444; background: rgba(255, 68, 68, 0.05);">
+        <h2 style="color: #ff4444 !important; border: none; padding: 0;">
+            <i class="fa-solid fa-triangle-exclamation"></i> Legal Disclaimer
+        </h2>
+        <p style="color: #c9d1d9; margin-top: 15px;">
+            <strong>Trusted Tools Web</strong> provides this utility strictly for <strong>Development, Debugging, and Educational purposes</strong> (e.g., API Testing, Browser Automation, and Session Migration).
+        </p>
+        <ul style="color: #8b949e; list-style-type: disc; padding-left: 20px; margin-top: 10px;">
+            <li style="margin-bottom: 8px;">Misuse of this tool for unauthorized access, session hijacking, or bypassing security controls is strictly prohibited.</li>
+            <li style="margin-bottom: 8px;">We do not condone the violation of any third-party Terms of Service.</li>
+            <li><strong>Privacy Note:</strong> This tool operates 100% Client-Side. No data is stored or transmitted by our servers. Users are solely responsible for their data usage.</li>
+        </ul>
+    </div>
+
+</section>
+
+
+        <div class="related-tools-container animated-entry">
+            <h2 class="related-title"><i class="fa-solid fa-layer-group"></i> More <span style="background: linear-gradient(to right, #00e5ff, #d124ff); -webkit-background-clip: text; color: transparent;">Pro Tools</span></h2>
+            
+            <div class="related-grid">
+                
+                <a href="qr-generator.html" class="tool-card">
+                    <span style="font-size: 2.5rem; display: block; margin-bottom: 10px; color: #ff0055;">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </span>
+                    <div class="card-title" style="font-size: 1.1rem; font-weight: 700; color:#fff;">QR Code <span style="color: #ff0055;">ULTRA</span></div>
+                    <div class="card-desc" style="font-size: 0.85rem; color: #8b949e;">Generate secure, high-quality QR codes.</div>
+                </a>
+
+                <a href="url-shortener.html" class="tool-card">
+                    <span style="font-size: 2.5rem; display: block; margin-bottom: 10px; color: #00e5ff;">
+                        <i class="fa-solid fa-link"></i>
+                    </span>
+                    <div class="card-title" style="font-size: 1.1rem; font-weight: 700; color:#fff;">Link <span style="color: #00e5ff;">SHORTENER</span></div>
+                    <div class="card-desc" style="font-size: 0.85rem; color: #8b949e;">Shorten long URLs securely with analytics.</div>
+                </a>
+
+                <a href="image-titanium.html" class="tool-card">
+                    <span style="font-size: 2.5rem; display: block; margin-bottom: 10px; color: #d124ff;">
+                        <i class="fa-solid fa-image"></i>
+                    </span>
+                    <div class="card-title" style="font-size: 1.1rem; font-weight: 700; color:#fff;">Image <span style="color: #d124ff;">TITANIUM</span></div>
+                    <div class="card-desc" style="font-size: 0.85rem; color: #8b949e;">Compress and convert images quickly.</div>
+                </a>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <script src="global.js"></script>
+
+   <script>
+    /* COOKIE CONVERTER PRO - OPTIMIZED SCRIPT
+       Developed for: Trusted Tools Web
+       Optimization: Enhanced Error Handling & Logic
+    */
+
+    // --- DOM ELEMENTS ---
+    const inputBox = document.getElementById('inputBox');
+    const outputBox = document.getElementById('outputBox');
+    const toast = document.getElementById('toast-box');
+    const toastMsg = document.getElementById('toast-msg');
+    const toastIcon = document.getElementById('toast-icon');
+
+    // --- CORE CONVERSION LOGIC ---
+
+    // 1. JSON to Netscape Converter
+    function jsonToNetscape(json) {
+        if (!Array.isArray(json)) json = [json];
+        
+        let res = "# Netscape HTTP Cookie File\n";
+        res += "# Generated by Cookie Converter Pro\n";
+        res += "# This is a generated file!  Do not edit.\n\n";
+        
+        json.forEach(c => {
+            // Safety Check: If cookie object is malformed
+            if (!c || typeof c !== 'object') return;
+
+            let domain = c.domain || "";
+            
+            // Handle HttpOnly prefix convention
+            if (c.httpOnly === true && !domain.startsWith('#HttpOnly_')) {
+                domain = "#HttpOnly_" + domain;
+            }
+
+            // Determine flag (TRUE/FALSE) based on domain dot
+            // If hostOnly is explicitly false, it means it's a domain cookie (TRUE)
+            const flag = (domain.startsWith('.') || c.hostOnly === false) ? "TRUE" : "FALSE";
+            
+            const path = c.path || "/";
+            const secure = (c.secure === true) ? "TRUE" : "FALSE";
+            
+            // Expiration Logic: Ensure it's a number. If missing/invalid, default to 0 (Session)
+            let exp = 0;
+            if (c.expirationDate) {
+                exp = Math.round(Number(c.expirationDate));
+                if (isNaN(exp)) exp = 0;
+            }
+
+            let name = c.name || "";
+            let value = c.value !== undefined ? c.value : "";
+
+            // Construct the line
+            res += `${domain}\t${flag}\t${path}\t${secure}\t${exp}\t${name}\t${value}\n`;
+        });
+        return res;
+    }
+
+    // 2. Netscape to JSON Converter
+    function netscapeToJson(text) {
+        const lines = text.split(/\r?\n/);
+        const cookies = [];
+        
+        lines.forEach(line => {
+            try {
+                line = line.trim();
+                // Ignore empty lines and comments (keeping HttpOnly logic)
+                if (!line || (line.startsWith('#') && !line.startsWith('#HttpOnly_'))) return;
+                
+                // Robust Split: Try Tab first, fallback to spaces
+                let parts = line.split('\t');
+                if (parts.length < 7) {
+                    parts = line.split(/\s+/);
+                }
+
+                if (parts.length >= 6) {
+                    let domain = parts[0];
+                    let httpOnly = false;
+                    
+                    // Decode HttpOnly prefix
+                    if (domain.startsWith('#HttpOnly_')) { 
+                        httpOnly = true; 
+                        domain = domain.substring(10); 
+                    }
+                    
+                    let expDate = parseFloat(parts[4]);
+                    if(isNaN(expDate)) expDate = 0;
+
+                    // Reconstruct Value (handles values containing spaces)
+                    let value = parts.slice(6).join(' '); 
+                    if (!value) value = "";
+
+                    cookies.push({
+                        "domain": domain,
+                        "expirationDate": expDate,
+                        "hostOnly": !domain.startsWith('.'),
+                        "httpOnly": httpOnly,
+                        "name": parts[5],
+                        "path": parts[2],
+                        "sameSite": "no_restriction", // Standard default for imported cookies
+                        "secure": parts[3] === "TRUE",
+                        "session": (expDate === 0), 
+                        "storeId": "0",
+                        "value": value,
+                        "id": Math.floor(Math.random() * 1000000) + 1 // Unique ID for consistency
+                    });
+                }
+            } catch (err) {
+                console.warn("Skipping malformed line:", line);
+            }
+        });
+        return cookies;
+    }
+
+    // --- BUTTON ACTIONS ---
+
+    function convertCookies() {
+        const val = inputBox.value.trim();
+        if (!val) return showToast("Input box is empty!", "error");
+
+        try {
+            // Auto-Detect Format
+            if (val.startsWith('[') || val.startsWith('{')) {
+                // It's JSON -> Convert to Netscape
+                try {
+                    let json = JSON.parse(val);
+                    outputBox.value = jsonToNetscape(json);
+                    showToast("Converted JSON to Netscape", "success");
+                } catch (e) {
+                    showToast("Invalid JSON Syntax! Check brackets.", "error");
+                }
+            } else {
+                // It's Netscape -> Convert to JSON
+                const json = netscapeToJson(val);
+                if(json.length === 0) {
+                    showToast("No valid cookies found in text!", "error");
+                    return;
+                }
+                outputBox.value = JSON.stringify(json, null, 4);
+                showToast(`Converted ${json.length} Cookies to JSON`, "success");
+            }
+        } catch (e) {
+            showToast("Critical Error during conversion", "error");
+            console.error(e);
+        }
+    }
+
+    function cleanExpired() {
+        const val = inputBox.value.trim();
+        if (!val) return showToast("Input is empty", "error");
+        
+        try {
+            let cookies = [];
+            let isJsonInput = false;
+            
+            // Detect and Parse
+            if (val.startsWith('[') || val.startsWith('{')) {
+                try {
+                    cookies = JSON.parse(val); 
+                    if (!Array.isArray(cookies)) cookies = [cookies];
+                    isJsonInput = true;
+                } catch(e) {
+                    return showToast("Invalid JSON data", "error");
+                }
+            } else {
+                cookies = netscapeToJson(val);
+            }
+            
+            const initialCount = cookies.length;
+            const now = Date.now() / 1000; // Current time in seconds
+            
+            // Filter Logic: Keep if (Expiration > Now) OR (Expiration == 0 / Session Cookie)
+            const activeCookies = cookies.filter(c => {
+                let exp = c.expirationDate ? Number(c.expirationDate) : 0;
+                return exp > now || exp === 0;
+            });
+            
+            const removedCount = initialCount - activeCookies.length;
+            
+            // Output the cleaned data back to Input Box (Standard behavior for cleaners)
+            // Also update Output Box for convenience
+            let resultStr = "";
+            if (isJsonInput) {
+                resultStr = JSON.stringify(activeCookies, null, 4);
+                inputBox.value = resultStr; // Update Source
+                outputBox.value = resultStr; // Mirror to Output
+            } else {
+                resultStr = jsonToNetscape(activeCookies);
+                inputBox.value = resultStr; // Update Source
+                outputBox.value = JSON.stringify(activeCookies, null, 4); // Show JSON version in output for detail
+            }
+            
+            if (removedCount > 0) {
+                showToast(`Cleaned ${removedCount} expired cookies!`, "success");
+            } else {
+                showToast("Cookies are already clean/active.", "info");
+            }
+            
+        } catch(e) { 
+            showToast("Error processing data", "error");
+            console.error(e);
+        }
+    }
+
+    async function pasteInput() {
+        try {
+            const text = await navigator.clipboard.readText();
+            if(text) {
+                inputBox.value = text;
+                showToast("Pasted from clipboard", "info");
+            } else {
+                showToast("Clipboard is empty", "error");
+            }
+        } catch (err) { 
+            showToast("Clipboard permission required", "error"); 
+        }
+    }
+
+    function copyResult() {
+        if(!outputBox.value) return showToast("Nothing to copy", "error");
+        
+        navigator.clipboard.writeText(outputBox.value).then(() => {
+             showToast("Copied to clipboard!", "success");
+        }).catch(() => {
+             outputBox.select();
+             document.execCommand('copy');
+             showToast("Copied (Manual)", "info");
+        });
+    }
+
+    function downloadResult() {
+        const content = outputBox.value;
+        if(!content) return showToast("Nothing to download", "error");
+
+        // Determine extension based on content
+        const isJson = content.trim().startsWith('[');
+        const filename = isJson ? "cookies_converted.json" : "cookies_netscape.txt";
+        
+        const blob = new Blob([content], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up memory
+        setTimeout(() => URL.revokeObjectURL(link.href), 100);
+        showToast("File Download Started", "success");
+    }
+
+    function clearAll() {
+        if(inputBox.value === "" && outputBox.value === "") return;
+        
+        if(confirm("Are you sure you want to clear all data?")) {
+            inputBox.value = "";
+            outputBox.value = "";
+            showToast("All cleared", "info");
+        }
+    }
+
+    // --- UI UTILITIES ---
+
+    function showToast(msg, type) {
+        toastMsg.innerText = msg;
+        toast.className = ""; // Reset classes
+        toast.classList.add("show");
+        
+        // Match CSS classes provided in style section
+        if(type === 'success') {
+            toast.classList.add('toast-success');
+            toastIcon.className = 'fa-solid fa-circle-check';
+        } else if (type === 'error') {
+            toast.classList.add('toast-error');
+            toastIcon.className = 'fa-solid fa-circle-xmark';
+        } else {
+            toast.classList.add('toast-info');
+            toastIcon.className = 'fa-solid fa-circle-info';
+        }
+
+        // Hide after 3 seconds
+        clearTimeout(window.toastTimeout);
+        window.toastTimeout = setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3000);
+    }
+
+    // --- THEME & INITIALIZATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // Theme Logic
+        const savedTheme = localStorage.getItem('siteTheme');
+        const icon = document.getElementById('themeIcon'); // Ensure this ID exists in global header
+        
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+        }
+    });
+
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('themeIcon');
+        
+        body.classList.toggle('light-mode');
+        
+        if (body.classList.contains('light-mode')) {
+            localStorage.setItem('siteTheme', 'light');
+            if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+        } else {
+            localStorage.setItem('siteTheme', 'dark');
+            if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        }
+    }
+</script>
+
+        
+</body>
+</html>
