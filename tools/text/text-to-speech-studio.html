@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--
+    ============================================================
+     TRUSTED TOOLS WEB — Ultra TTS Studio Pro
+     Tool        : Text-to-Speech Studio
+     Author      : MD KAWSAR
+     Version     : 2.1 (CodeCanyon Release Build)
+     Stylesheet  : global.css + tools-template.css (NO separate style.css)
+    ============================================================
+    -->
+
+    <!-- [ANALYTICS] External scripts for site tracking, meta injection, and analytics -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ============================================================
+         [SEO CONFIGURATION] — Primary Meta Tags
+         Carefully crafted for maximum search engine ranking.
+    ============================================================ -->
+    <title>Ultra Text To Speech Studio — Free Unlimited Voice Generator | Trusted Tools Web</title>
+    <meta name="title"       content="Ultra TTS Studio — Free Unlimited Voice Generator | Trusted Tools Web">
+    <meta name="description" content="Convert Text, PDF, and Images to natural speech instantly. Free unlimited TTS Studio with multi-voice mixer, background music, OCR image-to-text, and 100% offline client-side privacy. No sign-up required.">
+    <meta name="keywords"    content="text to speech unlimited, free tts tool, online natural voice generator, pdf to audio converter, image ocr to voice, tts mixer, multi-voice generator, trusted tools web, voice over maker, web speech api, browser tts, free voiceover studio">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow">
+    <meta name="theme-color" content="#161b22">
+
+    <!-- [SEO] Open Graph / Facebook -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/text-to-speech.html">
+    <meta property="og:title"       content="Ultra TTS Studio — Free Unlimited Voice Generator">
+    <meta property="og:description" content="Generate studio-quality voiceovers from text, PDFs, or images. 100% client-side privacy with unlimited recording. No limits, no sign-up.">
+    <meta property="og:image"       content="../../assets/tools/text/text-to-speech/img/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- [SEO] Twitter Card -->
+    <meta property="twitter:card"        content="summary_large_image">
+    <meta property="twitter:url"         content="https://trustedtoolsweb.com/text-to-speech.html">
+    <meta property="twitter:title"       content="Ultra TTS Studio — Free Unlimited Voice Generator">
+    <meta property="twitter:description" content="Generate studio-quality voiceovers from text, PDFs, or images. 100% client-side privacy with unlimited recording.">
+    <meta property="twitter:image"       content="../../assets/tools/text/text-to-speech/img/og-banner.webp">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/text-to-speech.html">
+
+    <!-- Favicon -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ============================================================
+         [STRUCTURED DATA] JSON-LD Schema — WebApplication
+         Enhances rich results in Google Search for this tool.
+    ============================================================ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Ultra TTS Studio Pro",
+      "url": "https://trustedtoolsweb.com/text-to-speech.html",
+      "image": "https://trustedtoolsweb.com/assets/tools/text/text-to-speech/img/og-banner.webp",
+      "description": "A powerful browser-based Text-to-Speech studio with OCR, PDF reading, background music mixing, multi-voice scripting, and studio audio recording capabilities. 100% free and client-side.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires a modern browser with Web Speech API support (Chrome, Edge, Brave recommended)",
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSAR"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Unlimited Text to Speech, PDF Reader, OCR Image to Text, Background Audio Mixer, Multi-Voice Scripting, Studio Recorder"
+    }
+    </script>
+
+    <!-- ============================================================
+         [EXTERNAL LIBRARIES] — Preserved exactly as-is.
+         These will be localized before final CodeCanyon submission.
+    ============================================================ -->
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- PDF.js — Client-side PDF parsing engine -->
+    <script src="../../assets/library/pdf-engine/jspdf/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/library/pdf-engine/jspdf/pdf.worker.min.js';</script>
+
+    <!-- Mammoth.js — DOCX document text extraction -->
+    <script src="../../assets/library/parsers-text/mammoth/mammoth.browser.min.js"></script>
+
+    <!-- Tesseract.js — Optical Character Recognition (OCR) engine -->
+    <script src="../../assets/library/media-vision/tesseract/tesseract.min.js"></script>
+
+    <!-- ============================================================
+         [STYLESHEETS] — Two-file CSS system (global + tools-template)
+         NO tool-specific style.css is used.
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+</head>
+<body>
+
+    <!-- ============================================================
+         GLOBAL HEADER
+         Dynamically populated by global.js with site nav & branding.
+    ============================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+
+        <!-- ============================================================
+             MAIN WORKSPACE CONTAINER
+             The primary tool card with fade-in entry animation.
+        ============================================================ -->
+        <div class="container animated-entry">
+
+            <!-- Security / Trust Badge -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- Tool Title — centered, gradient span, responsive font size -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-microphone-lines"></i> Ultra TTS <span>Studio Pro</span>
+            </h1>
+
+            <!-- Tool Subtitle -->
+            <p class="subtitle">Convert Text, PDF &amp; Images to Natural Audio. Unlimited. Private. Free.</p>
+
+            <!-- ====================================================
+                 [AD SLOT — TOP BANNER]
+                 Reserved for 728×90 Leaderboard or Responsive Display.
+                 The ads-manager.js injects ad scripts here at runtime.
+            ==================================================== -->
+            <div class="ad-slot" data-ad-slot="top-banner">
+                <!-- Ad script injects here -->
+            </div>
+
+            <!-- ====================================================
+                 THREE-PANEL STUDIO WORKSPACE
+                 Left: Controls (Voice, Speed, Pitch, Mixer)
+                 Center: Editor + Visualizer + Playback
+                 Right: SFX Pad, BGM, Project Save/Load
+            ==================================================== -->
+            <div class="tts-workspace-wrapper">
+
+                <!-- ─────────────────────────────────────────────
+                     LEFT PANEL — Voice Engine & Mixer Controls
+                ───────────────────────────────────────────── -->
+                <div class="tts-panel tts-panel-left">
+
+                    <!-- Voice Engine: dropdown populated by JS -->
+                    <div class="tts-control-group">
+                        <div class="tts-section-label">
+                            <i class="fa-solid fa-user-astronaut"></i> Voice Engine
+                        </div>
+                        <select id="voice-select" class="input-control" onchange="TTSApp.updateConfig()"></select>
+
+                        <!-- Speed & Pitch Sliders side-by-side -->
+                        <div class="tts-slider-row">
+                            <div class="tts-slider-col">
+                                <label class="tts-slider-label">
+                                    Speed: <span id="rate-val">1.0</span>x
+                                </label>
+                                <input type="range" class="range-slider" id="rate"
+                                       min="0.5" max="3" step="0.1" value="1"
+                                       oninput="TTSApp.uiUpdate('rate')">
+                            </div>
+                            <div class="tts-slider-col">
+                                <label class="tts-slider-label">
+                                    Pitch: <span id="pitch-val">1.0</span>
+                                </label>
+                                <input type="range" class="range-slider" id="pitch"
+                                       min="0.5" max="2" step="0.1" value="1"
+                                       oninput="TTSApp.uiUpdate('pitch')">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Multi-Voice Tags: scrollable list populated by JS -->
+                    <div class="tts-control-group tts-control-group--flex">
+                        <div class="tts-section-label">
+                            <i class="fa-solid fa-tags"></i> Multi-Voice Tags
+                        </div>
+                        <!-- JS dynamically appends .btn tag buttons here -->
+                        <div id="voice-tags" class="tts-voice-tags-list"></div>
+                    </div>
+
+                    <!-- Audio Mixer: BGM & SFX volume sliders -->
+                    <div class="tts-control-group">
+                        <div class="tts-section-label">
+                            <i class="fa-solid fa-sliders"></i> Mixer
+                        </div>
+                        <div class="tts-mixer-row">
+                            <label class="tts-slider-label">
+                                <i class="fa-solid fa-music"></i> BGM Volume
+                            </label>
+                            <input type="range" class="range-slider" id="vol-music"
+                                   min="0" max="1" step="0.1" value="0.3"
+                                   oninput="TTSApp.updateMixer()">
+                        </div>
+                        <div class="tts-mixer-row">
+                            <label class="tts-slider-label">
+                                <i class="fa-solid fa-bolt"></i> SFX Volume
+                            </label>
+                            <input type="range" class="range-slider" id="vol-sfx"
+                                   min="0" max="1" step="0.1" value="0.8"
+                                   oninput="TTSApp.updateMixer()">
+                        </div>
+                    </div>
+
+                </div><!-- /tts-panel-left -->
+
+                <!-- ─────────────────────────────────────────────
+                     CENTER PANEL — Text Editor & Playback Controls
+                ───────────────────────────────────────────── -->
+                <div class="tts-panel tts-panel-center">
+
+                    <!-- Audio Visualizer: 40 animated bars injected by JS -->
+                    <div id="visualizer" class="tts-visualizer"></div>
+
+                    <!-- File Action Buttons Row (Import, OCR, Pause Tag, Clear) -->
+                    <div class="btn-area tts-btn-row">
+                        <button class="btn btn-secondary" onclick="document.getElementById('txt-file').click()" title="Import Doc">
+                            <i class="fa-solid fa-file-import"></i> Import
+                        </button>
+                        <button class="btn btn-secondary" onclick="document.getElementById('ocr-file').click()" title="Image OCR">
+                            <i class="fa-solid fa-eye"></i> OCR
+                        </button>
+                        <button class="btn btn-secondary" onclick="TTSApp.insertTag('[pause:1000]')">
+                            <i class="fa-regular fa-clock"></i> Pause
+                        </button>
+                        <button class="btn btn-danger" onclick="TTSApp.clearAll()" title="Clear workspace">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+
+                        <!-- Hidden file inputs — triggered by JS onclick -->
+                        <input type="file" id="txt-file" hidden accept=".txt,.pdf,.docx"
+                               onchange="TTSApp.handleDoc(this)">
+                        <input type="file" id="ocr-file" hidden accept="image/*"
+                               onchange="TTSApp.handleOCR(this)">
+                    </div>
+
+                    <!-- Main Text Editor Box with Processing Status Bar -->
+                    <div class="tts-editor-box" onclick="document.getElementById('text-input').focus()">
+                        <textarea id="text-input" class="tts-textarea" spellcheck="false"
+                                  placeholder="Type here... Use [pause:1000] for silence or select different voices from the left panel."></textarea>
+
+                        <!-- Status Bar: appears when audio is processing (JS toggles .active) -->
+                        <div id="status-bar" class="tts-status-bar">
+                            <div class="tts-status-pulse"></div>
+                            <span id="status-text" class="tts-status-text">Processing Audio...</span>
+                        </div>
+                    </div>
+
+                    <!-- Playback & Recording Buttons Row -->
+                    <div class="btn-area tts-btn-row tts-playback-row">
+                        <!-- Main Play/Pause button — JS updates its label dynamically -->
+                        <button id="btn-play" class="btn btn-primary tts-btn-play"
+                                onclick="TTSApp.togglePlay()">
+                            <i class="fa-solid fa-play"></i> PLAY STUDIO
+                        </button>
+                        <!-- Record button — JS adds .btn-danger + animation when active -->
+                        <button id="btn-record" class="btn btn-secondary tts-btn-record"
+                                onclick="TTSApp.toggleRecord()">
+                            <i class="fa-solid fa-circle"></i> REC
+                        </button>
+                        <!-- Stop button — immediate full stop -->
+                        <button class="btn btn-secondary tts-btn-stop"
+                                onclick="TTSApp.stopAll()" title="Stop all playback">
+                            <i class="fa-solid fa-stop"></i>
+                        </button>
+                    </div>
+
+                </div><!-- /tts-panel-center -->
+
+                <!-- ─────────────────────────────────────────────
+                     RIGHT PANEL — SFX Pad, BGM Upload, Project
+                ───────────────────────────────────────────── -->
+                <div class="tts-panel tts-panel-right">
+
+                    <!-- SFX Pad: clickable sound buttons, right-click to upload custom -->
+                    <div class="tts-control-group">
+                        <div class="tts-section-label">
+                            <i class="fa-solid fa-drum"></i> SFX Pad
+                        </div>
+                        <div class="tts-sfx-grid">
+                            <!-- Each .tts-sfx-btn plays a sound; JS adds .playing class on trigger -->
+                            <div class="tts-sfx-btn" id="sfx-1" onclick="TTSApp.playSfx(1)">
+                                <i class="fa-solid fa-hands-clapping"></i> Applause
+                                <input type="file" hidden onchange="TTSApp.loadSfx(this, 1)">
+                            </div>
+                            <div class="tts-sfx-btn" id="sfx-2" onclick="TTSApp.playSfx(2)">
+                                <i class="fa-regular fa-face-laugh-squint"></i> Laugh
+                                <input type="file" hidden onchange="TTSApp.loadSfx(this, 2)">
+                            </div>
+                            <div class="tts-sfx-btn" id="sfx-3" onclick="TTSApp.playSfx(3)">
+                                <i class="fa-solid fa-drum"></i> Drum
+                                <input type="file" hidden onchange="TTSApp.loadSfx(this, 3)">
+                            </div>
+                            <div class="tts-sfx-btn" id="sfx-4" onclick="TTSApp.playSfx(4)">
+                                <i class="fa-solid fa-bell"></i> Ding
+                                <input type="file" hidden onchange="TTSApp.loadSfx(this, 4)">
+                            </div>
+                            <div class="tts-sfx-btn" id="sfx-5" onclick="TTSApp.playSfx(5)">
+                                <i class="fa-solid fa-circle-xmark"></i> Fail
+                                <input type="file" hidden onchange="TTSApp.loadSfx(this, 5)">
+                            </div>
+                            <div class="tts-sfx-btn" id="sfx-6" onclick="TTSApp.playSfx(6)">
+                                <i class="fa-solid fa-bullhorn"></i> Horn
+                                <input type="file" hidden onchange="TTSApp.loadSfx(this, 6)">
+                            </div>
+                        </div>
+                        <small class="tts-sfx-hint">Right-click to upload custom SFX</small>
+                    </div>
+
+                    <!-- Background Music Upload -->
+                    <div class="tts-control-group">
+                        <div class="tts-section-label">
+                            <i class="fa-solid fa-music"></i> Background Music
+                        </div>
+                        <input type="file" id="bg-file" hidden accept="audio/*"
+                               onchange="TTSApp.loadAudio(this, 'bg')">
+                        <button class="btn btn-secondary tts-upload-btn"
+                                onclick="document.getElementById('bg-file').click()">
+                            <i class="fa-solid fa-upload"></i> Upload Music
+                        </button>
+                        <!-- Shown by JS when BGM is loaded -->
+                        <div id="bg-info" class="tts-bg-info" style="display:none;">
+                            Playing: <span id="bg-name"></span>
+                        </div>
+                    </div>
+
+                    <!-- Project Save / Load -->
+                    <div class="tts-control-group">
+                        <div class="tts-section-label">
+                            <i class="fa-solid fa-floppy-disk"></i> Project
+                        </div>
+                        <div class="btn-area tts-btn-row">
+                            <button class="btn btn-secondary tts-proj-btn"
+                                    onclick="TTSApp.saveProject()">Save</button>
+                            <button class="btn btn-secondary tts-proj-btn"
+                                    onclick="document.getElementById('load-proj').click()">Load</button>
+                            <input type="file" id="load-proj" hidden accept=".json"
+                                   onchange="TTSApp.loadProject(this)">
+                        </div>
+                    </div>
+
+                    <!-- Live Character & Time Stats -->
+                    <div class="tts-stats-bar">
+                        Chars: <span id="stat-char" class="tts-stat-val">0</span>
+                        &nbsp;|&nbsp;
+                        Time: <span id="stat-time" class="tts-stat-val">00:00</span>
+                    </div>
+
+                </div><!-- /tts-panel-right -->
+
+            </div><!-- /tts-workspace-wrapper -->
+
+        </div><!-- /container -->
+
+        <!-- ============================================================
+             [AD SLOT — BOTTOM BANNER]
+             Reserved for 300×250 or 970×250 Display Ads.
+        ============================================================ -->
+        <div class="ad-slot" data-ad-slot="bottom-banner">
+            <!-- Ad script injects here -->
+        </div>
+
+        <!-- ============================================================
+             SEO INFO SECTION
+             Detailed editorial content for search engine indexing.
+             All info-card wrappers use tools-template.css classes.
+        ============================================================ -->
+        <section class="info-section-wrapper">
+
+            <!-- Overview Article Card -->
+            <div class="info-card animated-entry delay-1">
+                <h2><i class="fa-solid fa-microchip"></i> Advanced Text to Speech &amp; Audio Studio</h2>
+                <p>Welcome to <strong>Trusted Tools Web's TTS Studio</strong>, the most advanced free online voice generator. Unlike basic text-to-speech tools, this studio allows you to convert not just text, but also <strong>PDF documents, eBooks, and Images (OCR)</strong> into natural-sounding audio. Whether you are a student listening to notes or a content creator making voiceovers, this tool works 100% offline in your browser, ensuring maximum privacy.</p>
+            </div>
+
+            <!-- Tutorial / How-to Guide -->
+            <div class="info-card animated-entry delay-1">
+                <h3><i class="fa-solid fa-list-check"></i> How to Use This Tool?</h3>
+
+                <!-- Tutorial banner image -->
+                <div class="tts-guide-img-wrap">
+                    <img src="../../assets/tools/text/text-to-speech/img/tutorial-guide.webp"
+                         alt="Step by step guide to use Ultra TTS Studio"
+                         loading="lazy">
+                </div>
+
+                <p>Follow these simple steps to generate professional audio:</p>
+                <ul class="tts-guide-list">
+                    <li><i class="fa-solid fa-check text-accent-cyan"></i> <strong>Step 1: Input Text or File</strong> — Type directly, or click "Import" to upload a PDF/DOCX file. Use "OCR" to extract text from images.</li>
+                    <li><i class="fa-solid fa-check text-accent-cyan"></i> <strong>Step 2: Select Voice</strong> — Choose your preferred language and voice accent from the "Voice Engine" panel.</li>
+                    <li><i class="fa-solid fa-check text-accent-cyan"></i> <strong>Step 3: Customize Audio</strong> — Adjust the <em>Speed</em> and <em>Pitch</em> sliders to match your requirements.</li>
+                    <li><i class="fa-solid fa-check text-accent-cyan"></i> <strong>Step 4: Add Effects</strong> — Use the Mixer to add Background Music (BGM) or Sound Effects (SFX) for a studio feel.</li>
+                    <li><i class="fa-solid fa-check text-accent-cyan"></i> <strong>Step 5: Record &amp; Download</strong> — Click the <strong>REC</strong> button to capture the final audio mix (Voice + Music) and save it as a .webm file.</li>
+                </ul>
+            </div>
+
+            <!-- Device Compatibility Info Card -->
+            <div class="info-card animated-entry">
+                <h3><i class="fa-solid fa-laptop-code"></i> Device Support &amp; System Requirements</h3>
+
+                <!-- Feature showcase image -->
+                <div class="tts-device-img-wrap">
+                    <img src="../../assets/tools/text/text-to-speech/img/feature-showcase.webp"
+                         alt="Ultra TTS Studio working on Desktop, Tablet and Mobile"
+                         loading="lazy">
+                </div>
+
+                <p>Ultra TTS Studio is a powerful web application that pushes the limits of your browser. While we strive for universal support, some features rely on specific hardware capabilities.</p>
+
+                <!-- Three device-support cards in responsive grid -->
+                <div class="tts-device-grid">
+                    <div class="tts-device-card tts-device-card--desktop">
+                        <strong><i class="fa-solid fa-desktop"></i> Desktop (Windows/Mac/Linux)</strong>
+                        <p><span class="text-success tts-device-badge">✔ Best Experience:</span> Google Chrome, Edge, or Brave browsers recommended. Everything works 100% — highest quality voices, full OCR support, and Studio Recorder works perfectly.</p>
+                    </div>
+                    <div class="tts-device-card tts-device-card--android">
+                        <strong><i class="fa-brands fa-android"></i> Android Devices</strong>
+                        <p><span class="tts-device-badge">✔ Works Well:</span> Excellent for Listening, PDF Reading, and Image-to-Text. <span class="text-orange tts-device-badge">⚠ Note:</span> Recording internal audio may vary due to Android security restrictions.</p>
+                    </div>
+                    <div class="tts-device-card tts-device-card--ios">
+                        <strong><i class="fa-brands fa-apple"></i> iPhone &amp; iPad (iOS)</strong>
+                        <p><span class="tts-device-badge">✔ Playback Only:</span> Great for listening to articles or eBooks. <span class="text-danger tts-device-badge">✖ Limitation:</span> Recording and downloading mixed audio is restricted by Apple browsers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Features Grid -->
+            <div class="info-card animated-entry delay-1">
+                <h3><i class="fa-solid fa-star"></i> Key Features</h3>
+                <div class="tts-features-grid">
+                    <div class="tts-feature-item">
+                        <strong class="text-accent-cyan">Unlimited Conversion</strong>
+                        <p>No character limits. Convert long articles or entire books without paying a penny.</p>
+                    </div>
+                    <div class="tts-feature-item">
+                        <strong class="text-accent-cyan">Privacy First</strong>
+                        <p>Client-side processing means your sensitive documents never leave your device.</p>
+                    </div>
+                    <div class="tts-feature-item">
+                        <strong class="text-accent-cyan">Smart OCR</strong>
+                        <p>Built-in Tesseract engine extracts text from screenshots and scanned documents instantly.</p>
+                    </div>
+                    <div class="tts-feature-item">
+                        <strong class="text-accent-cyan">Multi-Voice Mixer</strong>
+                        <p>Create dialogues using multiple voices in a single script using our unique tag system.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use-Case Article: Faceless YouTube -->
+            <div class="info-card animated-entry">
+                <h3><i class="fa-solid fa-video"></i> Perfect for Faceless YouTube Channels</h3>
+                <p>Are you running a "Faceless" YouTube channel or a TikTok page? You don't need expensive microphones or voice actors anymore. Use this studio to generate clear, engaging narration for your scripts. With the built-in <strong>Background Music Mixer</strong>, you can produce a ready-to-upload audio track directly from your browser. Just type your script, add a little background music, and hit Record.</p>
+            </div>
+
+            <!-- Use-Case Article: Study Hack -->
+            <div class="info-card animated-entry">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Study Hack: Listen 3× Faster</h3>
+                <p>Reading long research papers or PDF assignments can be exhausting for your eyes. This tool lets you turn those documents into audio. The pro tip here is to use the <strong>Speed Slider</strong>. Many students train themselves to listen at 1.5× or 2.0× speed, allowing them to consume lecture notes and books in half the time. It's a massive productivity booster for exam preparation.</p>
+            </div>
+
+            <!-- Use-Case Article: Accessibility -->
+            <div class="info-card animated-entry">
+                <h3><i class="fa-solid fa-universal-access"></i> Accessibility for Dyslexia &amp; Vision Impairment</h3>
+                <p>We believe the internet should be accessible to everyone. For users who struggle with Dyslexia or have visual impairments, reading small text on a screen is difficult. Ultra TTS Studio acts as an assistive technology tool. By converting written web content or documents into speech, we help bridge the gap, making information easier to digest without the strain of reading.</p>
+            </div>
+
+            <!-- FAQ Card -->
+            <div class="info-card animated-entry delay-1">
+                <h3><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions (FAQ)</h3>
+                <strong class="text-main d-block mt-sm">Is this Text-to-Speech tool free?</strong>
+                <p>Yes, Trusted Tools Web provides this utility 100% free of charge for unlimited use.</p>
+                <strong class="text-main d-block mt-sm">Can I use the audio for YouTube videos?</strong>
+                <p>Absolutely. The voices are generated using your browser's Web Speech API. However, check the individual license of the specific voice provider (Google/Microsoft) on your operating system for commercial use.</p>
+            </div>
+
+            <!-- Legal Disclaimer -->
+            <div class="tts-disclaimer border-top-subtle text-center">
+                <p><strong>Disclaimer:</strong> This tool uses the native speech synthesis engines available on your device. We do not store any of your text or audio data on our servers.</p>
+            </div>
+
+        </section><!-- /info-section-wrapper -->
+
+        <!-- ============================================================
+             RELATED TOOLS SECTION
+             Dynamically populated by related-tools.js based on data-category.
+        ============================================================ -->
+        <div class="container" style="margin-top: 50px;">
+            <!--
+                IMPORTANT:
+                data-category    → Category of the current tool (e.g., "text", "pdf", "media")
+                data-current-page → Filename to exclude current tool from related results
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="text"
+                 data-current-page="text-to-speech.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <!-- ============================================================
+         GLOBAL FOOTER
+         Dynamically populated by global.js.
+    ============================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- [ADS MANAGER] Centralized control for advertising slots -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global JS: theme toggle, toast system, header/footer injection -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- Tool Script: Ultra TTS Studio Core Logic -->
+    <script src="../../assets/tools/text/text-to-speech/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

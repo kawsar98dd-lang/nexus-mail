@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!--
+        ============================================================
+        [SYSTEM]: Analytics & Configuration Script Loaders
+        These three scripts must load first, before all other assets.
+        They handle site-wide config, meta injection, and analytics.
+        DO NOT REMOVE OR REORDER.
+        ============================================================
+    -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- Character encoding declaration — must appear early -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Responsive viewport — locks scale to prevent accidental pinch-zoom on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Android browser toolbar color -->
+    <meta name="theme-color" content="#050505">
+
+    <!--
+        ============================================================
+        [SEO]: Primary Meta Tags
+        Carefully tuned for maximum international search visibility.
+        Target keywords cover developer tools, formatting, and privacy.
+        ============================================================
+    -->
+    <title>TextNova Core — Advanced Text Manipulation Studio | Trusted Tools</title>
+    <meta name="title"       content="TextNova Core — Advanced Text Manipulation Studio | Trusted Tools">
+    <meta name="description" content="TextNova Core: The ultimate free, client-side text manipulation studio for developers. Format JSON & SQL, test Regex, generate UUIDs & SHA-256 hashes, encode Base64 — all securely inside your browser. Zero server uploads. Zero data risk.">
+    <meta name="keywords"    content="text tools, json formatter online, sql beautifier, client-side text editor, secure developer tools, regex tester, base64 encoder decoder, sha-256 hash generator, uuid generator, case converter, text cleaner, md kawsar, trusted tools web, developer utilities, browser only tool">
+    <meta name="author"      content="MD KAWSAR">
+
+    <!-- Crawl directives — allow full indexing with large image preview -->
+    <meta name="robots"        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Canonical URL — prevents duplicate content penalties -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/text-editor-advanced.html">
+
+    <!--
+        ============================================================
+        [SEO]: Open Graph — Controls appearance on Facebook, LinkedIn, Slack, etc.
+        ============================================================
+    -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/text-editor-advanced.html">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+    <meta property="og:title"       content="TextNova Core — Free Advanced Text Manipulation Studio">
+    <meta property="og:description" content="Format JSON, beautify SQL, convert case, encode/decode Base64 & URL, generate hashes and UUIDs — 100% client-side. Your data never leaves your browser.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/text/text-editor-advanced/img/textnova-og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="TextNova Core — Developer Text Studio Interface">
+
+    <!--
+        ============================================================
+        [SEO]: Twitter Card — Controls appearance when shared on X/Twitter
+        ============================================================
+    -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/text-editor-advanced.html">
+    <meta name="twitter:title"       content="TextNova Core — Free Advanced Text Manipulation Studio">
+    <meta name="twitter:description" content="Format JSON, SQL, test Regex, encode Base64, hash text with SHA-256 — all 100% client-side in your browser. No server, no risk.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/text/text-editor-advanced/img/textnova-og-banner.webp">
+
+    <!-- Favicon icons -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- FontAwesome icon library (localized) -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- Custom web fonts: JetBrains Mono (code), Rajdhani (UI labels), Inter (body copy) -->
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Rajdhani/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+
+    <!--
+        ============================================================
+        STYLESHEET LOADING ORDER (Strict — Do NOT reorder)
+        1. global.css     → Site-wide base: header, footer, theme, reset, floaters
+        2. tools-template.css → All tool UI components (buttons, inputs, cards, modals, etc.)
+        ============================================================
+    -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!--
+        ============================================================
+        [SEO]: JSON-LD Structured Data — Google Rich Snippets
+        Marks this page as a WebApplication for knowledge graph indexing.
+        ============================================================
+    -->
+    <script type="application/ld+json">
+    {
+        "@context"             : "https://schema.org",
+        "@type"                : "WebApplication",
+        "name"                 : "TextNova Core",
+        "headline"             : "TextNova Core — Advanced Text Manipulation Studio for Developers",
+        "url"                  : "https://trustedtoolsweb.com/text-editor-advanced.html",
+        "description"          : "A comprehensive, 100% client-side text manipulation suite for developers and analysts. Features JSON formatting, SQL beautification, regex testing, SHA-256 hashing, UUID generation, case conversion, Base64 encoding, and more — all with zero server uploads.",
+        "applicationCategory"  : "DeveloperApplication",
+        "operatingSystem"      : "Any",
+        "browserRequirements"  : "Requires JavaScript. Fully compatible with Chrome, Firefox, Safari, Edge.",
+        "offers": {
+            "@type"        : "Offer",
+            "price"        : "0",
+            "priceCurrency": "USD",
+            "availability" : "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name" : "MD KAWSAR",
+            "url"  : "https://trustedtoolsweb.com"
+        },
+        "image"          : "https://trustedtoolsweb.com/assets/tools/text/text-editor-advanced/img/textnova-og-banner.webp",
+        "screenshot"     : "https://trustedtoolsweb.com/assets/tools/text/text-editor-advanced/img/textnova-og-banner.webp",
+        "featureList"    : "JSON Formatter, SQL Beautifier, Regex Tester, SHA-256 Hash Generator, UUID Generator, Case Converter, Base64 Encoder/Decoder, URL Encoder/Decoder, Duplicate Line Remover, Password Generator",
+        "isAccessibleForFree": true
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ============================================================
+         GLOBAL HEADER
+         Injected by the site-wide header system. Do NOT modify.
+         ============================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ============================================================
+         HERO TITLE AREA
+         Displays the tool name with gradient accent.
+         Positioned outside the app wrapper so it spans full width
+         above the sidebar+workspace layout.
+         ============================================================ -->
+    <div class="tnc-hero-title-wrap text-center">
+        <div class="security-badge">
+            <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+        </div>
+        <h1 class="tool-title">
+            <i class="fa-solid fa-microchip"></i> TextNova <span>Core</span>
+        </h1>
+        <p class="subtitle">Advanced Developer Text Studio — JSON, SQL, Regex, Hashing &amp; More</p>
+    </div>
+
+    <!-- ============================================================
+         AD SLOT: TOP BANNER
+         Managed by ads-manager.js — auto-hides when empty.
+         ============================================================ -->
+    <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+    <!-- ============================================================
+         MAIN APPLICATION WRAPPER
+         Full-width animated container wrapping the sidebar + workspace.
+         .animated-entry provides the fade-in-up entrance animation.
+         ============================================================ -->
+    <div class="tnc-app-wrapper animated-entry">
+        <div class="tnc-app-layout">
+
+            <!-- ====================================================
+                 SIDEBAR — TOOLKIT PANEL
+                 Collapsible on mobile via .active class toggle.
+                 Contains all tool group buttons organized in <details>
+                 accordion sections for easy discoverability.
+                 ==================================================== -->
+            <aside class="tnc-sidebar" id="sidebar">
+
+                <!-- Sidebar header with close button -->
+                <div class="tnc-sidebar-header">
+                    <span><i class="fa-solid fa-cube"></i> TOOLKIT</span>
+                    <button class="tnc-toggle-btn" onclick="TextNova.toggleSidebar()" title="Close Sidebar">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Scrollable tools list area -->
+                <div class="tnc-tools-scroll">
+
+                    <!-- ── Group 1: Basic Text Operations ── -->
+                    <details open>
+                        <summary class="tnc-summary">Basic Text</summary>
+                        <div class="tnc-tool-grid">
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('upper')">
+                                <i class="fa-solid fa-arrow-up"></i> Upper
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('lower')">
+                                <i class="fa-solid fa-arrow-down"></i> Lower
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('capitalize')">
+                                <i class="fa-solid fa-font"></i> Capital
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('titleCase')">
+                                <i class="fa-solid fa-heading"></i> Title
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('reverse')">
+                                <i class="fa-solid fa-rotate-left"></i> Reverse
+                            </button>
+                        </div>
+                    </details>
+
+                    <!-- ── Group 2: Developer Case Converters ── -->
+                    <details>
+                        <summary class="tnc-summary">Developer Case</summary>
+                        <div class="tnc-tool-grid">
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('camel')">camelCase</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('pascal')">PascalCase</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('snake')">snake_case</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('kebab')">kebab-case</button>
+                        </div>
+                    </details>
+
+                    <!-- ── Group 3: Line-Level Operations ── -->
+                    <details>
+                        <summary class="tnc-summary">Line Tools</summary>
+                        <div class="tnc-tool-grid">
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('sortAZ')">
+                                <i class="fa-solid fa-arrow-down-a-z"></i> Sort A-Z
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('unique')">
+                                <i class="fa-solid fa-filter"></i> Unique
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('trim')">
+                                <i class="fa-solid fa-scissors"></i> Trim
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('empty')">
+                                <i class="fa-solid fa-eraser"></i> Del Empty
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('number')">
+                                <i class="fa-solid fa-list-ol"></i> Number
+                            </button>
+                        </div>
+                    </details>
+
+                    <!-- ── Group 4: Code Cleaning & Formatting ── -->
+                    <details>
+                        <summary class="tnc-summary">Clean &amp; Format</summary>
+                        <div class="tnc-tool-grid">
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('jsonFormat')">{ } JSON Fmt</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('jsonMin')">{ } JSON Min</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('sqlFormat')">
+                                <i class="fa-solid fa-database"></i> SQL Fmt
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('stripHtml')">
+                                <i class="fa-solid fa-ban"></i> No HTML
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('extractEmail')">
+                                <i class="fa-solid fa-envelope"></i> Get Mail
+                            </button>
+                        </div>
+                    </details>
+
+                    <!-- ── Group 5: Encoding & Decoding ── -->
+                    <details>
+                        <summary class="tnc-summary">Encode / Decode</summary>
+                        <div class="tnc-tool-grid">
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('base64En')">Base64 En</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('base64De')">Base64 De</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('urlEn')">URL Enc</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.transform('urlDe')">URL Dec</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.generateHash('SHA-256')">SHA-256</button>
+                        </div>
+                    </details>
+
+                    <!-- ── Group 6: Content Generators ── -->
+                    <details>
+                        <summary class="tnc-summary">Generators</summary>
+                        <div class="tnc-tool-grid">
+                            <button class="tnc-tool-btn" onclick="TextNova.insert('password')">
+                                <i class="fa-solid fa-key"></i> Pass
+                            </button>
+                            <button class="tnc-tool-btn" onclick="TextNova.insert('uuid')">UUID</button>
+                            <button class="tnc-tool-btn" onclick="TextNova.insert('lorem')">Lorem</button>
+                        </div>
+                    </details>
+
+                </div><!-- /tnc-tools-scroll -->
+            </aside><!-- /tnc-sidebar -->
+
+            <!-- ====================================================
+                 MAIN WORKSPACE
+                 The primary editing area containing the top bar,
+                 config bar, textarea editor, FAB buttons, and status bar.
+                 ==================================================== -->
+            <main class="tnc-workspace">
+
+                <!-- Top Bar: sidebar toggle, search/replace, icon actions -->
+                <div class="tnc-top-bar">
+
+                    <!-- Mobile sidebar open toggle -->
+                    <button class="tnc-action-icon-btn" onclick="TextNova.toggleSidebar()" title="Open Toolkit">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <!-- Search & Replace Interface -->
+                    <div class="tnc-search-box" id="searchBox">
+                        <!-- Find field with inline match counter and next-match button -->
+                        <div class="tnc-find-wrap">
+                            <input
+                                type="text"
+                                id="findInput"
+                                class="tnc-search-input"
+                                placeholder="Find / Regex..."
+                                onkeydown="if(event.key === 'Enter') TextNova.findNext()"
+                            >
+                            <!-- Live match counter: "2/7" style — hidden until search runs -->
+                            <span id="matchCounter" class="tnc-match-counter">0/0</span>
+                            <!-- Navigate to next match -->
+                            <button class="tnc-find-next-btn" onclick="TextNova.findNext()" title="Next Match">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- Visual divider between find and replace rows -->
+                        <div class="tnc-search-divider"></div>
+
+                        <!-- Replace field and replace-all trigger -->
+                        <input
+                            type="text"
+                            id="replaceInput"
+                            class="tnc-search-input"
+                            placeholder="Replace... (Supports $1)"
+                        >
+                        <button class="tnc-action-icon-btn tnc-action-primary" onclick="TextNova.performReplace()" title="Replace All">
+                            <i class="fa-solid fa-bolt"></i>
+                        </button>
+                    </div>
+
+                    <!-- Search toggle (mobile) and Text Analysis modal launcher -->
+                    <button class="tnc-action-icon-btn tnc-ml-auto" onclick="TextNova.toggleSearchMobile()" title="Toggle Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button class="tnc-action-icon-btn" onclick="TextNova.showAnalysisModal()" title="Detailed Stats">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </button>
+
+                </div><!-- /tnc-top-bar -->
+
+                <!-- Config Bar: search options and live byte-size display -->
+                <div class="tnc-config-bar">
+                    <label class="tnc-check-item">
+                        <input type="checkbox" id="caseSensitive"> Case Sensitive
+                    </label>
+                    <label class="tnc-check-item">
+                        <input type="checkbox" id="regexMode">
+                        <span class="text-primary">Regex</span>
+                    </label>
+                    <label class="tnc-check-item">
+                        <input type="checkbox" id="liveStats" checked> Auto Stats
+                    </label>
+                    <!-- Live byte-size readout — updated by JS -->
+                    <label class="tnc-check-item tnc-ml-auto tnc-size-label" id="liveSizeInfo">0 B</label>
+                </div>
+
+                <!-- ── Editor Textarea Area ── -->
+                <div class="tnc-editor-area">
+
+                    <!-- Processing overlay — shown during heavy async operations -->
+                    <div class="tnc-processing-overlay" id="processOverlay">
+                        <div class="tnc-spinner"></div>
+                        <div class="tnc-processing-label">Processing...</div>
+                    </div>
+
+                    <!-- Primary content-editable textarea -->
+                    <textarea
+                        id="textInput"
+                        class="tnc-textarea"
+                        placeholder="Paste your text, code, or data here...&#10;// 100% Client-Side Secure. No Server Uploads."
+                        spellcheck="false"
+                    ></textarea>
+
+                    <!-- Floating Action Buttons (FABs) overlaid on the editor -->
+                    <div class="tnc-fab-container">
+                        <button class="tnc-fab" onclick="TextNova.copyToClipboard()" title="Copy to Clipboard">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                        <button class="tnc-fab" onclick="TextNova.downloadFile()" title="Download File">
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                        <button class="tnc-fab" onclick="TextNova.handleUndo()" title="Undo (Ctrl+Z)">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                        <button class="tnc-fab tnc-fab-danger" onclick="TextNova.clearAll()" title="Clear All">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+
+                </div><!-- /tnc-editor-area -->
+
+                <!-- Status Bar: live char / word / line counts + security badge -->
+                <footer class="tnc-status-bar">
+                    <div class="tnc-stat-group">
+                        <span>Ch: <b id="charCount">0</b></span>
+                        <span>Wd: <b id="wordCount">0</b></span>
+                        <span>Ln: <b id="lineCount">0</b></span>
+                    </div>
+                    <div class="tnc-secure-badge">
+                        <i class="fa-solid fa-shield-halved text-success"></i> Secure
+                    </div>
+                </footer>
+
+           </main><!-- /tnc-workspace -->
+        </div><!-- /tnc-app-layout -->
+    </div><!-- /tnc-app-wrapper -->
+
+    <!-- ============================================================
+         AD SLOT: BOTTOM BANNER
+         Managed by ads-manager.js — auto-hides when empty.
+         ============================================================ -->
+    <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+    <!-- ============================================================
+         SEO EDITORIAL CONTENT SECTION
+         Rich informational articles that help search engines understand
+         the tool's purpose and improve organic ranking. Uses the
+         .info-section-wrapper and .info-card system from tools-template.css.
+         ============================================================ -->
+    <section class="info-section-wrapper">
+        <div class="tnc-info-inner">
+
+            <!-- Article 1: Privacy & Client-Side Architecture -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-user-shield"></i> Privacy First: Why "Client-Side" Matters?</h2>
+                <img
+                    src="../../assets/tools/text/text-editor-advanced/img/privacy-diagram-client-side.webp"
+                    alt="Diagram showing client-side security where data stays in the browser and never reaches a server"
+                    class="tnc-info-img"
+                >
+                <p>In today's digital landscape, pasting sensitive data — API keys, customer emails, or database queries — into online tools carries serious risk. Most converters upload your data to a remote server to process it. We believe that's unnecessary and unsafe.</p>
+                <p><strong>TextNova Core</strong> is built on a <span class="tech-highlight">Zero-Server Architecture</span>. When you paste text here, it stays strictly within your browser. Whether you're formatting a messy JSON file or generating a secure hash, every computation happens locally on your device.</p>
+            </div>
+
+            <!-- Article 2: Developer Workflow Features -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-laptop-code"></i> A Developer's Daily Driver</h2>
+                <img
+                    src="../../assets/tools/text/text-editor-advanced/img/developer-tools-features.webp"
+                    alt="Icons showing various developer tools: JSON, SQL, Regex, and hashing features"
+                    class="tnc-info-img tnc-info-img-purple"
+                >
+                <p>We designed this suite to replace the dozen tabs developers usually keep open. Here's how it streamlines your coding workflow:</p>
+                <h3><i class="fa-solid fa-code"></i> JSON &amp; SQL Formatting</h3>
+                <p>Debugging a minified JSON response from an API is a nightmare. Paste it here, hit <strong>"JSON Fmt"</strong>, and instantly get a readable, indented structure. We also handle <strong>SQL Queries</strong> — turning a long, single-line query into a properly formatted block with intelligent indentation.</p>
+            </div>
+
+            <!-- Article 3: Data Cleaning Use Case -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-filter"></i> Data Cleaning for Marketers &amp; Analysts</h2>
+                <p>Raw data is rarely clean. If you're managing email lists or analyzing logs, our <strong>Line Operations</strong> are a lifesaver. Remove duplicates, trim whitespace, and sort data in seconds. Our regex engine enables powerful find-and-replace operations without needing a dedicated IDE.</p>
+            </div>
+
+            <!-- Article 4: Cryptography Features -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-lock"></i> Cryptography &amp; Security</h2>
+                <p>Need to verify file integrity? Our <strong>SHA-256 Generator</strong> creates industry-standard hashes using your browser's native Web Crypto API. We also offer a secure UUID generator for database primary keys and a cryptographically secure password generator.</p>
+            </div>
+
+            <!-- Article 5: SQL Formatter Deep Dive -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-database"></i> Debugging "Spaghetti" SQL Queries</h2>
+                <p>We've all inherited a project where the previous developer wrote a complex SQL query on a single line. TextNova's <strong>SQL Formatter</strong> intelligently structures keywords like <code>LEFT JOIN</code>, <code>WHERE</code>, and <code>ORDER BY</code> into a clean, readable block.</p>
+            </div>
+
+        </div><!-- /tnc-info-inner -->
+    </section>
+
+    <!-- ============================================================
+         RELATED TOOLS GRID
+         Dynamically populated by related-tools.js based on the
+         data-category attribute. Set data-current-page to exclude
+         the current tool from appearing in its own related list.
+         ============================================================ -->
+    <div class="container" style="margin-top: 50px;">
+        <div
+            id="dynamic-related-tools"
+            data-category="text"
+            data-current-page="text-editor-advanced.html"
+        ></div>
+    </div>
+    <script type="module" src="../../assets/js/related-tools.js"></script>
+    
+    
+         <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section> 
+
+    <!-- ============================================================
+         ANALYSIS MODAL
+         Full-screen overlay with a detailed text statistics grid.
+         Toggled open/closed by TextNova.showAnalysisModal() and
+         TextNova.closeAnalysisModal(). Uses .modal-overlay from
+         tools-template.css for the backdrop, with .tnc-modal-content
+         for the custom inner panel styled in this tool's CSS section.
+         ============================================================ -->
+    <div class="modal-overlay" id="analysisModal">
+        <div class="tnc-modal-content">
+
+            <!-- Close button — top-right of the modal -->
+            <button class="tnc-modal-close" onclick="TextNova.closeAnalysisModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Modal header -->
+            <div class="tnc-modal-header">
+                <i class="fa-solid fa-chart-pie text-primary"></i> Text Analysis
+            </div>
+
+            <!-- Modal body: description + stats grid -->
+            <div class="tnc-modal-body">
+                <p class="text-muted mb-10">Detailed metrics of your current workspace content.</p>
+
+                <!-- 3-column responsive stats grid -->
+                <div class="tnc-modal-stat-grid">
+                    <div class="tnc-modal-stat-item">
+                        <span class="tnc-modal-stat-label">Characters</span>
+                        <span class="tnc-modal-stat-value" id="modalChar">0</span>
+                    </div>
+                    <div class="tnc-modal-stat-item">
+                        <span class="tnc-modal-stat-label">Words</span>
+                        <span class="tnc-modal-stat-value" id="modalWord">0</span>
+                    </div>
+                    <div class="tnc-modal-stat-item">
+                        <span class="tnc-modal-stat-label">Lines</span>
+                        <span class="tnc-modal-stat-value" id="modalLine">0</span>
+                    </div>
+                    <div class="tnc-modal-stat-item">
+                        <span class="tnc-modal-stat-label">Size (Bytes)</span>
+                        <span class="tnc-modal-stat-value" id="modalSize">0 B</span>
+                    </div>
+                    <div class="tnc-modal-stat-item">
+                        <span class="tnc-modal-stat-label">Est. Read Time</span>
+                        <span class="tnc-modal-stat-value" id="modalRead">0 min</span>
+                    </div>
+                    <div class="tnc-modal-stat-item">
+                        <span class="tnc-modal-stat-label">Sentences</span>
+                        <span class="tnc-modal-stat-value" id="modalSent">0</span>
+                    </div>
+                </div><!-- /tnc-modal-stat-grid -->
+
+            </div><!-- /tnc-modal-body -->
+        </div><!-- /tnc-modal-content -->
+    </div><!-- /analysisModal -->
+
+    <!-- ============================================================
+         GLOBAL FOOTER
+         Injected by the site-wide footer system. Do NOT modify.
+         ============================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ============================================================
+         [SYSTEM]: Ad Manager Script
+         Handles loading and display of all ad banner slots.
+         DO NOT REMOVE.
+         ============================================================ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global application logic (theme, toast, header/footer injection) -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- TextNova Core — Tool-specific application script -->
+    <script src="../../assets/tools/text/text-editor-advanced/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

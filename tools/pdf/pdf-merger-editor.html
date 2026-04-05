@@ -1,0 +1,465 @@
+<!--
+================================================================================
+  TRUSTED TOOLS WEB — Ultra PDF AI: God Mode Editor
+================================================================================
+  Product   : Ultra PDF AI: God Mode Editor & Merger
+  Author    : MD KAWSAR
+  Version   : 2.0 (CodeCanyon Marketplace Release)
+  Refactored: CodeCanyon Premium Build — tools-template.css integration
+
+  DESCRIPTION:
+    A 100% client-side PDF merger, editor, and organizer. All file processing
+    is performed locally in the user's browser using WebAssembly-powered
+    libraries (pdf-lib, pdf.js). No file data is ever transmitted to a server.
+
+  CHANGELOG v2.0:
+    - Fixed : PDF.js worker path corrected to relative asset path.
+    - Fixed : DropZone listener destruction bug eliminated; DOM is never wiped.
+    - Fixed : Memory leak patched; URL.revokeObjectURL() called on delete/clear.
+    - Fixed : Strict image format validation (JPG/PNG only).
+    - Added : 30 MB per-file size limit to prevent mobile browser crashes.
+    - Added : SortableJS mobile touch support (delay, delayOnTouchOnly).
+    - Added : Custom file name input field in Action Bar.
+    - Added : "Add Blank Page" button inserts an A4 white page into the grid.
+    - Removed: All inline styles replaced with tools-template.css variables.
+    - Improved: Global toast system integrated; local toast removed.
+    - Improved: Theme management delegated to global.js.
+================================================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- =========================================================
+         PRIMARY SEO META TAGS
+         Optimised title and description for maximum search ranking.
+    ========================================================== -->
+    <title>Ultra PDF AI: God Mode PDF Editor, Merger & Organizer — 100% Private, Browser-Based</title>
+    <meta name="description" content="Merge, reorder, rotate, and edit PDFs entirely in your browser with Ultra PDF AI. 100% client-side privacy — your files never leave your device. Mix PDFs with JPG/PNG images, add blank pages, and download instantly. No uploads, no accounts.">
+    <meta name="keywords" content="PDF Merger, PDF Editor, online PDF tool, browser PDF editor, merge PDF online, client-side PDF, privacy PDF tool, reorder PDF pages, rotate PDF, combine PDF, merge JPG to PDF, organize PDF pages, free PDF merger, secure PDF editor">
+    <meta name="author" content="MD KAWSAR — Trusted Tools Web">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://yourdomain.com/tools/pdf/pdf-merger/">
+
+    <!-- =========================================================
+         OPEN GRAPH — FACEBOOK / LINKEDIN
+    ========================================================== -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://yourdomain.com/tools/pdf/pdf-merger/">
+    <meta property="og:title"       content="Ultra PDF AI: God Mode PDF Editor & Merger — 100% Private">
+    <meta property="og:description" content="Merge, reorder, and edit PDF pages visually in your browser. 100% secure — no server uploads, no sign-up required.">
+    <meta property="og:image"       content="../../assets/tools/pdf/pdf-merger/img/og-preview.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+    <meta property="og:locale"      content="en_US">
+
+    <!-- =========================================================
+         TWITTER CARDS
+    ========================================================== -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://yourdomain.com/tools/pdf/pdf-merger/">
+    <meta name="twitter:title"       content="Ultra PDF AI: God Mode PDF Editor — 100% Private">
+    <meta name="twitter:description" content="Merge and reorder PDF pages visually with zero privacy risk. 100% browser-based, no upload needed.">
+    <meta name="twitter:image"       content="../../assets/tools/pdf/pdf-merger/img/og-preview.webp">
+
+    <!-- =========================================================
+         STRUCTURED DATA — JSON-LD (Rich Results / Schema.org)
+         WebApplication schema helps Google display rich results
+         for this tool in search listings.
+    ========================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Ultra PDF AI: God Mode PDF Editor & Merger",
+      "url": "https://yourdomain.com/tools/pdf/pdf-merger/",
+      "description": "A 100% client-side PDF merger, editor, and organizer. Merge, reorder, rotate PDFs and images privately in your browser — no file uploads, no accounts.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSAR"
+      },
+      "featureList": [
+        "Drag-and-drop PDF page reordering",
+        "Merge multiple PDFs into one",
+        "Convert JPG and PNG images into PDF pages",
+        "Insert blank A4 divider pages",
+        "Rotate individual pages 90° clockwise",
+        "Custom PDF title, author, and file name metadata",
+        "100% client-side — no server uploads",
+        "Dark and light mode support"
+      ]
+    }
+    </script>
+
+    <!-- =========================================================
+         GLOBAL SITE INFRASTRUCTURE (DO NOT MODIFY)
+         These scripts must load first to configure the site shell.
+    ========================================================== -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- =========================================================
+         STYLESHEETS
+         1. global.css   — Site-wide shell (header, footer, theme, base reset).
+         2. tools-template.css — All tool UI component styles (modular, reusable).
+         No tool-specific style.css is used; all styles live in the template.
+    ========================================================== -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- PWA Icons -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- =========================================================
+         ICON LIBRARY
+    ========================================================== -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- =========================================================
+         CORE PROCESSING LIBRARIES
+         pdf-lib  : PDF creation and manipulation engine.
+         pdf.js   : PDF page rendering / thumbnail generation engine.
+         SortableJS: Drag-and-drop grid reordering with touch support.
+    ========================================================== -->
+    <script src="../../assets/library/pdf-engine/pdf-lib/pdf-lib.min.js"></script>
+    <script src="../../assets/library/pdf-engine/jspdf/pdf.min.js"></script>
+    <script src="../../assets/library/core-ui/sortablejs/Sortable.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- ===================================================================
+         LOADING OVERLAY
+         Full-screen spinner displayed during PDF processing operations.
+         JS shows/hides this via showLoader(true/false).
+         The global.css provides #loader and .spinner styles.
+    =================================================================== -->
+    <!--
+        #loader — Full-screen processing overlay.
+        Hidden by default via display:none. JS calls showLoader(true/false)
+        to toggle the .active class which sets display:flex (defined in global.css).
+        The inline style ensures it stays hidden on initial page render even if
+        global.css loads with a slight delay.
+    -->
+    <div id="loader" role="status" aria-live="polite" aria-label="Processing" style="display:none;">
+        <div class="spinner"></div>
+        <div id="loaderText" class="itp-loader-title">Processing...</div>
+    </div>
+
+    <!-- ===================================================================
+         SITE HEADER
+         The global header shell — populated by global.js at runtime.
+    =================================================================== -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ===================================================================
+         MAIN CONTENT AREA
+         All tool UI lives inside <main>. The <main> tag itself is the
+         centered max-width wrapper per the tools-template.css layout system.
+    =================================================================== -->
+    <main>
+
+        <!-- ===============================================================
+             PRIMARY TOOL CARD
+             The .container class provides the card background, border,
+             shadow, and padding. .animated-entry applies the fade-in
+             animation on page load.
+        =============================================================== -->
+        <section class="container animated-entry" aria-label="Ultra PDF AI — Merge and Edit Tool">
+
+            <!-- Security Badge — indicates 100% client-side processing -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                100% Client-Side Processing
+            </div>
+
+            <!-- ─────────────────────────────────────────────────────
+                 HERO ILLUSTRATION
+                 .itp-hero-img styles the illustration with responsive
+                 max-height constraints defined in the new CSS section.
+            ───────────────────────────────────────────────────────── -->
+            <!-- Hero illustration — centered horizontally within the tool card -->
+            <div class="itp-hero-wrap" style="display:flex; justify-content:center; margin: 0 auto 20px;">
+                <img
+                    src="../../assets/tools/pdf/pdf-merger/img/hero-illustration.webp"
+                    alt="Professional PDF merging illustration showing document organization"
+                    class="itp-hero-img"
+                    loading="eager">
+            </div>
+
+            <!-- Tool Title — .tool-title uses clamp() for fluid responsive sizing -->
+            <h1 class="tool-title">Merge, Edit &amp; Organize <span>PDFs</span></h1>
+
+            <!-- Subtitle — .subtitle is muted helper text below the title -->
+            <p class="subtitle">
+                Drag &amp; Drop files. Reorder pages visually. Merge instantly without
+                uploading to any server.
+            </p>
+
+            <!-- ─────────────────────────────────────────────────────
+                 FILE DROP ZONE WRAPPER
+                 #dropZoneWrapper is toggled hidden after the first
+                 file batch is loaded. The inner #dropZone handles
+                 all drag/drop and click-to-browse events.
+            ───────────────────────────────────────────────────────── -->
+            <div class="itp-upload-zone-wrap" id="dropZoneWrapper">
+                <div
+                    class="itp-upload-zone"
+                    id="dropZone"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Drop PDF or image files here, or press Enter to browse">
+
+                    <!-- Cloud upload icon -->
+                    <i class="fa-solid fa-cloud-arrow-up itp-upload-zone__icon" aria-hidden="true"></i>
+
+                    <!-- Primary instruction text -->
+                    <p class="itp-upload-zone__heading">Drag &amp; Drop PDF or Image Files Here</p>
+
+                    <!-- Secondary hint text -->
+                    <span class="itp-upload-zone__hint">
+                        or click to browse &mdash; PDF, JPG, PNG &mdash; Max 30 MB per file
+                    </span>
+                </div>
+            </div>
+
+            <!--
+                Hidden file input — lives outside the drop zone so the DOM
+                element is never destroyed by workspace toggles.
+            -->
+            <input
+                type="file"
+                id="fileInput"
+                multiple
+                accept=".pdf,.jpg,.jpeg,.png"
+                aria-label="Select PDF or image files"
+                style="display:none;">
+
+            <!-- ─────────────────────────────────────────────────────
+                 ADD MORE FILES STRIP
+                 Compact clickable strip revealed after first load.
+                 Allows appending additional files to the existing grid.
+            ───────────────────────────────────────────────────────── -->
+            <div
+                class="itp-add-more"
+                id="addMoreStrip"
+                role="button"
+                tabindex="0"
+                aria-label="Add more files"
+                style="display:none;">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                Add More Files
+            </div>
+
+            <!-- ─────────────────────────────────────────────────────
+                 WORKSPACE
+                 Hidden by default; revealed after the first file is
+                 loaded. Contains the action bar toolbar and the
+                 sortable PDF page thumbnail grid.
+            ───────────────────────────────────────────────────────── -->
+            <div id="workspace" aria-label="PDF page workspace" style="display:none;">
+
+                <!-- ─────────────────────────────────────────────
+                     ACTION BAR / TOOLBAR
+                     Houses the optional metadata inputs (title,
+                     author, output filename) and the primary action
+                     buttons (Add Blank Page, Clear, Merge & Download).
+                ───────────────────────────────────────────────── -->
+                <div class="itp-toolbar">
+
+                    <!-- Metadata Input Group -->
+                    <div class="itp-meta-group">
+                        <input
+                            type="text"
+                            id="metaTitle"
+                            class="input-control"
+                            placeholder="PDF Title (optional)"
+                            aria-label="PDF document title">
+                        <input
+                            type="text"
+                            id="metaAuthor"
+                            class="input-control"
+                            placeholder="Author Name (optional)"
+                            aria-label="PDF author name">
+                        <input
+                            type="text"
+                            id="outputFileName"
+                            class="input-control"
+                            placeholder="Output file name (no .pdf)"
+                            aria-label="Output PDF file name without extension">
+                    </div>
+
+                    <!-- Action Buttons Group -->
+                    <div class="btn-area">
+                        <!-- Add Blank Page — inserts an A4 white divider page -->
+                        <button
+                            class="btn btn-info"
+                            onclick="addBlankPage()"
+                            title="Insert a blank A4 page as a divider"
+                            aria-label="Add a blank A4 page">
+                            <i class="fa-solid fa-file-circle-plus" aria-hidden="true"></i>
+                            Add Blank
+                        </button>
+
+                        <!-- Clear Workspace — removes all pages -->
+                        <button
+                            class="btn btn-danger"
+                            onclick="clearWorkspace()"
+                            title="Remove all pages from the workspace"
+                            aria-label="Clear all pages">
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                            Clear
+                        </button>
+
+                        <!-- Merge & Download — assembles and saves the final PDF -->
+                        <button
+                            class="btn btn-primary bg-btn-export"
+                            onclick="mergeAndDownload()"
+                            title="Merge all pages and download the PDF"
+                            aria-label="Merge all pages and download PDF">
+                            <i class="fa-solid fa-file-export" aria-hidden="true"></i>
+                            Merge &amp; Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ─────────────────────────────────────────────
+                     SORTABLE PAGE GRID
+                     #pdfGrid is the SortableJS target. Thumbnail
+                     cards (.itp-page-card) are dynamically injected
+                     by JavaScript as files are loaded.
+                ───────────────────────────────────────────────── -->
+                <div
+                    id="pdfGrid"
+                    class="itp-image-grid"
+                    role="list"
+                    aria-label="PDF pages — drag to reorder">
+                    <!-- Thumbnail cards injected here by addPageToGrid() in script.js -->
+                </div>
+
+            </div>
+            <!-- /workspace -->
+
+        </section>
+        <!-- /Primary Tool Card -->
+
+        <!-- ===============================================================
+             HOW IT WORKS — SEO INFO CARD
+             Uses the standard .info-card component from tools-template.css.
+             The two-column layout (text + image) uses .itp-info-panel class.
+        =============================================================== -->
+        <article class="info-card" aria-label="How Ultra PDF AI works">
+
+            <!-- Side-by-side info panel layout -->
+            <div class="itp-info-panel">
+
+                <!-- Text column -->
+                <div class="itp-info-text">
+                    <h2>
+                        <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                        How It Works (God Mode)
+                    </h2>
+                    <p>
+                        Unlike standard PDF tools that upload your sensitive documents to a
+                        server, <strong>Ultra PDF AI</strong> uses WebAssembly technology
+                        (<span class="tech-highlight">pdf-lib</span> &amp;
+                        <span class="tech-highlight">pdf.js</span>) to process everything
+                        directly inside your browser.
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Visual Sorting:</strong> Pages render as thumbnails.
+                            Drag them to change their order before merging.
+                        </li>
+                        <li>
+                            <strong>Hybrid Merging:</strong> Mix PDF pages and image files
+                            (JPG/PNG) in the same export document.
+                        </li>
+                        <li>
+                            <strong>Blank Pages:</strong> Insert blank A4 divider pages
+                            anywhere in the document structure.
+                        </li>
+                        <li>
+                            <strong>Zero Latency:</strong> No server round-trip. Processing
+                            is instant and entirely local.
+                        </li>
+                        <li>
+                            <strong>Privacy First:</strong> Your files never leave your
+                            device — perfect for confidential documents.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Illustration column -->
+                <div class="itp-info-visual" aria-hidden="true">
+                    <img
+                        src="../../assets/tools/pdf/pdf-merger/img/secure-data.webp"
+                        alt="Illustration showing secure local data processing with no server upload"
+                        loading="lazy">
+                </div>
+
+            </div>
+        </article>
+
+        <!-- ===============================================================
+             AD SLOT
+             Managed by the global ads-manager.js module.
+        =============================================================== -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- ===============================================================
+             RELATED TOOLS SECTION
+             Dynamically populated by the related-tools.js module based
+             on the data-category and data-current-page attributes.
+        =============================================================== -->
+        <div class="container mb-30">
+            <div
+                id="dynamic-related-tools"
+                data-category="pdf"
+                data-current-page="pdf-merger.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- /main -->
+
+    <!-- ===================================================================
+         GLOBAL FOOTER
+         Populated at runtime by the global.js module.
+    =================================================================== -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ===================================================================
+         TOOL CORE LOGIC
+         Depends on: pdf-lib (manipulation), pdf.js (rendering),
+                     SortableJS (drag-and-drop).
+         Must load after all library scripts in <head>.
+    =================================================================== -->
+    <script src="../../assets/tools/pdf/pdf-merger/script.js"></script>
+
+    <!-- Global Ads Manager (DO NOT MODIFY) -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global Site Infrastructure — Header, Footer, Toast, Theme (DO NOT MODIFY) -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

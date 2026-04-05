@@ -1,0 +1,33 @@
+# === ১. গ্লোবাল সেটিংস (সকল পেজের জন্য) ===
+/*
+  # ব্রাউজারকে বাধ্য করা হবে সবসময় HTTPS ব্যবহার করতে (HSTS - 1 Year)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # অন্য সাইট আপনার সাইটকে iframe এ দেখাতে পারবে না (Clickjacking রোধ)
+  X-Frame-Options: DENY
+
+  # ভুল MIME টাইপ ব্লক করা (Security)
+  X-Content-Type-Options: nosniff
+
+  # XSS অ্যাটাক প্রতিরোধ (Legacy Browser Support)
+  X-XSS-Protection: 1; mode=block
+
+  # ইউজার ডাটা প্রাইভেসি (Referrer Policy)
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # ডিফল্ট ক্যাশ: HTML ফাইল সবসময় সার্ভার থেকে চেক করবে (যাতে ইউজাররা আপডেট সাথে সাথে পায়)
+  Cache-Control: public, max-age=0, must-revalidate
+
+# === ২. স্ট্যাটিক অ্যাসেট (সুপার ফাস্ট স্পিড) ===
+# ছবি, CSS এবং JS ফাইল ১ বছরের জন্য ক্যাশ হবে (কারণ এগুলো ঘনঘন বদলায় না)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# === ৩. বিশেষ ফাইল ===
+# সাইটম্যাপ সবসময় ফ্রেশ থাকা জরুরি
+/sitemap.xml
+  Cache-Control: public, max-age=0, must-revalidate
+
+# রোবট ফাইলও ফ্রেশ থাকা ভালো
+/robots.txt
+  Cache-Control: public, max-age=0, must-revalidate

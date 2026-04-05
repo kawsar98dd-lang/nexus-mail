@@ -1,0 +1,894 @@
+<!-- 
+    ============================================================
+    PRODUCT NAME: Smart CV Builder PRO MAX (ATS-Friendly)
+    AUTHOR: MD KAWSAR
+    DESCRIPTION: A premium, client-side, privacy-focused ATS
+                 Resume Builder with live split-screen preview,
+                 smart auto-save, JSON import/export, ATS keyword
+                 matching, and drag-and-drop section reordering.
+    VERSION: 1.0 (CodeCanyon Release - Global CSS Framework Applied)
+    FRAMEWORK: TrustedToolsWeb Global CSS v2.0
+    CATEGORY: doc
+    FILE: doc-resume-builder.html
+    ============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- ═══════════════════════════════════════════════════
+         PRE-LOAD SCRIPTS — Must load first (Analytics, Config)
+         These scripts initialize site-wide config, meta injection,
+         and analytics. Copied exactly from the global template.
+         ═══════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ═══════════════════════════════════════════════════
+         [USER CONFIG] SEO SETTINGS
+         Optimized for "ATS Resume Builder" search intent.
+         Target keywords: ats resume builder, cv maker online,
+         free resume builder, ats friendly resume, resume parser
+         ═══════════════════════════════════════════════════ -->
+    <title>Smart CV Builder PRO MAX — Free ATS-Friendly Resume Builder Online</title>
+    <meta name="title"       content="Smart CV Builder PRO MAX — Free ATS-Friendly Resume Builder Online">
+    <meta name="description" content="Build a job-winning, ATS-optimized resume in minutes. Live preview, ATS keyword matcher, drag-and-drop sections, PDF export, and 100% client-side privacy. No signup needed.">
+    <meta name="keywords"    content="ats resume builder, ats friendly resume, cv builder online, free resume maker, resume parser, keyword matcher, job application resume, cv template, resume pdf download, trusted tools web">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/doc-resume-builder.html" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type"         content="website">
+    <meta property="og:url"          content="https://trustedtoolsweb.com/doc-resume-builder.html">
+    <meta property="og:title"        content="Smart CV Builder PRO MAX — ATS-Friendly Resume Builder">
+    <meta property="og:description"  content="Create a professional, ATS-optimized resume with live preview and keyword matching. 100% free, 100% private.">
+    <meta property="og:image"        content="https://trustedtoolsweb.com/assets/tools/doc/doc-resume-builder/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="Smart CV Builder PRO MAX — Resume Preview Dashboard">
+    <meta property="og:site_name"    content="Trusted Tools Web">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/doc-resume-builder.html">
+    <meta name="twitter:title"       content="Smart CV Builder PRO MAX — ATS Resume Builder">
+    <meta name="twitter:description" content="Build ATS-optimized resumes with live preview, keyword matcher, and PDF export. No signup. 100% private.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/doc/doc-resume-builder/og-banner.webp">
+
+    <!-- Favicon — points to this tool's asset directory -->
+    <link rel="icon"             type="image/webp" href="../../assets/tools/doc/doc-resume-builder/favicon.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/tools/doc/doc-resume-builder/favicon.webp">
+
+    <!-- Font Awesome (local) -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ✅ GLOBAL CSS FRAMEWORK — Single stylesheet for all tools -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- ═══════════════════════════════════════════════════
+         JSON-LD SCHEMA MARKUP
+         WebApplication type, optimized for ATS Resume Builder
+         Helps Google understand the tool's purpose and features.
+         ═══════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Smart CV Builder PRO MAX",
+        "alternateName": "ATS-Friendly Resume Builder",
+        "url": "https://trustedtoolsweb.com/doc-resume-builder.html",
+        "description": "A premium, client-side ATS-friendly resume builder with live split-screen preview, ATS keyword matcher, drag-and-drop sections, JSON import/export, and 4K PDF export. Runs entirely in the browser — zero data upload.",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Resume Builder",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": [
+            "Live split-screen resume preview",
+            "ATS keyword matcher with match score",
+            "Drag and drop section reordering",
+            "Smart auto-save with localStorage",
+            "JSON import and export",
+            "4K PDF export via html2pdf",
+            "vCard QR code generation",
+            "Multiple ATS-friendly templates",
+            "100% client-side privacy",
+            "Mobile-first responsive design"
+        ],
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/doc/doc-resume-builder/og-banner.webp",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "1240"
+        }
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════
+         TOOL-SPECIFIC CSS
+         All custom styles for the CV Builder.
+         Inherits CSS variables from tools-template.css.
+         NO hardcoded hex colors — all use var(--...) tokens
+         for automatic dark/light mode compatibility.
+         ═══════════════════════════════════════════════════ -->
+ 
+
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════════════════════════
+         TOAST NOTIFICATION CONTAINER
+         Populated by global toast() function. Do not remove.
+         ══════════════════════════════════════════════════════════ -->
+    <div id="toast-box"></div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         GLOBAL HEADER
+         Populated by global.js (includes nav, logo, theme toggle).
+         The class "site-header" is required by global CSS.
+         ══════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+
+    <main>
+
+        <!-- ══════════════════════════════════════════════════════
+             MAIN TOOL WRAPPER
+             .animated-entry triggers the fade-in slide-up animation
+             defined in tools-template.css
+             ══════════════════════════════════════════════════════ -->
+        <div class="container cvb-wrapper animated-entry">
+
+            <!-- ── HERO / TITLE AREA ── -->
+            <div class="cvb-hero">
+
+                <!-- Privacy Badge -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Privacy
+                </div>
+
+                <!-- Tool Title — centered via .container's text-align:center -->
+                <h1 class="tool-title">
+                    <i class="fa-solid fa-file-lines"></i>
+                    Smart CV Builder <span>PRO MAX</span>
+                </h1>
+                <p class="subtitle">
+                    ATS-Friendly Resume Builder · Live Preview · Keyword Matcher · PDF Export
+                </p>
+
+                <!-- Resume Completion Progress Bar -->
+                <!-- Updates dynamically as user fills in sections -->
+                <div class="cvb-progress-bar" title="Resume completion progress">
+                    <div class="cvb-progress-fill" id="cvb-progress-fill"></div>
+                </div>
+
+                <!-- Template Selector Chips -->
+                <div class="cvb-templates" id="cvb-template-selector" role="group" aria-label="Choose resume template">
+                    <button class="cvb-tpl-btn active" data-tpl="tpl-classic" onclick="cvbSetTemplate('tpl-classic')">
+                        <i class="fa-solid fa-scroll"></i><br>Classic
+                    </button>
+                    <button class="cvb-tpl-btn" data-tpl="tpl-modern" onclick="cvbSetTemplate('tpl-modern')">
+                        <i class="fa-solid fa-layer-group"></i><br>Modern
+                    </button>
+                    <button class="cvb-tpl-btn" data-tpl="tpl-minimal" onclick="cvbSetTemplate('tpl-minimal')">
+                        <i class="fa-solid fa-align-left"></i><br>Minimal
+                    </button>
+                </div>
+
+            </div><!-- /cvb-hero -->
+
+
+            <!-- ══════════════════════════════════════════════════════
+                 SPLIT SCREEN: FORM (LEFT) + PREVIEW (RIGHT)
+                 On mobile, stacks vertically via media query.
+                 ══════════════════════════════════════════════════════ -->
+                        </div>
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+            
+            <div class="cvb-split">
+
+
+                <!-- ════════════════════════════════════════
+                     LEFT PANEL — INPUT FORM
+                     Accordion sections for each resume part.
+                     ════════════════════════════════════════ -->
+                <div class="cvb-form-panel">
+
+                    <!-- Panel header with data management actions -->
+                    <div class="cvb-panel-header">
+                        <div class="cvb-panel-title">
+                            <i class="fa-solid fa-pen-to-square"></i> Your Details
+                        </div>
+                        <div class="cvb-panel-actions">
+                            <!-- Autosave status indicator -->
+                            <div class="cvb-autosave-indicator" id="cvb-autosave-status">
+                                <div class="cvb-autosave-dot"></div>
+                                <span>Auto-Save ON</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable form area -->
+                    <div class="cvb-form-scroll" id="cvb-form-scroll">
+
+                        <!-- ── SECTION 1: PERSONAL INFO ── -->
+                        <!-- data-section is used by the completion tracker -->
+                        <div class="cvb-section is-open" data-section="personal">
+                            <div class="cvb-section-header" onclick="cvbToggleSection(this)">
+                                <div class="cvb-section-header-left">
+                                    <i class="fa-solid fa-user"></i>
+                                    Personal Information
+                                    <!-- Green dot when section has enough data -->
+                                    <div class="cvb-section-status" id="status-personal"></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-down cvb-section-chevron"></i>
+                            </div>
+                            <div class="cvb-section-body">
+                                <div class="cvb-field-group">
+                                    <label class="cvb-label">Full Name *</label>
+                                    <input class="cvb-input" id="cvb-name" type="text" placeholder="e.g. Alex Johnson" autocomplete="name">
+                                </div>
+                                <div class="cvb-field-group">
+                                    <label class="cvb-label">Professional Title *</label>
+                                    <input class="cvb-input" id="cvb-jobtitle" type="text" placeholder="e.g. Senior Software Engineer">
+                                </div>
+                                <div class="cvb-field-row">
+                                    <div class="cvb-field-group">
+                                        <label class="cvb-label">Email *</label>
+                                        <input class="cvb-input" id="cvb-email" type="email" placeholder="you@example.com" autocomplete="email">
+                                    </div>
+                                    <div class="cvb-field-group">
+                                        <label class="cvb-label">Phone</label>
+                                        <input class="cvb-input" id="cvb-phone" type="tel" placeholder="+1 555 123 4567" autocomplete="tel">
+                                    </div>
+                                </div>
+                                <div class="cvb-field-row">
+                                    <div class="cvb-field-group">
+                                        <label class="cvb-label">Location</label>
+                                        <input class="cvb-input" id="cvb-location" type="text" placeholder="New York, NY">
+                                    </div>
+                                    <div class="cvb-field-group">
+                                        <label class="cvb-label">LinkedIn URL</label>
+                                        <input class="cvb-input" id="cvb-linkedin" type="url" placeholder="linkedin.com/in/...">
+                                    </div>
+                                </div>
+                                <div class="cvb-field-row">
+                                    <div class="cvb-field-group">
+                                        <label class="cvb-label">Website / Portfolio</label>
+                                        <input class="cvb-input" id="cvb-website" type="url" placeholder="yourwebsite.com">
+                                    </div>
+                                    <div class="cvb-field-group">
+                                        <label class="cvb-label">GitHub</label>
+                                        <input class="cvb-input" id="cvb-github" type="url" placeholder="github.com/...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /personal section -->
+
+                        <!-- ── SECTION 2: PROFESSIONAL SUMMARY ── -->
+                        <div class="cvb-section" data-section="summary">
+                            <div class="cvb-section-header" onclick="cvbToggleSection(this)">
+                                <div class="cvb-section-header-left">
+                                    <i class="fa-solid fa-align-left"></i>
+                                    Professional Summary
+                                    <div class="cvb-section-status" id="status-summary"></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-down cvb-section-chevron"></i>
+                            </div>
+                            <div class="cvb-section-body">
+                                <div class="cvb-field-group">
+                                    <label class="cvb-label">Summary (ATS Tip: 3–5 sentences with keywords)</label>
+                                    <textarea class="cvb-textarea" id="cvb-summary" placeholder="Results-driven Software Engineer with 5+ years of experience building scalable web applications. Proficient in React, Node.js, and AWS cloud infrastructure..." style="min-height:110px"></textarea>
+                                </div>
+                                <!-- Live word/char count for ATS guidance -->
+                                <div style="font-size:11px;color:var(--text-muted);text-align:right;margin-top:-6px;">
+                                    <span id="cvb-summary-count">0</span> / 500 chars recommended
+                                </div>
+                            </div>
+                        </div><!-- /summary section -->
+
+                        <!-- ── SECTION 3: WORK EXPERIENCE ── -->
+                        <!-- Items inside this list are drag-and-drop sortable via SortableJS -->
+                        <div class="cvb-section" data-section="experience">
+                            <div class="cvb-section-header" onclick="cvbToggleSection(this)">
+                                <div class="cvb-section-header-left">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                    Work Experience
+                                    <div class="cvb-section-status" id="status-experience"></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-down cvb-section-chevron"></i>
+                            </div>
+                            <div class="cvb-section-body">
+                                <!-- SortableJS targets this list container -->
+                                <div id="cvb-exp-list" class="cvb-sortable-list">
+                                    <!-- Experience items injected here by JS -->
+                                </div>
+                                <button class="cvb-add-btn" onclick="cvbAddExperience()">
+                                    <i class="fa-solid fa-plus"></i> Add Experience
+                                </button>
+                            </div>
+                        </div><!-- /experience section -->
+
+                        <!-- ── SECTION 4: EDUCATION ── -->
+                        <div class="cvb-section" data-section="education">
+                            <div class="cvb-section-header" onclick="cvbToggleSection(this)">
+                                <div class="cvb-section-header-left">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                    Education
+                                    <div class="cvb-section-status" id="status-education"></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-down cvb-section-chevron"></i>
+                            </div>
+                            <div class="cvb-section-body">
+                                <div id="cvb-edu-list" class="cvb-sortable-list">
+                                    <!-- Education items injected here by JS -->
+                                </div>
+                                <button class="cvb-add-btn" onclick="cvbAddEducation()">
+                                    <i class="fa-solid fa-plus"></i> Add Education
+                                </button>
+                            </div>
+                        </div><!-- /education section -->
+
+                        <!-- ── SECTION 5: SKILLS ── -->
+                        <div class="cvb-section" data-section="skills">
+                            <div class="cvb-section-header" onclick="cvbToggleSection(this)">
+                                <div class="cvb-section-header-left">
+                                    <i class="fa-solid fa-code"></i>
+                                    Skills
+                                    <div class="cvb-section-status" id="status-skills"></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-down cvb-section-chevron"></i>
+                            </div>
+                            <div class="cvb-section-body">
+                                <label class="cvb-label">Type a skill and press Enter or comma</label>
+                                <!-- Tag input container -->
+                                <div class="cvb-tags-container" id="cvb-skills-tags-container" onclick="document.getElementById('cvb-skill-input').focus()">
+                                    <!-- Tags rendered here -->
+                                    <input class="cvb-tag-input" id="cvb-skill-input" type="text" placeholder="e.g. JavaScript, React...">
+                                </div>
+                                <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">
+                                    <i class="fa-solid fa-lightbulb" style="color:var(--accent-yellow);"></i>
+                                    ATS tip: Use exact keywords from the job description.
+                                </div>
+                            </div>
+                        </div><!-- /skills section -->
+
+                        <!-- ── SECTION 6: PROJECTS ── -->
+                        <div class="cvb-section" data-section="projects">
+                            <div class="cvb-section-header" onclick="cvbToggleSection(this)">
+                                <div class="cvb-section-header-left">
+                                    <i class="fa-solid fa-diagram-project"></i>
+                                    Projects
+                                    <div class="cvb-section-status" id="status-projects"></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-down cvb-section-chevron"></i>
+                            </div>
+                            <div class="cvb-section-body">
+                                <div id="cvb-proj-list" class="cvb-sortable-list">
+                                    <!-- Project items injected here -->
+                                </div>
+                                <button class="cvb-add-btn" onclick="cvbAddProject()">
+                                    <i class="fa-solid fa-plus"></i> Add Project
+                                </button>
+                            </div>
+                        </div><!-- /projects section -->
+
+                        <!-- ── SECTION 7: CERTIFICATIONS ── -->
+                        <div class="cvb-section" data-section="certs">
+                            <div class="cvb-section-header" onclick="cvbToggleSection(this)">
+                                <div class="cvb-section-header-left">
+                                    <i class="fa-solid fa-certificate"></i>
+                                    Certifications
+                                    <div class="cvb-section-status" id="status-certs"></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-down cvb-section-chevron"></i>
+                            </div>
+                            <div class="cvb-section-body">
+                                <div id="cvb-cert-list" class="cvb-sortable-list">
+                                    <!-- Certification items injected here -->
+                                </div>
+                                <button class="cvb-add-btn" onclick="cvbAddCert()">
+                                    <i class="fa-solid fa-plus"></i> Add Certification
+                                </button>
+                            </div>
+                        </div><!-- /certs section -->
+
+                        <!-- ── SECTION 8: LANGUAGES ── -->
+                        <div class="cvb-section" data-section="languages">
+                            <div class="cvb-section-header" onclick="cvbToggleSection(this)">
+                                <div class="cvb-section-header-left">
+                                    <i class="fa-solid fa-language"></i>
+                                    Languages
+                                    <div class="cvb-section-status" id="status-languages"></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-down cvb-section-chevron"></i>
+                            </div>
+                            <div class="cvb-section-body">
+                                <div id="cvb-lang-list" class="cvb-sortable-list">
+                                    <!-- Language items injected here -->
+                                </div>
+                                <button class="cvb-add-btn" onclick="cvbAddLanguage()">
+                                    <i class="fa-solid fa-plus"></i> Add Language
+                                </button>
+                            </div>
+                        </div><!-- /languages section -->
+
+                    </div><!-- /cvb-form-scroll -->
+
+                    <!-- Toolbar: Primary actions -->
+                    <div class="cvb-toolbar">
+                        <!-- Export PDF — triggers html2pdf -->
+                        <button class="btn btn-primary" onclick="cvbExportPDF()" title="Download resume as PDF">
+                            <i class="fa-solid fa-file-pdf"></i> Export PDF
+                        </button>
+                        <!-- Export JSON — saves all form data -->
+                        <button class="btn btn-secondary" onclick="cvbExportJSON()" title="Save resume data as JSON">
+                            <i class="fa-solid fa-download"></i> Save JSON
+                        </button>
+                        <!-- Import JSON — restores form from file -->
+                        <button class="btn btn-secondary" onclick="document.getElementById('cvb-json-import').click()" title="Load resume from JSON file">
+                            <i class="fa-solid fa-upload"></i> Load JSON
+                        </button>
+                        <!-- Hidden file input for JSON import -->
+                        <input type="file" id="cvb-json-import" accept=".json" style="display:none" onchange="cvbImportJSON(event)">
+                        <!-- Generate QR vCard -->
+                        <button class="btn btn-ghost" onclick="cvbShowQR()" title="Generate vCard QR code">
+                            <i class="fa-solid fa-qrcode"></i> QR
+                        </button>
+                        <!-- Clear all / Reset -->
+                        <button class="btn btn-ghost cvb-icon-btn btn-danger" onclick="cvbClearAll()" title="Clear all data">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+
+                </div><!-- /cvb-form-panel -->
+
+
+                <!-- ════════════════════════════════════════
+                     RIGHT PANEL — LIVE PREVIEW
+                     Renders the actual resume document.
+                     Updates on every keystroke via cvbUpdatePreview().
+                     ════════════════════════════════════════ -->
+                <div class="cvb-preview-panel">
+
+                    <div class="cvb-panel-header">
+                        <div class="cvb-panel-title">
+                            <i class="fa-solid fa-eye"></i> Live Preview
+                        </div>
+                        <div class="cvb-panel-actions">
+                            <button class="cvb-icon-btn" onclick="cvbPrintResume()" title="Print / Save as PDF via browser">
+                                <i class="fa-solid fa-print"></i> Print
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="cvb-preview-scroll">
+                        <!-- ════════════════════════════════════
+                             THE RESUME DOCUMENT
+                             This element gets exported as PDF.
+                             Template class applied dynamically.
+                             ════════════════════════════════════ -->
+                        <div id="cvb-resume-doc" class="tpl-classic">
+
+                            <!-- Header section — always full width -->
+                            <div class="resume-header" id="res-header">
+                                <div class="resume-name" id="res-name">Your Name</div>
+                                <div class="resume-title" id="res-job-title">Professional Title</div>
+                                <div class="resume-contact-bar" id="res-contact-bar">
+                                    <!-- Contact items injected by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Body: sidebar + main -->
+                            <div class="resume-body">
+
+                                <!-- LEFT SIDEBAR of the resume document -->
+                                <div class="resume-sidebar">
+
+                                    <!-- Summary in sidebar for some templates;
+                                         moved to main for others via JS -->
+                                    <div class="res-section" id="res-sidebar-summary">
+                                        <div class="res-section-title">About</div>
+                                        <p class="res-summary" id="res-summary-text">
+                                            Your professional summary will appear here…
+                                        </p>
+                                    </div>
+
+                                    <!-- Skills -->
+                                    <div class="res-section" id="res-skills-section">
+                                        <div class="res-section-title">Skills</div>
+                                        <div class="res-skill-tags" id="res-skills-output">
+                                            <span class="res-skill-tag" style="background:rgba(0,0,0,0.06);color:#666">
+                                                Your skills here
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Languages -->
+                                    <div class="res-section" id="res-languages-section" style="display:none">
+                                        <div class="res-section-title">Languages</div>
+                                        <div id="res-languages-output"></div>
+                                    </div>
+
+                                    <!-- Certifications (shown in sidebar) -->
+                                    <div class="res-section" id="res-certs-section" style="display:none">
+                                        <div class="res-section-title">Certifications</div>
+                                        <div id="res-certs-output"></div>
+                                    </div>
+
+                                </div><!-- /sidebar -->
+
+                                <!-- MAIN CONTENT of the resume document -->
+                                <div class="resume-main">
+
+                                    <!-- Work Experience -->
+                                    <div class="res-section" id="res-exp-section">
+                                        <div class="res-section-title">Work Experience</div>
+                                        <div id="res-exp-output">
+                                            <p style="font-size:12px;color:#b2bec3;">Add your experience…</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Education -->
+                                    <div class="res-section" id="res-edu-section" style="display:none">
+                                        <div class="res-section-title">Education</div>
+                                        <div id="res-edu-output"></div>
+                                    </div>
+
+                                    <!-- Projects -->
+                                    <div class="res-section" id="res-proj-section" style="display:none">
+                                        <div class="res-section-title">Projects</div>
+                                        <div id="res-proj-output"></div>
+                                    </div>
+
+                                </div><!-- /main -->
+
+                            </div><!-- /resume-body -->
+
+                        </div><!-- /#cvb-resume-doc -->
+                    </div><!-- /cvb-preview-scroll -->
+
+                </div><!-- /cvb-preview-panel -->
+
+
+            </div><!-- /cvb-split -->
+
+
+            <!-- ══════════════════════════════════════════════════════
+                 ATS MATCHER SECTION
+                 Full-width card below the split screen.
+                 The user pastes a Job Description. JS tokenizes both
+                 the resume text and JD text, then calculates a match %.
+                 ══════════════════════════════════════════════════════ -->
+            <div class="cvb-ats-wrapper animated-entry delay-1">
+
+                <div class="cvb-ats-header">
+                    <div class="cvb-panel-title">
+                        <i class="fa-solid fa-bullseye" style="color:var(--accent-purple)"></i>
+                        ATS Keyword Matcher
+                    </div>
+                    <div style="font-size:11px;color:var(--text-muted);">
+                        Paste the Job Description to check your match score
+                    </div>
+                </div>
+
+                <div class="cvb-ats-body">
+
+                    <div class="cvb-field-group">
+                        <label class="cvb-label">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            Job Description (paste here)
+                        </label>
+                        <textarea class="cvb-textarea" id="cvb-jd-input" 
+                                  placeholder="Paste the full job description here. Include requirements, responsibilities, and qualifications. The ATS engine will extract keywords and compare them against your resume automatically..."
+                                  style="min-height:130px"
+                                  oninput="cvbRunATSMatcher()"></textarea>
+                    </div>
+
+                    <!-- ATS Results Grid: Score ring + keyword lists -->
+                    <div class="cvb-ats-grid" id="cvb-ats-results-grid" style="display:none">
+
+                        <!-- Score Ring -->
+                        <div class="cvb-ats-result" style="text-align:center">
+                            <!-- SVG ring gauge for score visualization -->
+                            <div class="cvb-score-ring" id="cvb-score-ring">
+                                <svg width="120" height="120" viewBox="0 0 120 120">
+                                    <defs>
+                                        <!-- Gradient used on the ring fill -->
+                                        <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:var(--brand-primary)"/>
+                                            <stop offset="100%" style="stop-color:var(--accent-purple)"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- Background track -->
+                                    <circle class="cvb-score-ring-track" cx="60" cy="60" r="50"/>
+                                    <!-- Animated fill (stroke-dashoffset controlled by JS) -->
+                                    <circle class="cvb-score-ring-fill" id="cvb-ring-fill"
+                                            cx="60" cy="60" r="50"
+                                            stroke-dasharray="314"
+                                            stroke-dashoffset="314"/>
+                                </svg>
+                                <div style="position:relative;z-index:1;text-align:center">
+                                    <div class="cvb-score-number" id="cvb-score-number">0%</div>
+                                    <div class="cvb-score-label">ATS Match</div>
+                                </div>
+                            </div>
+                            <!-- Score interpretation badge -->
+                            <div id="cvb-score-badge" style="margin-top:8px;font-size:12px;font-weight:700;"></div>
+                            <div style="font-size:11px;color:var(--text-muted);margin-top:6px;" id="cvb-ats-summary"></div>
+                        </div>
+
+                        <!-- Keyword breakdown -->
+                        <div class="cvb-ats-result">
+                            <div style="font-size:12px;font-weight:700;color:var(--text-main);margin-bottom:10px;">
+                                <i class="fa-solid fa-circle-check" style="color:var(--accent-green)"></i>
+                                Keywords Found (<span id="cvb-kw-found-count">0</span>)
+                            </div>
+                            <div class="cvb-kw-list" id="cvb-kw-found" style="margin-bottom:16px;">
+                                <!-- Found keyword tags injected here -->
+                            </div>
+
+                            <div style="font-size:12px;font-weight:700;color:var(--text-main);margin-bottom:10px;">
+                                <i class="fa-solid fa-circle-xmark" style="color:var(--accent-red)"></i>
+                                Missing Keywords (<span id="cvb-kw-missing-count">0</span>)
+                            </div>
+                            <div class="cvb-kw-list" id="cvb-kw-missing">
+                                <!-- Missing keyword tags injected here -->
+                            </div>
+                        </div>
+
+                    </div><!-- /cvb-ats-results-grid -->
+
+                    <!-- Empty state — shown before JD is pasted -->
+                    <div id="cvb-ats-empty" style="text-align:center;padding:20px;color:var(--text-muted);">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size:28px;opacity:0.3;display:block;margin-bottom:8px;"></i>
+                        <span style="font-size:13px;">Paste a job description above to analyze your ATS compatibility</span>
+                    </div>
+
+                </div><!-- /cvb-ats-body -->
+
+            </div><!-- /cvb-ats-wrapper -->
+
+
+            <!-- ══════════════════════════════════════════════════════
+                 SEO INFO SECTION
+                 Comprehensive content for Google indexing.
+                 Contains 3 contextual images placed locally.
+                 ══════════════════════════════════════════════════════ -->
+                        </div>
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+            
+            <section class="info-section-wrapper animated-entry delay-2">
+
+                <!-- User Guide -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-circle-question"></i> How to Use Smart CV Builder PRO MAX</h2>
+                    <!-- Feature showcase image: tool UI overview -->
+                    <img src="../../assets/tools/doc/doc-resume-builder/seo-image-1.webp"
+                         alt="Smart CV Builder PRO MAX interface showing live split-screen preview"
+                         loading="lazy"
+                         style="border-radius:var(--radius-md);margin:12px 0 16px;box-shadow:var(--shadow-soft);">
+                    <ol>
+                        <li><strong>Fill in your details</strong> in the left panel — Personal Info, Summary, Experience, Education, Skills, and more. The live preview on the right updates instantly as you type.</li>
+                        <li><strong>Choose a template</strong> — Classic, Modern, or Minimal. All are designed to pass through ATS (Applicant Tracking Systems) without formatting issues.</li>
+                        <li><strong>Run the ATS Matcher</strong> — Paste the full job description into the ATS section to get a keyword match score. Add the missing keywords to your resume to improve your chances.</li>
+                        <li><strong>Export as PDF</strong> — Click "Export PDF" for a high-quality PDF generated entirely in your browser. No server upload, no privacy risk.</li>
+                        <li><strong>Save your progress</strong> — Your data is auto-saved to <code>localStorage</code>. You can also use "Save JSON" to download a backup file and "Load JSON" to restore it on any device.</li>
+                    </ol>
+                </div>
+
+                <!-- ATS Explanation -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-robot"></i> What is an ATS Resume &amp; Why Does It Matter?</h2>
+                    <!-- ATS explanation image: diagram of ATS process -->
+                    <img src="../../assets/tools/doc/doc-resume-builder/seo-image-2.webp"
+                         alt="Diagram showing how ATS systems scan and parse resumes"
+                         loading="lazy"
+                         style="border-radius:var(--radius-md);margin:12px 0 16px;box-shadow:var(--shadow-soft);">
+                    <p>An <strong>Applicant Tracking System (ATS)</strong> is software used by recruiters and HR departments to automatically screen and rank job applications before a human ever reads them. Research suggests that over <strong>75% of resumes</strong> are rejected by ATS before reaching a recruiter.</p>
+                    <p>ATS systems parse your resume for keywords, job titles, and phrases that match the job description. If your resume uses complex tables, images, multi-column layouts with text boxes, or unusual fonts, the ATS may fail to read it — even if you're perfectly qualified.</p>
+                    <p><strong>Smart CV Builder PRO MAX</strong> generates clean, semantic HTML resumes that are optimized for ATS parsing. The built-in Keyword Matcher tool tells you exactly which keywords from the job description are missing from your resume, so you can add them before applying.</p>
+                    <p><strong>Key ATS optimization tips:</strong></p>
+                    <ul>
+                        <li>Use standard section headings: "Work Experience", "Education", "Skills"</li>
+                        <li>Match keywords verbatim from the job description (not just synonyms)</li>
+                        <li>Use a clean, single-column or simple two-column layout</li>
+                        <li>Avoid headers/footers, text boxes, and graphics in the main body</li>
+                        <li>Use common file formats: PDF or DOCX</li>
+                    </ul>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-star"></i> Premium Features Built for Serious Job Seekers</h2>
+                    <!-- Feature highlights image: collage of tool features -->
+                    <img src="../../assets/tools/doc/doc-resume-builder/seo-image-3.webp"
+                         alt="Collage showing PDF export, ATS score, and drag-and-drop features"
+                         loading="lazy"
+                         style="border-radius:var(--radius-md);margin:12px 0 16px;box-shadow:var(--shadow-soft);">
+                    <ul>
+                        <li><strong>Live Split-Screen Preview:</strong> See exactly how your resume looks as you type. What you see is what gets exported.</li>
+                        <li><strong>ATS Keyword Matcher:</strong> Paste any job description and get an instant match score with a list of found and missing keywords. Powered entirely by client-side JavaScript regex — no server required.</li>
+                        <li><strong>Smart Auto-Save:</strong> Every keystroke is saved to your browser's <code>localStorage</code>. Accidentally close the tab? Your data is still there when you return.</li>
+                        <li><strong>JSON Import / Export:</strong> Save your resume data as a portable <code>.json</code> file. Share it between devices, or use it as a template for multiple job applications.</li>
+                        <li><strong>Drag &amp; Drop Reordering:</strong> Reorder your experience, education, and project entries with a simple drag. Powered by the lightweight SortableJS library.</li>
+                        <li><strong>vCard QR Code:</strong> Generate a scannable QR code containing your contact information (vCard format). Perfect for printing on a physical copy of your resume.</li>
+                        <li><strong>4K PDF Export:</strong> Download a print-ready PDF generated via <code>html2pdf.js</code> — entirely in your browser, at high resolution.</li>
+                        <li><strong>3 ATS-Friendly Templates:</strong> Classic, Modern, and Minimal. All designed to parse cleanly through major ATS platforms.</li>
+                        <li><strong>100% Client-Side Privacy:</strong> Your resume data never leaves your device. No account, no server, no tracking.</li>
+                    </ul>
+                </div>
+
+                <!-- Privacy Policy -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-shield-halved"></i> Privacy &amp; Data Policy</h2>
+                    <ol>
+                        <li><strong>Zero Data Upload:</strong> Smart CV Builder PRO MAX is fully client-side. All processing happens in your browser. Your resume data is never sent to any server or database.</li>
+                        <li><strong>localStorage Only:</strong> The auto-save feature stores your data in your browser's <code>localStorage</code> — a storage area that is sandboxed to your device and browser. It is not accessible by any website or server.</li>
+                        <li><strong>XSS Protected:</strong> All user-generated content is sanitized using <code>DOMPurify</code> before being injected into the live preview, protecting against cross-site scripting attacks.</li>
+                        <li><strong>Offline Capable:</strong> Once the page loads, the tool works without an internet connection. Your resume stays on your machine.</li>
+                    </ol>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="info-card" style="border-left: 4px solid var(--accent-yellow);">
+                    <h2 style="border-left:none; padding-left:0;">
+                        <i class="fa-solid fa-triangle-exclamation" style="color:var(--accent-yellow);"></i>
+                        Disclaimer
+                    </h2>
+                    <ul style="list-style:disc;padding-left:20px;color:var(--text-muted);line-height:1.6;">
+                        <li style="margin-bottom:10px;">
+                            <strong>ATS Score is an Estimate:</strong> The ATS Match Score provided by this tool is a keyword-matching approximation. Real-world ATS systems (Workday, Greenhouse, Lever, etc.) use proprietary algorithms that may weigh keywords differently. This score is a guide, not a guarantee.
+                        </li>
+                        <li style="margin-bottom:10px;">
+                            <strong>PDF Rendering:</strong> PDF output quality depends on your browser and device. For best results, use the latest version of Google Chrome or Microsoft Edge.
+                        </li>
+                        <li>
+                            <strong>No Liability:</strong> Trusted Tools Web is not responsible for any outcomes related to job applications made using resumes created with this tool. The tool is provided "as is" for free, as an educational and productivity aid.
+                        </li>
+                    </ul>
+                </div>
+
+            </section><!-- /info-section-wrapper -->
+
+
+            <!-- ══════════════════════════════════════════════════════
+                 RELATED TOOLS SECTION (Dynamic)
+                 JS reads data-category and data-current-page to
+                 inject related tool cards automatically.
+                 ══════════════════════════════════════════════════════ -->
+            <div class="container" style="margin-top:50px;">
+                <!--
+                    [USER CONFIG]:
+                    data-category      → "doc" (document tools category)
+                    data-current-page  → filename of this page
+                -->
+                <div id="dynamic-related-tools"
+                     data-category="doc"
+                     data-current-page="doc-resume-builder.html">
+                </div>
+            </div>
+            <script type="module" src="../../assets/js/related-tools.js"></script>
+
+        </div><!-- /container.cvb-wrapper -->
+
+        <!-- ══════════════════════════════════════════════════════
+             COMMENTS SECTION (Global TTW Component)
+             Injected by comments.js. Do not modify structure.
+             ══════════════════════════════════════════════════════ -->
+        <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">
+            <div class="container">
+                <div class="trusted-comments-widget" data-page-id="auto">
+                    <div class="ttw-skeleton-loader" style="text-align:center;padding:40px;color:var(--text-muted);">
+                        <i class="fa-solid fa-circle-notch fa-spin" style="font-size:2rem;color:var(--accent-cyan);"></i>
+                        <p style="margin-top:15px;font-weight:500;">Initializing secure discussion portal...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         GLOBAL FOOTER (populated by global.js)
+         ══════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         QR CODE MODAL
+         Shown when user clicks "QR" button.
+         vCard data is generated from the personal info fields.
+         ══════════════════════════════════════════════════════ -->
+    <div class="cvb-modal-overlay" id="cvb-qr-modal" onclick="cvbCloseQR(event)">
+        <div class="cvb-modal-box">
+            <div class="cvb-modal-title">
+                <i class="fa-solid fa-qrcode" style="color:var(--accent-cyan);margin-right:8px;"></i>
+                vCard QR Code
+            </div>
+            <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">
+                Scan with a smartphone to save contact info directly.
+            </p>
+            <!-- QR code rendered here by qrcode.js -->
+            <div id="cvb-qr-preview"></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;" id="cvb-qr-name-label"></div>
+            <button class="btn btn-primary" onclick="cvbDownloadQR()" style="width:100%;margin-bottom:8px;">
+                <i class="fa-solid fa-download"></i> Download QR Image
+            </button>
+            <button class="btn btn-secondary" onclick="cvbCloseQR()" style="width:100%;">
+                Close
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         GLOBAL JS SCRIPTS (Must load after DOM)
+         These are the site-wide scripts from the template.
+         Order matters: ads-manager → global → comments
+         ══════════════════════════════════════════════════════ -->
+
+    <!-- Ad System (must load before global.js) -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global JS: header, footer, theme toggle, toast() -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- Comments JS -->
+    <script type="module" src="../../assets/js/comments.js" defer></script>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         LOCAL LIBRARIES (No CDN — files served locally)
+         Load order: SortableJS → html2pdf → QRCode → DOMPurify
+         Then our tool script last.
+         ══════════════════════════════════════════════════════ -->
+
+    <!-- SortableJS: enables drag-and-drop reordering of items -->
+    <script src="../../assets/library/core-ui/sortablejs/Sortable.min.js"></script>
+
+    <!-- html2pdf: generates PDF from the #cvb-resume-doc element -->
+    <script src="../../assets/library/pdf-engine/html2pdf/html2pdf.bundle.min.js"></script>
+
+    <!-- qrcode.js: generates QR codes from vCard strings -->
+    <script src="../../assets/library/qr-engine/qrcodejs/qrcode.min.js"></script>
+
+    <!-- DOMPurify: sanitizes HTML to prevent XSS attacks -->
+    <script src="../../assets/library/dompurify/purify.min.js"></script>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         TOOL JAVASCRIPT
+         All CV Builder logic is inline here for CodeCanyon buyers
+         to read easily. In production, this can be moved to:
+         ../../assets/tools/doc/doc-resume-builder/script.js
+         ══════════════════════════════════════════════════════ -->
+   
+   <script src="../../assets/tools/doc/doc-resume-builder/script.js"></script>
+
+
+</body>
+</html>

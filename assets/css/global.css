@@ -1,0 +1,2387 @@
+/* =========================================
+   1. GLOBAL VARIABLES (COLORS & THEME)
+   ========================================= */
+:root {
+    /* Main Theme Colors */
+    --primary-color: #ff0055;
+    --primary-hover: #ff4757;
+    --secondary-accent: #0abde3;
+    
+    /* Backgrounds */
+    --bg-dark: #0d0d0d;
+    --container-bg: #161b22;
+    --border-color: #30363d;
+    --text-color: #c9d1d9;
+    --input-bg: #0d1117;
+    
+    /* Footer Specific Colors (GLOW এর জন্য এগুলো জরুরি) */
+    --footer-bg-dark: #090c10;
+    --footer-text-muted: #8b949e;
+    --accent-color: #00e5ff;       /* Cyan Glow */
+    --accent-secondary: #d124ff;   /* Purple Glow */
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+/* =========================================
+   2. BASIC SETUP & HEADER
+   ========================================= */
+body { 
+    background-color: var(--bg-dark); 
+    color: var(--text-color); 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    min-height: 100vh; 
+    margin: 0; 
+    padding: 0;
+    padding-top: 80px; /* Header Height Fix */
+}
+
+/* Header Styles */
+.site-header {
+    position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+    background: rgba(9, 12, 16, 0.95); backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4); z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+}
+.header-content { max-width: 950px; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.header-logo { font-size: 24px; font-weight: 800; color: var(--text-color); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; text-decoration: none;}
+.header-logo span { color: var(--accent-secondary); }
+.header-logo i { color: var(--primary-color); }
+.home-btn { text-decoration: none; color: var(--accent-color); border: 1px solid var(--accent-color); padding: 8px 20px; border-radius: 6px; font-weight: 600; font-size: 14px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; background: rgba(0, 229, 255, 0.05); }
+.home-btn:hover { background: rgba(0, 229, 255, 0.2); box-shadow: 0 0 15px rgba(0, 229, 255, 0.3); transform: translateY(-2px); color: white; }
+
+/* =========================================
+   3. CYBER FOOTER (GLOW EFFECT FIXED)
+   ========================================= */
+.cyber-footer {
+    background-color: var(--footer-bg-dark);
+    padding: 60px 20px 30px;
+    margin-top: auto;
+    width: 100%;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 229, 255, 0.1);
+    box-sizing: border-box;
+}
+
+.relative-z { position: relative; z-index: 2; }
+
+/* Background Grid & Glow */
+.footer-bg-grid {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    mask-image: linear-gradient(to bottom, transparent, black 80%);
+    z-index: 0; pointer-events: none; opacity: 0.6;
+}
+
+.footer-glow-point {
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,229,255,0.2) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(50px); z-index: 0; pointer-events: none;
+}
+
+/* Moving Border Animation */
+.cyber-footer::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), var(--accent-secondary), transparent);
+    animation: border-flow 5s linear infinite; background-size: 200% 100%;
+}
+@keyframes border-flow { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+.footer-container { max-width: 950px; margin: 0 auto; display: flex; flex-direction: column; gap: 35px; }
+
+/* Brand */
+.footer-brand {
+    font-size: 1.8rem; font-weight: 800; color: white; margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 12px; text-transform: uppercase; letter-spacing: 1px;
+}
+.brand-icon { color: var(--accent-color); filter: drop-shadow(0 0 10px var(--accent-color)); }
+.brand-name .highlight { color: var(--accent-color); }
+.footer-tagline { font-size: 1rem; color: var(--footer-text-muted); margin: 0; letter-spacing: 0.5px; }
+
+/* --- GLASS PANEL (Links Container) --- */
+.glass-nav-panel {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    padding: 18px 25px; border-radius: 50px;
+    border: var(--glass-border);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 229, 255, 0.05);
+    position: relative; overflow: hidden;
+}
+.glass-nav-panel::after {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(to bottom right, transparent, transparent, rgba(255,255,255,0.1), transparent, transparent);
+    transform: rotate(45deg); animation: glass-shine 6s infinite linear; pointer-events: none;
+}
+@keyframes glass-shine { 0% { transform: translateX(-100%) rotate(45deg); } 100% { transform: translateX(100%) rotate(45deg); } }
+
+/* =========================================
+   3. CYBER FOOTER (CORRECTED LINKS)
+   ========================================= */
+.f-link {
+    color: #e6edf3;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.f-link i { font-size: 0.8rem; color: var(--accent-color); transition: 0.3s; }
+
+.f-link:hover {
+    background: var(--accent-color); 
+    color: #090c10; 
+    box-shadow: 0 0 25px var(--accent-color); 
+    border-color: var(--accent-color); 
+    transform: translateY(-3px) scale(1.05);
+}
+.f-link:hover i { color: #090c10; }
+
+/* =========================================
+   6. MOBILE RESPONSIVE FIX (THE FIX)
+   ========================================= */
+@media (max-width: 600px) {
+    /* এখানে column থেকে row করে দেওয়া হয়েছে যাতে পাশাপাশি থাকে */
+    .glass-nav-panel {
+        flex-direction: row !important; 
+        justify-content: center;
+        flex-wrap: wrap; /* জায়গা না থাকলে নিজে নিজেই নিচে নামবে */
+        padding: 15px 10px; 
+        gap: 8px;
+    }
+
+    /* width: 100% মুছে ফেলা হয়েছে */
+    .f-link {
+        width: auto !important; 
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    /* ফ্লোটিং বাটন ছোট করা হয়েছে যাতে ডিজাইন ঠিক থাকে */
+    .floating-contact { width: 45px; height: 45px; font-size: 22px; bottom: 20px; right: 20px; }
+    .floating-contact.fb-pos { bottom: 80px !important; }
+    .floating-contact.theme-pos { bottom: 140px !important; }
+}
+
+/* Copyright Section */
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05); padding-top: 25px;
+    display: flex; flex-direction: column; gap: 15px; align-items: center;
+    font-size: 0.9rem; color: var(--footer-text-muted);
+}
+.copyright strong { color: white; }
+
+/* Developer Link Glow */
+.developer-badge {
+    background: rgba(0,0,0,0.3); padding: 8px 20px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.05); display: inline-flex; align-items: center; gap: 8px;
+}
+.dev-link.glow-effect {
+    color: var(--accent-secondary); 
+    text-decoration: none; 
+    font-weight: 800; 
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(209, 36, 255, 0.5); 
+    transition: 0.3s;
+}
+.dev-link.glow-effect:hover { 
+    text-shadow: 0 0 25px var(--accent-secondary); /* Purple Glow Stronger */
+    color: white; 
+}
+
+/* =========================================
+   4. FLOATING BUTTONS & MENU (COMPACT STACK)
+   ========================================= */
+
+/* --- A. MAIN BUTTON STYLES --- */
+.floating-contact {
+    position: fixed; 
+    bottom: 30px; /* ডিফল্ট পজিশন (Telegram Button) */
+    right: 30px; 
+    width: 60px; 
+    height: 60px;
+    background: linear-gradient(135deg, #0088cc, #00aaff);
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    color: white; 
+    font-size: 28px; 
+    z-index: 9999; /* সবার উপরে থাকবে */
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0, 136, 204, 0.5);
+    transition: all 0.3s; 
+    border: 2px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+
+/* পালস অ্যানিমেশন */
+.pulse-ring {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
+    border: 2px solid #00aaff; animation: pulse-animation 2s infinite; z-index: -1;
+}
+@keyframes pulse-animation { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
+
+/* হোভার এফেক্ট */
+.floating-contact:hover {
+    transform: translateY(-5px) scale(1.1); 
+    background: var(--accent-secondary);
+    box-shadow: 0 15px 35px rgba(209, 36, 255, 0.6); 
+    border-color: transparent;
+}
+.floating-contact:hover .pulse-ring { animation: none; }
+
+/* টুলটিপ ডিজাইন */
+.tooltip {
+    position: absolute; right: 75px; top: 50%; transform: translateY(-50%) translateX(20px);
+    background: rgba(22, 27, 34, 0.95); backdrop-filter: blur(5px); padding: 8px 16px;
+    border-radius: 12px; font-size: 0.85rem; font-weight: 700; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: 0.4s;
+    border: 1px solid var(--accent-color); color: var(--accent-color);
+    box-shadow: 0 5px 20px rgba(0, 229, 255, 0.2);
+    z-index: 10000;
+}
+.floating-contact:hover .tooltip { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+
+/* --- B. COMPACT POSITIONS (STACKED TOGETHER) --- */
+
+/* ১. ফেসবুক বাটন (টেলিগ্রামের ঠিক উপরে) */
+.floating-contact.fb-pos { 
+    bottom: 105px !important; /* 30px + 60px(btn) + 15px(gap) */
+    background: linear-gradient(135deg, #1877F2, #3b5998) !important; 
+    z-index: 9990; /* মেনুর নিচে থাকবে */
+}
+
+/* ২. থিম বাটন (ফেসবুকের উপরে) */
+.floating-contact.theme-pos { 
+    bottom: 180px !important; /* 105px + 60px(btn) + 15px(gap) */
+    background: linear-gradient(135deg, #f39c12, #d35400) !important; 
+    z-index: 9990; /* মেনুর নিচে থাকবে */
+}
+
+/* ৩. টেলিগ্রাম মেনু কন্টেইনার (ওপেন হলে ফেসবুক/থিম বাটন ঢেকে দিবে) */
+.telegram-menu-container {
+    position: fixed;
+    bottom: 100px; /* টেলিগ্রাম বাটনের ঠিক উপরে শুরু হবে */
+    right: 30px;
+    display: flex;
+    flex-direction: column-reverse; /* নিচ থেকে উপরের দিকে লোড হবে */
+    gap: 12px; 
+    z-index: 9995; /* বাটনগুলোর উপরে কিন্তু মেইন ট্রিগারের নিচে */
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+/* মেনু একটিভ হলে */
+.telegram-menu-container.active {
+    opacity: 1; visibility: visible; transform: translateY(0) scale(1);
+}
+
+/* ৪. মেনু লিংক ডিজাইন */
+.tm-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    gap: 15px;
+    padding: 12px 20px;
+    background: rgba(13, 17, 23, 0.98); /* গাঢ় ব্যাকগ্রাউন্ড যাতে পেছনের বাটন দেখা না যায় */
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.8); /* স্ট্রং শ্যাডো */
+    transition: 0.3s;
+    width: 160px;
+}
+.tm-link i { font-size: 1.1rem; color: var(--accent-color); }
+
+.tm-link:hover {
+    background: var(--accent-color);
+    color: #000;
+    transform: translateX(-5px);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+.tm-link:hover i { color: #000; }
+
+
+/* =========================================
+   5. LIGHT MODE & ANIMATIONS
+   ========================================= */
+body.light-mode { 
+    --bg-dark: #f4f6f8; 
+    --container-bg: #ffffff; 
+    --text-color: #2d3436; 
+    --border-color: #dfe6e9; 
+    --input-bg: #ffffff; 
+    --footer-bg-dark: #dfe6e9; 
+    --footer-text-muted: #636e72; 
+    --glass-bg: rgba(0, 0, 0, 0.05); 
+}
+body.light-mode .site-header { background: rgba(255, 255, 255, 0.95); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+body.light-mode .header-logo { color: #2d3436; }
+body.light-mode .cyber-footer { background-color: #dfe6e9; border-top: 1px solid #b2bec3; }
+body.light-mode .footer-bg-grid { background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px); }
+body.light-mode .footer-brand, body.light-mode .copyright strong { color: #2d3436; }
+body.light-mode .f-link { color: #2d3436; background: rgba(0,0,0,0.05); }
+body.light-mode .f-link:hover { color: #000; background: var(--accent-color); }
+body.light-mode .floating-contact.theme-pos { background: linear-gradient(135deg, #2c3e50, #4ca1af) !important; }
+
+.animated-entry { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s forwards ease-out; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+
+/* =========================================
+   6. MOBILE RESPONSIVE FIX (STACKED)
+   ========================================= */
+@media (max-width: 600px) {
+    /* গ্লাস প্যানেল */
+    .glass-nav-panel {
+        flex-direction: column !important;
+        padding: 20px 15px; 
+        gap: 10px;
+    }
+
+    .f-link {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        margin: 0;
+    }
+
+    /* ফ্লোটিং বাটন সাইজ ও পজিশন (মোবাইল) */
+    .floating-contact { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
+    
+    /* মোবাইলেও বাটনগুলো একটার পর একটা থাকবে */
+    .floating-contact.fb-pos { bottom: 85px !important; }    /* 20 + 50 + 15 */
+    .floating-contact.theme-pos { bottom: 150px !important; } /* 85 + 50 + 15 */
+    
+    /* মেনু পজিশন */
+    .telegram-menu-container {
+        right: 20px;
+        bottom: 80px; /* টেলিগ্রাম বাটনের ঠিক উপরে */
+    }
+
+    .header-logo { font-size: 18px; }
+    .home-btn { font-size: 12px; padding: 6px 12px; }
+}
+
+/* হোম পেজ ছাড়া অন্য সব পেজে হিরো সেকশন বা অ্যানিমেশন লুকানো */
+body:not(.home-page) .hero-wrapper, 
+body:not(.home-page) .floating-icons,
+body:not(.home-page) .animation-container {
+    display: none !important;
+}
+
+
+.ad-slot {
+    display: block !important;
+    width: 100% !important;
+    min-height: 95px; /* ফিক্সড হাইট এরর কমায় */
+    margin: 1.5rem 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+
+
+/* =========================================
+   THEME VARIABLES (Light & Dark Mode)
+   ========================================= */
+
+/* Default Dark Mode Variables (আপনার সাইটের ডিফল্ট থিমের সাথে মিল রেখে) */
+:root {
+    --bg-card: #12141d;
+    --bg-card-hover: #1a1d29;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --accent-cyan: #00e5ff;
+    --gradient-primary: linear-gradient(90deg, #00e5ff, #b400ff);
+    --shadow-default: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --shadow-hover: 0 15px 35px rgba(0, 229, 255, 0.15);
+    --border-mobile: rgba(0, 229, 255, 0.15);
+}
+
+/* Light Mode Variables (যখন body-তে .light-mode ক্লাস যুক্ত হবে) */
+body.light-mode {
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --accent-cyan: #0ea5e9;
+    --gradient-primary: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+    --shadow-default: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 15px 35px rgba(14, 165, 233, 0.15);
+    --border-mobile: rgba(14, 165, 233, 0.2);
+}
+
+/* =========================================
+   PREMIUM RELATED TOOLS SECTION (100% Responsive)
+   ========================================= */
+
+/* Main Container */
+#dynamic-related-tools {
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Section Title Style */
+.section-title {
+    font-size: clamp(22px, 5vw, 28px);
+    margin-bottom: 30px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Title Gradient Line */
+.section-title::after {
+    content: '';
+    height: 4px;
+    width: 60px;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* Grid Layout */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* Base Card Style (Targeting JS generated anchor tags) */
+.tools-grid a {
+    background: var(--bg-card);
+    /* A beautiful solid default border */
+    border: 1px solid var(--border-color); 
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-default);
+}
+
+/* Hover Effect - Glowing Neon Border */
+.tools-grid a:hover {
+    transform: translateY(-8px);
+    background: var(--bg-card-hover);
+    /* Cyan border and glow effect on hover */
+    border-color: var(--accent-cyan); 
+    box-shadow: var(--shadow-hover);
+}
+
+/* Top Gradient Line on Hover (Premium Feel) */
+.tools-grid a::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 3px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+.tools-grid a:hover::before { opacity: 1; }
+
+/* Internal Card Typography & Icons */
+.tools-grid a .icon {
+    margin-bottom: 20px;
+    height: 65px;
+    width: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.tools-grid a .tool-title,
+.tools-grid a h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    color: var(--text-main);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.tools-grid a .tool-desc,
+.tools-grid a p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: auto;
+}
+
+/* =========================================
+   MOBILE OPTIMIZATION (100% Responsive)
+   ========================================= */
+@media (max-width: 768px) {
+    #dynamic-related-tools {
+        margin: 40px auto;
+        padding: 0 16px; 
+    }
+
+    .tools-grid {
+        /* 1 column on mobile */
+        grid-template-columns: 1fr; 
+        /* Slightly reduced gap on mobile */
+        gap: 18px; 
+    }
+
+    .tools-grid a {
+        padding: 25px 15px;
+        border-radius: 14px;
+        /* Default border made slightly more visible on mobile */
+        border: 1px solid var(--border-mobile); 
+    }
+
+    /* Reduced heavy animations on mobile for better performance */
+    .tools-grid a:hover {
+        transform: translateY(-4px); 
+    }
+    
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+
+/* =========================================
+   GLOBAL TOAST NOTIFICATION (TOP-RIGHT)
+   ========================================= */
+.global-toast-box {
+    position: fixed;
+    top: 90px; /* Placed just below the 70px fixed header */
+    right: -400px; /* Hidden off-screen to the right by default */
+    background: var(--container-bg, #161b22);
+    color: var(--text-color, #c9d1d9);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 5px solid #3fb950; /* Success green border */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 100000; /* Ensure it stays above everything */
+    /* Smooth slide-in animation */
+    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    backdrop-filter: blur(10px);
+}
+
+/* Class added by JS to show the toast */
+.global-toast-box.show {
+    right: 20px; /* Slides in to leave a 20px gap from the right edge */
+}
+
+/* Error state modifiers */
+.global-toast-box.error {
+    border-left-color: #ff4757; /* Error red border */
+}
+
+/* Icon styles */
+.global-toast-box i {
+    font-size: 18px;
+    color: #3fb950;
+}
+
+.global-toast-box.error i {
+    color: #ff4757;
+}
+
+/* Light mode support */
+body.light-mode .global-toast-box {
+    background: #ffffff;
+    color: #1e293b;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .global-toast-box {
+        top: 80px;
+        width: calc(100% - 40px); /* Take full width minus margins on small screens */
+        right: -100%;
+    }
+    .global-toast-box.show {
+        right: 20px;
+    }
+}
+
+
+/* ============================================================================
+   TRUSTEDTOOLSWEB — PREMIUM COMMENT SYSTEM CSS v3.1
+   ============================================================================
+   Author  : MD KAWSAR
+   Version : 3.1 (Dark/Light Mode Sync + Border Match + UI Polish)
+
+   DESIGN GOALS:
+   ✅ Full-width on every device — no cramped box look
+   ✅ Mobile-first: fonts, spacing, buttons all optimized for touch
+   ✅ Larger readable text throughout
+   ✅ 100% Dark / Light mode support via body.light-mode (matches global.css)
+   ✅ Widget border/card style matches the site's related-tools section exactly
+   ✅ Pixel-perfect on Mobile (320px+), Tablet (768px+), Desktop (1200px+)
+   ============================================================================ */
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+
+   IMPORTANT: Surface colors intentionally map to the site's existing
+   --bg-card / --border-color variables from global.css so that the widget
+   automatically inherits both dark AND light mode without any extra rules.
+   ══════════════════════════════════════════════════════════════════════════ */
+:root {
+    /* ── Fixed brand colors (same in both modes) ─────────────────────────── */
+    --ttw-accent         : #00e5ff;
+    --ttw-accent-rgb     : 0, 229, 255;
+    --ttw-accent-dim     : rgba(0, 229, 255, 0.10);
+    --ttw-accent-mid     : rgba(0, 229, 255, 0.22);
+    --ttw-purple         : #d124ff;
+    --ttw-purple-rgb     : 209, 36, 255;
+    --ttw-danger         : #ff4757;
+    --ttw-danger-rgb     : 255, 71, 87;
+    --ttw-success        : #2ed573;
+    --ttw-success-rgb    : 46, 213, 115;
+    --ttw-warning        : #ffa502;
+    --ttw-warning-rgb    : 255, 165, 2;
+
+    /* ── Dark mode surfaces (default) ────────────────────────────────────── */
+    /* These are intentionally a shade DARKER than the site's --bg-card so
+       the widget feels inset, consistent with the related-tools cards.       */
+    --ttw-surface-0      : #0d1117;   /* Textarea / deepest input bg        */
+    --ttw-surface-1      : #12141d;   /* Widget wrapper — matches --bg-card  */
+    --ttw-surface-2      : #161b22;   /* Comment card background             */
+    --ttw-surface-3      : #1a1d29;   /* Comment card hover                  */
+
+    /* ── Border — mirrors site's --border-color exactly ─────────────────── */
+    --ttw-border         : rgba(255, 255, 255, 0.08);
+    --ttw-border-accent  : rgba(0, 229, 255, 0.18);
+
+    /* ── Typography — mirrors site's --text-main / --text-muted ─────────── */
+    --ttw-font           : 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --ttw-text-primary   : #ffffff;
+    --ttw-text-secondary : #94a3b8;
+    --ttw-text-muted     : #586069;
+
+    /* ── Spacing (8px grid) ─────────────────────────────────────────────── */
+    --ttw-space-xs       : 6px;
+    --ttw-space-sm       : 12px;
+    --ttw-space-md       : 20px;
+    --ttw-space-lg       : 28px;
+    --ttw-space-xl       : 40px;
+
+    /* ── Radii — matches the site's 18px card radius ─────────────────────── */
+    --ttw-radius-sm      : 8px;
+    --ttw-radius-md      : 14px;
+    --ttw-radius-lg      : 18px;   /* ← synced to .tools-grid a border-radius */
+    --ttw-radius-pill    : 999px;
+
+    /* ── Shadows ─────────────────────────────────────────────────────────── */
+    --ttw-shadow-card    : 0 4px 24px rgba(0,0,0,0.35);
+    --ttw-shadow-glow    : 0 0 20px rgba(0, 229, 255, 0.10);
+    --ttw-shadow-btn     : 0 4px 16px rgba(0, 229, 255, 0.28);
+
+    /* ── Transitions ─────────────────────────────────────────────────────── */
+    --ttw-ease           : cubic-bezier(0.4, 0, 0.2, 1);
+    --ttw-transition     : all 0.22s var(--ttw-ease);
+
+    /* ── Gradients — mirrors site's --gradient-primary ───────────────────── */
+    --ttw-grad-admin     : linear-gradient(135deg, #ff0055, #ff4757);
+    --ttw-grad-trusted   : linear-gradient(135deg, #f39c12, #d35400);
+    --ttw-grad-pinned    : linear-gradient(135deg, #00e5ff, #0abde3);
+    --ttw-grad-primary   : linear-gradient(90deg, #00e5ff, #b400ff); /* = site's --gradient-primary */
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDE
+   Triggered by body.light-mode (set by the site's theme toggle script).
+   Every --ttw-* variable below maps to the equivalent light-mode value
+   already defined in global.css so colours are always in sync.
+   ══════════════════════════════════════════════════════════════════════════ */
+body.light-mode {
+    /* Accent shifts to the site's light-mode cyan */
+    --ttw-accent         : #0ea5e9;
+    --ttw-accent-rgb     : 14, 165, 233;
+    --ttw-accent-dim     : rgba(14, 165, 233, 0.10);
+    --ttw-accent-mid     : rgba(14, 165, 233, 0.20);
+
+    /* Surfaces become white/near-white — mirrors --bg-card light values */
+    --ttw-surface-0      : #f0f4f8;
+    --ttw-surface-1      : #ffffff;   /* Widget wrapper = white card */
+    --ttw-surface-2      : #f8fafc;   /* Comment card  = --bg-card-hover */
+    --ttw-surface-3      : #eef2f7;   /* Hover state   */
+
+    /* Borders become light */
+    --ttw-border         : rgba(0, 0, 0, 0.08);
+    --ttw-border-accent  : rgba(14, 165, 233, 0.22);
+
+    /* Text becomes dark */
+    --ttw-text-primary   : #1e293b;
+    --ttw-text-secondary : #64748b;
+    --ttw-text-muted     : #94a3b8;
+
+    /* Shadows lighter */
+    --ttw-shadow-card    : 0 4px 20px rgba(0,0,0,0.08);
+    --ttw-shadow-glow    : 0 0 18px rgba(14, 165, 233, 0.10);
+    --ttw-shadow-btn     : 0 4px 14px rgba(14, 165, 233, 0.25);
+
+    /* Gradient shifts to light-mode gradient */
+    --ttw-grad-primary   : linear-gradient(90deg, #0ea5e9, #8b5cf6);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   2. WIDGET OUTER WRAPPER
+   Full-width, no fixed max-width — fills the parent container completely.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.trusted-comments-widget {
+    width      : 100%;
+    display    : block;
+    font-family: var(--ttw-font);
+}
+
+.ttw-comments-wrapper {
+    width          : 100%;
+    /* Use the site's --bg-card variable so it auto-switches dark ↔ light */
+    background     : var(--bg-card, var(--ttw-surface-1));
+    /* Border mirrors .tools-grid a exactly: 1px solid --border-color */
+    border         : 1px solid var(--border-color, var(--ttw-border));
+    /* 18px radius — identical to .tools-grid a border-radius */
+    border-radius  : 18px;
+    box-shadow     : var(--ttw-shadow-card);
+    padding        : var(--ttw-space-lg);
+    box-sizing     : border-box;
+    position       : relative;
+    overflow       : hidden;
+    transition     : background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Top gradient strip — same gradient as site's --gradient-primary accent line */
+.ttw-comments-wrapper::before {
+    content    : '';
+    position   : absolute;
+    top        : 0; left: 0; right: 0;
+    height     : 3px;
+    background : var(--gradient-primary, var(--ttw-grad-primary));
+    border-radius: 18px 18px 0 0;
+    opacity    : 1;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   3. HEADER
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-comments-header {
+    margin-bottom : var(--ttw-space-lg);
+    padding-bottom: var(--ttw-space-md);
+    border-bottom : 1px solid var(--ttw-border);
+}
+
+.ttw-comments-title {
+    margin      : 0;
+    font-size   : 1.45rem;
+    font-weight : 800;
+    color       : var(--text-main, var(--ttw-text-primary));
+    display     : flex;
+    align-items : center;
+    gap         : 10px;
+    letter-spacing: -0.3px;
+}
+
+.ttw-comments-title i {
+    color     : var(--accent-cyan, var(--ttw-accent));
+    font-size : 1.3rem;
+    filter    : drop-shadow(0 0 8px rgba(var(--ttw-accent-rgb), 0.5));
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   4. AUTH PANEL
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-auth-view {
+    margin-bottom : var(--ttw-space-lg);
+}
+
+/* Login prompt row */
+.ttw-login-row {
+    display     : flex;
+    align-items : center;
+    gap         : var(--ttw-space-md);
+    flex-wrap   : wrap;
+}
+
+.ttw-login-prompt-text {
+    color     : var(--ttw-text-secondary);
+    font-size : 1rem;
+    font-weight: 500;
+}
+
+/* Google login button */
+.ttw-login-btn {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 10px;
+    background    : var(--bg-card, var(--ttw-surface-2));
+    color         : var(--text-main, var(--ttw-text-primary));
+    border        : 1px solid var(--border-color, var(--ttw-border));
+    border-radius : var(--ttw-radius-pill);
+    padding       : 12px 24px;
+    font-size     : 1rem;
+    font-weight   : 700;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    white-space   : nowrap;
+    font-family   : var(--ttw-font);
+    box-shadow    : var(--shadow-default, 0 2px 10px rgba(0,0,0,0.2));
+}
+
+.ttw-login-btn:hover {
+    background   : var(--bg-card-hover, var(--ttw-surface-3));
+    border-color : var(--accent-cyan, var(--ttw-accent));
+    box-shadow   : var(--shadow-hover, 0 0 18px rgba(var(--ttw-accent-rgb), 0.2));
+    transform    : translateY(-2px);
+}
+
+/* Logged-in user card */
+.ttw-user-card {
+    display     : flex;
+    align-items : center;
+    gap         : var(--ttw-space-md);
+    flex-wrap   : wrap;
+    padding     : var(--ttw-space-sm) 0;
+}
+
+.ttw-user-avatar {
+    width         : 52px;
+    height        : 52px;
+    border-radius : 50%;
+    border        : 2.5px solid var(--ttw-accent);
+    box-shadow    : 0 0 12px rgba(var(--ttw-accent-rgb), 0.35);
+    flex-shrink   : 0;
+    object-fit    : cover;
+}
+
+.ttw-user-info {
+    display       : flex;
+    flex-direction: column;
+    gap           : 3px;
+}
+
+.ttw-user-name {
+    font-size   : 1.05rem;
+    font-weight : 800;
+    color       : var(--ttw-text-primary);
+}
+
+.ttw-user-email {
+    font-size : 0.82rem;
+    color     : var(--ttw-text-secondary);
+}
+
+.ttw-user-actions {
+    display  : flex;
+    gap      : 8px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+/* Sign out button */
+.ttw-logout-btn {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 6px;
+    background    : transparent;
+    color         : var(--ttw-danger);
+    border        : 1px solid rgba(var(--ttw-danger-rgb), 0.35);
+    padding       : 6px 16px;
+    border-radius : var(--ttw-radius-pill);
+    font-size     : 0.85rem;
+    font-weight   : 700;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    font-family   : var(--ttw-font);
+}
+.ttw-logout-btn:hover {
+    background   : var(--ttw-danger);
+    color        : #fff;
+    border-color : var(--ttw-danger);
+}
+
+/* Export data button */
+.ttw-export-btn {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 6px;
+    background    : transparent;
+    color         : var(--ttw-accent);
+    border        : 1px solid rgba(var(--ttw-accent-rgb), 0.35);
+    padding       : 6px 16px;
+    border-radius : var(--ttw-radius-pill);
+    font-size     : 0.85rem;
+    font-weight   : 700;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    font-family   : var(--ttw-font);
+}
+.ttw-export-btn:hover {
+    background   : var(--ttw-accent-dim);
+    border-color : var(--ttw-accent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   5. INPUT AREA
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-input-group {
+    margin-bottom : var(--ttw-space-lg);
+}
+
+/* Main textarea */
+.ttw-textarea {
+    width         : 100%;
+    /* Uses site's --input-bg variable which switches in light mode */
+    background    : var(--input-bg, var(--ttw-surface-0));
+    border        : 1.5px solid var(--border-color, var(--ttw-border));
+    color         : var(--text-main, var(--ttw-text-primary));
+    padding       : 18px 20px;
+    border-radius : var(--ttw-radius-md);
+    resize        : vertical;
+    min-height    : 120px;
+    font-family   : var(--ttw-font);
+    font-size     : 1rem;
+    line-height   : 1.6;
+    transition    : border-color 0.22s ease, box-shadow 0.22s ease, background 0.3s ease;
+    box-sizing    : border-box;
+    display       : block;
+}
+
+.ttw-textarea::placeholder {
+    color     : var(--text-muted, var(--ttw-text-muted));
+    font-size : 0.97rem;
+}
+
+.ttw-textarea:focus {
+    outline      : none;
+    border-color : var(--accent-cyan, var(--ttw-accent));
+    box-shadow   : 0 0 0 3px rgba(var(--ttw-accent-rgb), 0.12);
+    background   : var(--container-bg, var(--ttw-surface-1));
+}
+
+.ttw-textarea:disabled {
+    opacity       : 0.45;
+    cursor        : not-allowed;
+    border-style  : dashed;
+}
+
+/* Attachment toolbar (Photo / Voice buttons) */
+.ttw-input-toolbar {
+    display     : flex;
+    align-items : center;
+    gap         : 10px;
+    margin-top  : 14px;
+    flex-wrap   : wrap;
+}
+
+/* Shared toolbar button style */
+.ttw-btn-image,
+.ttw-btn-record {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 8px;
+    background    : var(--ttw-accent-dim);
+    color         : var(--ttw-accent);
+    border        : 1.5px solid var(--ttw-border-accent);
+    border-radius : var(--ttw-radius-sm);
+    padding       : 11px 20px;   /* Generous touch target */
+    font-size     : 0.95rem;
+    font-weight   : 700;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    font-family   : var(--ttw-font);
+    white-space   : nowrap;
+}
+
+.ttw-btn-image:hover,
+.ttw-btn-record:hover {
+    background   : var(--ttw-accent);
+    color        : #090c10;
+    border-color : var(--ttw-accent);
+    box-shadow   : var(--ttw-shadow-btn);
+    transform    : translateY(-1px);
+}
+
+.ttw-btn-image:disabled,
+.ttw-btn-record:disabled {
+    opacity       : 0.4;
+    cursor        : not-allowed;
+    pointer-events: none;
+}
+
+/* Recording active state */
+.ttw-btn-record.recording {
+    background   : var(--ttw-danger);
+    color        : #fff;
+    border-color : var(--ttw-danger);
+    animation    : ttw-pulse-record 1.2s ease infinite;
+}
+
+@keyframes ttw-pulse-record {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(var(--ttw-danger-rgb), 0.5); }
+    50%       { box-shadow: 0 0 0 10px rgba(var(--ttw-danger-rgb), 0); }
+}
+
+/* Recording timer display */
+.ttw-record-timer {
+    display     : none;
+    align-items : center;
+    gap         : 6px;
+    font-size   : 0.95rem;
+    font-weight : 700;
+    color       : var(--ttw-danger);
+}
+.ttw-record-timer.active { display: inline-flex; }
+
+.ttw-record-dot {
+    width         : 9px;
+    height        : 9px;
+    border-radius : 50%;
+    background    : var(--ttw-danger);
+    animation     : ttw-blink 1s infinite;
+}
+@keyframes ttw-blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+
+/* Cooldown warning message */
+.ttw-cooldown-msg {
+    display     : none;
+    align-items : center;
+    gap         : 6px;
+    font-size   : 0.9rem;
+    font-weight : 700;
+    color       : var(--ttw-warning);
+}
+.ttw-cooldown-msg.active { display: inline-flex; }
+
+/* Post button */
+.ttw-submit-btn {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 8px;
+    background    : var(--ttw-grad-primary);
+    color         : #090c10;
+    border        : none;
+    padding       : 14px 32px;
+    border-radius : var(--ttw-radius-pill);
+    font-weight   : 800;
+    font-size     : 1rem;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    float         : right;
+    box-shadow    : var(--ttw-shadow-btn);
+    font-family   : var(--ttw-font);
+    letter-spacing: 0.2px;
+    margin-top    : 14px;
+}
+.ttw-submit-btn:hover {
+    transform  : translateY(-2px);
+    box-shadow : 0 8px 28px rgba(var(--ttw-accent-rgb), 0.45);
+    filter     : brightness(1.1);
+}
+.ttw-submit-btn:disabled {
+    opacity       : 0.5;
+    cursor        : not-allowed;
+    transform     : none;
+    filter        : none;
+}
+
+.ttw-clearfix::after { content:""; display:table; clear:both; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   6. GDPR CONSENT CHECKBOX
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-gdpr-wrap {
+    display     : flex;
+    align-items : flex-start;
+    gap         : 10px;
+    margin      : 14px 0 4px;
+    padding     : 12px 16px;
+    background  : rgba(var(--ttw-accent-rgb), 0.04);
+    border      : 1px solid rgba(var(--ttw-accent-rgb), 0.12);
+    border-radius: var(--ttw-radius-sm);
+    font-size   : 0.9rem;
+    color       : var(--ttw-text-secondary);
+    line-height : 1.5;
+}
+.ttw-gdpr-wrap input[type="checkbox"] {
+    width         : 18px;
+    height        : 18px;
+    flex-shrink   : 0;
+    cursor        : pointer;
+    accent-color  : var(--ttw-accent);
+    margin-top    : 2px;
+}
+.ttw-gdpr-wrap a {
+    color           : var(--ttw-accent);
+    text-decoration : none;
+    font-weight     : 600;
+}
+.ttw-gdpr-wrap a:hover { text-decoration: underline; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   7. CONTROLS BAR (Count + Sort)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-controls-bar {
+    display         : flex;
+    justify-content : space-between;
+    align-items     : center;
+    margin-bottom   : var(--ttw-space-md);
+    gap             : 12px;
+    flex-wrap       : wrap;
+}
+
+.ttw-comment-count-label {
+    font-size   : 1rem;
+    font-weight : 800;
+    color       : var(--text-muted, var(--ttw-text-secondary));
+    letter-spacing: 0.2px;
+}
+
+/* Sort dropdown */
+.ttw-sort-select {
+    background          : var(--bg-card, var(--ttw-surface-2));
+    color               : var(--text-main, var(--ttw-text-primary));
+    border              : 1.5px solid var(--border-color, var(--ttw-border));
+    border-radius       : var(--ttw-radius-pill);
+    padding             : 9px 40px 9px 18px;
+    font-size           : 0.95rem;
+    font-weight         : 700;
+    cursor              : pointer;
+    outline             : none;
+    transition          : var(--ttw-transition);
+    -webkit-appearance  : none;
+    appearance          : none;
+    font-family         : var(--ttw-font);
+    background-image    : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0l6 7 6-7z' fill='%2300e5ff'/%3E%3C/svg%3E");
+    background-repeat   : no-repeat;
+    background-position : right 14px center;
+    background-size     : 10px;
+}
+body.light-mode .ttw-sort-select {
+    /* Light mode gets a darker arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0l6 7 6-7z' fill='%230ea5e9'/%3E%3C/svg%3E");
+}
+.ttw-sort-select:focus {
+    border-color : var(--accent-cyan, var(--ttw-accent));
+    box-shadow   : 0 0 0 3px rgba(var(--ttw-accent-rgb), 0.12);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   8. COMMENT CARDS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-comments-list {
+    display       : flex;
+    flex-direction: column;
+    gap           : 16px;
+    margin-top    : 4px;
+}
+
+/* Base comment card */
+.ttw-comment-box {
+    /* Use site's card variables for seamless theme integration */
+    background    : var(--bg-card, var(--ttw-surface-2));
+    border        : 1px solid var(--border-color, var(--ttw-border));
+    border-radius : var(--ttw-radius-md);
+    padding       : var(--ttw-space-md);
+    position      : relative;
+    transition    : background 0.3s ease, border-color 0.3s ease, transform 0.22s var(--ttw-ease), box-shadow 0.22s var(--ttw-ease);
+    box-shadow    : 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.ttw-comment-box:hover {
+    border-color : var(--border-mobile, rgba(var(--ttw-accent-rgb), 0.2));
+    background   : var(--bg-card-hover, var(--ttw-surface-3));
+    transform    : translateY(-1px);
+    box-shadow   : var(--shadow-hover, 0 6px 20px rgba(0,0,0,0.25));
+}
+
+/* Pinned comment — glowing accent border */
+.ttw-comment-box.pinned {
+    border-color : var(--ttw-accent);
+    background   : linear-gradient(135deg, rgba(var(--ttw-accent-rgb),0.05), var(--ttw-surface-2));
+    box-shadow   : 0 0 0 1px rgba(var(--ttw-accent-rgb), 0.25),
+                   0 6px 30px rgba(var(--ttw-accent-rgb), 0.1);
+}
+
+/* Reply card — indented with left accent line */
+.ttw-reply-box {
+    margin-left   : 44px;
+    border-left   : 3px solid rgba(var(--ttw-accent-rgb), 0.4);
+    border-radius : 0 var(--ttw-radius-md) var(--ttw-radius-md) 0;
+    background    : rgba(var(--ttw-accent-rgb), 0.025);
+}
+
+
+/* ── Comment Header ──────────────────────────────────────────────────────── */
+.ttw-comment-header {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : flex-start;
+    margin-bottom  : 12px;
+    gap            : 10px;
+}
+
+.ttw-comment-meta {
+    display     : flex;
+    align-items : flex-start;
+    gap         : 12px;
+    flex        : 1;
+    min-width   : 0;
+}
+
+.ttw-comment-avatar {
+    width         : 44px;
+    height        : 44px;
+    border-radius : 50%;
+    border        : 2px solid rgba(var(--ttw-accent-rgb), 0.3);
+    flex-shrink   : 0;
+    object-fit    : cover;
+}
+
+.ttw-comment-author-block {
+    display       : flex;
+    flex-direction: column;
+    gap           : 4px;
+    min-width     : 0;
+}
+
+.ttw-comment-author {
+    font-size   : 1rem;
+    font-weight : 800;
+    color       : var(--text-main, var(--ttw-text-primary));
+    display     : flex;
+    align-items : center;
+    flex-wrap   : wrap;
+    gap         : 7px;
+}
+
+.ttw-comment-time {
+    font-size : 0.82rem;
+    color     : var(--text-muted, var(--ttw-text-muted));
+    display   : flex;
+    align-items: center;
+    gap       : 5px;
+}
+
+
+/* ── Comment Body ────────────────────────────────────────────────────────── */
+.ttw-comment-body {
+    color       : var(--text-main, var(--ttw-text-primary));
+    font-size   : 0.98rem;
+    line-height : 1.75;
+    padding-left: 56px;
+    margin-bottom: 4px;
+    word-break  : break-word;
+    opacity     : 0.92;
+}
+
+/* Markdown styles inside comment body */
+.ttw-comment-body strong {
+    color       : var(--text-main, var(--ttw-text-primary));
+    font-weight : 800;
+}
+.ttw-comment-body em {
+    color       : var(--text-muted, var(--ttw-text-secondary));
+    font-style  : italic;
+}
+.ttw-comment-body code {
+    background    : rgba(var(--ttw-accent-rgb), 0.1);
+    color         : var(--accent-cyan, var(--ttw-accent));
+    padding       : 2px 7px;
+    border-radius : 5px;
+    font-family   : 'Courier New', Courier, monospace;
+    font-size     : 0.9em;
+    border        : 1px solid rgba(var(--ttw-accent-rgb), 0.18);
+}
+
+/* Edited label */
+.ttw-edited-label {
+    font-size  : 0.75rem;
+    color      : var(--text-muted, var(--ttw-text-muted));
+    font-style : italic;
+}
+
+
+/* ── Comment Actions ─────────────────────────────────────────────────────── */
+.ttw-comment-actions {
+    display     : flex;
+    align-items : center;
+    gap         : 6px;
+    padding-left: 56px;   /* Aligned with comment body */
+    margin-top  : 10px;
+    flex-wrap   : wrap;
+}
+
+/* Base action button */
+.ttw-action-btn {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 5px;
+    background    : transparent;
+    border        : 1px solid transparent;
+    border-radius : var(--ttw-radius-pill);
+    font-size     : 0.85rem;
+    font-weight   : 700;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    padding       : 6px 14px;
+    font-family   : var(--ttw-font);
+    white-space   : nowrap;
+}
+
+/* Reply */
+.ttw-btn-reply {
+    color      : var(--ttw-accent);
+    background : rgba(var(--ttw-accent-rgb), 0.07);
+    border-color: rgba(var(--ttw-accent-rgb), 0.15);
+}
+.ttw-btn-reply:hover {
+    background  : var(--ttw-accent);
+    color       : #090c10;
+    border-color: var(--ttw-accent);
+    box-shadow  : 0 3px 12px rgba(var(--ttw-accent-rgb), 0.3);
+}
+
+/* Edit */
+.ttw-btn-edit {
+    color      : var(--ttw-warning);
+    background : rgba(var(--ttw-warning-rgb), 0.07);
+    border-color: rgba(var(--ttw-warning-rgb), 0.15);
+}
+.ttw-btn-edit:hover {
+    background  : var(--ttw-warning);
+    color       : #090c10;
+    border-color: var(--ttw-warning);
+}
+
+/* Delete */
+.ttw-btn-delete {
+    color      : var(--ttw-danger);
+    background : rgba(var(--ttw-danger-rgb), 0.07);
+    border-color: rgba(var(--ttw-danger-rgb), 0.15);
+}
+.ttw-btn-delete:hover {
+    background  : var(--ttw-danger);
+    color       : #fff;
+    border-color: var(--ttw-danger);
+}
+
+/* Upvote */
+.ttw-btn-upvote {
+    color      : var(--ttw-text-secondary);
+    background : rgba(255,255,255,0.04);
+    border-color: var(--ttw-border);
+}
+.ttw-btn-upvote:hover,
+.ttw-btn-upvote.voted {
+    color       : var(--ttw-accent);
+    background  : rgba(var(--ttw-accent-rgb), 0.1);
+    border-color: rgba(var(--ttw-accent-rgb), 0.3);
+}
+.ttw-upvote-count {
+    font-weight : 800;
+    font-size   : 0.88rem;
+    min-width   : 12px;
+    text-align  : center;
+}
+
+/* Pin */
+.ttw-btn-pin {
+    color      : var(--ttw-accent);
+    background : rgba(var(--ttw-accent-rgb), 0.07);
+    border-color: rgba(var(--ttw-accent-rgb), 0.15);
+}
+.ttw-btn-pin:hover,
+.ttw-btn-pin.active-pin {
+    background  : var(--ttw-accent);
+    color       : #090c10;
+    border-color: var(--ttw-accent);
+}
+
+/* Save Edit */
+.ttw-btn-save-edit {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 6px;
+    background    : var(--ttw-success);
+    color         : #090c10;
+    border        : none;
+    padding       : 9px 20px;
+    border-radius : var(--ttw-radius-pill);
+    font-weight   : 700;
+    font-size     : 0.9rem;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    font-family   : var(--ttw-font);
+}
+.ttw-btn-save-edit:hover { filter: brightness(1.15); }
+
+/* Cancel Edit */
+.ttw-btn-cancel-edit {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 6px;
+    background    : transparent;
+    color         : var(--ttw-text-secondary);
+    border        : 1px solid var(--ttw-border);
+    padding       : 9px 20px;
+    border-radius : var(--ttw-radius-pill);
+    font-weight   : 700;
+    font-size     : 0.9rem;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    font-family   : var(--ttw-font);
+}
+.ttw-btn-cancel-edit:hover {
+    border-color : var(--ttw-accent);
+    color        : var(--ttw-accent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   9. BADGES
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-admin-badge,
+.ttw-trusted-badge,
+.ttw-pinned-badge {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 4px;
+    font-size     : 0.68rem;
+    font-weight   : 900;
+    padding       : 3px 10px;
+    border-radius : var(--ttw-radius-pill);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    white-space   : nowrap;
+}
+.ttw-admin-badge   { background: var(--ttw-grad-admin);   color: #fff; }
+.ttw-trusted-badge { background: var(--ttw-grad-trusted); color: #fff; }
+.ttw-pinned-badge  { background: var(--ttw-grad-pinned);  color: #090c10; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   10. INLINE EDIT FORM
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-edit-container {
+    display    : none;
+    margin-top : 12px;
+    padding-left: 56px;
+    animation  : ttw-fade-in 0.2s ease;
+}
+.ttw-edit-container.active { display: block; }
+
+.ttw-edit-actions {
+    display    : flex;
+    gap        : 8px;
+    margin-top : 10px;
+    flex-wrap  : wrap;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   11. REPLY INPUT BOX
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-reply-input-container {
+    display    : none;
+    margin-top : 14px;
+    padding    : var(--ttw-space-sm) var(--ttw-space-sm) var(--ttw-space-sm) 56px;
+    background : rgba(var(--ttw-accent-rgb), 0.03);
+    border-top : 1px solid var(--ttw-border);
+    border-radius: 0 0 var(--ttw-radius-md) var(--ttw-radius-md);
+}
+.ttw-reply-input-container.active {
+    display   : block;
+    animation : ttw-fade-in 0.2s ease;
+}
+
+/* Smaller submit btn for reply */
+.ttw-submit-reply-btn {
+    padding   : 10px 24px;
+    font-size : 0.9rem;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   12. IMAGE ATTACHMENT
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Preview before upload */
+.ttw-image-preview-wrap {
+    position   : relative;
+    display    : inline-block;
+    margin-top : 12px;
+}
+.ttw-image-preview-wrap img {
+    max-width     : 200px;
+    max-height    : 140px;
+    border-radius : var(--ttw-radius-sm);
+    border        : 1.5px solid var(--ttw-border-accent);
+    object-fit    : cover;
+    display       : block;
+}
+.ttw-image-remove-btn {
+    position      : absolute;
+    top           : -9px;
+    right         : -9px;
+    width         : 24px;
+    height        : 24px;
+    border-radius : 50%;
+    background    : var(--ttw-danger);
+    color         : #fff;
+    border        : none;
+    font-size     : 0.72rem;
+    cursor        : pointer;
+    display       : flex;
+    align-items   : center;
+    justify-content: center;
+    font-weight   : 900;
+    box-shadow    : 0 2px 8px rgba(0,0,0,0.4);
+    transition    : var(--ttw-transition);
+}
+.ttw-image-remove-btn:hover { transform: scale(1.15); }
+
+/* Image inside a comment */
+.ttw-comment-image {
+    display       : block;
+    max-width     : 100%;
+    max-height    : 320px;
+    border-radius : var(--ttw-radius-md);
+    margin-top    : 12px;
+    border        : 1px solid var(--ttw-border);
+    cursor        : zoom-in;
+    object-fit    : contain;
+    transition    : var(--ttw-transition);
+}
+.ttw-comment-image:hover {
+    transform    : scale(1.01);
+    border-color : var(--ttw-accent);
+}
+
+/* Lightbox */
+.ttw-lightbox {
+    position        : fixed;
+    inset           : 0;
+    background      : rgba(0, 0, 0, 0.94);
+    z-index         : 99999;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    animation       : ttw-fade-in 0.2s ease;
+    cursor          : zoom-out;
+    backdrop-filter : blur(6px);
+}
+.ttw-lightbox img {
+    max-width     : 94vw;
+    max-height    : 92vh;
+    border-radius : var(--ttw-radius-md);
+    object-fit    : contain;
+    box-shadow    : 0 20px 60px rgba(0,0,0,0.8);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   13. AUDIO PLAYER (Comment Playback) & VOICE PREVIEW UI (Feature 2 Upgrade)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 13a. Existing comment audio player (UNCHANGED) ─────────────────────── */
+.ttw-audio-player {
+    display       : flex;
+    align-items   : center;
+    gap           : 12px;
+    background    : var(--ttw-surface-0);
+    border        : 1px solid var(--ttw-border-accent);
+    border-radius : var(--ttw-radius-pill);
+    padding       : 10px 18px;
+    margin-top    : 12px;
+    max-width     : 420px;
+    width         : 100%;
+    box-sizing    : border-box;
+}
+
+.ttw-audio-play-btn {
+    background     : var(--ttw-accent);
+    color          : #090c10;
+    border         : none;
+    width          : 38px;
+    height         : 38px;
+    border-radius  : 50%;
+    cursor         : pointer;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    font-size      : 0.8rem;
+    flex-shrink    : 0;
+    transition     : var(--ttw-transition);
+    box-shadow     : 0 2px 10px rgba(var(--ttw-accent-rgb), 0.4);
+}
+.ttw-audio-play-btn:hover { transform: scale(1.12); }
+
+.ttw-audio-progress-wrap {
+    flex       : 1;
+    cursor     : pointer;
+    padding    : 8px 0;
+}
+.ttw-audio-progress-bg {
+    background    : rgba(var(--ttw-accent-rgb), 0.15);
+    border-radius : 4px;
+    height        : 5px;
+}
+.ttw-audio-progress-bar {
+    background    : var(--ttw-accent);
+    border-radius : 4px;
+    height        : 5px;
+    width         : 0%;
+    transition    : width 0.1s linear;
+    pointer-events: none;
+}
+.ttw-audio-time {
+    font-size   : 0.78rem;
+    color       : var(--ttw-text-secondary);
+    white-space : nowrap;
+    min-width   : 36px;
+    text-align  : right;
+    font-weight : 600;
+}
+
+/* ── 13b. NEW — Voice Preview Panel (shown in toolbar after recording) ───── */
+/*
+ * This panel slides in below the toolbar buttons after recording stops
+ * (when enableVoiceEnhance: true in site-config.js).
+ * It is hidden by default and revealed by JS adding the .active class.
+ * Uses only existing --ttw-* custom properties for automatic dark/light sync.
+ */
+
+.ttw-voice-preview-panel {
+    display       : none;          /* JS shows via .active */
+    flex-direction: column;
+    gap           : 12px;
+    margin-top    : 14px;
+    padding       : 16px 18px;
+    background    : rgba(var(--ttw-accent-rgb), 0.04);
+    border        : 1.5px solid var(--ttw-border-accent);
+    border-radius : var(--ttw-radius-md);
+    animation     : ttw-fade-in 0.25s ease;
+    box-sizing    : border-box;
+    width         : 100%;
+}
+
+.ttw-voice-preview-panel.active {
+    display : flex;
+}
+
+/* Label row above the player */
+.ttw-voice-preview-label {
+    font-size   : 0.78rem;
+    font-weight : 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color       : var(--ttw-text-secondary);
+    display     : flex;
+    align-items : center;
+    gap         : 6px;
+}
+
+.ttw-voice-preview-label i {
+    color     : var(--ttw-accent);
+    font-size : 0.8rem;
+}
+
+/* Inline mini audio player inside the preview panel */
+.ttw-voice-preview-player {
+    display       : flex;
+    align-items   : center;
+    gap           : 10px;
+    background    : var(--ttw-surface-0);
+    border        : 1px solid var(--ttw-border-accent);
+    border-radius : var(--ttw-radius-pill);
+    padding       : 8px 14px;
+    width         : 100%;
+    box-sizing    : border-box;
+}
+
+/* Play/Pause button inside preview */
+.ttw-preview-play-btn {
+    background     : var(--ttw-accent);
+    color          : #090c10;
+    border         : none;
+    width          : 34px;
+    height         : 34px;
+    border-radius  : 50%;
+    cursor         : pointer;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    font-size      : 0.75rem;
+    flex-shrink    : 0;
+    transition     : var(--ttw-transition);
+    box-shadow     : 0 2px 8px rgba(var(--ttw-accent-rgb), 0.35);
+}
+.ttw-preview-play-btn:hover { transform: scale(1.1); filter: brightness(1.1); }
+
+/* Progress track inside preview */
+.ttw-preview-progress-wrap {
+    flex    : 1;
+    cursor  : pointer;
+    padding : 7px 0;
+}
+.ttw-preview-progress-bg {
+    background    : rgba(var(--ttw-accent-rgb), 0.15);
+    border-radius : 4px;
+    height        : 4px;
+}
+.ttw-preview-progress-bar {
+    background    : var(--ttw-accent);
+    border-radius : 4px;
+    height        : 4px;
+    width         : 0%;
+    transition    : width 0.1s linear;
+    pointer-events: none;
+}
+
+/* Time display inside preview */
+.ttw-preview-time {
+    font-size   : 0.76rem;
+    color       : var(--ttw-text-secondary);
+    white-space : nowrap;
+    min-width   : 34px;
+    text-align  : right;
+    font-weight : 600;
+}
+
+/* Action buttons row: [Retake] [Clean Voice toggle] */
+.ttw-voice-preview-actions {
+    display     : flex;
+    align-items : center;
+    gap         : 10px;
+    flex-wrap   : wrap;
+}
+
+/* Retake button — danger colour, discards recording */
+.ttw-btn-voice-retake {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 7px;
+    background    : rgba(var(--ttw-danger-rgb), 0.08);
+    color         : var(--ttw-danger);
+    border        : 1.5px solid rgba(var(--ttw-danger-rgb), 0.25);
+    border-radius : var(--ttw-radius-pill);
+    padding       : 9px 18px;
+    font-size     : 0.88rem;
+    font-weight   : 700;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    font-family   : var(--ttw-font);
+    white-space   : nowrap;
+}
+.ttw-btn-voice-retake:hover {
+    background   : var(--ttw-danger);
+    color        : #fff;
+    border-color : var(--ttw-danger);
+    box-shadow   : 0 3px 14px rgba(var(--ttw-danger-rgb), 0.35);
+}
+
+/* Clean Voice toggle button — off state */
+.ttw-btn-voice-clean {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 7px;
+    background    : rgba(var(--ttw-accent-rgb), 0.06);
+    color         : var(--ttw-text-secondary);
+    border        : 1.5px solid var(--ttw-border);
+    border-radius : var(--ttw-radius-pill);
+    padding       : 9px 18px;
+    font-size     : 0.88rem;
+    font-weight   : 700;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    font-family   : var(--ttw-font);
+    white-space   : nowrap;
+    position      : relative;
+}
+
+/* Clean Voice toggle — ON state (JS adds .active) */
+.ttw-btn-voice-clean.active {
+    background   : rgba(var(--ttw-accent-rgb), 0.14);
+    color        : var(--ttw-accent);
+    border-color : var(--ttw-accent);
+    box-shadow   : 0 0 12px rgba(var(--ttw-accent-rgb), 0.22);
+}
+
+.ttw-btn-voice-clean:hover {
+    border-color : var(--ttw-accent);
+    color        : var(--ttw-accent);
+    background   : rgba(var(--ttw-accent-rgb), 0.10);
+}
+
+/* Small status label that appears inside the panel when Clean Voice is ON */
+.ttw-voice-enhance-status {
+    display     : none;   /* JS shows via .active */
+    align-items : center;
+    gap         : 6px;
+    font-size   : 0.78rem;
+    font-weight : 700;
+    color       : var(--ttw-accent);
+    padding     : 4px 10px;
+    background  : rgba(var(--ttw-accent-rgb), 0.08);
+    border-radius: var(--ttw-radius-pill);
+    border      : 1px solid rgba(var(--ttw-accent-rgb), 0.18);
+    white-space : nowrap;
+}
+.ttw-voice-enhance-status.active {
+    display : inline-flex;
+    animation: ttw-fade-in 0.2s ease;
+}
+
+/* Processing spinner shown while Web Audio API is rendering the cleaned blob */
+.ttw-voice-processing-indicator {
+    display     : none;
+    align-items : center;
+    gap         : 8px;
+    font-size   : 0.82rem;
+    font-weight : 700;
+    color       : var(--ttw-accent);
+    padding-top : 4px;
+}
+.ttw-voice-processing-indicator.active {
+    display : flex;
+    animation: ttw-fade-in 0.2s ease;
+}
+
+
+/* ── 13c. Light-mode overrides for the Voice Preview Panel ──────────────── */
+body.light-mode .ttw-voice-preview-panel {
+    background : rgba(14, 165, 233, 0.04);
+    border-color: rgba(14, 165, 233, 0.22);
+}
+body.light-mode .ttw-voice-preview-player {
+    background : var(--ttw-surface-0);   /* #f0f4f8 in light */
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   14. @MENTION HIGHLIGHT
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-mention {
+    color           : var(--ttw-accent);
+    font-weight     : 700;
+    background      : rgba(var(--ttw-accent-rgb), 0.1);
+    border-radius   : 4px;
+    padding         : 1px 5px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   15. IN-FEED AD UNIT
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-ad-unit {
+    border        : 1px dashed rgba(var(--ttw-accent-rgb), 0.18);
+    border-radius : var(--ttw-radius-md);
+    padding       : 10px;
+    background    : rgba(var(--ttw-accent-rgb), 0.02);
+    text-align    : center;
+    overflow      : hidden;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   16. LOAD MORE BUTTON
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-load-more-wrap { text-align: center; margin-top: var(--ttw-space-lg); }
+
+.ttw-load-more-btn {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 8px;
+    background    : transparent;
+    color         : var(--ttw-accent);
+    border        : 1.5px solid var(--ttw-accent);
+    padding       : 13px 40px;
+    border-radius : var(--ttw-radius-pill);
+    font-weight   : 700;
+    font-size     : 0.97rem;
+    cursor        : pointer;
+    transition    : var(--ttw-transition);
+    font-family   : var(--ttw-font);
+}
+.ttw-load-more-btn:hover {
+    background   : var(--ttw-accent);
+    color        : #090c10;
+    box-shadow   : 0 0 28px rgba(var(--ttw-accent-rgb), 0.4);
+    transform    : translateY(-2px);
+}
+.ttw-load-more-btn:disabled {
+    opacity        : 0.35;
+    cursor         : not-allowed;
+    transform      : none;
+    pointer-events : none;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   17. UPLOAD PROGRESS BAR
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-upload-progress-wrap { display:none; margin-top:10px; width:100%; }
+.ttw-upload-progress-wrap.active { display:block; }
+
+.ttw-upload-progress-bar-bg {
+    background    : rgba(var(--ttw-accent-rgb), 0.1);
+    border-radius : 4px;
+    height        : 4px;
+    width         : 100%;
+    overflow      : hidden;
+}
+.ttw-upload-progress-bar-fill {
+    background : var(--ttw-accent);
+    height     : 4px;
+    width      : 60%;
+    border-radius: 4px;
+    animation  : ttw-indeterminate 1.4s infinite linear;
+}
+@keyframes ttw-indeterminate {
+    0%   { transform: translateX(-150%) scaleX(0.6); }
+    100% { transform: translateX(250%)  scaleX(0.6); }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   18. SPINNER
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-spinner {
+    display       : inline-block;
+    width         : 16px;
+    height        : 16px;
+    border        : 2.5px solid rgba(var(--ttw-accent-rgb), 0.25);
+    border-top    : 2.5px solid var(--ttw-accent);
+    border-radius : 50%;
+    animation     : ttw-spin 0.65s linear infinite;
+    vertical-align: middle;
+    flex-shrink   : 0;
+}
+@keyframes ttw-spin { to { transform: rotate(360deg); } }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   19. TOAST NOTIFICATIONS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ttw-toast {
+    position      : fixed;
+    top           : 90px;
+    right         : -400px;
+    background    : var(--container-bg, #161b22);
+    color         : var(--text-color, #c9d1d9);
+    padding       : 15px 20px;
+    border-radius : 8px;
+    border-left   : 5px solid #3fb950;
+    box-shadow    : 0 5px 20px rgba(0, 0, 0, 0.5);
+    display       : flex;
+    align-items   : center;
+    gap           : 12px;
+    font-size     : 0.95rem;
+    font-weight   : 700;
+    z-index       : 999999;
+    opacity       : 1;
+    transition    : right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    pointer-events: none;
+    white-space   : nowrap;
+    max-width     : 90vw;
+    font-family   : var(--ttw-font);
+    backdrop-filter: blur(10px);
+}
+.ttw-toast.show {
+    right     : 20px;
+}
+.ttw-toast.error   { border-left-color: #ff4757; }
+.ttw-toast.success { border-left-color: #3fb950; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   20. ANIMATIONS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes ttw-fade-in {
+    from { opacity:0; transform:translateY(-10px); }
+    to   { opacity:1; transform:translateY(0);     }
+}
+
+/* Empty state — fully centered, uses site text vars for light/dark */
+.ttw-empty-state {
+    text-align      : center;
+    padding         : var(--ttw-space-xl) var(--ttw-space-md);
+    color           : var(--text-muted, var(--ttw-text-muted));
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    justify-content : center;
+    gap             : var(--ttw-space-sm);
+    width           : 100%;
+}
+.ttw-empty-state i {
+    font-size    : 3rem;
+    opacity      : 0.22;
+    display      : block;
+    /* Force icon to sit centred regardless of parent padding */
+    margin       : 0 auto var(--ttw-space-sm);
+    color        : var(--accent-cyan, var(--ttw-accent));
+}
+.ttw-empty-state p {
+    margin    : 0;
+    font-size : 1rem;
+    color     : var(--text-muted, var(--ttw-text-secondary));
+    font-weight: 500;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   21. RESPONSIVE — TABLET (768px+)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 768px) {
+    .ttw-comments-wrapper {
+        padding : var(--ttw-space-xl);
+    }
+
+    .ttw-comments-title {
+        font-size : 1.65rem;
+    }
+
+    .ttw-comment-body {
+        font-size : 1rem;
+    }
+
+    .ttw-textarea {
+        font-size  : 1.05rem;
+        min-height : 130px;
+    }
+
+    .ttw-audio-player {
+        max-width : 460px;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   22. RESPONSIVE — DESKTOP (1200px+)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1200px) {
+    .ttw-comments-wrapper {
+        padding : 48px 52px;
+    }
+
+    .ttw-comments-title {
+        font-size : 1.8rem;
+    }
+
+    .ttw-comment-body {
+        font-size : 1.02rem;
+    }
+
+    .ttw-reply-box {
+        margin-left : 60px;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   23. RESPONSIVE — MOBILE (max 767px)
+   Full-width, edge-to-edge, large touch targets
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+
+    /* Widget keeps the 18px card border-radius on mobile — matching the
+       related-tools section cards. No more edge-to-edge breakout.          */
+    .ttw-comments-wrapper {
+        padding      : 20px 16px 24px;
+        border-radius: 18px;   /* ← matches .tools-grid a exactly */
+        /* Keep all four borders — consistent with the card style */
+        border-width : 1px;
+    }
+
+    .ttw-comments-title {
+        font-size : 1.25rem;
+    }
+
+    /* Auth row stacks vertically */
+    .ttw-login-row {
+        flex-direction : column;
+        align-items    : stretch;
+        gap            : 12px;
+    }
+    .ttw-login-btn {
+        width           : 100%;
+        justify-content : center;
+        padding         : 14px 20px;
+        font-size       : 1rem;
+    }
+
+    /* User card adapts */
+    .ttw-user-card {
+        gap : 12px;
+    }
+
+    /* Textarea — comfortable on small screen */
+    .ttw-textarea {
+        font-size  : 1rem;
+        min-height : 110px;
+        padding    : 15px 16px;
+    }
+
+    /* Toolbar buttons fill width on small phones */
+    .ttw-input-toolbar {
+        gap : 8px;
+    }
+    .ttw-btn-image,
+    .ttw-btn-record {
+        flex     : 1;
+        justify-content: center;
+        padding  : 13px 14px;
+        font-size: 0.95rem;
+    }
+
+    /* Voice preview panel — full width, compact on mobile */
+    .ttw-voice-preview-panel {
+        padding : 14px 14px;
+    }
+
+    .ttw-voice-preview-actions {
+        gap : 8px;
+    }
+
+    .ttw-btn-voice-retake,
+    .ttw-btn-voice-clean {
+        flex            : 1;
+        justify-content : center;
+        padding         : 10px 12px;
+        font-size       : 0.85rem;
+    }
+
+    /* Post button full width on mobile */
+    .ttw-submit-btn {
+        width           : 100%;
+        justify-content : center;
+        float           : none;
+        margin-top      : 12px;
+        padding         : 15px 20px;
+        font-size       : 1rem;
+    }
+
+    /* Controls bar stacks */
+    .ttw-controls-bar {
+        flex-direction : column;
+        align-items    : flex-start;
+        gap            : 10px;
+    }
+    .ttw-sort-select {
+        width     : 100%;
+        padding   : 11px 40px 11px 16px;
+        font-size : 0.97rem;
+    }
+
+    /* Comment cards — reduce padding */
+    .ttw-comment-box {
+        padding      : 15px 14px;
+        border-radius: 12px;
+    }
+    .ttw-comment-box:hover {
+        transform : none; /* Disable lift on touch devices */
+    }
+
+    /* Replies less indented on mobile */
+    .ttw-reply-box {
+        margin-left   : 18px;
+        border-radius : 0 12px 12px 0;
+    }
+
+    /* Comment body not indented on mobile (avatar row handles spacing) */
+    .ttw-comment-body,
+    .ttw-comment-actions,
+    .ttw-edit-container {
+        padding-left : 0;
+    }
+
+    /* Avatar slightly smaller on mobile */
+    .ttw-comment-avatar {
+        width  : 38px;
+        height : 38px;
+    }
+
+    /* Author name */
+    .ttw-comment-author {
+        font-size : 0.95rem;
+    }
+
+    /* Comment text — keep readable */
+    .ttw-comment-body {
+        font-size   : 0.97rem;
+        line-height : 1.7;
+    }
+
+    /* Action buttons — bigger touch targets */
+    .ttw-action-btn {
+        padding   : 8px 14px;
+        font-size : 0.85rem;
+    }
+    .ttw-comment-actions {
+        padding-left : 0;
+        gap          : 6px;
+    }
+
+    /* Reply input — no left padding on mobile */
+    .ttw-reply-input-container {
+        padding-left : 0;
+    }
+
+    /* Audio player full width */
+    .ttw-audio-player {
+        max-width : 100%;
+    }
+
+    /* Load more — full width */
+    .ttw-load-more-btn {
+        width           : 100%;
+        justify-content : center;
+        padding         : 14px 20px;
+    }
+
+    /* GDPR text readable */
+    .ttw-gdpr-wrap {
+        font-size : 0.88rem;
+        padding   : 11px 13px;
+    }
+
+    /* Toast stays within screen */
+    .ttw-toast {
+        top        : 80px;
+        width      : calc(100% - 40px);
+        right      : -100%;
+        font-size  : 0.9rem;
+        padding    : 11px 20px;
+        white-space: normal;
+        text-align : center;
+    }
+    .ttw-toast.show {
+        right      : 20px;
+    }
+
+    /* Image preview smaller on mobile */
+    .ttw-image-preview-wrap img {
+        max-width  : 150px;
+        max-height : 110px;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   24. VERY SMALL PHONES (max 380px — e.g. iPhone SE)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 380px) {
+    .ttw-comments-wrapper {
+        padding : 16px 12px 20px;
+    }
+
+    .ttw-comments-title {
+        font-size : 1.12rem;
+        gap       : 8px;
+    }
+
+    .ttw-btn-image,
+    .ttw-btn-record {
+        font-size : 0.88rem;
+        padding   : 12px 10px;
+    }
+
+    .ttw-btn-voice-retake,
+    .ttw-btn-voice-clean {
+        font-size : 0.82rem;
+        padding   : 9px 10px;
+    }
+
+    .ttw-action-btn {
+        font-size : 0.8rem;
+        padding   : 7px 11px;
+    }
+
+    .ttw-submit-btn {
+        font-size : 0.95rem;
+        padding   : 13px 16px;
+    }
+
+    .ttw-login-btn {
+        font-size : 0.95rem;
+    }
+}

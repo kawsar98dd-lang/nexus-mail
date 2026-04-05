@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- ============================================================
+         SITE CONFIGURATION & META MANAGEMENT
+         These scripts must load first so meta tags and analytics
+         are injected before any content is parsed.
+    ============================================================ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ============================================================
+         PRIMARY SEO META TAGS
+         Optimized title and description for maximum organic reach
+         targeting raster-to-vector conversion search queries.
+    ============================================================ -->
+    <title>SVG Vectorizer ULTRA MAX – Free PNG to SVG Converter | React & Flutter Code Generator</title>
+    <meta name="title" content="SVG Vectorizer ULTRA MAX – Free PNG to SVG Converter | React & Flutter Code Generator">
+    <meta name="description" content="Convert PNG and JPG images to crisp SVG vectors 100% client-side. Advanced raster-to-vector engine with React JSX export, Flutter CustomPaint code, SVG minifier, layer inspector, and batch ZIP export. No uploads. No server. Pure privacy.">
+    <meta name="keywords" content="svg vectorizer, png to svg converter, jpg to svg, raster to vector, react svg generator, flutter svg, svg minifier, svg optimizer, batch svg converter, client-side svg, free svg tool, image trace, svg path inspector, svg code generator, online svg converter, vector art generator">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- ============================================================
+         CANONICAL URL — prevents duplicate content penalties
+    ============================================================ -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/tools/img/img-svg-vectorizer.html" />
+
+    <!-- ============================================================
+         OPEN GRAPH / FACEBOOK RICH SHARE TAGS
+    ============================================================ -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/tools/img/img-svg-vectorizer.html">
+    <meta property="og:title" content="SVG Vectorizer ULTRA MAX – Free PNG to SVG Converter | React & Flutter Code Generator">
+    <meta property="og:description" content="Convert PNG/JPG to SVG instantly in your browser. Export React JSX, Flutter code, minify, inspect layers & batch export ZIP — zero server, 100% private.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/img/img-svg-vectorizer/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============================================================
+         TWITTER CARD META TAGS
+    ============================================================ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trustedtoolsweb">
+    <meta name="twitter:creator" content="@trustedtoolsweb">
+    <meta name="twitter:title" content="SVG Vectorizer ULTRA MAX – Free PNG to SVG Converter">
+    <meta name="twitter:description" content="Convert raster images to vector SVG, generate React & Flutter code, minify & batch export — 100% client-side privacy.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/img/img-svg-vectorizer/img/og-banner.webp">
+
+    <!-- ============================================================
+         FAVICON
+    ============================================================ -->
+    <link rel="icon" type="image/webp" href="../../assets/tools/img/img-svg-vectorizer/img/favicon.webp">
+    <link rel="apple-touch-icon" href="../../assets/tools/img/img-svg-vectorizer/img/favicon.webp">
+
+    <!-- ============================================================
+         JSON-LD STRUCTURED DATA
+         Dual schema: WebApplication + SoftwareApplication
+         Maximizes Google rich result eligibility and app store
+         indexing for free tool discovery.
+    ============================================================ -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "SVG Vectorizer ULTRA MAX",
+        "url": "https://trustedtoolsweb.com/tools/img/img-svg-vectorizer.html",
+        "description": "A professional-grade, 100% client-side raster-to-vector conversion tool. Converts PNG and JPG images to SVG with advanced tracing controls, React JSX generation, Flutter CustomPaint export, SVG minification, layer inspection, and batch ZIP export.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript, HTML5 Canvas",
+        "softwareVersion": "1.0",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "MD KAWSAR",
+          "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": [
+          "PNG to SVG Conversion",
+          "JPG to SVG Conversion",
+          "React JSX Code Generator",
+          "Flutter CustomPaint Code Generator",
+          "SVG Minifier & Cleaner",
+          "Layer & Path Inspector",
+          "Batch Processing with Web Workers",
+          "ZIP Export",
+          "Live Split View Preview",
+          "100% Client-Side Privacy"
+        ],
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/img/img-svg-vectorizer/img/og-banner.webp"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SVG Vectorizer ULTRA MAX",
+        "operatingSystem": "Web Browser",
+        "applicationCategory": "GraphicsApplication",
+        "url": "https://trustedtoolsweb.com/tools/img/img-svg-vectorizer.html",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+    </script>
+
+    <!-- ============================================================
+         CDN PRECONNECTS — reduces DNS lookup latency for external libs
+    ============================================================ -->
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- ============================================================
+         FONTAWESOME ICONS (local copy)
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ============================================================
+         IMAGETRACERJS — raster-to-vector library (CDN)
+         Will be localized before CodeCanyon submission.
+    ============================================================ -->
+    <script src="../../assets/library/media-vision/imagetracer/imagetracer_v1.2.6.js"></script>
+
+    <!-- ============================================================
+         FILE ARCHIVER LIBRARIES
+         JSZip builds the in-memory ZIP archive.
+         FileSaver triggers the browser download dialog.
+    ============================================================ -->
+    <script src="../../assets/library/file-archiver/jszip/jszip.min.js"></script>
+    <script src="../../assets/library/file-archiver/filesaver/FileSaver.min.js"></script>
+
+    <!-- ============================================================
+         GLOBAL & TOOL STYLESHEETS (Two-File CSS Architecture)
+         global.css       → Site-wide layout, header, footer, theme
+         tools-template.css → All reusable tool UI components
+         NO per-tool style.css exists — all styles are here.
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         GLOBAL SITE HEADER
+         Populated by global.js (logo, nav, theme toggle)
+    ============================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+
+        <!-- ============================================================
+             MAIN TOOL CONTAINER
+             animated-entry → fade-in on page load
+        ============================================================ -->
+        <div class="container animated-entry">
+
+            <!-- ============================================================
+                 HERO SECTION: Security Badge + Title + Subtitle
+            ============================================================ -->
+
+            <!-- Green "100% Client-Side Privacy" badge -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- Main tool title — gradient span highlights the brand name -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-bezier-curve" aria-hidden="true"></i> SVG Vectorizer <span>ULTRA MAX</span>
+            </h1>
+
+            <!-- Subtitle / tool description -->
+            <p class="subtitle">
+                Convert Raster to Vector, Minify, Inspect Layers &amp; Export to React / Flutter — instantly in your browser.
+            </p>
+
+            <!-- ============================================================
+                 TAB NAVIGATION
+                 Three modes: Single Convert | Batch Mode | Code Export
+                 JS (TabManager) targets .tab-btn[data-tab] and #panel-{name}
+            ============================================================ -->
+            <div class="tab-nav" role="tablist" aria-label="Tool mode selection">
+                <button class="tab-btn active" role="tab" aria-selected="true"
+                        aria-controls="panel-single" id="tab-single" data-tab="single">
+                    <i class="fa-solid fa-image" aria-hidden="true"></i> Single Convert
+                </button>
+                <button class="tab-btn" role="tab" aria-selected="false"
+                        aria-controls="panel-batch" id="tab-batch" data-tab="batch">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> Batch Mode
+                </button>
+                <button class="tab-btn" role="tab" aria-selected="false"
+                        aria-controls="panel-code" id="tab-code" data-tab="code">
+                    <i class="fa-solid fa-code" aria-hidden="true"></i> Code Export
+                </button>
+            </div>
+
+            <!-- ============================================================
+                 PANEL 1: SINGLE IMAGE CONVERTER
+                 Handles one image at a time with live split-view preview.
+            ============================================================ -->
+            <div class="tab-panel active" id="panel-single" role="tabpanel" aria-labelledby="tab-single">
+
+                <!-- ── Drop Zone ───────────────────────────────────────────
+                     JS IDs: #dropZone, #fileInput
+                     DropZoneManager.initSingleZone() attaches drag/click events.
+                ─────────────────────────────────────────────────────────── -->
+                <div
+                    class="svv-drop-zone"
+                    id="dropZone"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Drag and drop PNG or JPG image here, or click to browse files"
+                    aria-describedby="drop-zone-hint"
+                >
+                    <div class="svv-drop-inner">
+
+                        <!-- Animated upload icon with pulsing rings -->
+                        <div class="svv-drop-icon-wrap">
+                            <i class="fa-solid fa-cloud-arrow-up svv-drop-icon" aria-hidden="true"></i>
+                            <div class="svv-drop-ring svv-ring-1"></div>
+                            <div class="svv-drop-ring svv-ring-2"></div>
+                        </div>
+
+                        <p class="svv-drop-title">Drop your PNG or JPG here</p>
+                        <p class="svv-drop-sub" id="drop-zone-hint">
+                            or <span class="svv-drop-link">click to browse</span> — Max 10 MB
+                        </p>
+
+                        <!-- Accepted format chips displayed inside the drop zone -->
+                        <div class="svv-drop-formats">
+                            <span class="svv-format-chip">PNG</span>
+                            <span class="svv-format-chip">JPG</span>
+                            <span class="svv-format-chip">JPEG</span>
+                            <span class="svv-format-chip">WEBP</span>
+                        </div>
+                    </div>
+
+                    <!-- Hidden file input — opened programmatically on zone click -->
+                    <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp"
+                           class="svv-visually-hidden" aria-hidden="true">
+                </div><!-- /.svv-drop-zone -->
+
+                <!-- ── Tracing Controls ──────────────────────────────────────
+                     Three sliders: Detail Level | Color Count | Noise Reduction
+                     JS IDs: #tracingControls, #sliderDetail, #sliderColors,
+                             #sliderNoise, #valDetail, #valColors, #valNoise
+                ─────────────────────────────────────────────────────────── -->
+                <div class="svv-controls-grid" id="tracingControls" aria-label="Tracing parameters">
+
+                    <!-- Detail Level slider -->
+                    <div class="svv-control-card">
+                        <div class="svv-control-header">
+                            <label for="sliderDetail">
+                                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Detail Level
+                            </label>
+                            <span class="svv-control-value" id="valDetail">50</span>
+                        </div>
+                        <input type="range" id="sliderDetail" min="1" max="100" value="50"
+                               class="svv-styled-range"
+                               aria-label="Detail level from 1 (low detail) to 100 (high detail)">
+                        <div class="svv-control-hints"><span>Low</span><span>High</span></div>
+                    </div>
+
+                    <!-- Color Count slider -->
+                    <div class="svv-control-card">
+                        <div class="svv-control-header">
+                            <label for="sliderColors">
+                                <i class="fa-solid fa-palette" aria-hidden="true"></i> Color Count
+                            </label>
+                            <span class="svv-control-value" id="valColors">16</span>
+                        </div>
+                        <input type="range" id="sliderColors" min="2" max="64" value="16"
+                               class="svv-styled-range"
+                               aria-label="Number of colors from 2 to 64">
+                        <div class="svv-control-hints"><span>2</span><span>64</span></div>
+                    </div>
+
+                    <!-- Noise Reduction slider -->
+                    <div class="svv-control-card">
+                        <div class="svv-control-header">
+                            <label for="sliderNoise">
+                                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Noise Reduction
+                            </label>
+                            <span class="svv-control-value" id="valNoise">25</span>
+                        </div>
+                        <input type="range" id="sliderNoise" min="0" max="100" value="25"
+                               class="svv-styled-range"
+                               aria-label="Noise reduction from 0 (none) to 100 (maximum)">
+                        <div class="svv-control-hints"><span>None</span><span>Max</span></div>
+                    </div>
+
+                </div><!-- /.svv-controls-grid -->
+
+                <!-- ── Action Buttons ───────────────────────────────────────
+                     Shown only after a file is selected (JS toggles display).
+                     JS IDs: #actionArea, #btnVectorize, #btnReset
+                ─────────────────────────────────────────────────────────── -->
+                <div class="btn-area" id="actionArea" style="display:none;">
+                    <button class="btn btn-primary" id="btnVectorize"
+                            aria-label="Start vectorizing the uploaded image">
+                        <i class="fa-solid fa-bolt" aria-hidden="true"></i> Vectorize Now
+                    </button>
+                    <button class="btn btn-secondary" id="btnReset"
+                            aria-label="Reset and clear all data">
+                        <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Reset
+                    </button>
+                </div>
+
+                <!-- ── Skeleton Loader ──────────────────────────────────────
+                     Displayed while ImageTracer is processing the image.
+                     JS ID: #skeletonLoader — shown/hidden via show()/hide().
+                ─────────────────────────────────────────────────────────── -->
+                <div id="skeletonLoader" class="svv-skeleton-box" aria-hidden="true" aria-label="Processing…">
+                    <div class="svv-skeleton-shimmer"></div>
+                    <div class="svv-skeleton-text"></div>
+                    <div class="svv-skeleton-text svv-short"></div>
+                </div>
+
+                <!-- ── Live Split View ──────────────────────────────────────
+                     LEFT: Visual SVG preview | RIGHT: Raw SVG source code
+                     JS ID: #splitView — gets class "visible" after vectorization.
+                ─────────────────────────────────────────────────────────── -->
+                <div class="svv-split-view" id="splitView" aria-label="Split view: image preview and SVG code">
+
+                    <!-- LEFT PANE: Visual SVG Preview -->
+                    <div class="svv-split-pane svv-pane-preview" aria-label="SVG visual preview">
+
+                        <!-- Pane header with file-size badges -->
+                        <div class="svv-pane-header">
+                            <span><i class="fa-solid fa-eye" aria-hidden="true"></i> Live Preview</span>
+                            <div class="svv-size-badge-wrap">
+                                <!-- JS IDs: #origSizeBadge, #origSize, #minSizeBadge, #minSize -->
+                                <span class="svv-size-badge" id="origSizeBadge" title="Original SVG file size">
+                                    <i class="fa-solid fa-weight-hanging" aria-hidden="true"></i>
+                                    Original: <strong id="origSize">—</strong>
+                                </span>
+                                <span class="svv-size-badge svv-size-minified" id="minSizeBadge" title="Minified SVG file size">
+                                    <i class="fa-solid fa-compress" aria-hidden="true"></i>
+                                    Minified: <strong id="minSize">—</strong>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- SVG is injected here by SplitViewController.display() -->
+                        <div class="svv-preview-canvas" id="previewWrap"></div>
+
+                        <!-- Pane action buttons — copy/download the SVG -->
+                        <div class="svv-pane-actions">
+                            <!-- JS ID: #btnCopyBase64 -->
+                            <button class="btn btn-secondary svv-pane-btn" id="btnCopyBase64"
+                                    title="Copy SVG as Base64 Data URI"
+                                    aria-label="Copy SVG as Base64 encoded string">
+                                <i class="fa-solid fa-copy" aria-hidden="true"></i> Base64
+                            </button>
+                            <!-- JS ID: #btnDownloadSVG -->
+                            <button class="btn btn-success svv-pane-btn" id="btnDownloadSVG"
+                                    title="Download minified SVG file"
+                                    aria-label="Download the generated SVG file">
+                                <i class="fa-solid fa-download" aria-hidden="true"></i> Download SVG
+                            </button>
+                            <!-- JS ID: #btnDownloadMin -->
+                            <button class="btn btn-secondary svv-pane-btn" id="btnDownloadMin"
+                                    title="Download minified SVG"
+                                    aria-label="Download the minified SVG">
+                                <i class="fa-solid fa-file-zipper" aria-hidden="true"></i> Minified SVG
+                            </button>
+                        </div>
+
+                    </div><!-- /.svv-pane-preview -->
+
+                    <!-- RIGHT PANE: Raw SVG Code Inspector -->
+                    <div class="svv-split-pane svv-pane-code" aria-label="Raw SVG source code">
+                        <div class="svv-pane-header">
+                            <span><i class="fa-solid fa-code" aria-hidden="true"></i> SVG Source</span>
+                            <!-- JS ID: #btnCopyCode -->
+                            <button class="btn btn-secondary svv-pane-btn-sm" id="btnCopyCode"
+                                    aria-label="Copy SVG source code to clipboard">
+                                <i class="fa-solid fa-copy" aria-hidden="true"></i> Copy Code
+                            </button>
+                        </div>
+                        <!-- JS IDs: #codeInspector (scroll container), #codeContent (text node) -->
+                        <pre class="svv-code-inspector" id="codeInspector"
+                             aria-label="SVG source code" tabindex="0"><code id="codeContent">// Your generated SVG code will appear here…</code></pre>
+                    </div><!-- /.svv-pane-code -->
+
+                </div><!-- /.svv-split-view -->
+
+                <!-- ── Layer & Path Inspector ───────────────────────────────
+                     Populated by LayerInspector.populate() after vectorization.
+                     JS IDs: #layerPanel, #layerCount, #layerList
+                ─────────────────────────────────────────────────────────── -->
+                <div class="svv-layer-panel" id="layerPanel" aria-label="SVG Layer and Path Inspector">
+                    <div class="svv-layer-header">
+                        <h2><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Layer &amp; Path Inspector</h2>
+                        <span class="svv-layer-count" id="layerCount">0 paths</span>
+                    </div>
+                    <p class="svv-layer-hint">Toggle eye icons to show/hide individual SVG paths — like a mini Illustrator.</p>
+                    <!-- Layer items are dynamically injected by LayerInspector.populate() -->
+                    <ul class="svv-layer-list" id="layerList" aria-label="List of SVG path layers" role="list"></ul>
+                </div><!-- /.svv-layer-panel -->
+
+            </div><!-- /#panel-single -->
+
+            <!-- ============================================================
+                 PANEL 2: BATCH PROCESSING
+                 Processes multiple images using a Web Worker.
+                 All results exported as a single ZIP archive.
+            ============================================================ -->
+            <div class="tab-panel" id="panel-batch" role="tabpanel" aria-labelledby="tab-batch">
+
+                <!-- Batch Drop Zone — accepts multiple files -->
+                <div
+                    class="svv-drop-zone svv-batch-drop"
+                    id="batchDropZone"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Drag and drop multiple PNG or JPG images here"
+                >
+                    <div class="svv-drop-inner">
+                        <div class="svv-drop-icon-wrap">
+                            <i class="fa-solid fa-images svv-drop-icon" aria-hidden="true"></i>
+                            <div class="svv-drop-ring svv-ring-1"></div>
+                            <div class="svv-drop-ring svv-ring-2"></div>
+                        </div>
+                        <p class="svv-drop-title">Drop Multiple Images</p>
+                        <p class="svv-drop-sub">
+                            or <span class="svv-drop-link">click to browse</span> — Batch converts &amp; exports as ZIP
+                        </p>
+                    </div>
+                    <!-- Hidden multi-file input -->
+                    <input type="file" id="batchFileInput" accept="image/png,image/jpeg,image/webp"
+                           multiple class="svv-visually-hidden" aria-hidden="true">
+                </div>
+
+                <!-- Batch Queue — batch items injected here by BatchManager.renderQueue() -->
+                <div class="svv-batch-queue" id="batchQueue"
+                     aria-label="Batch processing queue" aria-live="polite">
+                    <!-- Dynamic content -->
+                </div>
+
+                <!-- Batch Control Buttons — shown after files are added -->
+                <!-- JS ID: #batchActions, #btnBatchProcess, #btnBatchExportZip, #btnBatchClear -->
+                <div class="btn-area" id="batchActions" style="display:none;">
+                    <button class="btn btn-primary" id="btnBatchProcess"
+                            aria-label="Start batch vectorizing all queued images">
+                        <i class="fa-solid fa-gears" aria-hidden="true"></i> Process All
+                    </button>
+                    <button class="btn btn-primary bg-btn-export" id="btnBatchExportZip"
+                            disabled aria-label="Export all vectorized SVGs as ZIP archive">
+                        <i class="fa-solid fa-file-zipper" aria-hidden="true"></i> Export ZIP
+                    </button>
+                    <button class="btn btn-danger" id="btnBatchClear"
+                            aria-label="Clear the batch queue">
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i> Clear Queue
+                    </button>
+                </div>
+
+                <!-- Batch Global Progress Bar -->
+                <!-- JS IDs: #batchProgressWrap, #batchProgressFill, #batchProgressLabel -->
+                <div class="svv-batch-progress-wrap" id="batchProgressWrap"
+                     style="display:none;" aria-label="Overall batch progress">
+                    <div class="svv-batch-progress-track">
+                        <div class="svv-batch-progress-fill" id="batchProgressFill"
+                             role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <span class="svv-batch-progress-label" id="batchProgressLabel">Processing 0 of 0…</span>
+                </div>
+
+            </div><!-- /#panel-batch -->
+
+            <!-- ============================================================
+                 PANEL 3: CODE EXPORT (React JSX / Flutter Dart)
+                 Content is generated by CodeExporter and injected by
+                 SplitViewController.updateCodeExport() after vectorization.
+            ============================================================ -->
+            <div class="tab-panel" id="panel-code" role="tabpanel" aria-labelledby="tab-code">
+
+                <!-- Two-column grid: React card | Flutter card -->
+                <div class="svv-code-export-grid">
+
+                    <!-- React JSX Card -->
+                    <div class="svv-code-export-card" aria-label="React JSX code export">
+                        <!-- Header bar with React brand colour + copy button -->
+                        <div class="svv-code-card-header svv-react-header">
+                            <span>
+                                <i class="fa-brands fa-react" aria-hidden="true"></i> React Component (JSX)
+                            </span>
+                            <!-- JS ID: #btnCopyReact -->
+                            <button class="btn btn-secondary svv-pane-btn-sm" id="btnCopyReact"
+                                    aria-label="Copy React JSX code">
+                                <i class="fa-solid fa-copy" aria-hidden="true"></i> Copy
+                            </button>
+                        </div>
+                        <!-- JS IDs: #reactCode (scroll), #reactCodeContent (text node) -->
+                        <pre class="svv-code-inspector svv-react-code" id="reactCode"
+                             aria-label="Generated React JSX code" tabindex="0"><code id="reactCodeContent">// Vectorize an image first to generate the React component…
+
+// Example output:
+// import React from 'react';
+// const VectorIcon = () => (
+//   &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"&gt;
+//     &lt;path d="M..." fill="#3a86ff" /&gt;
+//   &lt;/svg&gt;
+// );
+// export default VectorIcon;</code></pre>
+                    </div><!-- /.svv-code-export-card (React) -->
+
+                    <!-- Flutter Dart Card -->
+                    <div class="svv-code-export-card" aria-label="Flutter Dart code export">
+                        <!-- Header bar with Flutter brand colour + copy button -->
+                        <div class="svv-code-card-header svv-flutter-header">
+                            <span>
+                                <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
+                                Flutter (SvgPicture / CustomPaint)
+                            </span>
+                            <!-- JS ID: #btnCopyFlutter -->
+                            <button class="btn btn-secondary svv-pane-btn-sm" id="btnCopyFlutter"
+                                    aria-label="Copy Flutter Dart code">
+                                <i class="fa-solid fa-copy" aria-hidden="true"></i> Copy
+                            </button>
+                        </div>
+                        <!-- JS IDs: #flutterCode (scroll), #flutterCodeContent (text node) -->
+                        <pre class="svv-code-inspector svv-flutter-code" id="flutterCode"
+                             aria-label="Generated Flutter Dart code" tabindex="0"><code id="flutterCodeContent">// Vectorize an image first to generate the Flutter snippet…
+
+// Example output:
+// import 'package:flutter_svg/flutter_svg.dart';
+//
+// SvgPicture.string(
+//   '''&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"&gt;...&lt;/svg&gt;''',
+//   width: 200,
+//   height: 200,
+// );</code></pre>
+                    </div><!-- /.svv-code-export-card (Flutter) -->
+
+                </div><!-- /.svv-code-export-grid -->
+
+                <!-- Stats Row — populated by SplitViewController.updateCodeStats() -->
+                <!-- JS ID: #codeStatsRow, #statPaths, #statColors, #statRawSize, #statMinSize, #statSavings -->
+                <div class="svv-stats-row" id="codeStatsRow" aria-label="SVG statistics">
+                    <div class="svv-stat-card">
+                        <span class="svv-stat-label">
+                            <i class="fa-solid fa-draw-polygon" aria-hidden="true"></i> Total Paths
+                        </span>
+                        <strong class="svv-stat-value" id="statPaths">—</strong>
+                    </div>
+                    <div class="svv-stat-card">
+                        <span class="svv-stat-label">
+                            <i class="fa-solid fa-palette" aria-hidden="true"></i> Unique Colors
+                        </span>
+                        <strong class="svv-stat-value" id="statColors">—</strong>
+                    </div>
+                    <div class="svv-stat-card">
+                        <span class="svv-stat-label">
+                            <i class="fa-solid fa-weight-hanging" aria-hidden="true"></i> Raw Size
+                        </span>
+                        <strong class="svv-stat-value" id="statRawSize">—</strong>
+                    </div>
+                    <div class="svv-stat-card">
+                        <span class="svv-stat-label">
+                            <i class="fa-solid fa-compress" aria-hidden="true"></i> Minified Size
+                        </span>
+                        <strong class="svv-stat-value" id="statMinSize">—</strong>
+                    </div>
+                    <div class="svv-stat-card">
+                        <span class="svv-stat-label">
+                            <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Savings
+                        </span>
+                        <strong class="svv-stat-value svv-stat-accent" id="statSavings">—</strong>
+                    </div>
+                </div><!-- /.svv-stats-row -->
+
+            </div><!-- /#panel-code -->
+
+            <!-- ============================================================
+                 SEO INFO / DOCUMENTATION SECTION
+                 Provides keyword-rich content that Google can index.
+                 Wrapped in semantic <section> for accessibility + SEO.
+            ============================================================ -->
+            <section class="info-section-wrapper" aria-label="Usage guide and technical documentation">
+
+                <!-- Usage Guide -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-circle-play" aria-hidden="true"></i> How to Use SVG Vectorizer ULTRA MAX</h2>
+                    <ul class="svv-info-steps">
+                        <li>
+                            <i class="fa-solid fa-upload" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 1: Upload Your Image</strong><br>
+                                Drag &amp; drop a PNG, JPG, or WEBP image into the drop zone, or click to browse files. The tool accepts raster images up to 10 MB.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 2: Tune the Tracing Parameters</strong><br>
+                                Adjust <strong>Detail Level</strong> (path complexity), <strong>Color Count</strong> (palette size), and <strong>Noise Reduction</strong> (removes tiny artifacts) using the sliders.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 3: Vectorize</strong><br>
+                                Click <strong>Vectorize Now</strong>. The engine processes your image 100% in-browser using ImageTracer.js with a Web Worker for zero UI freeze.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-code" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 4: Inspect &amp; Export</strong><br>
+                                Use the <strong>Live Split View</strong> to preview the SVG and inspect raw code. Switch to <strong>Code Export</strong> tab for the React JSX component or Flutter snippet.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 5: Batch Mode (Optional)</strong><br>
+                                Switch to <strong>Batch Mode</strong> to vectorize multiple images simultaneously using Web Workers. Download all results as a ZIP archive.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Technical Architecture -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-microchip" aria-hidden="true"></i> Technical Architecture</h2>
+                    <p>This tool is powered by a multi-layer client-side pipeline:</p>
+                    <p class="tech-highlight"><strong>ImageTracer.js</strong> → Canvas Rasterization → Path Tracing → SVG String → Minification Engine → Code Transpiler</p>
+                    <h3>Tracing Algorithm</h3>
+                    <p>ImageTracer.js performs color quantization followed by edge detection and Bézier curve fitting. The <strong>Detail Level</strong> slider maps to the <code>ltres</code> (line threshold) and <code>qtres</code> (quadratic threshold) parameters. Lower values produce more faithful paths; higher values simplify curves.</p>
+                    <h3>SVG Minifier</h3>
+                    <p>The built-in minifier strips XML comments, collapses whitespace, removes empty group elements, and rounds floating-point decimal coordinates to 2 decimal places — significantly reducing file size without any visual loss.</p>
+                    <h3>Web Worker Batch Engine</h3>
+                    <p>Batch mode spawns an inline Web Worker via a <code>Blob URL</code> to process images off the main thread. This ensures the browser UI never freezes regardless of image complexity or quantity.</p>
+                </div>
+
+                <!-- Privacy Statement -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-lock" aria-hidden="true"></i> Privacy &amp; Data Security</h2>
+                    <p>SVG Vectorizer ULTRA MAX processes everything <strong>100% client-side</strong>. Your images, SVG output, and generated code never leave your device. No data is uploaded to any server. This makes it safe for logos, confidential artwork, and proprietary graphics.</p>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Disclaimer</h2>
+                    <p>The quality of vectorization depends on the complexity and contrast of the source image. Photographic images with many gradient tones may produce large, complex SVG files. For best results, use images with distinct color regions, such as logos, icons, illustrations, or flat-design artwork.</p>
+                </div>
+
+            </section><!-- /.info-section-wrapper -->
+
+        </div><!-- /.container.animated-entry -->
+
+        <!-- ============================================================
+             RELATED TOOLS GRID
+             Populated dynamically by related-tools.js
+        ============================================================ -->
+        <div class="container">
+            <div
+                id="dynamic-related-tools"
+                data-category="img"
+                data-current-page="img-svg-vectorizer.html"
+            ></div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <!-- ============================================================
+         GLOBAL SITE FOOTER
+         Populated by global.js (links, copyright, etc.)
+    ============================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ============================================================
+         GLOBAL JS
+         Handles: theme toggle, header/footer injection, toast system.
+         Loaded as ES module to prevent global namespace pollution.
+    ============================================================ -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ============================================================
+         TOOL-SPECIFIC SCRIPT
+         Loaded LAST — ensures the full DOM is available before
+         any querySelector / getElementById calls execute.
+    ============================================================ -->
+    <script src="../../assets/tools/img/img-svg-vectorizer/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

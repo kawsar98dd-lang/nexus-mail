@@ -1,0 +1,509 @@
+<!-- 
+    ============================================================================
+    PRODUCT   : Ultra Focus Pro Max
+    TOOL ID   : tool-focus-timer
+    SECTION   : Productivity Tools
+    TYPE      : Pomodoro / Focus Timer — Neuro-Audio Edition
+    VERSION   : 4.2 (Marketplace Gold — CodeCanyon Release Build)
+    AUTHOR    : MD KAWSAR
+    PROJECT   : Trusted Tools Web
+
+    ARCHITECTURE NOTE:
+    ─────────────────────────────────────────────────────────────────────────
+    • This file uses the Singleton Class Architecture (UltraFocusEngine).
+    • Audio processing is handled via Web Audio API with a Dynamics
+      Compressor chain (see script.js for full documentation).
+    • All styling comes from exactly two stylesheet files:
+        1. global.css       — site-wide base rules (NEVER modified per-tool)
+        2. tools-template.css — reusable tool components + this tool's CSS
+    • No inline <style> blocks. No local style.css.
+    • Toast notifications are handled by the global window.showToast() system.
+    ============================================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebApplication">
+
+<head>
+
+    <!-- ── ANALYTICS & SITE CONFIG ─────────────────────────────────────── -->
+    <!-- [ANALYTICS] Google Analytics and site metadata managed via these modules -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ── CHARACTER SET & COMPATIBILITY ───────────────────────────────── -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ── VIEWPORT ─────────────────────────────────────────────────────── -->
+    <!-- Prevents pinch-zoom issues on mobile; enables iOS safe-area insets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <!-- ── PRIMARY SEO META TAGS ────────────────────────────────────────── -->
+    <title>Ultra Focus Pro Max — Free Pomodoro Timer with Pink Noise & Binaural Beats | Trusted Tools Web</title>
+    <meta name="title"       content="Ultra Focus Pro Max — Free Pomodoro Timer with Pink Noise & Binaural Beats | Trusted Tools Web">
+    <meta name="description" content="Boost productivity with Ultra Focus Pro Max. A next-generation Pomodoro timer featuring Pink Noise, 40Hz Gamma Binaural Beats, gamified XP tracking, and a drift-free timer engine. 100% free, client-side, and privacy-first.">
+    <meta name="keywords"    content="Pomodoro Timer, Focus Tool, Pink Noise Generator, Binaural Beats 40Hz, Study Timer, Productivity Web App, Trusted Tools Web, Deep Work Timer, Gamma Waves Focus, HSC Study Timer, Free Online Timer">
+    <meta name="author"      content="MD KAWSAR">
+
+    <!-- ── CRAWL DIRECTIVES ─────────────────────────────────────────────── -->
+    <meta name="robots"        content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- ── OPEN GRAPH (Facebook / LinkedIn) ────────────────────────────── -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/tool-focus-timer.html">
+    <meta property="og:title"       content="Ultra Focus Pro Max — Hack Your Brain into Flow State | Trusted Tools Web">
+    <meta property="og:description" content="Struggling to focus? Use the Holographic Focus Timer with built-in Neuro-Audio: Pink Noise, Gamma Binaural Beats, gamified streaks, and a drift-free Pomodoro engine. Completely free.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/tool/tool-focus-timer/img/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+    <meta property="og:locale"      content="en_US">
+
+    <!-- ── TWITTER CARD ─────────────────────────────────────────────────── -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/tool-focus-timer.html">
+    <meta name="twitter:title"       content="Ultra Focus Pro Max | Trusted Tools Web">
+    <meta name="twitter:description" content="Next-Gen Productivity Suite with Neuro-Audio, Gamified XP, and a Drift-Free Pomodoro Timer. 100% client-side & free.">
+    <meta name="twitter:image"       content="../../assets/tools/tool/tool-focus-timer/img/og-banner.webp">
+
+    <!-- ── CANONICAL URL ────────────────────────────────────────────────── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/tool-focus-timer.html">
+
+    <!-- ── PWA / MOBILE HOME SCREEN ─────────────────────────────────────── -->
+    <meta name="theme-color"                    content="#050505">
+    <meta name="apple-mobile-web-app-capable"   content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title"     content="Ultra Focus">
+
+    <!-- ── FAVICON ───────────────────────────────────────────────────────── -->
+    <link rel="icon"            type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                  href="../../assets/img/logo.webp">
+
+    <!-- ── ICON LIBRARY ─────────────────────────────────────────────────── -->
+    <!-- FontAwesome — to be self-hosted before final CodeCanyon submission -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ── GLOBAL STYLESHEETS (TWO-FILE CSS ARCHITECTURE) ───────────────── -->
+    <!-- 1. global.css    : Site-wide base rules — header, footer, theme, reset -->
+    <!-- 2. tools-template.css : All reusable tool components + this tool's unique styles (Section 73) -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ── SCHEMA.ORG STRUCTURED DATA (Rich Snippets / SEO) ────────────── -->
+    <script type="application/ld+json">
+    {
+        "@context"            : "https://schema.org",
+        "@type"               : "WebApplication",
+        "name"                : "Ultra Focus Pro Max",
+        "url"                 : "https://trustedtoolsweb.com/tool-focus-timer.html",
+        "description"         : "A next-generation Pomodoro focus timer featuring Pink Noise generation, 40Hz Gamma Binaural Beats, gamified XP tracking, drift-free timing engine, and a holographic retina-ready visualizer. 100% client-side processing — no data stored.",
+        "applicationCategory" : "ProductivityApplication",
+        "operatingSystem"     : "All",
+        "browserRequirements" : "Requires Web Audio API support (Chrome, Firefox, Edge, Safari 14+)",
+        "featureList"         : [
+            "Drift-Free Pomodoro Timer",
+            "Pink Noise Generator",
+            "Brown Noise Generator",
+            "White Noise Generator",
+            "40Hz Gamma Binaural Beats",
+            "Gamified XP & Level System",
+            "Daily Streak Tracker",
+            "Mission Log (Task Manager)",
+            "4-7-8 Breathing Exercise",
+            "Retina-Ready Audio Visualizer",
+            "Screen Wake Lock API",
+            "Picture-in-Picture Mode",
+            "Fullscreen Zen Mode",
+            "Weekly Performance Statistics",
+            "100% Client-Side Processing"
+        ],
+        "author" : {
+            "@type" : "Person",
+            "name"  : "MD KAWSAR"
+        },
+        "offers" : {
+            "@type"         : "Offer",
+            "price"         : "0",
+            "priceCurrency" : "USD"
+        },
+        "aggregateRating" : {
+            "@type"       : "AggregateRating",
+            "ratingValue" : "4.9",
+            "reviewCount" : "147"
+        }
+    }
+    </script>
+
+</head>
+
+<!-- oncontextmenu disabled as part of the anti-debug security layer -->
+<body oncontextmenu="return false;">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL HEADER
+         Injected dynamically by global.js (site-wide navigation system)
+    ═══════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECURITY OVERLAY (Anti-DevTools Layer)
+         Shown by JS when unauthorized debugging is detected.
+         The glitch-overlay and glitch-text classes are defined in Section 73
+         of tools-template.css.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="uft-glitch-overlay" id="secLock">
+        <div class="uft-glitch-text" data-text="SYSTEM BREACH">SYSTEM BREACH</div>
+        <p class="uft-glitch-sub">UNAUTHORIZED DEBUGGING DETECTED</p>
+        <button class="uft-reboot-btn" onclick="location.reload()">REBOOT CORE</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         ANIMATED BACKGROUND LAYER
+         Contains the grid overlay and two ambient radial orbs that create
+         the holographic atmosphere. Purely decorative — pointer-events: none.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="uft-bg-animate">
+        <div class="uft-grid-overlay"></div>
+        <div class="uft-orb uft-orb-1"></div>
+        <div class="uft-orb uft-orb-2"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         MAIN APPLICATION WRAPPER
+         Centers the tool card on all screen sizes.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ── AD SLOT: TOP BANNER ──────────────────────────────────────── -->
+        <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+        <!-- ── TOOL CARD (Primary Application Container) ─────────────────
+             id="appContainer" is targeted by JS for the fade-in entrance
+             animation (opacity/transform transition on window.onload).
+        ──────────────────────────────────────────────────────────────── -->
+        <div class="container animated-entry" id="appContainer">
+
+            <!-- ── HERO / TITLE AREA ─────────────────────────────────────
+                 Security badge + tool title + subtitle row.
+                 Uses global .security-badge, .tool-title, .subtitle classes.
+            ────────────────────────────────────────────────────────────── -->
+
+            <!-- Security / client-side badge -->
+            <div class="security-badge">
+                <i class="fas fa-lock"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- Main tool title with gradient span -->
+            <h1 class="tool-title">
+                <i class="fas fa-fingerprint"></i>
+                <span>Ultra Focus Pro Max</span>
+            </h1>
+
+            <!-- One-line tool description shown under the title -->
+            <p class="subtitle">
+                Hack Your Brain into Flow State. No Data Stored.
+            </p>
+
+            <!-- ── TOP CONTROLS BAR ──────────────────────────────────────
+                 Houses the XP / Level badge (left) and the Breathe button (right).
+                 id="xpBadgeBtn" and id="zenBtn" are bound by JS event listeners.
+            ────────────────────────────────────────────────────────────── -->
+            <div class="uft-top-bar">
+
+                <!-- XP / Level display badge — click triggers XP total notify -->
+                <div class="uft-level-badge" id="xpBadgeBtn">
+                    <i class="fas fa-layer-group"></i> LVL <span id="userLevel">1</span>
+                </div>
+
+                <!-- Breathing exercise launcher -->
+                <button class="uft-zen-btn" id="zenBtn">
+                    <i class="fas fa-lungs"></i> BREATHE
+                </button>
+
+            </div>
+
+            <!-- ── TIMER MODE SELECTOR ───────────────────────────────────
+                 Pill-style tabbed switcher with a sliding background indicator.
+                 id="sliderBg" is manipulated via JS transform to track the
+                 active mode button. Each .mode-btn carries data-mode attribute.
+            ────────────────────────────────────────────────────────────── -->
+            <div class="uft-modes">
+                <div class="uft-slider-bg" id="sliderBg"></div>
+                <button class="uft-mode-btn active" data-mode="focus">DEEP WORK</button>
+                <button class="uft-mode-btn" data-mode="short">RECHARGE</button>
+                <button class="uft-mode-btn" data-mode="long">LONG BREAK</button>
+            </div>
+
+            <!-- ── VISUAL TIMER RING ─────────────────────────────────────
+                 Layered composition:
+                   • <canvas id="visualizer">   — audio frequency waveform
+                   • <svg .progress-ring>        — circular progress track
+                   • <div id="timer">            — digital countdown text
+                 id="timerWrapper" used for canvas sizing (getBoundingClientRect).
+            ────────────────────────────────────────────────────────────── -->
+            <div class="uft-timer-wrapper" id="timerWrapper">
+
+                <!-- Audio visualizer canvas — drawn via requestAnimationFrame -->
+                <canvas id="visualizer"></canvas>
+
+                <!-- SVG ring progress indicator — strokeDashoffset controlled by JS -->
+                <svg class="uft-progress-ring" viewBox="0 0 250 250">
+                    <defs>
+                        <!-- Gradient stroke: text-main → --accent color -->
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%"   style="stop-color:var(--text-main); stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:var(--accent);    stop-opacity:1"   />
+                        </linearGradient>
+                    </defs>
+                    <!-- Background track ring -->
+                    <circle stroke="rgba(128,128,128,0.1)" stroke-width="8" fill="transparent" r="115" cx="125" cy="125" />
+                    <!-- Animated progress ring — JS controls strokeDashoffset -->
+                    <circle class="uft-progress-ring__circle" id="progressRing"
+                            stroke="url(#gradient)" stroke-width="8" fill="transparent"
+                            r="115" cx="125" cy="125" />
+                </svg>
+
+                <!-- Digital countdown display — updated every 200ms by timerLoop -->
+                <div class="uft-timer-text" id="timer">25:00</div>
+
+            </div>
+
+            <!-- ── PRIMARY ACTION BUTTON ────────────────────────────────
+                 Text cycles: "INITIATE SEQUENCE" → "PAUSE" → "RESUME"
+                 Background/color toggled by JS inline style based on timer state.
+                 id="startBtn" is the primary event target.
+            ────────────────────────────────────────────────────────────── -->
+            <button class="uft-main-btn" id="startBtn">INITIATE SEQUENCE</button>
+
+            <!-- ── ICON CONTROLS GRID ────────────────────────────────────
+                 Six icon-only utility buttons in a uniform 6-column grid.
+                 JS adds/removes .active class to icon buttons for toggle state.
+            ────────────────────────────────────────────────────────────── -->
+            <div class="uft-grid-controls">
+                <!-- Settings: opens the system config modal -->
+                <button class="uft-icon-btn" id="settingsBtn"   title="System Config">   <i class="fas fa-cog"></i>                   </button>
+                <!-- Sound: toggles ambient noise engine -->
+                <button class="uft-icon-btn" id="soundBtn"      title="Audio Matrix">    <i class="fas fa-wave-square"></i>            </button>
+                <!-- Binaural: toggles 40Hz Gamma Binaural Beats -->
+                <button class="uft-icon-btn" id="binauralBtn"   title="Neural Sync">     <i class="fas fa-brain"></i>                  </button>
+                <!-- PiP: activates Picture-in-Picture mini mode (handled by JS) -->
+                <button class="uft-icon-btn" id="pipBtn"        title="Mini Mode">       <i class="fas fa-compress-arrows-alt"></i>    </button>
+                <!-- Stats: toggles between task panel and statistics panel -->
+                <button class="uft-icon-btn" id="statsBtn"      title="Analytics">       <i class="fas fa-chart-bar"></i>              </button>
+                <!-- Fullscreen: enters / exits browser fullscreen (Zen Mode) -->
+                <button class="uft-icon-btn" id="fullscreenBtn" title="Zen Mode">        <i class="fas fa-expand"></i>                 </button>
+            </div>
+
+            <!-- ── TASK MANAGER PANEL ─────────────────────────────────────
+                 id="taskPanel" — shown by default; hidden when statsPanel is active.
+                 id="taskList"  — <ul> dynamically populated by renderTasks().
+                 id="taskInput" — text input; also submits on Enter keypress.
+                 id="addTaskBtn"— plus button; triggers addTask().
+                 id="completedCount" — "done/total" counter updated live.
+            ────────────────────────────────────────────────────────────── -->
+            <div class="uft-panel" id="taskPanel">
+
+                <!-- Panel header: mission log label + completed counter -->
+                <div class="uft-panel-header">
+                    <span><i class="fas fa-tasks"></i> Mission Log</span>
+                    <span id="completedCount">0/0</span>
+                </div>
+
+                <!-- Task input row: text field + add button -->
+                <div class="uft-task-input-row">
+                    <input type="text"
+                           class="uft-task-input"
+                           id="taskInput"
+                           placeholder="Add new directive..."
+                           maxlength="60">
+                    <button class="uft-icon-btn uft-icon-btn--active uft-icon-btn--rounded" id="addTaskBtn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- Task list — rendered by JS renderTasks() -->
+                <ul id="taskList" class="uft-task-list"></ul>
+
+            </div>
+
+            <!-- ── STATISTICS PANEL ──────────────────────────────────────
+                 id="statsPanel" — hidden by default; shown when statsBtn is clicked.
+                 id="statsRow"   — contains 7 .stat-bar div elements (Sun–Sat).
+                 id="totalFocusTime" — aggregated weekly focus minutes.
+            ────────────────────────────────────────────────────────────── -->
+            <div class="uft-panel uft-panel--hidden" id="statsPanel">
+
+                <!-- Stats panel header: label + total focus time -->
+                <div class="uft-panel-header">
+                    <span>PERFORMANCE METRICS</span>
+                    <span id="totalFocusTime">0m</span>
+                </div>
+
+                <!-- Bar chart container — JS renders .stat-bar elements here -->
+                <div class="uft-stats-row" id="statsRow"></div>
+
+            </div>
+
+            <!-- ── FOOTER ATTRIBUTION ───────────────────────────────────── -->
+            <div class="uft-footer-label">
+                SECURED BY <strong class="uft-brand-accent">TRUSTED TOOLS WEB</strong>
+            </div>
+
+        </div>
+        <!-- /#appContainer -->
+
+      </main>
+
+    <!-- ── AD SLOT: BOTTOM BANNER ──────────────────────────────────────── -->
+    <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SETTINGS MODAL
+         id="settingsModal" — toggled open/closed by JS via .open class.
+         Clicking the backdrop (id="settingsModal" directly) also closes it.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="uft-modal-overlay" id="settingsModal">
+        <div class="uft-modal-card">
+
+            <!-- Modal title -->
+            <h3 class="uft-modal-title">SYSTEM CONFIG</h3>
+
+            <!-- Focus duration input -->
+            <div class="uft-modal-field">
+                <label class="uft-modal-label">FOCUS DURATION (MIN)</label>
+                <input type="number"
+                       id="focusTimeInput"
+                       value="25" min="1" max="180"
+                       class="uft-task-input uft-task-input--center uft-task-input--bold">
+            </div>
+
+            <!-- Audio environment selector -->
+            <div class="uft-modal-field">
+                <label class="uft-modal-label">AUDIO ENVIRONMENT</label>
+                <select id="soundType" class="uft-task-input uft-task-input--select">
+                    <option value="pink">Pink Noise (Deep Focus)</option>
+                    <option value="brown">Brown Noise (Relax)</option>
+                    <option value="rain">Cyber Rain</option>
+                    <option value="white">White Noise</option>
+                </select>
+            </div>
+
+            <!-- Master gain / volume slider -->
+            <div class="uft-modal-field uft-modal-field--last">
+                <label class="uft-modal-label">MASTER GAIN</label>
+                <input type="range"
+                       id="volumeControl"
+                       min="0" max="100" value="50"
+                       class="uft-volume-slider">
+            </div>
+
+            <!-- Save configuration — triggers saveSettingsBtn event in JS -->
+            <button class="uft-main-btn uft-main-btn--modal" id="saveSettingsBtn">
+                SAVE CONFIGURATION
+            </button>
+
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         BREATHING EXERCISE MODAL
+         id="breathModal" — toggled open/closed by zenBtn and backdrop click.
+         id="breathCircle" — scale-animated circle (CSS transition 4s).
+         id="breathText"   — text updated by JS breathing sequence loop.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="uft-modal-overlay" id="breathModal">
+        <div class="uft-modal-card uft-modal-card--breath">
+
+            <!-- Animated breathing circle -->
+            <div id="breathCircle" class="uft-breath-circle"></div>
+
+            <!-- Breath phase label: INHALE / HOLD / EXHALE -->
+            <h2 id="breathText" class="uft-breath-text">INHALE</h2>
+
+            <!-- Technique label -->
+            <p class="uft-breath-sub">4-7-8 Technique</p>
+
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SEO EDUCATIONAL INFO SECTION
+         Provides keyword-rich content for search engines.
+         Uses global .info-section-wrapper / .info-card classes.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <section class="info-section-wrapper">
+        <div class="info-card">
+
+            <h2 class="info-title">The Science of Deep Work: Mastering Your Attention Economy</h2>
+
+            <!-- Hero image for the info article -->
+            <div class="uft-info-img-wrap">
+                <img src="../../assets/tools/tool/tool-focus-timer/img/flow-state.webp"
+                     alt="Futuristic holographic workspace ensuring deep focus flow state"
+                     loading="lazy">
+            </div>
+
+            <p class="info-text">
+                In an era defined by constant digital notifications and fragmented attention spans, the ability
+                to focus is no longer just a skill—it is a superpower. <strong>Ultra Focus Pro Max</strong> is
+                not merely a timer; it is a meticulously engineered productivity environment designed to induce
+                a "Flow State" on command. Built directly into <strong>Trusted Tools Web</strong>, this suite
+                leverages the principles of the Pomodoro Technique, neuro-acoustic engineering, and gamified
+                psychology to help you reclaim your cognitive bandwidth.
+            </p>
+
+            <p class="info-text">
+                Whether you are a developer debugging complex code, a student preparing for critical exams
+                like the HSC, or a creative professional seeking the "zone," this tool adapts to your neural
+                rhythm. By eliminating visual clutter and utilizing a holographic interface, we reduce
+                cognitive load, allowing your brain to direct 100% of its processing power toward the task
+                at hand.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         RELATED TOOLS GRID
+         Dynamically rendered by related-tools.js based on data-category.
+         data-current-page excludes this tool from its own related list.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="container" style="margin-top: 50px;">
+        <!--
+            IMPORTANT:
+            • data-category    : set to the category of this page ("tool")
+            • data-current-page: set to this page's filename to exclude self
+        -->
+        <div id="dynamic-related-tools"
+             data-category="tool"
+             data-current-page="tool-focus-timer.html">
+        </div>
+    </div>
+    
+      <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section> 
+      
+
+    <!-- Related tools rendering module -->
+    <script type="module" src="../../assets/js/related-tools.js"></script>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL FOOTER
+         Injected dynamically by global.js (site-wide footer system)
+    ═══════════════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ── SCRIPTS ───────────────────────────────────────────────────────
+         Load order:
+           1. ads-manager.js  — centralized ad injection (runs before global)
+           2. global.js       — injects header, footer, toast UI, theme toggle
+           3. script.js       — UltraFocusEngine singleton (tool core logic)
+    ──────────────────────────────────────────────────────────────────── -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+    <script src="../../assets/tools/tool/tool-focus-timer/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

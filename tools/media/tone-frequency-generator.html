@@ -1,0 +1,749 @@
+<!-- 
+    ============================================================
+    PRODUCT  : Frequency Gen Ultra — Online Audio Tool
+    VERSION  : 2.0 (CodeCanyon Gold Master)
+    PLATFORM : CodeCanyon / Web
+    AUTHOR   : MD KAWSAR
+    DESCRIPTION:
+        A professional-grade, fully client-side audio generator
+        powered by the Web Audio API.
+        Features: Anti-pop envelopes, Dynamics Compression,
+        High-DPI Canvas Visualization, Sweep Tests, Binaural
+        Beats, Noise Generator, and in-browser Recording.
+    ============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ── Favicon ─────────────────────────────────────────── -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- ── Analytics Module (site-wide) ────────────────────── -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ── Character Set & Viewport ────────────────────────── -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- ── Primary SEO Meta Tags ────────────────────────────── -->
+    <!--
+        [USER CONFIG] Update title, description, and keywords
+        to match your domain and target keyword strategy.
+    -->
+    <title>Free Online Frequency Generator – Tone, Binaural Beats & Water Eject | Trusted Tools Web</title>
+    <meta name="description" content="Generate any frequency from 1 Hz to 22 kHz instantly — free, online, no install. Fix water-damaged phone speakers, test subwoofers with sweeps, create binaural beats for focus & sleep, and record noise in your browser. Powered by Web Audio API.">
+    <meta name="keywords" content="online tone generator, frequency generator, water eject sound, fix wet speakers, binaural beats, 432 hz, 528 hz, pink noise for sleep, white noise, brown noise, subwoofer test, hertz generator, sine wave generator, audio sweep test, tinnitus masking, web audio api tool">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0d0d0d">
+
+    <!-- ── Open Graph (Social Sharing) ─────────────────────── -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/media-tone-generator.html">
+    <meta property="og:title" content="Free Frequency Generator — Tone, Binaural Beats & Water Eject | Trusted Tools Web">
+    <meta property="og:description" content="The ultimate browser audio tool. Eject water from phone speakers, test audio gear, generate meditation frequencies, and record sound — all 100% client-side. Free & Secure.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/media/media-tone-generator/img/og-cover.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Frequency Generator Interface — Neon Style UI showing waveform visualizer">
+
+    <!-- ── Twitter Card ──────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Frequency Generator — Tone, Binaural Beats & Water Eject">
+    <meta name="twitter:description" content="Generate 1 Hz–22 kHz tones, fix wet speakers, create binaural beats — all in your browser. No download required.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/media/media-tone-generator/img/og-cover.webp">
+
+    <!-- ── Canonical URL ────────────────────────────────────── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/media-tone-generator.html" />
+
+    <!-- ── External Libraries (Font Awesome + Custom Fonts) ─── -->
+    <!--
+        NOTE FOR BUYER: These CDN/local font links are intentionally
+        kept as-is. Localize them before final CodeCanyon submission
+        by downloading the files and updating the paths.
+    -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Rajdhani/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+
+    <!-- ── Global Stylesheet (header, footer, theme vars) ───── -->
+    <!-- IMPORTANT: global.css must NEVER be modified for tool-specific styles -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- ── Tools Template Stylesheet (all tool UI components) ── -->
+    <!-- This is the ONLY stylesheet for tool-specific styles -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ── Structured Data (Schema.org JSON-LD) ────────────── -->
+    <!--
+        Rich schema to help Google understand this as a free
+        WebApplication — improves eligibility for rich results
+        in the SERP.
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Frequency Gen Ultra — Online Tone Generator",
+        "url": "https://trustedtoolsweb.com/media-tone-generator.html",
+        "description": "Professional online audio signal generator. Features: Sine, Square, Sawtooth & Triangle waves, Water Eject tool, Binaural Beats, Noise Generator (White, Pink, Brown), Frequency Sweep, LFO Modulation, and in-browser Audio Recording. 100% client-side — no server, no tracking.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "browserRequirements": "Requires JavaScript and Web Audio API support (Chrome, Firefox, Safari, Edge)",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "image": "https://trustedtoolsweb.com/assets/tools/media/media-tone-generator/img/og-cover.webp",
+        "featureList": [
+            "Frequency Sweep (20 Hz – 22 kHz)",
+            "Water Eject via Square Wave Vibration",
+            "Binaural Beats with Stereo Panning",
+            "White, Pink & Brown Noise Generator",
+            "LFO Modulation (Vibrato / Siren Effect)",
+            "Anti-Pop Exponential Amplitude Envelope",
+            "Dynamics Compression",
+            "High-DPI Waveform & Bar Visualizer",
+            "In-Browser Audio Recording (WebM / WAV)",
+            "7 Smart Presets"
+        ],
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/media/media-tone-generator/img/og-cover.webp"
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- ── Global Site Header (injected by global.js) ───────── -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ════════════════════════════════════════════════════════
+         MAIN CONTENT AREA
+         All tool UI lives inside <main> which is centered and
+         constrained to 950 px by the tools-template.css layout.
+    ════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ┌─────────────────────────────────────────────────┐
+             │  PRIMARY TOOL CARD                              │
+             └─────────────────────────────────────────────────┘ -->
+        <div class="container animated-entry">
+
+            <!-- ── Security / Processing Badge ─────────────── -->
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- ── Tool Title (gradient span = brand color) ── -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-music"></i> Frequency Gen <span>Ultra Max</span>
+            </h1>
+
+            <!-- ── Subtitle / Tool Description ──────────────── -->
+            <p class="subtitle">
+                Studio-Quality Tone Generator, Binaural Beats, Sweep Tests &amp; Noise — No Ads, No Install.
+            </p>
+
+            <!-- ── [AD SLOT] Top Banner ──────────────────────── -->
+            <!--
+                AD SLOT: top-banner
+                The ads-manager.js script reads the data-ad-slot
+                attribute and injects the correct ad unit here.
+            -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ────────────────────────────────────────────────
+                 AUDIO VISUALIZER
+                 High-DPI <canvas> that renders either a
+                 waveform (oscilloscope) or bar-chart (FFT).
+                 The .fgu-visualizer-wrapper positions the
+                 frequency overlay on top of the canvas.
+            ──────────────────────────────────────────────────── -->
+            <div class="fgu-visualizer-wrapper">
+                <!-- Canvas is sized and scaled by the AudioEngine class via JS -->
+                <canvas id="visualizer"></canvas>
+
+                <!-- Numeric frequency readout overlaid on the canvas -->
+                <div class="fgu-hz-overlay">
+                    <div id="hzDisplay" class="fgu-hz-value">440</div>
+                    <div id="unitDisplay" class="fgu-hz-unit">Hz</div>
+                </div>
+            </div>
+
+            <!-- Viz mode toggle (waveform ↔ bar chart) -->
+            <button class="fgu-viz-toggle-btn" onclick="app.toggleVizMode()" aria-label="Toggle Visualizer Mode">
+                <i class="fa-solid fa-chart-bar"></i> View
+            </button>
+
+            <!-- ────────────────────────────────────────────────
+                 MODE TABS
+                 Four modes: Manual (Signal Lab), Auto Sweep,
+                 Binaural Beats, and Noise Generator.
+                 The .tab-nav / .tab-btn classes come from
+                 tools-template.css Section 10.
+            ──────────────────────────────────────────────────── -->
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="app.setMode('manual', this)">
+                    <i class="fa-solid fa-sliders"></i> Signal Lab
+                </button>
+                <button class="tab-btn" onclick="app.setMode('sweep', this)">
+                    <i class="fa-solid fa-arrow-trend-up"></i> Auto Sweep
+                </button>
+                <button class="tab-btn" onclick="app.setMode('binaural', this)">
+                    <i class="fa-solid fa-brain"></i> Binaural
+                </button>
+                <button class="tab-btn" onclick="app.setMode('noise', this)">
+                    <i class="fa-solid fa-wind"></i> Noise Gen
+                </button>
+            </div>
+
+            <!-- ────────────────────────────────────────────────
+                 CONTROLS WRAPPER
+                 Contains one panel per mode. Only the active
+                 panel is visible; others have .hidden applied
+                 by the setMode() JS function.
+            ──────────────────────────────────────────────────── -->
+            <div id="controls-wrapper">
+
+                <!-- ╔═══════════════════════════════════════════╗
+                     ║  PANEL 1 — MANUAL MODE (Signal Lab)      ║
+                     ╚═══════════════════════════════════════════╝ -->
+                <div id="panel-manual" class="fgu-panel">
+
+                    <!-- Smart Preset Dropdown -->
+                    <label for="presetSelect">Smart Presets</label>
+                    <select id="presetSelect" class="input-control" onchange="app.applyPreset(this.value)">
+                        <option value="" disabled selected>-- Select a Preset --</option>
+                        <option value="440|sine">440 Hz — Standard Tuning (A4)</option>
+                        <option value="528|sine">528 Hz — Healing Tone (Solfeggio)</option>
+                        <option value="432|sine">432 Hz — Verdi Pitch</option>
+                        <option value="165|square">165 Hz — Water Eject (Speaker Clean)</option>
+                        <option value="60|sine">60 Hz — Subwoofer Bass Test</option>
+                        <option value="15000|sine">15 kHz — High Frequency Test</option>
+                        <option value="1000|sine">1 kHz — Reference Tone</option>
+                    </select>
+
+                    <!-- Waveform Selector Grid -->
+                    <!--
+                        .wave-btn elements carry .active for the
+                        currently selected waveform. JS toggles
+                        the class via setWave().
+                    -->
+                    <div class="fgu-wave-grid">
+                        <button class="fgu-wave-btn active" onclick="app.setWave('sine', this)" aria-label="Sine Wave">
+                            <i class="fa-solid fa-water"></i> Sine
+                        </button>
+                        <button class="fgu-wave-btn" onclick="app.setWave('square', this)" aria-label="Square Wave">
+                            <i class="fa-solid fa-square-full"></i> Square
+                        </button>
+                        <button class="fgu-wave-btn" onclick="app.setWave('sawtooth', this)" aria-label="Sawtooth Wave">
+                            <i class="fa-solid fa-tooth"></i> Saw
+                        </button>
+                        <button class="fgu-wave-btn" onclick="app.setWave('triangle', this)" aria-label="Triangle Wave">
+                            <i class="fa-solid fa-caret-up"></i> Triangle
+                        </button>
+                    </div>
+
+                    <!-- Frequency Slider -->
+                    <label for="freqSlider">
+                        Frequency Control
+                        <span id="freqValSmall" class="fgu-freq-inline-val">440 Hz</span>
+                    </label>
+                    <input type="range" id="freqSlider" class="range-slider"
+                           min="1" max="22000" value="440"
+                           oninput="app.updateFreq(this.value)">
+
+                    <!-- LFO Modulation Sub-Section -->
+                    <div class="fgu-advanced-settings">
+                        <span class="fgu-section-badge">LFO MODULATION (OSCILLATION)</span>
+
+                        <div class="fgu-lfo-row">
+                            <span class="text-muted" style="font-size:13px;">Make the pitch wobble</span>
+                            <!-- LFO power toggle — JS reads .active class state -->
+                            <div class="fgu-switch-wrapper" id="lfoToggle"
+                                 onclick="app.toggleLFO()" aria-label="Toggle LFO">
+                                <i class="fa-solid fa-power-off"></i> OFF
+                            </div>
+                        </div>
+
+                        <label for="lfoRate">Speed (Rate)</label>
+                        <input type="range" id="lfoRate" class="range-slider"
+                               min="0.5" max="20" step="0.5" value="5"
+                               oninput="app.updateLFO('rate', this.value)">
+
+                        <label for="lfoDepth">Depth (Intensity)</label>
+                        <input type="range" id="lfoDepth" class="range-slider"
+                               min="0" max="100" value="30"
+                               oninput="app.updateLFO('depth', this.value)">
+                    </div>
+                </div><!-- /panel-manual -->
+
+                <!-- ╔═══════════════════════════════════════════╗
+                     ║  PANEL 2 — SWEEP MODE (Auto Sweep)       ║
+                     ╚═══════════════════════════════════════════╝ -->
+                <div id="panel-sweep" class="fgu-panel hidden">
+
+                    <!-- Two-column grid for start/end frequency inputs -->
+                    <div class="multi-input-grid">
+                        <div>
+                            <label for="sweepStart">Start (Hz)</label>
+                            <input type="number" id="sweepStart" class="input-control" value="20">
+                        </div>
+                        <div>
+                            <label for="sweepEnd">End (Hz)</label>
+                            <input type="number" id="sweepEnd" class="input-control" value="20000">
+                        </div>
+                    </div>
+
+                    <!-- Duration Slider -->
+                    <label class="mt-sm">
+                        Duration:
+                        <span id="sweepTimeDisplay" class="fgu-freq-inline-val">10s</span>
+                    </label>
+                    <input type="range" id="sweepTime" class="range-slider"
+                           min="1" max="60" value="10"
+                           oninput="document.getElementById('sweepTimeDisplay').innerText = this.value + 's'">
+
+                    <p class="text-muted text-center mt-sm" style="font-size:12px;">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Best for testing speaker crossovers &amp; room acoustics.
+                    </p>
+                </div><!-- /panel-sweep -->
+
+                <!-- ╔═══════════════════════════════════════════╗
+                     ║  PANEL 3 — BINAURAL BEATS                ║
+                     ╚═══════════════════════════════════════════╝ -->
+                <div id="panel-binaural" class="fgu-panel hidden">
+
+                    <!-- Base frequency (left ear) -->
+                    <label for="binBase">
+                        Base Tone (Left Ear) —
+                        <span id="binBaseVal" class="text-muted">200 Hz</span>
+                    </label>
+                    <input type="range" id="binBase" class="range-slider"
+                           min="50" max="800" value="200"
+                           oninput="app.updateBinaural(this.value, 'base')">
+
+                    <!-- Beat difference (right ear) -->
+                    <label for="binBeat">
+                        Beat Diff (Right Ear) —
+                        <span id="binBeatVal" class="fgu-freq-inline-val">4 Hz</span>
+                    </label>
+                    <input type="range" id="binBeat" class="range-slider"
+                           min="1" max="40" step="0.5" value="4"
+                           oninput="app.updateBinaural(this.value, 'beat')">
+
+                    <!-- Headphone requirement notice -->
+                    <div class="fgu-binaural-notice">
+                        <i class="fa-solid fa-headphones fgu-binaural-icon"></i>
+                        <span class="fgu-binaural-label">Stereo Headphones Required</span>
+                        <p class="text-muted" style="font-size:11px; margin:5px 0 0 0;">
+                            The brain creates the 3rd tone (The Beat).
+                        </p>
+                    </div>
+                </div><!-- /panel-binaural -->
+
+                <!-- ╔═══════════════════════════════════════════╗
+                     ║  PANEL 4 — NOISE GENERATOR               ║
+                     ╚═══════════════════════════════════════════╝ -->
+                <div id="panel-noise" class="fgu-panel hidden">
+
+                    <!-- Three-button noise type grid -->
+                    <div class="fgu-wave-grid fgu-wave-grid--3col">
+                        <button class="fgu-wave-btn active" onclick="app.setNoise('white', this)" aria-label="White Noise">
+                            <i class="fa-solid fa-wind"></i> White
+                        </button>
+                        <button class="fgu-wave-btn" onclick="app.setNoise('pink', this)" aria-label="Pink Noise">
+                            <i class="fa-solid fa-shower"></i> Pink
+                        </button>
+                        <button class="fgu-wave-btn" onclick="app.setNoise('brown', this)" aria-label="Brown Noise">
+                            <i class="fa-solid fa-water"></i> Brown
+                        </button>
+                    </div>
+
+                    <!-- Quick-reference info card -->
+                    <div class="card mt-sm">
+                        <ul style="margin:0; padding-left:15px; font-size:12px; color:var(--text-muted);">
+                            <li><strong>White:</strong> Masks tinnitus &amp; distractions.</li>
+                            <li><strong>Pink:</strong> Balanced sound for deep sleep.</li>
+                            <li><strong>Brown:</strong> Low rumble for relaxation.</li>
+                        </ul>
+                    </div>
+                </div><!-- /panel-noise -->
+
+            </div><!-- /#controls-wrapper -->
+
+            <!-- ────────────────────────────────────────────────
+                 MASTER VOLUME SLIDER
+                 Exposed outside panels so it's always accessible
+                 regardless of the active mode.
+            ──────────────────────────────────────────────────── -->
+            <div class="input-wrapper mt-md">
+                <label for="masterVol">
+                    <i class="fa-solid fa-volume-high"></i> Master Volume
+                </label>
+                <input type="range" id="masterVol" class="range-slider"
+                       min="0" max="1" step="0.01" value="0.5"
+                       oninput="app.setVolume(this.value)">
+            </div>
+
+            <!-- ────────────────────────────────────────────────
+                 PLAYBACK CONTROL BAR
+                 Contains: fine-tune (-1 Hz), main play/stop,
+                 fine-tune (+1 Hz), and record toggle button.
+                 Uses .fgu-control-bar for layout.
+            ──────────────────────────────────────────────────── -->
+            <div class="fgu-control-bar">
+
+                <!-- Fine-tune: decrease frequency by 1 Hz -->
+                <button class="fgu-circle-btn" onclick="app.fineTune(-1)"
+                        aria-label="Decrease 1Hz" title="-1 Hz">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+
+                <!-- Main Play / Stop toggle — JS adds .playing class when active -->
+                <button class="fgu-main-play-btn" id="mainPlayBtn"
+                        onclick="app.togglePlay()" aria-label="Play/Stop">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+
+                <!-- Fine-tune: increase frequency by 1 Hz -->
+                <button class="fgu-circle-btn" onclick="app.fineTune(1)"
+                        aria-label="Increase 1Hz" title="+1 Hz">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+
+                <!-- Audio record toggle — JS adds .recording class when active -->
+                <button class="fgu-circle-btn fgu-rec-btn" id="recordBtn"
+                        onclick="app.toggleRecord()"
+                        aria-label="Record Audio" title="Record Audio"
+                        style="margin-left:auto;">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+
+            </div><!-- /.fgu-control-bar -->
+
+            <!-- ── [AD SLOT] Bottom Banner ───────────────────── -->
+            <!--
+                AD SLOT: bottom-banner
+                Injected and managed by ads-manager.js.
+            -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+            <!--
+                NOTE: The old local <div id="toast"> has been REMOVED.
+                Toast notifications are now handled by the global toast
+                system injected by global.js → window.showToast().
+            -->
+
+        </div><!-- /.container (primary tool card) -->
+
+        <!-- ════════════════════════════════════════════════════
+             SEO INFO SECTION
+             Long-form article-style content improves topical
+             authority, dwell time, and keyword coverage.
+             Uses .info-section-wrapper and .info-card classes
+             from tools-template.css Section 12.
+        ════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper">
+
+            <!-- ── How it Works ─────────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-microchip"></i> The Science: How This Tool Works</h2>
+                <p>
+                    Unlike simple MP3 players, Frequency Gen Ultra uses the
+                    <span class="tech-highlight">Web Audio API</span> to generate sound waves
+                    mathematically in real-time on your device's processor. This ensures
+                    <strong>zero compression artifacts</strong> and mathematical precision.
+                    Whether you set it to 432 Hz or 15,000 Hz, the signal is generated
+                    instantly without downloading any files, ensuring complete privacy
+                    and offline capability.
+                </p>
+            </div>
+
+            <!-- ── Complete User Guide ──────────────────────── -->
+            <div class="info-card" style="border-left: 4px solid var(--accent-cyan);">
+                <h2><i class="fa-solid fa-graduation-cap"></i> Complete User Guide: How to Master This Tool</h2>
+                <p>New to frequency generation? Whether you are an audio engineer or just trying to fix a wet speaker, here is the simplest way to use the <strong>Frequency Gen Ultra</strong> features effectively.</p>
+
+                <h3 style="color:var(--text-inverse); font-size:1.1rem; margin-top:25px;">
+                    <i class="fa-solid fa-sliders"></i> 1. Generating Custom Tones (Signal Lab)
+                </h3>
+                <ol style="margin-left:20px; color:var(--text-muted); padding-left:10px;">
+                    <li>Go to the <strong>"Signal Lab"</strong> tab. This is your main workspace.</li>
+                    <li><strong>Select a Waveform:</strong> Choose <em>Sine</em> for a pure tone (best for hearing tests) or <em>Square</em> for a loud, buzzy signal.</li>
+                    <li><strong>Set Frequency:</strong> Drag the slider or use the <strong>+ / −</strong> buttons for fine-tuning. You can also select a "Smart Preset" from the dropdown menu.</li>
+                    <li>Click the big <strong>Play Button</strong> to start. Adjust the Master Volume carefully to avoid sudden loud noises.</li>
+                </ol>
+
+                <h3 style="color:var(--brand-primary); font-size:1.1rem; margin-top:25px;">
+                    <i class="fa-solid fa-droplet"></i> How to Eject Water from Speakers
+                </h3>
+
+                <!-- Float image alongside the instruction list -->
+                <div style="float:right; margin:0 0 15px 15px; width:120px;">
+                    <img src="../../assets/tools/media/media-tone-generator/img/water-eject-phone.webp"
+                         alt="Phone held vertically for speaker water ejection"
+                         loading="lazy"
+                         style="width:100%; border-radius:8px; border:1px solid var(--border-main);">
+                </div>
+
+                <ol style="margin-left:20px; color:var(--text-muted); padding-left:10px;">
+                    <li>In the "Signal Lab" tab, select the <strong>Square Wave</strong> (this provides the strongest vibration).</li>
+                    <li>Set the frequency slider manually to <strong>165 Hz</strong>.</li>
+                    <li>Increase your device volume to <strong>Maximum</strong>.</li>
+                    <li>Hit Play and hold your phone vertically for 10–15 seconds. You should see water droplets bouncing out of the speaker grill.</li>
+                </ol>
+
+                <h3 style="color:var(--text-inverse); font-size:1.1rem; margin-top:25px;">
+                    <i class="fa-solid fa-arrow-trend-up"></i> Testing Subwoofers (Auto Sweep)
+                </h3>
+                <ol style="margin-left:20px; color:var(--text-muted); padding-left:10px;">
+                    <li>Switch to the <strong>"Auto Sweep"</strong> tab.</li>
+                    <li>To test bass, set <strong>Start Freq</strong> to 20 Hz and <strong>End Freq</strong> to 200 Hz.</li>
+                    <li>Set the <strong>Duration</strong> to 10 seconds for a slow, detailed scan.</li>
+                    <li>Press Play. Listen carefully as the pitch rises. If the sound disappears or the speaker rattles at a specific point, you may have a "dead spot" in your room or a loose component.</li>
+                </ol>
+
+                <h3 style="color:var(--text-inverse); font-size:1.1rem; margin-top:25px;">
+                    <i class="fa-solid fa-brain"></i> Focus &amp; Meditation (Binaural Beats)
+                </h3>
+                <p style="font-size:13px; color:var(--accent-red); margin-bottom:8px;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <strong>Requirement:</strong> You must wear stereo headphones for this to work.
+                </p>
+                <ol style="margin-left:20px; color:var(--text-muted); padding-left:10px;">
+                    <li>Open the <strong>"Binaural"</strong> tab.</li>
+                    <li><strong>For Relaxation (Theta Waves):</strong> Set Base Frequency to 200 Hz and Beat Frequency to 4 Hz.</li>
+                    <li><strong>For Focus (Beta Waves):</strong> Set Base Frequency to 250 Hz and Beat Frequency to 14 Hz.</li>
+                    <li>Close your eyes. Your brain will synthesize a third tone (the beat), helping you shift your mental state.</li>
+                </ol>
+
+                <h3 style="color:var(--text-inverse); font-size:1.1rem; margin-top:25px;">
+                    <i class="fa-solid fa-microphone"></i> Recording Your Audio
+                </h3>
+                <p style="color:var(--text-muted);">
+                    Want to save a specific noise color or tone for later? While the sound is playing,
+                    click the small <strong>Microphone Icon</strong> (Record Button). Let it run for as
+                    long as you need, then click it again. The tool will instantly download a high-quality
+                    <code>.wav</code> or <code>.webm</code> file to your device.
+                </p>
+            </div><!-- /Complete User Guide -->
+
+            <!-- ── Understanding Waveforms ───────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-wave-square"></i> Understanding Waveforms</h2>
+                <p>Different shapes sound different. Here is a visual guide:</p>
+
+                <div class="text-center" style="margin:20px 0;">
+                    <img src="../../assets/tools/media/media-tone-generator/img/waveform-guide.webp"
+                         alt="Visual comparison of Sine, Square, Sawtooth, and Triangle sound waves"
+                         loading="lazy"
+                         style="width:100%; max-width:600px; border-radius:10px; border:1px solid var(--border-main); box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+                </div>
+
+                <ul>
+                    <li><strong>Sine Wave:</strong> The purest tone. Smooth and clean. Best for hearing tests and tuning instruments.</li>
+                    <li><strong>Square Wave:</strong> Harsh and buzzy. Rich in harmonics. Used for "Water Eject" and aggressive signaling.</li>
+                    <li><strong>Sawtooth Wave:</strong> Buzzy like a string instrument. Used in music synthesis and testing distortion.</li>
+                    <li><strong>Triangle Wave:</strong> Softer than Square but brighter than Sine. A balanced tone.</li>
+                </ul>
+            </div>
+
+            <!-- ── Deep-Dive Info Cards (SEO keyword coverage) ── -->
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-droplet"></i> "Water Eject" for Speakers</h2>
+                <p>Did your phone get wet? You can use this tool to push water out of the speaker grill. Select the <strong>Square Wave</strong> and set the frequency to <strong>165 Hz</strong>. Turn the volume to maximum. The strong vibrations of the square wave physically push air (and water droplets) out of the mesh. Run this for 10–15 seconds.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-car-battery"></i> Testing Subwoofers &amp; Bass</h2>
+                <p>Bass capability is a key sign of speaker quality. Use the <strong>Auto Sweep</strong> mode. Set Start: 20 Hz, End: 100 Hz, Duration: 10 s. Play it on your system. If you hear rattling noises or the sound disappears at certain frequencies (e.g., 40 Hz), it indicates enclosure resonance or that your speakers cannot handle sub-bass frequencies.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-ear-listen"></i> Tinnitus Masking Therapy</h2>
+                <p>Tinnitus (ringing in the ears) can be debilitating in silence. "Sound Masking" is a proven relief method. Go to the <strong>Noise Gen</strong> tab and select <strong>White Noise</strong> or <strong>Pink Noise</strong>. Adjust the volume until it barely covers the ringing sound. This gives your brain a different signal to focus on, reducing stress and helping you sleep.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-brain"></i> Brainwave Entrainment (Binaural Beats)</h2>
+                <p>This technique uses two slightly different frequencies played in each ear to alter brain states. For example, if Left Ear = 200 Hz and Right Ear = 204 Hz, your brain processes the difference (4 Hz). This 4 Hz corresponds to <strong>Theta Waves</strong>, associated with deep relaxation and meditation. <em>Note: You must use stereo headphones for this to work.</em></p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-shower"></i> Why Pink Noise for Sleep?</h2>
+                <p>White noise sounds like static (TV fuzz) and can be harsh. <strong>Pink Noise</strong> is deeper; it has reduced high frequencies. It sounds like heavy rain, wind, or rustling leaves. Studies show Pink Noise is more effective for deep sleep because it masks sudden noises (like a door slamming) without being annoying itself.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-guitar"></i> Musician's Tuning Fork</h2>
+                <p>Physical tuners can get lost or run out of batteries. This tool is a permanent, perfect reference. Set the generator to <strong>440 Hz (Sine)</strong> to tune your guitar's A string to standard concert pitch. Some musicians prefer <strong>432 Hz</strong>, believing it to be a more "natural" resonance. You can test both here.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-headphones-simple"></i> Headphone "Burn-In"</h2>
+                <p>Audiophiles believe new headphones have stiff drivers that need to "loosen up." Instead of playing music for 100 hours, play <strong>Pink Noise</strong> or a <strong>20 Hz–20 kHz Sweep</strong> on a loop at moderate volume. This exercises the full range of the driver diaphragm efficiently.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-user-doctor"></i> The "Mosquito Tone" Hearing Test</h2>
+                <p>Human hearing degrades with age, especially high frequencies (Presbycusis). Start the generator at <strong>8,000 Hz</strong> and slide it up. Most teens can hear up to 17 kHz. If you stop hearing sound around 12 kHz, it's a normal sign of aging. <em>Warning: Keep volume low to protect your ears during this test.</em></p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-house-signal"></i> Finding Room "Dead Spots" &amp; Bass Traps</h2>
+                <p>Have you ever noticed that bass sounds louder in the corner of your room but disappears in the center? This is called "Room Modes." You can use our <strong>Auto Sweep</strong> feature (set from 40 Hz to 200 Hz) to walk around your room and identify these spots. This is crucial for placing your home theater subwoofer or studio monitors correctly for the flattest frequency response.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-baby"></i> The "Womb Effect" for Crying Babies</h2>
+                <p>Newborns are used to the loud, rushing sound of blood flow inside the womb. Sudden silence can actually be stressful for them. Using the <strong>Brown Noise</strong> generator at a moderate volume creates a deep, rumbling sound that mimics the womb environment. Many parents find this instantly calms a fussy baby and helps them drift off to sleep faster than lullabies.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-spa"></i> Exploring Solfeggio Frequencies (528 Hz &amp; 852 Hz)</h2>
+                <p>Beyond standard physics, many users believe in the spiritual resonance of specific tones. <strong>528 Hz</strong> is often called the "Love Frequency" or "Miracle Tone," believed to repair DNA. <strong>852 Hz</strong> is associated with awakening intuition. While scientifically debated, you can easily generate these exact frequencies using the "Manual Mode" to use as a backdrop for yoga or meditation sessions.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-dog"></i> Silent Dog Whistle Training</h2>
+                <p>Dogs can hear frequencies much higher than humans (up to 45 kHz). You can use this tool as a digital dog whistle. Set the frequency to around <strong>15,000 Hz–20,000 Hz</strong> (Sine Wave). If you can't hear it but your dog's ears perk up, you've found the sweet spot. Use short bursts to train commands without disturbing your neighbors.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-flask"></i> DIY Science: Visualizing Sound (Cymatics)</h2>
+                <p>Want to see sound? Place a thin metal plate or a plastic wrap stretched over a bowl on top of a speaker. Sprinkle salt or sand on it. Play a <strong>Sine Wave</strong> and slowly increase the frequency. At specific pitches (resonant frequencies), the sand will magically arrange itself into beautiful geometric patterns. This is a fantastic physics experiment for students.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-plug"></i> Checking Speaker Polarity (+/−)</h2>
+                <p>If your speakers are wired incorrectly (positive to negative), the sound waves will cancel each other out, killing the bass. Play a steady <strong>60 Hz Sine Tone</strong>. If the bass sounds weak, try swapping the wires on one speaker. If the bass suddenly gets louder and fuller, your speakers were "out of phase," and you just fixed it for free.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-user-secret"></i> Audio Privacy &amp; Conversation Masking</h2>
+                <p>In open-plan offices or thin-walled apartments, privacy is an issue. Playing <strong>Pink Noise</strong> adds a layer of background sound that fills in the gaps between human speech frequencies. This makes it much harder for others to overhear your conversations and protects your privacy during sensitive calls.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-chart-area"></i> Why Brown Noise is Trending for ADHD</h2>
+                <p>Unlike White Noise (which is static) or Pink Noise (which is balanced), <strong>Brown Noise</strong> lowers the higher frequencies even more drastically. It sounds like a distant waterfall or heavy thunder. Many people with ADHD report that this deep, rumbly texture helps "quiet the internal monologue" better than any other sound, aiding in hyper-focus tasks.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-broom"></i> Cleaning Dust from Mesh Grills</h2>
+                <p>Over time, earphone and phone speaker grills get clogged with fine dust. Just like water ejection, you can use a <strong>Sawtooth Wave</strong> at varying low frequencies (100 Hz–250 Hz) to dislodge dry dust particles. The sharp edges of the sawtooth wave create a more aggressive mechanical vibration than a smooth sine wave.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-microphone"></i> Testing Microphone Sensitivity</h2>
+                <p>If you are a streamer or podcaster, you need to know if your mic picks up background hums. Play a <strong>10 kHz tone</strong> at low volume and check your recording software's visualizer. If your mic picks it up easily but your voice sounds muddy, you may need to adjust your EQ settings to boost the "presence" range (3 kHz–5 kHz) using our generator as a reference guide.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-guitar"></i> Precise Guitar Tuning by Ear</h2>
+                <p>Electronic tuners are great, but training your ear is better. Use the manual slider to generate the exact notes for standard tuning: <strong>E (82.4 Hz), A (110 Hz), D (146.8 Hz), G (196 Hz), B (246.9 Hz), E (329.6 Hz)</strong>. Play the tone and pluck the string simultaneously; listen for the "wobble" (beat frequency) to disappear to know you are perfectly in tune.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-wave-square"></i> What is LFO and Why Use It?</h2>
+                <p>LFO stands for <strong>Low-Frequency Oscillation</strong>. It's a secondary sound wave that is too low to hear, but it modifies the main sound. In our tool, enabling LFO creates a "vibrato" or siren effect. Sound designers use this to create sci-fi textures, alarm sounds, or to test how audio compressors react to fluctuating signals.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-brain"></i> 40 Hz Gamma Waves &amp; Cognitive Function</h2>
+                <p>Recent studies suggest that listening to a <strong>40 Hz</strong> tone (or a 40 Hz binaural beat) may stimulate Gamma brainwaves. These waves are associated with high-level cognitive processing, memory recall, and focus. Use the Binaural mode with a 200 Hz base and a 40 Hz beat difference to experiment with this cognitive booster.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-bug"></i> Checking for Harmonic Distortion</h2>
+                <p>A pure <strong>Sine Wave</strong> should sound smooth. If you play a sine wave at 60 Hz or 100 Hz and hear a "buzzy" or "scratchy" sound overlaying the low tone, your speakers or headphones suffer from <em>Harmonic Distortion</em>. This usually means the driver is damaged or the amplifier is being pushed too hard (clipping).</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-earth-americas"></i> The Earth's Heartbeat (Schumann Resonance)</h2>
+                <p>The Earth's electromagnetic field resonates at approximately <strong>7.83 Hz</strong>. While human ears cannot hear this low frequency directly, you can generate it using our <strong>Binaural Beats</strong> mode (e.g., Left: 100 Hz, Right: 107.83 Hz). Many meditation practitioners use this frequency to feel "grounded" and connected to nature.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-sliders"></i> Setting Your Subwoofer Crossover</h2>
+                <p>The "Crossover" is the point where your subwoofer stops playing and your main speakers take over (usually 80 Hz). Play a specific tone at <strong>80 Hz</strong> using this tool. Walk around the room. If the sound is boomy or weak, adjust your crossover dial on the subwoofer amp until the transition between the sub and speakers sounds seamless and unified.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-bolt"></i> Stress Testing Headphones</h2>
+                <p>Before using new headphones for mixing or mastering, checking for manufacturing defects is wise. A slow, high-volume (be careful!) <strong>Sine Sweep from 20 Hz to 20 kHz</strong> will reveal any rattles, buzzes, or channel imbalances that shouldn't be there. If the sound shifts from left to right unintentionally, the drivers are not matched pairs.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-square"></i> Why Square Waves Sound So Loud</h2>
+                <p>You might notice the <strong>Square Wave</strong> sounds much louder than a Sine Wave at the same volume. This is because a Square wave contains the fundamental frequency plus every odd harmonic (3rd, 5th, 7th, etc.). This richness makes it perfect for synthesizing retro video game sounds (chiptune) or cutting through background noise for alarms.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-pen-fancy"></i> Sound Design &amp; Foley Art</h2>
+                <p>Need a sound effect for a video? You don't always need a library. You can create wind by filtering <strong>White Noise</strong>. You can create a "laser zap" by using a <strong>Sawtooth Wave</strong> and sliding the frequency quickly from high to low. This tool is a basic synthesizer that can be the starting point for creative audio projects.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-stopwatch"></i> Low Latency Performance</h2>
+                <p>Because this tool uses the <code>AudioContext</code> directly within your browser, it has near-zero latency compared to streaming video or audio files. This makes it accurate enough for timing experiments in physics labs where the speed of sound is being measured between a speaker and a microphone.</p>
+            </div>
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ════════════════════════════════════════════════════
+             RELATED TOOLS GRID
+             Dynamically injected by related-tools.js based on
+             the data-category and data-current-page attributes.
+        ════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top:50px;">
+            <!--
+                IMPORTANT:
+                1. Set data-category to the category of this page (e.g., "media").
+                2. Set data-current-page to the filename of this page.
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="media"
+                 data-current-page="media-tone-generator.html">
+            </div>
+        </div>
+
+        <!-- Related tools loader module -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main -->
+
+    <!-- ── Global Site Footer (injected by global.js) ───────── -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ── Centralized Ad System ────────────────────────────── -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ── Global JS (theme, header, footer, toast system) ──── -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ── Tool-Specific Script ─────────────────────────────── -->
+    <script src="../../assets/tools/media/media-tone-generator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

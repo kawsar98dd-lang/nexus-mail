@@ -1,0 +1,673 @@
+<!-- 
+================================================================================
+  TRUSTED TOOLS WEB — Robots.txt Generator Pro
+  Tool       : SEO Robots.txt Generator
+  Version    : 3.0.1 (2026 Stable — CodeCanyon Elite Edition — Bug Fix Build)
+  Author     : MD KAWSAR
+  Status     : Production Ready / QA Passed
+
+  [ARCHITECTURE]
+  - CSS  : global.css (site-wide) + tools-template.css (tool components)
+  - JS   : global.js (toast, theme, header/footer) + script.js (tool logic)
+  - No inline <style> blocks. No separate tool style.css.
+
+  [CORE FEATURES]
+  - Client-Side Generation (Zero Server Load)
+  - RFC 9309 Compliant Syntax
+  - Advanced AI/LLM Blocking (ChatGPT, Claude, CCBot, Perplexity)
+  - Dynamic CMS Templates (WordPress, Shopify, etc.)
+  - Theme-Aware UI (Light / Dark Mode Compatible)
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         ANALYTICS & SITE CONFIGURATION MODULE
+         Loads site-level config, meta injection, and analytics.
+         !! DO NOT TOUCH !!
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         PRIMARY SEO META TAGS
+         Optimised for robots.txt-related queries and SEO tool discovery.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <title>Robots.txt Generator Pro — Block AI Scrapers &amp; Control Crawlers | Trusted Tools Web</title>
+    <meta name="description" content="Generate RFC 9309-compliant robots.txt files instantly. Block AI scrapers (GPTBot, CCBot, ClaudeBot), set crawl delay, manage Googlebot access, and add sitemap URLs — 100% free, secure &amp; client-side.">
+    <meta name="keywords" content="robots.txt generator, seo tool, block chatgpt, block gptbot, block ccbot, crawler control, googlebot, sitemap url, crawl delay, robots exclusion protocol, trusted tools web">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#161b22">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         OPEN GRAPH (SOCIAL SHARING) META TAGS
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <meta property="og:type"         content="website">
+    <meta property="og:url"          content="https://trustedtoolsweb.com/seo-robots-generator.html">
+    <meta property="og:title"        content="Robots.txt Generator Pro — Block AI Scrapers &amp; Control Crawlers">
+    <meta property="og:description"  content="Create SEO-optimised robots.txt files in seconds. Block AI training bots, manage crawl budgets and add sitemap URLs — 100% client-side and secure.">
+    <meta property="og:image"        content="https://trustedtoolsweb.com/assets/tools/seo/seo-robots-generator/img/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"    content="Trusted Tools Web">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TWITTER CARD META TAGS
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/seo-robots-generator.html">
+    <meta name="twitter:title"       content="Robots.txt Generator Pro — Block AI Scrapers &amp; Control Crawlers">
+    <meta name="twitter:description" content="Create SEO-optimised robots.txt files in seconds. Block AI training bots, manage crawl budgets and add sitemap URLs — 100% client-side and secure.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/seo/seo-robots-generator/img/og-banner.webp">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/seo-robots-generator.html">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         FAVICONS
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         STRUCTURED DATA — JSON-LD (Schema.org)
+         Dual schema: WebApplication + FAQPage for rich-result eligibility.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Robots.txt Generator Pro",
+            "url": "https://trustedtoolsweb.com/seo-robots-generator.html",
+            "description": "A professional, RFC 9309-compliant tool to generate robots.txt files, block AI scrapers (GPTBot, CCBot, ClaudeBot), manage crawl delay, and optimise search engine crawler access — entirely client-side.",
+            "applicationCategory": "SEO Tool",
+            "operatingSystem": "Web",
+            "browserRequirements": "Requires JavaScript. Compatible with all modern browsers.",
+            "featureList": [
+                "RFC 9309 Compliant Robots.txt Generation",
+                "AI / LLM Bot Blocking (GPTBot, CCBot, ClaudeBot, Google-Extended)",
+                "CMS Quick Templates (WordPress, Shopify, Magento, Wix, Joomla)",
+                "Crawl Delay Configuration",
+                "Multiple Sitemap URL Support",
+                "100% Client-Side — Zero Server Processing"
+            ],
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "MD KAWSAR"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Trusted Tools Web",
+                "url": "https://trustedtoolsweb.com"
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Why is a robots.txt file important for SEO?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The robots.txt file instructs search engine bots which pages they can crawl and index. It prevents duplicate content issues, saves crawl budget, and keeps private sections of your site secure from unintended indexing."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Should I block ChatGPT and AI scrapers?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "If you do not want your content used to train AI models without credit, blocking bots like GPTBot (OpenAI) and CCBot (Common Crawl) via robots.txt is the standard opt-out method recommended by the industry."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Does robots.txt remove pages from Google?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No. Robots.txt prevents crawling, not indexing. To de-index a page, use the noindex meta tag instead. Blocking a page in robots.txt that is already indexed can result in a 'Description not available' warning in search results."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is this robots.txt generator free to use?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. The Robots.txt Generator Pro by Trusted Tools Web is completely free. It runs 100% in your browser — no data is ever sent to a server."
+                    }
+                }
+            ]
+        }
+    ]
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         STYLESHEETS
+         1. Font Awesome — icon library (localised before CodeCanyon submission)
+         2. global.css  — site-wide layout: header, footer, theme, base reset
+         3. tools-template.css — all tool UI components (buttons, inputs, etc.)
+         NO separate tool-level style.css exists in this architecture.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GLOBAL HEADER
+         Injected dynamically by global.js (navigation, logo, theme toggle).
+         !! DO NOT TOUCH !!
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MAIN PAGE WRAPPER
+         page-container → global.css layout class (preserves original layout)
+         animated-entry → fadeInUp entrance animation (tools-template.css §16)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <main class="page-container animated-entry">
+
+        <!-- ─────────────────────────────────────────────────────────────────
+             HERO / TITLE SECTION
+             Uses the standard .container card + hero utility classes from
+             tools-template.css Section 4.
+        ──────────────────────────────────────────────────────────────────── -->
+        <div class="container text-center animated-entry">
+
+            <!-- Security / trust badge — .security-badge from §4 -->
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- H1 tool title — gradient span auto-styled by .tool-title rule -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-robot"></i>
+                <span>Robots.txt</span> Generator Pro
+            </h1>
+
+            <!-- Subtitle paragraph -->
+            <p class="subtitle">
+                Create RFC 9309-compliant robots.txt files. Block AI scrapers, manage crawl delay,
+                and control Googlebot access — instantly, in your browser.
+            </p>
+
+        </div><!-- /.container (hero) -->
+
+        <!-- ─────────────────────────────────────────────────────────────────
+             AD SLOT — TOP BANNER
+             Injected dynamically via ads-manager.js
+        ──────────────────────────────────────────────────────────────────── -->
+        <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+        <!-- ─────────────────────────────────────────────────────────────────
+             TOOL INTERFACE — TWO-COLUMN GRID
+             .rtg-tool-grid → two-column desktop layout, stacks on mobile.
+             Each child is a .container card (.rtg-control-card overrides
+             text-align to left within the card).
+        ──────────────────────────────────────────────────────────────────── -->
+        <div class="rtg-tool-grid">
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 LEFT COLUMN — Controls & Configuration Inputs
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="container rtg-control-card">
+
+                <!-- ── Advanced Mode Toggle ──────────────────────────── -->
+                <!--
+                    iOS-style pill toggle. The .rtg-switch wraps a hidden
+                    <input type="checkbox"> and a styled .rtg-slider span.
+                    JS reads #advancedToggle to show/hide advanced sections.
+                -->
+                <div class="rtg-advanced-toggle-wrapper">
+                    <span class="rtg-toggle-label">
+                        <i class="fa-solid fa-sliders"></i> Advanced Mode
+                    </span>
+                    <label class="rtg-switch" aria-label="Toggle Advanced Mode">
+                        <input type="checkbox" id="advancedToggle">
+                        <span class="rtg-slider"></span>
+                    </label>
+                </div>
+
+                <!-- ── CMS Quick Template Selector ───────────────────── -->
+                <!--
+                    Selecting a CMS platform populates #restrictedPaths
+                    with that platform's standard Disallow paths via JS.
+                -->
+                <div class="rtg-input-group">
+                    <label class="rtg-input-label rtg-label-magic" for="cmsTemplate">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Quick Templates (CMS)
+                    </label>
+                    <select id="cmsTemplate" class="input-control" aria-label="Select CMS Platform Template">
+                        <option value="">Select a Platform...</option>
+                        <option value="wordpress">WordPress (Standard)</option>
+                        <option value="shopify">Shopify</option>
+                        <option value="magento">Magento 2</option>
+                        <option value="wix">Wix (Standard)</option>
+                        <option value="joomla">Joomla</option>
+                    </select>
+                </div>
+
+                <!-- ── AI Bot Blocking Checkboxes ────────────────────── -->
+                <!--
+                    Each checkbox maps to an AI/LLM user-agent in botConfig.ai
+                    (script.js). When checked, that bot's User-agent + Disallow
+                    block is added to the generated robots.txt output.
+                -->
+                <div class="rtg-input-group">
+                    <label class="rtg-input-label rtg-label-warning">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Block AI &amp; Scrapers
+                        <span class="badge badge-warning rtg-badge-inline">2026 Updated</span>
+                    </label>
+                    <div class="rtg-checkbox-group">
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockGPT">
+                            <span>GPTBot (ChatGPT)</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockCC">
+                            <span>CCBot (Common Crawl)</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockAnthropic">
+                            <span>ClaudeBot (Anthropic)</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockGoogleAI">
+                            <span>Google-Extended (AI)</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockAppleAI">
+                            <span>Applebot-Extended</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockMeta">
+                            <span>FacebookBot (Meta AI)</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockPerplexity">
+                            <span>PerplexityBot</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ── Configuration Section Title ───────────────────── -->
+                <div class="rtg-section-title">
+                    <span><i class="fa-solid fa-sliders"></i> Configuration</span>
+                </div>
+
+                <!-- ── Default Robot Access ──────────────────────────── -->
+                <!--
+                    Controls the User-agent: * block.
+                    "Allow Everything" → only specific Disallow paths are listed.
+                    "Disallow Everything" → emits a single Disallow: / rule.
+                -->
+                <div class="rtg-input-group">
+                    <label class="rtg-input-label" for="defaultAccess">
+                        Default Robot Access (User-agent: *)
+                        <i class="fa-solid fa-circle-info rtg-info-tooltip"
+                           data-tooltip="Applies to all bots not specifically named below"
+                           aria-label="Info: Applies to all bots not specifically named below"></i>
+                    </label>
+                    <select id="defaultAccess" class="input-control">
+                        <option value="allow">Allow Everything (Default)</option>
+                        <option value="disallow">Disallow Everything (Block All)</option>
+                    </select>
+                </div>
+
+                <!-- ── Crawl Delay — Advanced / Hidden by default ────── -->
+                <!--
+                    This wrapper has class .advanced-section — it is hidden
+                    until Advanced Mode is toggled ON by JS. The Crawl-delay
+                    directive is added to the User-agent: * block in output.
+                -->
+                <div id="crawlDelayWrapper" class="rtg-input-group advanced-section">
+                    <label class="rtg-input-label" for="crawlDelay">
+                        Crawl Delay (Seconds)
+                        <i class="fa-solid fa-circle-info rtg-info-tooltip"
+                           data-tooltip="Slows down bots. Use if your server load is high."
+                           aria-label="Info: Slows down bots. Use if your server load is high."></i>
+                    </label>
+                    <select id="crawlDelay" class="input-control">
+                        <option value="">No Delay (Recommended)</option>
+                        <option value="5">5 Seconds</option>
+                        <option value="10">10 Seconds</option>
+                        <option value="20">20 Seconds</option>
+                        <option value="60">60 Seconds</option>
+                    </select>
+                </div>
+
+                <!-- ── Sitemap URL(s) ─────────────────────────────────── -->
+                <!--
+                    Accepts one or more sitemap URLs (comma or newline
+                    separated). JS auto-prepends https:// if missing.
+                    Rendered at the bottom of the generated file as:
+                    Sitemap: https://example.com/sitemap.xml
+                -->
+                <div class="rtg-input-group">
+                    <label class="rtg-input-label" for="sitemap">
+                        <i class="fa-solid fa-sitemap"></i> Sitemap URL(s)
+                    </label>
+                    <textarea id="sitemap"
+                              class="input-control"
+                              rows="2"
+                              placeholder="https://site.com/sitemap.xml"
+                              spellcheck="false"
+                              aria-label="Enter Sitemap URL(s)"></textarea>
+                    <small class="rtg-helper-text">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Accepts multiple URLs separated by comma or new line.
+                    </small>
+                </div>
+
+                <!-- ── Restricted Directories ────────────────────────── -->
+                <!--
+                    User types one path per line. JS normalises them
+                    (removes double-slashes, ensures single leading slash)
+                    and emits them as Disallow: lines in the output.
+                -->
+                <div class="rtg-input-group">
+                    <label class="rtg-input-label" for="restrictedPaths">
+                        <i class="fa-solid fa-folder-minus"></i>
+                        Restricted Directories
+                        <span class="text-muted" style="font-weight:400;text-transform:none;">(one per line)</span>
+                    </label>
+                    <textarea id="restrictedPaths"
+                              class="input-control"
+                              rows="4"
+                              placeholder="/admin/&#10;/private/&#10;/tmp/"
+                              spellcheck="false"
+                              aria-label="Enter restricted directory paths, one per line"></textarea>
+                    <small class="rtg-helper-text">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Paths are auto-formatted. No need to add double slashes.
+                    </small>
+                </div>
+
+                <!-- ── Specific Bot Rules — Advanced / Hidden by default ─ -->
+                <!--
+                    Legacy and SEO-tool bots. Wrapped in .advanced-section
+                    so the entire block is hidden until Advanced Mode is ON.
+                    JS maps each checkbox id to a User-agent string in
+                    botConfig.legacy (script.js).
+                -->
+                <div id="legacyBotsWrapper" class="advanced-section">
+                    <div class="rtg-section-title" style="margin-top: 4px;">
+                        <span>
+                            <i class="fa-solid fa-ban"></i> Specific Bot Rules (Block)
+                        </span>
+                        <i class="fa-solid fa-circle-info rtg-info-tooltip"
+                           data-tooltip="Block specific search engines or SEO audit tools"
+                           aria-label="Info: Block specific search engines or SEO audit tools"></i>
+                    </div>
+                    <div class="rtg-checkbox-group">
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockGoogleImg">
+                            <span>Google Image</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockYahoo">
+                            <span>Yahoo Slurp</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockBing">
+                            <span>Bingbot</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockBaidu">
+                            <span>Baiduspider</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockMJ12">
+                            <span>MJ12bot (SEO)</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockAhrefs">
+                            <span>AhrefsBot</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockSemrush">
+                            <span>SemrushBot</span>
+                        </label>
+                        <label class="rtg-check">
+                            <input type="checkbox" id="blockDotbot">
+                            <span>DotBot (Moz)</span>
+                        </label>
+                    </div>
+                </div><!-- /#legacyBotsWrapper -->
+
+            </div><!-- /.container.rtg-control-card (left column) -->
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 RIGHT COLUMN — Live Preview & Action Buttons
+            ═══════════════════════════════════════════════════════════════ -->
+            <div class="container rtg-control-card">
+
+                <!-- Preview Panel Header -->
+                <div class="rtg-section-title">
+                    <span><i class="fa-solid fa-code"></i> Live Preview</span>
+                    <span class="badge badge-info rtg-badge-inline" style="font-family:'Courier New',monospace;">robots.txt</span>
+                </div>
+
+                <!-- Generated robots.txt Output (read-only textarea) -->
+                <textarea id="output"
+                          class="rtg-output-area"
+                          readonly
+                          spellcheck="false"
+                          aria-label="Generated Robots.txt Code"
+                          aria-live="polite"></textarea>
+
+                <!-- Action Buttons: Copy / Download / Reset -->
+                <div class="btn-area">
+                    <button class="btn btn-primary" id="btnCopy" aria-label="Copy robots.txt to clipboard">
+                        <i class="fa-regular fa-copy"></i> Copy File
+                    </button>
+                    <button class="btn btn-success" id="btnDownload" aria-label="Download robots.txt file">
+                        <i class="fa-solid fa-download"></i> Download .txt
+                    </button>
+                    <button class="btn btn-danger" id="btnReset" title="Reset All Settings" aria-label="Reset all settings">
+                        <i class="fa-solid fa-rotate-right"></i> Reset
+                    </button>
+                </div><!-- /.btn-area -->
+
+            </div><!-- /.container.rtg-control-card (right column) -->
+
+        </div><!-- /.rtg-tool-grid -->
+
+        <!-- ─────────────────────────────────────────────────────────────────
+             AD SLOT — BOTTOM BANNER
+             Placed between the tool and the educational content.
+             Injected dynamically via ads-manager.js.
+        ──────────────────────────────────────────────────────────────────── -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- ─────────────────────────────────────────────────────────────────
+             SEO ARTICLE — EDUCATIONAL CONTENT
+             Long-form content targeting robots.txt and bot-control keywords.
+             .info-section-wrapper + .info-card from tools-template.css §12.
+        ──────────────────────────────────────────────────────────────────── -->
+        <div class="info-section-wrapper">
+            <div class="info-card">
+
+                <!-- Article Main Heading -->
+                <h2 class="rtg-content-heading">
+                    The Ultimate Master Guide to Robots.txt &amp; Bot Control
+                </h2>
+
+                <!-- ── Sub-section 1 ── -->
+                <h3 class="rtg-content-subheading">
+                    <i class="fa-solid fa-book-open"></i>
+                    1. Fundamentals of the Exclusion Standard
+                </h3>
+
+                <!-- Robots diagram illustration -->
+                <div class="text-center mb-20">
+                    <img src="../../assets/tools/seo/seo-robots-generator/img/robots-diagram.webp"
+                         alt="Diagram showing how robots.txt allows good bots and blocks bad bots"
+                         width="800" height="450"
+                         class="rtg-article-img"
+                         loading="lazy">
+                </div>
+
+                <p class="rtg-content-text">
+                    <strong>What is Robots.txt?</strong><br>
+                    It is a plain text file placed in your website's root directory
+                    (e.g., <code class="tech-highlight">example.com/robots.txt</code>).
+                    It serves as the first point of contact for web crawlers, acting as a
+                    "Do Not Enter" sign for specific areas of your site. It adheres to the
+                    <em>Robots Exclusion Protocol (REP)</em>.
+                </p>
+
+                <p class="rtg-content-text">
+                    <strong>Why is it Mandatory?</strong><br>
+                    Without this file, search engines will attempt to index everything —
+                    including duplicate content, admin panels, and private scripts. This
+                    dilutes your SEO ranking and wastes your "Crawl Budget."
+                </p>
+
+                <!-- ── Sub-section 2 ── -->
+                <h3 class="rtg-content-subheading">
+                    <i class="fa-solid fa-code"></i>
+                    2. Syntax, Configuration &amp; Logic
+                </h3>
+
+                <p class="rtg-content-text">
+                    <strong>Allow vs. Disallow Priority</strong><br>
+                    Directives are processed specifically. A
+                    <code class="tech-highlight">Disallow: /private/</code> blocks the folder,
+                    but an <code class="tech-highlight">Allow: /private/image.jpg</code> can
+                    override that block for a specific file. The most specific rule usually wins.
+                </p>
+
+                <p class="rtg-content-text">
+                    <strong>The Power of Wildcards (*)</strong><br>
+                    The asterisk (*) acts as a wildcard.
+                </p>
+                <ul class="rtg-content-list">
+                    <li>
+                        <code class="tech-highlight">Disallow: /*.pdf</code> &rarr;
+                        Blocks all PDF files site-wide.
+                    </li>
+                    <li>
+                        <code class="tech-highlight">Disallow: /products/*?sort=</code> &rarr;
+                        Blocks sorting parameters to prevent duplicate content.
+                    </li>
+                </ul>
+
+                <!-- ── Sub-section 3 ── -->
+                <h3 class="rtg-content-subheading">
+                    <i class="fa-solid fa-robot"></i>
+                    3. Managing AI &amp; Scrapers (2026 Update)
+                </h3>
+
+                <p class="rtg-content-text">
+                    <strong>Blocking LLM Training Data</strong><br>
+                    Companies like OpenAI (ChatGPT), Anthropic (Claude), and Apple use specific
+                    bots to scrape the web for training data. To opt-out, explicitly block their
+                    user-agents:
+                </p>
+                <ul class="rtg-content-list">
+                    <li><strong>GPTBot:</strong> OpenAI's crawler for training data collection.</li>
+                    <li><strong>CCBot:</strong> Common Crawl, used as a foundation by many AI models.</li>
+                    <li><strong>Google-Extended:</strong> Trains Gemini without affecting Search ranking.</li>
+                </ul>
+
+                <!-- ── Sub-section 4 ── -->
+                <h3 class="rtg-content-subheading">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    4. Common Mistakes to Avoid
+                </h3>
+
+                <p class="rtg-content-text">
+                    <strong>1. Blocking CSS and JS</strong><br>
+                    Never block <code class="tech-highlight">/wp-includes/js/</code> or CSS
+                    folders. Google renders pages like a modern browser; if it cannot see your
+                    layout, it may classify your site as not mobile-friendly.
+                </p>
+
+                <p class="rtg-content-text">
+                    <strong>2. Using Robots.txt to De-Index Pages</strong><br>
+                    <strong>The Golden Rule:</strong> Robots.txt prevents <em>crawling</em>,
+                    not <em>indexing</em>. To remove a page from Google, use
+                    <code class="tech-highlight">&lt;meta name="robots" content="noindex"&gt;</code>
+                    instead.
+                </p>
+
+                <p class="rtg-content-text">
+                    <strong>3. Trailing Slashes Matter</strong><br>
+                    <code class="tech-highlight">Disallow: /admin</code> blocks all URLs starting
+                    with "admin" (e.g., /admin-login).<br>
+                    <code class="tech-highlight">Disallow: /admin/</code> blocks only the exact
+                    folder structure.
+                </p>
+
+            </div><!-- /.info-card -->
+        </div><!-- /.info-section-wrapper -->
+
+        <!-- ─────────────────────────────────────────────────────────────────
+             RELATED TOOLS SECTION
+             Dynamic injection via related-tools.js — driven by
+             data-category and data-current-page attributes.
+        ──────────────────────────────────────────────────────────────────── -->
+        <div class="container" style="margin-top: 30px;">
+            <!--
+                IMPORTANT:
+                1. data-category     → category of this tool ("seo")
+                2. data-current-page → filename to exclude from the grid
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="seo"
+                 data-current-page="seo-robots-generator.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main.page-container.animated-entry -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GLOBAL FOOTER
+         Injected dynamically by global.js.
+         !! DO NOT TOUCH !!
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="global-footer"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         AD SYSTEM — CENTRALIZED SCRIPT (must load before global.js)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SYSTEM CORE SCRIPT
+         Handles: global toast notifications, theme switching, header/footer
+         injection, floating buttons, and all site-wide behaviour.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         CLIENT-SIDE LOGIC ENGINE
+         Handles robots.txt generation, CMS templates, bot blocking,
+         clipboard copy, file download, and Advanced Mode toggle UI.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/tools/seo/seo-robots-generator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

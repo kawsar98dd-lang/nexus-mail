@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--
+    ============================================================
+     TRUSTED TOOLS WEB — Ultra Diff Pro Max
+     Tool      : Text & Code Diff Checker
+     Author    : MD KAWSAR
+     Build     : CodeCanyon Release
+    ============================================================
+    -->
+
+    <!-- ── ANALYTICS & SITE CONFIGURATION ── -->
+    <!-- Buyers: Replace 'analytics-loader.js' with your specific tracking ID configuration -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+    <!-- ── SEO: PRIMARY META TAGS ── -->
+    <title>Ultra Diff Pro Max — Free Online Diff Checker, Code Compare &amp; Text Difference Finder (2026)</title>
+    <meta name="description" content="Compare text, code, JSON, HTML and find differences instantly with Ultra Diff Pro Max. 100% client-side processing — your data never leaves your browser. Features split view, unified view, beautifier, minifier, and one-click diff report export.">
+    <meta name="keywords" content="diff checker, online text compare, code difference viewer, json compare, html diff, trusted tools web, secure code compare, offline diff tool, diff algorithm, text diff, code review tool, compare files online, find differences in code">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="application-name" content="Ultra Diff Pro Max — Trusted Tools Web">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- ── THEME COLOR (Dynamic update via JS if needed) ── -->
+    <meta name="theme-color" content="#050505">
+
+    <!-- ── SEO: OPEN GRAPH (Facebook / LinkedIn) ── -->
+    <meta property="og:title" content="Ultra Diff Pro Max — Secure Online Code &amp; Text Comparison Tool">
+    <meta property="og:description" content="Find differences in code or text instantly. Features include JSON Beautifier, Minifier, Split/Unified Views, and 100% Offline Privacy. No data leaves your browser.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/text/text-diff-checker/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Ultra Diff Pro Max — Text and Code Diff Checker Interface">
+    <meta property="og:url" content="https://trustedtoolsweb.com/text-diff-checker.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ── SEO: TWITTER CARD ── -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TrustedToolsWeb">
+    <meta name="twitter:title" content="Ultra Diff Pro Max — Secure Diff &amp; Code Compare Tool">
+    <meta name="twitter:description" content="Compare text &amp; code securely in your browser. Split view, unified view, beautifier, export reports — 100% client-side. No server uploads ever.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/text/text-diff-checker/img/og-banner.webp">
+
+    <!-- ── SEO: CANONICAL URL ── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/text-diff-checker.html">
+
+    <!-- ── FAVICONS ── -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- ── EXTERNAL ASSETS: FONTS & ICONS ── -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+
+    <!-- ── CORE STYLESHEETS (Two-File CSS Architecture) ── -->
+    <!-- global.css  : Site-wide styles — header, footer, theme, base reset, floating buttons -->
+    <!-- tools-template.css : All tool UI components — modular, reusable, mobile-first -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ── CORE DEPENDENCY: jsdiff Library ── -->
+    <!-- Used synchronously before the Web Worker is spawned; must remain a classic <script> tag -->
+    <script src="../../assets/library/diff-engine/diff.min.js"></script>
+
+    <!-- ── SCHEMA MARKUP: Structured Data for Search Engines ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Ultra Diff Pro Max",
+      "operatingSystem": "Any (Web Browser)",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "description": "A secure, fully client-side online diff checker to compare two text or code files and highlight differences with byte-level precision. Supports JSON, HTML, XML and plain text.",
+      "featureList": [
+        "Split View and Unified View diff rendering",
+        "JSON & HTML Beautifier",
+        "JSON & Text Minifier",
+        "One-Click HTML Diff Report Export",
+        "Drag & Drop File Loading",
+        "Synchronized Scrolling",
+        "100% Client-Side — No Data Leaves Browser",
+        "Web Worker Threaded Processing"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSAR",
+        "url": "https://trustedtoolsweb.com"
+      },
+      "image": "https://trustedtoolsweb.com/assets/tools/text/text-diff-checker/img/og-banner.webp",
+      "url": "https://trustedtoolsweb.com/text-diff-checker.html",
+      "screenshot": "https://trustedtoolsweb.com/assets/tools/text/text-diff-checker/img/og-banner.webp"
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ================================================================
+         GLOBAL SYSTEM: Header
+         Injected dynamically by global.js — do not place content here.
+    ================================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ================================================================
+         MAIN CONTENT WRAPPER
+         All tool UI lives inside <main> which is the page-level
+         centered max-width container (950px) defined in tools-template.css.
+    ================================================================ -->
+    <main>
+
+        <!-- ── TOOL CARD: Primary Interactive Container ── -->
+        <div class="container animated-entry">
+
+            <!-- ── HERO SECTION: Badge, Title, Subtitle ── -->
+
+            <!-- Security/Privacy Trust Badge -->
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- Main Tool Title — gradient span styled via .tool-title span in tools-template.css -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-dna"></i> Ultra Diff <span>Pro Max</span>
+            </h1>
+
+            <!-- Tool Subtitle / Description -->
+            <p class="subtitle">
+                Securely Compare Text, JSON, HTML &amp; Code to find differences instantly.
+                No Data Stored. Powered by Advanced Diff Algorithm.
+            </p>
+
+            <!-- ── AD SLOT: Top Banner (injected by ads-manager.js) ── -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ================================================================
+                 TOOLBAR
+                 View switchers (Split / Unified), utilities (Wrap, Beautify,
+                 Minify) and the destructive Clear action. All buttons use
+                 the .dif-tool-btn class for consistent pill styling, with
+                 .active toggled via JavaScript to indicate current state.
+            ================================================================ -->
+            <div class="dif-toolbar">
+                <!-- View Mode Buttons -->
+                <button class="dif-tool-btn active" id="btnSplit">
+                    <i class="fa-solid fa-columns"></i> Split View
+                </button>
+                <button class="dif-tool-btn" id="btnUnified">
+                    <i class="fa-solid fa-bars"></i> Unified View
+                </button>
+
+                <!-- Word Wrap Toggle -->
+                <button class="dif-tool-btn" id="btnWrap">
+                    <i class="fa-solid fa-align-left"></i> Word Wrap
+                </button>
+
+                <!-- Visual Divider -->
+                <div class="dif-toolbar-divider"></div>
+
+                <!-- Code Utility Buttons -->
+                <button class="dif-tool-btn" id="btnFormat" title="Format JSON / XML / HTML">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Beautify
+                </button>
+                <button class="dif-tool-btn" id="btnMinify" title="Minify / Compress code">
+                    <i class="fa-solid fa-compress"></i> Minify
+                </button>
+
+                <!-- Destructive: Clear Both Editors -->
+                <button class="dif-tool-btn dif-tool-btn-danger" id="btnClear" title="Clear all content">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+
+            <!-- ── HIDDEN FILE INPUTS (triggered programmatically via JS) ── -->
+            <input type="file" id="fileInput1" class="d-none">
+            <input type="file" id="fileInput2" class="d-none">
+
+            <!-- ================================================================
+                 EDITOR GRID
+                 Three-column flex layout:
+                   [Left Editor: Original] [Mid Controls] [Right Editor: Modified]
+                 On mobile the mid-controls collapse and editors stack vertically.
+            ================================================================ -->
+            <div class="dif-editor-grid">
+
+                <!-- ── LEFT EDITOR: Original ── -->
+                <div class="dif-editor-box" id="dropZone1">
+                    <!-- Editor Header Bar: Label + File Stats + Upload Button -->
+                    <div class="dif-box-header">
+                        <span class="dif-box-label dif-label-original">
+                            <i class="fa-solid fa-file-arrow-down"></i> ORIGINAL
+                        </span>
+                        <div class="dif-file-actions">
+                            <!-- Live character count — updated on every keystroke via JS -->
+                            <span id="stat1" class="dif-stat-badge">0 chars</span>
+                            <button class="btn-icon" onclick="triggerFile(1)" title="Upload file from disk">
+                                <i class="fa-solid fa-upload"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Monospace textarea — accepts paste or drag-and-drop content -->
+                    <textarea
+                        id="text1"
+                        class="dif-editor-textarea"
+                        placeholder="Paste or Drop original text / code here..."
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+
+                <!-- ── MID CONTROLS: Copy / Swap Arrows ── -->
+                <div class="dif-mid-controls">
+                    <!-- Copy Original → Modified -->
+                    <button class="dif-mid-btn" id="btnCopyRight" title="Copy Original to Modified">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <!-- Swap both editors -->
+                    <button class="dif-mid-btn" id="btnSwap" title="Swap contents of both editors">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </button>
+                    <!-- Copy Modified → Original -->
+                    <button class="dif-mid-btn" id="btnCopyLeft" title="Copy Modified to Original">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                </div>
+
+                <!-- ── RIGHT EDITOR: Modified ── -->
+                <div class="dif-editor-box" id="dropZone2">
+                    <!-- Editor Header Bar -->
+                    <div class="dif-box-header">
+                        <span class="dif-box-label dif-label-modified">
+                            <i class="fa-solid fa-file-pen"></i> MODIFIED
+                        </span>
+                        <div class="dif-file-actions">
+                            <span id="stat2" class="dif-stat-badge">0 chars</span>
+                            <button class="btn-icon" onclick="triggerFile(2)" title="Upload file from disk">
+                                <i class="fa-solid fa-upload"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea
+                        id="text2"
+                        class="dif-editor-textarea"
+                        placeholder="Paste or Drop modified text / code here..."
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+            </div>
+            <!-- / .dif-editor-grid -->
+
+            <!-- ================================================================
+                 PRIMARY ACTION: COMPARE BUTTON
+                 Full-width CTA that triggers the Web Worker diff engine.
+                 Contains an internal loading overlay (#loader) shown during
+                 processing to block double-submission.
+            ================================================================ -->
+            <div class="dif-compare-wrap">
+                <button class="dif-compare-btn" id="btnCompare">
+                    <!-- Button Label (hidden when loading) -->
+                    <span id="btnText">
+                        <i class="fa-solid fa-bolt"></i> COMPARE DIFFERENCES
+                    </span>
+                    <!-- Internal Loading Overlay — toggled by JS (hidden class) -->
+                    <div id="loader" class="dif-loading-overlay hidden">
+                        <div class="dif-loader-inner">
+                            <div class="dif-spinner"></div>
+                            <span>Processing...</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- ── AD SLOT: Bottom Banner (injected by ads-manager.js) ── -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+            <!-- ================================================================
+                 DIFF RESULTS SECTION
+                 Hidden by default (.hidden). Revealed after a successful
+                 comparison. Contains:
+                   • Stats bar  — removed / added line counts
+                   • Action bar — Copy Changes, Save Report buttons
+                   • Diff output — rendered line-by-line diff HTML (JS-injected)
+            ================================================================ -->
+            <div id="diff-results" class="dif-viewer hidden">
+
+                <!-- Stats & Export Header Bar -->
+                <div class="dif-results-header">
+                    <!-- Removed / Added Counts (values updated by JS) -->
+                    <div class="dif-result-stats">
+                        <span class="dif-stat-removed">
+                            <i class="fa-solid fa-circle-minus"></i>
+                            <span id="rem-count">0</span> Removed
+                        </span>
+                        <span class="dif-stat-added">
+                            <i class="fa-solid fa-circle-plus"></i>
+                            <span id="add-count">0</span> Added
+                        </span>
+                    </div>
+                    <!-- Action Buttons for the result -->
+                    <div class="dif-result-actions">
+                        <button class="dif-tool-btn dif-result-btn" id="btnCopyChanges">
+                            <i class="fa-regular fa-copy"></i> Copy Changes
+                        </button>
+                        <button class="dif-tool-btn dif-result-btn" id="btnExport">
+                            <i class="fa-solid fa-download"></i> Save Report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Diff Output Area — populated entirely by renderDiff() in JS -->
+                <div id="diff-output" class="dif-content"></div>
+
+            </div>
+            <!-- / #diff-results -->
+
+        </div>
+        <!-- / .container.animated-entry -->
+
+        <!-- ================================================================
+             SEO INFORMATION SECTION
+             Rich editorial content for organic search ranking.
+             Uses global .info-section-wrapper and .info-card components.
+        ================================================================ -->
+        <section class="info-section-wrapper">
+
+            <!-- ── Info Card 1: Security & Privacy ── -->
+            <div class="info-card">
+                <div class="dif-info-flex">
+                    <!-- Text Content -->
+                    <div class="dif-info-text">
+                        <h2><i class="fa-solid fa-file-shield"></i> Secure Code Comparison: The Industry Standard</h2>
+                        <p>In high-stakes development environments, a single missing semicolon or an accidental deletion can bring down production systems. <strong>Ultra Diff Pro Max</strong> eliminates human error by highlighting every discrepancy with byte-level precision.</p>
+                        <p>Unlike other tools that process data on remote servers, our engine runs entirely within your browser's <span class="tech-highlight">Web Worker</span> environment. This guarantees zero latency and absolute privacy.</p>
+                        <ul class="dif-feature-list">
+                            <li>
+                                <i class="fa-solid fa-shield-halved dif-icon-green"></i>
+                                <strong>Zero Data Leakage:</strong> Your code never leaves your device.
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-wifi dif-icon-green"></i>
+                                <strong>Offline Capable:</strong> Works perfectly without internet after loading.
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-key dif-icon-green"></i>
+                                <strong>Credential Safe:</strong> Safe for comparing config files with API keys.
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Shield Illustration -->
+                    <div class="dif-info-img-wrap">
+                        <img
+                            src="../../assets/tools/text/text-diff-checker/img/secure-shield.webp"
+                            alt="Secure Client-Side Processing Shield — Ultra Diff Pro Max"
+                            class="dif-info-img"
+                            width="300"
+                            height="300"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Info Card 2: Advanced Developer Features ── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-microchip"></i> Advanced Developer Features</h2>
+                <div class="dif-feature-grid">
+                    <div>
+                        <h3 class="dif-feature-heading">
+                            <i class="fa-solid fa-code"></i> Intelligent Formatting
+                        </h3>
+                        <p>Comparing minified JSON or CSS is impossible manually. Our built-in <strong>Beautifier</strong> instantly expands compressed code into readable structures before comparison, making debugging effortless.</p>
+                    </div>
+                    <div>
+                        <h3 class="dif-feature-heading">
+                            <i class="fa-solid fa-file-export"></i> Professional Reporting
+                        </h3>
+                        <p>Need to document changes for a client or team lead? Generate a standalone, styled HTML report of the differences with one click using the <strong>Export</strong> feature.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Info Card 3: How To Use ── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-list-check"></i> How to Use Effectively</h2>
+                <div class="text-center mb-20">
+                    <img
+                        src="../../assets/tools/text/text-diff-checker/img/how-to-use-guide.webp"
+                        alt="Visual guide: How to compare text and code with Ultra Diff Pro Max"
+                        class="dif-how-to-img"
+                        width="800"
+                        height="400"
+                        loading="lazy"
+                    >
+                </div>
+                <ol class="dif-how-to-list">
+                    <li>
+                        <strong>Load Content:</strong> Paste text or Drag &amp; Drop files into the
+                        <span class="text-primary">ORIGINAL</span> and
+                        <span class="text-accent-cyan">MODIFIED</span> boxes.
+                    </li>
+                    <li>
+                        <strong>Pre-Process:</strong> If your code is minified, click
+                        <span class="tech-highlight"><i class="fa-solid fa-wand-magic-sparkles"></i> Beautify</span>
+                        to format it first.
+                    </li>
+                    <li>
+                        <strong>Analyze:</strong> Click <strong>COMPARE DIFFERENCES</strong>. Review
+                        deletions in <span class="text-danger">Red</span> and
+                        additions in <span class="text-success">Green</span>.
+                    </li>
+                </ol>
+            </div>
+
+        </section>
+        <!-- / .info-section-wrapper -->
+
+        <!-- ================================================================
+             RELATED TOOLS SECTION
+             Dynamically populated by related-tools.js based on data-category.
+             Set data-category to match this tool's category ("text").
+             Set data-current-page to exclude this page from the suggestions.
+        ================================================================ -->
+        <div class="container" style="margin-top: 50px;">
+            <div
+                id="dynamic-related-tools"
+                data-category="text"
+                data-current-page="text-diff-checker.html"
+            ></div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- / main -->
+
+    <!-- ================================================================
+         GLOBAL SYSTEM: Footer
+         Injected dynamically by global.js — do not place content here.
+    ================================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ── AD SYSTEM: Ads Manager ── -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ── CORE: Global Functionality (theme, header, footer, toast system) ── -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ── TOOL SCRIPT: Ultra Diff Pro Max Core Logic ── -->
+    <script src="../../assets/tools/text/text-diff-checker/script.js"></script>
+    
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  
+  </body>
+  </html>

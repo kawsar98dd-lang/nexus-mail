@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+    ============================================================
+    MEME STUDIO ULTRA PRO — Trusted Tools Web
+    Tool      : Multi-Layer Canvas Meme Generator
+    Version   : 3.0.0 (CodeCanyon Production Build)
+    Author    : MD KAWSAR — Trusted Tools Web
+    Stylesheet: global.css + tools-template.css (NO inline styles)
+    ============================================================
+-->
+
+    <!-- ── SITE CONFIGURATION & META MANAGEMENT (must be first) ── -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ── DOCUMENT META ── -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- ── PRIMARY SEO META ── -->
+    <title>Free Meme Generator Online — No Watermark, No Signup | Trusted Tools Web</title>
+    <meta name="description" content="Create viral memes in seconds with Meme Studio Ultra Pro — the most advanced free online meme maker. Multi-layer editor, 6+ templates, HD export (PNG/JPEG/WebP), zero watermarks, 100% client-side private processing. No signup required.">
+    <meta name="keywords" content="meme generator, online meme maker, free meme tool, no watermark meme maker, multi-layer meme editor, viral meme creator, canvas meme studio, trusted tools web">
+    <meta name="author" content="Trusted Tools Web">
+    <meta name="theme-color" content="#0d1117">
+    <meta name="robots" content="index, follow">
+
+    <!-- ── PWA & MOBILE OPTIMIZATION ── -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ── OPEN GRAPH / SOCIAL SHARING ── -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/img-meme-generator.html">
+    <meta property="og:title"       content="Free Meme Generator — Multi-Layer, No Watermark | Trusted Tools Web">
+    <meta property="og:description" content="Build viral memes instantly. Multi-layer canvas engine, 6 templates, HD export, 100% private — no server uploads ever.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/img/img-meme-generator/img/meme-cover.webp">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+    <meta name="twitter:card"       content="summary_large_image">
+    <meta name="twitter:title"      content="Free Meme Generator — Multi-Layer, No Watermark">
+    <meta name="twitter:description" content="Create HD memes in your browser. No watermarks, no uploads, 100% private.">
+    <meta name="twitter:image"      content="https://trustedtoolsweb.com/assets/tools/img/img-meme-generator/img/meme-cover.webp">
+
+    <!-- ── CANONICAL URL ── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/img-meme-generator.html" />
+
+    <!-- ── EXTERNAL FONTS & ICON LIBRARY ── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Poppins:wght@400;600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- ── GLOBAL STYLESHEET ── -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- ── TOOL COMPONENT STYLESHEET ── -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ── FAVICON ── -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ── SCHEMA MARKUP (JSON-LD) ── -->
+    <script type="application/ld+json">
+    {
+        "@context"            : "https://schema.org",
+        "@type"               : "SoftwareApplication",
+        "name"                : "Meme Studio Ultra Pro",
+        "url"                 : "https://trustedtoolsweb.com/img-meme-generator.html",
+        "image"               : "https://trustedtoolsweb.com/assets/tools/img/img-meme-generator/img/meme-cover.webp",
+        "description"         : "A 100% client-side, privacy-first meme generator with multi-layer text and sticker support, real-time canvas rendering, and HD export — hosted on Trusted Tools Web.",
+        "applicationCategory" : "MultimediaApplication",
+        "operatingSystem"     : "Any",
+        "browserRequirements" : "Requires a modern browser with HTML5 Canvas support.",
+        "featureList"         : "Multi-layer editing, Custom stickers, HD PNG/JPEG/WebP export, No watermarks, Undo/Redo history, Mobile touch support",
+        "offers"              : { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "creator"             : { "@type": "Organization", "name": "Trusted Tools Web", "url": "https://trustedtoolsweb.com" }
+    }
+    </script>
+
+</head>
+<body>
+
+<!-- ── GLOBAL SITE HEADER (injected by global.js) ── -->
+<header id="global-header" class="site-header"></header>
+
+<main>
+
+    <!-- ════════════════════════════════════════════════════════════
+         SECTION A: MAIN TOOL CARD
+         Holds the hero title, canvas workspace, and control sidebar.
+    ════════════════════════════════════════════════════════════ -->
+    <div class="container animated-entry">
+
+        <!-- A1: SECURITY / PRIVACY BADGE -->
+        <div class="security-badge">
+            <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+        </div>
+
+        <!-- A2: TOOL HERO TITLE -->
+        <h1 class="tool-title">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Meme Studio <span>Ultra Pro</span>
+        </h1>
+        <p class="subtitle">
+            The professional multi-layer canvas engine for viral content creation.<br>
+            No watermarks &bull; No server uploads &bull; High-definition exports.
+        </p>
+
+        <!-- A3: TOP AD SLOT (managed by ads-manager.js) -->
+        <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+        <!-- ── MAIN WORKSPACE GRID (canvas + sidebar) ── -->
+        <div class="mg-workspace-grid">
+
+            <!-- ────────────────────────────────────────────────
+                 SECTION A4: CANVAS PANEL
+                 Contains the HTML5 canvas, loader overlay, and
+                 the empty-state placeholder shown before upload.
+            ──────────────────────────────────────────────────── -->
+            <div class="mg-canvas-section">
+
+                <!-- A4a: CANVAS TOOLBAR (undo/redo + resolution indicator) -->
+                <div class="mg-canvas-toolbar">
+                    <div class="d-flex" style="gap: 8px;">
+                        <!-- Undo: reverts the last canvas state from history -->
+                        <button class="btn btn-secondary" onclick="MemeEngine.undo()" title="Undo (Ctrl+Z)">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                        <!-- Redo: re-applies a previously undone state -->
+                        <button class="btn btn-secondary" onclick="MemeEngine.redo()" title="Redo (Ctrl+Y)">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
+                    <!-- Resolution / status indicator — updated by JS -->
+                    <span id="res-indicator" class="mg-res-indicator">READY</span>
+                </div>
+
+                <!-- A4b: CANVAS CONTAINER (relative-positioned wrapper) -->
+                <div class="mg-canvas-container" id="canvas-wrapper">
+
+                    <!-- A4b-i: Loading overlay — shown during HD export rendering -->
+                    <div id="canvas-loader" class="hidden mg-canvas-loader">
+                        <div class="mg-spinner"></div>
+                        <p class="mg-loader-text">Processing HD Layers...</p>
+                    </div>
+
+                    <!-- A4b-ii: Empty-state placeholder — shown before any image is loaded -->
+                    <div class="mg-placeholder-ui" id="empty-state">
+                        <i class="fa-solid fa-cloud-arrow-up mg-empty-icon"></i>
+                        <h2 class="mg-empty-title">Import Image to Start</h2>
+
+                        <!-- Hidden file input triggered by the Upload button below -->
+                        <input type="file" id="upload-input" accept="image/*" class="hidden">
+
+                        <!-- Primary upload CTA -->
+                        <button class="mg-upload-area-btn" onclick="document.getElementById('upload-input').click()">
+                            <i class="fa-solid fa-file-import"></i> Upload Image
+                        </button>
+
+                        <!-- Secondary quick-start actions -->
+                        <div class="mg-empty-actions">
+                            <button class="btn btn-secondary" onclick="TemplateSystem.open()">
+                                <i class="fa-solid fa-images"></i> Browse Templates
+                            </button>
+                            <button class="btn btn-secondary" onclick="MemeEngine.startBlank()">
+                                <i class="fa-solid fa-square"></i> Blank Canvas
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- A4b-iii: The main HTML5 canvas — hidden until an image is loaded -->
+                    <canvas id="main-canvas" class="hidden"></canvas>
+
+                </div><!-- /.mg-canvas-container -->
+
+                <!-- A4c: Canvas hint text -->
+                <p class="mg-canvas-hint text-right">
+                    Use mouse wheel to zoom &bull; Drag to move layers &bull; Delete key to remove
+                </p>
+
+            </div><!-- /.mg-canvas-section -->
+
+
+            <!-- ────────────────────────────────────────────────
+                 SECTION A5: CONTROLS SIDEBAR
+                 Three-tab panel: Layers | Design | Effects+Export
+            ──────────────────────────────────────────────────── -->
+            <div class="mg-controls-wrapper">
+
+                <!-- A5a: TAB NAVIGATION BAR -->
+                <div class="mg-panel-tabs">
+                    <button class="mg-panel-tab active" onclick="UISystem.switchTab(0)">
+                        <i class="fa-solid fa-layer-group"></i> LAYERS
+                    </button>
+                    <button class="mg-panel-tab" onclick="UISystem.switchTab(1)">
+                        <i class="fa-solid fa-sliders"></i> DESIGN
+                    </button>
+                    <button class="mg-panel-tab" onclick="UISystem.switchTab(2)">
+                        <i class="fa-solid fa-wand-magic"></i> EFFECTS
+                    </button>
+                </div>
+
+                <!-- ── TAB 0: LAYER MANAGEMENT ── -->
+                <div id="tab-0" class="mg-panel-content active">
+
+                    <!-- Add-layer quick buttons -->
+                    <div class="mg-add-layer-grid mb-20">
+                        <button class="btn btn-secondary" onclick="MemeEngine.addText()">
+                            <i class="fa-solid fa-font"></i> Text
+                        </button>
+                        <button class="btn btn-secondary" onclick="document.getElementById('sticker-input').click()">
+                            <i class="fa-solid fa-face-smile"></i> Sticker
+                        </button>
+                        <!-- Hidden sticker file input -->
+                        <input type="file" id="sticker-input" accept="image/*" class="hidden">
+                    </div>
+
+                    <!-- Layer list label -->
+                    <label class="mg-control-label">Active Layers</label>
+
+                    <!-- Scrollable layer list — items injected by UISystem.updateLayerList() -->
+                    <div id="layer-list" class="mg-layer-manager">
+                        <div class="mg-layer-empty-msg">No active layers</div>
+                    </div>
+
+                    <!-- Layer reorder / duplicate controls -->
+                    <div class="mg-layer-actions-grid">
+                        <button class="btn btn-secondary" onclick="MemeEngine.reorder('up')" title="Bring Forward">
+                            <i class="fa-solid fa-chevron-up"></i>
+                        </button>
+                        <button class="btn btn-secondary" onclick="MemeEngine.reorder('down')" title="Send Backward">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <button class="btn btn-secondary" onclick="MemeEngine.duplicate()" title="Duplicate Layer">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+
+                </div><!-- /#tab-0 -->
+
+
+                <!-- ── TAB 1: DESIGN PROPERTIES ── -->
+                <div id="tab-1" class="mg-panel-content">
+
+                    <!-- Shown when no layer is selected -->
+                    <div id="no-selection-msg" class="mg-no-selection">
+                        <i class="fa-solid fa-arrow-pointer mg-no-sel-icon"></i>
+                        <p>Select a layer to edit properties</p>
+                    </div>
+
+                    <!-- Shown when a layer IS selected (hidden by default) -->
+                    <div id="design-controls" class="hidden">
+
+                        <!-- Text-only fields — hidden for sticker layers -->
+                        <div id="text-fields">
+
+                            <!-- Content / text body -->
+                            <div class="mg-control-group">
+                                <label class="mg-control-label">Content</label>
+                                <textarea id="edit-text" class="input-control" rows="2" placeholder="Enter text..."></textarea>
+                            </div>
+
+                            <!-- Font family selector -->
+                            <div class="mg-control-group">
+                                <label class="mg-control-label">Font Family</label>
+                                <select id="edit-font" class="input-control">
+                                    <option value="Impact">Impact (Classic)</option>
+                                    <option value="Arial">Arial Bold</option>
+                                    <option value="Anton">Anton (Viral)</option>
+                                    <option value="Poppins">Poppins Black</option>
+                                    <option value="Oswald">Oswald Bold</option>
+                                </select>
+                            </div>
+
+                            <!-- Fill + Outline colour pickers side by side -->
+                            <div class="mg-color-row mb-20">
+                                <div class="mg-color-field">
+                                    <label class="mg-control-label">Fill</label>
+                                    <input type="color" id="edit-color" class="mg-color-picker">
+                                </div>
+                                <div class="mg-color-field">
+                                    <label class="mg-control-label">Outline</label>
+                                    <input type="color" id="edit-stroke" class="mg-color-picker">
+                                </div>
+                            </div>
+
+                        </div><!-- /#text-fields -->
+
+                        <!-- Scale & Opacity sliders (shared by text and sticker) -->
+                        <div class="mg-control-group">
+                            <label class="mg-control-label">Scale &amp; Opacity</label>
+                            <input type="range" id="edit-size"    class="range-slider" min="10"  max="800" value="100">
+                            <input type="range" id="edit-opacity" class="range-slider" min="0"   max="1"   step="0.01" value="1">
+                        </div>
+
+                        <!-- Rotation slider -->
+                        <div class="mg-control-group">
+                            <label class="mg-control-label">Rotation</label>
+                            <input type="range" id="edit-rotation" class="range-slider" min="0" max="360" value="0">
+                        </div>
+
+                        <!-- Delete selected layer -->
+                        <div class="btn-area mt-sm">
+                            <button class="btn btn-danger" onclick="MemeEngine.deleteLayer()">
+                                <i class="fa-solid fa-trash-can"></i> Delete Layer
+                            </button>
+                        </div>
+
+                    </div><!-- /#design-controls -->
+
+                </div><!-- /#tab-1 -->
+
+
+                <!-- ── TAB 2: GLOBAL IMAGE EFFECTS & EXPORT ── -->
+                <div id="tab-2" class="mg-panel-content">
+
+                    <!-- Image filter sliders (brightness / contrast / saturation) -->
+                    <div class="mg-control-group">
+                        <label class="mg-control-label">Image Enhancement</label>
+
+                        <!-- Brightness filter -->
+                        <div class="mg-filter-row">
+                            <div class="mg-filter-label-row">
+                                <span class="mg-filter-label">Brightness</span>
+                                <span id="val-bright" class="mg-filter-value">100%</span>
+                            </div>
+                            <input type="range" id="f-bright" class="range-slider" min="0" max="200" value="100">
+                        </div>
+
+                        <!-- Contrast filter -->
+                        <div class="mg-filter-row">
+                            <div class="mg-filter-label-row">
+                                <span class="mg-filter-label">Contrast</span>
+                                <span id="val-contrast" class="mg-filter-value">100%</span>
+                            </div>
+                            <input type="range" id="f-contrast" class="range-slider" min="0" max="200" value="100">
+                        </div>
+
+                        <!-- Saturation filter -->
+                        <div class="mg-filter-row">
+                            <div class="mg-filter-label-row">
+                                <span class="mg-filter-label">Saturation</span>
+                                <span id="val-saturate" class="mg-filter-value">100%</span>
+                            </div>
+                            <input type="range" id="f-saturate" class="range-slider" min="0" max="200" value="100">
+                        </div>
+
+                    </div><!-- /.mg-control-group (filters) -->
+
+                    <!-- Export format selector -->
+                    <div class="mg-export-box">
+                        <label class="mg-export-label">Export Quality</label>
+                        <select id="export-format" class="input-control">
+                            <option value="image/jpeg">JPEG (High Quality)</option>
+                            <option value="image/png">PNG (Lossless)</option>
+                            <option value="image/webp">WEBP (Web Optimized)</option>
+                        </select>
+                    </div>
+
+                    <!-- Export action buttons -->
+                    <div class="btn-area mt-sm">
+                        <button class="btn btn-primary" onclick="MemeEngine.export()">
+                            <i class="fa-solid fa-download"></i> Save Ultra HD
+                        </button>
+                        <button class="btn btn-secondary" onclick="MemeEngine.copyToClipboard()">
+                            <i class="fa-solid fa-copy"></i> Copy to Clipboard
+                        </button>
+                    </div>
+
+                </div><!-- /#tab-2 -->
+
+            </div><!-- /.mg-controls-wrapper -->
+
+        </div><!-- /.mg-workspace-grid -->
+
+        <!-- A6: BOTTOM AD SLOT (managed by ads-manager.js) -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+    </div><!-- /.container -->
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         SECTION B: SEO INFO CARDS
+         Rich editorial content describing tool features and FAQ.
+         Uses standard tools-template.css classes for consistency.
+    ════════════════════════════════════════════════════════════ -->
+    <section class="info-section-wrapper">
+
+        <!-- B1: WHY THIS TOOL — FEATURE HIGHLIGHTS CARD -->
+        <div class="info-card">
+
+            <h2 class="mg-info-heading">
+                <i class="fa-solid fa-bolt text-accent-cyan"></i>
+                Why Meme Studio Ultra Pro is Different?
+            </h2>
+
+            <p class="mg-info-intro">
+                Most online meme generators force you to upload your images to their servers, creating a serious
+                privacy risk. <strong>Meme Studio Ultra Pro</strong> is built on a strict <em>Offline-First</em>
+                philosophy — it runs 100% inside your browser using the HTML5 Canvas API. Your photos, edits, and
+                text <strong>never leave your device</strong>. Whether you are editing a personal photo or a
+                downloaded template, your content stays completely private.
+            </p>
+
+            <!-- Three feature highlight cards in a responsive grid -->
+            <div class="mg-feature-grid">
+
+                <div class="mg-feature-card">
+                    <h4 class="mg-feature-title">
+                        <i class="fa-solid fa-bolt" style="color: var(--accent-yellow);"></i>
+                        Zero Latency Speed
+                    </h4>
+                    <p class="mg-feature-text">
+                        Since there are no server uploads, editing happens instantly — no waiting, even on slow
+                        3G/4G connections.
+                    </p>
+                </div>
+
+                <div class="mg-feature-card">
+                    <h4 class="mg-feature-title">
+                        <i class="fa-solid fa-layer-group" style="color: var(--accent-green);"></i>
+                        Advanced Layering
+                    </h4>
+                    <p class="mg-feature-text">
+                        Our layer system lets you re-select, move, resize, or delete specific text and stickers
+                        anytime before saving.
+                    </p>
+                </div>
+
+                <div class="mg-feature-card">
+                    <h4 class="mg-feature-title">
+                        <i class="fa-solid fa-droplet-slash" style="color: var(--accent-red);"></i>
+                        No Watermarks
+                    </h4>
+                    <p class="mg-feature-text">
+                        Your exported memes are 100% yours — completely free from any branding, logos, or
+                        promotional overlays.
+                    </p>
+                </div>
+
+            </div><!-- /.mg-feature-grid -->
+
+        </div><!-- /.info-card (B1) -->
+
+
+        <!-- B2: FAQ CARD -->
+        <div class="info-card">
+
+            <h2 class="mg-info-heading mg-info-heading--purple">
+                <i class="fa-regular fa-circle-question"></i>
+                Frequently Asked Questions
+            </h2>
+
+            <div class="mg-faq-list">
+
+                <!-- FAQ item 1 -->
+                <div class="mg-faq-item">
+                    <h3 class="mg-faq-question">
+                        <i class="fa-regular fa-circle-question text-primary"></i>
+                        Is this tool really free?
+                    </h3>
+                    <p class="mg-faq-answer">
+                        Yes, absolutely. All features — including the multi-layer editor, sticker library, and HD
+                        export — are free to use. We support this project through minimal, non-intrusive ads.
+                    </p>
+                </div>
+
+                <!-- FAQ item 2 -->
+                <div class="mg-faq-item">
+                    <h3 class="mg-faq-question">
+                        <i class="fa-regular fa-circle-question text-primary"></i>
+                        Does Trusted Tools store my photos?
+                    </h3>
+                    <p class="mg-faq-answer">
+                        No. When you upload an image it is processed locally in your browser's temporary memory
+                        (RAM) — it is <strong>never sent to our servers</strong> or any third-party cloud storage.
+                        Once you close the tab, the data is gone forever.
+                    </p>
+                </div>
+
+                <!-- FAQ item 3 -->
+                <div class="mg-faq-item mg-faq-item--last">
+                    <h3 class="mg-faq-question">
+                        <i class="fa-regular fa-circle-question text-primary"></i>
+                        Why isn't the text saving on my image?
+                    </h3>
+                    <p class="mg-faq-answer">
+                        Make sure you click the <strong>"Save Ultra HD"</strong> button instead of taking a
+                        screenshot. The tool compiles all layers (text, stickers, filters) into a single
+                        high-quality file during the export rendering process.
+                    </p>
+                </div>
+
+            </div><!-- /.mg-faq-list -->
+
+        </div><!-- /.info-card (B2) -->
+
+    </section><!-- /.info-section-wrapper -->
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         SECTION C: DYNAMIC RELATED TOOLS
+         Populated at runtime by related-tools.js
+    ════════════════════════════════════════════════════════════ -->
+    <div class="container" style="margin-top: 50px;">
+        <div id="dynamic-related-tools"
+             data-category="img"
+             data-current-page="img-meme-generator.html">
+        </div>
+    </div>
+    <script type="module" src="../../assets/js/related-tools.js"></script>
+
+</main><!-- /main -->
+
+
+<!-- ── GLOBAL SITE FOOTER (injected by global.js) ── -->
+<footer id="global-footer" class="cyber-footer"></footer>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION D: TEMPLATE PICKER MODAL
+     Overlay modal displaying the built-in meme template grid.
+     Opened via TemplateSystem.open() / closed via TemplateSystem.close()
+════════════════════════════════════════════════════════════ -->
+<div id="template-modal" class="mg-modal">
+    <div class="mg-modal-content">
+        <!-- Modal header: title + close button -->
+        <div class="mg-modal-header">
+            <h2 class="tool-title" style="font-size: 24px; margin: 0;">
+                Meme <span>Templates</span>
+            </h2>
+            <!-- Close button — calls TemplateSystem.close() -->
+            <button class="mg-modal-close" onclick="TemplateSystem.close()" aria-label="Close template modal">
+                &times;
+            </button>
+        </div>
+        <!-- Template thumbnail grid — injected by TemplateSystem.open() -->
+        <div class="mg-template-grid" id="template-grid"></div>
+    </div>
+</div><!-- /#template-modal -->
+
+
+<!-- ── GLOBAL SCRIPTS ── -->
+<script src="../../assets/js/ads-manager.js"></script>
+<script type="module" src="../../assets/js/global.js"></script>
+
+<!-- ── TOOL CORE ENGINE ── -->
+<script src="../../assets/tools/img/img-meme-generator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

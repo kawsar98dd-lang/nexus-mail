@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- =========================================================================
+         SECTION 1: ANALYTICS & CORE METADATA LOADERS
+         These three scripts must execute first. They inject dynamic meta tags,
+         initialise the analytics pipeline, and load site-wide configuration.
+         DO NOT reorder, rename, or remove these script tags.
+    ========================================================================= -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- =========================================================================
+         SECTION 2: CORE DOCUMENT META
+         Charset, viewport, and compatibility declarations must appear before
+         any rendering-related tags to guarantee correct layout on all devices.
+    ========================================================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- =========================================================================
+         SECTION 3: PRIMARY SEO META TAGS
+         Title, description, and keyword tags are crafted for maximum organic
+         search coverage. The title targets the most searched developer-tool
+         queries while remaining accurate and non-spammy.
+    ========================================================================= -->
+    <title>Ultra JSON Pro Max — Free Online JSON Formatter, Validator & Beautifier | Trusted Tools Web</title>
+    <meta name="title"       content="Ultra JSON Pro Max — Free Online JSON Formatter, Validator & Beautifier">
+    <meta name="description" content="Format, validate, minify, and convert JSON data online — 100% free and client-side. Ultra JSON Pro Max offers Tree View, Auto-Fix, XML/CSV conversion, and syntax highlighting. No server uploads, complete privacy.">
+    <meta name="keywords"    content="json formatter online, json validator, json beautifier, json minifier, json to xml converter, json to csv, json tree viewer, json syntax highlighter, online developer tools, trusted tools web, free json tool, json pretty print">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#0d1117">
+
+    <!-- Canonical URL — prevents duplicate content penalties -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/dev-json-formatter.html">
+
+    <!-- =========================================================================
+         SECTION 4: OPEN GRAPH / FACEBOOK META
+         Controls how this page appears when shared on Facebook, LinkedIn,
+         WhatsApp, and other OG-compatible platforms.
+    ========================================================================= -->
+    <meta property="og:type"         content="website">
+    <meta property="og:url"          content="https://trustedtoolsweb.com/dev-json-formatter.html">
+    <meta property="og:title"        content="Ultra JSON Pro Max — Secure Online JSON Formatter & Validator">
+    <meta property="og:description"  content="Visualise, Validate, and Format JSON data instantly — 100% client-side privacy. Includes Tree View, Auto-Fix, XML/CSV conversion, and full syntax highlighting.">
+    <meta property="og:image"        content="../../assets/tools/dev/dev-json-formatter/img/og-banner.webp">
+    <meta property="og:image:type"   content="image/webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"    content="Trusted Tools Web">
+
+    <!-- =========================================================================
+         SECTION 5: TWITTER CARD META
+         Controls how this page renders in Twitter/X link previews.
+    ========================================================================= -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/dev-json-formatter.html">
+    <meta name="twitter:title"       content="Ultra JSON Pro Max — Online JSON Formatter">
+    <meta name="twitter:description" content="Format, Validate &amp; Minify JSON securely in your browser. No server uploads — complete data privacy guaranteed.">
+    <meta name="twitter:image"       content="../../assets/tools/dev/dev-json-formatter/img/og-banner.webp">
+
+    <!-- =========================================================================
+         SECTION 6: FAVICON & TOUCH ICONS
+    ========================================================================= -->
+    <link rel="icon"             type="image/png" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                  href="../../assets/img/logo.webp">
+
+    <!-- =========================================================================
+         SECTION 7: EXTERNAL FONT & ICON LIBRARIES
+         Font Awesome — icon set used throughout the tool UI.
+         Fira Code — monospace font used inside the JSON editor and output panel.
+         NOTE: These CDN references will be localised before CodeCanyon submission.
+    ========================================================================= -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+
+    <!-- =========================================================================
+         SECTION 8: GLOBAL & TEMPLATE STYLESHEETS (TWO-FILE CSS SYSTEM)
+         global.css        → Site-wide rules: header, footer, theme, reset,
+                             floating buttons. NEVER modify directly.
+         tools-template.css → Universal component library for all tools.
+                             Tool-specific additions are appended at the bottom
+                             of this file in a dedicated numbered section.
+    ========================================================================= -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- =========================================================================
+         SECTION 9: STRUCTURED DATA — Schema.org JSON-LD
+         Tells search engines that this page is a free SoftwareApplication.
+         The FAQPage schema is embedded inline within the FAQ section below.
+    ========================================================================= -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Ultra JSON Pro Max",
+        "headline": "Ultra JSON Pro Max — Best Free Online JSON Formatter & Validator",
+        "url": "https://trustedtoolsweb.com/dev-json-formatter.html",
+        "description": "A secure, 100% client-side JSON formatting and validation tool. Features include syntax highlighting, collapsible Tree View, Auto-Fix heuristics, minification, and one-click conversion to XML or CSV. Zero data is uploaded to any server.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires a modern browser with JavaScript enabled.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "category": "Free Tool"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "JSON Formatting, JSON Validation, JSON Minification, XML Conversion, CSV Conversion, Tree View Visualisation, Syntax Highlighting, Auto-Fix, Local History, URL Fetch",
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/dev/dev-json-formatter/img/og-banner.webp"
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- =========================================================================
+         SECTION 10: GLOBAL SITE HEADER
+         Injected dynamically by global.js. Contains logo, navigation, theme
+         toggle, and any site-wide floating buttons. DO NOT modify this element.
+    ========================================================================= -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- =========================================================================
+         MAIN CONTENT AREA
+         The <main> tag acts as the page-level centred column (max-width: 950px).
+         All tool UI and SEO content live inside this wrapper.
+    ========================================================================= -->
+    <main>
+
+        <!-- =====================================================================
+             SECTION 11: TOOL CARD — PRIMARY INTERFACE
+             .container  → Centred card shell with border, shadow, and bg.
+             .animated-entry → Fade-in-up entrance animation on load.
+        ===================================================================== -->
+        <div class="container animated-entry">
+
+            <!-- -----------------------------------------------------------------
+                 11-A: HERO / TITLE AREA
+                 .security-badge → Green "100% Client-Side" trust indicator.
+                 .tool-title     → H1 with gradient <span> for the branded word.
+                 .subtitle       → Short descriptive tagline below the title.
+            ----------------------------------------------------------------- -->
+            <div class="text-center">
+                <!-- Trust & privacy badge -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+                </div>
+
+                <!-- Tool H1 — icon hidden on very small screens via .tool-title i rule -->
+                <h1 class="tool-title">
+                    <i class="fa-brands fa-js"></i> Ultra JSON <span>Pro Max</span>
+                </h1>
+
+                <!-- Short descriptive tagline -->
+                <p class="subtitle">
+                    Parse, Validate, Minify &amp; Visualize JSON Data Securely on Trusted Tools Web.
+                </p>
+            </div>
+
+            <!-- -----------------------------------------------------------------
+                 ENTRY POINT: TOP BANNER AD SLOT
+                 Injected and managed by ads-manager.js. DO NOT remove.
+            ----------------------------------------------------------------- -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- -----------------------------------------------------------------
+                 11-B: TOOLBAR ROW
+                 Left group  → File upload, demo loader, and clear button.
+                 Right group → URL-fetch input with arrow button.
+                 .jfm-toolbar        → Flex row that wraps on mobile.
+                 .jfm-toolbar-group  → Each cluster of related controls.
+                 Hidden file input is triggered via JS by the Upload button.
+            ----------------------------------------------------------------- -->
+            <div class="jfm-toolbar">
+
+                <!-- Left cluster: file operations -->
+                <div class="jfm-toolbar-group">
+                    <!-- Hidden native file input — triggered by the Upload button below -->
+                    <input type="file"
+                           id="fileUpload"
+                           class="d-none"
+                           accept=".json,.txt,.csv"
+                           onchange="UltraJSON.handleFileUpload(this)">
+
+                    <button class="btn btn-primary" onclick="document.getElementById('fileUpload').click()">
+                        <i class="fa-solid fa-upload"></i> Upload
+                    </button>
+
+                    <button class="btn btn-secondary" onclick="UltraJSON.loadSample()">
+                        <i class="fa-solid fa-bolt"></i> Demo
+                    </button>
+
+                    <button class="btn btn-danger" onclick="UltraJSON.clearAll()">
+                        <i class="fa-solid fa-trash"></i> Clear
+                    </button>
+                </div>
+
+                <!-- Right cluster: URL fetch -->
+                <div class="jfm-toolbar-group">
+                    <input type="text"
+                           id="urlInput"
+                           class="input-control jfm-url-input"
+                           placeholder="Paste API URL to fetch JSON…">
+
+                    <button class="btn btn-secondary jfm-url-btn" onclick="UltraJSON.fetchFromUrl()">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- -----------------------------------------------------------------
+                 11-C: INLINE ERROR BOX
+                 Shown/hidden by JS when a syntax error is detected.
+                 .jfm-error-box → Styled error banner with icon and message.
+            ----------------------------------------------------------------- -->
+            <div id="errorBox" class="jfm-error-box"></div>
+
+            <!-- -----------------------------------------------------------------
+                 11-D: DUAL-PANEL EDITOR GRID
+                 .jfm-editor-grid  → Two equal-width columns side by side
+                                    (stacks to single column on mobile).
+                 Left column  → Raw JSON textarea (input).
+                 Right column → Output panel with Code / Tree / Grid tabs.
+            ----------------------------------------------------------------- -->
+            <div class="jfm-editor-grid">
+
+                <!-- ── LEFT PANEL: Raw Input ── -->
+                <div class="jfm-editor-panel">
+                    <!-- Panel header bar: label + live size stat -->
+                    <div class="jfm-panel-header">
+                        <span><i class="fa-solid fa-file-code"></i> Input / Raw</span>
+                        <!-- Live byte/KB size indicator — updated by JS -->
+                        <span id="sizeStat" class="jfm-size-stat">0 KB</span>
+                    </div>
+
+                    <!-- Main JSON input textarea -->
+                    <textarea id="jsonInput"
+                              class="jfm-code-editor"
+                              placeholder="Paste your JSON here…"
+                              spellcheck="false"></textarea>
+                </div>
+
+                <!-- ── RIGHT PANEL: Output / Visualisation ── -->
+                <div class="jfm-editor-panel">
+                    <!-- Panel header bar: tab switcher + validation status -->
+                    <div class="jfm-panel-header">
+                        <!-- Tab buttons: Code / Tree / Grid -->
+                        <div class="jfm-panel-tabs">
+                            <button class="panel-tab active" data-tab="code"  onclick="UltraJSON.switchTab('code')">Code</button>
+                            <button class="panel-tab"        data-tab="tree"  onclick="UltraJSON.switchTab('tree')">Tree</button>
+                            <button class="panel-tab"        data-tab="table" onclick="UltraJSON.switchTab('table')">Grid</button>
+                        </div>
+
+                        <!-- Validation status indicator — updated by JS (Valid / Invalid / Ready) -->
+                        <span id="statusIcon" class="jfm-status-icon">
+                            <i class="fa-solid fa-circle" style="color:var(--text-muted)"></i> Ready
+                        </span>
+                    </div>
+
+                    <!-- Code view — syntax-highlighted formatted JSON -->
+                    <div id="jsonOutput" class="jfm-view-container"></div>
+
+                    <!-- Tree view — collapsible node explorer (hidden by default) -->
+                    <div id="treeOutput" class="jfm-view-container jfm-tree-view hidden"></div>
+
+                    <!-- Grid / table view — tabular data renderer (hidden by default) -->
+                    <div id="tableOutput" class="jfm-view-container hidden" style="padding:0;"></div>
+                </div>
+
+            </div><!-- /.jfm-editor-grid -->
+
+            <!-- -----------------------------------------------------------------
+                 11-E: ACTION BAR — PROCESSING & EXPORT BUTTONS
+                 All processing triggers. Wrapped in .jfm-action-bar which
+                 provides flex-wrap layout so buttons reflow on narrow screens.
+                 A visual divider separates formatting from conversion buttons.
+            ----------------------------------------------------------------- -->
+            <div class="jfm-action-bar">
+
+                <!-- Format group -->
+                <button class="btn btn-primary" onclick="UltraJSON.processJSON(4)">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Beautify
+                </button>
+
+                <button class="btn btn-secondary" onclick="UltraJSON.processJSON(2)">
+                    <i class="fa-solid fa-indent"></i> Format (2sp)
+                </button>
+
+                <button class="btn btn-secondary" onclick="UltraJSON.processJSON(0)">
+                    <i class="fa-solid fa-compress"></i> Minify
+                </button>
+
+                <button class="btn btn-secondary" onclick="UltraJSON.autoFixJSON()">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> Auto Fix
+                </button>
+
+                <!-- Visual vertical divider between format and convert groups -->
+                <div class="jfm-action-divider"></div>
+
+                <!-- Convert group -->
+                <button class="btn btn-secondary" onclick="UltraJSON.convertToXML()">
+                    <i class="fa-solid fa-file-code"></i> to XML
+                </button>
+
+                <button class="btn btn-secondary" onclick="UltraJSON.convertToCSV()">
+                    <i class="fa-solid fa-file-csv"></i> to CSV
+                </button>
+
+                <!-- Export / copy group -->
+                <button class="btn btn-success" onclick="UltraJSON.downloadResult()">
+                    <i class="fa-solid fa-download"></i> Save
+                </button>
+
+                <button class="btn btn-secondary" onclick="UltraJSON.copyToClipboard()">
+                    <i class="fa-regular fa-copy"></i> Copy
+                </button>
+
+            </div><!-- /.jfm-action-bar -->
+
+            <!-- -----------------------------------------------------------------
+                 11-F: LOCAL HISTORY STRIP
+                 Displays up to 8 recently processed JSON snippets as pill
+                 buttons. Clicking any pill restores that session instantly.
+                 Managed entirely by addToHistory() / renderHistory() in JS.
+            ----------------------------------------------------------------- -->
+            <div class="jfm-history-section border-top-subtle mt-md">
+                <label class="jfm-history-label">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Local History
+                </label>
+
+                <!-- Dynamic pill buttons injected here by renderHistory() -->
+                <div id="historyList" class="jfm-history-list">
+                    <small class="text-muted">No recent files found.</small>
+                </div>
+            </div>
+
+        </div><!-- /.container -->
+
+        <!-- =====================================================================
+             EXIT POINT: BOTTOM BANNER AD SLOT
+             Injected and managed by ads-manager.js. DO NOT remove.
+        ===================================================================== -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- =====================================================================
+             SECTION 12: SEO & EDUCATIONAL CONTENT
+             Long-form informational cards boost on-page authority, support
+             FAQ rich snippets, and explain the tool's value proposition to
+             both users and search crawlers.
+             .info-section-wrapper → Standard SEO article column wrapper.
+             .info-card            → Individual content card.
+        ===================================================================== -->
+        <section class="info-section-wrapper" aria-label="About Ultra JSON Pro Max">
+
+            <!-- ── Card 1: Privacy-first serverless architecture ── -->
+            <article class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fa-solid fa-server" style="color:var(--accent-cyan)"></i>
+                    Serverless Architecture &amp; Privacy First
+                </h2>
+                <p class="info-card-text">
+                    When dealing with sensitive API keys or customer data, security is the top priority.
+                    Unlike many other online formatters that process your data on a remote server,
+                    <strong>Ultra JSON Pro Max</strong> runs entirely in your browser.
+                </p>
+                <p class="info-card-text" style="margin-top:12px;">
+                    We utilise the <span class="tech-highlight">V8 JavaScript Engine</span> built into your browser. This means:
+                </p>
+                <ul class="info-card-text" style="margin-top:10px; padding-left:22px; line-height:2;">
+                    <li><strong>Zero Data Leakage:</strong> Your JSON code never leaves your device. Not a single byte is uploaded to our cloud.</li>
+                    <li><strong>Instant Processing:</strong> Since there is no network latency, even large files (10 MB+) are parsed instantly.</li>
+                    <li><strong>Offline Accessibility:</strong> Once the page loads, you can disconnect your internet and the tool will still function 100%.</li>
+                </ul>
+            </article>
+
+            <!-- ── Card 2: Advanced features overview ── -->
+            <article class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fa-solid fa-layer-group" style="color:var(--accent-purple)"></i>
+                    Beyond Simple Formatting
+                </h2>
+                <p class="info-card-text">
+                    Most developers waste hours hunting for syntax errors. We built features to automate that workflow entirely.
+                </p>
+
+                <h3 class="info-card-title" style="font-size:1rem; margin-top:18px;">
+                    1. The "Tree View" Advantage
+                </h3>
+                <p class="info-card-text">
+                    Reading a flat 5,000-line JSON file is painful. Switch to the <strong>Tree Tab</strong> to collapse and expand nodes.
+                    This is particularly useful when you need to understand the schema of a complex API response without scrolling endlessly.
+                </p>
+
+                <h3 class="info-card-title" style="font-size:1rem; margin-top:18px;">
+                    2. Auto-Fix Capability
+                </h3>
+                <p class="info-card-text">
+                    A common headache is copying JS Objects instead of JSON (e.g., missing quotes on keys or trailing commas).
+                    Our <strong>Auto Fix</strong> algorithm uses Regex heuristics to detect these patterns and sanitises the code into valid JSON automatically.
+                </p>
+
+                <h3 class="info-card-title" style="font-size:1rem; margin-top:18px;">
+                    3. Data Transformation (CSV / XML)
+                </h3>
+                <p class="info-card-text">
+                    Need to share data with non-technical team members? Use the <strong>"to CSV"</strong> converter.
+                    It flattens nested arrays into a spreadsheet-friendly format that works directly with Excel or Google Sheets.
+                </p>
+            </article>
+
+            <!-- ── Card 3: Grid View with screenshot ── -->
+            <article class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fa-solid fa-diagram-project" style="color:var(--accent-orange)"></i>
+                    Visualizing Deeply Nested Logic
+                </h2>
+                <p class="info-card-text">
+                    When working with complex configurations (like <code>package.json</code> with thousands of dependencies or Kubernetes manifests),
+                    syntax highlighting alone is not enough.
+                </p>
+
+                <!-- Feature screenshot — Grid View -->
+                <div style="margin:22px 0; text-align:center;">
+                    <img src="../../assets/tools/dev/dev-json-formatter/img/feature-grid.webp"
+                         alt="JSON Data Grid View Visualisation — Ultra JSON Pro Max"
+                         loading="lazy"
+                         style="max-width:100%; height:auto; border-radius:var(--radius-md); border:1px solid var(--border-main); box-shadow:var(--shadow-soft);">
+                </div>
+
+                <p class="info-card-text">
+                    The <strong>Interactive Grid View</strong> transforms your data into a structured table.
+                    This is crucial when you need to spot inconsistencies across an array of objects —
+                    for example, finding which user object is missing an "email" field.
+                </p>
+            </article>
+
+            <!-- ── Card 4: Tree View with screenshot ── -->
+            <article class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fa-solid fa-folder-tree" style="color:var(--accent-green)"></i>
+                    Deep Dive with Tree View
+                </h2>
+
+                <!-- Feature screenshot — Tree View -->
+                <div style="margin:22px 0; text-align:center;">
+                    <img src="../../assets/tools/dev/dev-json-formatter/img/feature-tree.webp"
+                         alt="Collapsible JSON Tree View Structure — Ultra JSON Pro Max"
+                         loading="lazy"
+                         style="max-width:100%; height:auto; border-radius:var(--radius-md); border:1px solid var(--border-main); box-shadow:var(--shadow-soft);">
+                </div>
+
+                <p class="info-card-text">
+                    The <strong>Interactive Tree View</strong> transforms your flat text into a collapsible node structure.
+                    You can expand specific branches to inspect deep logic without being overwhelmed by the rest of the code.
+                </p>
+            </article>
+
+            <!-- ── Card 5: FAQ — FAQPage schema markup for rich snippets ── -->
+            <article class="info-card" itemscope itemtype="https://schema.org/FAQPage">
+                <h2 class="info-card-title">
+                    <i class="fa-solid fa-circle-question" style="color:var(--accent-yellow)"></i>
+                    Frequently Asked Questions
+                </h2>
+
+                <!-- FAQ Item 1 -->
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="info-card-title" style="font-size:1rem;" itemprop="name">
+                        Is there a file size limit for this JSON Formatter?
+                    </h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p class="info-card-text" itemprop="text">
+                            Technically, there is no hard limit imposed by us. However, since processing happens in your browser's memory (RAM),
+                            we recommend files under 50 MB for optimal performance. Extremely large files will automatically switch to
+                            "Plain Text" mode to prevent crashing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div style="margin-top:18px;" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="info-card-title" style="font-size:1rem;" itemprop="name">
+                        Can I use this tool for commercial projects?
+                    </h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p class="info-card-text" itemprop="text">
+                            Yes, Ultra JSON Pro Max is completely free for both personal and commercial use.
+                            You can use it to debug, format, and validate data for your professional applications without any cost.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- =====================================================================
+             SECTION 13: RELATED TOOLS GRID
+             Dynamically populated by related-tools.js based on data-category.
+             Set data-category and data-current-page to match this tool's context.
+        ===================================================================== -->
+        <div class="container" style="margin-top:50px;">
+            <!--
+                CONFIGURATION NOTES:
+                data-category     → Must match this tool's category slug ("dev").
+                data-current-page → Must match this HTML file's filename exactly.
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="dev"
+                 data-current-page="dev-json-formatter.html">
+            </div>
+        </div>
+
+        <!-- Related tools renderer module -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main -->
+
+    <!-- =========================================================================
+         SECTION 14: GLOBAL SITE FOOTER
+         Injected dynamically by global.js. DO NOT modify this element.
+    ========================================================================= -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- =========================================================================
+         SECTION 15: SCRIPT LOADING ORDER
+         1. ads-manager.js  → Injects ad units into .ad-slot containers.
+         2. global.js       → Injects header/footer, theme toggle, global toast.
+         3. script.js       → Ultra JSON Pro Max core tool logic (IIFE module).
+    ========================================================================= -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+    <script src="../../assets/tools/dev/dev-json-formatter/script.js"></script>
+
+    <!--
+        NOTE: The global toast notification container is injected automatically
+        by global.js. No local <div id="toast-container"> is needed here.
+    -->
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- =====================================================================
+         TRUSTED TOOLS WEB — Smart DocuScan ULTRA MAX
+         ─────────────────────────────────────────────
+         Category  : img
+         File      : img-document-scanner.html
+         Author    : MD KAWSAR
+         Project   : TrustedToolsWeb (CodeCanyon)
+         Version   : 2.0 — Refactored (tools-template.css architecture)
+
+         Description:
+           100% Client-Side Advanced Browser Camera Document Scanner.
+           Zero server uploads. Complete offline processing.
+           Privacy-first architecture powered by WebAssembly.
+
+         Core Dependencies:
+           - OpenCV.js  → Smart edge detection & perspective warp
+           - Tesseract.js → Offline OCR text extraction
+           - jsPDF      → Multi-page PDF generation
+           - FontAwesome → Icons
+           - Fira Code  → Monospace typography
+
+         CSS Architecture:
+           global.css          → Site-wide layout, header, footer, theme
+           tools-template.css  → All reusable UI components + tool-specific
+                                  section appended at the bottom (dsc- prefix)
+    ====================================================================== -->
+
+    <!-- [GLOBAL SYSTEM]: Site config, meta manager & analytics load first -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+    <!-- =====================================================================
+         [SEO]: Highly optimized meta tags — targets high-intent search queries
+         Primary keywords:
+           online document scanner, offline camscanner alternative,
+           extract text from image browser, scan to pdf free, ocr tool online
+    ====================================================================== -->
+    <title>Smart DocuScan ULTRA MAX – Free Online Document Scanner | OCR & PDF Export (2026)</title>
+
+    <meta name="description" content="Scan documents with your phone or webcam, auto-crop with smart OpenCV edge detection, extract text via Tesseract OCR, and export multi-page PDFs — 100% offline in your browser. The best free CamScanner alternative with zero uploads and zero tracking.">
+    <meta name="keywords" content="online document scanner, offline camscanner alternative, extract text from image offline, pdf scanner browser, secure document crop, free ocr online, browser camera scanner, document to pdf online, scan document mobile browser, tesseract ocr online, opencv document detection, trusted tools web, scan to pdf free 2026">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="application-name" content="Smart DocuScan ULTRA MAX">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#050505">
+    <meta name="rating" content="general">
+
+    <!-- =====================================================================
+         [OPEN GRAPH]: Facebook / LinkedIn rich preview meta tags
+    ====================================================================== -->
+    <meta property="og:title" content="Smart DocuScan ULTRA MAX – Free Offline Document Scanner & OCR Tool">
+    <meta property="og:description" content="Scan, auto-crop, extract text via OCR & export multi-page PDF — entirely in your browser. No uploads. No accounts. Works offline. The best free CamScanner alternative.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/img/img-document-scanner/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Smart DocuScan ULTRA MAX — Browser Camera Document Scanner Interface">
+    <meta property="og:url" content="https://trustedtoolsweb.com/img-document-scanner.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:locale" content="en_US">
+
+    <!-- =====================================================================
+         [TWITTER CARD]: Large image preview for Twitter / X sharing
+    ====================================================================== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TrustedToolsWeb">
+    <meta name="twitter:creator" content="@TrustedToolsWeb">
+    <meta name="twitter:title" content="Smart DocuScan ULTRA MAX – Free Online Document Scanner">
+    <meta name="twitter:description" content="Scan documents offline in your browser. Auto-crop with OpenCV, OCR text extraction & PDF export. Zero server uploads. 100% private.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/img/img-document-scanner/img/og-banner.webp">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/img-document-scanner.html">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- =====================================================================
+         [SCHEMA.ORG]: SoftwareApplication structured data for Google rich snippets
+         Signals: free tool, client-side, multi-feature, cross-platform
+    ====================================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Smart DocuScan ULTRA MAX",
+      "operatingSystem": "Any (Browser-Based)",
+      "applicationCategory": "UtilitiesApplication",
+      "applicationSubCategory": "DocumentScanner",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "description": "A 100% client-side, offline browser camera document scanner. Features smart auto-crop via OpenCV.js edge detection and perspective transform, professional image filters (Magic Color, Grayscale, B&W), offline OCR text extraction via Tesseract.js (100+ languages), and multi-page PDF export via jsPDF. No server uploads required. Works on any modern browser.",
+      "featureList": [
+        "WebRTC Live Camera Access",
+        "Auto Document Edge Detection (OpenCV.js Canny + Contour)",
+        "4-Point Perspective Transform / Smart Crop",
+        "Magic Color, Grayscale & B&W Image Filters",
+        "Offline OCR Text Extraction (Tesseract.js, 10 Languages)",
+        "Multi-Page PDF Export with Custom Page Size (jsPDF)",
+        "Front/Back Camera Switch for Mobile",
+        "Torch/Flashlight Control",
+        "100% Client-Side Privacy — Zero Server Uploads",
+        "Works Offline After Initial Page Load",
+        "Mobile & Desktop Fully Compatible"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSAR",
+        "url": "https://trustedtoolsweb.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trusted Tools Web",
+        "url": "https://trustedtoolsweb.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trustedtoolsweb.com/assets/img/logo.webp"
+        }
+      },
+      "image": "https://trustedtoolsweb.com/assets/tools/img/img-document-scanner/img/og-banner.webp",
+      "url": "https://trustedtoolsweb.com/img-document-scanner.html",
+      "screenshot": "https://trustedtoolsweb.com/assets/tools/img/img-document-scanner/img/og-banner.webp",
+      "softwareVersion": "2.0",
+      "datePublished": "2024-01-01",
+      "dateModified": "2026-01-01"
+    }
+    </script>
+
+    <!-- =====================================================================
+         [SCHEMA.ORG]: FAQPage structured data for Google FAQ rich snippets
+         Increases SERP real estate and click-through rate
+    ====================================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Smart DocuScan ULTRA MAX completely free and offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Smart DocuScan ULTRA MAX is 100% free and processes everything directly in your browser using WebAssembly. Your documents never leave your device — no server uploads, no accounts required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the auto document edge detection work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool uses OpenCV.js (compiled WebAssembly port of OpenCV) to detect the four corners of a document using Canny edge detection and contour analysis, then automatically crops and straightens the image via a 4-point perspective transform."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I extract text from scanned documents (OCR)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. After scanning and cropping, click 'Extract Text' to run Tesseract.js OCR completely offline in your browser. The extracted text can be copied to your clipboard. Supports 10 languages including English, French, Chinese, Japanese, and Arabic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Smart DocuScan work on mobile phones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, fully. On mobile, the tool accesses your rear camera by default. You can switch to the front camera, drag crop handles with touch gestures, and export scanned documents as PDF — all from your phone browser."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- =====================================================================
+         [TYPOGRAPHY & ICONS]
+         FontAwesome  → UI icons throughout the tool
+         Fira Code    → Monospace font for technical, professional appearance
+    ====================================================================== -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+
+    <!-- =====================================================================
+         [CSS ARCHITECTURE]: Two-file system — NO separate tool style.css
+         global.css          → Site-wide: header, footer, theme, base reset
+         tools-template.css  → All reusable + tool-specific component styles
+    ====================================================================== -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- =====================================================================
+         [CORE DEPENDENCY]: OpenCV.js — smart edge detection & perspective warp
+         NOTE FOR BUYERS: Loads from official OpenCV CDN.
+         To self-host: download opencv.js from https://docs.opencv.org/4.8.0/opencv.js
+         and replace this src with: ../../assets/library/opencv/opencv.js
+    ====================================================================== -->
+    <script async src="../../assets/library/media-vision/opencv/opencv.js" type="text/javascript" id="opencvScript"></script>
+
+</head>
+<body>
+
+    <!-- =====================================================================
+         [GLOBAL]: Toast notification system — injected by window.showToast()
+         from global.js. No local container needed.
+    ====================================================================== -->
+
+    <!-- [GLOBAL SYSTEM]: Header — populated and rendered by global.js -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- =====================================================================
+         MAIN CONTENT AREA
+         Centered single-column layout via <main> (max-width 950px in template)
+    ====================================================================== -->
+    <main>
+
+        <!-- ==================================================================
+             PRIMARY TOOL CONTAINER
+             .container        → Card wrapper, border, shadow (tools-template)
+             .animated-entry   → Fade-in entrance animation on page load
+        ================================================================== -->
+        <div class="container animated-entry">
+
+            <!-- ── HERO / TITLE AREA ────────────────────────────────────── -->
+
+            <!-- Security badge: assures user of client-side privacy -->
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i>
+                100% Client-Side · Offline Processing · Zero Uploads
+            </div>
+
+            <!-- Main tool title — gradient span highlights brand name -->
+            <h1 class="tool-title" style="text-align: center; white-space: normal;">
+                <i class="fa-solid fa-camera-viewfinder"></i>
+                Smart DocuScan <span>ULTRA MAX</span>
+            </h1>
+
+            <!-- Subtitle: concise one-line feature summary -->
+            <p class="subtitle">
+                Scan documents with your camera, auto-detect edges via OpenCV, extract text via OCR
+                &amp; export to PDF — entirely in your browser. No server. No cloud. No compromise.
+            </p>
+
+            <!-- [AD SLOT]: Top banner — populated by ads-manager.js -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ==============================================================
+                 SCANNER WORKSPACE
+                 Three-column grid (collapses to single column on mobile):
+                   Column 1 → Camera / Upload Panel
+                   Column 2 → Crop Editor Panel
+                   Column 3 → Pages, OCR & PDF Export Panel
+                 Class: .dsc-workspace (defined in tools-template Section 38)
+            ============================================================== -->
+            <div class="dsc-workspace">
+
+                <!-- ==========================================================
+                     COLUMN 1: CAMERA / UPLOAD PANEL
+                     Live video feed + capture button + fallback upload UI
+                ========================================================== -->
+                <div class="dsc-panel dsc-camera-panel">
+
+                    <!-- Panel header bar: title + utility icon buttons -->
+                    <div class="dsc-panel-header">
+                        <span><i class="fa-solid fa-video"></i> Camera / Upload</span>
+                        <div class="dsc-panel-header-actions">
+                            <!-- Switch between front / rear camera (mobile) -->
+                            <button class="dsc-icon-btn" id="btnSwitchCamera" title="Switch Camera (Front/Back)">
+                                <i class="fa-solid fa-camera-rotate"></i>
+                            </button>
+                            <!-- Toggle torch/flashlight on mobile rear camera -->
+                            <button class="dsc-icon-btn" id="btnTorch" title="Toggle Flashlight">
+                                <i class="fa-solid fa-bolt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Live camera viewport: video + edge overlay canvas -->
+                    <div class="dsc-viewport" id="viewportContainer">
+
+                        <!-- WebRTC live video element — muted to prevent feedback -->
+                        <video id="cameraFeed" autoplay playsinline muted></video>
+
+                        <!-- Transparent overlay canvas for OpenCV edge visualization -->
+                        <canvas id="overlayCanvas" class="dsc-overlay-canvas"></canvas>
+
+                        <!-- Fallback UI: shown when camera permission is denied -->
+                        <div class="dsc-camera-fallback hidden" id="cameraFallback">
+                            <div class="dsc-fallback-content">
+                                <i class="fa-solid fa-camera-slash dsc-fallback-icon"></i>
+                                <h3>Camera Access Denied</h3>
+                                <p>No problem! Upload an image file instead and we'll apply the same smart processing.</p>
+                                <label class="btn btn-primary dsc-upload-label" for="fallbackFileInput">
+                                    <i class="fa-solid fa-upload"></i> Upload Image File
+                                </label>
+                                <input type="file" id="fallbackFileInput" accept="image/*" class="dsc-hidden-input">
+                                <p class="dsc-fallback-hint">Supported: JPG, PNG, WEBP, HEIC</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- END .dsc-viewport -->
+
+                    <!-- Camera control buttons: Start/Stop, Capture, Upload -->
+                    <div class="dsc-cam-controls">
+                        <!-- Start or Stop the camera stream -->
+                        <button class="dsc-cam-btn dsc-cam-primary" id="btnStartCamera">
+                            <i class="fa-solid fa-play"></i> Start Camera
+                        </button>
+                        <!-- Capture current video frame -->
+                        <button class="dsc-cam-btn dsc-cam-capture" id="btnCapture" disabled>
+                            <i class="fa-solid fa-circle-dot"></i> Capture
+                        </button>
+                        <!-- Upload image file as alternative to camera -->
+                        <label class="dsc-cam-btn dsc-cam-secondary" for="imageFileInput">
+                            <i class="fa-solid fa-folder-open"></i> Upload
+                        </label>
+                        <!-- Hidden file input associated with Upload label -->
+                        <input type="file" id="imageFileInput" accept="image/*"
+                               class="dsc-hidden-input" aria-label="Upload image file">
+                    </div>
+
+                    <!-- OpenCV loading status indicator bar -->
+                    <div class="dsc-opencv-status" id="opencvStatus">
+                        <div class="dsc-status-dot loading" id="opencvDot"></div>
+                        <span id="opencvStatusText">Loading OpenCV.js…</span>
+                    </div>
+
+                </div>
+                <!-- END .dsc-camera-panel -->
+
+
+                <!-- ==========================================================
+                     COLUMN 2: CROP EDITOR PANEL
+                     Captured image + 4 draggable corner handles + filter toolbar
+                ========================================================== -->
+                <div class="dsc-panel dsc-editor-panel">
+
+                    <!-- Panel header: title + rotate/reset action buttons -->
+                    <div class="dsc-panel-header">
+                        <span><i class="fa-solid fa-crop-simple"></i> Crop &amp; Edit</span>
+                        <div class="dsc-panel-header-actions">
+                            <!-- Reset all four crop handles to default corners -->
+                            <button class="dsc-icon-btn" id="btnResetCrop" title="Reset Crop">
+                                <i class="fa-solid fa-arrows-to-dot"></i>
+                            </button>
+                            <!-- Rotate the captured image 90° clockwise -->
+                            <button class="dsc-icon-btn" id="btnRotate" title="Rotate 90°">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Crop canvas container: canvas + draggable handles + quad SVG -->
+                    <div class="dsc-crop-container" id="cropCanvasContainer">
+
+                        <!-- The main crop canvas where the captured image is drawn -->
+                        <canvas id="cropCanvas"></canvas>
+
+                        <!-- Perspective crop corner handles (4 draggable points).
+                             JS positions these absolutely over the canvas. -->
+                        <div class="dsc-crop-handle" id="handle-tl" data-handle="tl" title="Drag to adjust corner"></div>
+                        <div class="dsc-crop-handle" id="handle-tr" data-handle="tr" title="Drag to adjust corner"></div>
+                        <div class="dsc-crop-handle" id="handle-bl" data-handle="bl" title="Drag to adjust corner"></div>
+                        <div class="dsc-crop-handle" id="handle-br" data-handle="br" title="Drag to adjust corner"></div>
+
+                        <!-- SVG overlay: draws quadrilateral connecting the four handles -->
+                        <svg class="dsc-quad-svg" id="cropQuadSvg">
+                            <polygon id="cropQuadPoly" class="dsc-quad-poly" points=""></polygon>
+                        </svg>
+
+                        <!-- Empty state: shown before any image is captured/uploaded -->
+                        <div class="dsc-crop-empty" id="cropEmptyState">
+                            <i class="fa-regular fa-image"></i>
+                            <p>Capture or upload an image to begin</p>
+                        </div>
+
+                    </div>
+                    <!-- END .dsc-crop-container -->
+
+                    <!-- Filter toolbar: filter buttons + Apply Crop CTA -->
+                    <div class="dsc-filter-toolbar" id="filterToolbar">
+                        <span class="dsc-filter-label">Filter:</span>
+
+                        <!-- Magic Color: auto-contrast + saturation enhancement -->
+                        <button class="dsc-filter-btn active" id="filterMagicColor" data-filter="magic">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Magic
+                        </button>
+                        <!-- Grayscale: luminance-correct monochrome conversion -->
+                        <button class="dsc-filter-btn" id="filterGrayscale" data-filter="grayscale">
+                            <i class="fa-solid fa-circle-half-stroke"></i> Gray
+                        </button>
+                        <!-- B&W: high-contrast adaptive threshold for printing -->
+                        <button class="dsc-filter-btn" id="filterBW" data-filter="bw">
+                            <i class="fa-solid fa-adjust"></i> B&amp;W
+                        </button>
+                        <!-- Original: no filter applied -->
+                        <button class="dsc-filter-btn" id="filterOriginal" data-filter="original">
+                            <i class="fa-regular fa-image"></i> Original
+                        </button>
+
+                        <!-- Visual separator between filter buttons and Apply CTA -->
+                        <div class="dsc-toolbar-divider"></div>
+
+                        <!-- Apply perspective crop + selected filter via OpenCV -->
+                        <button class="dsc-cam-btn dsc-cam-primary compact" id="btnApplyCrop">
+                            <i class="fa-solid fa-scissors"></i> Apply Crop
+                        </button>
+                    </div>
+                    <!-- END .dsc-filter-toolbar -->
+
+                </div>
+                <!-- END .dsc-editor-panel -->
+
+
+                <!-- ==========================================================
+                     COLUMN 3: OUTPUT PANEL
+                     Pages strip + Add Page + OCR section + PDF Export section
+                ========================================================== -->
+                <div class="dsc-panel dsc-output-panel">
+
+                    <!-- Panel header: title + live page count badge -->
+                    <div class="dsc-panel-header">
+                        <span><i class="fa-solid fa-layer-group"></i> Pages &amp; Export</span>
+                        <div class="dsc-panel-header-actions">
+                            <!-- Dynamic page count — updated by JS -->
+                            <span class="dsc-page-counter" id="pageCounter">0 pages</span>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable horizontal strip of scanned page thumbnails -->
+                    <div class="dsc-pages-strip" id="pagesStrip">
+                        <!-- Empty state: visible when no pages have been added -->
+                        <div class="dsc-pages-empty" id="pagesEmptyState">
+                            <i class="fa-regular fa-copy"></i>
+                            <p>No pages yet. Scan &amp; add pages.</p>
+                        </div>
+                    </div>
+
+                    <!-- Add the currently processed image to the document -->
+                    <button class="dsc-cam-btn dsc-cam-secondary dsc-full-width" id="btnAddPage" disabled>
+                        <i class="fa-solid fa-plus"></i> Add Page to Document
+                    </button>
+
+                    <!-- Horizontal divider between sections -->
+                    <div class="dsc-h-divider"></div>
+
+                    <!-- ── OCR SECTION ─────────────────────────────────── -->
+                    <div class="dsc-section">
+                        <div class="dsc-section-title">
+                            <i class="fa-solid fa-font"></i> Text Extraction (OCR)
+                            <!-- Offline indicator badge -->
+                            <span class="dsc-offline-badge">
+                                <i class="fa-solid fa-wifi-slash"></i> Offline
+                            </span>
+                        </div>
+
+                        <!-- OCR controls: language selector + run button -->
+                        <div class="dsc-ocr-controls">
+                            <!-- OCR language selection dropdown -->
+                            <select id="ocrLanguage" class="input-control">
+                                <option value="eng">English</option>
+                                <option value="fra">French</option>
+                                <option value="deu">German</option>
+                                <option value="spa">Spanish</option>
+                                <option value="por">Portuguese</option>
+                                <option value="ita">Italian</option>
+                                <option value="chi_sim">Chinese (Simplified)</option>
+                                <option value="jpn">Japanese</option>
+                                <option value="ara">Arabic</option>
+                                <option value="hin">Hindi</option>
+                            </select>
+                            <!-- Run OCR on the processed canvas -->
+                            <button class="dsc-cam-btn dsc-cam-accent compact" id="btnRunOcr" disabled>
+                                <i class="fa-solid fa-magnifying-glass-chart"></i> Extract Text
+                            </button>
+                        </div>
+
+                        <!-- OCR progress bar: shown during recognition -->
+                        <div class="dsc-ocr-progress hidden" id="ocrProgressWrap">
+                            <div class="dsc-ocr-bar" id="ocrProgressBar" style="width: 0%"></div>
+                            <span class="dsc-ocr-label" id="ocrProgressLabel">Initializing…</span>
+                        </div>
+
+                        <!-- Read-only textarea showing extracted OCR text -->
+                        <textarea
+                            id="ocrOutput"
+                            class="dsc-ocr-textarea"
+                            placeholder="Extracted text will appear here after OCR processing…"
+                            readonly
+                        ></textarea>
+
+                        <!-- OCR action buttons: Copy and Clear -->
+                        <div class="dsc-ocr-actions">
+                            <button class="dsc-icon-btn-text" id="btnCopyOcr" disabled>
+                                <i class="fa-regular fa-copy"></i> Copy Text
+                            </button>
+                            <button class="dsc-icon-btn-text" id="btnClearOcr">
+                                <i class="fa-solid fa-eraser"></i> Clear
+                            </button>
+                        </div>
+
+                    </div>
+                    <!-- END OCR SECTION -->
+
+                    <!-- Horizontal divider between OCR and PDF sections -->
+                    <div class="dsc-h-divider"></div>
+
+                    <!-- ── PDF EXPORT SECTION ──────────────────────────── -->
+                    <div class="dsc-section">
+                        <div class="dsc-section-title">
+                            <i class="fa-regular fa-file-pdf"></i> PDF Export
+                        </div>
+
+                        <!-- PDF page size and orientation selectors -->
+                        <div class="dsc-pdf-options">
+                            <!-- Page size: A4, Letter, A3, Legal -->
+                            <select id="pdfPageSize" class="input-control">
+                                <option value="a4">A4 Paper</option>
+                                <option value="letter">Letter (US)</option>
+                                <option value="a3">A3 Paper</option>
+                                <option value="legal">Legal</option>
+                            </select>
+                            <!-- Page orientation: Portrait or Landscape -->
+                            <select id="pdfOrientation" class="input-control">
+                                <option value="portrait">Portrait</option>
+                                <option value="landscape">Landscape</option>
+                            </select>
+                        </div>
+
+                        <!-- PDF image quality slider (30–100%) -->
+                        <div class="dsc-quality-wrap">
+                            <label class="dsc-quality-label">
+                                Image Quality: <span id="pdfQualityVal">85</span>%
+                            </label>
+                            <input type="range" id="pdfQuality" min="30" max="100"
+                                   value="85" class="range-slider">
+                        </div>
+
+                        <!-- Export all pages to a downloadable PDF -->
+                        <button class="dsc-cam-btn dsc-cam-primary dsc-full-width dsc-export-btn" id="btnExportPdf" disabled>
+                            <i class="fa-regular fa-file-pdf"></i> Export as PDF
+                        </button>
+
+                        <!-- Remove all scanned pages from the document -->
+                        <button class="dsc-cam-btn dsc-cam-danger dsc-full-width" id="btnClearPages"
+                                style="margin-top: 8px;">
+                            <i class="fa-solid fa-trash"></i> Clear All Pages
+                        </button>
+
+                    </div>
+                    <!-- END PDF EXPORT SECTION -->
+
+                </div>
+                <!-- END .dsc-output-panel -->
+
+            </div>
+            <!-- END .dsc-workspace -->
+
+            <!-- [AD SLOT]: Mid-content banner — populated by ads-manager.js -->
+            <div class="ad-slot" data-ad-slot="mid-banner"></div>
+
+        </div>
+        <!-- END .container -->
+
+
+        <!-- ==================================================================
+             SEO INFO SECTION
+             In-depth editorial content for search engine ranking.
+             Uses .info-section-wrapper and .info-card from tools-template.css
+        ================================================================== -->
+        <section class="info-section-wrapper">
+
+            <!-- ── INFO CARD 1: PRIVACY & SECURITY ─────────────────────── -->
+            <div class="info-card">
+                <div class="dsc-info-split">
+
+                    <!-- Left: Privacy feature list -->
+                    <div class="dsc-info-text">
+                        <h2>
+                            <i class="fa-solid fa-shield-halved"></i>
+                            Fort Knox Privacy: Your Documents Never Leave Your Device
+                        </h2>
+                        <p>
+                            In an era of cloud-everything, <strong>Smart DocuScan ULTRA MAX</strong>
+                            takes the opposite approach. Every operation — camera capture, edge detection,
+                            perspective correction, text extraction, and PDF generation — happens exclusively
+                            in your browser using <span class="tech-highlight">WebAssembly</span> and
+                            <span class="tech-highlight">Canvas API</span>.
+                        </p>
+                        <p>
+                            No file ever touches a server. No OCR data is logged. No analytics tracks
+                            your document content. Ideal for sensitive documents like contracts, passports,
+                            medical records, or financial statements.
+                        </p>
+
+                        <!-- Privacy feature bullet list -->
+                        <ul class="dsc-feature-list">
+                            <li>
+                                <i class="fa-solid fa-shield-halved text-accent-cyan"></i>
+                                <span><strong>Zero Data Leakage:</strong> Documents stay in browser memory only.</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-wifi-slash text-accent-cyan"></i>
+                                <span><strong>Truly Offline:</strong> Works with no internet after initial page load.</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-microchip text-accent-cyan"></i>
+                                <span><strong>WebAssembly Powered:</strong> Native-speed OpenCV &amp; Tesseract in-browser.</span>
+                            </li>
+                            <li>
+                                <i class="fa-brands fa-chrome text-accent-cyan"></i>
+                                <span><strong>No Extension Needed:</strong> Works in any modern browser, no plugins.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right: Privacy shield graphic -->
+                    <div class="dsc-info-img">
+                        <!--
+                            SHIELD IMAGE: Place at the path below.
+                            Recommended: 500×500px, transparent background PNG/WEBP.
+                        -->
+                        <img
+                            src="../../assets/tools/img/img-document-scanner/img/secure-shield.webp"
+                            alt="Secure Client-Side Document Processing — No Server Uploads"
+                            class="dsc-shield-img"
+                            width="300"
+                            height="300"
+                            loading="lazy"
+                        >
+                    </div>
+
+                </div>
+            </div>
+            <!-- END INFO CARD 1 -->
+
+
+            <!-- ── INFO CARD 2: CORE TECHNOLOGIES ──────────────────────── -->
+            <div class="info-card">
+                <h2>
+                    <i class="fa-solid fa-microchip"></i>
+                    Powered by Industry-Leading Open Source Technology
+                </h2>
+
+                <!-- 2×2 technology card grid -->
+                <div class="dsc-tech-grid">
+
+                    <div class="dsc-tech-card">
+                        <div class="dsc-tech-icon"><i class="fa-solid fa-vector-square"></i></div>
+                        <h3>OpenCV.js Edge Detection</h3>
+                        <p>The same computer vision library used by Google, Microsoft and NASA —
+                        compiled to WebAssembly. Detects document boundaries using Canny edge
+                        detection and contour analysis, then applies a precise 4-point perspective
+                        transform to produce a perfectly flat, deskewed scan.</p>
+                    </div>
+
+                    <div class="dsc-tech-card">
+                        <div class="dsc-tech-icon"><i class="fa-solid fa-language"></i></div>
+                        <h3>Tesseract.js OCR Engine</h3>
+                        <p>The gold-standard open-source OCR engine originally developed by HP and
+                        now maintained by Google — running entirely offline in WebAssembly. Supports
+                        100+ languages. Extracts text from your scanned documents with impressive
+                        accuracy for printed text.</p>
+                    </div>
+
+                    <div class="dsc-tech-card">
+                        <div class="dsc-tech-icon"><i class="fa-regular fa-file-pdf"></i></div>
+                        <h3>jsPDF Multi-Page Export</h3>
+                        <p>Compile multiple scanned pages into a professional-grade PDF document
+                        with proper page dimensions (A4, Letter, A3, Legal) and configurable JPEG
+                        quality. Generated entirely in-browser with zero server dependency — ideal
+                        for offline document archiving.</p>
+                    </div>
+
+                    <div class="dsc-tech-card">
+                        <div class="dsc-tech-icon"><i class="fa-solid fa-paintbrush"></i></div>
+                        <h3>Canvas API Pro Filters</h3>
+                        <p>Three professional-grade image processing filters built with native Canvas
+                        API: <strong>Magic Color</strong> (auto-contrast with histogram equalization
+                        simulation), <strong>Grayscale</strong> (luminance-correct BT.709 conversion),
+                        and high-contrast <strong>B&amp;W</strong> (adaptive thresholding for clean
+                        document reproduction).</p>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END INFO CARD 2 -->
+
+
+            <!-- ── INFO CARD 3: HOW-TO GUIDE ─────────────────────────── -->
+            <div class="info-card">
+                <h2>
+                    <i class="fa-solid fa-list-check"></i>
+                    How to Scan a Document in 5 Steps
+                </h2>
+
+                <!--
+                    GUIDE IMAGE: Place your workflow diagram at the path below.
+                    Recommended size: 1200×500px showing the 5 workflow steps.
+                -->
+                <div class="text-center mb-20" style="margin: 25px 0;">
+                    <img
+                        src="../../assets/tools/img/img-document-scanner/img/how-to-use-guide.webp"
+                        alt="Step-by-step guide: How to scan a document, crop and export to PDF"
+                        style="max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border-main); box-shadow: var(--shadow-soft);"
+                        width="900"
+                        height="400"
+                        loading="lazy"
+                    >
+                </div>
+
+                <!-- Numbered steps using uit-workflow structure from tools-template -->
+                <div class="uit-workflow-steps">
+
+                    <div class="uit-workflow-step">
+                        <div class="dsc-step-num">1</div>
+                        <div>
+                            <p class="uit-step-title">Open Camera or Upload</p>
+                            <p class="uit-step-body">Click <em>"Start Camera"</em> to use your device camera
+                            (mobile users get front/back switch) — or click <em>"Upload"</em> to load an
+                            existing photo from your device storage.</p>
+                        </div>
+                    </div>
+
+                    <div class="uit-workflow-step">
+                        <div class="dsc-step-num">2</div>
+                        <div>
+                            <p class="uit-step-title">Capture the Document</p>
+                            <p class="uit-step-body">Hold your camera flat over the document in good light.
+                            Click <em>"Capture"</em>. The smart edge detector will automatically identify
+                            the document corners and place crop handles on them.</p>
+                        </div>
+                    </div>
+
+                    <div class="uit-workflow-step">
+                        <div class="dsc-step-num">3</div>
+                        <div>
+                            <p class="uit-step-title">Adjust Crop Handles</p>
+                            <p class="uit-step-body">If the auto-detection missed a corner, simply drag
+                            any of the 4 corner handles to fine-tune the selection. The perspective
+                            transform will flatten any angle distortion automatically.</p>
+                        </div>
+                    </div>
+
+                    <div class="uit-workflow-step">
+                        <div class="dsc-step-num">4</div>
+                        <div>
+                            <p class="uit-step-title">Choose a Filter &amp; Apply</p>
+                            <p class="uit-step-body">Select <em>Magic Color</em> for enhanced readability,
+                            <em>Grayscale</em> for classic scans, or <em>B&amp;W</em> for sharp printable
+                            documents. Click <em>"Apply Crop"</em> to process with OpenCV.</p>
+                        </div>
+                    </div>
+
+                    <div class="uit-workflow-step">
+                        <div class="dsc-step-num">5</div>
+                        <div>
+                            <p class="uit-step-title">Add Pages &amp; Export</p>
+                            <p class="uit-step-body">Click <em>"Add Page"</em> to add the processed image
+                            to your document. Repeat for multiple pages. Then click <em>"Export as PDF"</em>
+                            to download your complete document — 100% offline.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pro tip callout box -->
+                <div class="dsc-pro-tip">
+                    <i class="fa-solid fa-lightbulb text-accent-cyan"></i>
+                    <div>
+                        <strong>Pro Tip:</strong> For best OCR accuracy, use the <em>Magic Color</em>
+                        or <em>B&amp;W</em> filter and ensure the document is well-lit before scanning.
+                        The <em>B&amp;W</em> filter works especially well for printed text with high contrast.
+                    </div>
+                </div>
+            </div>
+            <!-- END INFO CARD 3 -->
+
+
+            <!-- ── INFO CARD 4: FAQ ─────────────────────────────────────── -->
+            <div class="info-card">
+                <h2>
+                    <i class="fa-solid fa-circle-question"></i>
+                    Frequently Asked Questions
+                </h2>
+
+                <!-- FAQ list using uit-faq classes from tools-template -->
+                <div class="uit-faq-list">
+
+                    <div class="uit-faq-item">
+                        <h4 class="uit-faq-q">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            Does it work on mobile phones?
+                        </h4>
+                        <p class="uit-faq-a">Yes, fully! On mobile, the tool accesses your rear camera
+                        by default (best for scanning). You can switch to the front camera using the
+                        <i class="fa-solid fa-camera-rotate"></i> button. All touch interactions
+                        including dragging crop handles are fully supported.</p>
+                    </div>
+
+                    <div class="uit-faq-item">
+                        <h4 class="uit-faq-q">
+                            <i class="fa-solid fa-globe"></i>
+                            Does it need an internet connection?
+                        </h4>
+                        <p class="uit-faq-a">Only for the initial page load to download OpenCV.js and
+                        Tesseract.js (WebAssembly files). Once loaded, the entire tool operates
+                        completely offline. Your documents are never sent anywhere.</p>
+                    </div>
+
+                    <div class="uit-faq-item">
+                        <h4 class="uit-faq-q">
+                            <i class="fa-solid fa-file-image"></i>
+                            What image formats are supported for upload?
+                        </h4>
+                        <p class="uit-faq-a">JPG, PNG, WEBP, GIF, and HEIC (on supported browsers).
+                        The browser's native image decoder handles the format, so any format your
+                        browser supports will work seamlessly.</p>
+                    </div>
+
+                    <div class="uit-faq-item">
+                        <h4 class="uit-faq-q">
+                            <i class="fa-solid fa-language"></i>
+                            How many languages does OCR support?
+                        </h4>
+                        <p class="uit-faq-a">The dropdown includes 10 common languages including
+                        English, French, German, Spanish, Chinese, Japanese, Arabic, and Hindi.
+                        Tesseract.js supports 100+ languages — additional languages can be added
+                        by a developer easily.</p>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END INFO CARD 4 -->
+
+        </section>
+        <!-- END info-section-wrapper -->
+
+
+        <!-- ==================================================================
+             RELATED TOOLS SECTION
+             Dynamically populated by related-tools.js
+             data-category     → matches tool folder name for filtering
+             data-current-page → excludes this tool from the related list
+        ================================================================== -->
+        <div class="container" style="margin-top: 50px;">
+            <!--
+                RELATED TOOLS CONFIG:
+                Set data-category to match the tool's category folder (e.g., "img").
+                Set data-current-page to this file's name to exclude it from the list.
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="img"
+                 data-current-page="img-document-scanner.html">
+            </div>
+        </div>
+
+        <!-- [GLOBAL]: Related tools module — fetches and renders related tool cards -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- END <main> -->
+
+    <!-- [GLOBAL SYSTEM]: Footer — populated and rendered by global.js -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- [AD SYSTEM]: Ads manager — handles all ad slot population -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- [CORE]: Global JS — dark mode toggle, header, footer, toast system -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- =====================================================================
+         [LIBRARIES]: Tool-specific third-party libraries.
+         IMPORTANT: Load Tesseract and jsPDF BEFORE script.js.
+    ====================================================================== -->
+
+    <!-- Tesseract.js: Client-side OCR engine (WebAssembly) -->
+<script src="../../assets/library/media-vision/tesseract/tesseract.min.js"></script>
+
+    <!-- jsPDF: Client-side PDF generation library (UMD build) -->
+  <script src="../../assets/library/pdf-engine/jspdf/jspdf.umd.min.js"></script>
+
+    <!-- [TOOL JS]: Core scanner logic — camera, OpenCV, filters, OCR, PDF export -->
+    <script src="../../assets/tools/img/img-document-scanner/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

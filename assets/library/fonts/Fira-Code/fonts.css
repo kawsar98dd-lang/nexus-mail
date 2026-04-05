@@ -1,0 +1,8 @@
+/* Fira Code - Developer/Code Font */
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 400; 
+  font-display: swap;
+  src: url('fira-code.woff2') format('woff2'); 
+}

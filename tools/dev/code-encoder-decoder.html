@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Universal Master Encoder - Convert Binary, Base64, Hex, JWT & Hash Online Free | Trusted Tools Web</title>
+    <meta name="description" content="Free, secure & private Universal Encoder & Decoder. Convert Text to Binary, Hex, Base64, ASCII. Decode JWT tokens. Generate SHA-256 / MD5 hashes instantly. 100% client-side — your data never leaves your browser.">
+    <meta name="keywords" content="universal encoder decoder, binary converter online, base64 encoder decoder, jwt decoder, hex converter, md5 hash generator, sha256 hash generator, url encoder decoder, morse code translator, ascii converter, json formatter, developer tools, trusted tools web">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#050505">
+
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:title" content="Universal Master Encoder — Binary, Base64, Hex, JWT & Hash | Trusted Tools Web">
+    <meta property="og:description" content="Encode, Decode, Hash & Format code instantly. Supports Base64, JWT, SHA-256, Binary, Hex, Morse, URL & more. No server-side processing — 100% secure & private.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/dev-code-converter.html">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/dev/dev-code-converter/img/og-banner.webp">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://trustedtoolsweb.com/dev-code-converter.html">
+    <meta property="twitter:title" content="Universal Master Encoder — Binary, Base64, JWT, Hash & More | Trusted Tools Web">
+    <meta name="twitter:description" content="The ultimate developer tool for encoding & decoding. Base64, JWT, SHA-256, MD5, Binary, Hex, Morse — all in one free client-side tool.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/dev/dev-code-converter/img/og-banner.webp">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/dev-code-converter.html">
+
+    <link rel="shortcut icon" href="../../assets/img/logo.webp" type="image/png">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+
+    <script src="../../assets/library/crypto/md5/md5.min.js" defer></script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Universal Master Encoder",
+            "url": "https://trustedtoolsweb.com/dev-code-converter.html",
+            "description": "A comprehensive developer tool to convert Binary, Hex, Base64, decode JWT tokens, and generate SHA-256/MD5 hashes securely in the browser. 100% client-side — no server processing.",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript",
+            "author": {
+                "@type": "Person",
+                "name": "MD KAWSAR"
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "featureList": "Base64 Encoder/Decoder, JWT Decoder, MD5 Generator, SHA-256 Generator, Binary Converter, Hex Converter, ASCII Converter, Morse Code Translator, URL Encoder/Decoder, JSON Formatter",
+            "screenshot": "https://trustedtoolsweb.com/assets/tools/dev/dev-code-converter/img/og-banner.webp"
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- Matrix Animation Canvas Background -->
+    <canvas id="matrixCanvas" class="ume-matrix-canvas"></canvas>
+
+    <header id="global-header" class="site-header"></header>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <main>
+
+        <!-- ═══════════════════════════════════════════
+             HERO / TITLE AREA
+        ════════════════════════════════════════════ -->
+        <div class="container animated-entry">
+
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Secure Processing
+            </div>
+
+            <h1 class="tool-title">
+                <i class="fa-solid fa-code"></i>
+                Universal <span>Master Encoder</span>
+            </h1>
+
+            <p class="subtitle">The All-in-One Developer Utility for Encoding, Decoding, Hashing &amp; Formatting</p>
+
+            <!-- Ad Slot: Top Banner -->
+            <!-- Placed after intro text, before main controls interaction -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ─────────────────────────────────────
+                 CONTROLS BAR
+            ────────────────────────────────────── -->
+            <section class="ume-controls-bar" aria-label="Tool Controls">
+
+                <div class="ume-select-wrapper">
+                    <select id="codeType" class="ume-mode-selector" aria-label="Select Conversion Mode">
+                        <option value="binary">🔹 Binary Code Converter</option>
+                        <option value="hex">🔸 Hexadecimal Converter</option>
+                        <option value="base64">🔒 Base64 Encoder/Decoder</option>
+                        <option value="base64img">🖼️ Image to Base64</option>
+                        <option value="jwt">🛡️ JWT Token Decoder</option>
+                        <option value="json">✨ JSON Formatter/Minify</option>
+                        <option value="sha256">🔑 SHA-256 Generator</option>
+                        <option value="md5">🔑 MD5 Generator</option>
+                        <option value="ascii">🔢 ASCII Converter</option>
+                        <option value="morse">📡 Morse Code Translator</option>
+                        <option value="url">🌐 URL Encoder/Decoder</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down ume-select-arrow"></i>
+                </div>
+
+                <label class="ume-option-chip active" title="Instant Conversion" id="autoConvertChip">
+                    <i class="fa-solid fa-bolt"></i> Live Mode
+                    <input type="checkbox" id="autoConvert" checked>
+                </label>
+
+                <div class="ume-option-chip" id="uploadBtn" role="button" tabindex="0">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                </div>
+                <input type="file" id="fileInput" aria-hidden="true" class="ume-file-input">
+
+                <div class="ume-option-chip" id="zenModeBtn" role="button" tabindex="0">
+                    <i class="fa-solid fa-expand"></i> Zen
+                </div>
+
+            </section>
+
+            <!-- ─────────────────────────────────────
+                 CONVERTER GRID (Input | Actions | Output)
+            ────────────────────────────────────── -->
+            <section class="ume-converter-grid" aria-label="Conversion Area">
+
+                <!-- INPUT BOX -->
+                <div class="ume-box-card">
+                    <div class="ume-box-header">
+                        <div class="ume-box-title">
+                            <i class="fa-solid fa-keyboard"></i>
+                            <span id="inputLabel">Input Data</span>
+                        </div>
+                        <div class="ume-header-tools">
+                            <button class="ume-btn-mini" id="btnSpeak" title="Read Aloud" aria-label="Read Text">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                            <button class="ume-btn-mini" id="btnPaste" title="Paste" aria-label="Paste Content">
+                                <i class="fa-regular fa-clipboard"></i>
+                            </button>
+                            <button class="ume-btn-mini" id="btnClear" title="Clear" aria-label="Clear Content">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ume-textarea-wrapper">
+                        <textarea id="TextInput" class="ume-textarea" placeholder="Type or paste content here..." spellcheck="false"></textarea>
+                    </div>
+                    <div class="ume-bottom-bar">
+                        <span id="charCount">0 Chars</span>
+                        <div id="strengthMeter" class="ume-strength-line">
+                            <div class="ume-strength-fill" id="sFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTION COLUMN -->
+                <div class="ume-actions-col">
+                    <button class="ume-btn-convert" id="btnEncode" title="Encrypt / Encode" aria-label="Convert Down">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+
+                    <button class="ume-btn-swap" id="btnSwap" title="Swap Content" aria-label="Swap Input and Output">
+                        <i class="fa-solid fa-arrow-right-arrow-left" style="transform: rotate(90deg);"></i>
+                    </button>
+
+                    <button class="ume-btn-convert ume-decode" id="btnDecode" title="Decrypt / Decode" aria-label="Convert Up">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                </div>
+
+                <!-- OUTPUT BOX -->
+                <div class="ume-box-card">
+                    <div class="ume-box-header">
+                        <div class="ume-box-title" id="resultTitle">
+                            <i class="fa-solid fa-code"></i> Output Result
+                        </div>
+                        <div class="ume-header-tools">
+                            <label class="ume-option-chip ume-chip-sm" title="Auto Copy" id="autoCopyChip">
+                                <input type="checkbox" id="autoCopy">
+                                <i class="fa-regular fa-copy"></i> Auto
+                            </label>
+                            <button class="ume-btn-mini" id="btnDownload" title="Save .txt" aria-label="Download Result">
+                                <i class="fa-solid fa-download"></i>
+                            </button>
+                            <button class="ume-btn-mini" id="btnCopy" title="Copy" aria-label="Copy Result">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ume-textarea-wrapper">
+                        <textarea id="ResultInput" class="ume-textarea ume-textarea-output" placeholder="Result appears here..." spellcheck="false" readonly></textarea>
+                    </div>
+                    <div class="ume-bottom-bar">
+                        <span id="resultCount">0 Length</span>
+                        <span id="timeTaken">0ms</span>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ─────────────────────────────────────
+                 HISTORY PANEL
+            ────────────────────────────────────── -->
+            <section class="ume-history-panel" aria-label="Recent History">
+                <div class="ume-history-title">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Recent Activity (Local)
+                </div>
+                <div class="ume-history-list" id="historyContainer">
+                    <span class="ume-history-empty">No history yet...</span>
+                </div>
+            </section>
+
+            <!-- Ad Slot: Bottom Banner -->
+            <!-- Placed after tool results/history, before SEO content -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        </div><!-- /.container -->
+
+        <!-- ═══════════════════════════════════════════
+             SEO CONTENT ARTICLE
+        ════════════════════════════════════════════ -->
+        <article class="ume-content-article container animated-entry">
+
+            <!-- INTRO BLOCK -->
+            <div class="ume-info-block mb-30">
+                <h2 class="ume-section-heading text-primary">Is Your Data Actually Safe in Online Encoders?</h2>
+                <p class="mb-20">
+                    As developers, we face this scenario daily: you need to quickly debug a JWT token, convert an image to Base64 for a CSS snippet, or check an MD5 hash. You Google a tool, paste your sensitive data, and then hit "Convert." But have you ever stopped to wonder — <strong>where did that data just go?</strong>
+                </p>
+                <p>
+                    Most online converters process your input on their servers. This means your API keys, tokens, or private strings are travelling across the internet. We built <strong>Trusted Tools Web</strong> to solve this specific problem. Unlike others, our Universal Master Encoder runs <em>exclusively</em> in your browser. Disconnect your internet, and try it. It still works. That is the power of client-side computing.
+                </p>
+            </div>
+
+            <!-- FEATURES BLOCK -->
+            <div class="ume-info-block mb-30">
+                <h3 class="ume-sub-heading text-inverse">Tools Breakdown: What &amp; Why?</h3>
+                <div class="ume-features-grid">
+                    <div class="ume-feature-card">
+                        <h4 class="mt-0 text-primary"><i class="fa-solid fa-image"></i> Image to Base64</h4>
+                        <p>Stop hosting tiny icons on external servers. By converting small images to Base64 strings, you can embed them directly into your HTML or CSS. This reduces HTTP requests and speeds up your website loading time.</p>
+                    </div>
+                    <div class="ume-feature-card">
+                        <h4 class="mt-0 text-primary"><i class="fa-solid fa-shield-halved"></i> JWT Debugger</h4>
+                        <p>Decoding JSON Web Tokens helps you verify claims, expiration dates, and user roles. We decode the payload (Part 2 of the token) so you can read it. Note: We don't verify signatures since that requires your secret key.</p>
+                    </div>
+                    <div class="ume-feature-card">
+                        <h4 class="mt-0 text-primary"><i class="fa-solid fa-lock"></i> Hashing (SHA/MD5)</h4>
+                        <p>Perfect for verifying file integrity. If you download a file, you can match its hash here to ensure it hasn't been tampered with. Remember, hashing is one-way traffic — you cannot reverse it back to text.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ume-separator"></div>
+
+            <!-- KB: SECURITY -->
+            <div class="ume-kb-section mb-30">
+                <h3 class="ume-kb-heading text-accent-purple">
+                    <i class="fa-solid fa-user-secret"></i> Security &amp; Hashing Explained
+                </h3>
+                <div class="ume-kb-grid">
+                    <div class="ume-kb-card ume-border-purple">
+                        <h4 class="mt-0 text-inverse">Hashing vs. Encryption: The Big Mistake</h4>
+                        <p>Beginners often confuse these two. Here is the golden rule: Encryption is two-way (you can decrypt it with a key). Hashing is one-way (once shredded, it's gone). Never try to "decrypt" an MD5 or SHA-256 hash; it is mathematically impossible by design.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-purple">
+                        <h4 class="mt-0 text-inverse">Why SHA-256 is the Industry Standard</h4>
+                        <p>MD5 is broken. It has "collision vulnerabilities," meaning two different files can produce the same hash. SHA-256 solves this. It generates a 256-bit signature that is currently impossible to crack with brute force.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-purple">
+                        <h4 class="mt-0 text-inverse">Protecting JWT Tokens</h4>
+                        <p>A decoded JWT token reveals everything in its payload. Never store passwords or credit card info inside a JWT. Anyone with this tool can decode it. Use tokens only for non-sensitive data like "User ID" or "Role".</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-purple">
+                        <h4 class="mt-0 text-inverse">Client-Side Security Logic</h4>
+                        <p>Why is this tool safer than others? Because we don't have a backend database. When you paste a password to hash it here, it stays in your browser's RAM. Most online converters send your text to a Linux server where logs might be kept.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-purple">
+                        <h4 class="mt-0 text-inverse">Salting Your Hashes</h4>
+                        <p>A raw hash isn't enough. Hackers use "Rainbow Tables" to look up common hashes. Always add a "salt" (a random string) to your user's password before hashing. <code class="tech-highlight">SHA256(password + salt)</code> is infinitely harder to crack.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KB: DEVELOPER TOOLKIT -->
+            <div class="ume-kb-section mb-30">
+                <h3 class="ume-kb-heading text-primary">
+                    <i class="fa-solid fa-code"></i> Developer's Toolkit
+                </h3>
+                <div class="ume-kb-grid">
+                    <div class="ume-kb-card ume-border-primary">
+                        <h4 class="mt-0 text-inverse">When to use Base64 Images?</h4>
+                        <p>Don't Base64 encode large photos. It increases file size by ~33%. Only use Base64 for tiny icons, logos, or critical UI elements that need to load instantly with the CSS, avoiding the "flicker".</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-primary">
+                        <h4 class="mt-0 text-inverse">URL Encoding: The %20 Mystery</h4>
+                        <p>Browsers cannot handle spaces or special characters in the address bar. If you send data via a GET request, you MUST encode it. A space becomes <code class="tech-highlight">%20</code>. Failing to do this breaks API calls frequently.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-primary">
+                        <h4 class="mt-0 text-inverse">Minifying JSON for Performance</h4>
+                        <p>Human-readable JSON is great for debugging but terrible for bandwidth. Always "Minify" (remove whitespace) your JSON payloads before sending them over the network to reduce latency.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-primary">
+                        <h4 class="mt-0 text-inverse">Debugging with Hex</h4>
+                        <p>Sometimes text files contain invisible characters (like null bytes) that break your code. Converting text to Hex allows you to see the raw byte values (e.g., <code class="tech-highlight">00</code> or <code class="tech-highlight">0A</code>), making it easier to spot hidden corruption.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-primary">
+                        <h4 class="mt-0 text-inverse">HTML Entity Encoding</h4>
+                        <p>Prevent XSS attacks! Never display raw user input on your website. Convert special characters like <code class="tech-highlight">&lt;</code> and <code class="tech-highlight">&gt;</code> into HTML entities. This stops malicious scripts from executing in your user's browser.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KB: DATA FORMATS -->
+            <div class="ume-kb-section mb-30">
+                <h3 class="ume-kb-heading text-orange">
+                    <i class="fa-solid fa-database"></i> Data Formats Deep Dive
+                </h3>
+                <div class="ume-kb-grid">
+                    <div class="ume-kb-card ume-border-orange">
+                        <h4 class="mt-0 text-inverse">How Binary Works (The 0s and 1s)</h4>
+                        <p>Computers run on electricity: On (1) or Off (0). Every letter you type is converted into an 8-digit binary code (a Byte). 'A' isn't 'A' to a CPU; it's <code class="tech-highlight">01000001</code>. Our tool visualizes this machine language for you.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-orange">
+                        <h4 class="mt-0 text-inverse">The Legacy of ASCII</h4>
+                        <p>ASCII is the grandfather of digital text, created in the 1960s. It only supports English characters (0–127). Modern web needs Emojis, which is why we moved to UTF-8, but ASCII remains the backbone of low-level protocols.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-orange">
+                        <h4 class="mt-0 text-inverse">Morse Code in the Modern Age</h4>
+                        <p>Why include Morse Code? It's not just for history buffs. In accessibility tech (assistive technology), simple switch inputs often use binary/morse logic to help people with limited mobility type on computers.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-orange">
+                        <h4 class="mt-0 text-inverse">Base64 Padding (=)</h4>
+                        <p>Ever wonder why Base64 strings end with <code class="tech-highlight">=</code>? It's padding. Base64 groups data into 4-character chunks. If the data runs short, the algorithm adds equals signs to complete the block.</p>
+                    </div>
+                    <div class="ume-kb-card ume-border-orange">
+                        <h4 class="mt-0 text-inverse">What is a Checksum?</h4>
+                        <p>When you download a file, the website often provides an MD5 hash. This is a "Checksum." You hash your downloaded file and compare it. If even one bit of data was corrupted, the hashes won't match.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RAPID FIRE TIPS -->
+            <div class="ume-kb-section mb-30">
+                <h3 class="ume-kb-heading text-success">
+                    <i class="fa-solid fa-lightbulb"></i> Rapid Fire Tips
+                </h3>
+                <ul class="ume-tips-list">
+                    <li class="ume-tip-item">
+                        <i class="fa-solid fa-check text-success"></i>
+                        <span><strong>UTF-8 is King:</strong> Always ensure your editor is set to UTF-8 before encoding/decoding special characters.</span>
+                    </li>
+                    <li class="ume-tip-item">
+                        <i class="fa-solid fa-check text-success"></i>
+                        <span><strong>No Spaces in Hex:</strong> Standard Hex converters ignore spaces, but some strict parsers will crash. Clean your inputs.</span>
+                    </li>
+                    <li class="ume-tip-item">
+                        <i class="fa-solid fa-check text-success"></i>
+                        <span><strong>Case Sensitivity:</strong> Base64 is case-sensitive. 'a' and 'A' are completely different values. Hex is usually case-insensitive.</span>
+                    </li>
+                    <li class="ume-tip-item">
+                        <i class="fa-solid fa-check text-success"></i>
+                        <span><strong>JWT Expiry:</strong> Always check the "exp" field in a decoded JWT. It's in Unix Timestamp format.</span>
+                    </li>
+                    <li class="ume-tip-item">
+                        <i class="fa-solid fa-check text-success"></i>
+                        <span><strong>Binary Bloat:</strong> Converting text to Binary increases string length by 8×. Don't store data in binary format in databases.</span>
+                    </li>
+                    <li class="ume-tip-item">
+                        <i class="fa-solid fa-check text-success"></i>
+                        <span><strong>Offline Mode:</strong> Save this page (Ctrl+S). It works perfectly without internet because it's pure JavaScript.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FAQ -->
+            <div class="ume-faq-block mb-20">
+                <h3 class="ume-sub-heading text-inverse">Common Questions</h3>
+
+                <details class="ume-faq-detail">
+                    <summary class="ume-faq-summary">
+                        <span>Why does the "Decode" button fail on SHA-256?</span>
+                        <i class="fa-solid fa-chevron-down ume-faq-icon"></i>
+                    </summary>
+                    <p class="ume-faq-body">This is a feature, not a bug. Cryptographic hash functions like SHA-256 and MD5 are designed to be irreversible. They are "digital fingerprints." If you could easily decode a hash, it would break the security of nearly every password system in the world.</p>
+                </details>
+
+                <details class="ume-faq-detail">
+                    <summary class="ume-faq-summary">
+                        <span>Is there a limit on file upload size?</span>
+                        <i class="fa-solid fa-chevron-down ume-faq-icon"></i>
+                    </summary>
+                    <p class="ume-faq-body">Since the processing happens on your device (RAM), very large files (e.g., over 50MB) might slow down your browser tab. For text and small images, it's instant.</p>
+                </details>
+
+                <details class="ume-faq-detail">
+                    <summary class="ume-faq-summary">
+                        <span>How do I save the output?</span>
+                        <i class="fa-solid fa-chevron-down ume-faq-icon"></i>
+                    </summary>
+                    <p class="ume-faq-body">We added a dedicated "Save .txt" button in the output toolbar. This creates a text file instantly on your device. You can also toggle "Auto Copy" to keep the result in your clipboard automatically.</p>
+                </details>
+            </div>
+
+            <div class="ume-footer-note border-top-subtle">
+                <p class="text-muted">Trusted Tools Web — Engineered for Privacy</p>
+            </div>
+
+        </article><!-- /.ume-content-article -->
+
+        <div class="ume-separator"></div>
+
+        <!-- ═══════════════════════════════════════════
+             RELATED TOOLS SECTION
+        ════════════════════════════════════════════ -->
+        <div class="container" style="margin-top: 50px;">
+            <!--
+                IMPORTANT:
+                1. Set data-category to the category of the current page (e.g., "pdf", "media", "dev").
+                2. Set data-current-page to the filename of the current page (e.g., "pdf-compressor.html").
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="dev"
+                 data-current-page="dev-code-converter.html">
+            </div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <div id="global-footer"></div>
+
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <script src="../../assets/tools/dev/dev-code-converter/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

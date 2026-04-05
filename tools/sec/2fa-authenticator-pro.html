@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ============================================================
+         [ANALYTICS] Site Configuration & Tracking Scripts
+         Loaded first so analytics captures the full page lifecycle.
+    ============================================================ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- [VIEWPORT] Responsive & PWA-Ready -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#090c10">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ============================================================
+         [SEO] Primary Meta Tags — Optimized for Search Ranking
+    ============================================================ -->
+    <title>Titan Authenticator Pro — Free Offline 2FA TOTP Generator | Trusted Tools Web</title>
+    <meta name="title"       content="Titan Authenticator Pro — Free Offline 2FA TOTP Generator | Trusted Tools Web">
+    <meta name="description" content="Generate secure 2FA TOTP codes 100% offline in your browser. Titan Authenticator Pro uses military-grade AES-256 + PBKDF2 encryption. No cloud sync, no sign-up, zero data leaks. Free forever.">
+    <meta name="keywords"    content="2FA authenticator online, free TOTP generator, Google Authenticator alternative browser, offline 2FA web tool, AES-256 vault, secure two-factor authentication, PBKDF2 encryption, RFC 6238, trusted tools web, titan auth pro, zero knowledge authenticator">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language"    content="English">
+
+    <!-- ============================================================
+         [OPEN GRAPH] Social Sharing — Facebook / LinkedIn
+    ============================================================ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/sec-2fa-code.html">
+    <meta property="og:title"       content="Titan Authenticator Pro — Military-Grade Offline 2FA Vault">
+    <meta property="og:description" content="Generate 2FA TOTP codes offline in your browser. AES-256 encrypted. No cloud, no leaks. Secure your accounts now — completely free.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/sec/sec-2fa-code/img/titan-og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+
+    <!-- ============================================================
+         [TWITTER CARD] Rich Previews on Twitter / X
+    ============================================================ -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/sec-2fa-code.html">
+    <meta name="twitter:title"       content="Titan Authenticator Pro — Secure Offline 2FA Vault">
+    <meta name="twitter:description" content="100% Offline & Encrypted 2FA Token Generator. Protect your accounts with military-grade AES-256 encryption. No data ever leaves your device.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/sec/sec-2fa-code/img/titan-og-banner.webp">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/sec-2fa-code.html">
+
+    <!-- [FAVICON] -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- [FONTS] Self-hosted for performance & privacy -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+
+    <!-- [ICONS] FontAwesome — loaded non-render-blocking -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css" media="print" onload="this.media='all'" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <noscript><link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css"></noscript>
+
+    <!-- ============================================================
+         [STYLESHEETS] Global layout + Tool component library
+         NO tool-specific style.css — everything lives in these two.
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ============================================================
+         [SCHEMA] JSON-LD Structured Data — Enhanced for SEO
+    ============================================================ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Titan Authenticator Pro",
+        "headline": "Titan Authenticator Pro — Secure Offline 2FA TOTP Vault",
+        "alternativeHeadline": "Browser-Based TOTP Generator with AES-256 Encryption",
+        "url": "https://trustedtoolsweb.com/sec-2fa-code.html",
+        "description": "A military-grade, fully client-side 2FA authenticator with AES-256-CBC + PBKDF2 encryption. Generates RFC 6238 TOTP codes 100% offline without server syncing or data collection.",
+        "applicationCategory": "SecurityApplication",
+        "applicationSubCategory": "Two-Factor Authentication",
+        "operatingSystem": "Web Browser, Android, iOS, Windows, macOS, Linux",
+        "softwareVersion": "2.2.0",
+        "datePublished": "2024-01-01",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "featureList": [
+            "AES-256-CBC Client-Side Encryption",
+            "PBKDF2 Salted Key Derivation",
+            "RFC 6238 Offline TOTP Generation",
+            "QR Code Camera Scanning",
+            "QR Code Image Upload",
+            "Encrypted JSON Vault Backup & Restore",
+            "Zero-Knowledge Architecture — No Servers"
+        ],
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/sec/sec-2fa-code/img/titan-og-banner.webp",
+        "image": "https://trustedtoolsweb.com/assets/tools/sec/sec-2fa-code/img/titan-og-banner.webp"
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- ============================================================
+         LOCK SCREEN — Encrypted PIN Entry Overlay
+         Shown when a PIN has been previously set by the user.
+         Hides the main app until the correct 4-digit PIN is entered.
+    ============================================================ -->
+    <div id="lock-screen" class="tit-lock-screen hidden">
+
+        <!-- Lock Screen Header: Icon + Title -->
+        <div class="tit-lock-header">
+            <div class="tit-lock-icon">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h2 class="tit-lock-title">SECURITY LOCK</h2>
+            <p class="tit-lock-subtitle">Enter PIN to decrypt vault</p>
+        </div>
+
+        <!-- PIN Indicator Dots (4 circles fill as user types) -->
+        <div class="pin-dots" id="pin-display">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <!-- Numeric Keypad Grid -->
+        <div class="numpad">
+            <!-- "Forgot PIN?" reset link — spans full row -->
+            <div class="tit-forgot-pin">
+                <span onclick="TitanApp.resetVault()">Forgot PIN? Reset Vault</span>
+            </div>
+
+            <!-- Number keys 1–9 -->
+            <div class="num-key" onclick="TitanApp.handlePinInput(1)">1</div>
+            <div class="num-key" onclick="TitanApp.handlePinInput(2)">2</div>
+            <div class="num-key" onclick="TitanApp.handlePinInput(3)">3</div>
+            <div class="num-key" onclick="TitanApp.handlePinInput(4)">4</div>
+            <div class="num-key" onclick="TitanApp.handlePinInput(5)">5</div>
+            <div class="num-key" onclick="TitanApp.handlePinInput(6)">6</div>
+            <div class="num-key" onclick="TitanApp.handlePinInput(7)">7</div>
+            <div class="num-key" onclick="TitanApp.handlePinInput(8)">8</div>
+            <div class="num-key" onclick="TitanApp.handlePinInput(9)">9</div>
+
+            <!-- Empty spacer cell to center the "0" key -->
+            <div class="num-key tit-key-hidden"></div>
+
+            <!-- Key: 0 -->
+            <div class="num-key" onclick="TitanApp.handlePinInput(0)">0</div>
+
+            <!-- Backspace key — styled in danger color -->
+            <div class="num-key tit-key-delete" onclick="TitanApp.handlePinInput(-1)">
+                <i class="fa-solid fa-delete-left"></i>
+            </div>
+        </div>
+
+    </div><!-- /#lock-screen -->
+
+    <!-- [GLOBAL HEADER] Injected by global.js -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ============================================================
+         MAIN APPLICATION WRAPPER
+         Visible after PIN unlock (or if no PIN has been set).
+    ============================================================ -->
+    <main>
+
+        <!-- =========================================================
+             PRIMARY TOOL CARD
+             Contains hero area, tab bar, add-account form,
+             search field, account list, ads, and empty-state notice.
+        ========================================================= -->
+        <div class="container animated-entry" id="main-app">
+
+            <!-- Tool Logo Image -->
+            <img
+                src="../../assets/tools/sec/sec-2fa-code/img/titan-auth-icon.webp"
+                alt="Titan Authenticator Pro Security Logo"
+                width="80"
+                height="80"
+                class="tit-logo"
+            >
+
+            <!-- Security Badge -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> AES-256 Encrypted
+            </div>
+
+            <!-- Tool Title -->
+            <h1 class="tool-title">Titan Auth <span>Pro</span></h1>
+
+            <!-- Subtitle with client-side processing notice -->
+            <p class="subtitle">
+                Secure Client-Side 2FA Vault &mdash; No Cloud. No Leaks.
+                <br>
+                <span class="badge badge-success" style="margin-top:6px; display:inline-flex;">
+                    <i class="fa-solid fa-circle-check"></i>&nbsp; 100% Client-Side Processing
+                </span>
+            </p>
+
+            <!-- Ad Slot: Top Banner -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- =======================================================
+                 TAB BAR — Primary Action Navigation
+                 Add | Security | Backup | Restore
+            ======================================================= -->
+            <div class="tit-tab-bar">
+                <!-- "Add" button — toggles the add-account panel -->
+                <button class="tit-tab-btn active" id="btn-add" onclick="TitanApp.toggleAddMenu()">
+                    <i class="fa-solid fa-plus-circle"></i> Add
+                </button>
+
+                <!-- Security settings: set / remove PIN -->
+                <button class="tit-tab-btn" onclick="TitanApp.openSecuritySettings()">
+                    <i class="fa-solid fa-user-lock"></i> Security
+                </button>
+
+                <!-- Backup: exports encrypted JSON -->
+                <button class="tit-tab-btn" onclick="TitanApp.exportVault()">
+                    <i class="fa-solid fa-file-export"></i> Backup
+                </button>
+
+                <!-- Restore: triggers hidden file input -->
+                <button class="tit-tab-btn" onclick="document.getElementById('import-file').click()">
+                    <i class="fa-solid fa-file-import"></i> Restore
+                </button>
+
+                <!-- Hidden file input for vault import -->
+                <input
+                    type="file"
+                    id="import-file"
+                    hidden
+                    accept=".json"
+                    onchange="TitanApp.importVault(this)"
+                >
+            </div><!-- /.tit-tab-bar -->
+
+            <!-- =======================================================
+                 ADD ACCOUNT PANEL
+                 Collapsed by default; expands via toggleAddMenu().
+                 Offers QR scan, QR image upload, and manual entry.
+            ======================================================= -->
+            <div class="add-card" id="add-card">
+
+                <!-- Panel Heading -->
+                <h3 class="tit-add-heading">Add New Account</h3>
+
+                <!-- QR Method Buttons Grid -->
+                <div class="tit-qr-grid">
+                    <!-- Camera scanner button -->
+                    <button class="big-btn" onclick="TitanApp.startScanner()">
+                        <i class="fa-solid fa-qrcode tit-qr-icon tit-qr-icon--primary"></i>
+                        Scan QR
+                    </button>
+
+                    <!-- Image upload button -->
+                    <button class="big-btn" onclick="document.getElementById('qr-upload').click()">
+                        <i class="fa-solid fa-image tit-qr-icon tit-qr-icon--secondary"></i>
+                        Upload QR
+                    </button>
+
+                    <!-- Hidden file input for QR image upload -->
+                    <input
+                        type="file"
+                        id="qr-upload"
+                        hidden
+                        accept="image/*"
+                        onchange="TitanApp.processQrImage(this)"
+                    >
+                </div><!-- /.tit-qr-grid -->
+
+                <!-- Manual Entry Section -->
+                <div class="tit-manual-entry">
+                    <label class="tit-field-label">MANUAL ENTRY</label>
+
+                    <!-- Service / Issuer name field -->
+                    <input
+                        type="text"
+                        id="inp-issuer"
+                        placeholder="Service Name (e.g. Binance)"
+                        autocomplete="off"
+                    >
+
+                    <!-- Secret key field with clipboard paste icon -->
+                    <div class="tit-secret-wrap">
+                        <input
+                            type="text"
+                            id="inp-secret"
+                            placeholder="Secret Key (Base32)"
+                            autocomplete="off"
+                        >
+                        <i
+                            class="fa-regular fa-clipboard tit-paste-icon"
+                            onclick="TitanApp.pasteClipboard()"
+                            title="Paste from Clipboard"
+                        ></i>
+                    </div>
+
+                    <!-- Save to vault button -->
+                    <button class="big-btn tit-save-btn" onclick="TitanApp.addManualAccount()">
+                        <i class="fa-solid fa-check-circle"></i> Save to Vault
+                    </button>
+                </div><!-- /.tit-manual-entry -->
+
+            </div><!-- /#add-card -->
+
+            <!-- =======================================================
+                 SEARCH BAR — Filters visible account list in real-time
+            ======================================================= -->
+            <div class="tit-search-wrap">
+                <i class="fa-solid fa-search tit-search-icon"></i>
+                <input
+                    type="text"
+                    class="tit-search-input"
+                    placeholder="Search your keys..."
+                    onkeyup="TitanApp.filterAccounts(this.value)"
+                >
+            </div>
+
+            <!-- =======================================================
+                 ACCOUNT LIST — Dynamically rendered by renderList()
+            ======================================================= -->
+            <div id="account-list-container"></div>
+
+            <!-- Ad Slot: Bottom Banner -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+            <!-- =======================================================
+                 EMPTY STATE — Shown when vault has no accounts
+            ======================================================= -->
+            <div id="empty-state" class="hidden tit-empty-state">
+                <i class="fa-solid fa-shield-cat tit-empty-icon"></i>
+                <p class="text-muted">
+                    Vault is empty.<br>
+                    Add your first 2FA account securely.
+                </p>
+            </div>
+
+        </div><!-- /#main-app .container -->
+
+        <!-- ============================================================
+             SEO INFO SECTION — Educational Content
+             Boosts organic search ranking with rich, topical content.
+        ============================================================ -->
+        <section class="info-section-wrapper">
+
+            <!-- Info Card 1: Why 2FA -->
+            <div class="info-card animated-entry delay-1">
+                <h2><i class="fa-solid fa-shield-virus"></i> Why Passwords Are No Longer Enough?</h2>
+                <p>In the current digital landscape, relying solely on passwords is like locking your front door but leaving the window wide open. Data breaches happen daily. If you use the same password for multiple sites, a leak in one platform puts your entire digital life—Facebook, Gmail, Binance, and Bank accounts—at risk.</p>
+                <p>This is where <strong>Two-Factor Authentication (2FA)</strong> becomes your digital bodyguard. Even if a hacker steals your password, they cannot access your account without the rotating 6-digit code generated by <strong>Titan Authenticator Pro</strong>. It adds a second layer of verification that is time-sensitive and unique to your device.</p>
+            </div>
+
+            <!-- Info Card 2: Step-by-Step Guide -->
+            <div class="info-card animated-entry">
+                <h2><i class="fa-solid fa-book-open"></i> How to Use Titan Authenticator: A Step-by-Step Guide</h2>
+                <img
+                    src="../../assets/tools/sec/sec-2fa-code/img/how-it-works.webp"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="340"
+                    alt="How Titan Authenticator 2FA Works — Process Diagram"
+                    style="width:100%; height:auto; aspect-ratio:16/9; margin:20px 0; border-radius:10px; border:1px solid var(--border-main);"
+                >
+                <h3>1. Setting Up Your Security PIN</h3>
+                <p>When you first open the tool, go to the <strong>Security</strong> tab. Create a 4-digit PIN. This PIN is used to encrypt your database via PBKDF2 hashing. Without this PIN, your saved keys are completely inaccessible.</p>
+                <h3>2. Adding Accounts (2 Ways)</h3>
+                <ul>
+                    <li><strong>QR Scan:</strong> Click "Add" &gt; "Scan QR". Point your camera at the QR code provided by Facebook, Gmail, or Binance. If successful, the fields will auto-fill.</li>
+                    <li><strong>Manual Entry:</strong> If you are on the same device, copy the "Secret Key" (Base32) from the service and paste it into the "Secret Key" box. Give it a name and click <strong>Save to Vault</strong>.</li>
+                </ul>
+                <h3>3. Backing Up Your Data (Crucial!)</h3>
+                <p>Since we don't store your data on cloud servers, you must backup your vault. Click the <strong>Backup</strong> button to download a <code>.json</code> file. Store this file on a USB drive or secure cloud storage. This is your only lifeline if you lose your device.</p>
+                <h3>4. Restoring &amp; Merging</h3>
+                <p>Got a new phone? Click <strong>Restore</strong> and select your backup file. You will get two options:</p>
+                <ul>
+                    <li><strong>REPLACE:</strong> Wipes the current list and loads the backup.</li>
+                    <li><strong>MERGE:</strong> Keeps your current accounts and adds new ones from the backup file (Great for syncing two devices).</li>
+                </ul>
+            </div>
+
+            <!-- Info Card 3: Titan vs Google Authenticator -->
+            <div class="info-card animated-entry delay-1">
+                <h2><i class="fa-solid fa-scale-balanced"></i> Titan Auth vs. Google Authenticator: What's the Difference?</h2>
+                <p>Many users ask, <em>"Why should I use Titan Auth over the standard Google Authenticator or Authy?"</em> The answer lies in <strong>Data Sovereignty and Privacy</strong>.</p>
+                <div style="margin-top:20px;">
+                    <h3 style="font-size:16px;"><i class="fa-brands fa-google" style="color:#ea4335;"></i> Cloud-Based Authenticators (Google/Authy)</h3>
+                    <p>Most popular apps sync your secret keys to their cloud servers. While convenient, this creates a centralized target for hackers. If their cloud servers are breached, your 2FA keys could be exposed. Additionally, you need an internet connection to sync.</p>
+                </div>
+                <div style="margin-top:15px;">
+                    <h3 style="font-size:16px;"><i class="fa-solid fa-user-shield" style="color:var(--brand-primary);"></i> Titan Authenticator Pro (Client-Side)</h3>
+                    <p>Titan Auth takes a <strong>Zero-Trust</strong> approach. We do not have servers. We do not have a database. Your secret keys are:</p>
+                    <ul style="color:var(--text-muted); line-height:1.8;">
+                        <li>Stored strictly in your browser's <span class="tech-highlight">LocalStorage</span>.</li>
+                        <li>Encrypted using <strong>AES-256</strong> (Military Grade) with Salted PBKDF2 Key Derivation.</li>
+                        <li>Accessible ONLY by you via your PIN.</li>
+                    </ul>
+                    <p>This means you are in total control. No "Big Tech" company is holding your keys. Plus, it works 100% offline, making it perfect for travel.</p>
+                </div>
+            </div>
+
+            <!-- Info Card 4: Security Architecture -->
+            <div class="info-card animated-entry delay-2">
+                <h2><i class="fa-solid fa-microchip"></i> Under the Hood: The Security Architecture</h2>
+                <p>Transparency is key to trust. Here is exactly how we handle your sensitive data without sending it to any server:</p>
+                <h3>1. The Encryption Engine (PBKDF2 + AES)</h3>
+                <p>We use <strong>PBKDF2</strong> (Password-Based Key Derivation Function 2) to generate a strong cryptographic key from your 4-digit PIN and a random salt. This key is then used to encrypt your vault using <strong>AES-256-CBC</strong> via the CryptoJS library. This ensures that even if your PIN is simple, the encryption key remains robust.</p>
+                <h3>2. TOTP Generation (RFC 6238)</h3>
+                <p>We follow the global industry standard for Time-Based One-Time Passwords. The tool calculates a unique hash based on the current Unix Time and your Secret Key. This calculation happens locally in your device's CPU/Processor, ensuring zero latency.</p>
+                <h3>3. Portable Backup System</h3>
+                <p>Since we don't store your data in the cloud, we provide a robust <strong>JSON Backup</strong> feature. You can export your encrypted vault and store it on a USB drive. This gives you the freedom to move between devices without being locked into a specific ecosystem.</p>
+            </div>
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ============================================================
+             RELATED TOOLS GRID
+             Dynamically populated by related-tools.js based on category.
+        ============================================================ -->
+        <div class="container" style="margin-top:50px;">
+            <!--
+                data-category    : matches this tool's category folder ("sec")
+                data-current-page: excludes this page from the related list
+            -->
+            <div
+                id="dynamic-related-tools"
+                data-category="sec"
+                data-current-page="sec-2fa-code.html"
+            ></div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main -->
+
+    <!-- [GLOBAL FOOTER] Injected by global.js -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ============================================================
+         SCANNER OVERLAY — Full-Screen QR Camera Scanning UI
+         Activated by TitanApp.startScanner().
+         Renders Html5Qrcode inside #reader.
+    ============================================================ -->
+    <div id="scanner-overlay" class="tit-scanner-overlay hidden">
+
+        <!-- Close Button -->
+        <div class="tit-scanner-close">
+            <button class="tit-scanner-close-btn" onclick="TitanApp.stopScanner()">
+                CLOSE &times;
+            </button>
+        </div>
+
+        <!-- Loading Spinner (shown while camera initialises) -->
+        <div id="scan-spinner" class="spinner hidden tit-scan-spinner"></div>
+
+        <!-- Html5Qrcode mount point -->
+        <div id="reader" class="tit-reader"></div>
+
+        <!-- Instruction Label -->
+        <p class="tit-scanner-hint">Point camera at QR Code</p>
+
+    </div><!-- /#scanner-overlay -->
+
+    <!-- ============================================================
+         SCRIPTS — Order matters: ads → global → libraries → tool
+    ============================================================ -->
+
+    <!-- Ads Manager -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global JS (theme, toast system, header/footer injection) -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- TOTP + Crypto Libraries (deferred — non-blocking) -->
+    <script src="../../assets/library/auth-engine/otpauth/otpauth.umd.min.js" defer></script>
+    <script src="../../assets/library/crypto/crypto-js/crypto-js.min.js" defer></script>
+
+    <!-- Tool Logic -->
+    <script src="../../assets/tools/sec/sec-2fa-code/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

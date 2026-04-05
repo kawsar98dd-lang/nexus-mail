@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         ANALYTICS & SITE CONFIGURATION
+         Site config, meta-manager, and analytics are loaded first so that
+         all tracking and dynamic meta-tag injection happen before render.
+         [GUARDRAIL: PROTECTED — Do not modify this block]
+    ═══════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PRIMARY SEO META TAGS
+         Optimized for high CTR, rich snippets, and long-tail keyword
+         targeting. Covers privacy-first text analysis use cases.
+         [GUARDRAIL: PROTECTED]
+    ═══════════════════════════════════════════════════════════════════ -->
+    <title>Word Counter Ultra Pro — Free Secure SEO Text Analyzer | Trusted Tools Web (2026)</title>
+    <meta name="title"       content="Word Counter Ultra Pro — Free Secure SEO Text Analyzer | Trusted Tools Web (2026)">
+    <meta name="description" content="The best 100% client-side Word Counter & SEO Text Analyzer. Instantly check keyword density, character limits for X/Twitter, reading time, and more — all securely processed in your browser. No uploads. No server. No risk.">
+    <meta name="keywords"    content="word counter tool, seo text analyzer, character count online, keyword density checker, social media caption counter, free writing tools, trusted tools web, privacy focused word counter, reading time calculator, sentence counter, paragraph counter">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/text-word-counter.html" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         OPEN GRAPH — Facebook, LinkedIn, WhatsApp previews
+    ═══════════════════════════════════════════════════════════════════ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/text-word-counter.html">
+    <meta property="og:title"       content="Word Counter Ultra Pro — Secure SEO Text Analyzer | Trusted Tools Web">
+    <meta property="og:description" content="Analyze text securely with zero server latency. Check keyword density, reading time, social media limits, and more — all processed locally in your browser.">
+    <meta property="og:image"       content="../../assets/tools/text/text-word-counter/img/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"   content="Word Counter Ultra Pro Dashboard — Trusted Tools Web">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+    <meta property="og:locale"      content="en_US">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         TWITTER CARD — Large image preview on X / Twitter
+    ═══════════════════════════════════════════════════════════════════ -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/text-word-counter.html">
+    <meta name="twitter:title"       content="Word Counter Ultra Pro — Secure SEO Text Analyzer">
+    <meta name="twitter:description" content="Write better SEO content, securely. Zero data uploads. Instant keyword density, reading time & social media limit checks.">
+    <meta name="twitter:image"       content="../../assets/tools/text/text-word-counter/img/og-banner.webp">
+
+    <!-- Favicons -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         EXTERNAL LIBRARIES
+         Font Awesome icons & Outfit font loaded from local assets.
+         (CDN references will be localized before final CodeCanyon submission.)
+    ═══════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/fonts/Outfit/fonts.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL & TOOL STYLESHEETS (Two-File CSS Architecture)
+         • global.css        → Site-wide: header, footer, theme, base reset
+         • tools-template.css → All reusable tool UI components (this tool
+                                uses the new wct- section appended at bottom)
+    ═══════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         JSON-LD STRUCTURED DATA
+         WebApplication schema for Google rich results and knowledge panel.
+         [GUARDRAIL: PROTECTED — Do not modify this block]
+    ═══════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Word Counter Ultra Pro",
+        "url": "https://trustedtoolsweb.com/text-word-counter.html",
+        "image": "https://trustedtoolsweb.com/assets/tools/text/text-word-counter/img/og-banner.webp",
+        "description": "A secure, 100% client-side text analysis tool offering real-time word count, keyword density analysis, reading time estimation, and social media character limit tracking — with zero server uploads.",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Word Count",
+            "Character Count",
+            "Sentence & Paragraph Detection",
+            "SEO Keyword Density (1-gram, 2-gram, 3-gram)",
+            "Reading Time & Speaking Time Estimation",
+            "Social Media Character Limit Tracker (X/Twitter, Google Meta)",
+            "Undo / Redo History",
+            "Text Transformation (Upper, Lower, Capitalize)",
+            "Auto-Save via Local Storage",
+            "Export to .TXT"
+        ],
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        }
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL SITE HEADER
+         Injected dynamically by global.js — contains logo, nav, and theme
+         toggle. Do not add content inside this element.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         MAIN CONTENT WRAPPER
+         Centered flex column — max-width controlled by tools-template.css
+         Section 3 (<main> tag styles).
+    ═══════════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ═══════════════════════════════════════════
+             PRIMARY TOOL CARD
+             Fade-in entry animation via .animated-entry
+        ═══════════════════════════════════════════ -->
+        <div class="container animated-entry">
+
+            <!-- ── Hero / Title Area ── -->
+            <!-- Security badge reassures users their data stays private -->
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- Main tool heading — gradient on keyword "Pro Max" -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-file-word"></i> Word Counter <span>Pro Max</span>
+            </h1>
+
+            <!-- Subtitle describing the tool's core value proposition -->
+            <p class="subtitle">
+                Securely Analyze Word Count, SEO Density &amp; Social Metrics. Zero Data Stored.
+            </p>
+
+            <!-- ── Top Advertisement Slot ── -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ───────────────────────────────────────────────────────────
+                 EDITING CONTROLS BAR
+                 Two rows of action buttons:
+                 Row 1 — Undo, Redo, Copy, Clear (main edit actions)
+                 Row 2 — Case transforms, space cleaner, download
+            ─────────────────────────────────────────────────────────── -->
+            <div class="wct-controls-bar">
+
+                <!-- Row 1: Core editing actions -->
+                <div class="wct-btn-row">
+                    <button class="btn btn-secondary" onclick="undo()" aria-label="Undo last change">
+                        <i class="fa-solid fa-rotate-left"></i> Undo
+                    </button>
+                    <button class="btn btn-secondary" onclick="redo()" aria-label="Redo last change">
+                        <i class="fa-solid fa-rotate-right"></i> Redo
+                    </button>
+                    <button class="btn btn-secondary" onclick="copyText()" aria-label="Copy text to clipboard">
+                        <i class="fa-solid fa-copy"></i> Copy
+                    </button>
+                    <button class="btn btn-danger" onclick="clearText()" aria-label="Clear all text">
+                        <i class="fa-solid fa-trash"></i> Clear
+                    </button>
+                </div>
+
+                <!-- Row 2: Text transformation + export actions -->
+                <div class="wct-btn-row">
+                    <button class="btn btn-secondary" onclick="transformText('upper')" aria-label="Convert to uppercase">
+                        AA
+                    </button>
+                    <button class="btn btn-secondary" onclick="transformText('lower')" aria-label="Convert to lowercase">
+                        aa
+                    </button>
+                    <button class="btn btn-secondary" onclick="transformText('capitalize')" aria-label="Capitalize words">
+                        Aa
+                    </button>
+                    <button class="btn btn-secondary" onclick="cleanText('spaces')" aria-label="Fix extra spaces">
+                        Fix Space
+                    </button>
+                    <button class="btn btn-success" onclick="downloadText()" aria-label="Download text as .txt file">
+                        <i class="fa-solid fa-download"></i> Save .Txt
+                    </button>
+                </div>
+
+            </div><!-- /.wct-controls-bar -->
+
+            <!-- ───────────────────────────────────────────────────────────
+                 MAIN TEXT EDITOR AREA
+                 The core <textarea> where the user types or pastes content.
+                 The #saveIndicator badge briefly appears after each auto-save.
+            ─────────────────────────────────────────────────────────── -->
+            <div class="wct-editor-box">
+                <textarea
+                    id="textInput"
+                    class="wct-textarea"
+                    spellcheck="false"
+                    placeholder="Type or paste your content here to analyze securely..."
+                    aria-label="Text input area for analysis"
+                ></textarea>
+                <!-- Auto-save confirmation badge (fades in/out via JS) -->
+                <div id="saveIndicator" class="wct-save-badge">
+                    <i class="fa-solid fa-check"></i> Auto Saved
+                </div>
+            </div><!-- /.wct-editor-box -->
+
+            <!-- ───────────────────────────────────────────────────────────
+                 STATISTICS DASHBOARD
+                 6 stat cards: Words, Characters, Sentences, Paragraphs,
+                 Read Time, Speak Time. All values updated in real time.
+            ─────────────────────────────────────────────────────────── -->
+            <div class="wct-stats-grid">
+
+                <div class="wct-stat-card">
+                    <span class="wct-stat-val" id="words">0</span>
+                    <span class="wct-stat-label">Words</span>
+                </div>
+
+                <div class="wct-stat-card">
+                    <span class="wct-stat-val" id="chars">0</span>
+                    <span class="wct-stat-label">Characters</span>
+                </div>
+
+                <div class="wct-stat-card">
+                    <span class="wct-stat-val" id="sentences">0</span>
+                    <span class="wct-stat-label">Sentences</span>
+                </div>
+
+                <div class="wct-stat-card">
+                    <span class="wct-stat-val" id="paragraphs">0</span>
+                    <span class="wct-stat-label">Paragraphs</span>
+                </div>
+
+                <div class="wct-stat-card">
+                    <span class="wct-stat-val" id="readTime">0m</span>
+                    <span class="wct-stat-label">Read Time</span>
+                </div>
+
+                <div class="wct-stat-card">
+                    <span class="wct-stat-val" id="speakTime">0m</span>
+                    <span class="wct-stat-label">Speak Time</span>
+                </div>
+
+            </div><!-- /.wct-stats-grid -->
+
+            <!-- ───────────────────────────────────────────────────────────
+                 SOCIAL MEDIA CHARACTER LIMIT PROGRESS BARS
+                 Tracks character count against platform limits:
+                 • X / Twitter — 280 characters
+                 • Google Meta Description — 160 characters
+                 Fill color transitions: default → warning → danger
+            ─────────────────────────────────────────────────────────── -->
+            <div class="wct-progress-section">
+
+                <!-- X / Twitter limit bar -->
+                <div class="wct-prog-item">
+                    <div class="wct-prog-head">
+                        <span>
+                            <i class="fa-brands fa-twitter" style="color:#1da1f2;"></i>
+                            X / Twitter (280)
+                        </span>
+                        <span id="twCount">0 / 280</span>
+                    </div>
+                    <div class="wct-prog-track">
+                        <div class="wct-prog-fill" id="twBar" style="background:#1da1f2; width:0%;"></div>
+                    </div>
+                </div>
+
+                <!-- Google Meta Description limit bar -->
+                <div class="wct-prog-item">
+                    <div class="wct-prog-head">
+                        <span>
+                            <i class="fa-brands fa-google" style="color:#fbbc05;"></i>
+                            Google Meta Desc (160)
+                        </span>
+                        <span id="seoCount">0 / 160</span>
+                    </div>
+                    <div class="wct-prog-track">
+                        <div class="wct-prog-fill" id="seoBar" style="background:#fbbc05; width:0%;"></div>
+                    </div>
+                </div>
+
+            </div><!-- /.wct-progress-section -->
+
+            <!-- ───────────────────────────────────────────────────────────
+                 KEYWORD DENSITY ANALYZER
+                 Tabular N-gram frequency report. Supports 1-word, 2-word,
+                 and 3-word phrase analysis. Stop words are filtered out.
+                 The density bar color changes based on SEO best-practice
+                 thresholds (green ≤ 3%, red > 3%).
+            ─────────────────────────────────────────────────────────── -->
+            <div class="wct-density-wrapper">
+
+                <!-- Density header: title + N-gram mode selector -->
+                <div class="wct-density-head">
+                    <h3 class="wct-density-title">
+                        <i class="fa-solid fa-chart-pie"></i> Keyword Density
+                    </h3>
+                    <!-- N-gram mode toggle buttons — #btnKW1/2/3 targeted by JS -->
+                    <div class="wct-kw-btn-group">
+                        <button id="btnKW1" class="btn btn-primary" onclick="setDensityMode(1)">1-Word</button>
+                        <button id="btnKW2" class="btn btn-secondary" onclick="setDensityMode(2)">2-Words</button>
+                        <button id="btnKW3" class="btn btn-secondary" onclick="setDensityMode(3)">3-Words</button>
+                    </div>
+                </div>
+
+                <!-- Density results table — tbody populated dynamically by JS -->
+                <table class="wct-density-table">
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Count</th>
+                            <th>Density</th>
+                        </tr>
+                    </thead>
+                    <tbody id="densityList"></tbody>
+                </table>
+
+            </div><!-- /.wct-density-wrapper -->
+
+            <!-- ── Bottom Advertisement Slot ── -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        </div><!-- /.container.animated-entry -->
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             SEO INFORMATION & CONTENT CARDS
+             Structured editorial content for organic search ranking.
+             Covers: privacy rationale, the 2% density rule, and FAQs.
+        ═══════════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper animated-entry delay-1">
+
+            <!-- Info Card 1: Why client-side processing matters -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-server"></i> Why This Tool Runs 100% in Your Browser</h2>
+
+                <div style="float:right; margin:0 0 15px 20px; text-align:center;">
+                    <img
+                        src="../../assets/tools/text/text-word-counter/img/secure-badge.webp"
+                        alt="100% Client-Side Secure Processing — Word Counter Ultra Pro"
+                        style="max-width:150px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.3);"
+                    >
+                </div>
+
+                <p>When we designed the <strong>Word Counter Ultra Pro</strong>, our main priority was <strong>Data Privacy</strong>. Most online text analyzers send your content to a remote server to process it. This creates a real risk of data leakage, especially when you are working on confidential emails, legal drafts, or exclusive blog posts.</p>
+
+                <p>We took a different approach. We built this tool using <span class="tech-highlight">Client-Side JavaScript</span>. This means:</p>
+
+                <ul>
+                    <li><strong>Zero Uploads:</strong> Your text never leaves your device (mobile or PC).</li>
+                    <li><strong>Instant Analysis:</strong> Since there is no server round-trip, word count, sentence detection, and SEO analysis happen in milliseconds.</li>
+                    <li><strong>Offline Capability:</strong> Once the page loads, you can turn off your internet and the tool will continue working perfectly.</li>
+                </ul>
+
+                <div style="clear:both;"></div>
+            </div>
+
+            <!-- Info Card 2: The 2% keyword density rule -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Mastering SEO: The 2% Density Rule</h2>
+                <p>Many new bloggers make the mistake of "Keyword Stuffing" — repeating the same word too many times hoping to rank higher on Google. This actually hurts your ranking. Modern search engines prefer natural, reader-first writing. We recommend keeping your primary keyword density between <strong>1.5% and 2.5%</strong> for optimal SEO performance without triggering spam filters.</p>
+            </div>
+
+            <!-- Info Card 3: Frequently Asked Questions (FAQ schema opportunity) -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</h2>
+
+                <h3>Does this tool count spaces?</h3>
+                <p>No. The "Word Count" metric ignores spaces to give you the true number of words. However, the "Character Count" includes spaces because social media platforms like X (Twitter) count spaces as characters toward the limit.</p>
+
+                <h3>Is my text saved anywhere?</h3>
+                <p>We use your browser's Local Storage to save your text <em>temporarily</em>, so you don't lose your work if you accidentally close the tab. Your text is <strong>never</strong> sent to or stored on our servers.</p>
+            </div>
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             RELATED TOOLS GRID
+             Dynamically populated by related-tools.js based on the
+             data-category and data-current-page attributes below.
+             [GUARDRAIL: PROTECTED — Do not modify these data attributes]
+        ═══════════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top:50px;">
+            <div id="dynamic-related-tools"
+                 data-category="text"
+                 data-current-page="text-word-counter.html">
+            </div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         CUSTOM CONFIRMATION MODAL
+         This is a tool-specific dialog (not the global toast system).
+         Used for: simple alert messages AND destructive action confirmation
+         (e.g., "Are you sure you want to delete everything?").
+         • #customModal  — the full-screen backdrop overlay
+         • .wct-modal-box — the white dialog card inside
+         • #modalMsg     — dynamic message text (set by JS)
+         Buttons are injected dynamically by showModal() / showConfirmationModal()
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div id="customModal" class="modal-overlay">
+        <div class="wct-modal-box">
+            <span class="wct-modal-title">Word Counter Ultra</span>
+            <div id="modalMsg" class="wct-modal-msg">Message goes here...</div>
+            <!-- Buttons injected dynamically by JS — do not add static buttons here -->
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL SITE FOOTER
+         Injected dynamically by global.js.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SCRIPTS — Load order is intentional:
+         1. ads-manager.js   → Ad slot injection (before global)
+         2. global.js        → Site-wide: header, footer, theme, toast system
+         3. script.js        → Tool-specific logic (must load last)
+         [GUARDRAIL: PROTECTED — Do not reorder these scripts]
+    ═══════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+    <script src="../../assets/tools/text/text-word-counter/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

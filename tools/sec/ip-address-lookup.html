@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    
+
+    <!-- 
+        =======================================================================
+        [BUYER CONFIGURATION] - SETTINGS & CUSTOMIZATION
+        =======================================================================
+        1. ANALYTICS: Replace 'assets/js/analytics-loader.js' with your ID.
+        2. ADS: Configure ad units in 'assets/js/ads-manager.js'.
+        3. MAPS: This tool uses OpenStreetMap (Free). No API Key required.
+        4. THEME: Primary colors can be changed in the :root CSS variables.
+        =======================================================================
+    -->
+    
+    <!-- ANALYTICS LOADER -->
+    <script src="../../assets/js/site-config.js"></script> <script src="../../assets/js/meta-manager.js"></script> <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#020617">
+    
+    <!-- 
+        [SEO META TAGS] - OPTIMIZED FOR SEARCH ENGINES
+        DO NOT EDIT unless targeting a specific language/region.
+    -->
+    <title>My IP, WebRTC Leak & Advanced Device Security Audit | Trusted Tools</title>
+    <meta name="title" content="My IP, WebRTC Leak & Advanced Device Security Audit | Trusted Tools">
+    <meta name="description" content="Free advanced cyber security tool. Check your IP address, detect WebRTC leaks, analyze browser fingerprints, test network latency, and audit device hardware privacy instantly.">
+    <meta name="keywords" content="my ip address, webrtc leak test, browser fingerprinting, canvas hash detector, audio context fingerprint, network latency test, device info, cyber security audit, trusted tools web">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    <!-- OPEN GRAPH (Facebook/LinkedIn) META TAGS -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/sec-ip-lookup.html">
+    <meta property="og:title" content="Cyber Intelligence Elite - Check Your Digital Footprint">
+    <meta property="og:description" content="Is your VPN leaking? Check your IP, WebRTC status, and unique Browser Fingerprint instantly with this advanced forensic tool.">
+    <meta property="og:image" content="../../assets/tools/sec/sec-ip-lookup/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- TWITTER CARD META TAGS -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://trustedtoolsweb.com/sec-ip-lookup.html">
+    <meta property="twitter:title" content="Cyber Intelligence Elite - Security Audit Tool">
+    <meta property="twitter:description" content="Advanced diagnostic tool to check IP, security leaks, and hardware specifications instantly.">
+    <meta property="twitter:image" content="../../assets/tools/sec/sec-ip-lookup/img/og-banner.webp">
+    
+    <link rel="canonical" href="https://trustedtoolsweb.com/sec-ip-lookup.html">
+    
+   <!-- Favicon --> 
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+<link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    
+    <!-- EXTERNAL LIBRARIES -->
+  <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <!-- FontAwesome & Leaflet -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="../../assets/library/maps-engine/leaflet/leaflet.css">
+
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    
+    <!-- SCHEMA MARKUP FOR SEO (JSON-LD) -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Cyber Intelligence Elite",
+            "url": "https://trustedtoolsweb.com/sec-ip-lookup.html",
+            "description": "A browser-based forensic tool to analyze IP addresses, WebRTC leaks, and digital fingerprints.",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "Any",
+            "author": {
+                "@type": "Person",
+                "name": "MD KAWSAR"
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "featureList": "IP Geolocation, WebRTC Leak Detection, Canvas Fingerprinting, Hardware Analysis"
+        }
+    </script>
+    
+<style>
+    /* =========================================
+       1. CORE THEME VARIABLES
+       ========================================= */
+    :root {
+        /* Brand Colors */
+        --primary-color: #00f3ff;
+        --primary-hover: #00c2cc;
+        --secondary-accent: #bf00ff;
+        
+        /* Dark Mode (Default) */
+        --bg-dark: #020617;
+        --container-bg: #0f172a;
+        --border-color: #1e293b;
+        --text-color: #e2e8f0;
+        --text-muted: #94a3b8;
+        --input-bg: #0b1121;
+        
+        /* Status Colors */
+        --success-color: #00ff9d;
+        --alert-color: #ff0055;
+        --gold-color: #ffd700;
+        
+        /* Effects */
+        --neon-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+        --container-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        --hero-bg: rgba(2, 6, 23, 0.7);
+    }
+
+    /* 
+     * LIGHT MODE OVERRIDES
+     */
+    [data-theme="light"], body.light-mode {
+        --bg-dark: #f0f4f8;        
+        --container-bg: #ffffff;   
+        --border-color: #cbd5e1;   
+        --text-color: #1e293b;     
+        --text-muted: #64748b;     
+        --input-bg: #f8fafc;       
+        
+        --neon-shadow: 0 2px 10px rgba(0, 243, 255, 0.2); 
+        --container-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        --hero-bg: rgba(255, 255, 255, 0.95);
+    }
+
+    /* =========================================
+       2. RESET & LAYOUT
+       ========================================= */
+    * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+    
+    body { 
+        background-color: var(--bg-dark); 
+        color: var(--text-color); 
+        font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        min-height: 100vh; 
+        
+        background-image: 
+            radial-gradient(circle at 50% 0%, rgba(0, 243, 255, 0.05) 0%, transparent 60%),
+            linear-gradient(var(--bg-dark), var(--bg-dark)); 
+        background-attachment: fixed;
+        overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    main { 
+        width: 100%; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        padding: 20px; 
+        flex: 1;
+        padding-top: 110px !important; 
+    }
+
+    @media (min-width: 769px) { main { padding-top: 90px !important; } }
+
+    .container { 
+        max-width: 950px; 
+        width: 100%; 
+        background: var(--container-bg); 
+        padding: 30px; 
+        border-radius: 16px; 
+        border: 1px solid var(--border-color); 
+        text-align: center; 
+        box-shadow: var(--container-shadow); 
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+        will-change: transform, opacity;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .animated-entry { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s forwards ease-out; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* =========================================
+       3. ADVERTISING SLOTS
+       ========================================= */
+    .ad-slot {
+        width: 100%;
+        max-width: 728px;
+        min-height: 90px;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0,0,0,0.02);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .ad-slot:empty { display: none !important; }
+
+    /* =========================================
+       4. TYPOGRAPHY & HERO
+       ========================================= */
+    .tool-title { 
+        color: var(--text-color); margin: 10px 0 5px 0; font-weight: 700; 
+        white-space: nowrap; display: flex; justify-content: center; align-items: center; gap: 10px;
+        font-size: clamp(20px, 5vw, 32px); 
+    }
+    .tool-title span { 
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-accent)); 
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+    }
+    .subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 15px; line-height: 1.5; }
+    
+    .security-badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: rgba(0, 255, 157, 0.08); color: var(--success-color);
+        padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700;
+        margin-bottom: 12px; border: 1px solid rgba(0, 255, 157, 0.2);
+        text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    /* IP Box */
+    .hero-ip-box {
+        background: var(--hero-bg);
+        border: 1px solid var(--primary-color);
+        border-radius: 14px;
+        padding: 35px 20px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--container-shadow);
+        transition: background 0.3s;
+    }
+    .hero-ip-box::before {
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        animation: scanline 3s linear infinite;
+        box-shadow: 0 0 10px var(--primary-color);
+    }
+    @keyframes scanline { 0% { transform: translateY(0) translateX(-100%); } 100% { transform: translateY(0) translateX(100%); } }
+
+    .ip-label { font-size: 11px; color: var(--primary-color); letter-spacing: 2px; text-transform: uppercase; font-weight: 800; margin-bottom: 5px; }
+    
+    .my-ip { 
+        font-size: clamp(32px, 7vw, 48px); font-family: 'Courier New', monospace; font-weight: 800; 
+        color: var(--text-color); 
+        text-shadow: var(--neon-shadow); 
+        margin: 5px 0 15px 0; letter-spacing: -1.5px; line-height: 1.1;
+    }
+    .conn-status { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+    /* =========================================
+       5. COMPONENTS & GRIDS
+       ========================================= */
+    .btn-area { display: flex; gap: 15px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
+    button { 
+        background: rgba(0, 243, 255, 0.08); color: var(--primary-color); border: 1px solid var(--primary-color); 
+        padding: 12px 25px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        flex: 1; min-width: 140px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        position: relative; overflow: hidden;
+    }
+    button:hover, button:focus { background: var(--primary-color); color: #000; box-shadow: 0 0 25px rgba(0, 243, 255, 0.3); transform: translateY(-2px); }
+    .btn-disabled { opacity: 0.6; cursor: not-allowed; pointer-events: none; filter: grayscale(1); }
+    
+    .btn-gps { border-color: var(--gold-color); color: var(--gold-color); background: rgba(255, 215, 0, 0.08); }
+    .btn-gps:hover, .btn-gps:focus { background: var(--gold-color); color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+    .btn-download { border-color: var(--secondary-accent); color: var(--secondary-accent); background: rgba(191, 0, 255, 0.08); }
+    .btn-download:hover, .btn-download:focus { background: var(--secondary-accent); color: white; box-shadow: 0 0 20px rgba(191, 0, 255, 0.3); }
+
+    /* Grids */
+    .intel-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    .intel-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    
+    .info-card {
+        background: var(--input-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 24px;
+        text-align: left;
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        position: relative;
+        height: 100%;
+    }
+    .info-card:hover { border-color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+    
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
+    .card-title { color: var(--text-color); font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+    .card-badge { font-size: 10px; padding: 4px 8px; border-radius: 4px; background: rgba(128,128,128,0.1); color: var(--text-muted); border: 1px solid var(--border-color); font-weight: 600; }
+
+    /* Data Display */
+    .data-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; align-items: center; }
+    .data-label { color: var(--text-muted); font-size: 13px; }
+    .data-val { color: var(--text-color); font-family: 'Courier New', monospace; font-weight: 600; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 170px; }
+    
+    /* Dynamic Value Colors */
+    .val-highlight { color: var(--success-color); }
+    .val-warning { color: var(--alert-color); font-weight: 700; }
+    .val-neutral { color: var(--text-muted); }
+    .val-blur { filter: blur(4px); transition: filter 0.5s; }
+    
+    .hash-display { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); font-family: 'Courier New', monospace; font-size: 12px; color: var(--text-muted); word-break: break-all; margin-top: 8px; line-height: 1.4; }
+    .hash-title { font-size: 11px; color: var(--primary-color); margin-top: 15px; display: block; margin-bottom: 5px; font-weight: 700; letter-spacing: 0.5px; }
+
+    /* Map */
+    #map { width: 100%; height: 380px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 1; margin-top: 15px; background: var(--container-bg); }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--container-bg); color: var(--text-color); border: 1px solid var(--primary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+    .leaflet-popup-content { font-size: 13px; font-weight: 600; margin: 10px; }
+    .leaflet-container { background: var(--container-bg) !important; font-family: 'Inter', sans-serif; }
+    .custom-pin { background: transparent !important; border: none !important; }
+
+    /* Content Typography */
+    .info-card h2 { color: var(--text-color); font-size: 20px; border-left: 4px solid var(--primary-color); padding-left: 15px; margin-bottom: 20px; }
+    .info-card h3 { color: var(--primary-color); font-size: 16px; margin-top: 25px; margin-bottom: 12px; font-weight: 700; }
+    .info-card p, .info-card li { color: var(--text-muted); line-height: 1.7; font-size: 15px; }
+    .info-card ul, .info-card ol { padding-left: 20px; margin-bottom: 20px; }
+
+    /* Audio Pulse Animation */
+    .pulse-req { animation: pulse-border 2s infinite; cursor: pointer; }
+    @keyframes pulse-border { 0% { box-shadow: 0 0 0 0 rgba(255, 157, 0, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(255, 157, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 157, 0, 0); } }
+
+  
+    /* =========================================
+       6. UTILS: TOAST & LOADER
+       ========================================= */
+    .toast-box {
+        position: fixed; top: 110px; right: -350px;
+        background: var(--container-bg); border-left: 4px solid var(--success-color);
+        color: var(--text-color); padding: 16px 24px; border-radius: 8px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4); font-size: 14px; font-weight: 600; 
+        z-index: 99999; display: flex; align-items: center; gap: 12px;
+        transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+        border: 1px solid var(--border-color);
+    }
+    .toast-box.show { right: 20px; }
+    
+    .loader-screen {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+        background: var(--bg-dark); z-index: 2147483647;
+        display: flex; flex-direction: column; justify-content: center; align-items: center; 
+        transition: opacity 0.5s, visibility 0.5s;
+    }
+    .loader-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-spinner {
+        width: 50px; height: 50px; border: 3px solid transparent; 
+        border-top-color: var(--primary-color); border-bottom-color: var(--secondary-accent);
+        border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .intel-grid-2, .intel-grid-3, .related-grid { grid-template-columns: 1fr; }
+        .toast-box { top: auto; bottom: 80px; width: 85%; right: -120%; border-radius: 50px; justify-content: center; margin: 0 auto; left: 0; right: 0; transform: translateY(150px); transition: transform 0.4s ease; }
+        .toast-box.show { transform: translateY(0); right: 0; }
+        .tool-card { padding: 20px 15px; }
+        .hero-ip-box { padding: 25px 15px; }
+    }
+</style>
+ 
+</head>
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div class="loader-screen" id="appLoader">
+        <div class="loader-spinner"></div>
+        <div style="color: var(--primary-color); font-family: 'Courier New'; font-size: 12px; letter-spacing: 2px; font-weight: bold;">INITIALIZING CYBER PROTOCOLS...</div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast-box">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span id="toastMsg">Operation Successful</span>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+        <div class="container animated-entry">
+            
+            <div class="security-badge"><i class="fa-solid fa-user-secret"></i> Client-Side Forensics 2.1</div>
+            
+            <h1 class="tool-title"><i class="fa-solid fa-satellite-dish"></i> Cyber <span>Intelligence</span></h1>
+            <p class="subtitle">Advanced Network Diagnostic, IP Geolocation & System Information Tool.</p>
+            
+            <!-- [AD SYSTEM]: ENTRY POINT (TOP) -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- HERO IP DISPLAY -->
+            <div class="hero-ip-box">
+                <div class="ip-label">YOUR CURRENT CONNECTION</div>
+                <div class="my-ip" id="ipDisplay"><span class="val-blur">Scanning</span></div>
+                <div class="conn-status" id="connStatus">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> Establishing Uplink...
+                </div>
+
+                <div class="btn-area">
+                    <button onclick="ToolEngine.copyIntel()"><i class="fa-regular fa-copy"></i> Copy Details</button>
+                    <button class="btn-gps" id="gpsBtn" onclick="ToolEngine.activateGPS()"><i class="fa-solid fa-location-crosshairs"></i> Activate GPS</button>
+                    <button class="btn-download" onclick="ToolEngine.downloadReport()"><i class="fa-solid fa-file-export"></i> Save Log</button>
+                </div>
+            </div>
+
+            <!-- GRID 1: IDENTITY & GEO -->
+            <div class="intel-grid-2">
+                <div class="info-card" id="fingerprintCard">
+                    <div class="card-header">
+                        <span class="card-title" style="color: var(--secondary-accent);"><i class="fa-solid fa-fingerprint"></i> Digital Fingerprint</span>
+                        <span class="card-badge">IDENTITY</span>
+                    </div>
+                    <div class="data-row"><span class="data-label">Browser Engine</span><span class="data-val" id="valBrowserEng">-</span></div>
+                    <div class="data-row"><span class="data-label">Incognito Mode</span><span class="data-val" id="valIncognito">Checking...</span></div>
+                    <div class="data-row"><span class="data-label">Do Not Track</span><span class="data-val" id="valDnt">-</span></div>
+                    
+                    <span class="hash-title">UNIQUE CANVAS HASH ID</span>
+                    <div class="hash-display" id="valCanvasHash" style="color: var(--primary-color);">Generating Hash...</div>
+                    
+                    <span class="hash-title">AUDIO CONTEXT HASH</span>
+                    <div class="hash-display" id="valAudioHash" style="color: #ff9d00;">Click page to analyze...</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <span class="card-title" style="color: var(--primary-color);"><i class="fa-solid fa-earth-americas"></i> Geo-Location</span>
+                        <span class="card-badge" id="locMethod">IP NODE</span>
+                    </div>
+                    <div class="data-row"><span class="data-label">Country</span><span class="data-val" id="valCountry">-</span></div>
+                    <div class="data-row"><span class="data-label">City/Region</span><span class="data-val" id="valRegion">-</span></div>
+                    <div class="data-row"><span class="data-label">Coordinates</span><span class="data-val" id="valCoords">-</span></div>
+                    <div class="data-row"><span class="data-label">Timezone</span><span class="data-val" id="valTimezone">-</span></div>
+                    <div class="data-row"><span class="data-label">System Time</span><span class="data-val" id="valLocalTime">-</span></div>
+                </div>
+            </div>
+
+            <!-- GRID 2: HARDWARE & NETWORK SECURITY -->
+            <div class="intel-grid-3">
+                <div class="info-card">
+                    <div class="card-header">
+                        <span class="card-title"><i class="fa-solid fa-microchip"></i> System Spec</span>
+                    </div>
+                    <div class="data-row"><span class="data-label">OS Platform</span><span class="data-val" id="valOs">-</span></div>
+                    <div class="data-row"><span class="data-label">Resolution</span><span class="data-val" id="valRes">Checking...</span></div>
+                    <div class="data-row"><span class="data-label">CPU Cores</span><span class="data-val" id="valCores">Scanning...</span></div>
+                    <div class="data-row"><span class="data-label">RAM (Est)</span><span class="data-val" id="valRam">Calculating...</span></div>
+                    <div class="data-row"><span class="data-label">GPU Renderer</span><span class="data-val" id="valGpu" style="font-size:10px;">Analyzing...</span></div>
+                    <div class="data-row"><span class="data-label">Battery</span><span class="data-val" id="valBattery">-</span></div>
+                </div>
+
+                <div class="info-card" style="border-color: rgba(255, 0, 85, 0.3);">
+                    <div class="card-header">
+                        <span class="card-title" style="color: var(--alert-color);"><i class="fa-solid fa-network-wired"></i> Network Security</span>
+                    </div>
+                    <div class="data-row"><span class="data-label">ISP Name</span><span class="data-val" id="valIsp">-</span></div>
+                    <div class="data-row"><span class="data-label">WebRTC Leak</span><span class="data-val" id="valLocalIp">Scanning...</span></div>
+                    <div class="data-row"><span class="data-label">Proxy/VPN</span><span class="data-val" id="valVpn">Analyzing...</span></div>
+                    <div class="data-row"><span class="data-label">Net Speed</span><span class="data-val" id="valNetSpeed">-</span></div>
+                    <div class="data-row"><span class="data-label">Latency</span><span class="data-val" id="valPing">Pinging...</span></div>
+                </div>
+            </div>
+
+            <!-- MAP CONTAINER -->
+            <div class="info-card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <span class="card-title"><i class="fa-solid fa-map-location-dot"></i> Live Geolocation Map</span>
+                    <span class="card-badge" id="mapStatus">SATELLITE LOADING...</span>
+                </div>
+                <div id="map"></div>
+            </div>
+
+        </div> 
+        
+        <!-- EDUCATIONAL CONTENT SECTIONS -->
+        <div class="info-card">
+            <img src="../../assets/tools/sec/sec-ip-lookup/img/digital-fingerprint.webp" 
+                 alt="Digital Browser Fingerprinting" 
+                 style="float: right; width: 120px; height: auto; margin-left: 15px; margin-bottom: 10px; border-radius: 12px; border: 1px solid var(--primary-color); opacity: 0.9;"
+                 loading="lazy">
+
+            <h2><i class="fa-solid fa-code"></i> How This Intelligence Tool Works</h2>
+            <p><strong>Cyber Intelligence Elite</strong> represents the next generation of <strong>Client-Side Network Forensics</strong>. Unlike basic IP lookups that rely solely on server headers, this tool executes complex JavaScript algorithms locally within your browser's sandbox to reveal how visible your digital footprint really is.</p>
+            
+            <div style="clear: both;"></div>
+
+            <h3>1. Advanced Digital Fingerprinting (Tracking Simulation)</h3>
+            <p>Modern tracking goes beyond Cookies. We simulate "Cookieless Tracking" methods to show you how unique your device is:</p>
+            <ul>
+                <li><strong>Canvas Fingerprinting:</strong> We instruct your browser to render a hidden 2D/3D text and emoji graphic. Because every GPU renders slightly differently, this creates a unique "Image Hash".</li>
+                <li><strong>AudioContext Analysis:</strong> By generating a silent high-frequency oscillator signal, we measure how your specific audio hardware processes the sound wave.</li>
+            </ul>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+            <img src="../../assets/tools/sec/sec-ip-lookup/img/webrtc-vpn-security.webp" 
+                 alt="WebRTC Leak Protection" 
+                 style="float: right; width: 120px; height: auto; margin-left: 15px; margin-bottom: 10px; border-radius: 12px; border: 1px solid var(--alert-color); opacity: 0.9; box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);"
+                 loading="lazy">
+
+            <h3>2. WebRTC Leak & Network Vulnerability</h3>
+            <p>Your VPN might mask your public IP, but does it hide your Local IP? We use the <strong>WebRTC (Real-Time Communication)</strong> protocol to establish a peer-to-peer connection loop. This often bypasses VPN tunnels and reveals your true Local Network Address (LAN IP) via STUN servers, exposing a common privacy flaw known as a "WebRTC Leak."</p>
+
+            <div style="clear: both;"></div>
+
+            <h3>3. Geospatial Triangulation (IP vs. GPS)</h3>
+            <p>We employ a dual-layer location protocol:</p>
+            <ul>
+                <li><strong>Layer 1 (IP Node):</strong> Determines your approximate location based on your ISP's routing node (Exchange Server).</li>
+                <li><strong>Layer 2 (GPS/GNSS):</strong> When permitted, we access the High-Accuracy Geolocation API to communicate with GPS satellites and Wi-Fi triangulation points.</li>
+            </ul>
+
+            <h3>4. Hardware & System Telemetry</h3>
+            <p>Through the <code>Navigator</code> and <code>Performance</code> APIs, we extract raw hardware specifications that are often difficult to spoof. This includes calculating approximate RAM, detecting CPU cores, and identifying the GPU renderer.</p>
+        </div>
+
+        <div class="info-card">
+            <h2><i class="fa-solid fa-book-open"></i> User Guide & Forensics Manual</h2>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 15px;"><strong>1. Initialize Scan:</strong><br>The tool automatically scans your IP and Network headers upon loading.</li>
+                <li style="margin-bottom: 15px;"><strong>2. Unlock Audio Fingerprint:</strong><br>Modern browsers block audio analysis to prevent auto-tracking. <span style="color: var(--primary-color); font-weight: bold;">Click anywhere on the page</span> to authorize the analysis.</li>
+                <li style="margin-bottom: 15px;"><strong>3. Precision GPS Mode:</strong><br>For location accuracy up to 5 meters, click <strong style="color: #ffd700;">ACTIVATE GPS</strong> and allow permissions.</li>
+                <li style="margin-bottom: 15px;"><strong>4. VPN Audit:</strong><br>Check "Proxy/VPN". <strong style="color: var(--alert-color);">DETECTED</strong> means you are routed through a datacenter.</li>
+            </ul>
+        </div>
+        
+        <!-- [AD SYSTEM]: EXIT POINT (BOTTOM) -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+      <!-- 
+        =======================================================================
+        RELATED TOOLS GRID
+        =======================================================================
+        -->
+     <!-- START Related Tools Section -->
+<div class="container" style="margin-top: 50px;">
+    <!-- 
+       IMPORTANT: 
+       1. Set data-category to the category of the current page (e.g., "pdf", "media", "dev").
+       2. Set data-current-page to the filename of the current page (e.g., "pdf-compressor.html").
+    -->
+    <div id="dynamic-related-tools" 
+         data-category="sec" 
+         data-current-page="sec-ip-lookup.html">
+    </div>
+</div>
+
+<script type="module" src="../../assets/js/related-tools.js"></script>
+<!-- END Related Tools Section -->
+
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- EXTERNAL SCRIPTS -->
+  <script src="../../assets/library/maps-engine/leaflet/leaflet.js"></script>
+    <!-- AD MANAGER (Centralized Ad Handling) -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" style="position:fixed; bottom:0; left:0; width:100%; background:#0f172a; padding:15px; border-top:2px solid var(--primary-color); display:flex; justify-content:center; align-items:center; gap:20px; z-index:99999; box-shadow:0 -5px 20px rgba(0,0,0,0.5);">
+        <p style="margin:0; font-size:14px; color:#e2e8f0;">We use cookies to improve your experience and analyze traffic.</p>
+        <button onclick="document.getElementById('cookieBanner').style.display='none'" style="background:var(--primary-color); color:#000; border:none; padding:8px 24px; border-radius:6px; cursor:pointer; font-weight:bold;">Accept</button>
+    </div>
+
+    <script>
+    /**
+     * =========================================================================
+     * CYBER INTELLIGENCE ELITE ENGINE v2.1 (Production Build - Fixed)
+     * Security Level: Strict | Error Handling: Robust | Support: Universal
+     * =========================================================================
+     */
+    const ToolEngine = (function() {
+        
+        // --- PRIVATE STATE ---
+        let mapInstance = null;
+        let mapMarker = null;
+        let mapCircle = null;
+        let isGpsActive = false;
+        let audioAnalyzed = false;
+
+        // --- UTILITY: XSS SANITIZER & DOM HELPER ---
+        const Sanitizer = {
+            encode: (str) => {
+                if (!str) return '';
+                const div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            },
+            // Safe Text Insertion
+            text: (id, text) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.textContent = text;
+                    el.classList.remove('val-blur');
+                }
+            },
+            // Safe HTML Insertion (Strictly for trusted local content)
+            html: (id, html) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.innerHTML = html;
+                    el.classList.remove('val-blur');
+                }
+            }
+        };
+
+        // --- UTILITY: TOAST NOTIFICATIONS ---
+        const showToast = (msg, isError = false) => {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            if (!toast || !toastMsg) return;
+            
+            const icon = toast.querySelector('i');
+            
+            toastMsg.textContent = msg;
+            toast.style.borderLeftColor = isError ? '#ff0055' : '#00ff9d';
+            
+            if (icon) {
+                icon.className = isError ? 'fa-solid fa-circle-xmark toast-icon' : 'fa-solid fa-circle-check toast-icon';
+                icon.style.color = isError ? '#ff0055' : '#00ff9d';
+            }
+            
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        };
+
+        // --- MODULE 1: ROBUST IP INTELLIGENCE (With Triple Fallback) ---
+        const fetchIpInfo = async () => {
+            const primaryApi = 'https://ipwho.is/';
+            const fallbackApi = 'https://ipapi.co/json/';
+            const lastResortApi = 'https://api.ipify.org?format=json';
+
+            const updateUI = (data, source) => {
+                const ip = data.ip || data.ip_address || "Unknown IP";
+                const city = data.city || "Unknown";
+                const region = data.region || data.region_code || "";
+                const country = data.country || data.country_name || "Unknown";
+                const cc = (data.country_code || data.country || "US").toLowerCase();
+                const isp = data.connection ? data.connection.isp : (data.org || data.isp || "Unknown ISP");
+                const lat = parseFloat(data.latitude || data.lat || 0);
+                const lon = parseFloat(data.longitude || data.lon || 0);
+                const tz = data.timezone ? (data.timezone.id || data.timezone) : "UTC";
+
+                Sanitizer.text('ipDisplay', ip);
+                
+                if (source === 'last_resort') {
+                    Sanitizer.html('connStatus', `<i class="fa-solid fa-triangle-exclamation"></i> Limited Data: Privacy Block Active`);
+                    Sanitizer.text('valIsp', 'Hidden / Blocked');
+                    initMap(20.0, 0.0, "Location Hidden");
+                    return;
+                }
+
+                Sanitizer.html('connStatus', `<i class="fa-solid fa-link"></i> Uplink: ${Sanitizer.encode(isp)}`);
+                const flagHtml = `${Sanitizer.encode(country)} <img src="https://flagcdn.com/24x18/${Sanitizer.encode(cc)}.png" alt="flag" style="vertical-align:middle; border-radius:2px; margin-left:6px;">`;
+                Sanitizer.html('valCountry', flagHtml);
+                Sanitizer.text('valRegion', `${city}, ${region}`);
+                Sanitizer.text('valCoords', `${lat}, ${lon}`);
+                Sanitizer.text('valTimezone', tz);
+                Sanitizer.text('valLocalTime', new Date().toLocaleTimeString());
+                Sanitizer.text('valIsp', isp);
+
+                checkVpnSignature(isp);
+                initMap(lat, lon, "IP Node Location");
+            };
+
+            try {
+                const controller = new AbortController();
+                const id = setTimeout(() => controller.abort(), 4000);
+                const response = await fetch(primaryApi, { signal: controller.signal });
+                clearTimeout(id);
+                
+                if (!response.ok) throw new Error("Primary API Failed");
+                const data = await response.json();
+                if (data.success === false && !data.ip) throw new Error("Primary API Limit");
+                updateUI(data, 'primary');
+
+            } catch (err) {
+                console.warn("Primary failed, trying secondary...", err);
+                try {
+                    const response2 = await fetch(fallbackApi);
+                    if (!response2.ok) throw new Error("Secondary API Failed");
+                    const data2 = await response2.json();
+                    updateUI(data2, 'fallback');
+                } catch (err2) {
+                    console.warn("Secondary failed, trying last resort...", err2);
+                    try {
+                        const response3 = await fetch(lastResortApi);
+                        if (!response3.ok) throw new Error("All APIs Failed");
+                        const data3 = await response3.json();
+                        updateUI(data3, 'last_resort');
+                    } catch (fatalErr) {
+                        handleIpError();
+                    }
+                }
+            }
+        };
+
+        const handleIpError = () => {
+            Sanitizer.html('ipDisplay', '<span style="color:var(--alert-color)">CONN ERR</span>');
+            Sanitizer.text('connStatus', "AdBlock or Firewall Blocked Connection");
+            initMap(20.0, 0.0, "Location Unknown");
+        };
+
+        const checkVpnSignature = (ispName) => {
+            if (!ispName) return;
+            const indicators = ["VPN", "Hosting", "Cloud", "Data", "Amazon", "Google", "Microsoft", "DigitalOcean", "Linode", "Proxy", "Host", "Server", "M247", "Leaseweb", "Datacenter", "Choopa", "Vultr", "Hetzner", "OVH"];
+            const isSuspicious = indicators.some(w => ispName.toLowerCase().includes(w.toLowerCase()));
+            
+            const vpnEl = document.getElementById('valVpn');
+            if (vpnEl) {
+                if (isSuspicious) {
+                    vpnEl.textContent = "DETECTED / DATACENTER";
+                    vpnEl.className = "data-val val-warning";
+                } else {
+                    vpnEl.textContent = "Residential / Clean";
+                    vpnEl.className = "data-val val-highlight";
+                }
+            }
+        };
+
+        // --- MODULE 2: ELITE CANVAS FINGERPRINTING ---
+        const getCanvasFingerprint = () => {
+            setTimeout(() => {
+                try {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 300;
+                    canvas.height = 80;
+
+                    ctx.textBaseline = "top";
+                    ctx.font = "14px 'Arial'";
+                    ctx.textBaseline = "alphabetic";
+                    ctx.fillStyle = "#f60";
+                    ctx.fillRect(125, 1, 62, 20);
+                    
+                    ctx.fillStyle = "#069";
+                    ctx.font = "11pt no-real-font-123"; 
+                    ctx.fillText("Cwm fjordbank glyphs vext quiz, \ud83d\ude03 \ud83d\ude80", 2, 15);
+                    
+                    ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
+                    ctx.font = "18pt Arial";
+                    ctx.fillText("Trusted_Tools_FP_v2", 4, 45);
+
+                    ctx.globalCompositeOperation = "multiply";
+                    ctx.fillStyle = "rgb(255,0,255)";
+                    ctx.beginPath();
+                    ctx.arc(50, 50, 50, 0, Math.PI * 2, true);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    ctx.fillStyle = "rgb(0,255,255)";
+                    ctx.beginPath();
+                    ctx.arc(100, 50, 50, 0, Math.PI * 2, true);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    ctx.globalCompositeOperation = "source-over";
+                    ctx.fillStyle = "rgba(0,0,0,0)";
+                    ctx.beginPath();
+                    ctx.rect(20, 20, 100, 100); 
+                    ctx.rect(50, 50, 50, 50); 
+                    ctx.fill("evenodd");
+
+                    const b64 = canvas.toDataURL();
+                    let hash = 0;
+                    for (let i = 0; i < b64.length; i++) {
+                        const char = b64.charCodeAt(i);
+                        hash = ((hash << 5) - hash) + char;
+                        hash |= 0;
+                    }
+                    const hexHash = Math.abs(hash).toString(16).toUpperCase().padStart(8, '0');
+                    Sanitizer.text('valCanvasHash', `CNV-${hexHash}`);
+                    
+                } catch (e) {
+                    Sanitizer.text('valCanvasHash', "Blocked by Privacy Settings");
+                }
+            }, 500);
+        };
+
+        // --- MODULE 3: AUDIO FINGERPRINTING ---
+        const getAudioFingerprint = () => {
+            if (audioAnalyzed) return;
+            
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) {
+                    Sanitizer.text('valAudioHash', "Not Supported");
+                    return;
+                }
+
+                const context = new AudioContext();
+                const oscillator = context.createOscillator();
+                const analyzer = context.createAnalyser();
+                const gain = context.createGain();
+                const scriptProcessor = context.createScriptProcessor(4096, 1, 1);
+
+                gain.gain.value = 0;
+                oscillator.type = 'triangle';
+                oscillator.connect(analyzer);
+                analyzer.connect(scriptProcessor);
+                scriptProcessor.connect(context.destination);
+
+                scriptProcessor.onaudioprocess = function () {
+                    const array = new Float32Array(analyzer.frequencyBinCount);
+                    analyzer.getFloatFrequencyData(array);
+                    
+                    let hash = 0;
+                    for (let i = 0; i < array.length; i++) {
+                        hash += Math.abs(array[i]);
+                    }
+                    
+                    const result = `AUD-${Math.floor(hash).toString(16).toUpperCase().substring(0, 10)}`;
+                    Sanitizer.text('valAudioHash', result);
+                    
+                    oscillator.stop();
+                    scriptProcessor.disconnect();
+                    gain.disconnect();
+                    context.close();
+                    
+                    audioAnalyzed = true;
+                    
+                    const el = document.getElementById('valAudioHash');
+                    if (el) {
+                        el.style.color = "var(--success-color)";
+                        el.style.borderColor = "var(--success-color)";
+                    }
+                    
+                    const card = document.getElementById('fingerprintCard');
+                    if (card) card.classList.remove('pulse-req');
+                };
+                
+                oscillator.start(0);
+                
+            } catch (e) {
+                Sanitizer.text('valAudioHash', "Blocked / Interaction Required");
+            }
+        };
+
+        // --- MODULE 4: MODERN WEBRTC LEAK DETECTION ---
+        const checkWebRTC = async () => {
+            const el = document.getElementById('valLocalIp');
+            if (!el) return;
+            
+            try {
+                const pc = new RTCPeerConnection({
+                    iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+                });
+                
+                pc.createDataChannel('');
+                await pc.setLocalDescription(await pc.createOffer());
+
+                let ips = new Set();
+                let completed = false;
+                
+                const timeout = setTimeout(() => {
+                    if (!completed) {
+                        pc.close();
+                        if (ips.size === 0) {
+                            el.textContent = "Disabled / Secure";
+                            el.className = "data-val val-highlight";
+                        }
+                    }
+                }, 3000);
+
+                pc.onicecandidate = (ice) => {
+                    if (ice && ice.candidate && ice.candidate.candidate) {
+                        const cand = ice.candidate.candidate;
+                        const ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
+                        const match = ipRegex.exec(cand);
+                        
+                        if (match && match[1]) {
+                            if (/^(192\.168\.|10\.|172\.(1[6-9]|2\d|3[0-1]))/.test(match[1])) {
+                                ips.add(match[1]);
+                            }
+                        }
+                        
+                        if (cand.includes('.local')) {
+                            ips.add('mDNS (Obfuscated)');
+                        }
+                        
+                        if (ips.size > 0) {
+                            const found = Array.from(ips)[0];
+                            if (found.includes('mDNS')) {
+                                el.textContent = "Obfuscated (Secure)";
+                                el.className = "data-val val-highlight";
+                            } else {
+                                el.textContent = found + " (LEAK!)";
+                                el.className = "data-val val-warning";
+                            }
+                            completed = true;
+                            clearTimeout(timeout);
+                            pc.close();
+                        }
+                    }
+                };
+            } catch (e) {
+                el.textContent = "Blocked / Secure";
+                el.className = "data-val val-highlight";
+            }
+        };
+
+        // --- MODULE 5: HARDWARE FORENSICS ---
+        const getHardwareInfo = () => {
+            let os = "Unknown";
+            const ua = navigator.userAgent;
+            const platform = navigator.platform || "";
+            if (ua.includes("Win")) os = "Windows";
+            else if (ua.includes("Mac")) os = "MacOS";
+            else if (ua.includes("Linux")) os = "Linux";
+            if (/Android/.test(ua)) os = "Android";
+            if (/iPhone|iPad/.test(ua) || (navigator.maxTouchPoints > 1 && platform.includes("Mac"))) os = "iOS";
+            Sanitizer.text('valOs', os);
+
+            let engine = "Unknown";
+            if(ua.includes("Chrome") && !ua.includes("Edg")) engine = "Blink (Chrome)";
+            else if(ua.includes("Firefox")) engine = "Gecko (Firefox)";
+            else if(ua.includes("Safari") && !ua.includes("Chrome")) engine = "WebKit (Safari)";
+            else if(ua.includes("Edg")) engine = "Blink (Edge)";
+            Sanitizer.text('valBrowserEng', engine);
+
+            Sanitizer.text('valRes', `${window.screen.width}x${window.screen.height} (Px:${(window.devicePixelRatio||1).toFixed(1)})`);
+            Sanitizer.text('valCores', navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency} Cores` : "Hidden");
+            Sanitizer.text('valRam', navigator.deviceMemory ? `~${navigator.deviceMemory} GB` : "Hidden");
+
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (gl) {
+                    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                    if (debugInfo) {
+                        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        let clean = renderer.replace(/angle \(/i, '').replace(/\)/, ''); 
+                        const match = clean.match(/(NVIDIA|AMD|Intel|Adreno|Mali|Apple|Qualcomm)[\w\s\d]+/i);
+                        if (match) clean = match[0];
+                        Sanitizer.text('valGpu', clean.length > 28 ? clean.substring(0, 25) + "..." : clean);
+                    } else { Sanitizer.text('valGpu', "Masked"); }
+                } else { Sanitizer.text('valGpu', "No WebGL"); }
+            } catch (e) { Sanitizer.text('valGpu', "Blocked"); }
+
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(b => {
+                    const status = b.charging ? "⚡" : "🔋";
+                    Sanitizer.text('valBattery', `${Math.round(b.level * 100)}% ${status}`);
+                }).catch(() => Sanitizer.text('valBattery', "Restricted"));
+            } else { Sanitizer.text('valBattery', "Restricted"); }
+
+            Sanitizer.text('valDnt', (navigator.doNotTrack === "1" || navigator.doNotTrack === "yes") ? "Enabled" : "Disabled");
+            
+            if ('storage' in navigator && 'estimate' in navigator.storage) {
+                navigator.storage.estimate().then(({quota}) => {
+                    const el = document.getElementById('valIncognito');
+                    if (el) {
+                        if (quota < 120000000) { 
+                            el.textContent = "LIKELY"; el.className = "data-val val-warning";
+                        } else {
+                            el.textContent = "NO"; el.className = "data-val val-highlight";
+                        }
+                    }
+                }).catch(() => Sanitizer.text('valIncognito', "Masked"));
+            }
+        };
+
+        // --- MODULE 6: LATENCY (PING) ---
+        const checkLatency = () => {
+            const start = Date.now();
+            const img = new Image();
+            img.src = "https://www.google.com/favicon.ico?v=" + start; 
+            
+            const finish = () => {
+                const ms = Date.now() - start;
+                Sanitizer.text('valPing', `${ms} ms`);
+                if (navigator.connection && navigator.connection.downlink) {
+                    Sanitizer.text('valNetSpeed', `~${navigator.connection.downlink} Mbps`);
+                } else {
+                    Sanitizer.text('valNetSpeed', "N/A");
+                }
+            };
+            img.onload = finish;
+            img.onerror = finish;
+        };
+
+        // --- MODULE 7: MAP & GPS (Fixed Geolocation) ---
+        const initMap = (lat, lon, label) => {
+            if (typeof L === 'undefined') return;
+            const mapContainer = document.getElementById('map');
+            if (!mapContainer) return;
+
+            if (mapInstance) {
+                mapInstance.setView([lat, lon], 13);
+                if (mapMarker) mapMarker.setLatLng([lat, lon]).setPopupContent(label).openPopup();
+                if (mapCircle) mapCircle.setLatLng([lat, lon]);
+                return;
+            }
+
+            try {
+                mapInstance = L.map('map', { zoomControl: false, attributionControl: false }).setView([lat, lon], 13);
+                
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                    maxZoom: 19,
+                    subdomains: 'abcd'
+                }).addTo(mapInstance);
+                
+                const icon = L.divIcon({ 
+                    className: 'custom-pin', 
+                    html: '<div style="background:#00f3ff; width:14px; height:14px; border-radius:50%; box-shadow:0 0 15px #00f3ff; border: 2px solid #fff;"></div>',
+                    iconSize: [14, 14]
+                });
+
+                mapMarker = L.marker([lat, lon], {icon: icon}).addTo(mapInstance).bindPopup(label).openPopup();
+                mapCircle = L.circle([lat, lon], { color: '#00f3ff', fillColor: '#00f3ff', fillOpacity: 0.1, radius: 2000 }).addTo(mapInstance);
+                Sanitizer.text('mapStatus', "SATELLITE IDLE");
+            } catch (e) {
+                console.error("Map Init Error", e);
+                Sanitizer.text('mapStatus', "MAP UNAVAILABLE");
+            }
+        };
+
+        const activateGPS = () => {
+            if (isGpsActive) return;
+            
+            const btn = document.getElementById('gpsBtn');
+            if (!btn) return;
+            const originalText = btn.innerHTML;
+            
+            if (!navigator.geolocation) {
+                showToast("GPS Not Supported", true);
+                return;
+            }
+
+            isGpsActive = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> LOCATING...';
+            btn.classList.add('btn-disabled');
+
+            const geoOptions = { 
+                enableHighAccuracy: true, 
+                timeout: 15000, 
+                maximumAge: 0 
+            };
+
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    const { latitude, longitude, accuracy } = pos.coords;
+                    
+                    Sanitizer.text('valCoords', `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`);
+                    const coordsEl = document.getElementById('valCoords');
+                    if (coordsEl) coordsEl.classList.add('val-highlight');
+
+                    if (!mapInstance) {
+                        initMap(latitude, longitude, "GPS Position");
+                    } else {
+                        mapInstance.flyTo([latitude, longitude], 16);
+                        const accMsg = `<b>GPS SIGNAL</b><br>Accuracy: ${Math.round(accuracy)}m`;
+                        if (mapMarker) mapMarker.setLatLng([latitude, longitude]).setPopupContent(accMsg).openPopup();
+                        if (mapCircle) {
+                            mapCircle.setLatLng([latitude, longitude]);
+                            mapCircle.setRadius(accuracy);
+                            mapCircle.setStyle({color: '#ffd700', fillColor: '#ffd700'});
+                        }
+                    }
+
+                    const mapStat = document.getElementById('mapStatus');
+                    if (mapStat) {
+                        mapStat.textContent = "SATELLITE LOCKED";
+                        mapStat.style.color = "var(--gold-color)";
+                    }
+                    
+                    const locMethod = document.getElementById('locMethod');
+                    if (locMethod) {
+                        locMethod.textContent = "GPS HARDWARE";
+                        locMethod.style.color = "var(--gold-color)";
+                        locMethod.style.borderColor = "var(--gold-color)";
+                    }
+
+                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+                        .then(r => r.json())
+                        .then(d => {
+                            if (d.address) {
+                                const city = d.address.city || d.address.town || d.address.village || "Unknown";
+                                const state = d.address.state || "";
+                                Sanitizer.text('valRegion', `${city}, ${state} (GPS Verified)`);
+                                showToast("Precise Location Found!");
+                            }
+                        })
+                        .catch(() => showToast("GPS Locked (Reverse Lookup Failed)"));
+
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> ACTIVE';
+                    btn.style.borderColor = "var(--gold-color)";
+                    btn.style.color = "var(--gold-color)";
+                    isGpsActive = false;
+                    btn.classList.remove('btn-disabled');
+                },
+                (err) => {
+                    console.warn("GPS Error", err);
+                    let errMsg = "GPS Denied / Timeout";
+                    if (err.code === 1) errMsg = "Location Permission Denied";
+                    else if (err.code === 3) errMsg = "Location Timeout";
+                    
+                    showToast(errMsg, true);
+                    btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> FAILED';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('btn-disabled');
+                        isGpsActive = false;
+                    }, 2500);
+                },
+                geoOptions
+            );
+        };
+
+        // --- PUBLIC API ---
+        return {
+            init: () => {
+                fetchIpInfo();
+                getCanvasFingerprint();
+                getHardwareInfo();
+                checkWebRTC();
+                checkLatency();
+                
+                const fpCard = document.getElementById('fingerprintCard');
+                if(fpCard) fpCard.classList.add('pulse-req');
+                
+                const unlockAudio = () => {
+                    getAudioFingerprint();
+                    document.removeEventListener('click', unlockAudio);
+                    document.removeEventListener('touchstart', unlockAudio);
+                };
+                
+                document.addEventListener('click', unlockAudio);
+                document.addEventListener('touchstart', unlockAudio);
+            },
+            
+            activateGPS: activateGPS,
+            
+            copyIntel: () => {
+                const ip = document.getElementById('ipDisplay').textContent;
+                if (!ip || ip.length < 7 || ip.includes("Scanning")) { 
+                    showToast("Scanning in progress...", true); return; 
+                }
+                
+                const getVal = (id) => document.getElementById(id) ? document.getElementById(id).textContent : "N/A";
+                const txt = `[TRUSTED TOOLS AUDIT]
+IP: ${ip}
+ISP: ${getVal('valIsp')}
+LOC: ${getVal('valRegion')}
+Coords: ${getVal('valCoords')}
+WebRTC: ${getVal('valLocalIp')}
+Fingerprint: ${getVal('valCanvasHash')}`;
+                
+                navigator.clipboard.writeText(txt)
+                    .then(() => showToast("Copied to Clipboard"))
+                    .catch(() => showToast("Copy Failed", true));
+            },
+            
+            downloadReport: () => {
+                const get = (id) => document.getElementById(id) ? document.getElementById(id).textContent : "N/A";
+                const txt = `
+==============================================
+   TRUSTED TOOLS WEB - SECURITY REPORT
+==============================================
+Date: ${new Date().toLocaleString()}
+
+[NETWORK IDENTITY]
+IP Addr : ${get('ipDisplay')}
+ISP Org : ${get('valIsp')}
+Location: ${get('valRegion')}
+Coords  : ${get('valCoords')}
+Timezone: ${get('valTimezone')}
+
+[SYSTEM FORENSICS]
+OS      : ${get('valOs')}
+Browser : ${get('valBrowserEng')}
+Res     : ${get('valRes')}
+GPU     : ${get('valGpu')}
+RAM     : ${get('valRam')}
+Cores   : ${get('valCores')}
+Battery : ${get('valBattery')}
+
+[SECURITY AUDIT]
+WebRTC  : ${get('valLocalIp')}
+VPN     : ${get('valVpn')}
+Canvas  : ${get('valCanvasHash')}
+Audio   : ${get('valAudioHash')}
+Incognito: ${get('valIncognito')}
+
+==============================================
+   Generated by TrustedToolsWeb.com
+==============================================
+`;
+                try {
+                    const blob = new Blob([txt], { type: 'text/plain' });
+                    const a = document.createElement('a');
+                    const url = URL.createObjectURL(blob);
+                    a.href = url;
+                    a.download = `Security_Audit_${Date.now()}.txt`;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }, 0);
+                } catch(e) {
+                    showToast("Download Failed", true);
+                }
+            }
+        };
+
+    })();
+
+    // --- BOOTSTRAP ---
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('appLoader');
+        if (loader) {
+            setTimeout(() => {
+                loader.classList.add('loader-hidden');
+                ToolEngine.init();
+            }, 800);
+        } else {
+            ToolEngine.init();
+        }
+    });
+</script>
+    
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

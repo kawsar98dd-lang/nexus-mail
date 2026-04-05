@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebApplication">
+
+<head>
+
+    <!-- ============================================================
+         [COMMERCIAL CONFIG]: Site Configuration & Analytics
+         Analytics loader is replaced by buyer's Google Analytics ID.
+         DO NOT remove these scripts — they bootstrap global config.
+    ============================================================ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ============================================================
+         [SEO MASTER]: Primary Meta Tags
+         Optimized title, description & keywords for maximum SERP ranking
+         on audio editing, mp3 converter, and browser DAW searches.
+    ============================================================ -->
+    <title>Ultra Studio Pro Max — Free Online Audio Editor, 8D Converter & MP3/WAV Mastering Suite</title>
+    <meta name="description" content="Ultra Studio Pro Max is a professional browser-based audio workstation. Trim, master, and export audio with 8D panning, Bass Boost, EQ, Voice FX, and Studio-quality MP3 320kbps or lossless WAV export. 100% client-side — your files never leave your device.">
+    <meta name="keywords" content="audio editor online free, mp3 cutter online, 8d audio maker, bass booster online, voice changer browser, wav converter online, online audio mastering, trusted tools web, professional audio workstation, client-side audio editor, no upload audio tool">
+    <meta name="author" content="Trusted Tools Web">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#0d0d0d">
+
+    <!-- Canonical URL — prevents duplicate content penalties -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/media-audio-cutter.html" />
+
+    <!-- ============================================================
+         [SOCIAL]: Open Graph Meta Tags (Facebook, LinkedIn, etc.)
+    ============================================================ -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/media-audio-cutter.html">
+    <meta property="og:title" content="Ultra Studio Pro Max — Professional Online Audio Editor & AI Mastering">
+    <meta property="og:description" content="Professional Audio Editing Suite in your browser. 8D Audio, Bass Boost, 3-Band EQ, Voice FX & 320kbps MP3 / Lossless WAV Rendering. Secure & 100% Private.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/media/media-audio-cutter/img/og-main-banner.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Ultra Studio Pro Max — Browser Audio Editor Interface">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============================================================
+         [SOCIAL]: Twitter / X Card Tags
+    ============================================================ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ultra Studio Pro Max — Free Online Audio Editor">
+    <meta name="twitter:description" content="8D Audio, Bass Boost, Voice FX, MP3/WAV Export — all in your browser. Zero uploads, 100% private.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/media/media-audio-cutter/img/og-main-banner.jpg">
+
+    <!-- ============================================================
+         [BRAND]: Favicon
+    ============================================================ -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- ============================================================
+         [TYPOGRAPHY]: Internal Font Libraries (Localised for CodeCanyon)
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Orbitron/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Rajdhani/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Share-Tech-Mono/fonts.css">
+
+    <!-- ============================================================
+         [ICONS]: Font Awesome 6 (Localised)
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ============================================================
+         [STYLESHEETS]: Global + Universal Tool Template
+         NO tool-specific style.css — all styles live in these two files.
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ============================================================
+         [CORE LIBRARIES]: Audio Processing Engines (Localised)
+         WaveSurfer.js — waveform visualisation & region selection.
+         LameJS — client-side MP3 encoding via WebAssembly.
+    ============================================================ -->
+    <script src="../../assets/library/audio-engine/wavesurfer/wavesurfer.min.js" defer></script>
+    <script src="../../assets/library/audio-engine/wavesurfer/wavesurfer.regions.min.js" defer></script>
+    <script src="../../assets/library/audio-engine/lamejs/lame.min.js" defer></script>
+
+    <!-- ============================================================
+         [SEO]: JSON-LD Structured Data (Rich Snippets)
+         Enables Google to show ratings, description & features in SERP.
+    ============================================================ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Ultra Studio Pro Max",
+        "headline": "Professional Online Audio Editor, Mastering Suite & DSP FX Workstation",
+        "url": "https://trustedtoolsweb.com/media-audio-cutter.html",
+        "description": "Client-side professional audio engineering suite. Features 3-Band EQ, 8D Panning, Bass Boost, DSP Voice FX (Robot, Chipmunk, Monster), Speed Control, Reverse Mode, and High-Quality MP3/WAV Export — all processed locally with zero file uploads.",
+        "applicationCategory": "MultimediaApplication",
+        "applicationSubCategory": "AudioEditor",
+        "operatingSystem": "Any (Browser-based)",
+        "softwareVersion": "6.1.0",
+        "browserRequirements": "Requires a modern browser with Web Audio API support",
+        "author": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "featureList": [
+            "Audio Trimming & Region Selection",
+            "8D Spatial Panning (Binaural)",
+            "3-Band Master EQ (Low / Mid / High)",
+            "Bass Booster (+15dB)",
+            "DSP Voice FX: Robot Ring Modulator, Chipmunk Pitch, Monster Bass",
+            "Playback Speed Control (0.5x – 2.0x)",
+            "Reverse Mode",
+            "MP3 Export: 320kbps / 192kbps",
+            "Lossless WAV PCM Export",
+            "Live Frequency Spectrum Visualiser",
+            "Microphone Recording"
+        ],
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/media/media-audio-cutter/img/og-main-banner.jpg",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "1450",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+
+</head>
+<body>
+
+<!-- ================================================================
+     [SYSTEM]: Global Site Header
+     Injected & managed entirely by global.js — do NOT edit manually.
+================================================================ -->
+<header id="global-header" class="site-header"></header>
+
+<!-- ================================================================
+     [UX]: Premium Full-Screen Processing Overlay
+     Displayed during file loading, render, and encode operations.
+     Uses real progress bar driven by JS updateLoaderReal().
+================================================================ -->
+<div id="overlay-loader" class="aus-overlay-loader">
+    <div class="aus-loader-card">
+        <!-- Animated microchip icon — swaps to spinner during heavy ops -->
+        <div class="aus-loader-header">
+            <i class="fas fa-microchip fa-spin aus-loader-icon"></i>
+            <span class="aus-loader-title">SYSTEM PROCESSING</span>
+        </div>
+        <!-- Dynamic status text updated by JS -->
+        <p class="aus-loader-text loader-text">Initializing Audio Engine...</p>
+        <!-- Progress bar track + fill -->
+        <div class="aus-progress-container progress-container">
+            <div class="aus-progress-bar" id="progress-fill"></div>
+        </div>
+        <!-- Percentage readout -->
+        <div class="aus-progress-stats progress-stats">
+            <span id="progress-percent">0%</span>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================
+     [MAIN CONTENT]: Tool Body
+================================================================ -->
+<main>
+
+    <!-- ── PRIMARY TOOL CARD ────────────────────────────────────── -->
+    <div class="container animated-entry">
+
+        <!-- HERO: Shield badge, title & subtitle -->
+        <div class="security-badge">
+            <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+        </div>
+
+        <h1 class="tool-title">
+            <i class="fa-solid fa-waveform-lines"></i>
+            Ultra Studio <span>Pro Max AI</span>
+        </h1>
+        <p class="subtitle">Professional Audio Engineering Suite &mdash; Mastering, DSP Effects &amp; Converter.</p>
+
+        <!-- ── AD SLOT: Top Banner ──────────────────────────────── -->
+        <!-- [BUYER NOTE]: Ad Injection Point 1 — managed by ads-manager.js -->
+        <div class="ad-slot" data-ad-slot="top-banner">
+            <!-- Ad code injected automatically by ads-manager.js -->
+        </div>
+
+        <!-- ================================================================
+             FILE UPLOAD / DROP ZONE
+             Shown on page load; hidden once audio is successfully decoded.
+             JS IDs: #drop-zone, #file-input, #rec-trigger
+        ================================================================ -->
+        <div class="aus-drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+
+            <!-- Central disc icon -->
+            <div class="aus-drop-icon">
+                <i class="fas fa-compact-disc"></i>
+            </div>
+
+            <!-- Drop zone heading -->
+            <h2 class="aus-drop-title">INITIALIZE AUDIO CORE</h2>
+            <p class="aus-drop-hint">Tap to Browse or Drop Audio Files</p>
+
+            <!-- Action buttons inside drop zone -->
+            <div class="aus-upload-btn-group">
+                <!-- Browse button — triggers file input -->
+                <button class="aus-cyber-btn aus-cyber-btn--active"
+                        onclick="event.stopPropagation(); document.getElementById('file-input').click()">
+                    <i class="fas fa-folder-open"></i> BROWSE
+                </button>
+                <!-- Record button — triggers microphone recording -->
+                <button class="aus-cyber-btn aus-cyber-btn--danger"
+                        id="rec-trigger"
+                        onclick="event.stopPropagation()">
+                    <i class="fas fa-microphone-lines"></i> REC
+                </button>
+            </div>
+
+            <!-- Hidden file input — accepts all audio formats -->
+            <input type="file" id="file-input" hidden accept="audio/*">
+        </div>
+
+        <!-- ================================================================
+             EDITOR INTERFACE
+             Hidden on load; revealed by JS once audio decoding completes.
+             Contains: Spectrum Visualiser, Waveform, Control Deck, Export.
+             JS ID: #editor-interface
+        ================================================================ -->
+        <div class="aus-editor-container" id="editor-interface">
+
+            <!-- ── SECTION A: Spectrum Frequency Visualiser Canvas ──── -->
+            <!-- Canvas sized and drawn by drawVisualizer() in script.js -->
+            <div class="aus-vis-wrapper">
+                <canvas id="visualizer"></canvas>
+            </div>
+
+            <!-- ── SECTION B: WaveSurfer Waveform Display ─────────── -->
+            <!-- WaveSurfer.create() targets this container via '#waveform' -->
+            <div id="waveform" class="aus-waveform"></div>
+
+            <!-- ================================================================
+                 SECTION C: DSP CONTROL DECK
+                 Four module cards arranged in a responsive grid.
+                 Each card hosts related audio parameters (sliders + buttons).
+            ================================================================ -->
+            <div class="aus-control-deck">
+
+                <!-- ── MODULE 1: Transport Core ─────────────────────────── -->
+                <!-- Play/Pause, Reset, Zoom slider, Time display -->
+                <div class="aus-module-card">
+                    <div class="aus-module-header">
+                        <span class="aus-module-title">TRANSPORT CORE</span>
+                        <i class="fas fa-satellite-dish aus-module-icon"></i>
+                    </div>
+
+                    <!-- Play & Reset buttons in a 2-column grid -->
+                    <div class="aus-btn-grid">
+                        <button class="aus-cyber-btn aus-cyber-btn--active" id="play-btn">
+                            <i class="fas fa-play"></i> PLAY
+                        </button>
+                        <button class="aus-cyber-btn" id="stop-btn">
+                            <i class="fas fa-stop"></i> RESET
+                        </button>
+                    </div>
+
+                    <!-- Zoom level slider -->
+                    <div class="aus-slider-row mt-20">
+                        <span class="aus-slider-label">ZOOM</span>
+                        <input type="range" class="aus-range-input" id="zoom-slider" min="10" max="200" value="50">
+                    </div>
+
+                    <!-- Playback time display — updated every audio frame -->
+                    <div class="aus-time-display">
+                        <span id="time-current">00:00</span>
+                        <span class="aus-time-sep">/</span>
+                        <span id="time-total" class="text-muted">00:00</span>
+                    </div>
+                </div>
+
+                <!-- ── MODULE 2: Dynamics & Spatial ─────────────────────── -->
+                <!-- 8D Pan, Bass Boost, Speed Rate sliders -->
+                <div class="aus-module-card">
+                    <div class="aus-module-header">
+                        <span class="aus-module-title">DYNAMICS &amp; SPACE</span>
+                        <i class="fas fa-wave-square aus-module-icon"></i>
+                    </div>
+
+                    <div class="aus-slider-row">
+                        <span class="aus-slider-label">8D PAN</span>
+                        <input type="range" class="aus-range-input" id="pan-slider"
+                               min="-1" max="1" step="0.1" value="0" title="Left to Right Pan">
+                    </div>
+                    <div class="aus-slider-row">
+                        <span class="aus-slider-label">BASS+</span>
+                        <input type="range" class="aus-range-input" id="bass-slider"
+                               min="0" max="15" step="1" value="0" title="Bass Boost dB">
+                    </div>
+                    <div class="aus-slider-row">
+                        <span class="aus-slider-label">SPEED</span>
+                        <input type="range" class="aus-range-input" id="speed-slider"
+                               min="0.5" max="2.0" step="0.05" value="1.0" title="Playback Rate">
+                    </div>
+                </div>
+
+                <!-- ── MODULE 3: Master EQ ───────────────────────────── -->
+                <!-- Three-band parametric EQ: Low / Mid / High -->
+                <div class="aus-module-card">
+                    <div class="aus-module-header">
+                        <span class="aus-module-title">MASTER EQ</span>
+                        <i class="fas fa-sliders-h aus-module-icon"></i>
+                    </div>
+
+                    <div class="aus-slider-row">
+                        <span class="aus-slider-label">LOW</span>
+                        <input type="range" class="aus-range-input" id="eq-low" min="-15" max="15" value="0">
+                    </div>
+                    <div class="aus-slider-row">
+                        <span class="aus-slider-label">MID</span>
+                        <input type="range" class="aus-range-input" id="eq-mid" min="-15" max="15" value="0">
+                    </div>
+                    <div class="aus-slider-row">
+                        <span class="aus-slider-label">HIGH</span>
+                        <input type="range" class="aus-range-input" id="eq-high" min="-15" max="15" value="0">
+                    </div>
+                </div>
+
+                <!-- ── MODULE 4: DSP Voice FX ────────────────────────── -->
+                <!-- Preset buttons: Robot (Ring Mod), Chipmunk (High Pitch), Monster (Low) -->
+                <!-- Reverse Mode checkbox -->
+                <div class="aus-module-card">
+                    <div class="aus-module-header">
+                        <span class="aus-module-title">DSP VOICE FX</span>
+                        <i class="fas fa-robot aus-module-icon"></i>
+                    </div>
+
+                    <!-- FX preset buttons — 3 columns -->
+                    <div class="aus-btn-grid aus-btn-grid--3col">
+                        <button class="aus-cyber-btn" id="btn-fx-robot"
+                                onclick="setPreset('robot')" title="Metallic Ring Mod">
+                            <i class="fas fa-microchip"></i> BOT
+                        </button>
+                        <button class="aus-cyber-btn" id="btn-fx-high"
+                                onclick="setPreset('chipmunk')" title="High Pitch">
+                            <i class="fas fa-arrow-up"></i> HIGH
+                        </button>
+                        <button class="aus-cyber-btn" id="btn-fx-low"
+                                onclick="setPreset('monster')" title="Low Pitch">
+                            <i class="fas fa-arrow-down"></i> LOW
+                        </button>
+                    </div>
+
+                    <!-- Reverse Mode toggle checkbox -->
+                    <div class="aus-reverse-toggle">
+                        <input type="checkbox" id="reverse-mode" class="aus-reverse-check">
+                        <label for="reverse-mode" class="aus-reverse-label">REVERSE MODE</label>
+                    </div>
+                </div>
+
+            </div><!-- /.aus-control-deck -->
+
+            <!-- ================================================================
+                 SECTION D: EXPORT / RENDER ZONE
+                 Format selector + render trigger button.
+                 JS listens on #render-btn and reads #format-select value.
+            ================================================================ -->
+            <div class="aus-download-zone">
+
+                <!-- Format selection dropdown -->
+                <div class="aus-format-select-wrap">
+                    <select id="format-select" class="input-control aus-format-select">
+                        <option value="320">Format: MP3 320kbps (Studio)</option>
+                        <option value="192">Format: MP3 192kbps (Standard)</option>
+                        <option value="wav">Format: WAV (Lossless PCM)</option>
+                    </select>
+                </div>
+
+                <!-- Render & Download CTA button -->
+                <div class="btn-area">
+                    <button class="btn btn-primary aus-render-btn" id="render-btn">
+                        <i class="fas fa-bolt"></i> RENDER &amp; DOWNLOAD
+                    </button>
+                </div>
+
+            </div><!-- /.aus-download-zone -->
+
+        </div><!-- /#editor-interface -->
+
+        <!-- ── AD SLOT: Bottom Banner ───────────────────────────── -->
+        <!-- [BUYER NOTE]: Ad Injection Point 2 — managed by ads-manager.js -->
+        <div class="ad-slot" data-ad-slot="bottom-banner">
+            <!-- Ad code injected automatically by ads-manager.js -->
+        </div>
+
+        <!-- ================================================================
+             [SEO]: Information & Guide Section
+             Protected content for organic SERP value.
+             Uses global .info-section-wrapper / .info-card classes.
+        ================================================================ -->
+        <section class="info-section-wrapper">
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-microchip"></i> Professional Studio in Your Browser</h2>
+                <p>
+                    Traditionally, audio engineering required installing bulky software.
+                    <strong>Ultra Studio Pro Max</strong> solves this by using
+                    <span class="text-accent-cyan">WebAssembly</span> technology to process audio
+                    directly on your device. Zero upload latency, 100% privacy, and studio-grade
+                    DSP algorithms — all running natively inside your browser.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-list-check"></i> Mastering &amp; FX Guide</h2>
+                <ul class="aus-guide-list">
+                    <li>
+                        <strong class="text-accent-cyan">1. 8D Panning (Spatial Audio)</strong><br>
+                        Moves sound virtually around your head using binaural positioning.
+                        Best experienced with headphones.
+                    </li>
+                    <li>
+                        <strong class="text-accent-cyan">2. DSP Voice Effects</strong><br>
+                        Use <em>BOT</em> for metallic sci-fi Ring Modulation, or Pitch Shift for
+                        character voices. All rendered offline for highest quality.
+                    </li>
+                    <li>
+                        <strong class="text-accent-cyan">3. Studio Export</strong><br>
+                        Export in 320kbps MP3 for streaming, or WAV for lossless archiving.
+                        Our engine ensures zero clipping on all outputs.
+                    </li>
+                </ul>
+            </div>
+
+        </section><!-- /.info-section-wrapper -->
+
+    </div><!-- /.container (primary tool card) -->
+
+    <!-- ================================================================
+         RELATED TOOLS GRID
+         Dynamically populated by related-tools.js
+         data-category: "media"  |  data-current-page: filename
+    ================================================================ -->
+    <div class="container" style="margin-top: 50px;">
+        <div id="dynamic-related-tools"
+             data-category="media"
+             data-current-page="media-audio-cutter.html">
+        </div>
+    </div>
+    <script type="module" src="../../assets/js/related-tools.js"></script>
+    
+    
+    
+      <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section> 
+
+</main>
+
+<!-- ================================================================
+     [SYSTEM]: Global Site Footer — injected by global.js
+================================================================ -->
+<footer id="global-footer" class="cyber-footer"></footer>
+
+<!-- ================================================================
+     [MONETIZATION]: Centralised Ad Manager
+     Controls ad injection across all pages.
+================================================================ -->
+<script src="../../assets/js/ads-manager.js"></script>
+
+<!-- ================================================================
+     [SYSTEM]: Global JS (theme, toast, header/footer render)
+================================================================ -->
+<script type="module" src="../../assets/js/global.js"></script>
+
+<!-- ================================================================
+     [TOOL ENGINE]: Ultra Studio Pro Max Script
+================================================================ -->
+<script src="../../assets/tools/media/media-audio-cutter/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

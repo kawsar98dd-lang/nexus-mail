@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 
+        =======================================================================
+        [BUYER CONFIGURATION] - SETTINGS & CUSTOMIZATION
+        =======================================================================
+        1. ANALYTICS: Replace 'assets/js/analytics-loader.js' with your ID.
+        2. ADS: Configure ad units in 'assets/js/ads-manager.js'.
+        3. MAPS: N/A for this tool.
+        4. THEME: Primary colors can be changed in the :root CSS variables.
+        =======================================================================
+    -->
+
+    <!-- ANALYTICS LOADER -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#020617">
+
+    <title>Code Snap Studio — Pro Code to Image Converter | Trusted Tools</title>
+    <meta name="title" content="Code Snap Studio — Pro Code to Image Converter | Trusted Tools">
+    <meta name="description" content="Transform your source code into stunning, professional screenshots with 3D Isometric Tilt, macOS/Windows frames, premium gradient backgrounds, and 1-click Prettier beautify. 100% client-side processing — zero uploads, total privacy.">
+    <meta name="keywords" content="code to image, code screenshot tool, carbon alternative, beautiful code snippets, code to png, developer tools, syntax highlighting, 3D code snap, isometric code image, source code visualizer, code snippet generator, code beautifier">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <!-- OPEN GRAPH (Facebook/LinkedIn) META TAGS -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/tools/dev/dev-code-snap.html">
+    <meta property="og:title" content="Code Snap Studio — Beautiful Code Snippet Generator">
+    <meta property="og:description" content="Generate high-resolution, shareable code images with customizable frames, gradient backgrounds, and 3D isometric effects. Free developer tool.">
+    <meta property="og:image" content="../../assets/tools/dev/dev-code-snap/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- TWITTER CARD META TAGS -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://trustedtoolsweb.com/tools/dev/dev-code-snap.html">
+    <meta property="twitter:title" content="Code Snap Studio — Pro Developer Tool">
+    <meta property="twitter:description" content="The most advanced browser-based tool to capture and beautify source code snippets. 3D tilt, custom frames, QR branding, Ultra-HD export.">
+    <meta property="twitter:image" content="../../assets/tools/dev/dev-code-snap/img/og-banner.webp">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/tools/dev/dev-code-snap.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- EXTERNAL LIBRARIES -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/library/parsers-text/highlightjs/highlight-dark.min.css">
+
+    <!-- GLOBAL STYLESHEETS -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Code Snap Studio",
+            "url": "https://trustedtoolsweb.com/tools/dev/dev-code-snap.html",
+            "description": "Professional tool for converting source code into beautiful visuals with custom frames, 3D tilt effects, and premium backgrounds. 100% client-side processing.",
+            "applicationCategory": "DeveloperApplication",
+            "genre": "Developer Tools",
+            "browserRequirements": "Requires JavaScript",
+            "softwareVersion": "2.0.0",
+            "operatingSystem": "Any",
+            "featureList": "Syntax Highlighting, 3D Isometric Tilt, macOS/Windows Frames, Ultra-HD Export, QR Branding, Prettier Code Beautify",
+            "author": {
+                "@type": "Person",
+                "name": "MD KAWSAR"
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Non-Blocking Top Progress Bar -->
+    <div id="topProgressBar" class="css-progress-bar"></div>
+
+  
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+        <!-- AD SLOT: TOP BANNER -->
+        <div class="ad-slot" data-ad-slot="top-banner">
+            <span class="css-ad-label">Advertisement Space</span>
+        </div>
+
+        <!-- HERO TITLE AREA -->
+        <div class="container animated-entry" style="margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: none;">
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i> 100% Client-Side Processing
+            </div>
+            <h1 class="tool-title">Code <span>Snap Studio</span></h1>
+            <p class="subtitle">The ultimate tool for developers to create professional, high-fidelity code screenshots for portfolios, social media, and documentation.</p>
+        </div>
+
+        <!-- MAIN WORKSPACE -->
+        <div class="container animated-entry css-workspace-container">
+
+            <div class="css-workspace">
+
+                <!-- ── CONTROLS SIDEBAR ── -->
+                <aside class="css-controls" id="controlsPanel">
+
+                    <div class="css-control-group">
+                        <label class="css-control-label">
+                            <i class="fa-solid fa-palette"></i> Canvas Background
+                        </label>
+                        <div class="css-grid-buttons">
+                            <div class="css-btn-opt active" onclick="CodeSnapEngine.updateBg('css-bg-mesh-1', this)">Cyan Wave</div>
+                            <div class="css-btn-opt" onclick="CodeSnapEngine.updateBg('css-bg-mesh-2', this)">Amethyst</div>
+                            <div class="css-btn-opt" onclick="CodeSnapEngine.updateBg('css-bg-mesh-3', this)">Sunset</div>
+                            <div class="css-btn-opt" onclick="CodeSnapEngine.updateBg('css-bg-mesh-4', this)">Midnight</div>
+                            <div class="css-btn-opt" onclick="CodeSnapEngine.updateBg('css-bg-mesh-5', this)">Ice Blue</div>
+                            <div class="css-btn-opt" onclick="CodeSnapEngine.updateBg('css-bg-mesh-6', this)">Rose Pink</div>
+                        </div>
+                    </div>
+
+                    <div class="css-control-group">
+                        <label class="css-control-label">
+                            <i class="fa-solid fa-window-maximize"></i> Window Frame
+                        </label>
+                        <div class="css-grid-buttons">
+                            <div class="css-btn-opt active" onclick="CodeSnapEngine.updateFrame('mac', this)">macOS Pro</div>
+                            <div class="css-btn-opt" onclick="CodeSnapEngine.updateFrame('win', this)">Windows 11</div>
+                            <div class="css-btn-opt" onclick="CodeSnapEngine.updateFrame('none', this)">Glass Only</div>
+                            <div class="css-btn-opt" id="tiltBtn" onclick="CodeSnapEngine.toggleTilt()">3D Perspective</div>
+                        </div>
+                    </div>
+
+                    <div class="css-control-group">
+                        <label class="css-control-label">
+                            <i class="fa-solid fa-sliders"></i> Adjustments
+                        </label>
+                        <div class="css-slider-wrap">
+                            <div class="css-slider-header">
+                                <span>Canvas Padding</span>
+                                <span id="paddingVal">60px</span>
+                            </div>
+                            <input type="range" class="range-slider" min="20" max="150" value="60" oninput="CodeSnapEngine.updatePadding(this.value)">
+                        </div>
+                        <div class="css-slider-wrap css-slider-mt">
+                            <div class="css-slider-header">
+                                <span>Font Size</span>
+                                <span id="fontVal">15px</span>
+                            </div>
+                            <input type="range" class="range-slider" min="12" max="24" value="15" oninput="CodeSnapEngine.updateFont(this.value)">
+                        </div>
+                    </div>
+
+                    <div class="css-control-group">
+                        <label class="css-control-label">
+                            <i class="fa-solid fa-qrcode"></i> Personal Branding
+                        </label>
+                        <input type="text" class="input-control" id="qrInput" placeholder="URL for QR Signature..." oninput="CodeSnapEngine.updateQR(this.value)">
+                    </div>
+
+                    <div class="css-control-group css-control-group-last">
+                        <button class="btn btn-secondary css-btn-full" onclick="CodeSnapEngine.beautify()">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Auto Beautify Code
+                        </button>
+                    </div>
+
+                </aside>
+
+                <!-- ── PREVIEW & EDITOR ── -->
+                <section class="css-preview-container">
+
+                    <!-- Source Code Editor -->
+                    <div class="css-editor-box">
+                        <div class="css-editor-header">
+                            <span><i class="fa-solid fa-code"></i> SOURCE EDITOR</span>
+                            <span id="langDisplay">AUTO-DETECT</span>
+                        </div>
+                        <textarea id="codeInput" class="css-code-input" spellcheck="false" placeholder="Paste your code here..." oninput="CodeSnapEngine.syncCode()">/**
+ * @name CodeSnapStudio
+ * @desc Transform code into art
+ */
+async function generateSnap(code) {
+    const config = {
+        quality: "Ultra-HD",
+        render: "3D Isometric",
+        ready: true
+    };
+    
+    return await renderVisuals(config);
+}</textarea>
+                    </div>
+
+                    <!-- Canvas Capture Area -->
+                    <div class="css-canvas-wrapper css-bg-mesh-1" id="captureArea">
+                        <div class="css-snap-frame" id="snapFrame">
+                            <div class="css-frame-header" id="frameHeader">
+                                <div class="css-dot css-dot-r"></div>
+                                <div class="css-dot css-dot-y"></div>
+                                <div class="css-dot css-dot-g"></div>
+                            </div>
+                            <pre><code class="css-code-display" id="codeOutput"></code></pre>
+                            <div id="qrContainer" class="css-qr-signature" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons Bar -->
+                    <div class="css-action-bar">
+                        <div class="btn-area">
+                            <button class="btn btn-primary bg-btn-export" onclick="CodeSnapEngine.exportPNG()">
+                                <i class="fa-solid fa-cloud-arrow-down"></i> Export Ultra PNG
+                            </button>
+                            <button class="btn btn-secondary" onclick="CodeSnapEngine.copyToClipboard()">
+                                <i class="fa-solid fa-copy"></i> Copy to Clipboard
+                            </button>
+                            <button class="btn btn-secondary" onclick="CodeSnapEngine.shareState()">
+                                <i class="fa-solid fa-share-nodes"></i> Share Config
+                            </button>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+
+        <!-- SEO & INFORMATION SECTION -->
+        <div class="info-section-wrapper">
+            <div class="info-card">
+                <img
+                    src="../../assets/tools/dev/dev-code-snap/img/demo-preview.webp"
+                    alt="Code Snap Studio — Professional code screenshot generator preview"
+                    class="css-info-preview-img"
+                >
+
+                <h2 class="text-accent-cyan">Professional Snippet Generation</h2>
+                <p><strong>Code Snap Studio</strong> is a high-performance, client-side developer tool engineered for creators, educators, and software engineers. We provide a premium environment to transform raw source code into visually arresting assets ready for high-impact communication.</p>
+
+                <h3>Why Use Code Snap Studio?</h3>
+                <p>In a world of information overload, visual clarity is key. Whether you are presenting a technical concept on LinkedIn, documenting a library on GitHub, or showcasing your portfolio, the presentation of your code reflects your professionalism.</p>
+
+                <ul class="css-feature-list">
+                    <li>
+                        <i class="fa-solid fa-check-double text-success"></i>
+                        <div><strong>Intelligent Highlighting:</strong> Supports 180+ languages with advanced auto-detection for perfect syntax visuals.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check-double text-success"></i>
+                        <div><strong>Isometric Projection:</strong> Unique 3D tilt effects for a modern architectural look that stands out on feeds.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check-double text-success"></i>
+                        <div><strong>Retina Ready:</strong> High-resolution exports (4x scale) for crystal clear text on any high-dpi display.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check-double text-success"></i>
+                        <div><strong>Zero Data Latency:</strong> All processing is handled 100% locally in your browser for total privacy.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check-double text-success"></i>
+                        <div><strong>Interactive QR:</strong> Embed dynamic links or GitHub repo URLs directly into your screenshots automatically.</div>
+                    </li>
+                </ul>
+
+                <h3>Workflow Integration</h3>
+                <p>Our tool integrates Prettier.js for one-click code formatting, ensuring your snippets follow industry standard style guides before you snap them. The state-sharing feature allows you to encode your entire configuration (code, colors, tilt) into a single URL, perfect for team collaboration or revisiting your designs later.</p>
+            </div>
+        </div>
+
+        <!-- AD SLOT: BOTTOM BANNER -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- RELATED TOOLS GRID -->
+        <div class="container" style="margin-top: 50px;">
+            <!--
+                IMPORTANT:
+                1. Set data-category to the category of the current page (e.g., "pdf", "media", "dev").
+                2. Set data-current-page to the filename of the current page (e.g., "pdf-compressor.html").
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="dev"
+                 data-current-page="dev-code-snap.html">
+            </div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- EXTERNAL LIBRARIES -->
+    <script src="../../assets/library/parsers-text/highlightjs/highlight.min.js"></script>
+    <script src="../../assets/library/canvas-engine/html2canvas.min.js"></script>
+    <script src="../../assets/library/qr-engine/qrcodejs/qrcode.min.js"></script>
+       <script src="../../assets/library/parsers-text/prettier/standalone.js"></script>
+    <script src="../../assets/library/parsers-text/prettier/parser-babel.js"></script>
+
+    <!-- CORE SCRIPTS -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <script>
+        /**
+         * =========================================================================
+         * CODE SNAP STUDIO ENGINE (Pro Version 2.1)
+         * =========================================================================
+         */
+        const CodeSnapEngine = (function() {
+            const state = {
+                bg: 'css-bg-mesh-1',
+                frame: 'mac',
+                tilt: false,
+                padding: 60,
+                fontSize: 15,
+                qrText: '',
+                isProcessing: false
+            };
+
+            const dom = {
+                input:       document.getElementById('codeInput'),
+                output:      document.getElementById('codeOutput'),
+                frame:       document.getElementById('snapFrame'),
+                wrapper:     document.getElementById('captureArea'),
+                header:      document.getElementById('frameHeader'),
+                qr:          document.getElementById('qrContainer'),
+                tiltBtn:     document.getElementById('tiltBtn'),
+                padLabel:    document.getElementById('paddingVal'),
+                fontLabel:   document.getElementById('fontVal'),
+                langDisplay: document.getElementById('langDisplay'),
+                progressBar: document.getElementById('topProgressBar')
+            };
+
+            // Progress Bar Logic
+            const setProgress = (percent) => {
+                dom.progressBar.style.width = percent + '%';
+                if (percent >= 100) {
+                    setTimeout(() => { dom.progressBar.style.width = '0%'; }, 500);
+                }
+            };
+
+ 
+            // Debounced Sync for Performance
+            let syncTimer;
+            const syncCode = () => {
+                clearTimeout(syncTimer);
+                syncTimer = setTimeout(() => {
+                    const code = dom.input.value;
+                    dom.output.textContent = code;
+                    const result = hljs.highlightAuto(code);
+                    dom.output.innerHTML = result.value;
+                    dom.langDisplay.textContent = result.language ? result.language.toUpperCase() : 'TEXT';
+                }, 100);
+            };
+
+            const updateBg = (className, btn) => {
+                state.bg = className;
+                dom.wrapper.className = 'css-canvas-wrapper ' + className;
+                btn.closest('.css-grid-buttons').querySelectorAll('.css-btn-opt').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            };
+
+            const updateFrame = (type, btn) => {
+                state.frame = type;
+                dom.header.style.display = type === 'none' ? 'none' : 'flex';
+
+                if (type === 'mac') {
+                    dom.header.innerHTML = '<div class="css-dot css-dot-r"></div><div class="css-dot css-dot-y"></div><div class="css-dot css-dot-g"></div>';
+                    dom.frame.style.background = '#1e1e1e';
+                    dom.frame.style.backdropFilter = 'none';
+                } else if (type === 'win') {
+                    dom.header.innerHTML = '<div style="font-size:10px; opacity:0.6; font-weight:800; text-transform:uppercase;">Snippet_Tool.exe</div><div class="css-win-controls"><span><i class="fa-solid fa-minus"></i></span><span><i class="fa-regular fa-square"></i></span><span><i class="fa-solid fa-xmark"></i></span></div>';
+                    dom.frame.style.background = '#1a1a1a';
+                    dom.frame.style.backdropFilter = 'none';
+                } else if (type === 'none') {
+                    dom.frame.style.background = 'rgba(15, 23, 42, 0.75)';
+                    dom.frame.style.backdropFilter = 'blur(16px)';
+                    dom.frame.style.border = '1px solid rgba(255,255,255,0.1)';
+                }
+
+                btn.closest('.css-grid-buttons').querySelectorAll('.css-btn-opt').forEach(b => {
+                    if (b.id !== 'tiltBtn') b.classList.remove('active');
+                });
+                btn.classList.add('active');
+            };
+
+            const toggleTilt = () => {
+                state.tilt = !state.tilt;
+                dom.frame.classList.toggle('css-isometric-tilt', state.tilt);
+                dom.tiltBtn.classList.toggle('active', state.tilt);
+            };
+
+            const updatePadding = (val) => {
+                state.padding = val;
+                dom.wrapper.style.padding = `${val}px`;
+                dom.padLabel.textContent = `${val}px`;
+            };
+
+            const updateFont = (val) => {
+                state.fontSize = val;
+                dom.output.style.fontSize = `${val}px`;
+                dom.fontLabel.textContent = `${val}px`;
+            };
+
+            const updateQR = (text) => {
+                state.qrText = text;
+                if (!text.trim()) {
+                    dom.qr.style.display = 'none';
+                    return;
+                }
+                dom.qr.style.display = 'block';
+                dom.qr.innerHTML = '';
+                try {
+                    new QRCode(dom.qr, {
+                        text: text,
+                        width: 80,
+                        height: 80,
+                        colorDark:     "#000000",
+                        colorLight:    "#ffffff",
+                        correctLevel:  QRCode.CorrectLevel.H
+                    });
+                } catch (e) { console.error("QR Generation Error"); }
+            };
+
+         // REPLACE THIS FUNCTION IN CodeSnapEngine
+const beautify = () => {
+    if (state.isProcessing) return;
+    state.isProcessing = true;
+    setProgress(30);
+
+    setTimeout(() => {
+        try {
+            const formatted = prettier.format(dom.input.value, {
+                parser: "babel",
+                plugins: [prettierPlugins.babel], // Updated for safe local execution
+                semi: true,
+                singleQuote: false,
+                printWidth: 60
+            });
+            dom.input.value = formatted;
+            syncCode();
+            setProgress(100);
+            showToast("Code Beautified Successfully!");
+        } catch (e) {
+            setProgress(0);
+            showToast("Prettier: Check code syntax", true);
+        } finally {
+            state.isProcessing = false;
+        }
+    }, 300);
+};
+
+
+            const exportPNG = async () => {
+                if (state.isProcessing) return;
+                state.isProcessing = true;
+                setProgress(20);
+                showToast("Generating High-Res Asset...");
+
+                try {
+                    // Temporarily normalize for capture
+                    const originalTransition = dom.frame.style.transition;
+                    dom.frame.style.transition = 'none';
+                    setProgress(50);
+
+                    const canvas = await html2canvas(dom.wrapper, {
+                        scale: 4, // Ultra-HD
+                        useCORS: true,
+                        backgroundColor: null,
+                        logging: false,
+                        allowTaint: true,
+                        onclone: (clonedDoc) => {
+                            // Ensure the clone does not have scrollbars visible
+                            const clonedWrapper = clonedDoc.getElementById('captureArea');
+                            clonedWrapper.style.overflow = 'hidden';
+                        }
+                    });
+
+                    setProgress(80);
+                    const link = document.createElement('a');
+                    link.download = `CodeSnap_Pro_${Date.now()}.png`;
+                    link.href = canvas.toDataURL("image/png", 1.0);
+                    link.click();
+
+                    dom.frame.style.transition = originalTransition;
+                    setProgress(100);
+                    showToast("Ultra-HD Export Complete!");
+                } catch (err) {
+                    setProgress(0);
+                    showToast("Export Failed: Browser Limit", true);
+                } finally {
+                    state.isProcessing = false;
+                }
+            };
+
+            const copyToClipboard = async () => {
+                if (state.isProcessing) return;
+                state.isProcessing = true;
+                setProgress(40);
+                showToast("Rendering to Clipboard...");
+
+                try {
+                    const canvas = await html2canvas(dom.wrapper, { scale: 2, backgroundColor: null });
+                    canvas.toBlob(async (blob) => {
+                        try {
+                            const item = new ClipboardItem({ "image/png": blob });
+                            await navigator.clipboard.write([item]);
+                            setProgress(100);
+                            showToast("Image Copied Successfully!");
+                        } catch (e) {
+                            showToast("Clipboard API Error", true);
+                        } finally {
+                            state.isProcessing = false;
+                        }
+                    });
+                } catch (e) {
+                    state.isProcessing = false;
+                    setProgress(0);
+                }
+            };
+
+            const shareState = () => {
+                try {
+                    const data = {
+                        c: btoa(encodeURIComponent(dom.input.value)),
+                        b: state.bg,
+                        f: state.frame,
+                        t: state.tilt,
+                        p: state.padding,
+                        s: state.fontSize
+                    };
+                    const hash = btoa(JSON.stringify(data));
+                    const url = window.location.origin + window.location.pathname + "#" + hash;
+                    navigator.clipboard.writeText(url);
+                    window.location.hash = hash;
+                    showToast("Config Link Copied to Clipboard!");
+                } catch (e) {
+                    showToast("Sharing failed", true);
+                }
+            };
+
+            const loadState = () => {
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    try {
+                        const data = JSON.parse(atob(hash));
+                        if (data.c) dom.input.value = decodeURIComponent(atob(data.c));
+                        if (data.p) updatePadding(data.p);
+                        if (data.s) updateFont(data.s);
+                        // Apply states to UI
+                        if (data.b) {
+                            const btn = Array.from(document.querySelectorAll('.css-btn-opt')).find(el => el.textContent.toLowerCase().includes(data.b.replace('css-bg-mesh-', '')));
+                            if (btn) updateBg(data.b, btn);
+                        }
+                    } catch (e) { console.warn("State Restore Failed"); }
+                }
+                syncCode();
+            };
+
+            // Mobile notification: advanced APIs (html2canvas, Clipboard) work best on desktop
+            const checkMobileWarning = () => {
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                if (isMobile) {
+                    setTimeout(() => {
+                        showToast("This advanced tool works best on desktop devices.", true);
+                    }, 1200);
+                }
+            };
+
+            return {
+                init: () => {
+                    checkMobileWarning();
+                    loadState();
+                    setProgress(100);
+                },
+                syncCode,
+                updateBg,
+                updateFrame,
+                toggleTilt,
+                updatePadding,
+                updateFont,
+                updateQR,
+                beautify,
+                exportPNG,
+                copyToClipboard,
+                shareState
+            };
+        })();
+
+        // Bootstrap on load
+        window.addEventListener('DOMContentLoaded', CodeSnapEngine.init);
+    </script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

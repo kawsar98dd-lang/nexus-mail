@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         ANALYTICS & SITE CONFIGURATION SCRIPTS
+         These scripts must load first to initialise site-wide configuration,
+         meta tag management, and analytics tracking before any content renders.
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         PRIMARY SEO META TAGS
+         Optimised title, description, and keywords for maximum search
+         visibility. "Bulk URL to XML Sitemap Generator" targets high-intent
+         SEO queries. The description is within Google's 155-character sweet
+         spot for full SERP display.
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <title>Bulk URL to XML Sitemap Generator — Free, Fast & Unlimited | Trusted Tools Web</title>
+    <meta name="description" content="Generate Google & Bing-ready XML Sitemaps instantly from any URL list. Set Priority, ChangeFreq & LastMod. 100% client-side — your data never leaves the browser. Free forever.">
+    <meta name="keywords" content="xml sitemap generator, bulk url to xml sitemap, google sitemap creator, free seo tool online, sitemap builder no upload, client side sitemap tool, trusted tools web, xml sitemap maker, seo sitemap generator free">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="theme-color" content="#0d0d0d">
+
+    <!-- Canonical URL — prevents duplicate-content penalties -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/seo-sitemap-generator.html" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         OPEN GRAPH — FACEBOOK / LINKEDIN SHARING
+         Full og:image dimensions ensure a rich link preview in all feeds.
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/seo-sitemap-generator.html">
+    <meta property="og:title"       content="Bulk URL to XML Sitemap Generator — Free & Unlimited | Trusted Tools Web">
+    <meta property="og:description" content="Convert any URL list into a Google-ready XML Sitemap in seconds. Supports 50,000 URLs, CSV import, Priority & LastMod settings. 100% secure & free.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/seo/seo-sitemap-generator/img/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+    <meta property="og:locale"      content="en_US">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TWITTER CARD — LARGE IMAGE SUMMARY
+         summary_large_image ensures maximum visual impact on Twitter/X feeds.
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/seo-sitemap-generator.html">
+    <meta name="twitter:title"       content="Bulk URL to XML Sitemap Generator — Fast, Free & Secure">
+    <meta name="twitter:description" content="Generate SEO-ready XML Sitemaps directly in your browser. Handles 50,000+ URLs instantly. No sign-up required.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/seo/seo-sitemap-generator/img/og-banner.webp">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         EXTERNAL LIBRARY — FONT AWESOME ICONS
+         Loaded from localised path (to be finalized before CodeCanyon release).
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GLOBAL & TEMPLATE STYLESHEETS
+         global.css   → Site-wide layout, header, footer, theme variables.
+         tools-template.css → All reusable tool UI components.
+         [DO NOT add any other stylesheet links here]
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- Favicons -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SCHEMA.ORG JSON-LD — STRUCTURED DATA
+         WebApplication schema helps Google display rich results in SERPs.
+         "offers.price: 0" explicitly signals the free tier to search engines.
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Bulk URL to XML Sitemap Generator",
+        "url": "https://trustedtoolsweb.com/seo-sitemap-generator.html",
+        "description": "Generate Google & Bing-ready XML Sitemaps instantly from any URL list. Supports Priority, ChangeFreq, LastMod settings, and CSV import. 100% client-side — data never leaves your browser.",
+        "applicationCategory": "SEOApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript. Compatible with all modern browsers.",
+        "featureList": "Bulk URL parsing, CSV import, XML download, robots.txt generator, 50000 URL support, duplicate detection",
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/seo/seo-sitemap-generator/img/og-banner.webp",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "MD KAWSAR"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        }
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GLOBAL SITE HEADER
+         Injected dynamically by global.js — do not place content here.
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MAIN CONTENT WRAPPER
+         animated-entry triggers the fade-in-up entrance animation defined
+         in tools-template.css (Section 16).
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ─── DECORATIVE BACKGROUND TEXTURE ────────────────────────────────
+             Subtle top-masked texture adds visual depth to the hero area.
+             pointer-events: none ensures it never intercepts user interaction.
+        ──────────────────────────────────────────────────────────────────────── -->
+        <div class="sxg-bg-texture-wrap">
+            <img src="../../assets/tools/seo/seo-sitemap-generator/img/bg-texture.webp"
+                 alt=""
+                 class="sxg-bg-texture"
+                 aria-hidden="true">
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             TOOL CONTAINER
+             .container → max-width 950px card with border, shadow, and padding.
+             .animated-entry → fade-in-up entrance animation on page load.
+        ═══════════════════════════════════════════════════════════════════════ -->
+        <div class="container animated-entry">
+
+            <!-- ── TOP AD SLOT ──────────────────────────────────────────────── -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ── HERO / TITLE AREA ─────────────────────────────────────────
+                 .security-badge  → green pill badge (Section 4 of template)
+                 .tool-title      → responsive H1 with gradient span
+                 .subtitle        → muted descriptive text below the heading
+            ──────────────────────────────────────────────────────────────────── -->
+            <div class="text-center mb-20">
+
+                <!-- Trust / Privacy Badge -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    100% Client-Side Processing
+                </div>
+
+                <!-- Primary Tool Heading -->
+                <h1 class="tool-title">
+                    <i class="fa-solid fa-sitemap"></i>
+                    <span>Bulk URL</span> to XML Sitemap Generator
+                </h1>
+
+                <!-- Feature Pills Row -->
+                <div class="sxg-feature-pills">
+                    <span class="sxg-feature-pill">
+                        <i class="fa-solid fa-bolt" style="color: var(--accent-yellow);"></i>
+                        Fast Processing
+                    </span>
+                    <span class="sxg-feature-pill">
+                        <i class="fa-brands fa-google" style="color: var(--text-main);"></i>
+                        Google Friendly
+                    </span>
+                    <span class="sxg-feature-pill">
+                        <i class="fa-solid fa-file-csv" style="color: var(--accent-green);"></i>
+                        CSV Import
+                    </span>
+                </div>
+
+                <!-- Tool Description / Subtitle -->
+                <p class="subtitle">
+                    Transform your URL lists into Google-friendly XML Sitemaps instantly.
+                    Data never leaves your browser — 100% private &amp; secure.
+                </p>
+
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════
+                 MAIN TOOL LAYOUT GRID
+                 Two-column layout: LEFT = input configuration, RIGHT = XML output.
+                 Collapses to single column on tablet/mobile via .sxg-tool-grid.
+            ═══════════════════════════════════════════════════════════════════ -->
+            <div class="sxg-tool-grid">
+
+                <!-- ── LEFT COLUMN: INPUT CONFIGURATION ─────────────────────── -->
+                <div class="sxg-panel">
+
+                    <!-- Panel Header: title + clear action button -->
+                    <div class="sxg-panel-header">
+                        <div class="sxg-panel-title">
+                            <i class="fa-solid fa-list-ul"></i> Configure Links
+                        </div>
+                        <!-- Clear workspace icon button -->
+                        <button class="btn-icon" onclick="clearInput()" title="Clear All" aria-label="Clear all input">
+                            <i class="fa-solid fa-eraser"></i>
+                        </button>
+                    </div>
+
+                    <!-- ── DOMAIN INPUT ──────────────────────────────────────── -->
+                    <div class="input-wrapper">
+                        <label class="text-small-label" for="baseUrl">Website Domain (Base URL)</label>
+                        <input type="url"
+                               id="baseUrl"
+                               class="input-control"
+                               placeholder="https://example.com"
+                               value="https://"
+                               autocomplete="url">
+                    </div>
+
+                    <!-- ── SETTINGS GRID: Last Mod / Change Freq / Priority ──── -->
+                    <div class="multi-input-grid sxg-settings-grid input-wrapper">
+                        <div>
+                            <label class="text-small-label" for="lastMod">Last Mod</label>
+                            <select id="lastMod" class="input-control">
+                                <option value="today">Today</option>
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-small-label" for="changeFreq">Change Freq</label>
+                            <select id="changeFreq" class="input-control">
+                                <option value="monthly">Monthly</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="daily">Daily</option>
+                                <option value="yearly">Yearly</option>
+                                <option value="never">Never</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-small-label" for="priority">Priority</label>
+                            <select id="priority" class="input-control">
+                                <option value="0.8">0.8 (Default)</option>
+                                <option value="1.0">1.0 (High)</option>
+                                <option value="0.5">0.5 (Medium)</option>
+                                <option value="0.3">0.3 (Low)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ── URL LIST INPUT AREA ───────────────────────────────── -->
+                    <div class="input-wrapper sxg-url-section">
+
+                        <!-- Label row: title + counter badge + upload button -->
+                        <div class="sxg-url-label-row">
+                            <label class="text-small-label" for="urlInput">Page Links / Slugs</label>
+                            <div class="sxg-url-label-actions">
+                                <!-- Live URL/line counter badge -->
+                                <span id="urlCounter" class="badge badge-info">0 Links</span>
+                                <!-- Hidden file input for CSV/TXT import -->
+                                <input type="file"
+                                       id="fileUpload"
+                                       accept=".txt,.csv"
+                                       class="d-none"
+                                       onchange="handleFileUpload(this)"
+                                       aria-label="Upload URL list from file">
+                                <!-- Visible label acts as the upload trigger button -->
+                                <label for="fileUpload" class="btn btn-secondary sxg-upload-label" title="Upload list from .txt or .csv file">
+                                    <i class="fa-solid fa-upload"></i> Upload .txt
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Main URL textarea — JS targets id="urlInput" -->
+                        <textarea id="urlInput"
+                                  class="input-control sxg-url-textarea"
+                                  placeholder="/about&#10;/contact&#10;https://example.com/services&#10;product-page-1, 2024-01-01"
+                                  oninput="handleInput()"
+                                  aria-label="Enter URLs or slugs, one per line"></textarea>
+
+                        <!-- Helper row: hint text + auto-save indicator -->
+                        <div class="sxg-url-helper-row">
+                            <span class="text-muted" style="font-size: 12px;">Paste raw text, CSV, or relative paths.</span>
+                            <span id="autoSaveIndicator" class="sxg-autosave-indicator"></span>
+                        </div>
+
+                    </div>
+
+                    <!-- ── GENERATE BUTTON ───────────────────────────────────── -->
+                    <div class="btn-area">
+                        <button class="btn btn-primary" onclick="generateSitemap()">
+                            <span class="btn-text"><i class="fa-solid fa-gears"></i> Generate XML Sitemap</span>
+                        </button>
+                    </div>
+
+                    <!-- ── PROGRESS BAR (hidden until generation starts) ─────── -->
+                    <div class="sxg-progress-wrap" id="progressBarContainer">
+                        <div class="sxg-progress-bar" id="progressBar"></div>
+                    </div>
+
+                </div>
+                <!-- END LEFT COLUMN -->
+
+                <!-- ── RIGHT COLUMN: XML OUTPUT ─────────────────────────────── -->
+                <div class="sxg-panel">
+
+                    <!-- Panel Header: title + action buttons -->
+                    <div class="sxg-panel-header">
+                        <div class="sxg-panel-title">
+                            <i class="fa-solid fa-code"></i> XML Output
+                        </div>
+                        <!-- Output action buttons: robots.txt / copy / download -->
+                        <div class="sxg-output-actions">
+                            <button class="btn-icon" onclick="downloadRobots()" title="Download robots.txt" aria-label="Download robots.txt">
+                                <i class="fa-solid fa-robot"></i>
+                            </button>
+                            <button class="btn-icon" onclick="copyCode()" title="Copy XML to clipboard" aria-label="Copy XML">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <button class="btn-icon" onclick="downloadXML()" title="Download sitemap.xml" aria-label="Download XML">
+                                <i class="fa-solid fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ── STATS BAR (visible after generation) ─────────────── -->
+                    <!-- JS targets id="statsBar" to toggle display -->
+                    <div id="statsBar" class="sxg-stats-bar d-none">
+                        <div class="sxg-stat-badge sxg-stat-success">
+                            <i class="fa-solid fa-check"></i>
+                            <span id="statValid">0</span> Valid
+                        </div>
+                        <div class="sxg-stat-badge sxg-stat-warning">
+                            <i class="fa-solid fa-clone"></i>
+                            <span id="statDups">0</span> Dups
+                        </div>
+                        <div class="sxg-stat-badge sxg-stat-error">
+                            <i class="fa-solid fa-xmark"></i>
+                            <span id="statInvalid">0</span> Skipped
+                        </div>
+                    </div>
+
+                    <!-- Readonly XML result textarea — JS targets id="xmlOutput" -->
+                    <textarea id="xmlOutput"
+                              class="input-control sxg-output-textarea"
+                              readonly
+                              placeholder="Result will appear here..."
+                              aria-label="Generated XML Sitemap output (read-only)"></textarea>
+
+                    <!-- Submission tip below the output -->
+                    <p class="sxg-output-tip">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <strong>Tip:</strong> Upload this file to your website's root directory
+                        (<code>public_html</code>) and submit the link to
+                        <strong>Google Search Console</strong>.
+                    </p>
+
+                </div>
+                <!-- END RIGHT COLUMN -->
+
+            </div>
+            <!-- END MAIN TOOL GRID -->
+
+            <!-- ── BOTTOM AD SLOT ──────────────────────────────────────────── -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        </div>
+        <!-- END .container -->
+
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             SEO CONTENT / BLOG SECTION
+             Long-form educational article that targets secondary keywords and
+             provides genuine value for readers. Wrapped in .info-section-wrapper
+             + .info-card from tools-template.css for consistent card styling.
+        ═══════════════════════════════════════════════════════════════════════ -->
+        <div class="container animated-entry">
+            <div class="info-section-wrapper">
+                <div class="info-card">
+
+                    <!-- Article Main Heading -->
+                    <h2 class="sxg-article-heading">Mastering XML Sitemaps: The Complete SEO Guide</h2>
+
+                    <p class="sxg-article-text">
+                        Let's be honest — managing sitemaps for large websites is often a headache. Whether you are
+                        running an e-commerce store, a news portal, or a large blog, ensuring Google finds every
+                        single page is critical. That is exactly why we built this
+                        <strong>Client-Side Bulk Sitemap Generator</strong>. It strips away the complexity of
+                        server-side scripts and gives you a raw, fast, and secure way to build your XML files
+                        instantly.
+                    </p>
+
+                    <!-- Privacy First Info Box -->
+                    <div class="alert alert-info">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <strong>Privacy First:</strong> Unlike other online converters that upload your data to a
+                        cloud server, this tool runs 100% in your browser. Your URL list effectively never leaves
+                        your computer.
+                    </div>
+
+                    <!-- ─── SUB-SECTION: Crawl Budget ────────────────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-spider"></i> Why "Crawl Budget" Matters for Your SEO
+                    </h3>
+                    <p class="sxg-article-text">
+                        Many webmasters overlook the concept of <em>Crawl Budget</em>. Googlebot doesn't have
+                        infinite time to spend on your site. If your site has thousands of URLs, you want the bot
+                        to find the important ones fast.
+                    </p>
+                    <p class="sxg-article-text">
+                        By generating a clean XML sitemap with our tool, you are essentially handing Google a map.
+                        This ensures:
+                    </p>
+                    <ul class="sxg-article-list">
+                        <li><strong>Faster Indexing:</strong> New posts get discovered minutes or hours after publishing, not days.</li>
+                        <li><strong>Deep Linking:</strong> Orphan pages (pages with no internal links) finally get a chance to rank.</li>
+                        <li><strong>Resource Efficiency:</strong> You save your server bandwidth by guiding bots directly to valid URLs.</li>
+                    </ul>
+
+                    <!-- ─── SUB-SECTION: Step-by-Step ────────────────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-list-check"></i> Step-by-Step: What to Do After Generating?
+                    </h3>
+
+                    <!-- How-to diagram image -->
+                    <div class="sxg-article-img-wrap">
+                        <img src="../../assets/tools/seo/seo-sitemap-generator/img/how-to-use.webp"
+                             alt="Step-by-step guide: Generate sitemap → Download → Upload to server → Submit to Google Search Console"
+                             class="sxg-article-img"
+                             loading="lazy"
+                             width="800"
+                             height="400">
+                        <p class="sxg-article-img-caption">
+                            Process Flow: Generate → Download → Upload → Index
+                        </p>
+                    </div>
+
+                    <p class="sxg-article-text">
+                        Simply creating the file isn't enough. Follow this checklist to ensure maximum impact:
+                    </p>
+                    <ol class="sxg-article-ordered-list">
+                        <li><strong>Download &amp; Rename:</strong> Save the XML file. Ideally, name it <code>sitemap.xml</code>.</li>
+                        <li><strong>Upload to Root:</strong> Access your hosting file manager (cPanel or FTP) and upload the file to the <code>public_html</code> folder.</li>
+                        <li><strong>Verify the Link:</strong> Visit <code>yourdomain.com/sitemap.xml</code> in a browser to confirm it loads.</li>
+                        <li><strong>Submit to GSC:</strong> Log in to <strong>Google Search Console</strong>, go to the "Sitemaps" tab, and submit the URL.</li>
+                    </ol>
+
+                    <!-- ─── SUB-SECTION: Settings Best Practices ─────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-sliders"></i> Optimising Your Settings (Best Practices)
+                    </h3>
+                    <p class="sxg-article-text">
+                        This tool gives you granular control over metadata. Here is how experienced SEOs configure
+                        these settings:
+                    </p>
+                    <ul class="sxg-article-list">
+                        <li><strong>Last Modified (LastMod):</strong> Highly recommended. Use 'Today' if you just updated content. It tells Google the content is fresh.</li>
+                        <li><strong>Priority Tags:</strong> While Google has stated they often ignore priority tags, other search engines like Bing still use them.
+                            Set <code>1.0</code> for your Homepage, <code>0.8</code> for categories or service pages, and <code>0.5</code> or lower for standard blog posts.
+                        </li>
+                    </ul>
+
+                    <!-- ─── SUB-SECTION: FAQ ─────────────────────────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-circle-question"></i> Frequently Asked Questions (FAQ)
+                    </h3>
+
+                    <h4 class="sxg-article-faq-q">My file has over 50,000 URLs. What should I do?</h4>
+                    <p class="sxg-article-text">
+                        According to the Sitemaps.org protocol, a single XML file cannot exceed 50,000 URLs or
+                        50 MB in size. If you have more links, use our tool to generate multiple files (e.g.,
+                        sitemap1.xml, sitemap2.xml) and then create a "Sitemap Index" file to link them all
+                        together.
+                    </p>
+
+                    <h4 class="sxg-article-faq-q">Does this tool support Image or Video Sitemaps?</h4>
+                    <p class="sxg-article-text">
+                        Currently, this tool focuses strictly on standard URL sitemaps for web pages. Image and
+                        video extensions require specific metadata (like captions and licenses) that are difficult
+                        to automate via a simple bulk URL list.
+                    </p>
+
+                    <h4 class="sxg-article-faq-q">Why is my sitemap showing errors in Search Console?</h4>
+                    <p class="sxg-article-text">
+                        Common errors include "Namespace missing" or "Invalid XML tag." Our tool automatically
+                        handles the correct XML namespaces (<code>xmlns</code>), so the structure is always valid.
+                        If you see errors, check if you accidentally pasted broken URLs or empty lines in the input
+                        box.
+                    </p>
+
+                    <!-- Horizontal Rule Divider -->
+                    <hr class="border-top-subtle mt-xl mb-20">
+
+                    <!-- ─── SUB-SECTION: XML vs HTML Sitemaps ──────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-code-compare"></i> XML vs. HTML Sitemaps: What is the Difference?
+                    </h3>
+                    <p class="sxg-article-text">
+                        A common confusion among beginners is the difference between these two types. Understanding
+                        which one serves which purpose is key for both SEO rankings and reader experience:
+                    </p>
+
+                    <!-- Comparison card grid -->
+                    <div class="sxg-compare-grid">
+                        <div class="sxg-compare-card sxg-compare-card--primary">
+                            <h4 class="sxg-compare-card-title text-primary">
+                                <i class="fa-solid fa-robot"></i> XML Sitemap (For Bots)
+                            </h4>
+                            <p class="sxg-article-text mb-10">
+                                Purely for search engines (Google, Bing). Contains metadata like timestamps and
+                                priority. Humans are not supposed to read this.
+                                <strong>This tool generates this type.</strong>
+                            </p>
+                        </div>
+                        <div class="sxg-compare-card sxg-compare-card--secondary">
+                            <h4 class="sxg-compare-card-title text-accent-cyan">
+                                <i class="fa-solid fa-users"></i> HTML Sitemap (For Humans)
+                            </h4>
+                            <p class="sxg-article-text mb-10">
+                                A regular page on your website listing all links. Helps visitors navigate.
+                                While good for UX, it doesn't give Google technical data like "last modified"
+                                dates.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ─── SUB-SECTION: Troubleshooting ─────────────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-wrench"></i> Troubleshooting: "Couldn't Fetch" Error in Search Console
+                    </h3>
+                    <p class="sxg-article-text">
+                        Did you upload your sitemap but Google Search Console (GSC) says
+                        <em>"Couldn't Fetch"</em>? Don't panic. This is rarely a fault with the XML file itself.
+                        Here is how to fix it:
+                    </p>
+                    <ul class="sxg-article-list">
+                        <li><strong>The "Pending" Bug:</strong> Often, GSC says "Couldn't Fetch" when the status is actually "Pending." Wait 24–48 hours.</li>
+                        <li><strong>Check Robots.txt:</strong> Ensure your <code>robots.txt</code> file isn't blocking the sitemap URL. It should contain: <code>Allow: /sitemap.xml</code>.</li>
+                        <li><strong>Caching Issues:</strong> If you use Cloudflare or a caching plugin (like WP Rocket), clear your cache after uploading the new file.</li>
+                    </ul>
+
+                    <!-- ─── SUB-SECTION: Universal Compatibility ──────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-globe"></i> Universal Compatibility
+                    </h3>
+                    <p class="sxg-article-text">
+                        One of the biggest advantages of using a standalone XML Generator is compatibility.
+                        Plugins can bloat your site or conflict with themes. A static XML file generated here
+                        works on absolutely every platform:
+                    </p>
+
+                    <!-- Platform compatibility pills -->
+                    <div class="sxg-platform-pills">
+                        <span class="sxg-platform-pill">WordPress</span>
+                        <span class="sxg-platform-pill">Shopify</span>
+                        <span class="sxg-platform-pill">Wix</span>
+                        <span class="sxg-platform-pill">Custom PHP / HTML</span>
+                        <span class="sxg-platform-pill">React / Next.js</span>
+                    </div>
+
+                    <p class="sxg-article-text" style="margin-top: 15px;">
+                        By keeping your sitemap logic separate from your CMS, you ensure that a plugin update
+                        never accidentally breaks your SEO structure.
+                    </p>
+
+                    <!-- ─── SUB-SECTION: When Do You Really Need This? ─────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-calendar-exclamation"></i> Beyond Basics: When Do You REALLY Need This Tool?
+                    </h3>
+                    <p class="sxg-article-text">
+                        Most people think sitemaps are "set and forget." That's a mistake. There are specific
+                        scenarios where manually regenerating your sitemap via this tool is crucial for saving
+                        your rankings:
+                    </p>
+
+                    <!-- Scenario: Site Migrations -->
+                    <div class="sxg-scenario-block">
+                        <h4 class="sxg-scenario-title">
+                            <i class="fa-solid fa-truck-moving"></i> During Site Migrations
+                        </h4>
+                        <p class="sxg-article-text mb-10">
+                            Moving from HTTP to HTTPS? Or changing your domain name? Google needs to know about
+                            the new structure immediately. Generating a fresh sitemap with your new URLs helps
+                            Google swap the old links for the new ones much faster, minimising traffic drops.
+                        </p>
+                    </div>
+
+                    <!-- Scenario: Content Pruning -->
+                    <div class="sxg-scenario-block">
+                        <h4 class="sxg-scenario-title">
+                            <i class="fa-solid fa-broom"></i> Content Pruning (Deleting Old Pages)
+                        </h4>
+                        <p class="sxg-article-text mb-10">
+                            If you delete low-quality posts to improve your site's health, those URLs might still
+                            linger in Google's index. By updating your sitemap and resubmitting it, you force
+                            Google to re-crawl and realise those pages are gone (404), cleaning up your search
+                            presence.
+                        </p>
+                    </div>
+
+                    <!-- ─── SUB-SECTION: Orphan Page Problem ────────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-ghost"></i> The "Orphan Page" Problem
+                    </h3>
+                    <p class="sxg-article-text">
+                        An "Orphan Page" is a page on your website that has zero internal links pointing to it.
+                        Because no menu or blog post links to it, Googlebot often fails to find it.
+                    </p>
+                    <p class="sxg-article-text">
+                        This usually happens with landing pages for ads or specific marketing campaigns. By pasting
+                        those elusive URLs into our <strong>Bulk Converter</strong>, you explicitly tell Google:
+                        <em>"Hey, this page exists, please index it,"</em> bypassing the need for internal linking
+                        structures.
+                    </p>
+
+                    <!-- Warning tip box with danger border -->
+                    <div class="alert alert-warning">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <strong>Pro Tip for Large Sites:</strong>
+                        If you have a massive site (10,000+ pages), don't dump everything into one sitemap. Use
+                        this tool to categorise them — create one sitemap for <em>/blog/</em> posts and another
+                        for <em>/products/</em>. This helps you identify exactly which section of your site is
+                        having indexing issues in Search Console.
+                    </div>
+
+                    <!-- ─── SUB-SECTION: Static vs Plugin ───────────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-puzzle-piece"></i> Static Files vs. CMS Plugins: Why Use This Tool?
+                    </h3>
+                    <p class="sxg-article-text">
+                        If you use WordPress or Shopify, you might ask: <em>"Why shouldn't I just use a
+                        plugin?"</em> While plugins are convenient, they come with a hidden cost —
+                        <strong>Performance</strong>.
+                    </p>
+
+                    <!-- Static vs Plugin comparison list -->
+                    <div class="sxg-advantage-list">
+                        <div class="sxg-advantage-item sxg-advantage-item--primary">
+                            <strong>🚀 Speed &amp; Database Load:</strong><br>
+                            Plugins generate sitemaps dynamically. Every time Googlebot hits your sitemap URL,
+                            your server queries the database. This slows down your site. A static XML file
+                            generated by our tool serves instantly with zero database load.
+                        </div>
+                        <div class="sxg-advantage-item sxg-advantage-item--danger">
+                            <strong>🛡️ Security &amp; Anonymity:</strong><br>
+                            Some plugins expose your website's version number or author details in the sitemap
+                            header. Our tool creates a clean, raw XML file that reveals nothing about your
+                            backend technology.
+                        </div>
+                    </div>
+
+                    <!-- ─── SUB-SECTION: Priority & Changefreq Truth ─────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i> The Truth About "Priority" &amp; "Changefreq" Tags
+                    </h3>
+                    <p class="sxg-article-text">
+                        <strong>The "Priority" Tag (0.1 to 1.0):</strong> Many webmasters think setting everything
+                        to <code>1.0</code> will make Google rank them higher. <strong>It won't.</strong> Google
+                        has officially stated they mostly ignore this tag. However, it is still useful for
+                        <em>relative importance</em>.
+                    </p>
+                    <p class="sxg-article-text">
+                        <strong>The "Changefreq" Tag:</strong> Be honest here. Do not set "Daily" if you only
+                        update your content once a month. If search bots visit daily and see no changes, they may
+                        start visiting less frequently in the future. Accuracy builds trust with search engines.
+                    </p>
+
+                    <!-- ─── SUB-SECTION: Non-Standard URLs ──────────────────── -->
+                    <h3 class="sxg-article-subheading">
+                        <i class="fa-solid fa-link-slash"></i> Handling "Non-Standard" URLs
+                    </h3>
+                    <p class="sxg-article-text">
+                        Modern web development is complex. You might have URLs with parameters like
+                        <code>?product_id=123</code> or hash fragments like <code>#section2</code>.
+                    </p>
+
+                    <!-- Warning tip box for canonical URLs -->
+                    <div class="alert alert-warning">
+                        <strong>⚠️ Vital SEO Rule:</strong> Always strip out session IDs or tracking parameters
+                        (like <code>?utm_source=facebook</code>) before generating your sitemap. Including these
+                        can lead to "Duplicate Content" penalties. Our tool processes raw lists, so ensure your
+                        input list is clean (canonical URLs only) for the best results.
+                    </div>
+
+                </div>
+                <!-- END .info-card -->
+            </div>
+            <!-- END .info-section-wrapper -->
+        </div>
+        <!-- END SEO CONTENT CONTAINER -->
+
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             RELATED TOOLS SECTION
+             Dynamically populated by related-tools.js using data-category
+             and data-current-page attributes.
+        ═══════════════════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top: 30px;">
+            <div id="dynamic-related-tools"
+                 data-category="seo"
+                 data-current-page="seo-sitemap-generator.html">
+            </div>
+        </div>
+
+        <!-- Related tools dynamic script (module) -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- END <main> -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GLOBAL FOOTER
+         Injected by global.js — do not place content here.
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div id="global-footer"></div>
+
+    <!-- Ad manager must load before global.js -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global JS: loads header, footer, theme toggle, toast system -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- Tool-specific script -->
+    <script src="../../assets/tools/seo/seo-sitemap-generator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

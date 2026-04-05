@@ -1,0 +1,836 @@
+<!-- 
+    ============================================================
+    Product  : QR Code Ultra Pro Max (Enterprise Edition)
+    Version  : 3.0.0 (Gold Master — CodeCanyon Ready)
+    Tool     : QR Code Generator & Scanner
+    Author   : MD KAWSAR
+    Project  : Trusted Tools Web
+    Date     : February 15, 2026
+    ============================================================
+    ARCHITECTURE NOTE:
+    • NO local style.css — all styling from global.css + tools-template.css
+    • NO local toast HTML — global system injects automatically
+    • All JS IDs/classes preserved exactly for script.js compatibility
+    ============================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ════════════════════════════════════════════════════════
+         ANALYTICS & SITE CONFIGURATION (PRESERVED — DO NOT EDIT)
+         Loads site config, dynamic meta tags, and analytics scripts.
+    ════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ════════════════════════════════════════════════════════
+         SEO META TAGS — Enhanced for 2026 SERP Performance
+         Targets: "secure qr code generator", "client-side qr tool",
+         "free qr code maker with logo", and long-tail variations.
+    ════════════════════════════════════════════════════════ -->
+    <title>QR Code Ultra Pro Max | Secure, Free & Privacy-First Generator 2026</title>
+    <meta name="description" content="Generate 100% secure, high-resolution QR codes instantly — no sign-up required. Supports Logo, Custom Colors, WiFi, vCard 3.0, Crypto, WhatsApp & more. 100% Client-Side processing: your data never leaves your device.">
+    <meta name="keywords" content="secure qr code generator, client-side qr tool, free qr code maker with logo, high quality qr code png, wifi qr code generator, vcard qr code generator online, crypto qr code, qr code ultra pro max, trusted tools web, privacy qr generator 2026">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#0d1117">
+
+    <!-- ── Open Graph (Facebook / LinkedIn) ── -->
+    <meta property="og:title" content="QR Code Ultra Pro Max — 100% Secure & Free Generator">
+    <meta property="og:description" content="Create professional QR codes with logos, gradients and frames. Your data never leaves your browser (Client-Side Privacy). Supports WiFi, vCard, Crypto, WhatsApp & more. Try it now — free forever!">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/img/img-qr-generator/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="QR Code Ultra Pro Max — Enterprise Grade QR Generator">
+    <meta property="og:url" content="https://trustedtoolsweb.com/img-qr-generator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TrustedToolsWeb">
+    <meta name="twitter:title" content="QR Code Ultra Pro Max | Secure Generator">
+    <meta name="twitter:description" content="Generate high-quality QR codes with logos securely in your browser. No server tracking. Free forever.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/img/img-qr-generator/img/og-banner.webp">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/img-qr-generator.html" />
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- ════════════════════════════════════════════════════════
+         EXTERNAL LIBRARIES (PRESERVED — to be localised before final submission)
+         • Font Awesome 6 — icon system
+         • QRCode.js       — client-side QR generation engine
+         • Html5-Qrcode    — camera & file-based QR scanner
+    ════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <script src="../../assets/library/qr-engine/qrcodejs/qrcode.min.js"></script>
+    <script src="../../assets/library/qr-engine/html5-qrcode/html5-qrcode.min.js"></script>
+
+    <!-- ════════════════════════════════════════════════════════
+         GLOBAL STYLESHEETS (TWO-FILE CSS SYSTEM)
+         • global.css          — header, footer, theme variables, base reset
+         • tools-template.css  — all reusable tool UI components
+    ════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ════════════════════════════════════════════════════════
+         SCHEMA.ORG STRUCTURED DATA
+         WebApplication schema for rich result eligibility on Google Search.
+         Helps CodeCanyon reviewers verify SEO sophistication.
+    ════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "QR Code Ultra Pro Max",
+        "url": "https://trustedtoolsweb.com/img-qr-generator.html",
+        "image": "https://trustedtoolsweb.com/assets/tools/img/img-qr-generator/img/og-banner.webp",
+        "description": "A secure, client-side QR code generator and scanner offering high-resolution downloads, logo integration, gradient colors, custom frames, and privacy protection — no server storage of any kind.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "Client-side generation, High resolution PNG/WebP/JPG, Custom Logo Support, Gradient Colors, Offline Capability, WiFi QR, VCard 3.0, Crypto, WhatsApp, PayPal, Zoom, Maps, Email, Social Media",
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/img/img-qr-generator/img/og-banner.webp"
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════════════════
+         GLOBAL HEADER — Injected by global.js
+    ════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+
+        <!-- ════════════════════════════════════════════════════
+             TOOL CARD — Primary application container
+             Max-width 950px, centered, animated fade-in entry.
+        ════════════════════════════════════════════════════════ -->
+        <div class="container animated-entry">
+
+            <!-- ── Hero / Title Area ── -->
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i> 100% Client-Side Processing
+            </div>
+
+            <h1 class="tool-title">
+                <i class="fa-solid fa-qrcode"></i> QR Ultra <span>Pro Max</span>
+            </h1>
+            <p class="subtitle">
+                Enterprise-Grade Generation &amp; Scanning — Zero Server Logging.
+            </p>
+
+            <!-- AD SLOT: Top Banner (Managed by ads-manager.js) -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ════════════════════════════════════════════════
+                 MODE TABS — Switch between QR types and the Scanner.
+                 Active state is managed by QRApp.setMode() in script.js.
+                 aria-* attributes added for full WCAG 2.1 accessibility.
+            ════════════════════════════════════════════════════ -->
+            <div class="qr-tab-bar" role="tablist" aria-label="QR Code Mode Selection">
+                <button class="tab-btn active" onclick="QRApp.setMode('text')"
+                        aria-selected="true" role="tab" aria-controls="type-text">
+                    <i class="fa-solid fa-link"></i> Link/Text
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('social')"
+                        role="tab" aria-selected="false" aria-controls="type-social">
+                    <i class="fa-brands fa-facebook"></i> Social
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('vcard')"
+                        role="tab" aria-selected="false" aria-controls="type-vcard">
+                    <i class="fa-solid fa-address-card"></i> VCard
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('wifi')"
+                        role="tab" aria-selected="false" aria-controls="type-wifi">
+                    <i class="fa-solid fa-wifi"></i> WiFi
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('whatsapp')"
+                        role="tab" aria-selected="false" aria-controls="type-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('event')"
+                        role="tab" aria-selected="false" aria-controls="type-event">
+                    <i class="fa-solid fa-calendar-days"></i> Event
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('paypal')"
+                        role="tab" aria-selected="false" aria-controls="type-paypal">
+                    <i class="fa-brands fa-paypal"></i> PayPal
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('crypto')"
+                        role="tab" aria-selected="false" aria-controls="type-crypto">
+                    <i class="fa-brands fa-bitcoin"></i> Crypto
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('zoom')"
+                        role="tab" aria-selected="false" aria-controls="type-zoom">
+                    <i class="fa-solid fa-video"></i> Zoom
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('maps')"
+                        role="tab" aria-selected="false" aria-controls="type-maps">
+                    <i class="fa-solid fa-map-location-dot"></i> Maps
+                </button>
+                <button class="tab-btn" onclick="QRApp.setMode('email')"
+                        role="tab" aria-selected="false" aria-controls="type-email">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </button>
+                <!-- Scanner tab uses a special highlight class via .scan-mode selector -->
+                <button class="tab-btn scan-mode" onclick="QRApp.setMode('scanner')"
+                        role="tab" aria-selected="false" aria-controls="type-scanner">
+                    <i class="fa-solid fa-expand"></i> Scanner
+                </button>
+            </div>
+            <!-- END: MODE TABS -->
+
+            <!-- ════════════════════════════════════════════════
+                 SCANNER PANEL — Hidden by default.
+                 Revealed by JS when mode = 'scanner'.
+                 Contains live camera viewport (#reader) and file-upload fallback.
+            ════════════════════════════════════════════════════ -->
+            <div id="type-scanner" class="input-group utility-class-hidden">
+
+                <!-- html5-qrcode mounts the camera stream into #reader -->
+                <div id="reader"></div>
+
+                <!-- Scanner Controls: Stop camera + file upload fallback -->
+                <div class="text-center mt-sm">
+                    <button id="btn-stop-scan"
+                            class="btn btn-danger"
+                            onclick="QRApp.stopScanner()"
+                            style="display:none; margin-bottom:20px;">
+                        <i class="fa-solid fa-stop"></i> Stop Camera
+                    </button>
+                    <p class="text-muted" style="font-size:0.85rem; margin-bottom:10px;">
+                        Or upload an image file securely:
+                    </p>
+                    <input type="file" id="qr-input-file" accept="image/*"
+                           class="input-control"
+                           aria-label="Upload QR Image to Scan">
+                </div>
+
+                <!-- Decoded result panel — revealed by JS on successful scan -->
+                <div id="scan-result" class="qr-scan-result utility-class-hidden">
+                    <label class="text-success">
+                        <i class="fa-solid fa-shield-halved"></i> Decoded Data (Local):
+                    </label>
+                    <div id="scan-result-text" class="qr-scan-result-text"></div>
+
+                    <!-- Scan action buttons -->
+                    <div class="btn-area" style="margin-top:15px;">
+                        <button class="btn btn-success" onclick="QRApp.copyScanResult()">
+                            <i class="fa-solid fa-copy"></i> Copy Result
+                        </button>
+                        <button class="btn btn-secondary"
+                                onclick="QRApp.setMode('text'); document.getElementById('text-input').value = document.getElementById('scan-result-text').innerText;">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Content
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END: SCANNER PANEL -->
+
+            <!-- ════════════════════════════════════════════════
+                 GENERATOR INPUT PANELS
+                 Each QR type (text, wifi, vcard, etc.) has its own
+                 panel div. JS toggles visibility via utility-class-hidden.
+            ════════════════════════════════════════════════════ -->
+            <div id="generator-inputs">
+
+                <!-- ── TEXT / URL INPUT ── -->
+                <div id="type-text" class="input-group">
+                    <label for="text-input">Website URL or Plain Text</label>
+                    <textarea id="text-input"
+                              class="input-control"
+                              placeholder="https://yourwebsite.com or secure text..."></textarea>
+                </div>
+
+                <!-- ── SOCIAL MEDIA INPUT ── -->
+                <div id="type-social" class="input-group utility-class-hidden">
+                    <label for="social-platform">Platform</label>
+                    <select id="social-platform"
+                            class="input-control"
+                            onchange="QRApp.updateSocialPlaceholders()">
+                        <option value="facebook">Facebook Profile/Page</option>
+                        <option value="instagram">Instagram Username</option>
+                        <option value="twitter">X (Twitter) Username</option>
+                        <option value="youtube">YouTube Channel/Video</option>
+                        <option value="tiktok">TikTok Username</option>
+                        <option value="linkedin">LinkedIn Profile</option>
+                    </select>
+                    <label style="margin-top:15px;" id="social-label" for="social-input">
+                        Username / URL
+                    </label>
+                    <input type="text" id="social-input"
+                           class="input-control"
+                           placeholder="username">
+                </div>
+
+                <!-- ── VCARD INPUT — Two-column grid layout ── -->
+                <div id="type-vcard" class="input-group utility-class-hidden">
+                    <div class="multi-input-grid">
+                        <div>
+                            <label for="v-fname">First Name</label>
+                            <input type="text" id="v-fname" class="input-control" placeholder="John">
+                        </div>
+                        <div>
+                            <label for="v-lname">Last Name</label>
+                            <input type="text" id="v-lname" class="input-control" placeholder="Doe">
+                        </div>
+                        <div>
+                            <label for="v-phone">Mobile Number</label>
+                            <input type="tel" id="v-phone" class="input-control" placeholder="+1 234...">
+                        </div>
+                        <div>
+                            <label for="v-email">Email</label>
+                            <input type="email" id="v-email" class="input-control" placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label for="v-org">Organization</label>
+                            <input type="text" id="v-org" class="input-control" placeholder="My Company">
+                        </div>
+                        <div>
+                            <label for="v-site">Website</label>
+                            <input type="text" id="v-site" class="input-control" placeholder="https://...">
+                        </div>
+                    </div>
+                    <label style="margin-top:15px;" for="v-address">Full Address</label>
+                    <input type="text" id="v-address" class="input-control"
+                           placeholder="Street, City, Country">
+                </div>
+
+                <!-- ── CALENDAR EVENT INPUT ── -->
+                <div id="type-event" class="input-group utility-class-hidden">
+                    <label for="evt-title">Event Title</label>
+                    <input type="text" id="evt-title" class="input-control"
+                           placeholder="Annual Conference">
+                    <div class="multi-input-grid" style="margin-top:15px;">
+                        <div>
+                            <label for="evt-start">Start Time</label>
+                            <input type="datetime-local" id="evt-start" class="input-control">
+                        </div>
+                        <div>
+                            <label for="evt-end">End Time</label>
+                            <input type="datetime-local" id="evt-end" class="input-control">
+                        </div>
+                    </div>
+                    <label style="margin-top:15px;" for="evt-loc">Location</label>
+                    <input type="text" id="evt-loc" class="input-control"
+                           placeholder="Convention Center">
+                    <label style="margin-top:15px;" for="evt-desc">Description</label>
+                    <input type="text" id="evt-desc" class="input-control"
+                           placeholder="Agenda and details...">
+                </div>
+
+                <!-- ── PAYPAL INPUT ── -->
+                <div id="type-paypal" class="input-group utility-class-hidden">
+                    <div class="multi-input-grid">
+                        <div>
+                            <label for="pp-user">PayPal Username</label>
+                            <input type="text" id="pp-user" class="input-control" placeholder="username">
+                        </div>
+                        <div>
+                            <label for="pp-amt">Amount (USD/EUR)</label>
+                            <input type="number" id="pp-amt" class="input-control" placeholder="10.00">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── ZOOM MEETING INPUT ── -->
+                <div id="type-zoom" class="input-group utility-class-hidden">
+                    <div class="multi-input-grid">
+                        <div>
+                            <label for="zoom-id">Meeting ID</label>
+                            <input type="text" id="zoom-id" class="input-control"
+                                   placeholder="123 456 7890">
+                        </div>
+                        <div>
+                            <label for="zoom-pass">Passcode</label>
+                            <input type="text" id="zoom-pass" class="input-control"
+                                   placeholder="123456">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── CRYPTO WALLET INPUT ── -->
+                <div id="type-crypto" class="input-group utility-class-hidden">
+                    <label for="crypto-type">Currency</label>
+                    <select id="crypto-type" class="input-control">
+                        <option value="bitcoin">Bitcoin (BTC)</option>
+                        <option value="ethereum">Ethereum (ETH)</option>
+                        <option value="bch">Bitcoin Cash (BCH)</option>
+                        <option value="litecoin">Litecoin (LTC)</option>
+                        <option value="usdt">Tether (USDT - ERC20)</option>
+                    </select>
+                    <label style="margin-top:15px;" for="crypto-addr">Wallet Address</label>
+                    <input type="text" id="crypto-addr" class="input-control"
+                           placeholder="Wallet Address">
+                </div>
+
+                <!-- ── WHATSAPP INPUT ── -->
+                <div id="type-whatsapp" class="input-group utility-class-hidden">
+                    <label for="wa-num">WhatsApp Number (with Country Code)</label>
+                    <input type="tel" id="wa-num" class="input-control"
+                           placeholder="e.g. 15550000000">
+                    <label style="margin-top:15px;" for="wa-msg">Pre-filled Message</label>
+                    <input type="text" id="wa-msg" class="input-control"
+                           placeholder="Hello, I have a question...">
+                </div>
+
+                <!-- ── WIFI NETWORK INPUT ── -->
+                <div id="type-wifi" class="input-group utility-class-hidden">
+                    <label for="wifi-ssid">Network Name (SSID)</label>
+                    <input type="text" id="wifi-ssid" class="input-control"
+                           placeholder="MyHomeWiFi">
+                    <div class="multi-input-grid" style="margin-top:15px;">
+                        <div>
+                            <label for="wifi-pass">Password</label>
+                            <input type="text" id="wifi-pass" class="input-control"
+                                   placeholder="SecretKey123">
+                        </div>
+                        <div>
+                            <label for="wifi-type">Security</label>
+                            <select id="wifi-type" class="input-control">
+                                <option value="WPA">WPA/WPA2/WPA3 (Standard)</option>
+                                <option value="WEP">WEP (Old)</option>
+                                <option value="nopass">None (Open)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Custom checkbox — built-in component from tools-template.css -->
+                    <label class="custom-checkbox" style="margin-top:12px;">
+                        <input type="checkbox" id="wifi-hidden">
+                        <span class="checkmark"></span>
+                        Hidden Network
+                    </label>
+                </div>
+
+                <!-- ── GEO MAPS INPUT ── -->
+                <div id="type-maps" class="input-group utility-class-hidden">
+                    <div class="multi-input-grid">
+                        <div>
+                            <label for="map-lat">Latitude</label>
+                            <input type="text" id="map-lat" class="input-control"
+                                   placeholder="40.7128">
+                        </div>
+                        <div>
+                            <label for="map-long">Longitude</label>
+                            <input type="text" id="map-long" class="input-control"
+                                   placeholder="-74.0060">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── EMAIL COMPOSE INPUT ── -->
+                <div id="type-email" class="input-group utility-class-hidden">
+                    <label for="email-addr">Email Address</label>
+                    <input type="email" id="email-addr" class="input-control"
+                           placeholder="support@company.com">
+                    <label style="margin-top:15px;" for="email-sub">Subject</label>
+                    <input type="text" id="email-sub" class="input-control"
+                           placeholder="Inquiry about...">
+                    <label style="margin-top:15px;" for="email-body">Body (Optional)</label>
+                    <textarea id="email-body" class="input-control"
+                              style="min-height:60px;"></textarea>
+                </div>
+
+            </div>
+            <!-- END: GENERATOR INPUT PANELS -->
+
+            <!-- ════════════════════════════════════════════════
+                 ADVANCED PRO STUDIO PANEL
+                 Contains logo upload, resolution, error correction,
+                 CTA frame text, color pickers, and gradient controls.
+                 Wrapped in #generator-wrapper so JS can hide it alongside
+                 the input panels when Scanner mode is active.
+            ════════════════════════════════════════════════════ -->
+            <div id="generator-wrapper">
+
+                <!-- Advanced settings card -->
+                <div class="qr-advanced-panel">
+
+                    <!-- "PRO STUDIO" section badge -->
+                    <span class="badge badge-primary qr-pro-badge">PRO STUDIO</span>
+
+                    <!-- ── First Row: Logo + Quality + Error Correction ── -->
+                    <div class="qr-settings-grid">
+
+                        <!-- Logo / Branding Upload -->
+                        <div class="qr-setting-item">
+                            <label for="logo-input">Branding (Logo)</label>
+                            <!-- Entire drop zone is a <label> so clicking anywhere triggers the hidden file input -->
+                            <label for="logo-input" class="file-drop qr-logo-drop" style="cursor:pointer;">
+                                <!-- Hidden native file input — triggered by the parent <label> -->
+                                <input type="file" id="logo-input"
+                                       accept="image/png, image/jpeg, image/webp"
+                                       style="display:none;">
+                                <!-- Upload icon — large, centered -->
+                                <i class="fa-solid fa-image qr-logo-icon"></i>
+                                <!-- Helper text below the icon -->
+                                <span class="text-muted" style="font-size:0.8rem; display:block; text-align:center;">
+                                    Click or drop PNG/WebP
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- QR Resolution Selector -->
+                        <div class="qr-setting-item">
+                            <label for="qr-size">Quality (Pixels)</label>
+                            <select id="qr-size" class="input-control">
+                                <option value="600">High (600px)</option>
+                                <option value="1000" selected>Ultra (1000px)</option>
+                                <option value="2000">Print Master (2000px)</option>
+                                <option value="4000">Billboard (4000px)</option>
+                            </select>
+                        </div>
+
+                        <!-- Error Correction Selector -->
+                        <div class="qr-setting-item">
+                            <label for="qr-correct">Error Tolerance</label>
+                            <select id="qr-correct" class="input-control">
+                                <option value="H" selected>High (30%) — Best for Logos</option>
+                                <option value="Q">Quartile (25%)</option>
+                                <option value="M">Medium (15%)</option>
+                                <option value="L">Low (7%) — Highest Density</option>
+                            </select>
+                        </div>
+
+                        <!-- Download Format Selector -->
+                        <div class="qr-setting-item">
+                            <label for="dl-format">File Format</label>
+                            <select id="dl-format" class="input-control">
+                                <option value="png">PNG (Transparent)</option>
+                                <option value="webp">WEBP (Web Optimized)</option>
+                                <option value="jpeg">JPG (Small File)</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <!-- END: First Settings Row -->
+
+                    <!-- ── Second Row: CTA Frame Text + Colors ── -->
+                    <div class="qr-settings-grid" style="margin-top:25px;">
+
+                        <!-- Call-to-action label text (rendered below QR) -->
+                        <div class="qr-setting-item">
+                            <label for="frame-text">Call to Action (Label)</label>
+                            <input type="text" id="frame-text"
+                                   class="input-control"
+                                   placeholder="e.g. SCAN ME"
+                                   maxlength="20">
+                        </div>
+
+                        <!-- Colors & Gradient controls group -->
+                        <div class="qr-setting-item">
+                            <label>Colors &amp; Theme</label>
+
+                            <!-- Dot color → gradient end picker row -->
+                            <div class="qr-color-row">
+                                <input type="color" id="color-dark"
+                                       class="qr-color-swatch"
+                                       value="#000000"
+                                       title="Primary Dots Color">
+                                <i class="fa-solid fa-arrow-right"
+                                   style="font-size:12px; color:var(--text-muted);"></i>
+                                <input type="color" id="color-gradient"
+                                       class="qr-color-swatch"
+                                       value="#ff0055"
+                                       title="Gradient End Color"
+                                       disabled style="opacity:0.5">
+
+                                <!-- Gradient toggle checkbox -->
+                                <label class="custom-checkbox" style="margin:0; font-size:0.8rem; white-space:nowrap;">
+                                    <input type="checkbox" id="use-gradient">
+                                    <span class="checkmark"></span>
+                                    Gradient
+                                </label>
+                            </div>
+
+                            <!-- Transparent background + BG color row -->
+                            <div class="qr-color-row" style="margin-top:10px; flex-wrap:wrap; gap:15px;">
+                                <label class="custom-checkbox" style="font-size:0.8rem;">
+                                    <input type="checkbox" id="transparent-bg" checked>
+                                    <span class="checkmark"></span>
+                                    Transparent BG
+                                </label>
+                                <!-- BG color picker — hidden when transparent is checked -->
+                                <div id="bg-color-wrap" class="utility-class-hidden qr-bg-color-wrap">
+                                    <input type="color" id="color-light"
+                                           class="qr-color-swatch"
+                                           value="#ffffff"
+                                           style="height:25px; width:30px;">
+                                    <span style="font-size:0.8rem; color:var(--text-muted);">BG</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- END: Second Settings Row -->
+
+                </div>
+                <!-- END: ADVANCED PRO STUDIO PANEL -->
+
+                <!-- ════════════════════════════════════════════
+                     ACTION BUTTONS
+                     • Generate QR  — triggers full QR rendering pipeline
+                     • Save Image   — downloads in selected format
+                     • Print icon   — opens system print dialog
+                     • Copy icon    — copies image to clipboard
+                ════════════════════════════════════════════════ -->
+                <div class="btn-area">
+                    <button class="btn btn-primary" onclick="QRApp.generateQR()" id="btn-generate">
+                        <i class="fa-solid fa-bolt"></i> Generate QR
+                    </button>
+                    <button class="btn btn-success" onclick="QRApp.downloadQR()">
+                        <i class="fa-solid fa-download"></i> Save Image
+                    </button>
+                    <button class="btn btn-secondary" onclick="QRApp.printQR()" title="Print Direct">
+                        <i class="fa-solid fa-print"></i>
+                    </button>
+                    <button class="btn btn-secondary" onclick="QRApp.copyToClipboard()" title="Copy to Clipboard">
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+                </div>
+
+                <!-- ════════════════════════════════════════════
+                     QR DISPLAY AREA
+                     • qr-wrapper     — holds the rendered QR image
+                     • loading-overlay — visible during generation
+                     • qrcode          — JS writes <img> element here (ID required by QRApp)
+                     • history-section — recent QR log from localStorage
+                ════════════════════════════════════════════════ -->
+                <div class="qr-display-area">
+
+                    <!-- QR Preview Box -->
+                    <div class="qr-wrapper transparent-bg" id="qr-wrapper">
+
+                        <!-- Loading spinner — toggled by JS during generation -->
+                        <div id="loading-spinner" class="qr-loading-overlay utility-class-hidden">
+                            <div class="qr-spinner"></div>
+                        </div>
+
+                        <!-- QR output target — QRCode.js renders inside here -->
+                        <div id="qrcode"></div>
+
+                    </div>
+
+                    <small class="text-muted" style="margin-top:15px; font-size:0.75rem; display:block; text-align:center;">
+                        Preview Generated • Right Click to Save
+                    </small>
+
+                    <!-- ── LOCAL HISTORY LOG ── -->
+                    <div class="qr-history-section">
+                        <div class="qr-history-header">
+                            <h3>
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                Recent Activity (Local Device)
+                            </h3>
+                            <!-- Clear all history — confirmed via JS confirm() dialog -->
+                            <button class="btn btn-secondary qr-history-clear-btn"
+                                    onclick="QRApp.clearHistory()"
+                                    style="padding:5px 12px; font-size:0.75rem;">
+                                <i class="fa-solid fa-trash"></i> Clear All
+                            </button>
+                        </div>
+                        <!-- History items injected by loadHistory() in script.js -->
+                        <ul id="history-list" class="qr-history-list"></ul>
+                    </div>
+
+                    <!-- AD SLOT: Bottom Banner (Managed by ads-manager.js) -->
+                    <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+                </div>
+                <!-- END: QR DISPLAY AREA -->
+
+            </div>
+            <!-- END: #generator-wrapper -->
+
+        </div>
+        <!-- END: .container (Tool Card) -->
+
+        <!-- ════════════════════════════════════════════════════
+             SEO CONTENT SECTION
+             Rich editorial content for search engine ranking.
+             Uses .info-section-wrapper and .info-card components.
+        ════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper">
+
+            <!-- Info Card: Privacy / Client-Side Explanation with image -->
+            <div class="info-card" style="display:flex; flex-wrap:wrap; align-items:center; gap:30px;">
+                <div style="flex:1 1 400px;">
+                    <h2><i class="fa-solid fa-user-secret"></i> Why "Client-Side" Generation Matters for You</h2>
+                    <p>Most online QR code generators work by sending your data to their servers to create the image. This poses a hidden risk: your private WiFi passwords, crypto wallet addresses, or personal contact details could be stored or logged without your consent.</p>
+                    <p><strong>QR Code Ultra Pro Max</strong> is different. We built this tool using <span class="tech-highlight">Client-Side JavaScript Technology</span>. This means:</p>
+                    <ul>
+                        <li><strong>Zero Data Leaks:</strong> The generation process happens 100% inside your browser. Your data never leaves your device.</li>
+                        <li><strong>Offline Capability:</strong> Once the page loads, you can turn off your internet and still generate unlimited codes.</li>
+                        <li><strong>No "Dead" Links:</strong> We generate <em>Static QR Codes</em>. Unlike "Dynamic" codes offered by paid services, our codes encode the data directly into the image. They will work forever.</li>
+                    </ul>
+                </div>
+                <div style="flex:0 1 300px; text-align:center; margin:0 auto;">
+                    <img src="../../assets/tools/img/img-qr-generator/img/privacy-shield.webp"
+                         alt="Secure Client-Side Privacy Shield Illustration"
+                         title="Your Data Stays on Your Device"
+                         style="max-width:100%; height:auto; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.3);"
+                         width="300" height="300"
+                         loading="lazy">
+                </div>
+            </div>
+
+            <!-- Info Card: Designer's Guide -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-palette"></i> Designer's Guide: Creating Scannable Custom QRs</h2>
+                <p>Making a QR code look good is easy, but making it scan instantly requires following some core design rules. Here is how to use our "Pro Features" effectively:</p>
+
+                <h3>1. The Importance of Contrast</h3>
+                <p>Scanners need contrast to distinguish the data modules from the background. Always ensure your "Primary Color" is significantly darker than your background.<br>
+                <em>✅ Good: Dark Blue on White, Black on Yellow.</em><br>
+                <em>❌ Bad: Light Grey on White, Red on Pink.</em></p>
+
+                <h3>2. Error Correction Levels (Explained)</h3>
+                <p>You will see a dropdown labeled "Error Correction". This creates a backup of the data within the QR pattern.</p>
+                <ul>
+                    <li><strong>Use 'Low (7%)'</strong> for simple text or links without logos. It produces the cleanest look.</li>
+                    <li><strong>Use 'High (30%)'</strong> if you plan to add a Logo in the middle or if the QR will be placed outdoors. This allows the code to work even if 30% of it is covered or damaged.</li>
+                </ul>
+
+                <h3>3. Logo Placement</h3>
+                <p>When you upload a logo, our algorithm automatically centers it. We recommend using a square image with a transparent background (PNG). Keep the logo size reasonable; if it covers the "Position Markers" (the three big squares in the corners), the code will fail.</p>
+            </div>
+
+            <!-- Info Card: Commercial Use Cases -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-briefcase"></i> Commercial &amp; Business Use Cases</h2>
+                <p>This tool is completely free for commercial use. Here are some smart ways businesses in 2026 are utilizing our generator:</p>
+                <ol>
+                    <li><strong>Restaurant Menus:</strong> Upload your menu PDF to a cloud drive, copy the link, and use the "Link" tab. Print the QR on tables to replace physical menus.</li>
+                    <li><strong>WiFi Access for Customers:</strong> Stop telling customers the password manually. Use the "WiFi" tab. When they scan, their phone will ask "Connect to Network?" automatically.</li>
+                    <li><strong>ID Cards &amp; vCards:</strong> Generate a vCard QR for your employees' business cards. When a client scans it, they can save the contact details directly to their phonebook with one tap.</li>
+                </ol>
+            </div>
+
+            <!-- Info Card: Static vs Dynamic -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-infinity"></i> Why Static Codes Are Safer Than Dynamic Ones</h3>
+                <p>Many paid services offer "Dynamic QR Codes" that act as a middleman redirect. If their server goes down or you stop paying their subscription, your QR code stops working. This is a huge risk for printed materials.</p>
+                <p><strong>Our Solution:</strong> We generate 100% Static Codes. The information (URL, Text, WiFi) is directly encoded into the pattern of the image. This means your code will work for 10 years, 50 years, or forever—completely free, with no dependency on our servers.</p>
+            </div>
+
+            <!-- Info Card: WiFi Security -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-wifi"></i> Securing Your Home &amp; Office Network</h3>
+                <p>Typing complex WiFi passwords is annoying for guests and prone to errors. Our "WiFi QR" feature solves this. However, safety is key:</p>
+                <ul>
+                    <li><strong>Encryption:</strong> Always select "WPA/WPA2" as the encryption type unless you are using a very old router.</li>
+                    <li><strong>Hidden Networks:</strong> Even if your SSID is hidden, our QR generator can format the data so devices can find and connect to it automatically.</li>
+                </ul>
+            </div>
+
+            <!-- Info Card: Print Quality -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-print"></i> The Golden Rule for Printing QR Codes</h3>
+                <p>A common mistake is printing a low-quality QR code on a large banner. This results in "blurry edges" that phones cannot scan.</p>
+                <p><strong>Recommendation:</strong> If you are printing on a business card, the 300px size is sufficient. But for shop banners, billboards, or vehicle wraps, strictly use the <strong>"Max (1000px)"</strong> option. Always test print on normal paper before sending the final design to the press.</p>
+            </div>
+
+            <!-- Info Card: Crypto -->
+            <div class="info-card">
+                <h3><i class="fa-brands fa-bitcoin"></i> Preventing Loss in Crypto Transactions</h3>
+                <p>One wrong character in a Bitcoin or Ethereum wallet address can result in the permanent loss of funds. Copy-pasting addresses manually is risky.</p>
+                <p>By using our "Crypto" tab, you create a standardized payment link. When the sender scans it with their wallet app (like TrustWallet or Binance), the address and amount are pre-filled exactly as you entered them. This eliminates human error and protects your assets.</p>
+            </div>
+
+            <!-- Info Card: Email automation -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-envelope"></i> Automating Customer Support Emails</h3>
+                <p>Businesses can use the "Email" tab to streamline support. Instead of just giving your email address, you can pre-fill the "Subject" line.</p>
+                <p><em>Example:</em> You can create a QR that opens the user's email app with the subject "Order Inquiry - [Order ID]". This saves the customer time and helps your support team categorize emails faster.</p>
+            </div>
+
+            <!-- Info Card: Maps / Location -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-map-location-dot"></i> Location Sharing for Real Estate &amp; Events</h3>
+                <p>Address text can be confusing. "Road 5, House 10" might exist in three different cities. Our "Maps" tool uses precise Geo-Coordinates (Latitude &amp; Longitude).</p>
+                <p>Real estate agents can place these QRs on "For Sale" signs. When a potential buyer scans it, Google Maps opens directly to the property's exact pin location, ensuring they never get lost.</p>
+            </div>
+
+            <!-- Info Card: vCard Modern business card -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-address-book"></i> The Modern Business Card (vCard)</h3>
+                <p>Paper business cards often end up in the trash because people hate typing numbers into their phones. A vCard QR code bridges this gap.</p>
+                <p>When you generate a vCard here, we structure the data so that when scanned, the phone presents a "Create New Contact" button immediately. You can include your website, email, and office address in a single scan.</p>
+            </div>
+
+            <!-- Info Card: FAQ -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions (FAQ)</h2>
+
+                <h3 style="font-size:1rem; color:var(--text-main);">Q: Is there a scan limit?</h3>
+                <p>No. Since these are static codes, you can scan them a billion times. They rely on the data inside the pattern, not an external server counter.</p>
+
+                <h3 style="font-size:1rem; color:var(--text-main);">Q: Why isn't my QR code working?</h3>
+                <p>The most common reason is <strong>data density</strong>. If you paste a very long URL or a massive paragraph of text, the QR dots become too small for phone cameras to focus on. Try using a URL shortener before pasting the link here, or increase the Resolution to "Ultra (1000px)".</p>
+
+                <h3 style="font-size:1rem; color:var(--text-main);">Q: Can I print these on large banners?</h3>
+                <p>Absolutely. Select the "Max (2000px)" size option. This creates a high-definition PNG file suitable for large format printing without pixelation.</p>
+            </div>
+
+        </section>
+        <!-- END: SEO CONTENT SECTION -->
+
+        <!-- ════════════════════════════════════════════════════
+             RELATED TOOLS SECTION
+             Dynamically populated by related-tools.js based on
+             data-category and data-current-page attributes.
+        ════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top:50px;">
+            <div id="dynamic-related-tools"
+                 data-category="img"
+                 data-current-page="img-qr-generator.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- END: <main> -->
+
+    <!-- ════════════════════════════════════════════════════════
+         GLOBAL FOOTER — Injected by global.js
+    ════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ════════════════════════════════════════════════════════
+         SCRIPT LOADING ORDER (DO NOT REORDER)
+         1. ads-manager.js  — Ad slot initialization
+         2. global.js       — Header/footer injection, theme, global toast
+         3. script.js       — QRApp IIFE (depends on QRCode.js & Html5Qrcode)
+    ════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+    <script src="../../assets/tools/img/img-qr-generator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

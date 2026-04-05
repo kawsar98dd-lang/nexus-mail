@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =====================================================
+         GLOBAL SITE INFRASTRUCTURE — DO NOT MODIFY ORDER
+         Loads site-wide config, dynamic meta injection,
+         and analytics bootstrapper before anything else.
+    ===================================================== -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- =====================================================
+         PRIMARY SEO META TAGS
+         Highly optimized for AI Privacy / Image Censor niche.
+         Target keywords: face blur tool, image redaction,
+         EXIF remover, privacy censor, photo anonymizer,
+         mediapipe face detection, tesseract OCR redact.
+    ===================================================== -->
+    <title>AI Privacy Censor ULTRA MAX — Face Blur, OCR Redact & EXIF Stripper (Free, No Upload)</title>
+    <meta name="title" content="AI Privacy Censor ULTRA MAX — Face Blur, OCR Redact & EXIF Stripper (Free, No Upload)">
+    <meta name="description" content="The most powerful free AI image privacy tool. Auto-detect and blur faces, redact sensitive text (emails, phones, card numbers) with OCR, manually brush-censor areas, strip GPS/EXIF metadata, and batch-process images — 100% in your browser. No uploads. No servers. Zero data leaves your device.">
+    <meta name="keywords" content="face blur tool, image privacy censor, OCR text redaction, EXIF metadata stripper, photo anonymizer, pixelate face online, image redaction tool, blur faces free, sensitive data remover, GPS EXIF remover, batch image censor, mediapipe face detection, tesseract ocr redact, privacy photo editor, client-side image tool, trustedtoolsweb">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- =====================================================
+         CANONICAL URL — Category: img / Tool: img-privacy-censor
+    ===================================================== -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/tools/img/img-privacy-censor/" />
+
+    <!-- =====================================================
+         OPEN GRAPH — Rich social sharing cards
+    ===================================================== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/tools/img/img-privacy-censor/">
+    <meta property="og:site_name" content="TrustedToolsWeb">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="AI Privacy Censor ULTRA MAX — Auto Face Blur, OCR Redaction & EXIF Stripper">
+    <meta property="og:description" content="Blur faces, redact sensitive text, strip GPS metadata & batch-censor images — all 100% client-side. No data ever leaves your browser. Free forever.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/img/img-privacy-censor/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="AI Privacy Censor ULTRA MAX tool preview showing face blur and text redaction features">
+
+    <!-- =====================================================
+         TWITTER CARD — Large image summary card
+    ===================================================== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TrustedToolsWeb">
+    <meta name="twitter:creator" content="@TrustedToolsWeb">
+    <meta name="twitter:title" content="AI Privacy Censor ULTRA MAX — Face Blur, OCR Redaction & EXIF Stripper">
+    <meta name="twitter:description" content="Auto-detect faces, redact text & strip EXIF metadata from images — 100% free, 100% private, runs entirely in your browser. No upload needed.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/img/img-privacy-censor/img/og-banner.webp">
+    <meta name="twitter:image:alt" content="AI Privacy Censor ULTRA MAX — Free Image Privacy Tool Preview">
+
+    <!-- =====================================================
+         FAVICONS — Tool-specific assets (img category path)
+    ===================================================== -->
+    <link rel="icon" type="image/webp" href="../../assets/tools/img/img-privacy-censor/img/favicon.webp">
+    <link rel="apple-touch-icon" href="../../assets/tools/img/img-privacy-censor/img/favicon.webp">
+
+    <!-- =====================================================
+         STRUCTURED DATA (JSON-LD)
+         WebApplication schema — maximized for Google rich results.
+         Covers feature list, privacy guarantees, tool category,
+         and HowTo steps for enhanced SERP appearance.
+    ===================================================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AI Privacy Censor ULTRA MAX",
+        "alternateName": ["Face Blur Tool", "Image Redaction Tool", "EXIF Metadata Stripper", "Photo Anonymizer"],
+        "url": "https://trustedtoolsweb.com/tools/img/img-privacy-censor/",
+        "description": "A professional AI-powered image privacy tool that automatically detects and blurs human faces using MediaPipe, redacts sensitive text (emails, phone numbers, credit card numbers) via Tesseract OCR, provides a manual Magic Brush for custom censoring, strips all GPS and EXIF metadata on export, and supports batch processing with ZIP download — 100% client-side, zero data upload.",
+        "applicationCategory": "MultimediaApplication",
+        "applicationSubCategory": "Image Privacy & Anonymization",
+        "operatingSystem": "All (Web Browser)",
+        "browserRequirements": "Requires a modern browser with JavaScript and WebAssembly support (Chrome 80+, Firefox 75+, Edge 80+, Safari 14+)",
+        "softwareVersion": "1.0",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TrustedToolsWeb",
+            "url": "https://trustedtoolsweb.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://trustedtoolsweb.com/assets/img/logo.webp"
+            }
+        },
+        "featureList": [
+            "AI Face Detection using MediaPipe Tasks Vision",
+            "Automatic Face Blur (Gaussian) or Pixelation",
+            "OCR-powered Sensitive Text Redaction via Tesseract.js",
+            "Smart detection of Emails, Phone Numbers, and Credit Card Numbers",
+            "Manual Magic Brush for custom area censoring",
+            "Adjustable brush size and censor intensity",
+            "GPS & EXIF Metadata Stripping on export",
+            "Batch image processing with ZIP download",
+            "100% Client-Side — No server uploads",
+            "Dark and Light mode support",
+            "Mobile-responsive design"
+        ],
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/img/img-privacy-censor/img/og-banner.webp",
+        "image": "https://trustedtoolsweb.com/assets/tools/img/img-privacy-censor/img/og-banner.webp",
+        "keywords": "face blur, image redaction, EXIF stripper, photo anonymizer, privacy censor, OCR redaction, mediapipe, tesseract"
+    }
+    </script>
+
+    <!-- =====================================================
+         PRECONNECT HINTS — Reduce CDN latency for critical libs
+    ===================================================== -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- =====================================================
+         GLOBAL STYLESHEET — Site-wide theme variables & resets
+    ===================================================== -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- =====================================================
+         TOOLS TEMPLATE STYLESHEET
+         Universal component library for all tools.
+         Contains all shared UI primitives + tool-specific
+         section for AI Privacy Censor appended at the bottom.
+    ===================================================== -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- =====================================================
+         FONT AWESOME — Local copy (no CDN dependency)
+         Provides all icons used across the UI.
+    ===================================================== -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- =====================================================
+         LOCAL LIBRARIES — Loaded in <head> for availability
+         before the tool script executes.
+    ===================================================== -->
+
+    <!-- JSZip: Used for batch-processing ZIP archive creation -->
+    <script src="../../assets/library/file-archiver/jszip/jszip.min.js"></script>
+
+    <!-- FileSaver.js: Triggers browser download for zip/image blobs -->
+    <script src="../../assets/library/file-archiver/filesaver/FileSaver.min.js"></script>
+
+    <!-- html2canvas: Canvas-to-blob export fallback utility -->
+    <script src="../../assets/library/canvas-engine/html2canvas/html2canvas.min.js"></script>
+
+    <!-- Tesseract.js: OCR engine for sensitive text detection -->
+    <!-- Worker and core paths are configured in script.js during initialization -->
+    <script src="../../assets/library/media-vision/tesseract/tesseract.min.js"></script>
+
+</head>
+<body>
+
+    <!-- =====================================================
+         GLOBAL TOAST NOTIFICATION SYSTEM
+         The global.js script injects toast HTML automatically.
+         aria-live="polite" ensures screen readers announce messages.
+         NOTE: Do NOT add a local toast container here — the global
+         system manages injection entirely.
+    ===================================================== -->
+
+    <!-- =====================================================
+         GLOBAL SITE HEADER
+         Populated dynamically by global.js (nav, logo, theme toggle).
+    ===================================================== -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- =====================================================
+         MAIN TOOL INTERFACE
+         Centered layout using the standard <main> + .container
+         pattern. .animated-entry applies the fade-in entrance.
+    ===================================================== -->
+    <main>
+        <div class="container animated-entry">
+
+            <!-- ============================================
+                 HERO / TITLE AREA
+                 Security badge, tool title, and subtitle.
+                 Follows the standard pattern from tools-template.css.
+            ============================================ -->
+
+            <!-- Trust badge — signals 100% client-side processing -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                100% Client-Side Privacy — Zero Uploads
+            </div>
+
+            <!-- Main tool H1 — gradient span highlights the brand name -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-user-secret" aria-hidden="true"></i>
+                AI Privacy Censor <span>ULTRA MAX</span>
+            </h1>
+
+            <!-- Subtitle summarising the four core feature pillars -->
+            <p class="subtitle">
+                Auto Face Blur &bull; OCR Text Redaction &bull; EXIF Stripper &bull; Batch Export
+            </p>
+
+            <!-- ============================================
+                 MODE SELECTION TABS
+                 Switches between Single image mode and Batch mode.
+                 ARIA role="tablist" for full accessibility compliance.
+            ============================================ -->
+            <div class="pct-mode-tabs" role="tablist" aria-label="Processing mode">
+                <button
+                    class="pct-mode-tab active"
+                    id="tab-single"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="panel-single"
+                    data-mode="single"
+                >
+                    <i class="fa-solid fa-image" aria-hidden="true"></i> Single Image
+                </button>
+                <button
+                    class="pct-mode-tab"
+                    id="tab-batch"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="panel-batch"
+                    data-mode="batch"
+                >
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> Batch Mode
+                </button>
+            </div>
+
+            <!-- ============================================
+                 SINGLE IMAGE PANEL
+                 Contains drop zone, censor controls, canvas workspace,
+                 action buttons, and stats bar.
+            ============================================ -->
+            <div id="panel-single" role="tabpanel" aria-labelledby="tab-single" class="pct-panel active">
+
+                <!-- ─── DROP ZONE / UPLOAD AREA ──────────────────────
+                     Accepts drag-and-drop or click-to-browse.
+                     Hidden once an image is loaded and canvas takes over.
+                ─────────────────────────────────────────────────── -->
+                <div
+                    class="pct-drop-zone"
+                    id="dropZone"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Upload image: click or drag and drop"
+                    aria-describedby="dropZoneHint"
+                >
+                    <!-- Hidden native file input — triggered by JS on zone click -->
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept="image/jpeg,image/png,image/webp,image/gif,image/bmp"
+                        aria-label="Choose image file"
+                        class="pct-hidden-input"
+                    >
+                    <div class="pct-drop-content" id="dropZoneContent">
+                        <div class="pct-drop-icon">
+                            <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                        </div>
+                        <p class="pct-drop-primary">Drop your image here</p>
+                        <p class="pct-drop-secondary" id="dropZoneHint">or click to browse — JPG, PNG, WEBP, BMP supported</p>
+                        <div class="pct-drop-formats">
+                            <span>JPG</span><span>PNG</span><span>WEBP</span><span>BMP</span><span>GIF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── CENSOR CONTROLS PANEL ─────────────────────────
+                     Hidden by JS until the first image is loaded.
+                     Contains four feature cards: Face, OCR, Brush, EXIF.
+                ─────────────────────────────────────────────────── -->
+                <div class="pct-controls-panel" id="controlsPanel" aria-hidden="true">
+
+                    <!-- ── AI Feature Toggle Cards ── -->
+                    <div class="pct-controls-grid">
+
+                        <!-- Face Detection Card -->
+                        <div class="pct-control-card" id="cardFaceDetect">
+                            <div class="pct-control-card-header">
+                                <span class="pct-control-icon pct-icon-face">
+                                    <i class="fa-solid fa-face-grin" aria-hidden="true"></i>
+                                </span>
+                                <div class="pct-control-label">
+                                    <strong>AI Face Censor</strong>
+                                    <small>MediaPipe Detection</small>
+                                </div>
+                                <label class="pct-switch" aria-label="Enable AI face censoring">
+                                    <input type="checkbox" id="toggleFace" checked>
+                                    <span class="pct-switch-slider"></span>
+                                </label>
+                            </div>
+                            <div class="pct-control-card-body">
+                                <label for="faceMethod">Censor Method</label>
+                                <select id="faceMethod" aria-label="Face censor method">
+                                    <option value="blur">Gaussian Blur</option>
+                                    <option value="pixelate">Pixelation</option>
+                                    <option value="blackbar">Black Bar</option>
+                                </select>
+                                <label for="faceIntensity">Intensity: <span id="faceIntensityVal">20</span></label>
+                                <input type="range" id="faceIntensity" min="5" max="50" value="20" aria-label="Face censor intensity">
+                            </div>
+                        </div>
+
+                        <!-- OCR Text Redaction Card -->
+                        <div class="pct-control-card" id="cardOCR">
+                            <div class="pct-control-card-header">
+                                <span class="pct-control-icon pct-icon-ocr">
+                                    <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
+                                </span>
+                                <div class="pct-control-label">
+                                    <strong>OCR Text Redact</strong>
+                                    <small>Tesseract.js Powered</small>
+                                </div>
+                                <label class="pct-switch" aria-label="Enable OCR text redaction">
+                                    <input type="checkbox" id="toggleOCR" checked>
+                                    <span class="pct-switch-slider"></span>
+                                </label>
+                            </div>
+                            <div class="pct-control-card-body">
+                                <p class="pct-chip-label">Auto-detect:</p>
+                                <div class="pct-chip-group" role="group" aria-label="OCR target data types">
+                                    <label class="pct-chip">
+                                        <input type="checkbox" id="ocrEmail" checked> Emails
+                                    </label>
+                                    <label class="pct-chip">
+                                        <input type="checkbox" id="ocrPhone" checked> Phone #s
+                                    </label>
+                                    <label class="pct-chip">
+                                        <input type="checkbox" id="ocrCard" checked> Card #s
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Magic Brush Card -->
+                        <div class="pct-control-card" id="cardBrush">
+                            <div class="pct-control-card-header">
+                                <span class="pct-control-icon pct-icon-brush">
+                                    <i class="fa-solid fa-paintbrush" aria-hidden="true"></i>
+                                </span>
+                                <div class="pct-control-label">
+                                    <strong>Magic Brush</strong>
+                                    <small>Manual Censor</small>
+                                </div>
+                                <label class="pct-switch" aria-label="Enable magic brush tool">
+                                    <input type="checkbox" id="toggleBrush">
+                                    <span class="pct-switch-slider"></span>
+                                </label>
+                            </div>
+                            <div class="pct-control-card-body">
+                                <label for="brushSize">Brush Size: <span id="brushSizeVal">40</span>px</label>
+                                <input type="range" id="brushSize" min="10" max="150" value="40" aria-label="Magic brush size">
+                                <label for="brushMethod">Brush Mode</label>
+                                <select id="brushMethod" aria-label="Magic brush censor mode">
+                                    <option value="blur">Blur</option>
+                                    <option value="pixelate">Pixelate</option>
+                                    <option value="blackbar">Black Bar</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- EXIF Stripper Card (always-on info) -->
+                        <div class="pct-control-card" id="cardEXIF">
+                            <div class="pct-control-card-header">
+                                <span class="pct-control-icon pct-icon-exif">
+                                    <i class="fa-solid fa-location-dot-slash" aria-hidden="true"></i>
+                                </span>
+                                <div class="pct-control-label">
+                                    <strong>EXIF Stripper</strong>
+                                    <small>GPS &amp; Metadata Removal</small>
+                                </div>
+                                <label class="pct-switch" aria-label="Enable EXIF metadata stripping">
+                                    <input type="checkbox" id="toggleEXIF" checked>
+                                    <span class="pct-switch-slider"></span>
+                                </label>
+                            </div>
+                            <div class="pct-control-card-body">
+                                <p class="pct-exif-note">
+                                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                    Strips GPS coordinates, camera model, device serial, timestamps, and all EXIF tags on export.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div><!-- /.pct-controls-grid -->
+
+                    <!-- ─── CANVAS WORKSPACE ──────────────────────────────
+                         The main editing area. Contains toolbar (undo/reset),
+                         the HTML5 Canvas element, the brush cursor overlay,
+                         and the processing overlay with spinner + progress bar.
+                    ─────────────────────────────────────────────────────── -->
+                    <div class="pct-canvas-wrapper" id="canvasWrapper">
+
+                        <!-- Canvas toolbar — label + action buttons -->
+                        <div class="pct-canvas-toolbar">
+                            <span class="pct-canvas-label">
+                                <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                                Preview Canvas
+                            </span>
+                            <div class="pct-toolbar-actions">
+                                <!-- Undo last Magic Brush stroke -->
+                                <button class="pct-tb-btn" id="btnUndo" title="Undo last brush stroke" aria-label="Undo last brush stroke" disabled>
+                                    <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Undo
+                                </button>
+                                <!-- Reset canvas to original image -->
+                                <button class="pct-tb-btn" id="btnReset" title="Reset to original image" aria-label="Reset canvas to original">
+                                    <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Scrollable container ensures canvas fits any viewport -->
+                        <div class="pct-canvas-scroll">
+                            <!-- The primary working canvas — all censor operations render here -->
+                            <canvas
+                                id="mainCanvas"
+                                aria-label="Image editing canvas for censoring"
+                                role="img"
+                            ></canvas>
+
+                            <!-- Brush cursor overlay — tracks mouse position for brush preview -->
+                            <div class="pct-brush-cursor" id="brushCursor" aria-hidden="true"></div>
+                        </div>
+
+                        <!-- Processing overlay — shown during AI model inference -->
+                        <div class="pct-canvas-overlay" id="canvasOverlay" aria-live="polite">
+                            <!-- Animated triple-ring spinner for visual feedback -->
+                            <div class="pct-spinner">
+                                <div class="pct-ring"></div>
+                                <div class="pct-ring pct-ring--delay1"></div>
+                                <div class="pct-ring pct-ring--delay2"></div>
+                            </div>
+                            <p id="overlayMessage">Initializing AI models…</p>
+                            <!-- Progress bar track + fill — width driven by JS -->
+                            <div class="pct-progress-track" id="progressBarContainer">
+                                <div class="pct-progress-fill" id="progressBar"></div>
+                            </div>
+                        </div>
+
+                    </div><!-- /.pct-canvas-wrapper -->
+
+                    <!-- ─── ACTION BUTTONS ────────────────────────────────
+                         Three primary actions: Run AI Censor, Download, Clear.
+                         Wrapped in .btn-area for auto-spacing and mobile stacking.
+                    ─────────────────────────────────────────────────────── -->
+                    <div class="btn-area">
+                        <!-- Primary CTA — triggers full AI processing pipeline -->
+                        <button
+                            class="btn btn-primary"
+                            id="btnProcess"
+                            aria-label="Run AI analysis and apply all selected censor methods"
+                        >
+                            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                            Run AI Censor
+                        </button>
+
+                        <!-- Download censored result as clean PNG -->
+                        <button
+                            class="btn btn-success"
+                            id="btnDownload"
+                            aria-label="Download the censored image"
+                            disabled
+                        >
+                            <i class="fa-solid fa-download" aria-hidden="true"></i>
+                            Download Image
+                        </button>
+
+                        <!-- Clear / start over -->
+                        <button
+                            class="btn btn-danger"
+                            id="btnClearAll"
+                            aria-label="Clear image and start over"
+                        >
+                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                            Clear
+                        </button>
+                    </div>
+
+                    <!-- ─── STATS BAR ──────────────────────────────────────
+                         Revealed after processing completes.
+                         Shows face count, redacted text blocks, and EXIF status.
+                    ─────────────────────────────────────────────────────── -->
+                    <div class="pct-stats-bar" id="statsBar" aria-live="polite" aria-atomic="true">
+                        <div class="pct-stat-item">
+                            <i class="fa-solid fa-face-grin" aria-hidden="true"></i>
+                            <span id="statFaces">0</span> Faces Censored
+                        </div>
+                        <div class="pct-stat-item">
+                            <i class="fa-solid fa-text-slash" aria-hidden="true"></i>
+                            <span id="statText">0</span> Text Blocks Redacted
+                        </div>
+                        <div class="pct-stat-item">
+                            <i class="fa-solid fa-database" aria-hidden="true"></i>
+                            <span id="statExif">EXIF: —</span>
+                        </div>
+                    </div>
+
+                </div><!-- /#controlsPanel -->
+
+            </div><!-- /#panel-single -->
+
+            <!-- ============================================
+                 BATCH PROCESSING PANEL
+                 Multi-image queue with ZIP export.
+                 Hidden by default; revealed via tab switch.
+            ============================================ -->
+            <div id="panel-batch" role="tabpanel" aria-labelledby="tab-batch" class="pct-panel" hidden>
+
+                <!-- Batch drop zone — supports multiple file selection -->
+                <div
+                    class="pct-drop-zone"
+                    id="batchDropZone"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Upload multiple images for batch processing"
+                >
+                    <input
+                        type="file"
+                        id="batchFileInput"
+                        accept="image/jpeg,image/png,image/webp,image/gif,image/bmp"
+                        multiple
+                        aria-label="Choose multiple image files"
+                        class="pct-hidden-input"
+                    >
+                    <div class="pct-drop-content">
+                        <div class="pct-drop-icon">
+                            <i class="fa-solid fa-images" aria-hidden="true"></i>
+                        </div>
+                        <p class="pct-drop-primary">Drop multiple images here</p>
+                        <p class="pct-drop-secondary">or click to browse — up to 20 images at once</p>
+                        <div class="pct-drop-formats">
+                            <span>JPG</span><span>PNG</span><span>WEBP</span><span>BMP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batch queue thumbnails — populated dynamically by JS -->
+                <div class="pct-batch-queue" id="batchQueue" aria-label="Batch image queue" aria-live="polite"></div>
+
+                <!-- Batch censor options — revealed after files are added -->
+                <div class="pct-batch-options" id="batchOptions" aria-hidden="true">
+                    <h3 class="pct-batch-heading">
+                        <i class="fa-solid fa-sliders" aria-hidden="true"></i> Batch Censor Settings
+                    </h3>
+                    <div class="pct-batch-options-row">
+                        <label class="pct-chip">
+                            <input type="checkbox" id="batchFace" checked> Auto Face Blur
+                        </label>
+                        <label class="pct-chip">
+                            <input type="checkbox" id="batchOCR" checked> OCR Text Redact
+                        </label>
+                        <label class="pct-chip">
+                            <input type="checkbox" id="batchEXIF" checked> Strip EXIF
+                        </label>
+                    </div>
+
+                    <!-- Batch action buttons — process all or clear queue -->
+                    <div class="btn-area">
+                        <button class="btn btn-primary" id="btnBatchProcess" aria-label="Process all batch images">
+                            <i class="fa-solid fa-gears" aria-hidden="true"></i> Process All &amp; Download ZIP
+                        </button>
+                        <button class="btn btn-danger" id="btnBatchClear" aria-label="Clear batch queue">
+                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i> Clear Queue
+                        </button>
+                    </div>
+
+                    <!-- Batch progress indicator — updates label and bar fill via JS -->
+                    <div class="pct-batch-progress" id="batchProgressWrapper" aria-live="polite">
+                        <div class="pct-batch-progress-label" id="batchProgressLabel">Preparing…</div>
+                        <div class="pct-progress-track">
+                            <div class="pct-progress-fill" id="batchProgressBar"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /#panel-batch -->
+
+            <!-- ============================================
+                 INFORMATIONAL CONTENT SECTION
+                 SEO-optimised educational content wrapped in the
+                 standard .info-section-wrapper > .info-card pattern.
+            ============================================ -->
+            <section class="info-section-wrapper" aria-label="Tool information and documentation">
+
+                <!-- How-to Guide -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-circle-question" aria-hidden="true"></i> How to Use AI Privacy Censor ULTRA MAX</h2>
+                    <ul class="how-to-list">
+                        <li>
+                            <i class="fa-solid fa-upload" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 1: Upload Your Image</strong><br>
+                                Drag and drop any JPG, PNG, WEBP, or BMP image into the upload zone, or click to browse your files. Your image never leaves your device.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 2: Choose Censor Modes</strong><br>
+                                Enable <strong>AI Face Censor</strong> to auto-detect faces, <strong>OCR Text Redact</strong> to find emails/phones/cards, and <strong>Magic Brush</strong> for manual painting. Mix and match as needed.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 3: Run AI Censor</strong><br>
+                                Click <strong>"Run AI Censor"</strong> to trigger the MediaPipe face model and Tesseract OCR engine. Results appear live on the canvas.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-paintbrush" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 4: Refine with Magic Brush</strong><br>
+                                Enable the Magic Brush and paint over any remaining areas you wish to censor. Use the <strong>Undo</strong> button to reverse strokes.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-download" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 5: Download Clean Image</strong><br>
+                                Hit <strong>"Download Image"</strong> to export a privacy-cleaned PNG with all EXIF metadata stripped. Your original file is untouched.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Technology Stack -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-microchip" aria-hidden="true"></i> Technology Stack: How It Works</h2>
+                    <p>This tool uses a cutting-edge stack of browser-native AI libraries to process everything locally:</p>
+                    <ul class="tech-list">
+                        <li><strong>MediaPipe Tasks Vision (Face Detector):</strong> Google's production-grade ML model runs entirely via WebAssembly in your browser, detecting face bounding boxes with sub-100ms latency.</li>
+                        <li><strong>Tesseract.js (OCR Engine):</strong> A WebAssembly port of the industry-standard Tesseract 4 OCR engine. It reads image text and our regex engine flags sensitive patterns (emails, phone numbers, 16-digit card numbers).</li>
+                        <li><strong>HTML5 Canvas API:</strong> All blur, pixelation, and black-bar effects are rendered via raw Canvas 2D context operations — no server-side image processing whatsoever.</li>
+                        <li><strong>JSZip + FileSaver.js:</strong> Batch output is packaged into a ZIP archive entirely in memory and triggered as a browser download with zero server involvement.</li>
+                        <li><strong>EXIF Stripping:</strong> By re-drawing source images onto a fresh Canvas and exporting as PNG blob, all EXIF metadata (GPS, camera model, timestamps) is inherently discarded.</li>
+                    </ul>
+                </div>
+
+                <!-- Privacy & Security Guarantee -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-lock" aria-hidden="true"></i> Privacy &amp; Security Guarantee</h2>
+                    <p>This tool operates <strong>100% Client-Side</strong>. Every byte of AI processing happens within your browser's sandboxed environment:</p>
+                    <ul class="tech-list">
+                        <li>Your images are <strong>never uploaded</strong> to any server.</li>
+                        <li>No image data, metadata, or OCR results are ever logged or transmitted.</li>
+                        <li>AI models are loaded from public CDNs once and cached by your browser.</li>
+                        <li>Works fully offline after the first load (models cached via browser storage).</li>
+                        <li>EXIF stripping ensures exported images contain zero geolocation or device fingerprint data.</li>
+                    </ul>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Disclaimer</h2>
+                    <p>AI face detection may not catch all faces in low-resolution, extreme-angle, or occluded images. OCR accuracy depends on image quality and font clarity. Always manually review the canvas output before sharing sensitive documents. This tool is provided for legitimate privacy protection purposes only.</p>
+                </div>
+
+            </section>
+
+        </div><!-- /.container -->
+
+        <!-- =====================================================
+             RELATED TOOLS DYNAMIC GRID
+             Populated by related-tools.js based on data-category.
+             data-category: "img" — matches this tool's category.
+             data-current-page: excludes this page from results.
+        ===================================================== -->
+        <div class="container">
+            <div
+                id="dynamic-related-tools"
+                data-category="img"
+                data-current-page="img-privacy-censor.html"
+            ></div>
+        </div>
+
+        <!-- Related tools loader (ES module — must be type="module") -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <!-- =====================================================
+         GLOBAL SITE FOOTER
+         Populated dynamically by global.js.
+    ===================================================== -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- =====================================================
+         GLOBAL JS — Mounts header, footer, theme switcher,
+         and injects the global toast notification container.
+         MUST remain type="module" and load before tool script.
+    ===================================================== -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- =====================================================
+         TOOL SCRIPT — Main AI logic, Canvas, OCR, Batch.
+         Loaded as a classic script to allow top-level access
+         to JSZip, FileSaver (non-module globals).
+    ===================================================== -->
+    <script src="../../assets/tools/img/img-privacy-censor/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

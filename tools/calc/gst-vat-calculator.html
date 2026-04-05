@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- ═══════════════════════════════════════════════════
+         ANALYTICS & CONFIG SCRIPTS (Must remain first)
+         Loaded before meta tags per project architecture.
+         ═══════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ═══════════════════════════════════════════════════
+         SEO SETTINGS — Title, Description, Keywords
+         ═══════════════════════════════════════════════════ -->
+    <title>Global GST/VAT Master: Commercial Edition &amp; Invoice Generator (Free)</title>
+    <meta name="title"       content="Global GST/VAT Master: Commercial Edition &amp; Invoice Generator (Free)">
+    <meta name="description" content="Calculate GST, VAT, and Sales Tax instantly for 15+ countries. Generate professional PDF invoices, copy tax summaries, and manage inclusive/exclusive rates.">
+    <meta name="keywords"    content="gst calculator, vat calculator, sales tax tool, invoice generator, tax analytics, inclusive tax, exclusive tax, bangladesh vat, usa sales tax, online tools bd">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/calc-gst-calculator.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/calc-gst-calculator.html">
+    <meta property="og:title"       content="GST/VAT Master - Commercial Analytics">
+    <meta property="og:description" content="Commercial grade tax calculator with PDF Invoice generation. 100% Client-side privacy.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/calc/calc-gst-vat/img/og-banner.webp">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="GST/VAT Master - Commercial Analytics">
+    <meta name="twitter:description" content="Calculate tax and generate invoices instantly.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/calc/calc-gst-vat/img/og-banner.webp">
+
+    <!-- Favicon -->
+    <link rel="icon"             type="image/webp" href="../../assets/tools/calc/calc-gst-vat/img/favicon.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/tools/calc/calc-gst-vat/img/favicon.webp">
+
+    <!-- Font Awesome Icon Library (kept exactly as provided) -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- PDF Generation Library — html2pdf.js (kept exactly as provided) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- GLOBAL CSS — Site-wide: Header, Footer, Theme, Base Components -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- TOOLS TEMPLATE CSS — Complete design system for ALL tools -->
+    <!-- Sections 1–18 cover all reusable components; Section 19 covers GST tool specifics. -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ═══════════════════════════════════════════════════
+         SCHEMA MARKUP (JSON-LD) — Structured data for SEO
+         DO NOT MODIFY — Required for rich search results.
+         ═══════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Global GST/VAT Master",
+        "url": "https://trustedtoolsweb.com/calc-gst-calculator.html",
+        "description": "A professional financial tool for calculating GST/VAT and generating PDF invoices.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "2.0",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "Inclusive/Exclusive Tax, PDF Invoice Generation, 15+ Country Presets, Copy to Clipboard"
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════
+         GLOBAL UI INFRASTRUCTURE
+         Toast, Header — populated dynamically by global.js
+         ═══════════════════════════════════════════════════ -->
+
+    <!-- Toast Notification Container — used by script.js _showToast() -->
+    <div id="toast-box" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Global Site Header (injected by global.js) -->
+    <header id="global-header" class="site-header"></header>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         MAIN CONTENT AREA
+         ═══════════════════════════════════════════════════ -->
+    <main>
+        <div class="container animated-entry">
+
+            <!-- ── HERO / TITLE SECTION ── -->
+
+            <!-- Privacy trust badge -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> 100% Client-Side Privacy
+            </div>
+
+            <!-- Tool title — <span> receives gradient via .tool-title span in CSS -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i> Global GST/VAT <span>Master</span>
+            </h1>
+
+            <!-- Subtitle / tool description -->
+            <p class="subtitle">Commercial Grade Tax Analytics &amp; Invoice Generator. Supports 15+ Jurisdictions.</p>
+
+
+            <!-- ═══════════════════════════════════════════════
+                 INPUT SECTION
+                 All IDs here are referenced by script.js.
+                 DO NOT rename any id or class attribute.
+                 ═══════════════════════════════════════════════ -->
+                             <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <div class="input-wrapper">
+
+                <!-- Two-column grid: Jurisdiction + Tax Rate -->
+                <div class="multi-input-grid">
+
+                    <!-- Country / Jurisdiction selector — populated dynamically by script.js -->
+                    <div>
+                        <label for="countrySelect">
+                            <i class="fa-solid fa-earth-americas" aria-hidden="true"></i> Jurisdiction (Region)
+                        </label>
+                        <select
+                            id="countrySelect"
+                            aria-label="Select tax jurisdiction or country"
+                        >
+                            <!-- Options injected by _populateCountries() in script.js -->
+                            <option value="custom">Loading Regions...</option>
+                        </select>
+                    </div>
+
+                    <!-- Tax Rate input — auto-filled when jurisdiction changes -->
+                    <div>
+                        <label for="taxRateInput">
+                            <i class="fa-solid fa-percent" aria-hidden="true"></i> Tax Rate (%)
+                        </label>
+                        <input
+                            type="number"
+                            id="taxRateInput"
+                            step="0.01"
+                            placeholder="0.00"
+                            aria-label="Tax rate percentage"
+                            min="0"
+                            max="100"
+                        >
+                    </div>
+
+                </div><!-- /.multi-input-grid -->
+
+                <!-- Transaction Amount — full width, supports comma-masked input via script.js -->
+                <div class="mt-xl">
+                    <label for="amountInput">
+                        <i class="fa-solid fa-coins" aria-hidden="true"></i> Transaction Amount
+                    </label>
+                    <input
+                        type="text"
+                        id="amountInput"
+                        placeholder="0.00"
+                        inputmode="decimal"
+                        aria-label="Enter transaction amount"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <!-- ── TAX MODE TOGGLE ──
+                     Switches between Exclusive (+Tax) and Inclusive (-Tax) modes.
+                     IDs: taxToggle, lblExc, lblInc — all targeted by script.js.
+                     Styled via .gst-toggle-wrapper in tools-template.css Section 19. -->
+                <div class="gst-toggle-wrapper" role="group" aria-label="Tax calculation mode">
+                    <!-- "Exclusive" label — script.js toggles .active class -->
+                    <span class="gst-toggle-txt active" id="lblExc">Exclusive (+Tax)</span>
+
+                    <!-- Native checkbox powers the toggle; .gst-switch wraps it visually -->
+                    <label class="gst-switch" aria-label="Toggle between exclusive and inclusive tax mode">
+                        <input
+                            type="checkbox"
+                            id="taxToggle"
+                            role="switch"
+                            aria-checked="false"
+                            aria-label="Switch to inclusive tax mode"
+                        >
+                        <!-- Animated pill/knob rendered via CSS ::after pseudo-element -->
+                        <span class="gst-slider"></span>
+                    </label>
+
+                    <!-- "Inclusive" label — script.js toggles .active class -->
+                    <span class="gst-toggle-txt" id="lblInc">Inclusive (-Tax)</span>
+                </div><!-- /.gst-toggle-wrapper -->
+
+                <!-- ── ACTION BUTTONS ──
+                     Rule: Every button uses BOTH .btn base class + variant class.
+                     Rule: All buttons grouped inside .btn-area for mobile stacking. -->
+                <div class="btn-area">
+                    <!-- Primary CTA — triggers _triggerCalculation(true) via event listener in script.js -->
+                    <button
+                        class="btn btn-primary"
+                        id="btnCalculate"
+                        aria-label="Calculate tax based on entered values"
+                    >
+                        <i class="fa-solid fa-bolt" aria-hidden="true"></i> Calculate Tax
+                    </button>
+
+                    <!-- Reset button — triggers _resetApp() via event listener in script.js -->
+                    <button
+                        class="btn btn-secondary"
+                        id="btnReset"
+                        aria-label="Reset all fields and clear results"
+                    >
+                        <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Reset
+                    </button>
+                </div><!-- /.btn-area -->
+
+            </div><!-- /.input-wrapper -->
+
+
+            <!-- ═══════════════════════════════════════════════
+                 SKELETON LOADER
+                 Shown briefly during the calculation delay
+                 for a premium UX feel. Controlled by script.js
+                 via id="skeletonLoader".
+                 ═══════════════════════════════════════════════ -->
+            <div id="skeletonLoader" class="gst-skeleton-box" aria-hidden="true">
+                <div class="gst-skeleton-shimmer"></div>
+            </div>
+
+
+            <!-- ═══════════════════════════════════════════════
+                 RESULT BOX
+                 Hidden by default (display:none in CSS).
+                 script.js reveals this via id="resultBox"
+                 after a successful calculation.
+                 aria-live="polite" announces result to screen readers.
+                 ═══════════════════════════════════════════════ -->
+            <div id="resultBox" aria-live="polite" aria-atomic="true">
+
+                <!-- GST Result Summary Card -->
+                <div class="gst-result-card">
+
+                    <!-- Net Amount row -->
+                    <div class="gst-summary-row">
+                        <span>Net Amount (Base Price)</span>
+                        <!-- id="resNet" — written to by script.js _calculate() -->
+                        <span class="gst-summary-val" id="resNet" aria-label="Net amount result">0.00</span>
+                    </div>
+
+                    <!-- Tax Amount row — rate injected into id="resRateDisplay" by script.js -->
+                    <div class="gst-summary-row">
+                        <span>Tax Amount (<span id="resRateDisplay">0</span>%)</span>
+                        <!-- id="resTax" — written to by script.js _calculate() -->
+                        <span class="gst-summary-val gst-val-highlight" id="resTax" aria-label="Tax amount result">0.00</span>
+                    </div>
+
+                    <!-- Gross Total row — visually emphasised -->
+                    <div class="gst-total-row">
+                        <div class="flex-between">
+                            <span class="gst-total-label">GROSS TOTAL</span>
+                            <!-- id="resTotal" — written to by script.js _calculate() -->
+                            <span class="gst-summary-val gst-total-val" id="resTotal" aria-label="Gross total result">0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Result action buttons: Copy summary + Generate Invoice -->
+                    <div class="btn-area">
+                        <!-- Copy button — calls taxApp.copyToClipboard() (public method on window.taxApp) -->
+                        <button
+                            class="btn btn-secondary"
+                            onclick="taxApp.copyToClipboard()"
+                            aria-label="Copy tax summary to clipboard"
+                        >
+                            <i class="fa-regular fa-copy" aria-hidden="true"></i> Copy
+                        </button>
+
+                        <!-- Invoice button — calls taxApp.openInvoiceModal() -->
+                        <button
+                            class="btn btn-primary"
+                            onclick="taxApp.openInvoiceModal()"
+                            aria-label="Generate a PDF invoice from current calculation"
+                        >
+                            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Generate Invoice
+                        </button>
+                    </div><!-- /.btn-area -->
+
+                </div><!-- /.gst-result-card -->
+
+            </div><!-- /#resultBox -->
+
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+
+            <!-- ═══════════════════════════════════════════════
+                 SEO INFO SECTION
+                 Static editorial content for search engines.
+                 Structured as info-cards inside info-section-wrapper.
+                 ═══════════════════════════════════════════════ -->
+            <section class="info-section-wrapper" aria-label="Usage guide and technical documentation">
+
+                <!-- User Guide Card -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-circle-question" aria-hidden="true"></i> User Guide: How to Operate</h2>
+                    <p><strong>Global GST/VAT Master</strong> is designed for freelancers, business owners, and consumers to calculate precise tax liabilities. Follow these steps:</p>
+                    <ul class="guide-list">
+                        <li>
+                            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 1: Select Jurisdiction</strong><br>
+                                Choose your country from the dropdown list. The tool automatically loads standard VAT/GST rates for regions like USA, UK, India, Bangladesh, etc.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 2: Choose Tax Mode</strong><br>
+                                Use the toggle switch. Select <strong>Exclusive</strong> to add tax on top of a price, or <strong>Inclusive</strong> to extract tax from a total price (Reverse GST).
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-file-invoice" aria-hidden="true"></i>
+                            <div>
+                                <strong>Step 3: Generate Invoice</strong><br>
+                                After calculation, click "Generate Invoice" to create a professional PDF receipt ready for download or printing.
+                            </div>
+                        </li>
+                    </ul>
+                </div><!-- /.info-card: User Guide -->
+
+                <!-- Technical Algorithm Card -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-microchip" aria-hidden="true"></i> Technical Algorithm: Inclusive vs Exclusive</h2>
+                    <p>Understanding the math behind the tax is crucial for financial accuracy. Here is how our <strong>Commercial Engine</strong> processes your numbers:</p>
+                    <h3>1. Exclusive Tax (Adding Tax)</h3>
+                    <p>Used when pricing products before tax. The formula is straightforward:</p>
+                    <p class="tech-highlight">Total = Base Price + (Base Price × Rate %)</p>
+                    <h3>2. Inclusive Tax (Reverse Calculation)</h3>
+                    <p>Used when you have the final receipt price and need to find the original cost. This uses a reverse-coefficient formula:</p>
+                    <p class="tech-highlight">Tax Amount = Total Price - (Total Price ÷ (1 + Rate / 100))</p>
+                </div><!-- /.info-card: Algorithm -->
+
+                <!-- Privacy & Security Card -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-lock" aria-hidden="true"></i> Privacy &amp; Data Security</h2>
+                    <p>This financial tool operates <strong>100% Client-Side</strong>. Your financial data, transaction amounts, and generated invoices are processed locally within your browser's memory.</p>
+                    <p>No data is ever sent to our servers. This ensures maximum confidentiality for your business calculations.</p>
+                </div><!-- /.info-card: Privacy -->
+
+                <!-- Legal Disclaimer Card — accent-yellow border applied via CSS (.gst-disclaimer) -->
+                <div class="info-card gst-disclaimer">
+                    <h2 class="gst-disclaimer-title">
+                        <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Disclaimer
+                    </h2>
+                    <p>While this calculator is accurate for standard mathematical computations, tax laws vary by region and product category (e.g., luxury goods vs. essential items). Always consult with a certified accountant for official tax filings.</p>
+                </div><!-- /.info-card: Disclaimer -->
+
+            </section><!-- /.info-section-wrapper -->
+
+        </div><!-- /.container -->
+
+
+        <!-- ═══════════════════════════════════════════════
+             RELATED TOOLS SECTION
+             Injected dynamically by related-tools.js.
+             data-category and data-current-page are read
+             by the module to filter relevant tool links.
+             ═══════════════════════════════════════════════ -->
+        <div class="container">
+            <div
+                id="dynamic-related-tools"
+                data-category="calc"
+                data-current-page="calc-gst-vat.html"
+            ></div>
+        </div>
+        <!-- Related tools renderer — loaded as ES module -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main -->
+
+
+    <!-- Global Site Footer (injected by global.js) -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+
+    <!-- ═══════════════════════════════════════════════
+         INVOICE MODAL
+         Full-screen overlay with white invoice paper.
+         Controlled via taxApp.openInvoiceModal() and
+         taxApp.closeModal() in script.js.
+         id="invoiceModal"  — targeted by script.js dom cache.
+         id="invoiceContent" — passed to html2pdf for export.
+         ═══════════════════════════════════════════════ -->
+    <div
+        class="modal-overlay"
+        id="invoiceModal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Generated Tax Invoice"
+    >
+        <div class="invoice-paper" id="invoiceContent">
+
+            <!-- ── MODAL ACTION BUTTONS ──
+                 data-html2canvas-ignore prevents these from
+                 appearing in the exported PDF. -->
+            <div class="inv-actions" data-html2canvas-ignore="true">
+                <!-- Close modal -->
+                <button
+                    class="inv-btn inv-btn-close"
+                    onclick="taxApp.closeModal()"
+                    aria-label="Close invoice modal"
+                    title="Close"
+                >
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+                <!-- Print via browser dialog -->
+                <button
+                    class="inv-btn"
+                    onclick="window.print()"
+                    aria-label="Print invoice"
+                    title="Print"
+                >
+                    <i class="fa-solid fa-print" aria-hidden="true"></i>
+                </button>
+                <!-- Download as PDF via html2pdf.js -->
+                <button
+                    class="inv-btn"
+                    onclick="taxApp.downloadPDF()"
+                    aria-label="Download invoice as PDF"
+                    title="Download PDF"
+                >
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                </button>
+            </div><!-- /.inv-actions -->
+
+            <!-- ── INVOICE HEADER ──
+                 Logo + title on the left, invoice ID + date on the right. -->
+            <div class="inv-header">
+                <div class="inv-logo">
+                    <img
+                        src="../../assets/tools/calc/calc-gst-vat/img/invoice-logo.png"
+                        alt="Trusted Tools Logo"
+                        width="150"
+                        height="auto"
+                    >
+                    <h2>INVOICE</h2>
+                    <p>Tax Analytics Generated</p>
+                </div>
+                <div class="inv-meta">
+                    <!-- id="invId" — written to by taxApp.openInvoiceModal() -->
+                    <strong id="invId">INV-0000</strong>
+                    <!-- id="invDate" — written to by taxApp.openInvoiceModal() -->
+                    <span id="invDate">—</span>
+                </div>
+            </div><!-- /.inv-header -->
+
+            <!-- ── INVOICE LINE ITEMS TABLE ──
+                 id values in cells are written to by taxApp.openInvoiceModal(). -->
+            <table class="inv-table" aria-label="Invoice line items">
+                <thead>
+                    <tr>
+                        <th scope="col">Description</th>
+                        <th scope="col" class="text-right">Rate</th>
+                        <th scope="col" class="text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Services Rendered / Base Value</td>
+                        <td class="text-right">—</td>
+                        <td class="text-right" id="invBase">0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Tax / VAT / GST</td>
+                        <td class="text-right" id="invRate">0%</td>
+                        <td class="text-right" id="invTax">0.00</td>
+                    </tr>
+                </tbody>
+            </table><!-- /.inv-table -->
+
+            <!-- ── INVOICE GRAND TOTAL ── -->
+            <div class="inv-total-section">
+                <div class="inv-grand-label">Total Payable</div>
+                <!-- id="invTotal" — written to by taxApp.openInvoiceModal() -->
+                <div class="inv-grand" id="invTotal">0.00</div>
+            </div><!-- /.inv-total-section -->
+
+            <!-- ── INVOICE FOOTER NOTE ── -->
+            <div class="inv-footer-note">
+                This document is computer generated by Global GST Master.<br>
+                No signature is required. &copy; Trusted Tools Web
+            </div>
+
+        </div><!-- /.invoice-paper -->
+    </div><!-- /.modal-overlay #invoiceModal -->
+
+
+    <!-- ═══════════════════════════════════════════════
+         GLOBAL & TOOL SCRIPTS
+         global.js — Header, footer, theme toggle (module)
+         script.js — All GST/VAT tool logic (strict external)
+         ═══════════════════════════════════════════════ -->
+
+    <!-- Global site infrastructure script — loaded as ES module -->
+    <script type="module" src="../../assets/js/global.js"></script>
+        <script src="../../assets/js/ads-manager.js"></script>
+
+
+    <!-- Tool-specific logic — ALL JavaScript lives in this external file only -->
+    <script src="../../assets/tools/calc/calc-gst-vat/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!--
+    =======================================================================
+    IMAGE TO PDF STUDIO ULTRA — TRUSTED TOOLS WEB
+    =======================================================================
+    Description : 100% client-side tool to convert JPG, PNG & HEIC images
+                  into professional PDF documents. No server uploads. Ever.
+    Version     : 4.0.0 (CodeCanyon Release Build — Refactored Gold Master)
+    Author      : MD KAWSAR / Trusted Tools Web
+    License     : Standard / Extended License (CodeCanyon)
+    Stylesheet  : global.css + tools-template.css (NO separate style.css)
+    =======================================================================
+    -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL SITE CONFIG, META MANAGER & ANALYTICS
+         These scripts must load first so meta tags and analytics are
+         injected before the page renders.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PRIMARY SEO META TAGS
+         Optimised for "image to pdf", "jpg to pdf", "png to pdf" queries.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <title>Image to PDF Converter — Free, Secure & Instant | Trusted Tools Web</title>
+    <meta name="title"       content="Image to PDF Converter — Convert JPG, PNG & HEIC Free | Trusted Tools Web">
+    <meta name="description" content="Convert JPG, PNG, and HEIC images to PDF instantly in your browser — 100% free, no upload, no account. Drag & drop support, batch processing, image editor & compression. 100% client-side privacy.">
+    <meta name="keywords"    content="image to pdf, jpg to pdf, png to pdf, heic to pdf, convert photo to pdf, free pdf converter, client-side pdf, no upload pdf converter, batch image to pdf, trusted tools web">
+    <meta name="author"      content="Trusted Tools Web">
+    <meta name="robots"      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#090c10">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         OPEN GRAPH / FACEBOOK
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/image-to-pdf-converter.html">
+    <meta property="og:title"       content="Image to PDF Converter — Free, Secure & Instant">
+    <meta property="og:description" content="Convert photos to PDF directly in your browser. No server uploads, 100% privacy guaranteed. Supports JPG, PNG & HEIC with drag & drop and batch processing.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/pdf/pdf-image-to-pdf/img/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         TWITTER CARD
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/image-to-pdf-converter.html">
+    <meta name="twitter:title"       content="Image to PDF Studio ULTRA | Free Converter — No Upload Required">
+    <meta name="twitter:description" content="Convert JPG, PNG & HEIC to PDF securely in your browser. No upload, no account. Fast & 100% free.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/pdf/pdf-image-to-pdf/img/og-banner.webp">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/image-to-pdf-converter.html">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         FAVICON
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         TYPOGRAPHY — INTER & OUTFIT (localised, no external CDN)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Outfit/fonts.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         ICON LIBRARY — FONT AWESOME (localised)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         CORE TOOL LIBRARIES
+         • jsPDF        — PDF generation engine (runs entirely client-side)
+         • SortableJS   — Drag-and-drop reordering for the image grid
+         • heic2any     — HEIC → JPEG conversion for Apple device photos
+         • Cropper.js   — In-browser image cropping / editing
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/library/pdf-engine/jspdf/jspdf.umd.min.js"></script>
+    <script src="../../assets/library/core-ui/sortablejs/Sortable.min.js"></script>
+    <script src="../../assets/library/media-vision/heic2any/heic2any.min.js"></script>
+    <link  rel="stylesheet" href="../../assets/library/media-vision/cropperjs/cropper.min.css">
+    <script src="../../assets/library/media-vision/cropperjs/cropper.min.js"></script>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL STYLESHEET  — Site-wide rules: header, footer, theme vars
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         TOOLS TEMPLATE STYLESHEET — All tool UI components live here.
+         Section 50 at the bottom covers Image-to-PDF-specific styles.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         JSON-LD STRUCTURED DATA — WebApplication schema for rich snippets
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image to PDF Studio ULTRA",
+        "url": "https://trustedtoolsweb.com/image-to-pdf-converter.html",
+        "image": "https://trustedtoolsweb.com/assets/tools/pdf/pdf-image-to-pdf/img/og-banner.webp",
+        "description": "A secure, browser-based tool to convert JPG, PNG, and HEIC images into high-quality PDF documents without any server upload. 100% client-side processing.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "Drag & Drop, Batch Processing, Client-side Processing, HEIC Support, Image Editor, Crop, Watermark, B&W Filter, PDF Compression, Page Size Control, Portrait & Landscape",
+        "dateModified": "2026-02-24",
+        "inLanguage": "en",
+        "isAccessibleForFree": true
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL SITE HEADER — Populated by global.js (theme toggle, nav)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         MAIN CONTENT — Centred, max-width 950 px (set by <main> in CSS)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ───────────────────────────────────────────────────────────────
+             PRIMARY TOOL CARD
+             Contains the hero, upload zone, toolbar, image grid & actions.
+        ─────────────────────────────────────────────────────────────────── -->
+        <div class="container animated-entry">
+
+            <!-- ·····················································
+                 HERO / TITLE AREA
+                 Security badge, gradient H1, subtitle & hero image.
+            ····················································· -->
+            <div class="itp-hero-area text-center">
+
+                <!-- Green "100% Client-Side Processing" trust badge -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                    100% Client-Side Processing
+                </div>
+
+                <!-- Main tool H1 — gradient span highlights "STUDIO" -->
+                <h1 class="tool-title">
+                    <i class="fa-solid fa-file-image" aria-hidden="true"></i>
+                    Image to PDF <span>STUDIO</span>
+                </h1>
+
+                <!-- Descriptive subtitle -->
+                <p class="subtitle">
+                    Convert photos to high-quality PDF — Secure, Fast &amp; 100% Private.
+                    No uploads. No account needed.
+                </p>
+
+                <!-- Hero graphic — decorative, illustrates the workflow -->
+                <img
+                    src="../../assets/tools/pdf/pdf-image-to-pdf/img/hero-graphic.webp"
+                    alt="Image to PDF Studio — drag and drop workflow interface concept"
+                    class="itp-hero-img"
+                >
+            </div>
+            <!-- END: HERO / TITLE AREA -->
+
+            <!-- ·····················································
+                 LIBRARY ERROR BANNER
+                 Shown via JS (.is-visible) if a critical dependency
+                 (jsPDF / Cropper.js / SortableJS) fails to load.
+            ····················································· -->
+            <div class="itp-lib-error" id="libErrorBanner" role="alert" aria-live="assertive">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                A required library failed to load. PDF generation may be unavailable.
+                Please refresh the page or check your connection.
+            </div>
+
+            <!-- ·····················································
+                 ADVERTISEMENT SLOT — TOP BANNER
+                 Managed by ads-manager.js; hidden from screen readers.
+            ····················································· -->
+            <div class="ad-slot" data-ad-slot="top-banner" aria-hidden="true"></div>
+
+            <!-- ·····················································
+                 FILE UPLOAD DROP ZONE
+                 Accepts JPG, PNG, HEIC via click or drag-and-drop.
+                 JS adds .dragover class on drag-enter.
+            ····················································· -->
+            <div
+                class="itp-upload-zone"
+                id="dropZone"
+                role="button"
+                tabindex="0"
+                aria-label="Upload images — click or drag and drop JPG, PNG or HEIC files here"
+            >
+                <!-- Cloud upload icon -->
+                <i class="fa-solid fa-cloud-arrow-up itp-upload-zone__icon" aria-hidden="true"></i>
+
+                <!-- Primary CTA text -->
+                <div class="itp-upload-zone__heading">Drag &amp; Drop Images Here</div>
+
+                <!-- Supported formats hint -->
+                <div class="itp-upload-zone__hint">or click to browse &mdash; JPG, PNG, HEIC supported</div>
+
+                <!-- Hidden native file input — triggered by JS click() -->
+                <input
+                    type="file"
+                    id="fileInput"
+                    multiple
+                    accept="image/png, image/jpeg, image/jpg, .heic"
+                    aria-label="File input for image selection"
+                >
+            </div>
+            <!-- END: FILE UPLOAD DROP ZONE -->
+
+            <!-- ·····················································
+                 SETTINGS TOOLBAR
+                 Revealed by JS (.is-active) once at least one image
+                 is loaded. Controls page size, orientation, quality
+                 and margin for the generated PDF.
+            ····················································· -->
+            <div class="itp-toolbar" id="toolbar" aria-label="PDF conversion settings">
+
+                <!-- Page Size selector -->
+                <div class="itp-control-group">
+                    <label for="pageSize">
+                        <i class="fa-solid fa-file" aria-hidden="true"></i> Page Size
+                    </label>
+                    <select id="pageSize" class="input-control">
+                        <option value="a4">A4 (Standard)</option>
+                        <option value="letter">Letter (US)</option>
+                        <option value="fit">Fit to Image</option>
+                    </select>
+                </div>
+
+                <!-- Orientation selector -->
+                <div class="itp-control-group">
+                    <label for="orientation">
+                        <i class="fa-solid fa-rotate" aria-hidden="true"></i> Orientation
+                    </label>
+                    <select id="orientation" class="input-control">
+                        <option value="p">Portrait</option>
+                        <option value="l">Landscape</option>
+                    </select>
+                </div>
+
+                <!-- Quality (compression) range slider + live value badge -->
+                <div class="itp-control-group">
+                    <label for="quality">
+                        <i class="fa-solid fa-compress" aria-hidden="true"></i>
+                        Quality (Compression)
+                    </label>
+                    <div class="itp-quality-row">
+                        <input
+                            type="range"
+                            id="quality"
+                            class="range-slider"
+                            min="0.1"
+                            max="1.0"
+                            step="0.1"
+                            value="0.8"
+                            aria-label="Image quality slider from 10% to 100%"
+                        >
+                        <!-- Live quality percentage — updated by JS -->
+                        <span id="qualityVal" class="itp-quality-val" aria-live="polite">80%</span>
+
+                        <!-- Estimated output PDF size — updated by JS -->
+                        <span id="estSizeBadge" class="badge badge-info" aria-live="polite">Est: ~0 MB</span>
+                    </div>
+                </div>
+
+                <!-- Margin selector -->
+                <div class="itp-control-group">
+                    <label for="margin">
+                        <i class="fa-solid fa-border-none" aria-hidden="true"></i> Margin
+                    </label>
+                    <select id="margin" class="input-control">
+                        <option value="none">No Margin</option>
+                        <option value="small" selected>Small</option>
+                        <option value="big">Big</option>
+                    </select>
+                </div>
+
+            </div>
+            <!-- END: SETTINGS TOOLBAR -->
+
+            <!-- ·····················································
+                 IMAGE PREVIEW GRID
+                 Populated dynamically by renderThumbnail() in JS.
+                 SortableJS enables drag-to-reorder functionality.
+            ····················································· -->
+            <div class="itp-image-grid" id="imageGrid" aria-label="Uploaded images — drag to reorder"></div>
+
+            <!-- ·····················································
+                 DRAG-TO-REORDER HINT
+                 Revealed by JS (.is-visible) once images are loaded.
+            ····················································· -->
+            <p class="itp-guide-text" id="guideText" aria-live="polite">
+                <i class="fa-solid fa-hand-pointer" aria-hidden="true"></i>
+                Drag to reorder &bull; Use
+                <i class="fa-solid fa-pen" aria-hidden="true" style="font-size:0.8em"></i>
+                to edit individual images
+            </p>
+
+            <!-- ·····················································
+                 PDF FILENAME INPUT
+                 Revealed by JS (display:block) when images are loaded.
+                 The value is sanitised by JS before saving.
+            ····················································· -->
+            <div class="itp-filename-wrapper" id="filenameArea" style="display:none;">
+                <label for="pdfFilename" class="sr-only">PDF Filename</label>
+                <input
+                    type="text"
+                    id="pdfFilename"
+                    class="input-control itp-filename-input"
+                    placeholder="Enter PDF Filename (e.g., My_Assignment)"
+                    value="My_Document"
+                    aria-label="Output PDF filename"
+                >
+            </div>
+
+            <!-- ·····················································
+                 PRIMARY ACTION BUTTONS
+                 "Clear All" resets the grid; "Generate PDF" triggers
+                 the jsPDF build pipeline. Both disabled until images
+                 are loaded — JS enables them via updateUIState().
+            ····················································· -->
+            <div class="btn-area">
+                <button class="btn btn-secondary" id="clearBtn" disabled aria-label="Clear all uploaded images">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i> Clear All
+                </button>
+                <button class="btn btn-primary" id="generateBtn" disabled aria-label="Generate PDF from uploaded images">
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Generate PDF
+                </button>
+            </div>
+            <!-- END: PRIMARY ACTION BUTTONS -->
+
+            <!-- ·····················································
+                 ADVERTISEMENT SLOT — BOTTOM BANNER
+            ····················································· -->
+            <div class="ad-slot" data-ad-slot="bottom-banner" aria-hidden="true"></div>
+
+            <!-- ·····················································
+                 BOTTOM FEATURE INFO PANEL
+                 Brief bullet-point overview of key tool advantages.
+            ····················································· -->
+            <div class="itp-info-panel">
+                <h3 class="itp-info-panel__title">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    Why use Image to PDF Studio?
+                </h3>
+                <p>
+                    Our converter ensures your privacy by processing files directly in your
+                    browser. Unlike other services, your photos <strong>never leave your device</strong>.
+                </p>
+                <ul class="itp-info-panel__list">
+                    <li>
+                        <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                        Supports HD JPG, PNG, and HEIC (Apple) formats.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                        Custom A4 / Letter formatting with smart margin controls.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                        Auto-compression engine to reduce file size for email sharing.
+                    </li>
+                </ul>
+            </div>
+            <!-- END: BOTTOM FEATURE INFO PANEL -->
+
+        </div>
+        <!-- END: PRIMARY TOOL CARD -->
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             SEO CONTENT SECTION
+             Long-form article with FAQs, guide, and trust-building copy.
+             Wrapped in tools-template.css info-section-wrapper pattern.
+        ═══════════════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper" aria-label="Article: Image to PDF — full guide and FAQ">
+
+            <!-- Table of Contents -->
+            <details class="itp-toc" open>
+                <summary class="itp-toc__summary">
+                    <i class="fa-solid fa-list" aria-hidden="true"></i> Table of Contents
+                </summary>
+                <ol class="itp-toc__list">
+                    <li>
+                        <a href="#privacy-revolution">The Privacy-First Revolution</a>
+                    </li>
+                    <li>
+                        <a href="#how-it-works">How Our Technology Works</a>
+                    </li>
+                    <li>
+                        <a href="#advanced-features">Advanced Editing &amp; Compression</a>
+                    </li>
+                    <li>
+                        <a href="#guide">Step-by-Step Guide</a>
+                    </li>
+                    <li>
+                        <a href="#faq">Frequently Asked Questions</a>
+                    </li>
+                </ol>
+            </details>
+
+            <!-- ─── ARTICLE SECTION 1 : Privacy Revolution ─── -->
+            <div class="info-card">
+                <h2 id="privacy-revolution">Why "No-Upload" Conversion Matters for Your Security</h2>
+
+                <img
+                    src="../../assets/tools/pdf/pdf-image-to-pdf/img/privacy-shield.webp"
+                    alt="Client-side processing security guarantee — your data stays on your device"
+                    loading="lazy"
+                    class="itp-content-img"
+                >
+
+                <p>
+                    In an era where data breaches are increasingly common, the safety of
+                    your digital documents is paramount. Most traditional online converters
+                    operate on a "Server-Side" model. When you convert an image of your
+                    ID card, invoice, or academic assignment, you are physically sending
+                    that file to a remote computer owned by someone else. That server
+                    processes the file and sends it back to you. While many services claim
+                    to delete files after an hour, you have no way to verify if a copy was
+                    made, cached, or intercepted during the transfer.
+                </p>
+                <p>
+                    <strong>Image to PDF Studio ULTRA</strong> completely changes this
+                    paradigm. We have engineered a solution using advanced browser-based
+                    technologies (WebAssembly and JavaScript) that brings the processing
+                    engine <em>to you</em>, rather than taking your data <em>to the
+                    engine</em>.
+                </p>
+
+                <!-- Security guarantee highlight box -->
+                <div class="alert alert-info itp-info-box">
+                    <span class="itp-info-box__title">
+                        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                        Security Guarantee
+                    </span>
+                    <p>
+                        When you use our tool, your images (JPG, PNG, or HEIC) never
+                        leave your device. The conversion happens entirely within your
+                        web browser's memory. If you were to disconnect your internet
+                        after loading this page, the tool would still function perfectly.
+                        This is the highest level of privacy possible for an online tool.
+                    </p>
+                </div>
+            </div>
+            <!-- END: Privacy Revolution -->
+
+            <!-- ─── ARTICLE SECTION 2 : How It Works ─── -->
+            <div class="info-card">
+                <h2 id="how-it-works">Under the Hood: The Technology Behind the Speed</h2>
+                <p>
+                    Speed is often the enemy of quality, but not here. By leveraging
+                    the processing power of your local device (whether a high-end desktop
+                    or a modest smartphone), we eliminate the "uploading" and
+                    "downloading" latency.
+                </p>
+                <p>
+                    For students and professionals working with large batches of
+                    high-resolution images, this distinction is critical. If you have
+                    50 lecture slides or scanned contracts, uploading them to a
+                    traditional server could take several minutes depending on your
+                    bandwidth. With Trusted Tools Web, the "import" process is
+                    near-instantaneous because the data moves from your hard drive
+                    directly to your browser's active tab.
+                </p>
+
+                <h3>HEIC and Next-Gen Format Support</h3>
+                <p>
+                    Modern iPhones and iPads capture images in HEIC (High Efficiency
+                    Image Container) format by default. While efficient for storage,
+                    HEIC is a compatibility nightmare. Most PDF converters fail to
+                    recognise these files or require a separate conversion step first.
+                </p>
+                <p>
+                    Our integrated conversion engine includes a dedicated HEIC-to-JPG
+                    module that runs on the fly. Simply drag your mix of PNGs, JPEGs,
+                    and HEIC files into the drop zone, and our system normalises them
+                    into a standardised format ready for PDF embedding.
+                </p>
+            </div>
+            <!-- END: How It Works -->
+
+            <!-- ─── ARTICLE SECTION 3 : Advanced Features ─── -->
+            <div class="info-card">
+                <h2 id="advanced-features">Beyond Basic Conversion: A Full Studio Suite</h2>
+                <p>
+                    We built a studio, not just a converter. Photos of documents are
+                    often imperfect — bad lighting, unwanted borders, or incorrect
+                    rotation. Instead of forcing you to use Photoshop before conversion,
+                    we have embedded a full suite of editing tools directly into the
+                    workflow.
+                </p>
+
+                <h3>1. Intelligent Compression Algorithms</h3>
+                <p>
+                    PDFs are often meant for email attachments or portal uploads, both
+                    of which have strict file size limits (often 5 MB or 10 MB).
+                    High-definition camera photos can easily exceed this with just a
+                    few pages.
+                </p>
+                <p>
+                    Our <strong>Quality Slider</strong> gives you granular control over
+                    the output. It intelligently reduces the quality index of the JPEG
+                    encoding inside the PDF. This allows you to shrink a 50 MB document
+                    down to 2 MB while maintaining readable text — all with a simple
+                    slider. A real-time size estimator shows exactly how large your
+                    final file will be before you generate it.
+                </p>
+
+                <h3>2. The Integrated Image Editor</h3>
+                <p>
+                    Found a mistake in one of your scanned pages? Click the edit icon
+                    on any thumbnail to launch the modal editor.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Crop &amp; Focus:</strong> Remove desk backgrounds from
+                        document scans using our precise cropping tool.
+                    </li>
+                    <li>
+                        <strong>Magic Filters:</strong> Scanned documents often look grey
+                        or washed out. The "Magic" filter boosts contrast and brightness,
+                        making handwritten text pop against a white background.
+                    </li>
+                    <li>
+                        <strong>Grayscale Mode:</strong> Convert colour documents to
+                        Black &amp; White instantly to save ink when printing.
+                    </li>
+                </ul>
+
+                <h3>3. Professional Watermarking</h3>
+                <p>
+                    Whether you are a photographer sharing proofs or a business sending
+                    sensitive drafts, you can apply custom text watermarks diagonally
+                    across your images directly within the edit window.
+                </p>
+            </div>
+            <!-- END: Advanced Features -->
+
+            <!-- ─── ARTICLE SECTION 4 : Step-by-Step Guide ─── -->
+            <div class="info-card">
+                <h2 id="guide">How to Create the Perfect PDF</h2>
+
+                <img
+                    src="../../assets/tools/pdf/pdf-image-to-pdf/img/how-it-works.webp"
+                    alt="Step-by-step guide flowchart showing how to convert JPG to PDF using Image to PDF Studio"
+                    loading="lazy"
+                    class="itp-content-img itp-content-img--bordered"
+                >
+
+                <p>
+                    Our interface is designed for "Drag, Drop, Done," but here is a
+                    detailed walkthrough to get the most out of the professional settings.
+                </p>
+
+                <ol>
+                    <li>
+                        <strong>Import Your Files:</strong> Drag and drop your images
+                        into the upload zone. You can mix different formats. We recommend
+                        batches of up to 50 for optimal browser performance.
+                    </li>
+                    <li>
+                        <strong>Order Matters:</strong> PDFs are linear. If your pages
+                        are out of order, click and drag the thumbnails in the grid to
+                        rearrange them. Page numbers update automatically.
+                    </li>
+                    <li>
+                        <strong>Global Settings:</strong>
+                        <ul>
+                            <li>
+                                <em>Page Size:</em> Choose <strong>A4</strong> for standard
+                                documents, <strong>Letter</strong> for US formats, or
+                                <strong>Fit to Image</strong> if you want the PDF page to
+                                reshape itself to match your photo's exact dimensions.
+                            </li>
+                            <li>
+                                <em>Quality:</em> Lower the slider to reduce file size for
+                                email attachments. 80% is the recommended default — it
+                                provides an excellent balance of clarity and size.
+                            </li>
+                            <li>
+                                <em>Margins:</em> If you plan to print the document, select
+                                "Small" or "Big" margins to ensure content is not cut off.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Fine-Tune:</strong> Use the rotate buttons to fix sideways
+                        images. Use the editor to crop unwanted borders or shadows.
+                    </li>
+                    <li>
+                        <strong>Generate:</strong> Name your file (e.g.,
+                        "Biology_Assignment_Final") and click Generate. The file is built
+                        instantly and saved to your downloads folder.
+                    </li>
+                </ol>
+            </div>
+            <!-- END: Step-by-Step Guide -->
+
+            <!-- ─── ARTICLE SECTION 5 : FAQ ─── -->
+            <div class="info-card">
+                <h2 id="faq">Frequently Asked Questions (FAQ)</h2>
+
+                <!-- FAQ Item 1 -->
+                <div class="itp-faq-item">
+                    <span class="itp-faq-item__question">Is this tool really free?</span>
+                    <p>
+                        Yes, Image to PDF Studio ULTRA is 100% free. We support the
+                        maintenance of this project through unobtrusive ads. There are no
+                        hidden paywalls, credit card requirements, or "Pro" subscriptions
+                        needed to unlock high-quality compression or batch processing.
+                    </p>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="itp-faq-item">
+                    <span class="itp-faq-item__question">What happens to my photos after conversion?</span>
+                    <p>
+                        Nothing. Because the conversion happens in your browser, your photos
+                        are effectively removed from the tool's memory the moment you close
+                        the tab. We do not, and cannot, see, store, or share your files.
+                    </p>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="itp-faq-item">
+                    <span class="itp-faq-item__question">Can I use this on my phone?</span>
+                    <p>
+                        Absolutely. The interface is fully responsive and touch-friendly. It
+                        works perfectly on Android and iOS devices, allowing you to take
+                        photos of documents and convert them to PDF immediately without
+                        needing a computer.
+                    </p>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="itp-faq-item">
+                    <span class="itp-faq-item__question">Why is the 'Fit to Image' option useful?</span>
+                    <p>
+                        Standard A4 pages have a fixed aspect ratio. If your photo is a
+                        long screenshot or a square image, placing it on an A4 page results
+                        in large white bars. 'Fit to Image' creates a PDF where the page
+                        canvas dynamically adjusts to match your image's size exactly,
+                        providing a seamless viewing experience.
+                    </p>
+                </div>
+
+                <!-- Content footer note -->
+                <p class="itp-footer-note text-muted text-center mt-md">
+                    <em>Trusted Tools Web — Empowering productivity with secure, client-side technology.</em>
+                </p>
+            </div>
+            <!-- END: FAQ -->
+
+        </section>
+        <!-- END: SEO CONTENT SECTION -->
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             RELATED TOOLS GRID
+             Populated by related-tools.js based on data-category.
+        ═══════════════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top:50px;">
+            <!--
+                data-category    : Category used to filter related tools.
+                data-current-page: Current filename, used to exclude self.
+            -->
+            <div
+                id="dynamic-related-tools"
+                data-category="pdf"
+                data-current-page="pdf-image-to-pdf.html"
+            ></div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- END: MAIN CONTENT -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         LOADING OVERLAY
+         Full-screen spinner shown during file import & PDF generation.
+         JS controls visibility via .is-visible class.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div
+        class="itp-loading-overlay"
+        id="loader"
+        role="status"
+        aria-live="polite"
+        aria-label="Processing images"
+    >
+        <div class="itp-spinner" aria-hidden="true"></div>
+        <h3 class="itp-loader-title" id="loaderTitle">Processing...</h3>
+        <p  class="itp-loader-sub"   id="loaderSub">Please wait...</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         IMAGE EDITOR MODAL
+         Opened by JS (openEditor()) when the user clicks the pen icon
+         on any thumbnail. Hosts CropperJS + pixel-level filter controls.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div
+        class="modal-overlay"
+        id="editorModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="editorModalTitle"
+    >
+        <div class="itp-modal-content">
+
+            <!-- Modal header: title + close button -->
+            <div class="itp-modal-header">
+                <h3 id="editorModalTitle">
+                    <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                    Image Editor
+                </h3>
+                <button class="itp-modal-close" id="editorCloseBtn" aria-label="Close image editor">
+                    &times;
+                </button>
+            </div>
+
+            <!-- Modal body: the image being edited (CropperJS attaches here) -->
+            <div class="itp-modal-body">
+                <div class="itp-editor-canvas">
+                    <img id="editorImage" src="" alt="Image being edited in the editor">
+                </div>
+            </div>
+
+            <!-- Modal footer: filter/tool buttons + Save Changes CTA -->
+            <div class="itp-modal-footer">
+
+                <!-- Row of quick-tool buttons -->
+                <div class="itp-modal-tools">
+                    <button class="itp-tool-btn" id="cropBtn" aria-label="Enable crop mode">
+                        <i class="fa-solid fa-crop" aria-hidden="true"></i> Crop
+                    </button>
+                    <button class="itp-tool-btn" id="filterResetBtn" aria-label="Reset image to original">
+                        <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Reset
+                    </button>
+                    <button class="itp-tool-btn" id="filterBwBtn" aria-label="Apply black and white filter">
+                        <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> B&amp;W
+                    </button>
+                    <button class="itp-tool-btn" id="filterMagicBtn" aria-label="Apply magic contrast filter">
+                        <i class="fa-solid fa-wand-sparkles" aria-hidden="true"></i> Magic
+                    </button>
+
+                    <!-- Watermark text input + apply button -->
+                    <div class="itp-watermark-group">
+                        <input
+                            type="text"
+                            id="watermarkText"
+                            class="input-control itp-watermark-input"
+                            placeholder="Watermark text..."
+                            aria-label="Custom watermark text"
+                        >
+                        <button class="itp-tool-btn" id="applyWatermarkBtn" aria-label="Apply watermark to image">
+                            <i class="fa-solid fa-stamp" aria-hidden="true"></i> Apply
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Save Changes primary CTA -->
+                <button class="btn btn-primary" id="saveEditsBtn" aria-label="Save image edits and return to grid">
+                    <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Save Changes
+                </button>
+
+            </div>
+            <!-- END: Modal footer -->
+
+        </div>
+    </div>
+    <!-- END: IMAGE EDITOR MODAL -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         CUSTOM CONFIRM DIALOG
+         Branded replacement for native window.confirm(). JS shows it
+         by adding .is-open to #confirm-overlay and resolves a Promise.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="confirm-overlay" class="itp-confirm-overlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+        <div class="itp-confirm-dialog">
+
+            <!-- Warning icon -->
+            <div class="itp-confirm-icon" aria-hidden="true">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <!-- Dynamic title and message (set by JS) -->
+            <div class="itp-confirm-title" id="confirmTitle">Are you sure?</div>
+            <p   class="itp-confirm-message" id="confirmMessage">This action cannot be undone.</p>
+
+            <!-- Action buttons: Cancel (secondary) + Confirm (primary) -->
+            <div class="btn-area">
+                <button class="btn btn-secondary" id="confirmCancelBtn">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i> Cancel
+                </button>
+                <button class="btn btn-danger"    id="confirmOkBtn">
+                    <i class="fa-solid fa-check" aria-hidden="true"></i> Confirm
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: CUSTOM CONFIRM DIALOG -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         AD SYSTEM — Managed by ads-manager.js
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL SITE SCRIPTS
+         Handles theme toggle, header/footer injection, global toast system.
+         MUST load before tool script.js to ensure window.showToast exists.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL SITE FOOTER — Populated by global.js
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         CORE TOOL APPLICATION SCRIPT
+         Loaded last so all DOM elements and libraries are ready.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/tools/pdf/pdf-image-to-pdf/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

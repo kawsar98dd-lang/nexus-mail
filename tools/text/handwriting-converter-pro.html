@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    
+  
+
+    <!-- 
+    ========================================================================
+    PRODUCT: Handwriter Ultra Pro Max
+    AUTHOR: CodeCanyon Author
+    VERSION: 2.5 (Commercial Release)
+    DESCRIPTION: Converts digital text to realistic handwriting with PDF export.
+    ========================================================================
+    -->
+
+    <!-- Analytics Loader: Handles tracking scripts -->
+    <script src="../../assets/js/site-config.js"></script> <script src="../../assets/js/meta-manager.js"></script> <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- [USER CONFIG] SEO: Update Title and Description for your specific branding -->
+    <title>Handwriter Ultra Pro Max: Text to Handwriting Converter (Bangla & English)</title>
+    <meta name="description" content="Convert digital text to realistic human handwriting instantly. Supports Bangla (Galada) & English fonts. Free PDF export, customizable ink, and 100% client-side privacy. The best assignment maker tool in BD.">
+    <meta name="keywords" content="text to handwriting, bangla handwriting converter, online assignment maker, text to image converter, realistic ink effect, free handwriting tool bd, trusted tools web, galada font converter, handwritten pdf generator">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:title" content="Handwriter Ultra Pro Max - Realistic Text to Note Generator">
+    <meta property="og:description" content="Generate professional handwritten assignments with Galada & Mina fonts. 100% Free & Private.">
+    <meta property="og:url" content="https://trustedtoolsweb.com/text-handwriting-converter.html">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/text/text-handwriting-converter/img/handwriter-og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Handwriter Ultra Tool Preview">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Handwriter Ultra Pro Max - Real Handwriting Converter">
+    <meta name="twitter:description" content="Convert text to realistic handwriting for assignments and notes. Free PDF export.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/text/text-handwriting-converter/img/handwriter-og-banner.webp">
+    <meta name="twitter:url" content="https://trustedtoolsweb.com/text-handwriting-converter.html">
+    
+    <link rel="canonical" href="https://trustedtoolsweb.com/text-handwriting-converter.html">
+    
+   <!-- Favicon --> 
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+<link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+
+    <meta name="theme-color" content="#0d0d0d">
+    
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&family=Patrick+Hand&family=Kalam:wght@300;400&family=Gloria+Hallelujah&family=Tiro+Bangla&family=Galada&family=Mina:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    
+    <!-- External Libraries: jsPDF (for PDF generation) and html2canvas (for screen capture) -->
+    <script src="../../assets/library/pdf-engine/jspdf/jspdf.umd.min.js" defer></script>
+    
+    <script src="../../assets/library/canvas-engine/html2canvas/html2canvas.min.js" defer></script>
+    
+    <!-- Schema Markup for SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Handwriter Ultra Pro Max",
+            "url": "https://trustedtoolsweb.com/text-handwriting-converter.html",
+            "author": {
+                "@type": "Person",
+                "name": "MD KAWSAR"
+            },
+            "description": "A free online tool to convert digital text into realistic human handwriting with PDF export capabilities.",
+            "applicationCategory": "ProductivityApplication",
+            "operatingSystem": "Web",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "featureList": "Text to Handwriting, PDF Export, Bangla Font Support, Real Ink Physics"
+        }
+    </script>
+    
+    <style>
+        /* --- TOOL SPECIFIC STYLES --- */
+        
+        /* 
+           BUYER NOTE: CSS Variables for Theming.
+           If you want to change the color scheme, only modify the variables in :root.
+           The 'body.light-mode' block handles the automatic switch logic.
+        */
+        :root {
+            --tool-primary: #ff0055;
+            --tool-hover: #ff4757;
+            --tool-accent: #0abde3;
+            --container-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --input-bg: #0d1117;
+            --section-header-color: #8b949e;
+            --paper-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Light Mode Override - Ensures perfect visibility on white backgrounds */
+        body.light-mode {
+            --container-bg: #ffffff;
+            --border-color: #d1d5db;
+            --text-color: #1f2937;
+            --input-bg: #f3f4f6;
+            --section-header-color: #4b5563;
+            --paper-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        main { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 15px; box-sizing: border-box; flex: 1; margin-top: 20px; }
+
+        .container { 
+            max-width: 1400px; width: 100%; 
+            background: var(--container-bg); 
+            padding: 20px; 
+            border-radius: 15px; 
+            border: 1px solid var(--border-color); 
+            box-shadow: 0 10px 40px rgba(255, 0, 85, 0.15); 
+            position: relative; margin-bottom: 30px;
+            overflow: hidden; 
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Title Styling */
+        .tool-title { 
+            text-align: center; color: var(--text-color); margin: 10px 0 5px 0; 
+            font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            font-size: clamp(20px, 5vw, 36px); 
+        }
+        .tool-title span { 
+            background: linear-gradient(90deg, var(--tool-primary), #d124ff); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
+        .subtitle { text-align: center; color: var(--section-header-color); margin-bottom: 15px; font-size: 14px; }
+        
+        .security-badge {
+            display: table; margin: 0 auto 10px auto;
+            background: rgba(35, 134, 54, 0.2); color: #3fb950;
+            padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;
+            border: 1px solid rgba(35, 134, 54, 0.4);
+        }
+
+        /* AD SYSTEM STYLES - DO NOT REMOVE */
+        .ad-slot {
+            margin: 20px auto;
+            text-align: center;
+            max-width: 100%;
+            overflow: hidden;
+            min-height: 90px; /* Placeholder height to prevent CLS */
+            background: rgba(125,125,125,0.05); /* Subtle background for placement visibility */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Hides the ad container if no ad is loaded to keep UI clean */
+        .ad-slot:empty { display: none !important; }
+
+        /* Workspace Grid */
+        .workspace-grid { display: flex; gap: 25px; flex-wrap: wrap; margin-top: 20px; }
+        
+        .control-panel { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px; }
+        .panel-box { background: var(--input-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); transition: background 0.3s ease; }
+        
+        .section-header { 
+            font-size: 0.85rem; color: var(--section-header-color); text-transform: uppercase; 
+            border-bottom: 1px solid var(--border-color); padding-bottom: 8px; 
+            margin-bottom: 15px; font-weight: 700; display: flex; justify-content: space-between; 
+        }
+
+           .textarea-wrapper { 
+            position: relative; 
+            /* Added explicit width to ensure wrapper behaves correctly */
+            width: 100%; 
+        }
+        
+        textarea { 
+            width: 100%; 
+            height: 250px; 
+            background: var(--container-bg); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-color); 
+            /* Added extra right padding (45px) so text does not go under the mic button */
+            padding: 15px 45px 15px 15px; 
+            border-radius: 8px; 
+            resize: vertical; 
+            font-size: 16px; 
+            outline: none; 
+            transition: 0.3s; 
+            font-family: 'Tiro Bangla', sans-serif; 
+            line-height: 1.6; 
+            /* CRITICAL FIX: This stops the textarea from breaking out of the box */
+            box-sizing: border-box; 
+        }
+        textarea:focus { border-color: var(--tool-primary); box-shadow: 0 0 0 2px rgba(255, 0, 85, 0.1); }
+        
+        .voice-btn { 
+            position: absolute; top: 8px; right: 8px; 
+            background: rgba(125, 125, 125, 0.1); border: 1px solid var(--border-color); 
+            color: var(--tool-accent); width: 32px; height: 32px; border-radius: 50%; 
+            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; 
+        }
+        .voice-btn:hover, .voice-btn.listening { background: var(--tool-primary); color: white; border-color: transparent; }
+        .voice-btn.listening { animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(255, 0, 85, 0); } }
+
+        .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .full-width { grid-column: span 2; }
+        label { color: var(--text-color); font-size: 0.8rem; font-weight: 600; margin-bottom: 5px; display: block; }
+        
+        input, select { 
+            width: 100%; padding: 10px; background: var(--container-bg); 
+            border: 1px solid var(--border-color); color: var(--text-color); 
+            border-radius: 6px; outline: none; font-size: 0.85rem; transition: 0.3s; 
+        }
+        input[type="range"] { -webkit-appearance: none; height: 6px; background: var(--border-color); padding: 0; margin-top: 5px;}
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--tool-primary); cursor: pointer; }
+
+        .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+        .btn { flex: 1; padding: 12px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; font-size: 0.9rem; background: var(--tool-primary); color: white; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3); }
+        .btn-sec { background: #1f6feb; }
+        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-color); width: 100%; margin-top: 10px; border-radius: 50px; }
+        .btn-outline:hover { border-color: var(--tool-primary); color: var(--tool-primary); }
+
+          /* Output Area */
+        .paper-container { 
+            flex: 1.5; background: #333333; padding: 25px; border-radius: 12px; 
+            border: 1px solid var(--border-color); 
+            /* Added max-width to prevent container from expanding beyond screen */
+            max-width: 100%;
+            overflow: auto; 
+            display: flex; justify-content: center; min-height: 600px; position: relative; 
+            perspective: 1000px;
+        }
+        
+        body.light-mode .paper-container {
+            background: #e5e7eb;
+            border-color: #d1d5db;
+        }
+        
+        #paper { 
+            background-color: #fff; padding: 40px 40px; 
+            box-shadow: var(--paper-shadow); 
+            color: #1a1a1a; position: relative; overflow: hidden; 
+            white-space: pre-wrap; 
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+            transition: all 0.3s ease; 
+            /* A4 Ratio approximate for screen: 210mm x 297mm */
+            width: 794px; 
+            min-height: 1123px;
+            transform-style: preserve-3d;
+            /* Added margin auto to keep it centered */
+            margin: 0 auto;
+        }
+
+
+        /* Realistic Ink Effect */
+        #contentArea {
+            position: relative;
+            z-index: 2;
+            /* Multiply mode makes the text look like it absorbed into the paper lines */
+            mix-blend-mode: multiply; 
+        }
+
+        /* Paper Physics */
+        .char { 
+            display: inline-block; 
+            position: relative; 
+            transition: transform 0.2s; 
+            /* Slight blur on edges for ink spread simulation */
+            filter: blur(0.2px);
+        }
+
+        #paper.has-margin::before { 
+            content: ''; position: absolute; top: 0; bottom: 0; left: 60px; 
+            width: 2px; background: rgba(255, 50, 50, 0.4); 
+            border-right: 1px solid rgba(255, 50, 50, 0.1); 
+            z-index: 1; pointer-events: none; 
+        }
+        
+        /* High Quality Scan Effect - Noise + Contrast */
+        #paper.scan-effect::after { 
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: 0.5; pointer-events: none; z-index: 5; mix-blend-mode: overlay;
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.1);
+        }
+        
+        .paper-lined { 
+            background-image: repeating-linear-gradient(transparent, transparent 29px, #999 30px);
+            background-attachment: local;
+        }
+        .paper-grid { 
+            background-image: linear-gradient(#cfcfcf 1px, transparent 1px), linear-gradient(90deg, #cfcfcf 1px, transparent 1px); 
+            background-size: 30px 30px; 
+        }
+        
+        .paper-header {
+            display: flex; justify-content: space-between; margin-bottom: 20px; 
+            font-family: 'Patrick Hand', cursive; font-size: 16px; color: #555;
+            padding-bottom: 5px; opacity: 0.8; z-index: 3; position: relative;
+        }
+
+        /* Font Families */
+        .font-galada { font-family: 'Galada', cursive; }
+        .font-mina { font-family: 'Mina', sans-serif; }
+        .font-caveat { font-family: 'Caveat', cursive; }
+        .font-homemade { font-family: 'Homemade Apple', cursive; }
+
+        .animated-entry { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s forwards ease-out; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- MOBILE RESPONSIVE FIXES --- */
+        @media (max-width: 900px) {
+            .workspace-grid { 
+                /* Stack elements vertically on smaller screens */
+                flex-direction: column; 
+            }
+            .settings-grid { 
+                /* Single column for settings to avoid squishing */
+                grid-template-columns: 1fr; 
+                gap: 12px;
+            }
+            .full-width { 
+                grid-column: span 1; 
+            }
+            .btn-group {
+                /* Stack action buttons vertically on mobile */
+                flex-direction: column;
+            }
+            .paper-container { 
+                min-height: 500px; 
+                padding: 10px; 
+                /* Enable smooth horizontal scroll for fixed paper */
+                overflow-x: auto; 
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch; 
+            }
+            #paper { 
+                /* Scale down paper slightly */
+                transform: scale(0.85); 
+                transform-origin: top left; 
+                /* Negative margin removes the empty space left by CSS scale() */
+                margin-bottom: -160px; 
+                margin-right: -110px;
+            }
+            .container {
+                /* Allow floating elements/dropdowns to overflow properly */
+                overflow: visible; 
+            }
+        }
+
+        /* Extra small devices (Android Phones portrait mode) */
+        @media (max-width: 480px) {
+            .tool-title {
+                font-size: 24px;
+            }
+            #paper {
+                /* Scale even further for narrow screens */
+                transform: scale(0.60);
+                margin-bottom: -440px;
+                margin-right: -310px;
+            }
+        }
+
+        /* SEO & Tools Styles - Preserved */
+        .info-section-wrapper { max-width: 1400px; width: 100%; margin-top: 40px; text-align: left; }
+        .info-card { background: var(--container-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: background 0.3s ease; }
+        .info-card h2 { color: var(--text-color); font-size: 22px; border-left: 4px solid var(--tool-primary); padding-left: 15px; margin-bottom: 15px; }
+        .info-card p { color: var(--section-header-color); line-height: 1.7; font-size: 15px; margin-bottom: 10px; }
+        
+      
+        /* Toast */
+        #toast-container { position: fixed; top: 90px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column-reverse; gap: 10px; pointer-events: none; }
+        .toast { background: rgba(22, 27, 34, 0.95); color: #fff; padding: 12px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(-20px); transition: all 0.3s; backdrop-filter: blur(10px); pointer-events: auto; }
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .toast.success { border-left: 4px solid #00ff9d; }
+        .toast.error { border-left: 4px solid #ff3838; }
+        .toast.info { border-left: 4px solid #00f2ff; }
+        .toast i { color: inherit; }
+    </style>
+</head>
+<body>
+
+    <!-- Global Header -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+        <div class="container animated-entry">
+            
+            <div class="security-badge"><i class="fa-solid fa-shield-halved"></i> 100% Client-Side Secure Processing</div>
+            
+            <h1 class="tool-title"><i class="fa-solid fa-pen-fancy"></i> Handwriter <span>Ultra Pro Max</span></h1>
+            <p class="subtitle">Convert Digital Text to Realistic Human Handwriting. Secure & Free.</p>
+
+            <!-- AD SYSTEM: Top Slot (Integrates with ads-manager.js) -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <div class="workspace-grid">
+                
+              <!-- Controls Column -->
+              <div class="control-panel">
+                
+                <div class="panel-box">
+                    <div class="section-header">
+                        <span><i class="fa-solid fa-keyboard"></i> Input Content</span>
+                        <div style="font-size:12px; cursor:pointer;" id="saveDraftBtn"><i class="fa-solid fa-save"></i> Save</div>
+                    </div>
+                    <div class="textarea-wrapper">
+                        <textarea id="userInput" placeholder="Type here or paste text..."></textarea>
+                        <button class="voice-btn" id="micBtn" title="Speak to Type">
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-box">
+                    <div class="section-header"><i class="fa-solid fa-sliders"></i> Typography & Style</div>
+                    
+                    <div class="settings-grid">
+                        <div class="full-width">
+                            <label>Font Family</label>
+                            <select id="fontFamily">
+                                <optgroup label="Bengali (বাংলা)">
+                                    <option value="font-galada" selected>Galada (Best Cursive Bangla)</option>
+                                    <option value="font-mina">Mina (Formal Bangla)</option>
+                                </optgroup>
+                                <optgroup label="English">
+                                    <option value="font-caveat">Caveat (Standard)</option>
+                                    <option value="font-homemade">Homemade Apple (Realistic)</option>
+                                    <option value="font-indie">Indie Flower</option>
+                                    <option value="font-shadows">Shadows Into Light</option>
+                                    <option value="font-patrick">Patrick Hand</option>
+                                    <option value="font-kalam">Kalam</option>
+                                    <option value="font-gloria">Gloria Hallelujah</option>
+                                </optgroup>
+                                <option value="font-custom">📂 Upload Custom .TTF</option>
+                            </select>
+                            <input type="file" id="fontUpload" accept=".ttf,.otf" style="display:none">
+                        </div>
+                        
+                        <div>
+                            <label>Font Size</label>
+                            <input type="range" id="fontSize" min="14" max="50" value="22">
+                        </div>
+                        <div>
+                            <label>Line Height</label>
+                            <input type="range" id="lineHeightVal" min="1.0" max="3.0" step="0.1" value="1.6">
+                        </div>
+                        <div>
+                            <label>Ink Color</label>
+                            <input type="color" id="inkColor" value="#000e5c" style="height:40px;">
+                        </div>
+                        <div>
+                            <label>Ink Flow (Opacity)</label>
+                            <input type="range" id="inkFlowVal" min="0" max="1" step="0.1" value="0.2">
+                        </div>
+                        <div class="full-width">
+                            <label>Humanize (Chaos Level)</label>
+                            <input type="range" id="humanizeVal" min="0" max="5" value="2.0" step="0.1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-box">
+                    <div class="section-header"><i class="fa-solid fa-scroll"></i> Paper & Export</div>
+                    <div class="settings-grid">
+                         <div class="full-width">
+                            <label>Paper Type</label>
+                            <select id="paperType">
+                                <option value="paper-lined">Lined Paper (Khata)</option>
+                                <option value="paper-grid">Math Grid</option>
+                                <option value="paper-blank">Plain White</option>
+                                <option value="custom-bg">Upload Image...</option>
+                            </select>
+                            <input type="file" id="customPaperInput" accept="image/*" style="display:none;">
+                         </div>
+                         <div style="display:flex; gap:10px; align-items:center;" class="full-width">
+                             <input type="checkbox" id="marginMode" checked style="width:auto;"> <label style="display:inline; margin:0;">Margin</label>
+                             <input type="checkbox" id="scannerMode" style="width:auto; margin-left:15px;"> <label style="display:inline; margin:0;">Scan Effect</label>
+                         </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn" id="exportPdfBtn"><i class="fa-solid fa-file-pdf"></i> Smart PDF</button>
+                        <button class="btn btn-sec" id="downloadImgBtn"><i class="fa-solid fa-image"></i> Image</button>
+                    </div>
+                    <button class="btn btn-outline" id="copyBtn"><i class="fa-regular fa-copy"></i> Copy to Clipboard</button>
+                    <button class="btn btn-outline" id="clearBtn" style="margin-top:5px; border-color:#ff3838; color:#ff3838;"><i class="fa-solid fa-trash"></i> Clear All</button>
+                </div>
+
+              </div>
+                
+                <!-- Output Paper Area -->
+                <div class="paper-container">
+                    <div id="paper" class="font-galada paper-lined has-margin">
+                        <div class="paper-header" id="paperHeaderDiv">
+                            <span id="displayDate"></span>
+                            <span id="displayPage"></span>
+                        </div>
+                        <div id="contentArea"></div>
+                    </div>
+                </div>
+
+            </div> 
+
+            <!-- AD SYSTEM: Bottom Slot -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        </div>
+
+        <!-- SEO Content Section (Preserved) -->
+        <section class="info-section-wrapper">
+             <div class="info-card">
+                <h2><i class="fa-solid fa-pen-nib"></i> The Digital-Analog Bridge: Why Handwriter Ultra?</h2>
+                <p>In an era dominated by digital screens, the personal touch of handwriting often gets lost. <strong>Handwriter Ultra Pro Max</strong> bridges this gap. It is not just a font converter; it's a sophisticated rendering engine that mimics the physics of ink on paper. Whether you are creating personalized invitation cards, nostalgic letters, or needing to submit handwritten assignments online, this tool delivers perfection without the hand cramps.</p>
+                <figure style="margin: 25px 0; text-align: center;">
+                    <img src="../../assets/tools/text/text-handwriting-converter/img/digital-vs-handwritten.webp" 
+                         alt="Digital text input vs Realistic Handwriting output comparison" 
+                         width="800" height="500" loading="lazy"
+                         style="max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                    <figcaption style="font-size: 13px; color: var(--section-header-color); margin-top: 10px; font-style: italic;">
+                        Visual demonstration: Digital text transformed into realistic handwriting.
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-brain"></i> Understanding the "Humanize" Chaos Engine</h2>
+                <p>Why do most online converters look fake? Because computers align text perfectly. Humans don't. Our proprietary <strong>Humanize Algorithm</strong> introduces calculated imperfections. It subtly rotates individual characters, shifts their vertical alignment, and varies the spacing between words. By adjusting the 'Chaos Level' slider, you can go from 'Neat Student' to 'Rushed Doctor' handwriting styles instantly.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-graduation-cap"></i> The Ultimate Assignment Savior for Students</h2>
+                <p>For students in Bangladesh and globally, submitting handwritten assignments in PDF format is a common requirement. Writing 50 pages by hand is exhausting. With this tool, you can type (or voice dictate) your assignment, select the <strong>'Galada'</strong> font for Bangla or <strong>'Homemade Apple'</strong> for English, and export a multi-page PDF that looks indistinguishable from a scanned handwritten document.</p>
+            </div>
+            
+            <div class="info-card">
+                <h2><i class="fa-regular fa-circle-question"></i> FAQ: Common Queries</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><strong>Q: Is the PDF export watermarked?</strong><br> <span class="highlight-text">A: No.</span> The output is 100% clean and professional, suitable for academic and professional use.</li>
+                    <li style="margin-bottom: 10px;"><strong>Q: Can I change the line spacing?</strong><br> <span class="highlight-text">A: Yes.</span> Use the 'Line Height' slider to match the ruling of the background paper perfectly.</li>
+                    <li><strong>Q: Why does the font look different on mobile?</strong><br> <span class="highlight-text">A:</span> We use web fonts that load on all devices. However, for the heavy rendering required for PDF generation, using a device with good RAM (like a laptop or modern phone) is recommended for speed.</li>
+                </ul>
+            </div>
+        </section>
+
+       <!-- 
+        =======================================================================
+        RELATED TOOLS GRID
+        =======================================================================
+        -->
+     <!-- START Related Tools Section -->
+<div class="container" style="margin-top: 50px;">
+    <!-- 
+       IMPORTANT: 
+       1. Set data-category to the category of the current page (e.g., "pdf", "media", "dev").
+       2. Set data-current-page to the filename of the current page (e.g., "pdf-compressor.html").
+    -->
+    <div id="dynamic-related-tools" 
+         data-category="text" 
+         data-current-page="text-handwriting-converter.html">
+    </div>
+</div>
+
+<script type="module" src="../../assets/js/related-tools.js"></script>
+<!-- END Related Tools Section -->
+
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- Ad Manager Script (Must be loaded before global.js) -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global JS (Header/Footer loader) -->
+    <script type="module" src="../../assets/js/global.js"></script>
+    
+    <script>
+/**
+ * ====================================================================
+ * BUYER GUIDE: HANDWRITER ENGINE CORE
+ * ====================================================================
+ * This script handles the text rendering, physics simulation (jitter),
+ * and the "Smart Slicing" PDF generation.
+ * 
+ * KEY SECTIONS:
+ * 1. UI Initialization: Maps DOM elements and sets listeners.
+ * 2. Render Text: The loop that turns string characters into DOM nodes with random rotation.
+ * 3. Smart PDF: The algorithm that scans for whitespace to avoid cutting text lines.
+ */
+
+const UI = {
+    input: document.getElementById('userInput'),
+    paper: document.getElementById('paper'),
+    contentArea: document.getElementById('contentArea'),
+    micBtn: document.getElementById('micBtn'),
+    dateEl: document.getElementById('displayDate'),
+    pageEl: document.getElementById('displayPage'),
+    controls: {
+        fontFamily: document.getElementById('fontFamily'),
+        fontSize: document.getElementById('fontSize'),
+        lineHeight: document.getElementById('lineHeightVal'),
+        inkColor: document.getElementById('inkColor'),
+        inkFlow: document.getElementById('inkFlowVal'),
+        humanize: document.getElementById('humanizeVal'),
+        paperType: document.getElementById('paperType'),
+        margin: document.getElementById('marginMode'),
+        scanner: document.getElementById('scannerMode')
+    }
+};
+
+let debounceTimer;
+let voiceRec;
+// Standard A4 dimensions at 96 DPI: 794px width. Height 1123px.
+const A4_HEIGHT_PX = 1123; 
+
+// --- 1. INITIALIZATION ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        createToastContainer();
+        loadDraft();
+        
+        // Feature Check: Speech API
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            if(UI.micBtn) UI.micBtn.style.display = 'none';
+        }
+
+        updateHeader();
+        updateStyle();
+        renderText(); 
+        attachEventListeners();
+        
+        showToast('System Ready: Handwriter Engine Pro Loaded', 'success');
+    } catch (error) {
+        console.error("Init Error:", error);
+        showToast("Initialization failed. Refresh page.", "error");
+    }
+});
+
+function attachEventListeners() {
+    // Real-time rendering with debounce to prevent lag on slow devices
+    UI.input.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => { renderText(); saveDraft(); }, 200);
+    });
+
+    // Batch add listeners to all control inputs
+    Object.values(UI.controls).forEach(el => {
+        if(el) el.addEventListener('change', () => {
+            updateStyle();
+            renderText();
+        });
+    });
+
+    // File Upload Handlers (Custom Paper & Custom Font)
+    UI.controls.paperType.addEventListener('change', (e) => {
+        if(e.target.value === 'custom-bg') document.getElementById('customPaperInput').click();
+        else updateStyle();
+    });
+    document.getElementById('customPaperInput').addEventListener('change', handleCustomPaper);
+
+    UI.controls.fontFamily.addEventListener('change', (e) => {
+        if(e.target.value === 'font-custom') document.getElementById('fontUpload').click();
+        else updateStyle();
+    });
+    document.getElementById('fontUpload').addEventListener('change', handleCustomFont);
+
+    // Action Buttons
+    document.getElementById('micBtn').addEventListener('click', toggleVoice);
+    document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
+    document.getElementById('downloadImgBtn').addEventListener('click', downloadImage);
+    document.getElementById('exportPdfBtn').addEventListener('click', exportToSmartPDF);
+    document.getElementById('saveDraftBtn').addEventListener('click', saveDraft);
+    document.getElementById('clearBtn').addEventListener('click', () => {
+        if(confirm('Are you sure you want to clear all text?')) {
+            UI.input.value = '';
+            renderText();
+            localStorage.removeItem('handwriter_autosave');
+            showToast("Cleared!", "info");
+        }
+    });
+}
+
+// --- 2. RENDERING ENGINE (PERFORMANCE OPTIMIZED) ---
+
+function renderText() {
+    if (!UI.input || !UI.contentArea) return;
+    
+    const text = UI.input.value;
+    const humanize = parseFloat(UI.controls.humanize.value) || 0;
+    const inkFlow = parseFloat(UI.controls.inkFlow.value) || 0;
+    
+    // DocumentFragment allows us to build the DOM off-screen then insert all at once (Faster)
+    const fragment = document.createDocumentFragment();
+
+    // Support for complex scripts (Bangla/Hindi) using Intl.Segmenter if available
+    let segments;
+    if (window.Intl && Intl.Segmenter) {
+        // 'grapheme' granularity keeps composite characters together
+        const segmenter = new Intl.Segmenter('bn-BD', { granularity: 'grapheme' });
+        segments = segmenter.segment(text);
+    } else {
+        // Fallback for older browsers
+        segments = Array.from(text).map(c => ({ segment: c }));
+    }
+
+    let wordBuffer = document.createElement('span'); 
+    wordBuffer.style.display = 'inline-block';
+    wordBuffer.style.whiteSpace = 'nowrap'; // Keep words together
+
+    for (const {segment} of segments) {
+        if (segment === '\n') {
+            // New Line Logic: Flush buffer + add break
+            fragment.appendChild(wordBuffer);
+            wordBuffer = document.createElement('span');
+            wordBuffer.style.display = 'inline-block';
+            wordBuffer.style.whiteSpace = 'nowrap';
+            fragment.appendChild(document.createElement('br'));
+        } else if (segment === ' ') {
+            // Space Logic: Flush buffer + add specific space span
+            fragment.appendChild(wordBuffer);
+            wordBuffer = document.createElement('span');
+            wordBuffer.style.display = 'inline-block';
+            wordBuffer.style.whiteSpace = 'nowrap';
+            
+            const space = document.createElement('span');
+            space.innerHTML = '&nbsp;';
+            space.style.display = 'inline'; 
+            
+            // Randomize space width based on "Humanize" level
+            if(humanize > 0) {
+                const spaceVar = (Math.random() * humanize * 3);
+                space.style.marginRight = `${spaceVar}px`;
+            }
+            fragment.appendChild(space);
+        } else {
+            // Character Logic: Create individual span for physics
+            const span = document.createElement('span');
+            span.className = 'char';
+            span.textContent = segment;
+            
+            // PHYSICS ENGINE: Apply Rotation, Jitter, and Scale
+            if (humanize > 0) {
+                const rot = (Math.random() - 0.5) * humanize * 8; // Rotation deg
+                const y = (Math.random() - 0.5) * humanize * 3;   // Y Axis jitter
+                const x = (Math.random() - 0.5) * humanize * 1;   // X Axis kern
+                const scale = 1 + ((Math.random() - 0.5) * humanize * 0.05); 
+                
+                span.style.transform = `rotate(${rot}deg) translate(${x}px, ${y}px) scale(${scale})`;
+            }
+            
+            // INK ENGINE: Simulate varying opacity
+            if (inkFlow > 0) {
+                const flowVar = 1 - (Math.random() * inkFlow * 0.5);
+                span.style.opacity = flowVar.toFixed(2);
+                // Occasional "heavy ink" blot
+                if (Math.random() > 0.8) span.style.fontWeight = 'bold'; 
+            }
+            
+            wordBuffer.appendChild(span);
+        }
+    }
+    // Flush remaining content
+    fragment.appendChild(wordBuffer);
+
+    // Single Reflow Update
+    UI.contentArea.innerHTML = '';
+    UI.contentArea.appendChild(fragment);
+}
+
+function updateStyle() {
+    if (!UI.paper) return;
+
+    const font = UI.controls.fontFamily.value;
+    const paperType = UI.controls.paperType.value;
+    const size = UI.controls.fontSize.value;
+    const height = UI.controls.lineHeight.value;
+    const color = UI.controls.inkColor.value;
+
+    // Reset Font Classes
+    UI.paper.className = UI.paper.className.replace(/font-\w+/g, '');
+    if(font !== 'font-custom') {
+        UI.paper.classList.add(font);
+        UI.paper.style.fontFamily = '';
+    }
+
+    // Reset Paper Classes
+    UI.paper.className = UI.paper.className.replace(/paper-\w+/g, '');
+    if(paperType !== 'custom-bg') {
+        UI.paper.style.backgroundImage = '';
+        UI.paper.classList.add(paperType);
+    }
+
+    // Apply CSS Styles
+    UI.paper.style.fontSize = `${size}px`;
+    UI.paper.style.lineHeight = height;
+    UI.paper.style.color = color;
+
+    // Grid Alignment: Matches background lines to text lines
+    if(paperType === 'paper-lined' || paperType === 'paper-grid') {
+        const lhPx = size * height;
+        UI.paper.style.backgroundSize = paperType === 'paper-lined' ? `100% ${lhPx}px` : `${lhPx}px ${lhPx}px`;
+        // Slight offset so text sits ON the line, not floating above
+        UI.contentArea.style.marginTop = `${lhPx * 0.1}px`; 
+    }
+
+    // Toggle Classes
+    UI.controls.margin.checked ? UI.paper.classList.add('has-margin') : UI.paper.classList.remove('has-margin');
+    UI.controls.scanner.checked ? UI.paper.classList.add('scan-effect') : UI.paper.classList.remove('scan-effect');
+}
+
+// --- 3. FILE HANDLERS (IMAGES & FONTS) ---
+
+function handleCustomPaper(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = ev => {
+            UI.paper.style.backgroundImage = `url(${ev.target.result})`;
+            UI.paper.style.backgroundSize = 'cover';
+            UI.paper.classList.remove('paper-lined', 'paper-grid');
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function handleCustomFont(e) {
+    const file = e.target.files[0];
+    if(!file) return;
+    
+    // Check for FontFace API support
+    if (!window.FontFace) {
+        showToast("Your browser doesn't support custom fonts.", "error");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const fontName = 'CustomFont_' + Date.now();
+            const fontFace = new FontFace(fontName, `url(${e.target.result})`);
+            
+            fontFace.load().then(function(loadedFace) {
+                document.fonts.add(loadedFace);
+                UI.paper.style.fontFamily = `"${fontName}", cursive`;
+                UI.paper.className = UI.paper.className.replace(/font-\w+/g, '');
+                showToast("Custom Font Loaded!", "success");
+            }).catch(err => {
+                console.error(err);
+                showToast("Invalid Font File", "error");
+            });
+        } catch (error) {
+            showToast("Error loading font", "error");
+        }
+    }
+    reader.readAsDataURL(file);
+}
+
+// --- 4. SMART PDF EXPORT (THE "NO CUT" LOGIC) ---
+// This function slices a long canvas into A4 pages but looks for 
+// whitespace to avoid cutting text lines in half.
+
+async function exportToSmartPDF() {
+    if (!window.jspdf || !window.html2canvas) return showToast("Libraries loading... Wait a moment.", "error");
+
+    const btn = document.getElementById('exportPdfBtn');
+    const prevText = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+    showToast("Analyzing layout for Smart PDF...", "info");
+
+    try {
+        // STEP A: Prepare Capture
+        // Temporarily force white background if transparent (avoids black PDF background)
+        const originalBg = UI.paper.style.backgroundColor;
+        if(getComputedStyle(UI.paper).backgroundColor === 'rgba(0, 0, 0, 0)') {
+            UI.paper.style.backgroundColor = '#fff';
+        }
+
+        // STEP B: High-Res HTML2Canvas Capture
+        const canvas = await html2canvas(UI.paper, {
+            scale: 2, // 2x Scale for crisp text
+            useCORS: true,
+            scrollY: 0,
+            backgroundColor: '#ffffff'
+        });
+
+        // STEP C: Initialize PDF
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'px', 'a4'); 
+        const pdfW = pdf.internal.pageSize.getWidth();
+        const pdfH = pdf.internal.pageSize.getHeight();
+        
+        const ctx = canvas.getContext('2d');
+        const imgDataFull = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        
+        // Calculate scaling ratio (Canvas Width -> PDF Width)
+        const ratio = pdfW / canvas.width;
+        const pageHeightInCanvas = pdfH / ratio; // The height of one PDF page in Canvas pixels
+        
+        let currentY = 0;
+        let timeLeft = canvas.height;
+
+        // STEP D: Smart Slicing Loop
+        while (timeLeft > 0) {
+            // Determine theoretical cut point
+            let cutHeight = pageHeightInCanvas;
+            
+            if (timeLeft < pageHeightInCanvas) {
+                cutHeight = timeLeft; // Final page
+            } else {
+                // SCAN LOGIC: Look upwards from the cut point for a white gap
+                // This prevents cutting a sentence in half.
+                let searchY = Math.floor(currentY + pageHeightInCanvas);
+                let foundGap = false;
+                const scanLimit = 150; // Pixels to look upwards
+                
+                for (let y = searchY; y > searchY - scanLimit; y--) {
+                    if (isRowEmpty(imgDataFull, y, canvas.width)) {
+                        cutHeight = y - currentY;
+                        foundGap = true;
+                        break;
+                    }
+                }
+                // If no gap found (very dense text), we are forced to cut at the limit.
+                if (!foundGap) cutHeight = pageHeightInCanvas; 
+            }
+
+            // Create temporary canvas for this page slice
+            const pageCanvas = document.createElement('canvas');
+            pageCanvas.width = canvas.width;
+            pageCanvas.height = cutHeight;
+            const pageCtx = pageCanvas.getContext('2d');
+            
+            // Extract the slice
+            pageCtx.putImageData(ctx.getImageData(0, currentY, canvas.width, cutHeight), 0, 0);
+            
+            // Add to PDF
+            if (currentY > 0) pdf.addPage();
+            const sliceImg = pageCanvas.toDataURL('image/jpeg', 0.95); // High quality JPEG
+            pdf.addImage(sliceImg, 'JPEG', 0, 0, pdfW, cutHeight * ratio);
+
+            currentY += cutHeight;
+            timeLeft -= cutHeight;
+        }
+
+        // Finish
+        pdf.save(`Assignment_${Date.now()}.pdf`);
+        showToast("Smart PDF Generated Successfully!", "success");
+        
+        // Restore State
+        UI.paper.style.backgroundColor = originalBg;
+
+    } catch (e) {
+        console.error(e);
+        showToast("PDF Generation Failed. Try reducing text amount.", "error");
+    } finally {
+        btn.innerHTML = prevText;
+    }
+}
+
+// Helper: Check if a row of pixels is mostly white (background)
+function isRowEmpty(imgData, y, width) {
+    if (y >= imgData.height || y < 0) return true;
+    const threshold = 250; // Brightness threshold (0-255)
+    // Check every 20th pixel for performance (statistically sufficient)
+    for (let x = 0; x < width; x += 20) {
+        const i = (y * width + x) * 4;
+        const r = imgData.data[i];
+        const g = imgData.data[i+1];
+        const b = imgData.data[i+2];
+        // If pixel is dark, row contains ink/text
+        if (r < threshold && g < threshold && b < threshold) return false;
+    }
+    return true;
+}
+
+// --- 5. UTILITY FUNCTIONS ---
+
+function copyToClipboard() {
+    if (!UI.paper) return;
+    const btn = document.getElementById('copyBtn');
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+    
+    html2canvas(UI.paper, { scale: 2, useCORS: true }).then(canvas => {
+        canvas.toBlob(blob => {
+            try {
+                navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
+                    .then(() => showToast("Copied Image!", "success"))
+                    .catch(() => showToast("Copy failed - Browser restriction", "error"));
+            } catch (err) {
+                showToast("Clipboard API not supported", "error");
+            }
+            btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy to Clipboard';
+        });
+    }).catch(() => {
+        showToast("Error generating capture", "error");
+        btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy to Clipboard';
+    });
+}
+
+function downloadImage() {
+    html2canvas(UI.paper, { scale: 3, useCORS: true }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `Handwriter_${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
+}
+
+function updateHeader() {
+    if(UI.dateEl) UI.dateEl.innerText = `Date: ${new Date().toLocaleDateString('en-GB')}`;
+}
+
+function toggleVoice() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!voiceRec) {
+        try {
+            voiceRec = new SpeechRecognition();
+            voiceRec.continuous = true;
+            voiceRec.interimResults = true;
+            voiceRec.onresult = (e) => {
+                let t = '';
+                for (let i = e.resultIndex; i < e.results.length; ++i) {
+                    if(e.results[i].isFinal) t += e.results[i][0].transcript + ' ';
+                }
+                if(t) {
+                    // Append text at cursor position or end
+                    const pos = UI.input.selectionStart || UI.input.value.length;
+                    const val = UI.input.value;
+                    UI.input.value = val.slice(0, pos) + t + val.slice(pos);
+                    renderText();
+                }
+            };
+            voiceRec.onerror = (e) => {
+                console.error(e);
+                UI.micBtn.classList.remove('listening');
+                if(e.error === 'not-allowed') showToast("Microphone access denied", "error");
+            };
+        } catch (e) {
+            showToast("Voice API not supported in this browser", "error");
+            return;
+        }
+    }
+    
+    if (UI.micBtn.classList.contains('listening')) {
+        voiceRec.stop();
+        UI.micBtn.classList.remove('listening');
+    } else {
+        // Detect language based on selected Font Family (Heuristic)
+        const isEnglish = ['font-galada', 'font-mina'].indexOf(UI.controls.fontFamily.value) === -1;
+        voiceRec.lang = isEnglish ? 'en-US' : 'bn-BD';
+        
+        try {
+            voiceRec.start();
+            UI.micBtn.classList.add('listening');
+            showToast(`Listening (${voiceRec.lang})...`, 'success');
+        } catch(e) {
+            showToast("Mic already active or error", "info");
+        }
+    }
+}
+
+function saveDraft() {
+    if (UI.input) localStorage.setItem('handwriter_autosave', UI.input.value);
+}
+
+function loadDraft() {
+    const saved = localStorage.getItem('handwriter_autosave');
+    if (saved) UI.input.value = saved;
+    else UI.input.value = "Welcome to Handwriter Pro!\nType here to see realistic ink physics.\n\nTry the 'Smart PDF' feature to export assignments without cutting lines.";
+}
+
+// UI Helpers
+function createToastContainer() {
+    if(!document.getElementById('toast-container')) {
+        const d = document.createElement('div');
+        d.id = 'toast-container';
+        document.body.appendChild(d);
+    }
+}
+
+function showToast(msg, type = 'info') {
+    const el = document.createElement('div');
+    el.className = `toast ${type}`;
+    let icon = type === 'success' ? 'fa-circle-check' : type === 'error' ? 'fa-triangle-exclamation' : 'fa-info-circle';
+    el.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${msg}</span>`;
+    document.getElementById('toast-container').appendChild(el);
+    setTimeout(() => el.classList.add('show'), 10);
+    setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3000);
+}
+
+    </script>
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

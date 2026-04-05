@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ============================================================
+         [SYSTEM]: Core Analytics & Configuration Loaders
+         These scripts must remain at the top of <head> and must
+         not be moved or removed. They handle site-wide analytics,
+         meta tag injection, and ad provider initialization.
+    ============================================================ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ============================================================
+         [SEO]: Primary Meta Tags
+         Optimized for "offline video compressor", "ffmpeg browser",
+         and "client-side video editor" long-tail keyword clusters.
+    ============================================================ -->
+    <title>WASM Video Studio Pro — Free Offline Video Compressor, Trimmer & GIF Maker | Trusted Tools Web</title>
+    <meta name="title"       content="WASM Video Studio Pro — Free Offline Video Compressor, Trimmer & GIF Maker | Trusted Tools Web">
+    <meta name="description" content="Process videos 100% locally in your browser with zero uploads. Compress MP4, Trim clips, Create GIFs, and Extract Audio — all powered by FFmpeg WebAssembly. Completely free, secure & private.">
+    <meta name="keywords"    content="wasm video compressor, ffmpeg browser, offline video editor, video trimmer online, gif maker from video, extract audio from video, client-side video processing, webassembly ffmpeg, no upload video tool, trusted tools web, free video compressor, browser video editor, privacy video tool">
+    <meta name="author"      content="Trusted Tools Web">
+    <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- ============================================================
+         [SEO]: Canonical URL
+    ============================================================ -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/tools/media/media-video-studio.html" />
+
+    <!-- ============================================================
+         [SEO]: Open Graph / Facebook Meta
+    ============================================================ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/tools/media/media-video-studio.html">
+    <meta property="og:title"       content="WASM Video Studio Pro — Free Offline Video Editor | Trusted Tools Web">
+    <meta property="og:description" content="Compress, Trim, GIF, Extract Audio — 100% offline in your browser. Zero uploads, zero privacy risk. Powered by FFmpeg WebAssembly.">
+    <meta property="og:image"       content="../../assets/tools/media/media-video-studio/img/og-cover.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+
+    <!-- ============================================================
+         [SEO]: Twitter Card Meta
+    ============================================================ -->
+    <meta property="twitter:card"        content="summary_large_image">
+    <meta property="twitter:url"         content="https://trustedtoolsweb.com/tools/media/media-video-studio.html">
+    <meta property="twitter:title"       content="WASM Video Studio Pro — Free Offline Video Editor">
+    <meta property="twitter:description" content="Process videos 100% in your browser. No uploads. No privacy risk. Powered by WebAssembly FFmpeg.">
+    <meta property="twitter:image"       content="../../assets/tools/media/media-video-studio/img/og-cover.webp">
+
+    <!-- ============================================================
+         [USER CONFIG]: Favicons & Theme Color
+    ============================================================ -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+    <meta name="theme-color" content="#00e5ff">
+
+    <!-- ============================================================
+         [LIBRARIES]: External Font & Icon Assets
+         FontAwesome for icons, Fira Code for the terminal font.
+         These will be localized for final CodeCanyon submission.
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+
+    <!-- ============================================================
+         [STYLESHEETS]: Global + Tool Template — TWO-FILE CSS SYSTEM
+         - global.css    → Site-wide layout (header, footer, theme)
+         - tools-template.css → All tool UI components (reusable)
+         No separate tool stylesheet exists by architectural design.
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ============================================================
+         [SEO]: JSON-LD Structured Data
+         WebApplication + HowTo schemas boost rich result eligibility
+         in Google Search for tool-based queries.
+    ============================================================ -->
+    <script type="application/ld+json">
+    [
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "WASM Video Studio Pro",
+        "url": "https://trustedtoolsweb.com/tools/media/media-video-studio.html",
+        "description": "A 100% client-side, offline video processing tool powered by FFmpeg WebAssembly. Compress, Trim, Create GIFs, Extract Audio, and apply God Mode effects — all without uploading your files to any server.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript and SharedArrayBuffer support. Works on Chrome 90+, Firefox 89+, Edge 90+.",
+        "image": "https://trustedtoolsweb.com/assets/tools/media/media-video-studio/img/og-cover.webp",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "category": "Free Tool"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "Video Compression, Video Trimmer, GIF Maker, Audio Extractor, Chroma Key, Speed Control, Offline Processing, Zero Upload Privacy"
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Edit Video Offline in Your Browser",
+        "description": "Step-by-step guide to compress, trim, create GIFs, and extract audio from videos 100% locally in your browser using FFmpeg WebAssembly.",
+        "step": [
+            { "@type": "HowToStep", "name": "Upload Video", "text": "Drag and drop your video file into the upload zone, or click to browse." },
+            { "@type": "HowToStep", "name": "Choose Action", "text": "Choose your action: Compress, Trim, GIF Maker, Extract Audio, or God Mode." },
+            { "@type": "HowToStep", "name": "Configure Settings", "text": "Configure the settings (quality, resolution, FPS, time range) for your chosen action." },
+            { "@type": "HowToStep", "name": "Process & Download", "text": "Click 'Start Processing' and monitor real-time progress in the terminal. Download when complete." }
+        ]
+    }
+    ]
+    </script>
+
+    <!-- ============================================================
+         [THEME]: Instant theme flicker prevention.
+         Reads saved theme from localStorage and applies it before
+         the page renders to prevent a flash of unstyled dark mode.
+    ============================================================ -->
+    <script>
+        if (localStorage.getItem('siteTheme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+
+    <!-- ============================================================
+         WASM / FFmpeg CDN IMPORTS — READ BEFORE DEPLOYING
+         ============================================================
+         These load @ffmpeg/ffmpeg and @ffmpeg/util from unpkg CDN.
+
+         FOR PRODUCTION / CODCANYON BUYERS:
+         Download these files locally to avoid CDN dependency:
+           1. https://unpkg.com/@ffmpeg/ffmpeg@0.12.6/dist/umd/ffmpeg.js
+           2. https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/util.js
+           3. The .wasm and .worker.js files referenced inside ffmpeg.js
+         Place them in: assets/library/ffmpeg/
+         Then update the import paths in script.js accordingly.
+         The server must also serve COOP/COEP headers for WASM to work.
+    ============================================================ -->
+
+</head>
+
+<body>
+
+    <!-- ============================================================
+         [GLOBAL]: Site Header
+         Injected by global.js — includes logo, nav, theme toggle.
+    ============================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ============================================================
+         [MAIN CONTENT]: Tool Interface
+         Two-panel layout: left = controls, right = preview & terminal
+    ============================================================ -->
+    <main>
+
+        <!-- ── STUDIO WRAPPER: Two-column split layout ── -->
+        <div class="vs-wrapper animated-entry">
+
+            <!-- ====================================================
+                 LEFT PANEL: UPLOAD, TABS & SETTINGS CONTROLS
+            ==================================================== -->
+            <div class="vs-controls">
+
+                <!-- ── Hero Title Area: always centered regardless of panel layout ── -->
+                <div class="vs-hero-area">
+                    <div class="security-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        100% Client-Side Processing — Zero Uploads — Your Files Never Leave Your Device
+                    </div>
+
+                    <h1 class="tool-title">
+                        <i class="fa-solid fa-film"></i> WASM Video Studio <span>Pro</span>
+                    </h1>
+                    <p class="subtitle">Compress · Trim · GIF · Audio Extract · God Mode — All Offline, All Private.</p>
+                </div>
+
+                <!-- ── [SYSTEM]: Top Ad Slot ── -->
+                <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+                <!-- ── UPLOAD ZONE: Drag-and-drop or click-to-browse ── -->
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon-wrap">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    </div>
+                    <div class="upload-title">Drop Your Video Here</div>
+                    <div class="upload-sub">or <span class="upload-browse" id="uploadBrowseBtn">click to browse</span></div>
+                    <div class="upload-meta" id="uploadMeta">Supports: MP4, MKV, MOV, AVI, WEBM (Max: 2GB)</div>
+                    <!-- Hidden native file input — triggered by zone click -->
+                    <input type="file" id="fileInput" accept="video/*" style="display:none;">
+                </div>
+
+                <!-- ── FILE INFO BAR: Shown after a file is loaded ── -->
+                <!-- JS controls visibility: display:none → display:flex -->
+                <div class="file-info-bar" id="fileInfoBar" style="display:none;">
+                    <div class="file-info-icon">
+                        <i class="fa-solid fa-file-video"></i>
+                    </div>
+                    <div class="file-info-details">
+                        <div class="file-info-name" id="fileInfoName">video.mp4</div>
+                        <div class="file-info-size" id="fileInfoSize">0 MB</div>
+                    </div>
+                    <!-- Remove button clears the current file from state -->
+                    <button class="file-info-remove" id="removeFileBtn" title="Remove File">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- ── ACTION TABS: Select the processing mode ── -->
+                <!-- JS uses data-tab to switch active tab panels below -->
+                <div class="action-tabs" id="actionTabs">
+                    <button class="action-tab active" data-tab="compress">
+                        <i class="fa-solid fa-compress"></i>
+                        <span>Compress</span>
+                    </button>
+                    <button class="action-tab" data-tab="trim">
+                        <i class="fa-solid fa-scissors"></i>
+                        <span>Trim</span>
+                    </button>
+                    <button class="action-tab" data-tab="gif">
+                        <i class="fa-solid fa-images"></i>
+                        <span>GIF</span>
+                    </button>
+                    <button class="action-tab" data-tab="audio">
+                        <i class="fa-solid fa-music"></i>
+                        <span>Audio</span>
+                    </button>
+                    <!-- God Mode tab gets a special gradient highlight class -->
+                    <button class="action-tab god-tab" data-tab="godmode">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>God Mode</span>
+                    </button>
+                </div>
+
+                <!-- ============================================================
+                     TAB PANELS: Each panel is shown/hidden by JS tab logic.
+                     The active class toggles visibility (display: block).
+                ============================================================ -->
+
+                <!-- ── COMPRESS TAB PANEL ── -->
+                <div class="tab-panel active" id="panel-compress">
+                    <div class="settings-grid">
+
+                        <!-- CRF Quality Slider -->
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                Quality (CRF)
+                                <span class="setting-hint" id="crfHint">28 — Balanced</span>
+                            </label>
+                            <div class="slider-wrap">
+                                <span class="slider-edge">Best</span>
+                                <input type="range" class="vs-slider" id="crfSlider" min="18" max="40" value="28" step="1">
+                                <span class="slider-edge">Smallest</span>
+                            </div>
+                            <!-- CRF reference scale under the slider -->
+                            <div class="crf-scale">
+                                <span>18</span><span>23</span><span>28</span><span>34</span><span>40</span>
+                            </div>
+                        </div>
+
+                        <!-- Output Resolution Select -->
+                        <div class="setting-group">
+                            <label class="setting-label">Output Resolution</label>
+                            <select class="vs-select" id="resolutionSelect">
+                                <option value="source">Keep Original</option>
+                                <option value="1920:1080">1080p (1920×1080)</option>
+                                <option value="1280:720">720p (1280×720)</option>
+                                <option value="854:480">480p (854×480)</option>
+                                <option value="640:360">360p (640×360)</option>
+                            </select>
+                        </div>
+
+                        <!-- Output Container Format -->
+                        <div class="setting-group">
+                            <label class="setting-label">Output Format</label>
+                            <select class="vs-select" id="formatSelect">
+                                <option value="mp4">MP4 (H.264) — Universal</option>
+                                <option value="webm">WEBM (VP9) — Web Optimized</option>
+                            </select>
+                        </div>
+
+                        <!-- Encoding Speed Preset -->
+                        <div class="setting-group">
+                            <label class="setting-label">Preset (Speed vs Quality)</label>
+                            <select class="vs-select" id="presetSelect">
+                                <option value="medium">Medium (Balanced)</option>
+                                <option value="slow">Slow (Better Quality)</option>
+                                <option value="fast">Fast (Quicker)</option>
+                                <option value="veryfast">Very Fast (Rough)</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div><!-- /#panel-compress -->
+
+                <!-- ── TRIM TAB PANEL ── -->
+                <div class="tab-panel" id="panel-trim">
+                    <div class="settings-grid">
+
+                        <!-- Trim Start Time -->
+                        <div class="setting-group">
+                            <label class="setting-label">Start Time</label>
+                            <div class="time-input-wrap">
+                                <input type="text" class="vs-input" id="trimStart" placeholder="00:00:00" maxlength="8">
+                                <span class="time-input-icon"><i class="fa-regular fa-clock"></i></span>
+                            </div>
+                            <small class="setting-note">Format: HH:MM:SS or seconds (e.g. 30)</small>
+                        </div>
+
+                        <!-- Trim End Time -->
+                        <div class="setting-group">
+                            <label class="setting-label">End Time</label>
+                            <div class="time-input-wrap">
+                                <input type="text" class="vs-input" id="trimEnd" placeholder="00:00:10" maxlength="8">
+                                <span class="time-input-icon"><i class="fa-regular fa-clock"></i></span>
+                            </div>
+                            <small class="setting-note">Leave blank to trim to end of video</small>
+                        </div>
+
+                        <!-- Re-encode option for frame-accurate trimming -->
+                        <div class="setting-group">
+                            <label class="setting-label">Re-encode After Trim?</label>
+                            <select class="vs-select" id="trimReencode">
+                                <option value="copy">No — Fast Copy (May have start glitch)</option>
+                                <option value="encode">Yes — Re-encode (Slower, Frame-perfect)</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div><!-- /#panel-trim -->
+
+                <!-- ── GIF MAKER TAB PANEL ── -->
+                <div class="tab-panel" id="panel-gif">
+                    <div class="settings-grid">
+
+                        <!-- GIF Frame Rate Slider -->
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                GIF Frame Rate (FPS)
+                                <span class="setting-hint" id="fpsHint">10 FPS</span>
+                            </label>
+                            <div class="slider-wrap">
+                                <span class="slider-edge">1</span>
+                                <input type="range" class="vs-slider" id="fpsSlider" min="1" max="30" value="10" step="1">
+                                <span class="slider-edge">30</span>
+                            </div>
+                        </div>
+
+                        <!-- GIF Output Width -->
+                        <div class="setting-group">
+                            <label class="setting-label">GIF Width (Height auto)</label>
+                            <select class="vs-select" id="gifWidth">
+                                <option value="480">480px — Standard</option>
+                                <option value="320">320px — Small</option>
+                                <option value="640">640px — Large</option>
+                                <option value="240">240px — Tiny</option>
+                            </select>
+                        </div>
+
+                        <!-- GIF Source Clip Start -->
+                        <div class="setting-group">
+                            <label class="setting-label">GIF Start Time</label>
+                            <input type="text" class="vs-input" id="gifStart" placeholder="00:00:00">
+                            <small class="setting-note">Leave blank to start from beginning</small>
+                        </div>
+
+                        <!-- GIF Clip Duration -->
+                        <div class="setting-group">
+                            <label class="setting-label">GIF Duration (seconds)</label>
+                            <input type="number" class="vs-input" id="gifDuration" placeholder="5" min="1" max="60" value="5">
+                        </div>
+
+                    </div>
+                </div><!-- /#panel-gif -->
+
+                <!-- ── AUDIO EXTRACTOR TAB PANEL ── -->
+                <div class="tab-panel" id="panel-audio">
+                    <div class="settings-grid">
+
+                        <!-- Audio Codec / Container -->
+                        <div class="setting-group">
+                            <label class="setting-label">Audio Format</label>
+                            <select class="vs-select" id="audioFormat">
+                                <option value="mp3">MP3 — Universal (libmp3lame)</option>
+                                <option value="aac">AAC — iOS/Apple Optimized</option>
+                                <option value="wav">WAV — Lossless Uncompressed</option>
+                                <option value="ogg">OGG Vorbis — Web Standard</option>
+                                <option value="flac">FLAC — Lossless Compressed</option>
+                            </select>
+                        </div>
+
+                        <!-- Audio Output Bitrate -->
+                        <div class="setting-group">
+                            <label class="setting-label">Audio Bitrate</label>
+                            <select class="vs-select" id="audioBitrate">
+                                <option value="128k">128 kbps — Standard</option>
+                                <option value="192k">192 kbps — High Quality</option>
+                                <option value="256k">256 kbps — Very High</option>
+                                <option value="320k">320 kbps — Maximum (MP3)</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- Info tip: lossless formats ignore bitrate -->
+                    <div class="info-tip">
+                        <i class="fa-solid fa-circle-info"></i>
+                        WAV and FLAC are lossless — bitrate selection is ignored for these formats.
+                    </div>
+                </div><!-- /#panel-audio -->
+
+                <!-- ── GOD MODE TAB PANEL ── -->
+                <div class="tab-panel" id="panel-godmode">
+
+                    <!-- Visual badge that labels this advanced section -->
+                    <div class="god-mode-badge">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Advanced Processing Mode
+                    </div>
+
+                    <div class="settings-grid">
+
+                        <!-- Playback Speed Slider -->
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                Playback Speed
+                                <span class="setting-hint" id="speedHint">1× — Normal</span>
+                            </label>
+                            <div class="slider-wrap">
+                                <span class="slider-edge">0.25×</span>
+                                <input type="range" class="vs-slider" id="speedSlider" min="0.25" max="4" value="1" step="0.25">
+                                <span class="slider-edge">4×</span>
+                            </div>
+                        </div>
+
+                        <!-- Chroma Key: color picker + similarity select -->
+                        <div class="setting-group">
+                            <label class="setting-label">Chroma Key (Green Screen)</label>
+                            <div class="chroma-row">
+                                <input type="color" id="chromaColor" value="#00ff00" class="color-picker">
+                                <select class="vs-select" id="chromaSimilarity" style="flex:1;">
+                                    <option value="off">Off (Disabled)</option>
+                                    <option value="0.3">Similarity: Low</option>
+                                    <option value="0.5">Similarity: Medium</option>
+                                    <option value="0.7">Similarity: High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Rotation / Flip Transform -->
+                        <div class="setting-group">
+                            <label class="setting-label">Video Rotation</label>
+                            <select class="vs-select" id="rotateSelect">
+                                <option value="none">No Rotation</option>
+                                <option value="90">Rotate 90° Clockwise</option>
+                                <option value="180">Rotate 180°</option>
+                                <option value="270">Rotate 270° Clockwise</option>
+                                <option value="hflip">Flip Horizontal</option>
+                                <option value="vflip">Flip Vertical</option>
+                            </select>
+                        </div>
+
+                        <!-- God Mode Output Container Format -->
+                        <div class="setting-group">
+                            <label class="setting-label">Output Format</label>
+                            <select class="vs-select" id="godFormatSelect">
+                                <option value="mp4">MP4 (H.264)</option>
+                                <option value="webm">WEBM (VP9)</option>
+                                <option value="mov">MOV (ProRes-like)</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div><!-- /#panel-godmode -->
+
+                <!-- ── PRIMARY PROCESS BUTTON ── -->
+                <!-- Starts disabled; JS enables it once file + WASM are ready -->
+                <button class="btn-process" id="processBtn" disabled>
+                    <span class="btn-process-inner">
+                        <i class="fa-solid fa-bolt" id="processBtnIcon"></i>
+                        <span id="processBtnText">Upload a Video to Begin</span>
+                    </span>
+                    <!-- Animated glow effect behind the button (CSS-only) -->
+                    <div class="btn-glow"></div>
+                </button>
+
+                <!-- ── FFMPEG ENGINE STATUS INDICATOR ── -->
+                <!-- Status dot color changes: loading → ready → error (via JS) -->
+                <div class="ffmpeg-status" id="ffmpegStatus">
+                    <div class="status-dot loading" id="statusDot"></div>
+                    <span id="statusText">Loading FFmpeg WebAssembly engine...</span>
+                </div>
+
+            </div><!-- /.vs-controls — End of Left Panel -->
+
+            <!-- ====================================================
+                 RIGHT PANEL: VIDEO PREVIEW + TERMINAL + DOWNLOAD
+            ==================================================== -->
+            <div class="vs-preview">
+
+                <!-- ── VIDEO PLAYER SECTION ── -->
+                <div class="player-section">
+                    <div class="player-label">VIDEO PREVIEW</div>
+                    <div class="player-wrap" id="playerWrap">
+                        <!-- Placeholder shown before any file is loaded -->
+                        <div class="player-placeholder" id="playerPlaceholder">
+                            <i class="fa-solid fa-circle-play placeholder-icon"></i>
+                            <span>Your video will appear here</span>
+                        </div>
+                        <!-- Native HTML5 video element; src set by JS on file load -->
+                        <video id="videoPlayer" controls style="display:none;"></video>
+                    </div>
+                    <!-- Timeline hint only visible when Trim tab is active -->
+                    <div class="timeline-hint" id="timelineHint" style="display:none;">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Use the video player to find your trim start/end timestamps, then enter them on the left.
+                    </div>
+                </div><!-- /.player-section -->
+
+                <!-- ── FFMPEG TERMINAL / LOG SECTION ── -->
+                <div class="terminal-section">
+
+                    <!-- Terminal chrome header (macOS-style dots) -->
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="t-dot red"></span>
+                            <span class="t-dot yellow"></span>
+                            <span class="t-dot green"></span>
+                        </div>
+                        <div class="terminal-title">FFmpeg Terminal — WASM Engine</div>
+                        <!-- Clear button wipes all terminal log lines -->
+                        <button class="terminal-clear" id="termClear" title="Clear Terminal">
+                            <i class="fa-solid fa-eraser"></i>
+                        </button>
+                    </div>
+
+                    <!-- Terminal body: log lines are appended by termLog() in JS -->
+                    <div class="terminal-body" id="terminalBody">
+                        <div class="term-line term-info">
+                            <span class="term-prompt">$</span>
+                            <span class="term-text">WASM Video Studio Pro — FFmpeg Engine v0.12.6</span>
+                        </div>
+                        <div class="term-line term-info">
+                            <span class="term-prompt">$</span>
+                            <span class="term-text">Initializing WebAssembly runtime...</span>
+                        </div>
+                        <div class="term-line term-muted">
+                            <span class="term-prompt">$</span>
+                            <span class="term-text">Drop a video file to begin processing.</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar: hidden until processing starts -->
+                    <div class="progress-section" id="progressSection" style="display:none;">
+                        <div class="progress-header">
+                            <span class="progress-label" id="progressLabel">Processing...</span>
+                            <span class="progress-pct"   id="progressPct">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                    </div>
+
+                </div><!-- /.terminal-section -->
+
+                <!-- ── DOWNLOAD SECTION ── -->
+                <!-- Hidden until processing completes; JS sets display:flex -->
+                <div class="download-section" id="downloadSection" style="display:none;">
+
+                    <!-- File size comparison stats -->
+                    <div class="download-stats">
+                        <div class="stat-box">
+                            <div class="stat-label">Original Size</div>
+                            <div class="stat-value" id="statOriginal">—</div>
+                        </div>
+                        <div class="stat-arrow">
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </div>
+                        <div class="stat-box result">
+                            <div class="stat-label">Result Size</div>
+                            <div class="stat-value" id="statResult">—</div>
+                        </div>
+                        <div class="stat-box savings">
+                            <div class="stat-label">Savings</div>
+                            <div class="stat-value" id="statSavings">—</div>
+                        </div>
+                    </div>
+
+                    <!-- Download link — href and download attr set dynamically by JS -->
+                    <a class="btn-download" id="downloadBtn" href="#" download>
+                        <i class="fa-solid fa-circle-down"></i>
+                        <span id="downloadBtnText">Download Result</span>
+                    </a>
+
+                    <!-- Reset button to clear state and process a new file -->
+                    <button class="btn-process-another" id="processAnotherBtn">
+                        <i class="fa-solid fa-rotate-right"></i> Process Another
+                    </button>
+
+                </div><!-- /.download-section -->
+
+            </div><!-- /.vs-preview — End of Right Panel -->
+
+        </div><!-- /.vs-wrapper -->
+
+        <!-- ── [SYSTEM]: Bottom Ad Slot ── -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- ============================================================
+             INFO SECTION: HOW TO USE, KNOWLEDGE BASE & FAQ
+             SEO content block below the tool UI, structured for
+             rich article indexing by search engines.
+        ============================================================ -->
+        <section class="info-section-wrapper">
+
+            <!-- ── HOW TO USE GUIDE ── -->
+            <div class="info-card mb-30">
+                <h2 style="color: var(--text-main); font-size: 24px; border-left: 5px solid var(--brand-primary); padding-left: 20px; margin-bottom: 25px;">
+                    <i class="fa-solid fa-book-open"></i> Complete Usage Guide: Offline Video Editing in 4 Steps
+                </h2>
+                <div class="step-wrapper">
+                    <div class="step-card">
+                        <div class="step-num">1</div>
+                        <h4 style="color: var(--text-main); margin-bottom: 10px;">Upload Your Video</h4>
+                        <p style="color: var(--text-muted); font-size: 13px;">
+                            Drag and drop any video file (MP4, MKV, MOV, AVI, WEBM) into the upload zone, or click to browse. Files up to 2GB are supported. The video is loaded entirely into your browser's memory — <strong>nothing is ever sent to a server.</strong>
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">2</div>
+                        <h4 style="color: var(--text-main); margin-bottom: 10px;">Choose Your Action</h4>
+                        <p style="color: var(--text-muted); font-size: 13px;">
+                            Select a tab: <strong>Compress</strong> (reduce file size), <strong>Trim</strong> (cut a clip), <strong>GIF</strong> (animate a segment), <strong>Audio</strong> (rip the soundtrack), or <strong>God Mode</strong> (speed control, chroma key, rotation).
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">3</div>
+                        <h4 style="color: var(--text-main); margin-bottom: 10px;">Configure Settings</h4>
+                        <p style="color: var(--text-muted); font-size: 13px;">
+                            Fine-tune each action. For compression, adjust the CRF slider — lower values mean better quality but larger files. For Trim, use the video player to find your exact timestamps. For GIF, balance FPS and width for the perfect loop.
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">4</div>
+                        <h4 style="color: var(--text-main); margin-bottom: 10px;">Process & Download</h4>
+                        <p style="color: var(--text-muted); font-size: 13px;">
+                            Click <strong>Start Processing</strong>. Watch real-time FFmpeg logs in the terminal. A progress bar shows completion percentage. When done, compare file sizes and click <strong>Download Result</strong> to save your processed file.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── KNOWLEDGE BASE: WASM, FFmpeg & Video Science ── -->
+            <div style="font-size: 1.4rem; color: var(--text-main); margin: 50px 0 25px; display: flex; align-items: center; gap: 12px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
+                <i class="fa-solid fa-graduation-cap"></i> Knowledge Base: WebAssembly, FFmpeg & Video Science
+            </div>
+
+            <div class="feature-grid">
+                <div class="info-card">
+                    <h3><i class="fa-brands fa-firefox-browser" style="color:#00e5ff;"></i> What is WebAssembly (WASM)?</h3>
+                    <p>WebAssembly is a binary instruction format that lets C/C++ programs run at near-native speed inside a web browser. FFmpeg — the world's most powerful video processing library, written in C — has been compiled to WASM, allowing us to run it entirely in your browser tab. No server. No cloud. Just raw CPU power from your own machine.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-shield-halved" style="color:#ff0055;"></i> Why Client-Side Protects Your Privacy</h3>
+                    <p>Traditional online video tools upload your file to their servers to process it. This means your footage is stored on foreign hardware, potentially scanned, and subject to data breaches. With WASM, your video is read by the browser's memory, processed by the browser's CPU, and the output is written back to your browser's memory. Zero network traffic is ever generated for your video data.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-sliders" style="color:#ffd600;"></i> Understanding CRF & Video Compression</h3>
+                    <p>The Constant Rate Factor (CRF) controls H.264/H.265 quality. It ranges from 0 (lossless) to 51 (worst). Each ±6 change roughly halves or doubles the file size. A CRF of 23 is visually transparent for most content; 28 is the "sweet spot" for web delivery. The encoder automatically allocates more bits to complex scenes and fewer bits to static ones, which is smarter than a fixed bitrate.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-images" style="color:#ab47bc;"></i> The Science of GIF Optimization</h3>
+                    <p>GIFs use an indexed 256-color palette, making them inherently larger than modern formats. FFmpeg's <code>palettegen</code> filter generates an optimal per-video color palette, dramatically reducing artifacts. Lowering FPS from 30 to 10 reduces frame count by 66%. Combined with a reduced scale width (e.g., 320px), a well-optimized GIF from a 50MB video clip can be just 2–5MB with excellent quality.</p>
+                </div>
+            </div>
+
+            <!-- ── FAQ ACCORDION ── -->
+            <div class="info-card mt-xl" style="position: relative; overflow: hidden;">
+                <!-- Decorative glow orb (CSS cosmetic, pointer-events off) -->
+                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+                <h2 style="color: var(--text-main); font-size: 24px; border-left: 5px solid var(--accent-cyan); padding-left: 20px; margin-bottom: 30px;">
+                    <i class="fa-solid fa-comments"></i> Frequently Asked Questions
+                </h2>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary class="faq-question">Is my video uploaded to any server? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="faq-answer">
+                            <p>Absolutely not. This tool uses <strong>FFmpeg compiled to WebAssembly</strong>, which runs 100% inside your browser tab. Your video file is read directly from your local disk into your browser's memory. No data packets containing your video are ever sent over the network. You can even use this tool in Airplane Mode with no internet connection (after the initial WASM engine loads).</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Why is processing slower than a desktop app? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="faq-answer">
+                            <p>WebAssembly runs at roughly 60–80% of native speed and is currently limited to a single thread for FFmpeg execution (due to browser security restrictions around <code>SharedArrayBuffer</code>). A dedicated GPU or multi-core encoding app like Handbrake will always be faster. However, for files under 500MB, performance is very acceptable — and the privacy trade-off is worth it. Future WASM multi-threading support will close this gap.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Why is it slower on older phones or laptops? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="faq-answer">
+                            <p>Video encoding is one of the most CPU-intensive tasks a device can perform. Older hardware with slower single-core performance will take significantly longer. A 1080p video that takes 2 minutes on a modern laptop might take 10–15 minutes on a low-end Android phone. For mobile, we recommend using 480p output and higher CRF values to reduce processing time. Keeping your browser tab as the focused foreground tab also prevents the OS from throttling it.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">My browser tab crashed during processing. What happened? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="faq-answer">
+                            <p>Large video files (500MB+) require substantial RAM — the original file, the FFmpeg virtual filesystem copy, and the output buffer can peak at 3–4× the original file size in memory simultaneously. If your device runs low on RAM, the browser tab will be killed by the OS. Solutions: Use a desktop browser (Chrome is most efficient), close other browser tabs, lower the output resolution, or process smaller file segments using the Trim tool first.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">What browsers are supported? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="faq-answer">
+                            <p>FFmpeg WASM requires <code>SharedArrayBuffer</code> and <code>COEP/COOP</code> security headers. <strong>Chrome 90+, Edge 90+, and Firefox 89+</strong> are fully supported. Safari on iOS/macOS has experimental support but may be unstable for large files. We always recommend the latest version of Chrome for the best experience. If you see a "SharedArrayBuffer not supported" error, your browser or server is missing the required security headers.</p>
+                        </div>
+                    </details>
+                </div>
+            </div><!-- /.info-card FAQ -->
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ── RELATED TOOLS GRID (dynamically injected by related-tools.js) ── -->
+        <div class="container mt-xl">
+            <div id="dynamic-related-tools"
+                 data-category="media"
+                 data-current-page="media-video-studio.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main -->
+
+    <!-- ============================================================
+         [GLOBAL]: Site Footer
+         Injected by global.js — includes links, copyright line.
+    ============================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ============================================================
+         [SYSTEM]: Ad Manager
+         Must remain after the footer and before global.js.
+    ============================================================ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ============================================================
+         [SYSTEM]: Global Logic
+         Handles header/footer injection, theme toggle, global toast,
+         floating buttons, and all site-wide JS functionality.
+    ============================================================ -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ============================================================
+         [TOOL]: WASM Video Studio Pro — Main Script
+         ES Module — handles FFmpeg WASM loading, file handling,
+         tab switching, command building, and processing pipeline.
+    ============================================================ -->
+    <script type="module" src="../../assets/tools/media/media-video-studio/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>
+
+
+
+
+
+
+
+/**
+ * ============================================================================
+ * WASM Video Studio Pro — script.js
+ * Tool Path : assets/tools/media/media-video-studio/script.js
+ * Project   : Trusted Tools Web — by MD KAWSAR
+ * Version   : 1.0 (CodeCanyon Release Build)
+ *
+ * Architecture:
+ *   ES Module. FFmpeg WASM is dynamically imported from CDN (or local path).
+ *   All video processing runs 100% client-side — no data is ever uploaded.
+ *
+ * Toast System:
+ *   Uses the global window.showToast(message, isError) provided by global.js.
+ *   - Normal toast  : window.showToast("Message")
+ *   - Error toast   : window.showToast("Message", true)
+ *
+ * ── FOR CODCANYON BUYERS — LOCAL INSTALL INSTRUCTIONS ──────────────────────
+ *   1. Run: npm install @ffmpeg/ffmpeg@0.12.6 @ffmpeg/util@0.12.1 @ffmpeg/core@0.12.6
+ *   2. Copy from node_modules to:
+ *        assets/library/ffmpeg/ffmpeg.js          (ESM build of @ffmpeg/ffmpeg)
+ *        assets/library/ffmpeg/util.js            (ESM build of @ffmpeg/util)
+ *        assets/library/ffmpeg/ffmpeg-core.js     (WASM core bootstrap)
+ *        assets/library/ffmpeg/ffmpeg-core.wasm   (WASM binary)
+ *        assets/library/ffmpeg/ffmpeg-core.worker.js (Worker thread helper)
+ *   3. Update CDN_BASE, UTIL_CDN, and CORE_CDN constants below.
+ *   4. Your web server MUST send these HTTP headers for WASM to work:
+ *        Cross-Origin-Opener-Policy: same-origin
+ *        Cross-Origin-Embedder-Policy: require-corp
+ *
+ * FFMPEG.WASM VERSION: 0.12.6
+ * ============================================================================
+ */
+
+'use strict';
+
+
+
+
+/* ============================================================================
+   STATE MANAGEMENT
+   A single state object holds all mutable runtime values for the tool.
+   Keeping state centralized prevents scattered global variables and makes
+   the processing pipeline easy to reason about and debug.
+   ========================================================================== */
+const state = {
+    ffmpeg        : null,          // The FFmpeg WASM instance (created on load)
+    ffmpegLoaded  : false,         // True once the WASM engine has fully loaded
+    isProcessing  : false,         // Guard flag — prevents concurrent processing
+    inputFile     : null,          // The File object selected by the user
+    inputFileName : 'input',       // Sanitized base name (no extension, no spaces)
+    inputFileExt  : 'mp4',         // Original file extension (lowercase)
+    outputBlob    : null,          // The Blob created from the FFmpeg output buffer
+    outputFilename: 'output.mp4',  // Suggested filename for the download prompt
+    currentTab    : 'compress',    // Active action tab ID ('compress','trim',etc.)
+    videoDuration : 0,             // Duration in seconds from the <video> element
+};
+
+
+/* ============================================================================
+   DOM ELEMENT REFERENCES
+   All DOM lookups are wrapped in arrow functions so they are evaluated lazily
+   (after DOMContentLoaded) rather than at module parse time. This prevents
+   null references on pages where the element might not yet exist.
+   ========================================================================== */
+const dom = {
+    /* ── Upload / File handling ── */
+    uploadZone      : () => document.getElementById('uploadZone'),
+    fileInput       : () => document.getElementById('fileInput'),
+    fileInfoBar     : () => document.getElementById('fileInfoBar'),
+    fileInfoName    : () => document.getElementById('fileInfoName'),
+    fileInfoSize    : () => document.getElementById('fileInfoSize'),
+    removeFileBtn   : () => document.getElementById('removeFileBtn'),
+    uploadBrowseBtn : () => document.getElementById('uploadBrowseBtn'),
+
+    /* ── Process button & status ── */
+    processBtn      : () => document.getElementById('processBtn'),
+    processBtnText  : () => document.getElementById('processBtnText'),
+    processBtnIcon  : () => document.getElementById('processBtnIcon'),
+    statusDot       : () => document.getElementById('statusDot'),
+    statusText      : () => document.getElementById('statusText'),
+
+    /* ── Terminal / log ── */
+    terminalBody    : () => document.getElementById('terminalBody'),
+    termClear       : () => document.getElementById('termClear'),
+
+    /* ── Progress bar ── */
+    progressSection : () => document.getElementById('progressSection'),
+    progressBar     : () => document.getElementById('progressBar'),
+    progressPct     : () => document.getElementById('progressPct'),
+    progressLabel   : () => document.getElementById('progressLabel'),
+
+    /* ── Download / stats section ── */
+    downloadSection : () => document.getElementById('downloadSection'),
+    downloadBtn     : () => document.getElementById('downloadBtn'),
+    downloadBtnText : () => document.getElementById('downloadBtnText'),
+    statOriginal    : () => document.getElementById('statOriginal'),
+    statResult      : () => document.getElementById('statResult'),
+    statSavings     : () => document.getElementById('statSavings'),
+    processAnotherBtn: () => document.getElementById('processAnotherBtn'),
+
+    /* ── Video player ── */
+    videoPlayer     : () => document.getElementById('videoPlayer'),
+    playerPlaceholder: () => document.getElementById('playerPlaceholder'),
+    playerWrap      : () => document.getElementById('playerWrap'),
+    timelineHint    : () => document.getElementById('timelineHint'),
+
+    /* ── Settings controls (Compress tab) ── */
+    crfSlider       : () => document.getElementById('crfSlider'),
+    crfHint         : () => document.getElementById('crfHint'),
+    resolutionSelect: () => document.getElementById('resolutionSelect'),
+    formatSelect    : () => document.getElementById('formatSelect'),
+    presetSelect    : () => document.getElementById('presetSelect'),
+
+    /* ── Settings controls (Trim tab) ── */
+    trimStart       : () => document.getElementById('trimStart'),
+    trimEnd         : () => document.getElementById('trimEnd'),
+    trimReencode    : () => document.getElementById('trimReencode'),
+
+    /* ── Settings controls (GIF tab) ── */
+    fpsSlider       : () => document.getElementById('fpsSlider'),
+    fpsHint         : () => document.getElementById('fpsHint'),
+    gifWidth        : () => document.getElementById('gifWidth'),
+    gifStart        : () => document.getElementById('gifStart'),
+    gifDuration     : () => document.getElementById('gifDuration'),
+
+    /* ── Settings controls (Audio tab) ── */
+    audioFormat     : () => document.getElementById('audioFormat'),
+    audioBitrate    : () => document.getElementById('audioBitrate'),
+
+    /* ── Settings controls (God Mode tab) ── */
+    speedSlider     : () => document.getElementById('speedSlider'),
+    speedHint       : () => document.getElementById('speedHint'),
+    chromaColor     : () => document.getElementById('chromaColor'),
+    chromaSimilarity: () => document.getElementById('chromaSimilarity'),
+    rotateSelect    : () => document.getElementById('rotateSelect'),
+    godFormatSelect : () => document.getElementById('godFormatSelect'),
+};
+
+
+/* ============================================================================
+   UTILITY: FORMAT FILE SIZE
+   Converts a raw byte count into a human-readable string with the most
+   appropriate unit suffix (B, KB, MB, GB).
+   @param  {number} bytes  — Raw byte count
+   @return {string}        — e.g. "12.45 MB"
+   ========================================================================== */
+function formatSize(bytes) {
+    if (bytes === 0) return '0 B';
+    const k     = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i     = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+
+/* ============================================================================
+   UTILITY: FORMAT DURATION
+   Converts a decimal seconds value into HH:MM:SS display format.
+   Used for the terminal log entry after a file's metadata is loaded.
+   @param  {number} seconds  — Duration in seconds (from video.duration)
+   @return {string}          — e.g. "00:02:34"
+   ========================================================================== */
+function formatDuration(seconds) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.floor(seconds % 60);
+    return [h, m, s].map(v => String(v).padStart(2, '0')).join(':');
+}
+
+
+/* ============================================================================
+   UTILITY: SANITIZE FILENAME
+   Strips characters from a filename that FFmpeg's virtual filesystem may
+   reject (spaces, special chars, etc.) and caps the length at 60 chars.
+   @param  {string} name  — Raw filename string (no extension)
+   @return {string}       — Safe alphanumeric-plus-underscore filename
+   ========================================================================== */
+function sanitizeFilename(name) {
+    return name.replace(/[^a-zA-Z0-9._-]/g, '_').substring(0, 60);
+}
+
+
+/* ============================================================================
+   UTILITY: HTML ESCAPE
+   Safely converts user-generated or FFmpeg log strings into HTML-safe text
+   to prevent XSS when inserting into the terminal's innerHTML.
+   @param  {string} str  — Raw input string
+   @return {string}      — HTML-entity-encoded string
+   ========================================================================== */
+function escapeHtml(str) {
+    const div       = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+
+/* ============================================================================
+   TERMINAL LOGGER
+   Appends a styled log line to the on-screen FFmpeg terminal panel.
+   Each line consists of a colored $ prompt and a message body.
+   The terminal auto-scrolls to the newest line after each append.
+
+   @param {string} message  — The text content to display
+   @param {string} type     — One of: 'info' | 'success' | 'error' |
+                              'warn' | 'cmd' | 'muted'
+   ========================================================================== */
+function termLog(message, type = 'info') {
+    const body   = dom.terminalBody();
+    const line   = document.createElement('div');
+    line.className = `term-line term-${type}`;
+    line.innerHTML = `<span class="term-prompt">$</span><span class="term-text">${escapeHtml(message)}</span>`;
+    body.appendChild(line);
+
+    // Auto-scroll the terminal to always show the latest output
+    body.scrollTop = body.scrollHeight;
+}
+
+
+/* ============================================================================
+   PROGRESS UPDATER
+   Called by the FFmpeg progress event handler and by key pipeline steps.
+   Updates the progress bar fill, the percentage counter, and the label text.
+
+   @param {number} progress  — A 0–1 float (0 = 0%, 1 = 100%)
+   @param {string} label     — Human-readable operation description
+   ========================================================================== */
+function updateProgress(progress, label = 'Processing...') {
+    const pct = Math.min(Math.round(progress * 100), 100);
+    dom.progressBar().style.width     = pct + '%';
+    dom.progressPct().textContent     = pct + '%';
+    dom.progressLabel().textContent   = label;
+}
+
+
+/* ============================================================================
+   LOCAL CONFIGURATION (Updated for CodeCanyon)
+   Points to local assets inside the library folder for 100% offline usage.
+   ========================================================================== */
+const FFMPEG_LIB_PATH = '../../assets/library/ffmpeg/';
+
+/* ============================================================================
+   UTILITY: LOAD SCRIPT
+   Dynamically loads the UMD JavaScript files into the DOM.
+   ========================================================================== */
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+
+/* ============================================================================
+   FFMPEG WASM LOADER (Offline/Local Version)
+   Loads the FFmpeg engine completely from local files.
+   No internet connection or CDN required.
+   ========================================================================== */
+async function loadFFmpeg() {
+    termLog('Importing FFmpeg WebAssembly modules locally...', 'muted');
+
+    try {
+        // 1. Load the standalone UMD scripts locally
+        await loadScript(`${FFMPEG_LIB_PATH}ffmpeg.js`);
+        await loadScript(`${FFMPEG_LIB_PATH}util.js`);
+
+        // Extract classes from the loaded global window objects
+        const { FFmpeg } = window.FFmpegWASM;
+        const { fetchFile } = window.FFmpegUtil;
+
+        // Store utility function globally for startProcessing()
+        window._ffmpegUtil = { fetchFile };
+
+        // Instantiate the FFmpeg object
+        state.ffmpeg = new FFmpeg();
+
+        /* ── Progress Event ────────────────────────────────────────────────── */
+        state.ffmpeg.on('progress', ({ progress, time }) => {
+            const timeStr = time > 0 ? ` (${(time / 1000000).toFixed(1)}s processed)` : '';
+            updateProgress(progress, `Encoding${timeStr}`);
+        });
+
+        /* ── Log Event ─────────────────────────────────────────────────────── */
+        state.ffmpeg.on('log', ({ type, message }) => {
+            if (!message || message.trim() === '') return;
+            if (
+                message.startsWith('frame=') ||
+                message.startsWith('size=')  ||
+                message.includes('time=')    ||
+                message.startsWith('Error')  ||
+                message.includes('error')    ||
+                message.includes('Invalid')
+            ) {
+                termLog(message.trim(), type === 'fferr' ? 'warn' : 'muted');
+            }
+        });
+
+        termLog('Loading ffmpeg-core.wasm into memory...', 'info');
+
+        // 2. Load the core WASM files directly from local paths
+        // Note: workerURL is intentionally removed because the standard single-thread core does not need it.
+        await state.ffmpeg.load({
+            coreURL: `${FFMPEG_LIB_PATH}ffmpeg-core.js`,
+            wasmURL: `${FFMPEG_LIB_PATH}ffmpeg-core.wasm`
+        });
+
+        // ── Engine Ready ──
+        state.ffmpegLoaded              = true;
+        dom.statusDot().className       = 'status-dot ready';
+        dom.statusText().textContent    = 'FFmpeg WASM engine ready. Drop a video to begin.';
+        termLog('FFmpeg WebAssembly engine loaded successfully.', 'success');
+        termLog('All processing is 100% local — your files never leave this device.', 'success');
+
+        if (state.inputFile) {
+            enableProcessButton();
+        }
+
+    } catch (err) {
+        // ── Engine Failed ──
+        dom.statusDot().className       = 'status-dot error';
+        dom.statusText().textContent    = 'Failed to load WASM engine. Check browser compatibility.';
+        termLog(`ERROR loading FFmpeg: ${err.message}`, 'error');
+        termLog('Ensure all 4 files are placed inside assets/library/ffmpeg/', 'warn');
+        window.showToast('WASM engine failed to load. See terminal for details.', true);
+    }
+}
+
+
+/* ============================================================================
+   FILE HANDLING — handleFileSelect
+   Called whenever the user selects a file via the file input, drag-and-drop,
+   or the browse button. Validates the file, updates UI, loads the video into
+   the native player for preview, and enables the process button.
+
+   @param {File} file  — The File object from the input or DataTransfer
+   ========================================================================== */
+function handleFileSelect(file) {
+    // ── Validation: must be a video MIME type ──
+    if (!file || !file.type.startsWith('video/')) {
+        window.showToast('Please select a valid video file.', true);
+        return;
+    }
+
+    // ── Validation: 2 GB size limit (FFmpeg WASM memory constraint) ──
+    if (file.size > 2 * 1024 * 1024 * 1024) {
+        window.showToast('File exceeds 2GB limit. Please use a smaller file.', true);
+        return;
+    }
+
+    // ── Update state ──
+    state.inputFile    = file;
+    const parts        = file.name.split('.');
+    state.inputFileExt = parts.pop().toLowerCase();
+    state.inputFileName = sanitizeFilename(parts.join('.')) || 'video';
+
+    // ── Update UI: swap upload zone for the file info bar ──
+    dom.fileInfoName().textContent     = file.name;
+    dom.fileInfoSize().textContent     = formatSize(file.size);
+    dom.fileInfoBar().style.display    = 'flex';
+    dom.uploadZone().style.display     = 'none';
+
+    // ── Load the video into the native <video> player for preview ──
+    const url                          = URL.createObjectURL(file);
+    const player                       = dom.videoPlayer();
+    player.src                         = url;
+    player.style.display               = 'block';
+    dom.playerPlaceholder().style.display = 'none';
+
+    // Log file metadata once the video's duration is available
+    player.addEventListener('loadedmetadata', () => {
+        state.videoDuration = player.duration;
+        termLog(
+            `File loaded: ${file.name} | Size: ${formatSize(file.size)} | Duration: ${formatDuration(player.duration)}`,
+            'info'
+        );
+    }, { once: true }); // { once: true } auto-removes the listener after firing
+
+    // ── Reset result sections from any previous run ──
+    dom.downloadSection().style.display = 'none';
+    dom.progressSection().style.display = 'none';
+    clearProgressBar();
+
+    // Enable the process button only if the WASM engine is also ready
+    if (state.ffmpegLoaded) {
+        enableProcessButton();
+    } else {
+        dom.processBtnText().textContent = 'Loading WASM Engine...';
+    }
+}
+
+
+/* ============================================================================
+   FILE HANDLING — removeFile
+   Clears the loaded file from state and resets the entire UI to its initial
+   empty state. Also revokes any active object URLs to free browser memory.
+   ========================================================================== */
+function removeFile() {
+    state.inputFile    = null;
+    state.outputBlob   = null;
+
+    // Reset UI elements to pre-upload state
+    dom.fileInfoBar().style.display       = 'none';
+    dom.uploadZone().style.display        = 'block';
+    dom.videoPlayer().style.display       = 'none';
+    dom.videoPlayer().src                 = '';
+    dom.playerPlaceholder().style.display = 'flex';
+    dom.downloadSection().style.display   = 'none';
+    dom.progressSection().style.display   = 'none';
+
+    disableProcessButton();
+    dom.fileInput().value = ''; // Allow the same file to be re-selected
+    termLog('File removed. Ready for a new upload.', 'muted');
+}
+
+
+/* ============================================================================
+   PROCESS BUTTON HELPERS
+   enableProcessButton  — Sets the correct label for the active tab and
+                          re-enables the button for user interaction.
+   disableProcessButton — Grays out the button and shows default placeholder text.
+   clearProgressBar     — Resets all progress bar visuals to 0%.
+   ========================================================================== */
+function enableProcessButton() {
+    const btn    = dom.processBtn();
+    btn.disabled = false;
+
+    // Each tab has a distinct action label for the CTA button
+    const labels = {
+        compress : 'Compress Video',
+        trim     : 'Trim Video',
+        gif      : 'Create GIF',
+        audio    : 'Extract Audio',
+        godmode  : 'Apply God Mode',
+    };
+    dom.processBtnText().textContent  = labels[state.currentTab] || 'Start Processing';
+    dom.processBtnIcon().className    = 'fa-solid fa-bolt';
+}
+
+function disableProcessButton() {
+    dom.processBtn().disabled         = true;
+    dom.processBtnText().textContent  = 'Upload a Video to Begin';
+    dom.processBtnIcon().className    = 'fa-solid fa-bolt';
+}
+
+function clearProgressBar() {
+    dom.progressBar().style.width    = '0%';
+    dom.progressPct().textContent    = '0%';
+    dom.progressLabel().textContent  = 'Processing...';
+}
+
+
+/* ============================================================================
+   DRAG AND DROP INITIALIZATION
+   Wires up all file-input event sources:
+     - Drag-over / drop on the upload zone
+     - Click on the upload zone (opens file picker)
+     - Click on the "browse" text link
+     - Native <input type="file"> change event
+     - The "×" remove button on the file info bar
+   ========================================================================== */
+function initDragAndDrop() {
+    const zone = dom.uploadZone();
+
+    // Prevent default browser file-open behavior while dragging over the zone
+    zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.classList.add('drag-over'); // applies the glow border via CSS
+    });
+
+    // Remove visual drag-over state when the cursor leaves the zone
+    zone.addEventListener('dragleave', () => {
+        zone.classList.remove('drag-over');
+    });
+
+    // Handle the actual file drop
+    zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file) handleFileSelect(file);
+    });
+
+    // Clicking anywhere on the zone triggers the hidden file input
+    zone.addEventListener('click', () => {
+        dom.fileInput().click();
+    });
+
+    // The "click to browse" span also triggers the file input (with stopPropagation
+    // to prevent the parent zone click listener from firing twice)
+    dom.uploadBrowseBtn().addEventListener('click', (e) => {
+        e.stopPropagation();
+        dom.fileInput().click();
+    });
+
+    // Native file input change: fires when user picks a file via the OS dialog
+    dom.fileInput().addEventListener('change', (e) => {
+        if (e.target.files[0]) handleFileSelect(e.target.files[0]);
+    });
+
+    // Remove-file button on the info bar
+    dom.removeFileBtn().addEventListener('click', removeFile);
+}
+
+
+/* ============================================================================
+   TAB SYSTEM INITIALIZATION
+   Attaches click handlers to all .action-tab buttons. On each click:
+     1. Removes .active from all tab buttons and all tab panels.
+     2. Adds .active to the clicked tab button and its matching panel.
+     3. Shows or hides the trim timeline hint as appropriate.
+     4. Updates the process button label to match the newly selected action.
+   ========================================================================== */
+function initTabs() {
+    document.querySelectorAll('.action-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tab = btn.dataset.tab; // e.g. 'compress', 'trim', 'gif'
+
+            // Deactivate all tabs and panels
+            document.querySelectorAll('.action-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+            // Activate the clicked tab and its corresponding content panel
+            btn.classList.add('active');
+            document.getElementById(`panel-${tab}`).classList.add('active');
+            state.currentTab = tab;
+
+            // The timeline hint is only relevant when the Trim tab is active
+            dom.timelineHint().style.display = (tab === 'trim') ? 'flex' : 'none';
+
+            // Reflect the new tab name in the process button label
+            if (state.inputFile && state.ffmpegLoaded) {
+                enableProcessButton();
+            }
+        });
+    });
+}
+
+
+/* ============================================================================
+   SETTINGS LIVE HINTS INITIALIZATION
+   Attaches 'input' event listeners to all range sliders so the inline
+   hint badges update in real time as the user drags the slider thumb.
+   ========================================================================== */
+function initSettingsHints() {
+
+    /* ── CRF Slider: quality description lookup ──────────────────────── */
+    // Maps specific CRF integer values to human-readable quality labels.
+    const crfDescriptions = {
+        18: 'Near-Lossless (Huge)',
+        19: 'Near-Lossless (Huge)',
+        20: 'Visually Lossless',
+        21: 'Visually Lossless',
+        22: 'Very High Quality',
+        23: 'High Quality',
+        24: 'Good Quality',
+        25: 'Good Quality',
+        26: 'Standard',
+        27: 'Standard',
+        28: 'Balanced ★',
+        29: 'Web-Optimized',
+        30: 'Web-Optimized',
+        32: 'Small File',
+        34: 'Smaller File',
+        36: 'Very Compressed',
+        38: 'Low Quality',
+        40: 'Minimum Quality',
+    };
+    dom.crfSlider().addEventListener('input', (e) => {
+        const v     = parseInt(e.target.value);
+        const label = crfDescriptions[v] || (v <= 28 ? 'High Quality' : 'Compressed');
+        dom.crfHint().textContent = `${v} — ${label}`;
+    });
+
+    /* ── FPS Slider: raw value display ───────────────────────────────── */
+    dom.fpsSlider().addEventListener('input', (e) => {
+        dom.fpsHint().textContent = `${e.target.value} FPS`;
+    });
+
+    /* ── Speed Slider: contextual slow/fast label ─────────────────────── */
+    dom.speedSlider().addEventListener('input', (e) => {
+        const v     = parseFloat(e.target.value);
+        const label = v === 1
+            ? '1× — Normal'
+            : (v < 1 ? `${v}× — Slow Motion` : `${v}× — Fast Forward`);
+        dom.speedHint().textContent = label;
+    });
+}
+
+
+/* ============================================================================
+   FFMPEG COMMAND BUILDERS
+   Each function returns an array of CLI argument strings that will be passed
+   to ffmpeg.exec(). Arguments are built from the current DOM settings values.
+   ========================================================================== */
+
+/**
+ * buildCompressArgs
+ * Constructs the FFmpeg argument list for the Compress tab.
+ * Uses libx264 (H.264) or libvpx-vp9 (WEBM), with CRF quality control,
+ * optional scale filter for resolution downscaling, and AAC audio.
+ * The +faststart movflag re-orders the MP4 container for instant web streaming.
+ *
+ * @param  {string} inputName   — Filename in the WASM virtual filesystem
+ * @param  {string} outputName  — Output filename in the WASM virtual filesystem
+ * @return {string[]}           — FFmpeg argument array
+ */
+function buildCompressArgs(inputName, outputName) {
+    const crf    = dom.crfSlider().value;
+    const preset = dom.presetSelect().value;
+    const res    = dom.resolutionSelect().value;
+    const fmt    = dom.formatSelect().value;
+
+    const args = ['-i', inputName];
+
+    if (fmt === 'webm') {
+        // VP9: CRF quality mode with -b:v 0 forces variable bitrate guided by CRF
+        args.push('-c:v', 'libvpx-vp9', '-crf', crf, '-b:v', '0');
+    } else {
+        // H.264: standard CRF encoding with an encoding speed/quality trade-off preset
+        args.push('-c:v', 'libx264', '-crf', crf, '-preset', preset);
+    }
+
+    // Apply a scale filter if the user selected a specific output resolution
+    if (res !== 'source') {
+        const [w, h] = res.split(':');
+        // force_original_aspect_ratio=decrease maintains the original ratio;
+        // pad then fills the remaining area to hit the exact target resolution
+        args.push('-vf', `scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2`);
+    }
+
+    // Re-encode audio to AAC at 128k (safe universal compatibility)
+    args.push('-c:a', 'aac', '-b:a', '128k');
+
+    // Optimize the MP4 container for streaming (moves moov atom to the front)
+    args.push('-movflags', '+faststart');
+    args.push(outputName);
+
+    return args;
+}
+
+/**
+ * buildTrimArgs
+ * Constructs the FFmpeg argument list for the Trim tab.
+ * Placing -ss BEFORE -i enables fast keyframe seeking (input-side seek),
+ * which is much faster than output-side seeking for large files.
+ * Re-encode mode uses libx264 for frame-accurate (non-keyframe-aligned) cuts.
+ *
+ * @param  {string} inputName   — Filename in the WASM virtual filesystem
+ * @param  {string} outputName  — Output filename in the WASM virtual filesystem
+ * @return {string[]}           — FFmpeg argument array
+ */
+function buildTrimArgs(inputName, outputName) {
+    const startRaw = dom.trimStart().value.trim();
+    const endRaw   = dom.trimEnd().value.trim();
+    const reEncode = dom.trimReencode().value;
+
+    const args = [];
+
+    // Input-side seek: place -ss before -i for fast keyframe-accurate seeking
+    if (startRaw) {
+        args.push('-ss', startRaw);
+    }
+    args.push('-i', inputName);
+
+    // -to is interpreted relative to -ss when placed after -i
+    if (endRaw) {
+        args.push('-to', endRaw);
+    }
+
+    if (reEncode === 'copy') {
+        // Stream copy: ultra-fast, no quality loss, but cut may start on nearest keyframe
+        args.push('-c', 'copy');
+    } else {
+        // Re-encode: slower but guarantees a frame-perfect cut at exact timestamps
+        args.push('-c:v', 'libx264', '-crf', '23', '-c:a', 'aac');
+    }
+
+    // Prevent negative DTS timestamps from causing playback issues
+    args.push('-avoid_negative_ts', 'make_zero');
+    args.push(outputName);
+
+    return args;
+}
+
+/**
+ * buildGifArgs
+ * Constructs the two-pass FFmpeg argument lists for GIF creation.
+ *
+ * Pass 1 (palettegen): Analyzes the video frames to build an optimized
+ *   256-color palette. stats_mode=diff improves quality for animations.
+ *
+ * Pass 2 (paletteuse): Encodes the GIF using the generated palette with
+ *   Bayer dithering for significantly reduced color banding.
+ *
+ * The Lanczos scaling filter provides high-quality resizing.
+ *
+ * @param  {string} inputName    — Filename in the WASM virtual filesystem
+ * @param  {string} paletteName  — Intermediate palette PNG filename
+ * @param  {string} outputName   — Final GIF output filename
+ * @return {{ pass1: string[], pass2: string[] }}  — Two argument arrays
+ */
+function buildGifArgs(inputName, paletteName, outputName) {
+    const fps      = dom.fpsSlider().value;
+    const width    = dom.gifWidth().value;
+    const startRaw = dom.gifStart().value.trim();
+    const duration = dom.gifDuration().value;
+
+    // Common time-range arguments prepended to both passes
+    const baseArgs = [];
+    if (startRaw) baseArgs.push('-ss', startRaw);
+    baseArgs.push('-t', duration.toString());
+
+    // Pass 1: Generate the optimal color palette PNG
+    const pass1 = [
+        ...baseArgs,
+        '-i', inputName,
+        '-vf', `fps=${fps},scale=${width}:-1:flags=lanczos,palettegen=stats_mode=diff`,
+        '-y', paletteName
+    ];
+
+    // Pass 2: Encode the final GIF using the palette from Pass 1
+    const pass2 = [
+        ...baseArgs,
+        '-i', inputName,
+        '-i', paletteName,
+        '-lavfi', `fps=${fps},scale=${width}:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle`,
+        '-loop', '0',   // 0 = infinite loop
+        '-y', outputName
+    ];
+
+    return { pass1, pass2 };
+}
+
+/**
+ * buildAudioArgs
+ * Constructs the FFmpeg argument list for audio extraction.
+ * -vn removes the video stream entirely, leaving only the selected
+ * audio codec and bitrate settings.
+ *
+ * @param  {string} inputName   — Filename in the WASM virtual filesystem
+ * @param  {string} outputName  — Output audio filename
+ * @return {string[]}           — FFmpeg argument array
+ */
+function buildAudioArgs(inputName, outputName) {
+    const format  = dom.audioFormat().value;
+    const bitrate = dom.audioBitrate().value;
+
+    const args = ['-i', inputName, '-vn']; // -vn = strip video stream
+
+    if (format === 'mp3') {
+        args.push('-c:a', 'libmp3lame', '-b:a', bitrate);
+    } else if (format === 'aac') {
+        args.push('-c:a', 'aac', '-b:a', bitrate);
+    } else if (format === 'wav') {
+        args.push('-c:a', 'pcm_s16le'); // Uncompressed 16-bit PCM — bitrate is ignored
+    } else if (format === 'ogg') {
+        args.push('-c:a', 'libvorbis', '-b:a', bitrate);
+    } else if (format === 'flac') {
+        args.push('-c:a', 'flac');      // Lossless FLAC — bitrate is ignored
+    }
+
+    args.push(outputName);
+    return args;
+}
+
+/**
+ * buildGodModeArgs
+ * Constructs a complex FFmpeg argument list combining:
+ *   - setpts video speed filter (0.25×–4×)
+ *   - colorkey chroma key filter (optional)
+ *   - transpose / hflip / vflip rotation/mirror filters
+ *   - atempo audio speed chain (for correct audio pitch at all speeds)
+ *
+ * All active video filters are joined into a single -vf chain so they can
+ * be applied in one encoding pass.
+ *
+ * @param  {string} inputName   — Filename in the WASM virtual filesystem
+ * @param  {string} outputName  — Output filename in the WASM virtual filesystem
+ * @return {string[]}           — FFmpeg argument array
+ */
+function buildGodModeArgs(inputName, outputName) {
+    const speed    = parseFloat(dom.speedSlider().value);
+    const chromaSim = dom.chromaSimilarity().value;
+    const rotation = dom.rotateSelect().value;
+    const fmt      = dom.godFormatSelect().value;
+
+    const filterParts = [];
+
+    // ── Video speed: setpts scales the presentation timestamps ──
+    // setpts=1/speed*PTS — a speed of 2× halves the PTS values (twice as fast)
+    if (speed !== 1) {
+        filterParts.push(`setpts=${(1 / speed).toFixed(4)}*PTS`);
+    }
+
+    // ── Chroma key: colorkey removes pixels matching the sampled color ──
+    if (chromaSim !== 'off') {
+        const color = dom.chromaColor().value.replace('#', '0x');
+        // similarity = tolerance; blend = feathering at the edge
+        filterParts.push(`colorkey=${color}:${chromaSim}:0.1`);
+    }
+
+    // ── Rotation and flip transform filters ──
+    if (rotation === '90')    filterParts.push('transpose=1');             // 90° CW
+    if (rotation === '180')   filterParts.push('transpose=2,transpose=2'); // 180°
+    if (rotation === '270')   filterParts.push('transpose=2');             // 90° CCW
+    if (rotation === 'hflip') filterParts.push('hflip');
+    if (rotation === 'vflip') filterParts.push('vflip');
+
+    const args = ['-i', inputName];
+
+    // Only add -vf if at least one video filter is active
+    if (filterParts.length > 0) {
+        args.push('-vf', filterParts.join(','));
+    }
+
+    // ── Audio speed: atempo handles audio pitch-corrected speed changes ──
+    // atempo only accepts values in 0.5–2.0, so we chain multiple instances
+    // for speeds outside that range (e.g. 4× = atempo=2.0,atempo=2.0)
+    if (speed !== 1) {
+        const audioFilters = buildAtempoChain(speed);
+        if (audioFilters) {
+            args.push('-af', audioFilters);
+        }
+    }
+
+    // Select the output video codec based on the chosen container format
+    args.push('-c:v', fmt === 'webm' ? 'libvpx-vp9' : 'libx264');
+    if (fmt !== 'webm') args.push('-crf', '23');
+    args.push('-c:a', 'aac');
+    args.push(outputName);
+
+    return args;
+}
+
+/**
+ * buildAtempoChain
+ * Constructs a chained series of atempo filters for audio playback speed.
+ * FFmpeg's atempo filter only accepts a value between 0.5 and 2.0 per
+ * instance. For speeds outside that range, multiple filters are chained:
+ *   4× speed: atempo=2.0,atempo=2.0
+ *   0.25× speed: atempo=0.5,atempo=0.5
+ *
+ * @param  {number} speed  — Desired playback speed multiplier (e.g. 2.5)
+ * @return {string|null}   — Comma-separated atempo filter string, or null if 1×
+ */
+function buildAtempoChain(speed) {
+    if (speed === 1) return null;
+
+    const filters = [];
+    let s = speed;
+
+    // Chain atempo=2.0 until the remaining multiplier is ≤ 2.0
+    while (s > 2.0) {
+        filters.push('atempo=2.0');
+        s /= 2.0;
+    }
+
+    // Chain atempo=0.5 until the remaining multiplier is ≥ 0.5
+    while (s < 0.5) {
+        filters.push('atempo=0.5');
+        s /= 0.5;
+    }
+
+    // Append the final fractional remainder
+    filters.push(`atempo=${s.toFixed(4)}`);
+    return filters.join(',');
+}
+
+
+/* ============================================================================
+   TWO-PASS GIF PROCESSOR
+   Orchestrates the two-step GIF encoding pipeline:
+     Pass 1 — Generate an optimized per-video color palette PNG
+     Pass 2 — Encode the GIF using that palette for maximum quality
+   Progress updates are manually set since FFmpeg doesn't emit granular
+   progress events for palette generation.
+
+   @param {FFmpeg} ff            — Loaded FFmpeg WASM instance
+   @param {string} inputVfsName  — Input video path in WASM virtual FS
+   @param {string} paletteVfsName — Palette PNG path in WASM virtual FS
+   @param {string} outputVfsName — Output GIF path in WASM virtual FS
+   ========================================================================== */
+async function processGif(ff, inputVfsName, paletteVfsName, outputVfsName) {
+    const { pass1, pass2 } = buildGifArgs(inputVfsName, paletteVfsName, outputVfsName);
+
+    // ── GIF Pass 1: palette generation ──
+    termLog('[GIF] Pass 1/2: Generating color palette...', 'info');
+    termLog(`ffmpeg ${pass1.join(' ')}`, 'cmd');
+    updateProgress(0.01, 'GIF: Generating palette (1/2)...');
+    await ff.exec(pass1);
+    termLog('[GIF] Palette generated.', 'success');
+
+    // ── GIF Pass 2: frame encoding ──
+    termLog('[GIF] Pass 2/2: Encoding GIF frames...', 'info');
+    termLog(`ffmpeg ${pass2.join(' ')}`, 'cmd');
+    updateProgress(0.5, 'GIF: Encoding frames (2/2)...');
+    await ff.exec(pass2);
+}
+
+
+/* ============================================================================
+   OUTPUT FINALIZER
+   Called after FFmpeg completes execution (all modes except GIF call this
+   directly; GIF calls processGif first, then calls this).
+
+   Steps:
+     1. Read the output file bytes from FFmpeg's virtual filesystem.
+     2. Create a Blob from the bytes and generate an Object URL.
+     3. Attach the URL and filename to the download anchor.
+     4. Calculate and display file size comparison statistics.
+     5. Reveal the download section.
+     6. Clean up all input/output files from the WASM virtual FS
+        to prevent memory accumulation across multiple runs.
+
+   @param {FFmpeg}      ff             — Loaded FFmpeg WASM instance
+   @param {string}      outputVfsName  — Output file path in WASM virtual FS
+   @param {string}      outputMime     — MIME type string for the Blob
+   @param {string}      outputExt      — File extension for the download filename
+   @param {string}      inputVfsName   — Input file path to clean up
+   @param {string|null} paletteVfsName — Palette PNG path to clean up (GIF only)
+   ========================================================================== */
+async function finalizeOutput(ff, outputVfsName, outputMime, outputExt, inputVfsName, paletteVfsName = null) {
+    termLog('Reading output from WASM filesystem...', 'info');
+    updateProgress(0.99, 'Finalizing...');
+
+    // Read the raw output bytes and wrap them in a Blob
+    const outputData = await ff.readFile(outputVfsName);
+    const outputBlob = new Blob([outputData.buffer], { type: outputMime });
+    state.outputBlob = outputBlob;
+
+    // Build a descriptive download filename: vs_<tab>_<name>_<timestamp>.<ext>
+    const timestamp         = new Date().toISOString().replace(/[:.]/g, '-').substring(0, 19);
+    state.outputFilename    = `vs_${state.currentTab}_${state.inputFileName}_${timestamp}.${outputExt}`;
+
+    // Wire up the download anchor with a fresh object URL
+    const downloadURL       = URL.createObjectURL(outputBlob);
+    dom.downloadBtn().href          = downloadURL;
+    dom.downloadBtn().download      = state.outputFilename;
+    dom.downloadBtnText().textContent = `Download ${outputExt.toUpperCase()} (${formatSize(outputBlob.size)})`;
+
+    // ── File size comparison statistics ──
+    const origSize  = state.inputFile.size;
+    const newSize   = outputBlob.size;
+    const savedPct  = origSize > 0
+        ? (((origSize - newSize) / origSize) * 100).toFixed(1)
+        : 0;
+
+    dom.statOriginal().textContent = formatSize(origSize);
+    dom.statResult().textContent   = formatSize(newSize);
+    dom.statSavings().textContent  = newSize < origSize
+        ? `${savedPct}% smaller`
+        : (newSize > origSize ? `${Math.abs(savedPct)}% larger` : 'Same size');
+
+    // Reveal the download card
+    dom.downloadSection().style.display = 'flex';
+
+    updateProgress(1, 'Complete ✓');
+    termLog(`Output: ${state.outputFilename} | Size: ${formatSize(newSize)}`, 'success');
+    if (newSize < origSize) {
+        termLog(`Saved ${formatSize(origSize - newSize)} (${savedPct}% reduction)`, 'success');
+    }
+    window.showToast('Processing complete! Ready to download.');
+
+    /* ── WASM Virtual FS Cleanup ──────────────────────────────────────────
+       Critical: Removing files from FFmpeg's in-memory filesystem after
+       reading them frees the allocated WASM heap memory. Without this,
+       repeated processing runs will eventually exhaust available RAM and
+       crash the browser tab.
+    ──────────────────────────────────────────────────────────────────── */
+    try {
+        await ff.deleteFile(inputVfsName);
+        await ff.deleteFile(outputVfsName);
+        if (paletteVfsName) await ff.deleteFile(paletteVfsName);
+        termLog('WASM virtual filesystem cleaned up.', 'muted');
+    } catch (cleanupErr) {
+        // Non-fatal: files may have already been removed or never created
+        termLog(`Cleanup note: ${cleanupErr.message}`, 'muted');
+    }
+
+    // ── Reset processing guard state ──
+    state.isProcessing              = false;
+    dom.processBtn().classList.remove('processing');
+    dom.processBtn().disabled       = false;
+    dom.processBtnText().textContent = 'Process Again';
+    dom.processBtnIcon().className  = 'fa-solid fa-bolt';
+}
+
+
+/* ============================================================================
+   CORE PROCESSING DISPATCHER — startProcessing
+   The main entry point for all FFmpeg operations. Called by the
+   "Start Processing" button click event.
+
+   Pipeline:
+     1. Pre-flight checks (engine loaded, file present, not already running)
+     2. UI transition to "processing" state
+     3. Write input file to FFmpeg's virtual filesystem via fetchFile()
+     4. Dispatch to the correct command builder for the active tab
+     5. Execute ffmpeg.exec() with the built argument array
+     6. Call finalizeOutput() to read the result and update the UI
+   ========================================================================== */
+async function startProcessing() {
+    // ── Guard: WASM engine must be loaded ──
+    if (!state.ffmpegLoaded) {
+        window.showToast('FFmpeg engine is still loading. Please wait...');
+        return;
+    }
+
+    // ── Guard: a file must be selected ──
+    if (!state.inputFile) {
+        window.showToast('Please upload a video file first.', true);
+        return;
+    }
+
+    // ── Guard: prevent concurrent runs ──
+    if (state.isProcessing) {
+        window.showToast('Processing already in progress...');
+        return;
+    }
+
+    state.isProcessing = true;
+    const ff           = state.ffmpeg;
+    const { fetchFile } = window._ffmpegUtil;
+
+    // ── Transition the UI to "processing" state ──
+    dom.processBtn().disabled           = true;
+    dom.processBtn().classList.add('processing');
+    dom.processBtnText().textContent    = 'Processing...';
+    dom.processBtnIcon().className      = 'fa-solid fa-spinner fa-spin';
+    dom.downloadSection().style.display = 'none';
+    dom.progressSection().style.display = 'block';
+    clearProgressBar();
+
+    // Determine the WASM virtual FS filenames
+    const inputVfsName  = `input.${state.inputFileExt}`;
+    let outputVfsName   = 'output.mp4';
+    let outputMime      = 'video/mp4';
+    let outputExt       = 'mp4';
+    const paletteVfsName = 'palette.png';
+
+    try {
+        /* ── Step 1: Write input file to WASM virtual filesystem ──────────
+           fetchFile() reads the File object into a Uint8Array; writeFile()
+           copies it into FFmpeg's in-memory virtual FS so it can be
+           accessed by the compiled FFmpeg binary.
+        ──────────────────────────────────────────────────────────────── */
+        termLog(`Writing ${state.inputFile.name} to WASM virtual filesystem...`, 'info');
+        updateProgress(0, 'Loading file into WASM memory...');
+        const fileData = await fetchFile(state.inputFile);
+        await ff.writeFile(inputVfsName, fileData);
+        termLog(`Input file written: ${formatSize(state.inputFile.size)}`, 'success');
+
+        /* ── Step 2: Dispatch to the correct command builder ───────────── */
+        let ffArgs;
+        const tab = state.currentTab;
+
+        if (tab === 'compress') {
+            const fmt     = dom.formatSelect().value;
+            outputExt     = fmt;
+            outputVfsName = `output.${fmt}`;
+            outputMime    = fmt === 'webm' ? 'video/webm' : 'video/mp4';
+            ffArgs        = buildCompressArgs(inputVfsName, outputVfsName);
+
+        } else if (tab === 'trim') {
+            outputExt     = 'mp4';
+            outputVfsName = 'output.mp4';
+            outputMime    = 'video/mp4';
+            ffArgs        = buildTrimArgs(inputVfsName, outputVfsName);
+
+        } else if (tab === 'gif') {
+            // GIF uses a special two-pass flow — handled separately, then returns early
+            outputExt     = 'gif';
+            outputVfsName = 'output.gif';
+            outputMime    = 'image/gif';
+            await processGif(ff, inputVfsName, paletteVfsName, outputVfsName);
+            await finalizeOutput(ff, outputVfsName, outputMime, outputExt, inputVfsName, paletteVfsName);
+            return; // Early return — no single exec() step needed for GIF
+
+        } else if (tab === 'audio') {
+            const fmt     = dom.audioFormat().value;
+            outputExt     = fmt;
+            outputVfsName = `output.${fmt}`;
+            // MIME type map for all supported audio output formats
+            const mimeMap = {
+                mp3: 'audio/mpeg', aac: 'audio/aac',
+                wav: 'audio/wav',  ogg: 'audio/ogg',
+                flac: 'audio/flac'
+            };
+            outputMime    = mimeMap[fmt] || 'audio/mpeg';
+            ffArgs        = buildAudioArgs(inputVfsName, outputVfsName);
+
+        } else if (tab === 'godmode') {
+            const fmt     = dom.godFormatSelect().value;
+            outputExt     = fmt;
+            outputVfsName = `output.${fmt}`;
+            outputMime    = fmt === 'webm' ? 'video/webm' : 'video/mp4';
+            ffArgs        = buildGodModeArgs(inputVfsName, outputVfsName);
+        }
+
+        /* ── Step 3: Log the full FFmpeg command to the terminal ───────── */
+        termLog(`ffmpeg ${ffArgs.join(' ')}`, 'cmd');
+        updateProgress(0.01, 'Starting FFmpeg...');
+
+        /* ── Step 4: Execute the FFmpeg command ─────────────────────────── */
+        await ff.exec(ffArgs);
+
+        /* ── Step 5: Read output, update stats, and show download ───────── */
+        await finalizeOutput(ff, outputVfsName, outputMime, outputExt, inputVfsName);
+
+    } catch (err) {
+        // ── Processing failed: update UI and notify the user ──
+        termLog(`Processing failed: ${err.message}`, 'error');
+        window.showToast(`Processing failed: ${err.message}`, true);
+        dom.progressLabel().textContent     = 'Failed';
+        dom.processBtnText().textContent    = 'Try Again';
+        dom.processBtnIcon().className      = 'fa-solid fa-rotate-right';
+        dom.processBtn().disabled           = false;
+        dom.processBtn().classList.remove('processing');
+        state.isProcessing                  = false;
+    }
+}
+
+
+/* ============================================================================
+   PROCESS ANOTHER — processAnother
+   Resets the tool to a clean state so the user can process a new file
+   without refreshing the page. Revokes the previous download Blob URL
+   to release the browser memory held by the completed output.
+   ========================================================================== */
+function processAnother() {
+    // Release the Blob Object URL created in finalizeOutput() to free memory
+    if (dom.downloadBtn().href.startsWith('blob:')) {
+        URL.revokeObjectURL(dom.downloadBtn().href);
+    }
+
+    // Reset file state and restore the upload zone UI
+    removeFile();
+    dom.downloadSection().style.display = 'none';
+    dom.progressSection().style.display = 'none';
+}
+
+
+/* ============================================================================
+   TERMINAL CLEAR — clearTerminal
+   Wipes all log lines from the terminal body and appends a single
+   confirmation line to acknowledge the clear action.
+   ========================================================================== */
+function clearTerminal() {
+    dom.terminalBody().innerHTML = '';
+    termLog('Terminal cleared.', 'muted');
+}
+
+
+/* ============================================================================
+   BUTTON & CONTROL INITIALIZATION
+   Binds all action button click events to their handler functions.
+   ========================================================================== */
+function initProcessButton() {
+    dom.processBtn().addEventListener('click', startProcessing);
+    dom.processAnotherBtn().addEventListener('click', processAnother);
+    dom.termClear().addEventListener('click', clearTerminal);
+}
+
+
+/* ============================================================================
+   BROWSER COMPATIBILITY CHECK
+   Validates that the two critical browser capabilities required by FFmpeg WASM
+   are available: WebAssembly itself, and SharedArrayBuffer.
+
+   - SharedArrayBuffer is required for multi-thread mode. Without it, FFmpeg
+     falls back to single-thread (slower) but still functional.
+   - If WebAssembly is entirely absent, the tool cannot function at all.
+
+   @return {boolean}  — true if the browser meets minimum requirements
+   ========================================================================== */
+function checkBrowserCompatibility() {
+    // Check for SharedArrayBuffer (COOP/COEP headers required)
+    if (typeof SharedArrayBuffer === 'undefined') {
+        termLog('WARNING: SharedArrayBuffer not available in this browser.', 'warn');
+        termLog('FFmpeg will run in single-thread fallback mode (slower).', 'warn');
+        termLog('For best performance, use Chrome 90+ or Firefox 89+.', 'warn');
+        window.showToast('Browser may not fully support WASM. Processing may be slower.');
+    }
+
+    // Check for WebAssembly — required; tool cannot function without it
+    if (!window.WebAssembly) {
+        termLog('CRITICAL: WebAssembly is not supported in this browser!', 'error');
+        window.showToast('WebAssembly not supported. Please use a modern browser.', true);
+        dom.statusDot().className       = 'status-dot error';
+        dom.statusText().textContent    = 'WebAssembly not supported in this browser.';
+        return false;
+    }
+
+    return true;
+}
+
+
+/* ============================================================================
+   ENTRY POINT — init
+   The main initialization function. Runs after DOMContentLoaded.
+
+   Order of operations:
+     1. Browser compatibility check (bail early if WebAssembly is absent)
+     2. Bind all UI event listeners (drag-drop, tabs, sliders, buttons)
+     3. Load the FFmpeg WASM engine asynchronously (does not block UI)
+   ========================================================================== */
+async function init() {
+    termLog('WASM Video Studio Pro — Initializing...', 'info');
+
+    // 1. Ensure the browser supports the required Web APIs
+    const compatible = checkBrowserCompatibility();
+    if (!compatible) return;
+
+    // 2. Wire up all UI interaction event listeners
+    initDragAndDrop();
+    initTabs();
+    initSettingsHints();
+    initProcessButton();
+
+    // 3. Start the async WASM engine load (non-blocking — UI remains interactive)
+    await loadFFmpeg();
+
+    termLog('UI ready. Drag a video file to begin.', 'muted');
+}
+
+
+/* ============================================================================
+   DOM READY GUARD
+   Ensures init() runs only after the DOM is fully parsed and all element
+   IDs referenced in the `dom` map above are accessible.
+   ========================================================================== */
+if (document.readyState === 'loading') {
+    // DOM not yet parsed — wait for DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    // DOM already ready (module loaded after parse) — run immediately
+    init();
+}

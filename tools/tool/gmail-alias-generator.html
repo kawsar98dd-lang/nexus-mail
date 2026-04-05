@@ -1,0 +1,583 @@
+<!-- 
+    =======================================================================
+    TRUSTED TOOLS WEB — Gmail Alias Generator Pro
+    =======================================================================
+    
+    Product      : Gmail Alias Generator Pro
+    Tool Section : Section 32 (gag- prefix)
+    Version      : 3.2.0 (CodeCanyon Refactor — Two-File CSS Architecture)
+    Author       : MD KAWSAR
+    Description  : Client-side bulk Gmail alias generator using the Dot (.)
+                   and Plus (+) tricks. Powered by Crypto-Secure Randomization.
+                   100% client-side — no data ever leaves the browser.
+
+    [BUYER GUIDE — QUICK START]:
+    1. Analytics : Edit 'assets/js/analytics-loader.js' to add your tracking ID.
+    2. Ads       : Configure ad slots in 'assets/js/ads-manager.js'.
+    3. Branding  : Search [USER CONFIG] tags to update titles, colors, and SEO.
+    4. Limits    : Adjust 'MAX_ATTEMPTS_MULTIPLIER' in the JS config to change caps.
+
+    CSS ARCHITECTURE (DO NOT BREAK):
+    — global.css          → Site-wide layout, header, footer, theme variables.
+    — tools-template.css  → All tool UI components. Append-only. No tool style.css.
+    =======================================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ── GLOBAL SITE SCRIPTS (analytics, config, meta injection) ─────────── -->
+    <!-- [USER CONFIG]: Add your Google Analytics or Tracking ID to analytics-loader.js -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ── DOCUMENT META ──────────────────────────────────────────────────── -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- [USER CONFIG]: Theme Color for mobile browser chrome -->
+    <meta name="theme-color" content="#0d1117">
+
+    <title>Gmail Alias Generator Pro — Bulk Dot & Plus Trick Tool | Trusted Tools Web</title>
+
+    <!-- ── SEO META TAGS ──────────────────────────────────────────────────── -->
+    <!-- [USER CONFIG]: Update these tags to match your domain and SEO strategy -->
+    <meta name="description" content="Instantly generate 10,000+ unique Gmail aliases using the Dot (.) and Plus (+) tricks. 100% client-side secure, free bulk email generator for privacy, QA testing, and spam protection. No data stored.">
+    <meta name="keywords" content="gmail alias generator, email dot trick, gmail plus trick, bulk email generator, temporary email alternative, privacy tools, spam protection, developer tools, gmail salt generator, email privacy, QA testing emails, MD KAWSAR, Trusted Tools Web">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow">
+
+    <!-- ── OPEN GRAPH (Social Media Preview) ─────────────────────────────── -->
+    <meta property="og:type"         content="website">
+    <meta property="og:url"          content="https://trustedtoolsweb.com/tool-email-alias-gen.html">
+    <meta property="og:site_name"    content="Trusted Tools Web">
+    <meta property="og:title"        content="Gmail Alias Generator Pro — Secure Bulk Email Tool | Trusted Tools Web">
+    <meta property="og:description"  content="Turn one Gmail address into thousands of unique aliases. 100% Secure, Client-Side processing. Protect your privacy and test apps effortlessly using Dot and Plus tricks.">
+    <meta property="og:image"        content="https://trustedtoolsweb.com/assets/tools/tool/tool-email-alias-gen/img/gmail-alias-og-banner.webp">
+    <meta property="og:image:alt"    content="Trusted Tools Web Gmail Alias Generator Interface">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- ── TWITTER CARD ───────────────────────────────────────────────────── -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/tool-email-alias-gen.html">
+    <meta name="twitter:title"       content="Gmail Alias Generator Pro — Secure Bulk Email Tool">
+    <meta name="twitter:description" content="Generate unlimited unique Gmail aliases for privacy and testing. No data stored. 100% free online tool.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/tool/tool-email-alias-gen/img/gmail-alias-og-banner.webp">
+
+    <!-- ── CANONICAL URL ──────────────────────────────────────────────────── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/tool-email-alias-gen.html">
+
+    <!-- ── FAVICONS ───────────────────────────────────────────────────────── -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ── ICON LIBRARY ───────────────────────────────────────────────────── -->
+    <!-- FontAwesome — to be localised before final CodeCanyon submission -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ── TWO-FILE CSS ARCHITECTURE ─────────────────────────────────────── -->
+    <!-- global.css         : Site-wide layout, header, footer, theme variables  -->
+    <!-- tools-template.css : All tool UI components — the only tool stylesheet  -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ── JSON-LD STRUCTURED DATA (Google Rich Snippets) ────────────────── -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gmail Alias Generator Pro",
+        "url": "https://trustedtoolsweb.com/tool-email-alias-gen.html",
+        "description": "A secure, 100% client-side Gmail alias generator offering bulk creation using the Dot (.) and Plus (+) tricks. Ideal for privacy protection, QA testing, inbox organisation, and spam management. No server-side processing — your email never leaves your browser.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript with Web Crypto API support",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": [
+            "Dot trick generation",
+            "Plus (+) trick with custom suffixes",
+            "Random case security obfuscation",
+            "Bulk export to .TXT",
+            "Crypto-secure randomization",
+            "100% client-side — no data stored"
+        ],
+        "softwareHelp": {
+            "@type": "CreativeWork",
+            "url": "https://trustedtoolsweb.com/tool-email-alias-gen.html#how-to-use"
+        }
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ── GLOBAL HEADER (injected by global JS automatically) ───────────── -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         MAIN CONTENT AREA
+         max-width 950px, centred by the <main> layout in tools-template.css
+    ══════════════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ── TOOL CARD ──────────────────────────────────────────────────── -->
+        <div class="container animated-entry">
+
+            <!-- ── HERO / TITLE AREA ──────────────────────────────────────── -->
+            <!-- Security badge communicates client-side guarantee to the user -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- Main tool heading — gradient span handled by tools-template.css -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-envelope-open-text"></i> Gmail Alias <span>Generator Pro</span>
+            </h1>
+
+            <!-- Subtitle describing the tool's key value proposition -->
+            <p class="subtitle">
+                Generate Unlimited Unique Aliases for Privacy &amp; Testing — No Data Stored, Ever.
+            </p>
+
+            <!-- ── AD SLOT: TOP BANNER ────────────────────────────────────── -->
+            <!-- [AD SYSTEM]: Configured in assets/js/ads-manager.js -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ══════════════════════════════════════════════════════════════
+                 GENERATOR INPUT PANEL
+                 Contains: username input, quantity selector, alias config
+                 options, action buttons, terminal output, and count row.
+            ══════════════════════════════════════════════════════════════════ -->
+            <div id="generator-inputs">
+
+                <!-- ── INPUT GROUP: Username & Quantity ───────────────────── -->
+                <!-- .input-group wraps the grid; inputs styled via .input-control -->
+                <div class="input-group">
+                    <div class="multi-input-grid">
+
+                        <!-- Username or Full Email Address -->
+                        <div>
+                            <label for="username-input">
+                                <i class="fa-solid fa-at"></i> Username OR Full Email Address
+                            </label>
+                            <input
+                                type="text"
+                                id="username-input"
+                                class="input-control"
+                                placeholder="e.g. name OR name@domain.com"
+                                autocomplete="off">
+                        </div>
+
+                        <!-- Quantity Selector -->
+                        <div>
+                            <label for="quantity-input">
+                                <i class="fa-solid fa-layer-group"></i> Quantity
+                            </label>
+                            <!-- [USER CONFIG]: Adjust option values to change quantity limits -->
+                            <select id="quantity-input" class="input-control">
+                                <option value="1000">1,000</option>
+                                <option value="5000">5,000</option>
+                                <option value="10000">10,000</option>
+                                <option value="20000">20,000 (Max)</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- Helper hint below the grid -->
+                    <p class="gag-input-hint">
+                        <i class="fa-solid fa-circle-info"></i>
+                        You can enter just a username (defaults to @gmail.com) or a full custom email address.
+                    </p>
+                </div>
+
+                <!-- ── ADVANCED SETTINGS: Alias Configuration ─────────────── -->
+                <div class="gag-advanced-settings">
+
+                    <!-- Section label pill -->
+                    <span class="gag-section-badge">ALIAS CONFIGURATION</span>
+
+                    <!-- ── OPTION TOGGLES GRID ────────────────────────────── -->
+                    <!-- Four checkbox cards: Dot Trick, Plus Trick, @googlemail, Random Case -->
+                    <div class="gag-options-grid">
+
+                        <!-- Dot Trick Toggle -->
+                        <label class="gag-checkbox-card">
+                            <input type="checkbox" id="opt-dot" checked>
+                            <span>
+                                <i class="fa-solid fa-circle-dot" style="color: var(--accent-cyan);"></i>
+                                Dot Trick (.)
+                            </span>
+                        </label>
+
+                        <!-- Plus Trick Toggle (also controls visibility of plus-options-panel) -->
+                        <label class="gag-checkbox-card">
+                            <input type="checkbox" id="opt-plus" checked>
+                            <span>
+                                <i class="fa-solid fa-plus" style="color: var(--accent-green);"></i>
+                                Plus Trick (+)
+                            </span>
+                        </label>
+
+                        <!-- @googlemail Domain Alias Toggle -->
+                        <label class="gag-checkbox-card">
+                            <input type="checkbox" id="opt-googlGmail">
+                            <span>
+                                <i class="fa-brands fa-google" style="color: #e74c3c;"></i>
+                                @googlemail
+                            </span>
+                        </label>
+
+                        <!-- Random Case Obfuscation Toggle -->
+                        <label class="gag-checkbox-card">
+                            <input type="checkbox" id="opt-case">
+                            <span>
+                                <i class="fa-solid fa-font" style="color: var(--accent-yellow);"></i>
+                                Random Case
+                            </span>
+                        </label>
+
+                    </div><!-- /.gag-options-grid -->
+
+                    <!-- ── PLUS SUFFIX CONFIGURATION PANEL ───────────────── -->
+                    <!-- Shown/hidden by JS when opt-plus checkbox is toggled -->
+                    <div id="plus-options-panel" class="gag-plus-panel active">
+
+                        <label class="gag-plus-label">Suffix Configuration (+text)</label>
+
+                        <!-- Radio cards: Random String vs Custom Words -->
+                        <div class="gag-radio-row">
+                            <div class="gag-checkbox-card">
+                                <input type="radio" name="suffix_type" value="random" id="rad-random">
+                                <span style="font-size: 12px;">Random String</span>
+                            </div>
+                            <div class="gag-checkbox-card">
+                                <input type="radio" name="suffix_type" value="custom" id="rad-custom" checked>
+                                <span style="font-size: 12px;">Custom Words</span>
+                            </div>
+                        </div>
+
+                        <!-- Custom suffix keywords (comma-separated) -->
+                        <input
+                            type="text"
+                            id="custom-suffixes"
+                            class="input-control gag-suffix-input"
+                            placeholder="e.g. newsletter, project, testing... (comma separated)">
+
+                    </div><!-- /#plus-options-panel -->
+
+                </div><!-- /.gag-advanced-settings -->
+
+                <!-- ── ACTION BUTTONS ─────────────────────────────────────── -->
+                <!-- All buttons inside .btn-area for automatic responsive layout -->
+                <div class="btn-area">
+
+                    <!-- Primary: Generate Aliases -->
+                    <button class="btn btn-primary" id="btn-generate">
+                        <i class="fa-solid fa-bolt"></i> Generate Aliases
+                    </button>
+
+                    <!-- Export: Download as .TXT file -->
+                    <button class="btn btn-primary bg-btn-export" id="btn-export">
+                        <i class="fa-solid fa-file-export"></i> Export .TXT
+                    </button>
+
+                    <!-- Secondary: Copy all results to clipboard -->
+                    <button class="btn btn-secondary" id="btn-copy">
+                        <i class="fa-solid fa-copy"></i> Copy All
+                    </button>
+
+                </div><!-- /.btn-area -->
+
+                <!-- ── OUTPUT TERMINAL WINDOW ─────────────────────────────── -->
+                <!-- Simulates a terminal/console to display generated aliases.
+                     The three dots mimic a macOS window chrome aesthetic.
+                     Results injected by renderBatchedOutput() in script.js. -->
+                <div class="gag-terminal-window">
+
+                    <!-- Terminal chrome bar: dots + filename -->
+                    <div class="gag-terminal-header">
+                        <div class="gag-terminal-dots">
+                            <div class="gag-dot gag-dot-red"></div>
+                            <div class="gag-dot gag-dot-yellow"></div>
+                            <div class="gag-dot gag-dot-green"></div>
+                        </div>
+                        <div class="gag-terminal-title">generator_output.log</div>
+                    </div>
+
+                    <!-- Results area — cleared and repopulated on each generation run -->
+                    <div id="output-area">
+// System Ready.
+// Waiting for input...
+                    </div>
+
+                </div><!-- /.gag-terminal-window -->
+
+                <!-- ── GENERATED COUNT BADGE ──────────────────────────────── -->
+                <!-- Live counter updated per RAF chunk by countBadge in script.js -->
+                <div class="gag-count-row">
+                    Total Generated:
+                    <span id="count-badge" class="gag-count-val">0</span>
+                </div>
+
+            </div><!-- /#generator-inputs -->
+
+        </div><!-- /.container.animated-entry -->
+
+        <!-- ── AD SLOT: BOTTOM BANNER ─────────────────────────────────────── -->
+        <!-- [AD SYSTEM]: Configured in assets/js/ads-manager.js -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             SEO INFORMATION SECTION
+             Rich editorial content: overview, how-to, use-cases, privacy
+             guarantee, FAQ. Boosts dwell time and organic search ranking.
+        ══════════════════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper" id="how-to-use">
+
+            <!-- ── INFO CARD 1: Overview ────────────────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-layer-group"></i> Master Your Digital Footprint: One Email, Infinite Possibilities</h2>
+
+                <p>In today's digital landscape, handing over your primary email address to every website is a recipe for spam and security risks. But creating a new email account for every service is impossible. Enter the <strong>Advanced Alias Generator</strong>.</p>
+
+                <!-- How-it-works infographic -->
+                <div class="gag-diagram-wrap">
+                    <!-- [USER CONFIG]: Replace with your own diagram image if desired -->
+                    <img src="../../assets/tools/tool/tool-email-alias-gen/img/how-gmail-alias-works.webp"
+                         alt="Infographic diagram showing how Gmail dot trick and plus trick redirect emails to your primary inbox securely"
+                         title="How Gmail Alias Redirect Works"
+                         class="gag-diagram-img"
+                         loading="lazy"
+                         width="800"
+                         height="450">
+                    <p class="gag-diagram-caption">
+                        <i class="fa-solid fa-circle-info" style="color: var(--accent-cyan);"></i>
+                        Visualizing how aliases protect your real email address while keeping your inbox unified.
+                    </p>
+                </div>
+
+                <p>This tool isn't just a randomizer; it is a privacy shield. By leveraging standard email protocols (RFC 5233), it allows you to transform your single Gmail or custom domain address into thousands of unique variations. All emails sent to these aliases arrive safely in your main inbox, but you gain the power to filter, track, and block them individually.</p>
+            </div>
+
+            <!-- ── INFO CARD 2: How-To Guide ─────────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-list-check"></i> How to Use: Step-by-Step Guide</h2>
+                <p>Follow these simple steps to generate thousands of secure aliases in seconds:</p>
+
+                <ol style="color: var(--text-muted); line-height: 1.8; margin-top: 15px;">
+                    <li style="margin-bottom: 15px;">
+                        <strong>Enter Input:</strong> Type your username (e.g., <code>john</code>) or full email address in the first box.
+                    </li>
+                    <li style="margin-bottom: 15px;">
+                        <strong>Choose Quantity:</strong> Select how many variations you need from the dropdown list.
+                    </li>
+                    <li style="margin-bottom: 15px;">
+                        <strong>Configure Settings:</strong>
+                        <ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+                            <li><strong>Dot Trick (.):</strong> Inserts random dots within the username.</li>
+                            <li><strong>Plus Trick (+):</strong> Appends a tag like <code>+news</code>. Choose between random characters or your own custom tags (comma-separated).</li>
+                            <li><strong>Random Case:</strong> Randomizes uppercase and lowercase letters for the Username, Suffix, AND Domain. Great for bypassing filters.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Generate &amp; Export:</strong> Click <strong>Generate Aliases</strong>. Once complete, use <strong>Copy All</strong> or <strong>Export .TXT</strong> to save your list.
+                    </li>
+                </ol>
+            </div>
+
+            <!-- ── INFO CARD 3: Smart Use-Cases ─────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-lightbulb"></i> Smart Ways to Use These Aliases</h2>
+                <p>Professionals and privacy enthusiasts use this tool daily. Here is how you can get the most out of it:</p>
+
+                <ul style="list-style: none; padding: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 15px; display: flex; gap: 10px;">
+                        <i class="fa-solid fa-check text-success" style="margin-top: 5px;"></i>
+                        <span><strong>Detect Data Leaks:</strong> Use a unique alias for every sign-up (e.g., <code>name+facebook@gmail.com</code>). If that email starts receiving phishing links, you know exactly which service suffered a data breach.</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; gap: 10px;">
+                        <i class="fa-solid fa-check text-success" style="margin-top: 5px;"></i>
+                        <span><strong>Developers &amp; QA Testers:</strong> Need to test a sign-up form 50 times? Generate 50 valid aliases in seconds to verify email delivery and user flows without cluttering your system.</span>
+                    </li>
+                    <li style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-check text-success" style="margin-top: 5px;"></i>
+                        <span><strong>Organize Your Inbox:</strong> Set up filters in Gmail. Move all emails sent to <code>name+newsletter@gmail.com</code> into a "Read Later" folder, keeping your primary inbox clean.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ── INFO CARD 4: Privacy Guarantee ───────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-lock"></i> Our Privacy Guarantee</h2>
+                <p>We believe privacy tools should be private. Unlike other generators that process data on a server, <strong>Trusted Tools Web</strong> operates 100% Client-Side.</p>
+                <p>This means the email address you type in the input box <strong>never leaves your browser</strong>. The calculation happens right on your device. We do not store, save, or transmit your email address to anyone — not even ourselves.</p>
+            </div>
+
+            <!-- ── INFO CARD 5: Discount Hack ─────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-tags"></i> The "First Order" Discount Hack</h2>
+                <p>We all love those "Get 20% off your first order" coupons, but they usually limit you to one per email. With this generator, you don't need to create a new Gmail account every time. Just generate aliases like <code>name+shop1@gmail.com</code>, then <code>name+shop2@gmail.com</code>, and so on. The store sees a new customer, but every coupon code lands right in your main inbox.</p>
+            </div>
+
+            <!-- ── INFO CARD 6: Catching Data Sellers ───────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-user-secret"></i> Catching Data Sellers Red-Handed</h2>
+                <p>Ever wonder how a random insurance company got your email? Use a specific alias for every service. If you sign up for a gym using <code>name+gym@gmail.com</code> and suddenly start receiving spam from a car dealership on that <em>exact</em> address, you have proof — and you can block that alias without affecting any others.</p>
+            </div>
+
+            <!-- ── INFO CARD 7: Managing Social Profiles ────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-brands fa-twitter"></i> Managing Multiple Social Profiles</h2>
+                <p>Social media managers struggle with platforms that require a unique email for every handle. Instead of juggling passwords for ten different Gmail accounts, use aliases. You can manage all verification codes in one inbox while platforms treat each alias as a completely separate user.</p>
+            </div>
+
+            <!-- ── INFO CARD 8: QA Engineer ──────────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-code"></i> A QA Engineer's Best Friend</h2>
+                <p>If you are building an app, you need to test the "Sign Up" flow hundreds of times. Manually creating emails is a waste of time. Our bulk generator allows you to grab 1,000 valid emails instantly to run automated tests and verify that your database handles user registration correctly.</p>
+            </div>
+
+            <!-- ── INFO CARD 9: Digital Burner ───────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-heart-crack"></i> The Digital "Burner" Strategy</h2>
+                <p>Signing up for dating apps or meeting people online requires caution. You don't always want strangers to have your primary email. Use an alias to keep your real identity obscured until you trust the person, adding an extra layer of personal security without creating a disposable account you might later regret losing.</p>
+            </div>
+
+            <!-- ── INFO CARD 10: Job Hunt ─────────────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-briefcase"></i> Organizing Your Job Hunt</h2>
+                <p>Job hunting can be chaotic. Try using a dedicated alias like <code>name+jobs@gmail.com</code> for all your applications. Set up a Gmail filter to star these emails or play a specific sound when they arrive. You will never miss an interview call again because it got buried in the Promotions tab.</p>
+            </div>
+
+            <!-- ── INFO CARD 11: Inbox Zero ───────────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-envelope-open"></i> Decluttering: The "Inbox Zero" Secret</h2>
+                <p>Newsletters are great until they take over your life. Subscribe with <code>name+news@gmail.com</code> and create a Gmail rule to automatically skip the inbox and move these to a "Read Later" folder. Your main inbox stays clean for important personal and work communication.</p>
+            </div>
+
+            <!-- ── INFO CARD 12: One Account Rules ───────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-filter"></i> Outsmarting "One Account" Rules</h2>
+                <p>Some websites allow only one account per person, but many have lenient email validation. They check if <code>user@gmail.com</code> exists but fail to recognise that <code>u.s.e.r@gmail.com</code> is the same address. Our Dot Trick and Random Case features exploit these technical oversights to give you access where others are blocked.</p>
+            </div>
+
+            <!-- ── INFO CARD 13: Security Kill Switch ────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-shield-virus"></i> The Security "Kill Switch"</h2>
+                <p>If your primary email gets onto a hacker's list, you are in trouble. But if you used an alias for a specific service and that service gets breached, you are safe. Simply create a filter to delete all incoming mail to that alias. It acts like a kill switch for compromised accounts, protecting your master inbox from phishing floods.</p>
+            </div>
+
+            <!-- ── INFO CARD 14: Free Trials ──────────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-stopwatch-20"></i> Squeeze More Out of Free Trials</h2>
+                <p>Software services (SaaS) often offer 7-day trials. Sometimes 7 days isn't enough to evaluate a complex tool. By using aliases, you can legally extend your evaluation period to ensure the software truly meets your needs before committing to a monthly subscription. It's smart consumerism.</p>
+            </div>
+
+            <!-- ── INFO CARD 15: vs 10-Minute Mail ───────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-stopwatch"></i> Why Not Just Use "10-Minute Mail"?</h2>
+                <p>You might have seen sites offering "Temporary Emails" that self-destruct. While they are fun, they are dangerous for serious accounts. Imagine signing up for a crypto exchange using a temporary mail. If you ever forget your password, that account is gone forever because the email no longer exists.</p>
+                <p><strong>This Generator is different.</strong> Since these aliases are based on your <em>real</em> Gmail, you own them forever. You get the privacy of a fake email with the security of a permanent inbox. It is the best of both worlds.</p>
+            </div>
+
+            <!-- ── INFO CARD 16: Credential Stuffing Defense ─────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-user-ninja"></i> The "Credential Stuffing" Defense</h2>
+                <p>Hackers often use a technique called "Credential Stuffing." If a small website gets hacked and leaks your email/password, hackers try that same combination on Facebook, Amazon, and PayPal. Since most people use the same email everywhere, it often works.</p>
+                <p>But if you use a unique alias for every site, this attack fails completely. Even if hackers get your login from one site, they cannot guess your username on any other site — a simple habit that makes you nearly unhackable.</p>
+            </div>
+
+            <!-- ── INFO CARD 17: Freelancers & Agencies ──────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-briefcase"></i> A Secret Weapon for Freelancers &amp; Agencies</h2>
+                <p>If you manage social media accounts or ads for multiple clients, logging in and out is a nightmare. Most platforms require a unique email for every account.</p>
+                <p>Instead of creating 10 different Gmail accounts for 10 clients, just use <code>agency+client1@gmail.com</code>, <code>agency+client2@gmail.com</code>, etc. All verification codes come to your main inbox, but each platform treats them as completely separate users — saving hours of setup time.</p>
+            </div>
+
+            <!-- ── INFO CARD 18: FAQ ───────────────────────────────────────── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</h2>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-size: 16px; color: var(--text-main); margin-bottom: 5px;">Does this work with Yahoo or Outlook?</h3>
+                    <p style="margin-top: 0;">The Plus (+) trick works with almost all major providers including Outlook, Yahoo, and iCloud. However, the Dot (.) trick is specific to Gmail and Googlemail. If you use a custom domain hosted on Google Workspace, both tricks apply.</p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-size: 16px; color: var(--text-main); margin-bottom: 5px;">Will I actually receive emails sent to these aliases?</h3>
+                    <p style="margin-top: 0;">Yes. Gmail natively recognises all dot and plus variations of your username as identical. Any email sent to an alias routes directly to your primary inbox. You can then filter or label them as you wish.</p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-size: 16px; color: var(--text-main); margin-bottom: 5px;">Is this tool free? Is there a usage limit?</h3>
+                    <p style="margin-top: 0;">Yes, completely free. The limit on generated aliases per session is set by the tool configuration (default 20,000). All processing happens locally in your browser — no account or sign-up required.</p>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 16px; color: var(--text-main); margin-bottom: 5px;">Can I use this for accounts that require email verification?</h3>
+                    <p style="margin-top: 0;">Absolutely. Because these are real Gmail aliases (not fake addresses), verification emails and OTP codes are delivered directly to your inbox. This makes the tool invaluable for QA testing and multi-account management.</p>
+                </div>
+            </div>
+
+        </section><!-- /.info-section-wrapper -->
+
+             <!-- 
+        =======================================================================
+        RELATED TOOLS GRID
+        =======================================================================
+        -->
+     <!-- START Related Tools Section -->
+<div class="container" style="margin-top: 50px;">
+    <!-- 
+       IMPORTANT: 
+       1. Set data-category to the category of the current page (e.g., "pdf", "media", "dev").
+       2. Set data-current-page to the filename of the current page (e.g., "pdf-compressor.html").
+    -->
+    <div id="dynamic-related-tools" 
+         data-category="tool" 
+         data-current-page="tool-email-alias-gen.html">
+    </div>
+</div>
+
+<script type="module" src="../../assets/js/related-tools.js"></script>
+<!-- END Related Tools Section -->
+
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <!-- ── GLOBAL FOOTER (injected by global JS automatically) ───────────── -->
+    <footer id="global-footer" class="site-footer"></footer>
+    
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ── GLOBAL JAVASCRIPT ──────────────────────────────────────────────── -->
+    <!-- global.js : Injects header, footer, theme toggle, toast system,
+                     related tools, and all site-wide interactive features.
+         Must be loaded BEFORE the tool script so window.showToast() is
+         available when script.js initialises. -->
+    <script src="../../assets/js/global.js"></script>
+
+    <!-- ── TOOL JAVASCRIPT ────────────────────────────────────────────────── -->
+    <!-- Core alias generation logic. Reads element IDs from the HTML above —
+         never rename any id attribute without updating the JS reference. -->
+    <script src="../../assets/tools/tool/tool-email-alias-gen/script.js"></script>
+    
+    
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

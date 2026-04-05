@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =========================================================
+         ANALYTICS & SITE CONFIGURATION
+         Loads site-wide config, meta manager, and tracking scripts.
+         These must appear before other head content.
+    ========================================================= -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- =========================================================
+         PRIMARY SEO META TAGS
+         Optimized title, description, and keywords for maximum
+         search engine visibility and click-through rate.
+    ========================================================= -->
+    <title>Pro Markdown Studio Max — Free Secure Online Markdown Editor | Trusted Tools Web</title>
+    <meta name="title"       content="Pro Markdown Studio Max — Free Secure Online Markdown Editor | Trusted Tools Web">
+    <meta name="description" content="Write, edit, and preview Markdown instantly with Pro Markdown Studio Max. 100% client-side privacy — no server storage. Export to PDF, HTML, or .md file. Free, fast, and secure.">
+    <meta name="keywords"    content="markdown editor online, free markdown editor, markdown to PDF, offline markdown editor, secure text editor, real-time markdown preview, trusted tools web, developer tools, syntax highlighting, client-side markdown">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow">
+    <meta name="theme-color" content="#0d1117">
+
+    <!-- =========================================================
+         OPEN GRAPH META TAGS
+         Controls how the page appears when shared on Facebook,
+         LinkedIn, and other Open Graph-compatible platforms.
+    ========================================================= -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/dev-markdown-editor.html">
+    <meta property="og:title"       content="Pro Markdown Studio Max — Secure Online Markdown Editor | Trusted Tools Web">
+    <meta property="og:description" content="Write, preview, and export Markdown securely. 100% client-side privacy with PDF export. No data ever leaves your browser. Try it free on Trusted Tools Web.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/dev/dev-markdown-editor/img/og-banner.webp">
+    <meta property="og:image:alt"   content="Pro Markdown Studio Max Interface — Dark Mode Editor with Live Preview">
+
+    <!-- =========================================================
+         TWITTER CARD META TAGS
+         Controls how the page appears in Twitter/X link previews.
+    ========================================================= -->
+    <meta property="twitter:card"        content="summary_large_image">
+    <meta property="twitter:url"         content="https://trustedtoolsweb.com/dev-markdown-editor.html">
+    <meta property="twitter:title"       content="Pro Markdown Studio Max — Free Secure Markdown Editor">
+    <meta property="twitter:description" content="The best free online Markdown editor with real-time preview, instant PDF export, and dark mode. Your data never leaves your browser.">
+    <meta property="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/dev/dev-markdown-editor/img/og-banner.webp">
+
+    <!-- Canonical URL — prevents duplicate content penalties -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/dev-markdown-editor.html">
+
+    <!-- Favicons -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp" sizes="192x192">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- =========================================================
+         PWA & MOBILE CAPABILITY
+         Enables Add-to-Home-Screen and full-screen mode on iOS/Android.
+    ========================================================= -->
+    <meta name="mobile-web-app-capable"             content="yes">
+    <meta name="apple-mobile-web-app-capable"       content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- =========================================================
+         DNS PRECONNECTS
+         Speeds up resource loading by resolving DNS early for
+         all external domains used by this page.
+    ========================================================= -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- =========================================================
+         EXTERNAL STYLESHEETS
+         Font Awesome icons, Highlight.js theme, and JetBrains Mono
+         font for the code editor. All locally hosted except Google Fonts.
+    ========================================================= -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/parsers-text/highlightjs/highlight-dark.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- =========================================================
+         CORE PROCESSING LIBRARIES (DEFERRED)
+         html2pdf  — Client-side PDF generation from HTML
+         marked    — High-speed Markdown-to-HTML parser
+         DOMPurify — XSS sanitizer to safely inject rendered HTML
+         highlight — Syntax highlighter for fenced code blocks
+         All deferred so they do not block initial page paint.
+    ========================================================= -->
+    <script src="../../assets/library/pdf-engine/html2pdf/html2pdf.bundle.min.js"        defer></script>
+    <script src="../../assets/library/parsers-text/marked/marked.min.js"                 defer></script>
+    <script src="../../assets/library/parsers-text/dompurify/purify.min.js"              defer></script>
+    <script src="../../assets/library/parsers-text/highlightjs/highlight.min.js"         defer></script>
+
+    <!-- =========================================================
+         JSON-LD STRUCTURED DATA
+         Provides rich schema markup for search engines (Google,
+         Bing) to understand this tool as a WebApplication entity,
+         improving eligibility for rich results / enhanced listings.
+    ========================================================= -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Pro Markdown Studio Max",
+        "url": "https://trustedtoolsweb.com/dev-markdown-editor.html",
+        "image": "https://trustedtoolsweb.com/assets/tools/dev/dev-markdown-editor/img/og-banner.webp",
+        "description": "A secure, fully client-side Markdown editor with real-time preview, PDF export, HTML export, auto-save, synchronized scrolling, and syntax highlighting. Zero data leaves your browser.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "3.0.0",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "Real-time Markdown Preview, Export to PDF, Export to HTML, Save as .md File, Auto-Save to LocalStorage, Syntax Highlighting, Synchronized Scrolling, Keyboard Shortcuts, Mobile Tab View, Offline Capability"
+    }
+    </script>
+
+    <!-- =========================================================
+         GLOBAL STYLESHEETS (TWO-FILE CSS SYSTEM)
+         1. global.css    — Site-wide layout: header, footer, theme
+         2. tools-template.css — All tool UI components (modular)
+         No separate tool-specific style.css is used.
+    ========================================================= -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+</head>
+
+<body>
+
+    <!-- =========================================================
+         GLOBAL HEADER
+         Injected by global.js — contains site logo, navigation,
+         and the dark/light theme toggle button.
+    ========================================================= -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- =========================================================
+         MAIN CONTENT AREA
+         The <main> tag itself acts as the centered page wrapper
+         (max-width enforced in tools-template.css Section 3).
+    ========================================================= -->
+    <main>
+
+        <!-- =====================================================
+             APP LAYOUT WRAPPER
+             Two-column layout: tool container (left) + ad sidebar
+             (right, desktop only). Collapses to single column on
+             mobile via mds-app-layout responsive rules.
+        ===================================================== -->
+        <div class="mds-app-layout">
+
+            <!-- =================================================
+                 PRIMARY TOOL CONTAINER
+                 .container    — styled card (max-width 950px)
+                 .animated-entry — fade-in entrance animation
+            ================================================= -->
+            <div class="container animated-entry">
+
+                <!-- =============================================
+                     HERO / TITLE SECTION
+                     Security badge + tool title + subtitle line.
+                ============================================= -->
+                <div class="text-center mb-20">
+
+                    <!-- Trust signal: confirms 100% client-side processing -->
+                    <div class="security-badge">
+                        <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+                    </div>
+
+                    <!-- Tool hero icon + gradient-accented title -->
+                    <h1 class="tool-title">
+                        <img src="../../assets/tools/dev/dev-markdown-editor/img/hero-icon.webp"
+                             alt="Markdown Studio Icon"
+                             width="36" height="36"
+                             class="mds-title-icon">
+                        Pro Markdown <span>Studio Max</span>
+                    </h1>
+
+                    <!-- Short descriptive subtitle -->
+                    <p class="subtitle">Write, Preview, and Export Securely. No Server Storage.</p>
+                </div>
+
+                <!-- START AD SLOT 1: Top Banner (Trusted Tools Web) -->
+                <div class="ad-slot" data-ad-slot="top-banner"></div>
+                <!-- END AD SLOT 1 -->
+
+                <!-- =============================================
+                     EDITOR TOOLBAR
+                     .mds-toolbar — horizontally scrollable strip
+                     of formatting shortcut buttons and export
+                     action buttons. Each .mds-tool-btn triggers
+                     a public MDStudio API method via onclick.
+                     The .mds-action-group clusters the export
+                     buttons at the right side of the toolbar.
+                ============================================= -->
+                <div class="mds-toolbar">
+
+                    <!-- Inline formatting buttons -->
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('**', '**')"        title="Bold (Ctrl+B)">
+                        <i class="fa-solid fa-bold"></i> <span>Bold</span>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('*', '*')"           title="Italic (Ctrl+I)">
+                        <i class="fa-solid fa-italic"></i> <span>Italic</span>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('# ', '')"           title="Heading">
+                        <i class="fa-solid fa-heading"></i>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('\`', '\`')"         title="Inline Code">
+                        <i class="fa-solid fa-code"></i>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('\`\`\`\n', '\n\`\`\`')" title="Code Block">
+                        <i class="fa-solid fa-file-code"></i>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('[', '](url)')"      title="Link (Ctrl+K)">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('![alt](', ')')"    title="Image">
+                        <i class="fa-regular fa-image"></i>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('> ', '')"           title="Blockquote">
+                        <i class="fa-solid fa-quote-right"></i>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('\n- ', '')"         title="Unordered List">
+                        <i class="fa-solid fa-list-ul"></i>
+                    </button>
+                    <button class="mds-tool-btn" onclick="MDStudio.insertMarkdown('\n| Header | Header |\n|---|---|\n| Cell | Cell |', '')" title="Table">
+                        <i class="fa-solid fa-table"></i>
+                    </button>
+
+                    <!-- Danger: Clear all editor content -->
+                    <button class="mds-tool-btn mds-tool-btn--danger" onclick="MDStudio.clearEditor()" title="Clear All">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+
+                    <!-- Export action group — right-aligned cluster -->
+                    <div class="mds-action-group">
+                        <button class="btn btn-secondary" onclick="MDStudio.exportHTML()">
+                            <i class="fa-brands fa-html5"></i> <span>HTML</span>
+                        </button>
+                        <button class="btn btn-danger" onclick="MDStudio.exportPDF()">
+                            <i class="fa-solid fa-file-pdf"></i> <span>PDF</span>
+                        </button>
+                        <button class="btn btn-success" onclick="MDStudio.downloadMD()">
+                            <i class="fa-solid fa-download"></i> <span>Save .md</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- END: Editor Toolbar -->
+
+                <!-- =============================================
+                     MOBILE TAB SWITCHER
+                     Visible only on small screens (≤ 768px).
+                     Lets mobile users toggle between the Write
+                     and Preview panes, since the split layout
+                     is hidden on narrow viewports.
+                     JS target: .mobile-tab-btn (active class toggled
+                     by MDStudio.switchTab())
+                ============================================= -->
+                <div class="mds-mobile-tabs">
+                    <button class="mobile-tab-btn active" onclick="MDStudio.switchTab('editor')">
+                        <i class="fa-solid fa-pen-to-square"></i> Write
+                    </button>
+                    <button class="mobile-tab-btn" onclick="MDStudio.switchTab('preview')">
+                        <i class="fa-solid fa-eye"></i> Preview
+                    </button>
+                </div>
+
+                <!-- =============================================
+                     WORKSPACE — SPLIT EDITOR / PREVIEW
+                     .mds-workspace   — flex row, 50/50 split
+                     #pane-editor     — left pane: raw textarea
+                     #pane-preview    — right pane: rendered HTML
+                     On mobile, only the active pane is shown
+                     (controlled by .active class via switchTab()).
+                ============================================= -->
+                <div class="mds-workspace">
+
+                    <!-- Left Pane: Raw Markdown Input -->
+                    <div class="pane-editor active" id="pane-editor">
+                        <textarea
+                            id="markdown-input"
+                            class="mds-textarea"
+                            placeholder="# Start typing your Markdown here...&#10;&#10;100% Secure. Runs in your browser."
+                            spellcheck="false"
+                            aria-label="Markdown Editor Input"></textarea>
+                    </div>
+
+                    <!-- Right Pane: Live HTML Render Output -->
+                    <div class="pane-preview" id="pane-preview" aria-label="Markdown Live Preview">
+                        <!-- Rendered HTML is injected here by triggerRender() -->
+                    </div>
+
+                </div>
+                <!-- END: Workspace -->
+
+                <!-- =============================================
+                     STATISTICS FOOTER BAR
+                     Displays live word, line, and character counts.
+                     Values are updated on every keystroke by
+                     updateStats() in the JavaScript module.
+                     IDs: #word-count, #line-count, #char-count
+                ============================================= -->
+                <div class="mds-stats-bar">
+                    <div class="mds-stat-item">
+                        <i class="fa-solid fa-align-left"></i>
+                        Words: <span id="word-count">0</span>
+                    </div>
+                    <div class="mds-stat-item">
+                        <i class="fa-solid fa-bars"></i>
+                        Lines: <span id="line-count">1</span>
+                    </div>
+                    <div class="mds-stat-item">
+                        <i class="fa-solid fa-text-width"></i>
+                        Chars: <span id="char-count">0</span>
+                    </div>
+                </div>
+                <!-- END: Stats Footer -->
+
+            </div>
+            <!-- END: Primary Tool Container -->
+
+            <!-- =================================================
+                 AD SIDEBAR (DESKTOP ONLY)
+                 Visible only on wide screens. Collapses/hides on
+                 tablet and mobile. Buyers can inject AdSense or
+                 custom HTML banners here.
+            ================================================= -->
+            <div id="ad-slot-sidebar" class="mds-ad-sidebar">
+                <div class="mds-ad-placeholder">AD SIDEBAR (160×600)</div>
+            </div>
+
+        </div>
+        <!-- END: App Layout Wrapper -->
+
+        <!-- START AD SLOT 2: Bottom Banner (Trusted Tools Web) -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+        <!-- END AD SLOT 2 -->
+
+        <!-- =====================================================
+             SEO CONTENT SECTION
+             .info-section-wrapper — article grid container
+             .info-card            — individual article cards
+             Rich editorial content helps search engines understand
+             the tool's purpose, improving organic rankings.
+        ===================================================== -->
+        <section class="info-section-wrapper">
+
+            <!-- Card 1: Why Use This Tool -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-layer-group"></i> Why Pro Markdown Studio Max?</h2>
+                <p>Welcome to <strong>Pro Markdown Studio Max</strong>, the flagship documentation tool developed by <span class="tech-highlight">Trusted Tools Web</span>. As professional developers and technical writers, we understand the frustration of using online editors that are slow, insecure, or cluttered with intrusive advertisements. We needed a solution that combined the power of a desktop IDE with the convenience of a web app.</p>
+                <p>We built this tool with a strict "Local-First" philosophy: <strong>Your keyboard, your rules, your privacy.</strong> Unlike cloud-based editors that constantly upload your keystrokes to a remote database, our engine processes 100% of your data locally within your browser's memory. This ensures blazing fast performance and enterprise-grade security for your sensitive documents.</p>
+            </div>
+
+            <!-- Card 2: Features Overview with Screenshot -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Features That Actually Matter</h2>
+                <div class="mds-feature-img-wrap">
+                    <img src="../../assets/tools/dev/dev-markdown-editor/img/feature-preview.webp"
+                         alt="Pro Markdown Studio Max Interface Screenshot showing dark mode editor and live preview panel"
+                         loading="lazy">
+                </div>
+                <p>Designed for efficiency, every pixel of the interface serves a purpose:</p>
+                <ul>
+                    <li><strong>Instant Rendering:</strong> Utilizes an optimized build of <em>Marked.js</em> to render complex Markdown instantly without lag.</li>
+                    <li><strong>Nebula Dark &amp; Light Modes:</strong> The UI automatically syncs with your system preferences to reduce eye strain during late-night coding sessions.</li>
+                    <li><strong>Smart Export Suite:</strong> Generate professional PDFs and clean HTML files directly from the browser — no server required.</li>
+                    <li><strong>Auto-Save Protection:</strong> Your work is saved to LocalStorage after every keystroke, preventing data loss from accidental tab closures.</li>
+                    <li><strong>Synchronized Scrolling:</strong> The editor and preview panes scroll in perfect harmony, keeping you focused on the context.</li>
+                </ul>
+            </div>
+
+            <!-- Card 3: Target Audience Grid -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-users-viewfinder"></i> Who Is This Tool For?</h2>
+                <div class="mds-audience-grid">
+                    <div class="mds-audience-card">
+                        <h3><i class="fa-solid fa-code"></i> Developers</h3>
+                        <p>Perfect for writing <code>README.md</code> files with syntax highlighting for JS, Python, HTML, and CSS.</p>
+                    </div>
+                    <div class="mds-audience-card">
+                        <h3><i class="fa-solid fa-feather"></i> Content Creators</h3>
+                        <p>Draft blog posts in a distraction-free environment and export clean HTML for WordPress or Ghost.</p>
+                    </div>
+                    <div class="mds-audience-card">
+                        <h3><i class="fa-solid fa-graduation-cap"></i> Students</h3>
+                        <p>Take rapid lecture notes using Markdown shortcuts and convert them to PDF assignments instantly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Privacy / Zero-Knowledge Architecture -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-user-lock"></i> No Cloud? That's the Point.</h2>
+                <p>Most online editors act like "data vampires" — sucking your text into a remote database for analytics or storage. We operate on a <strong>Zero-Knowledge Architecture</strong>. Data stays in your browser's RAM and LocalStorage. We cannot see what you write, and neither can anyone else. This makes Pro Markdown Studio Max compliant with strict internal privacy policies often found in corporate environments.</p>
+            </div>
+
+            <!-- Card 5: FAQ -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions (FAQ)</h2>
+
+                <h3 class="mds-faq-q">Is my data sent to any server?</h3>
+                <p>No. This is a purely <strong>Client-Side</strong> application powered by JavaScript. No data ever leaves your device.</p>
+
+                <h3 class="mds-faq-q border-top-subtle mt-md">Can I use this offline?</h3>
+                <p>Yes. Once the page is loaded, you can disconnect from the internet and continue working. PWA support allows installation on desktop and mobile.</p>
+            </div>
+
+        </section>
+        <!-- END: SEO Content Section -->
+
+        <!-- =====================================================
+             RELATED TOOLS GRID
+             Dynamically populated by related-tools.js based on
+             data-category="dev" and data-current-page attributes.
+             Helps users discover other tools in the same category.
+        ===================================================== -->
+        <div class="container" style="margin-top: 50px;">
+            <!--
+                IMPORTANT FOR BUYERS:
+                1. Set data-category to the category of this page (e.g., "pdf", "media", "dev").
+                2. Set data-current-page to the filename of this page so the script
+                   can exclude the current tool from the suggestions.
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="dev"
+                 data-current-page="dev-markdown-editor.html">
+            </div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- END: Main Content Area -->
+
+    <!-- =========================================================
+         GLOBAL FOOTER
+         Injected by global.js — contains site links, copyright,
+         and social media icons.
+    ========================================================= -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- =========================================================
+         GLOBAL TOAST NOTIFICATION SYSTEM
+         The global.js script injects toast HTML automatically.
+         Do NOT add a local toast container here — it is managed
+         globally. All toast calls use window.showToast().
+    ========================================================= -->
+
+    <!-- =========================================================
+         AD MANAGER
+         Centralised ad injection handled by ads-manager.js.
+         Fills all .ad-slot elements on the page automatically.
+    ========================================================= -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- =========================================================
+         GLOBAL JAVASCRIPT
+         Bootstraps header, footer, theme toggle, toast system,
+         and all other site-wide interactive features.
+    ========================================================= -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- =========================================================
+         TOOL APPLICATION SCRIPT
+         The core MDStudio IIFE module — handles rendering,
+         auto-save, export, keyboard shortcuts, and scroll sync.
+    ========================================================= -->
+    <script src="../../assets/tools/dev/dev-markdown-editor/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

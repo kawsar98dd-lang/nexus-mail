@@ -1,0 +1,27 @@
+# --- 1. SEO & Pretty URL Rules (সবচেয়ে গুরুত্বপূর্ণ) ---
+# কেউ যদি ভুলে .html সহ হিট করে, তাকে .html ছাড়া ক্লিন লিংকে পাঠিয়ে দিবে
+/*.html  /:splat  301!
+
+# --- 2. Category Redirects (নতুন ফোল্ডার স্ট্রাকচারের জন্য) ---
+# পুরনো লিংকগুলোকে নতুন সাব-ফোল্ডারে রিডাইরেক্ট করবে (SEO সেভ করার জন্য)
+/calc-* /tools/calc/calc-:splat    301
+/dev-* /tools/dev/dev-:splat      301
+/img-* /tools/img/img-:splat      301
+/media-* /tools/media/media-:splat  301
+/pdf-* /tools/pdf/pdf-:splat      301
+/sec-* /tools/sec/sec-:splat      301
+/seo-* /tools/seo/seo-:splat      301
+/text-* /tools/text/text-:splat    301
+/tool-* /tools/tool/tool-:splat    301
+
+# --- 3. Smart Shortcuts (আপনার জন্য স্পেশাল ফিচার) ---
+# ব্রাউজারে 'trustedtoolsweb.com/join' লিখলে সরাসরি টেলিগ্রামে নিয়ে যাবে
+/join      https://t.me/FreeGenTools  302
+
+# ব্রাউজারে 'trustedtoolsweb.com/admin' লিখলে আপনার এডমিন মোড চালু হবে
+/admin     /?admin_mode=true  302
+
+# --- 4. Error Handling (404) ---
+# কোনো ভুল লিংকে গেলে 404 পেজ দেখাবে
+/404       /404.html  404
+/* /404.html  404

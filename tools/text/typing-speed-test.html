@@ -1,0 +1,469 @@
+<!--
+==========================================================================
+  HYPERTYPE X — PRO CODING SPEED TEST
+  Project  : Trusted Tools Web
+  Author   : MD KAWSAR
+  Version  : 2.0 (CodeCanyon Release Build)
+  Tool Path: assets/tools/text/text-typing-speed-test/
+==========================================================================
+
+  ARCHITECTURE NOTES:
+  ─────────────────────────────────────────────────────────────────────
+  • Styling  → global.css  +  tools-template.css  (NO inline styles)
+  • Logic    → script.js   (ES6 HyperEngine class)
+  • No backend required — 100% client-side processing
+  • Ad slots are pre-wired for the global ads-manager.js
+
+  FILE STRUCTURE:
+  1. <head>   — Meta, SEO, JSON-LD schema, CSS links
+  2. <body>   — Header, Main tool container, SEO cards, Related tools,
+               Results modal, Audio, Footer, Script tags
+==========================================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ── Analytics & Site Config (must be first) ── -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ── Character Set & Viewport ── -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#090c10">
+
+    <!-- ── Primary SEO Meta Tags ── -->
+    <title>HyperType X — Pro Coding Speed Test | Trusted Tools Web</title>
+    <meta name="title"        content="HyperType X — Pro Coding Speed Test | Free WPM Test for Developers | Trusted Tools Web">
+    <meta name="description"  content="Boost your programming productivity with HyperType X — the #1 free WPM test for developers. Practice with real code snippets, measure Net WPM & accuracy, and build coding muscle memory. 100% client-side, no sign-up required.">
+    <meta name="keywords"     content="typing speed test for programmers, wpm test for developers, coding speed test, typing master online, touch typing for developers, net wpm calculator, javascript typing test, programmer keyboard test, trusted tools web">
+    <meta name="author"       content="MD KAWSAR">
+    <meta name="robots"       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language"     content="English">
+
+    <!-- ── Open Graph (Facebook / LinkedIn / WhatsApp previews) ── -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/text-typing-speed-test.html">
+    <meta property="og:title"       content="HyperType X — Master Your Keystrokes | Free Coding Speed Test">
+    <meta property="og:description" content="Improve coding efficiency with real code-syntax paragraphs. Measure WPM and Accuracy with the developer-focused HyperType X engine — free, no login, 100% private.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/text/text-typing-speed-test/img/hypertype-og.webp">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+    <meta property="og:locale"      content="en_US">
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/text-typing-speed-test.html">
+    <meta name="twitter:title"       content="HyperType X — Pro Typing Tool for Developers">
+    <meta name="twitter:description" content="The ultimate typing test designed for keyboard enthusiasts and code lovers. Practice with real syntax. Measure Net WPM instantly.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/text/text-typing-speed-test/img/hypertype-og.webp">
+
+    <!-- ── Canonical URL ── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/text-typing-speed-test.html">
+
+    <!-- ── Favicons ── -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ── Local Fonts ── -->
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+
+    <!-- ── Icon Library ── -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ── Global Site Stylesheet ── -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- ── Tool Component Stylesheet ── -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ══════════════════════════════════════════════════════════════
+         JSON-LD SCHEMA — SoftwareApplication (Google Rich Results)
+         Provides structured data for search engines to understand
+         the purpose, author, and availability of this tool.
+    ══════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "HyperType X",
+        "headline": "HyperType X — Pro Coding Speed Test for Developers",
+        "url": "https://trustedtoolsweb.com/text-typing-speed-test.html",
+        "description": "A free, client-side typing speed test optimized for developers and CS students. Measures Net WPM and Accuracy using real code-syntax paragraphs with no data sent to any server.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "browserRequirements": "Requires JavaScript",
+        "featureList": "Net WPM calculation, Accuracy tracking, Sound feedback, Custom text, 15/30/60s modes, High score tracking",
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/text/text-typing-speed-test/img/hypertype-og.webp",
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         GLOBAL HEADER
+         Injected by global.js — contains logo, nav, and theme toggle
+    ══════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+
+        <!-- ══════════════════════════════════════════════════════════
+             TOOL CARD — Main interactive container
+             Max-width 950px, centered, with card shadow.
+        ══════════════════════════════════════════════════════════════ -->
+        <div class="container animated-entry">
+
+            <!-- ── Tool Icon ── -->
+            <img src="../../assets/tools/text/text-typing-speed-test/img/keyboard-icon.webp"
+                 alt="HyperType X — Coding Speed Test icon"
+                 width="80" height="80"
+                 class="hty-tool-icon">
+
+            <!-- ── Developer Audience Badge ── -->
+            <div class="hty-audience-badge">
+                <i class="fa-solid fa-code"></i> For Developers &amp; CS Students
+            </div>
+
+            <!-- ── Tool Title (gradient span auto-applied by .tool-title) ── -->
+            <h1 class="tool-title">HyperType X — <span>Pro Coding Speed Test</span></h1>
+
+            <!-- ── Security / Privacy Badge ── -->
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- ── Subtitle ── -->
+            <p class="subtitle">
+                Master your keystrokes with code-syntax optimized paragraphs.
+                Real developer text — measure Net WPM &amp; Accuracy instantly.
+            </p>
+
+            <!-- ────────────────────────────────────────────────────
+                 [MONETIZATION] AD SLOT 1: TOP BANNER
+                 Injected by ads-manager.js — collapses if empty.
+            ──────────────────────────────────────────────────────── -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ── High Score Display ── -->
+            <!--
+                Reads from localStorage key 'hypertype_highscore'.
+                Updated automatically by HyperEngine.endGame().
+            -->
+            <div class="hty-high-score">
+                <span class="hty-hs-label">Best Net WPM</span>
+                <span class="hty-hs-value" id="high-score-val">0</span>
+            </div>
+
+            <!-- ── Configuration Bar (Time selector + Sound + Custom) ── -->
+            <!--
+                .config-btn[data-time] buttons set the test duration.
+                #sound-btn toggles keystroke audio feedback.
+                #custom-text-btn opens a prompt for custom text input.
+            -->
+            <div class="hty-config-bar">
+                <button class="hty-config-btn active" data-time="15">15s</button>
+                <button class="hty-config-btn"        data-time="30">30s</button>
+                <button class="hty-config-btn"        data-time="60">60s</button>
+                <span class="hty-config-divider" aria-hidden="true"></span>
+                <button class="hty-config-btn" id="sound-btn">
+                    <i class="fa-solid fa-volume-high"></i> Sound
+                </button>
+                <button class="hty-config-btn hty-config-btn--accent" id="custom-text-btn">
+                    <i class="fa-solid fa-pen-to-square"></i> Custom
+                </button>
+            </div>
+
+            <!-- ── Progress Bar ── -->
+            <!--
+                Width is driven by JS: progressBar.style.width = percentage + "%"
+                Track (.hty-progress-container) contains the animated fill bar.
+            -->
+            <div class="hty-progress-container" role="progressbar" aria-label="Typing progress">
+                <div class="hty-progress-fill" id="progress-fill"></div>
+            </div>
+
+            <!-- ── Live Stats Grid (Timer | Net WPM | Accuracy) ── -->
+            <!--
+                Updated every 100ms by HyperEngine.runTimer() / calculateWPM().
+                IDs: #timer, #wpm, #accuracy — do NOT rename.
+            -->
+            <div class="hty-stats-grid">
+
+                <!-- Timer stat -->
+                <div class="hty-stat-box" id="timer-box">
+                    <span class="hty-stat-label">Timer</span>
+                    <span class="hty-stat-value" id="timer">15</span>
+                    <span class="hty-stat-unit">s</span>
+                </div>
+
+                <!-- Net WPM stat -->
+                <div class="hty-stat-box">
+                    <span class="hty-stat-label">Net Speed</span>
+                    <span class="hty-stat-value" id="wpm">0</span>
+                    <span class="hty-stat-unit">WPM</span>
+                </div>
+
+                <!-- Accuracy stat -->
+                <div class="hty-stat-box">
+                    <span class="hty-stat-label">Accuracy</span>
+                    <span class="hty-stat-value" id="accuracy">100</span>
+                    <span class="hty-stat-unit">%</span>
+                </div>
+
+            </div>
+
+            <!-- ── Typing Arena ── -->
+            <!--
+                .typing-wrapper  → outermost clickable zone (gains .focused class on start)
+                #overlay-layer   → start screen overlay (gains .hidden class on countdown)
+                .input-field     → visually hidden <input> that captures all keystrokes
+                .typing-text p   → rendered character spans (correct / incorrect / active)
+            -->
+            <div class="typing-wrapper">
+
+                <!-- Start / Focus Overlay -->
+                <div class="overlay-layer" id="overlay-layer">
+                    <div class="overlay-text" id="overlay-msg">
+                        Click here or press any key to focus
+                    </div>
+                    <div class="click-msg">
+                        <i class="fa-solid fa-arrow-pointer"></i> Focus to Start
+                    </div>
+                    <!-- Animated countdown number (3 → 2 → 1 → GO) -->
+                    <div class="countdown-num hidden" id="countdown">3</div>
+                </div>
+
+                <!-- Hidden input: captures all keystrokes; never visible to user -->
+                <input type="text"
+                       class="input-field"
+                       autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       spellcheck="false"
+                       aria-label="Typing input — start typing the displayed text">
+
+                <!-- Character display: each character is a <span> rendered by JS -->
+                <div class="typing-text">
+                    <p id="paragraph"></p>
+                </div>
+
+            </div>
+
+            <!-- ── Bottom Control Bar (Sound status + Reset button) ── -->
+            <div class="control-bar">
+                <!-- Sound status indicator (updated by toggleSound()) -->
+                <div class="hty-sound-status">
+                    <i class="fa-solid fa-keyboard"></i>
+                    <span id="key-sound-status">Sound On</span>
+                </div>
+                <!-- Reset button — triggers HyperEngine.resetGame() via event delegation -->
+                <button class="btn btn-secondary" id="reset-btn">
+                    <i class="fa-solid fa-rotate-right"></i> Reset Test
+                </button>
+            </div>
+
+            <!-- ────────────────────────────────────────────────────
+                 [MONETIZATION] AD SLOT 2: BOTTOM BANNER
+                 Injected by ads-manager.js — collapses if empty.
+            ──────────────────────────────────────────────────────── -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        </div><!-- /.container -->
+
+
+        <!-- ══════════════════════════════════════════════════════════
+             SEO CONTENT SECTION
+             Informational articles that boost organic search ranking.
+             Wrapped in .info-section-wrapper with .info-card children.
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper" aria-label="Educational content about typing speed for developers">
+
+            <!-- Card 1: Why typing speed matters for developers -->
+            <article class="info-card animated-entry delay-1">
+                <h2><i class="fa-solid fa-code-branch"></i> Why Typing Speed Matters for Developers</h2>
+                <p>For a programmer, the keyboard is the primary instrument. While coding is mostly "thinking," slow typing breaks your <strong class="text-accent-cyan">Flow State</strong>. When your fingers can't keep up with your brain, you lose track of complex logic and architectural decisions mid-thought.</p>
+                <p><strong>HyperType X</strong> isn't just a standard typing test. It uses technical jargon, syntax-heavy sentences, and real programming constructs — HTML, CSS, JS, SQL, Bash — to train your muscle memory for the exact patterns you use daily in VS Code, Vim, or IntelliJ.</p>
+            </article>
+
+            <!-- Card 2: WPM formula explanation -->
+            <article class="info-card animated-entry">
+                <h2><i class="fa-solid fa-calculator"></i> How We Calculate "Pro" Net WPM</h2>
+                <p>We use the standardized international formula for Net Words Per Minute — the same metric used by professional typing certification bodies:</p>
+                <div class="code-block mb-20">
+                    <pre><code>Net WPM = ((Characters Typed ÷ 5) − Uncorrected Errors) ÷ Time (minutes)</code></pre>
+                </div>
+                <p>Accuracy is vital. In coding, a single typo — like a missing semicolon or a misspelled variable — can break an entire application. This formula penalizes uncorrected mistakes heavily to enforce <em>precision over raw speed</em>, which is the professional standard.</p>
+            </article>
+
+            <!-- Card 3: Tips to improve WPM -->
+            <article class="info-card animated-entry">
+                <h2><i class="fa-solid fa-keyboard"></i> Tips to Reach 100+ WPM as a Developer</h2>
+                <ul>
+                    <li><strong>Touch Typing:</strong> Never look at the keyboard. Use the home row anchors (F and J key bumps) as your fingers' resting position.</li>
+                    <li><strong>Rhythm Over Speed:</strong> Typing in a consistent rhythm is faster than typing in bursts. Consistency builds sustainable speed.</li>
+                    <li><strong>Invest in Gear:</strong> Mechanical keyboards with tactile switches (Brown / Blue) provide immediate physical feedback that improves accuracy.</li>
+                    <li><strong>Practice with Code:</strong> General typing tests won't train you for brackets, pipes, and semicolons. HyperType X does exactly that.</li>
+                </ul>
+            </article>
+
+            <!-- Card 4: The Undo Tax — accuracy in coding -->
+            <article class="info-card animated-entry">
+                <h2><i class="fa-solid fa-bug"></i> The "Undo Tax" — Why Accuracy Trumps Raw Speed</h2>
+                <p>In programming, accuracy is significantly more valuable than raw speed. A single typo in a variable name — e.g., <code class="tech-highlight">usreId</code> vs <code class="tech-highlight">userId</code> — can cascade into hours of debugging. Every backspace you press mid-flow breaks your concentration and costs cognitive energy.</p>
+                <p>HyperType X reflects this reality: the Net WPM formula deducts error penalties that compound over time, just like real bugs do in a codebase.</p>
+            </article>
+
+            <!-- Card 5: Cognitive load and muscle memory -->
+            <article class="info-card animated-entry">
+                <h2><i class="fa-solid fa-brain"></i> Cognitive Load &amp; Muscle Memory</h2>
+                <p>When you are coding, your brain operates in two parallel modes: <strong>Architectural Thinking</strong> (logic, algorithms, system design) and <strong>Mechanical Execution</strong> (physically typing the code). If your typing isn't yet subconscious — wired into muscle memory — your brain wastes processing power finding keys instead of solving problems.</p>
+                <p>Daily practice sessions of 10–15 minutes with HyperType X progressively automate the mechanical layer, freeing your full mental bandwidth for architecture and problem-solving.</p>
+            </article>
+
+            <!-- Card 6: CLI and Bash proficiency -->
+            <article class="info-card animated-entry">
+                <h2><i class="fa-solid fa-terminal"></i> CLI &amp; Bash Proficiency for Developers</h2>
+                <p>A significant portion of a developer's day is spent inside the terminal. Commands like <code class="tech-highlight">git commit -m</code>, <code class="tech-highlight">docker-compose up --build</code>, or <code class="tech-highlight">npm run dev</code> require rapid, accurate bursts of typing with special characters.</p>
+                <p>HyperType X deliberately includes shell command snippets, CSS property chains, and multiline code patterns in its paragraph pool — ensuring your terminal productivity improves alongside your editor speed.</p>
+            </article>
+
+        </section><!-- /.info-section-wrapper -->
+
+
+        <!-- ══════════════════════════════════════════════════════════
+             RELATED TOOLS GRID
+             Dynamically injected by related-tools.js based on
+             data-category and data-current-page attributes.
+        ══════════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="text"
+                 data-current-page="text-typing-speed-test.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+
+        <!-- ══════════════════════════════════════════════════════════
+             RESULTS MODAL
+             Displayed via .modal-overlay.show class toggle.
+             Populated by HyperEngine.endGame() with final stats.
+             IDs: #final-wpm, #final-acc, #final-err, #final-chars, #final-time
+        ══════════════════════════════════════════════════════════════ -->
+        <div class="modal-overlay" id="result-modal" role="dialog" aria-modal="true" aria-label="Test results">
+
+            <div class="hty-result-card">
+
+                <!-- Modal heading -->
+                <h2 class="hty-result-title text-accent-cyan">
+                    <i class="fa-solid fa-trophy"></i> Test Complete!
+                </h2>
+
+                <!-- Net WPM hero number -->
+                <div class="hty-score-label text-muted">Your Net Speed</div>
+                <div class="hty-score-big" id="final-wpm">0</div>
+                <div class="hty-score-unit text-muted">WPM</div>
+
+                <!-- Breakdown stats grid -->
+                <div class="hty-result-details">
+
+                    <div class="hty-res-box">
+                        <div class="hty-res-lbl">Accuracy</div>
+                        <div class="hty-res-val" id="final-acc">0%</div>
+                    </div>
+
+                    <div class="hty-res-box">
+                        <div class="hty-res-lbl">Mistakes</div>
+                        <div class="hty-res-val text-danger" id="final-err">0</div>
+                    </div>
+
+                    <div class="hty-res-box">
+                        <div class="hty-res-lbl">Keystrokes</div>
+                        <div class="hty-res-val" id="final-chars">0</div>
+                    </div>
+
+                    <div class="hty-res-box">
+                        <div class="hty-res-lbl">Time</div>
+                        <div class="hty-res-val" id="final-time">0s</div>
+                    </div>
+
+                </div><!-- /.hty-result-details -->
+
+                <!-- Try Again CTA — calls gameEngine.resetGame() -->
+                <div class="btn-area">
+                    <button class="btn btn-primary" onclick="gameEngine.resetGame()">
+                        <i class="fa-solid fa-rotate-right"></i> Try Again
+                    </button>
+                </div>
+
+            </div><!-- /.hty-result-card -->
+
+        </div><!-- /.modal-overlay -->
+
+        <!-- ── Keystroke Audio Source ── -->
+        <audio id="key-sound" src="../../assets/media/audio/typing-sound.mp3" preload="auto"></audio>
+        
+        
+  <!-- Tools Comment Section --> 
+<section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">
+    <div class="container">
+        <div class="trusted-comments-widget" data-page-id="auto">
+            <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>
+                <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+      </main><!-- /main -->
+
+
+    <!-- ══════════════════════════════════════════════════════════════
+         GLOBAL FOOTER
+         Injected by global.js
+    ══════════════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         SCRIPT LOADING ORDER
+         1. ads-manager.js    — fills .ad-slot divs
+         2. confetti.browser  — celebration animation on test end
+         3. global.js (module)— header, footer, theme, toast system
+         4. script.js         — HyperEngine game class (must load last)
+    ──────────────────────────────────────────────────────────────── -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script src="../../assets/library/core-ui/canvas-confetti/confetti.browser.min.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+    <script src="../../assets/tools/text/text-typing-speed-test/script.js"></script>
+
+<script type="module" src="../../assets/js/comments.js" defer></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

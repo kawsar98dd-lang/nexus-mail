@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    =======================================================================
+    PRODUCT  : QA Mock Data Studio (Global Edition)
+    TOOL     : dev-mock-json-generator
+    AUTHOR   : MD KAWSAR
+    VERSION  : 5.1 (CodeCanyon Release Candidate)
+    BUILD    : March 2026
+    DESCRIPTION:
+        Premium client-side mock data & payment-token generator for
+        global QA testing. Supports 195 countries, Luhn-valid card
+        numbers, and locale-appropriate name/address generation.
+        Zero server calls — 100% browser-side.
+    LICENSE  : Standard / Extended License via CodeCanyon
+    =======================================================================
+-->
+
+<head>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FONT IMPORTS (self-hosted, localized before CodeCanyon release)
+    ════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CORE ANALYTICS & SITE CONFIGURATION SCRIPTS (DO NOT MODIFY)
+         Loaded first so downstream scripts inherit site-level globals.
+    ════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         DOCUMENT META — CHARACTER SET, VIEWPORT, THEME
+    ════════════════════════════════════════════════════════════════════ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- ── PRIMARY SEO META ── -->
+    <title>QA Mock Data Studio — Free Luhn-Valid JSON &amp; Payment Token Generator | Trusted Tools Web</title>
+    <meta name="title"       content="QA Mock Data Studio — Free Luhn-Valid JSON &amp; Payment Token Generator | Trusted Tools Web">
+    <meta name="description" content="Generate 100% valid mock data, Luhn-checked payment tokens, random user profiles, and localized address data for QA &amp; software testing. Secure, 100% client-side &amp; free. Supports 195 countries.">
+    <meta name="keywords"    content="mock data generator, QA testing tool, JSON data creator, Luhn algorithm card generator, fake identity generator, developer utilities, synthetic test data, random user profile, trusted tools web">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- ── CANONICAL URL ── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/dev-mock-json-generator.html">
+
+    <!-- ── OPEN GRAPH (Facebook / LinkedIn) ── -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/dev-mock-json-generator.html">
+    <meta property="og:title"       content="QA Mock Data Studio — Free Luhn-Valid JSON &amp; Payment Token Generator">
+    <meta property="og:description" content="Generate random validation data for software testing instantly — Luhn-valid cards, profiles, and internationalized addresses. 100% client-side and GDPR-safe.">
+    <meta property="og:image"       content="../../assets/tools/dev/dev-mock-json-generator/img/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- ── TWITTER CARD ── -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/dev-mock-json-generator.html">
+    <meta name="twitter:title"       content="QA Mock Data Studio | Trusted Tools Web">
+    <meta name="twitter:description" content="Generate valid test data instantly. 195 countries. 100% Client-side &amp; secure.">
+    <meta name="twitter:image"       content="../../assets/tools/dev/dev-mock-json-generator/img/og-banner.webp">
+
+    <!-- ── FAVICONS ── -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp" sizes="192x192">
+    <link rel="apple-touch-icon" href="../../assets/tools/dev/dev-mock-json-generator/web-app/icon-192.webp">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SCHEMA MARKUP — WebApplication (Structured Data for Google)
+         Helps search engines understand the tool's purpose and
+         improves rich-result eligibility.
+    ════════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "QA Mock Data Studio",
+        "url": "https://trustedtoolsweb.com/dev-mock-json-generator.html",
+        "image": "https://trustedtoolsweb.com/assets/tools/dev/dev-mock-json-generator/img/tool-icon.webp",
+        "description": "A professional browser-based tool for developers to generate Luhn-valid payment tokens, random user profiles, and internationalized address data for software and QA testing — 100% client-side.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "featureList": "195 country localization, Luhn-valid card generator, JSON export, client-side generation",
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         STYLESHEETS
+         1. Font Awesome — icon library (self-hosted CDN copy)
+         2. global.css  — site-wide header/footer/theme variables
+         3. tools-template.css — all tool UI components (modular)
+         No tool-specific style.css — all styles live in the two
+         global files above per the project architecture spec.
+    ════════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         GLOBAL HEADER — injected by global.js (DO NOT MODIFY)
+    ═════════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         MAIN CONTENT WRAPPER
+         Centered column layout driven by tools-template.css > main rule.
+    ═════════════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ────────────────────────────────────────────────────────────
+             PRIMARY TOOL CARD
+             .container   → max-width 950px card with shadow
+             .animated-entry → fade-in-up entrance animation
+        ───────────────────────────────────────────────────────────────── -->
+        <div class="container animated-entry">
+
+            <!-- ── HERO / TITLE AREA ────────────────────────────────── -->
+            <!--
+                .security-badge  → green pill badge ("100% Client-Side")
+                .tool-title      → H1 with gradient <span>
+                .subtitle        → muted description paragraph
+            -->
+            <div class="text-center">
+
+                <!-- Security / Privacy assurance badge -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Generation
+                </div>
+
+                <!-- Tool icon displayed inline with the H1 title -->
+                <h1 class="tool-title">
+                    <img
+                        src="../../assets/tools/dev/dev-mock-json-generator/img/tool-icon.webp"
+                        alt="QA Mock Data Studio icon"
+                        class="qms-title-icon"
+                    >
+                    QA Mock <span>Data Studio</span>
+                </h1>
+
+                <!-- One-line subtitle describing the tool's value proposition -->
+                <p class="subtitle">
+                    Generate statistically valid profiles, Luhn-checked payment tokens,
+                    and internationalized address data for rigorous software testing.
+                </p>
+
+            </div>
+            <!-- END HERO -->
+
+            <!-- ── AD SLOT: TOP BANNER ────────────────────────────── -->
+            <!-- Managed by ads-manager.js — do not modify the data attribute -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ── CONTROL PANEL ──────────────────────────────────────
+                 Contains the country-select dropdown and the two action
+                 buttons (Generate & JSON export).
+                 .qms-control-panel → horizontal flex row, wraps on mobile
+                 .input-control     → unified select styling from template
+                 .btn-area          → button group wrapper (handles spacing
+                                      and mobile stacking automatically)
+            ──────────────────────────────────────────────────────────── -->
+            <div class="qms-control-panel">
+
+                <!-- Country / Localization Selector -->
+                <div class="qms-control-select">
+                    <select
+                        id="countrySelect"
+                        class="input-control"
+                        aria-label="Select Target Localization"
+                    >
+                        <!-- Options are populated dynamically by MockStudio.populateDropdown() -->
+                    </select>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="btn-area qms-control-btns">
+                    <!-- Primary: generate new identity -->
+                    <button
+                        id="btnGenerate"
+                        class="btn btn-primary"
+                        aria-label="Generate New Identity"
+                    >
+                        <i class="fa-solid fa-bolt"></i> Generate
+                    </button>
+
+                    <!-- Secondary: download as JSON -->
+                    <button
+                        id="btnJson"
+                        class="btn btn-secondary"
+                        aria-label="Download JSON"
+                    >
+                        <i class="fa-solid fa-file-code"></i> JSON
+                    </button>
+                </div>
+
+            </div>
+            <!-- END CONTROL PANEL -->
+
+            <!-- ── RESULTS GRID ───────────────────────────────────────
+                 A responsive auto-fill grid of clickable data cards.
+                 Each .qms-data-card triggers MockStudio.copy() on click,
+                 copying its current value to the clipboard.
+                 aria-live="polite" announces content changes to screen
+                 readers without interrupting the user.
+            ──────────────────────────────────────────────────────────── -->
+            <div class="qms-result-grid" id="resultsArea" aria-live="polite">
+
+                <!-- ── PERSONAL IDENTITY FIELDS ── -->
+
+                <!-- Full Name -->
+                <div class="qms-data-card" data-key="fullName" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Full Name <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-fullName">---</div>
+                </div>
+
+                <!-- Gender -->
+                <div class="qms-data-card" data-key="gender" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Gender <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-gender">---</div>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="qms-data-card" data-key="dob" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Date of Birth <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-dob">---</div>
+                </div>
+
+                <!-- Blood Type -->
+                <div class="qms-data-card" data-key="blood" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Blood Type <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-blood">---</div>
+                </div>
+
+                <!-- ── DIGITAL PROFILE FIELDS ── -->
+
+                <!-- Username -->
+                <div class="qms-data-card" data-key="username" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Username <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-username">---</div>
+                </div>
+
+                <!-- Secure Password -->
+                <div class="qms-data-card" data-key="password" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Secure Password <i class="fa-solid fa-key"></i></div>
+                    <div class="qms-card-value qms-mono" id="val-password">---</div>
+                </div>
+
+                <!-- Email Address -->
+                <div class="qms-data-card" data-key="email" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Email Address <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-email">---</div>
+                </div>
+
+                <!-- Phone Number (locale-formatted) -->
+                <div class="qms-data-card" data-key="phone" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Phone (Formatted) <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-phone">---</div>
+                </div>
+
+                <!-- ── PAYMENT TOKEN — spans full width ── -->
+                <!--
+                    .qms-card-token → highlights this card with a special
+                    accent border to distinguish it from regular data cards.
+                    The number is mathematically valid (Luhn Algorithm) but
+                    strictly fictitious — for QA/sandbox use only.
+                -->
+                <div class="qms-data-card qms-card-token" data-key="creditCard" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">QA Payment Token (Luhn Valid) <i class="fa-solid fa-credit-card"></i></div>
+                    <div class="qms-card-value qms-mono" id="val-creditCard">---</div>
+                </div>
+
+                <!-- Card Expiry -->
+                <div class="qms-data-card" data-key="ccExpiry" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Expiry <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value qms-mono" id="val-ccExpiry">---</div>
+                </div>
+
+                <!-- Card CVV -->
+                <div class="qms-data-card" data-key="ccCvv" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">CVV <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value qms-mono" id="val-ccCvv">---</div>
+                </div>
+
+                <!-- ── ADDRESS DATA FIELDS ── -->
+
+                <!-- Street Address -->
+                <div class="qms-data-card" data-key="street" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Street Address <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-street">---</div>
+                </div>
+
+                <!-- City -->
+                <div class="qms-data-card" data-key="city" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">City <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-city">---</div>
+                </div>
+
+                <!-- State / Region -->
+                <div class="qms-data-card" data-key="state" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">State / Region <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-state">---</div>
+                </div>
+
+                <!-- Zip / Postal Code -->
+                <div class="qms-data-card" data-key="zip" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Zip / Postal Code <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-zip">---</div>
+                </div>
+
+                <!-- Country -->
+                <div class="qms-data-card" data-key="country" onclick="MockStudio.copy(this)">
+                    <div class="qms-card-label">Country <i class="fa-regular fa-copy"></i></div>
+                    <div class="qms-card-value" id="val-country">---</div>
+                </div>
+
+            </div>
+            <!-- END RESULTS GRID -->
+
+            <!-- ── AD SLOT: BOTTOM BANNER ─────────────────────────── -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        </div>
+        <!-- END PRIMARY TOOL CARD -->
+
+        <!-- ════════════════════════════════════════════════════════════
+             SEO INFORMATION SECTION
+             .info-section-wrapper → max-width article wrapper
+             .info-card            → individual content card
+             These sections improve on-page SEO depth and provide users
+             with contextual guidance about the tool.
+        ═════════════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper">
+
+            <!-- ── HOW TO USE ── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-book-open"></i> How to Use</h2>
+
+                <!-- Step 1 -->
+                <div class="qms-step-item">
+                    <div class="qms-step-num">1</div>
+                    <div>
+                        <strong>Select Localization:</strong> Choose from 195 countries. The system
+                        adapts name formats, phone patterns, and address structures automatically to
+                        mimic real user data.
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="qms-step-item">
+                    <div class="qms-step-num">2</div>
+                    <div>
+                        <strong>Generate Data:</strong> Click "Generate". The client-side engine
+                        creates a unique identity instantly using robust randomization algorithms.
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="qms-step-item">
+                    <div class="qms-step-num">3</div>
+                    <div>
+                        <strong>Copy &amp; Test:</strong> Tap any card to copy its value. Use the
+                        Payment Token to test standard Stripe / PayPal Mod-10 validation inputs in
+                        sandbox environments.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CLIENT-SIDE PRIVACY ── -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-shield-halved"></i> Client-Side Privacy</h2>
+                <p>
+                    Most generators process data on remote servers.
+                    <strong>QA Mock Data Studio</strong> runs 100% in your browser using local
+                    JavaScript arrays. No data is ever sent to our servers, ensuring safety for
+                    enterprise testing contexts and GDPR compliance during development.
+                </p>
+            </div>
+
+            <!-- ── INTERNATIONAL LOCALIZATION ── -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-globe"></i> International Localization</h3>
+                <p>
+                    Testing software for a global audience requires verifying how your UI handles
+                    different name lengths and character sets. We support:
+                </p>
+                <ul>
+                    <li><strong>Latin:</strong> Western Europe, Americas, Oceania (accents and special chars included).</li>
+                    <li><strong>Cyrillic:</strong> Russia, Ukraine, Eastern Europe (multibyte character testing).</li>
+                    <li><strong>Asian:</strong> Japan, Korea, China, India (various formats and spacing).</li>
+                    <li><strong>Middle Eastern:</strong> UAE, Turkey, Saudi Arabia (Right-to-Left logic testing).</li>
+                </ul>
+            </div>
+
+            <!-- ── API MOCKING & DB SEEDING ── -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-server"></i> API Mocking &amp; Seeding</h3>
+                <p>
+                    Download the generated profile as JSON. This is perfect for seeding local
+                    databases (MongoDB / Postgres) or mocking API responses in frontend development
+                    (React / Vue / Angular) before the backend is ready.
+                </p>
+            </div>
+
+            <!-- ── DEVELOPER DISCLOSURE ─────────────────────────────
+                 Warning card styled with a red-tinted border to clearly
+                 communicate the legal / ethical boundary of the tool.
+            ──────────────────────────────────────────────────────────── -->
+            <div class="info-card qms-disclosure-card">
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> Developer Disclosure</h3>
+                <p>
+                    This is a <strong>Software Testing Utility</strong>. The "Payment Tokens" are
+                    mathematically valid (Luhn Algorithm) but functionally fictitious. They
+                    <strong>cannot</strong> be used for real purchases. Strictly for Dev / QA
+                    environments.
+                </p>
+            </div>
+
+        </section>
+        <!-- END SEO INFORMATION SECTION -->
+
+        <!-- ════════════════════════════════════════════════════════════
+             RELATED TOOLS GRID
+             Dynamically populated by related-tools.js based on the
+             data-category and data-current-page attributes.
+        ═════════════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top: 50px;">
+            <!--
+                IMPORTANT:
+                1. data-category      → category of this page (e.g. "dev", "pdf", "media")
+                2. data-current-page  → filename of this page (excluded from related list)
+            -->
+            <div
+                id="dynamic-related-tools"
+                data-category="dev"
+                data-current-page="dev-mock-json-generator.html"
+            ></div>
+        </div>
+
+        <!-- Related Tools Module (ES module — must remain type="module") -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- END MAIN -->
+
+    <!-- ════════════════════════════════════════════════════════════════
+         GLOBAL FOOTER — injected by global.js (DO NOT MODIFY)
+    ═════════════════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         CENTRALIZED ADS MANAGER (must appear before global.js)
+    ═════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         GLOBAL SCRIPT (handles header, footer, theme, toasts — DO NOT MODIFY)
+    ═════════════════════════════════════════════════════════════════════ -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         TOOL ENGINE — QA Mock Data Studio v5.1
+    ═════════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/tools/dev/dev-mock-json-generator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

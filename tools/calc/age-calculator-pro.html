@@ -1,0 +1,533 @@
+<!-- 
+    ============================================================
+    PRODUCT NAME: Ultra Age AI: God Mode Age Calculator
+    AUTHOR: MD KAWSAR
+    DESCRIPTION: A client-side, privacy-focused age analytics tool.
+    VERSION: 5.2 (CodeCanyon Release - Global CSS Framework Applied)
+    FRAMEWORK: TrustedToolsWeb Global CSS v2.0
+    ============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- External Scripts: Analytics (Must be first) -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ═══════════════════════════════════════════════════
+         [USER CONFIG] SEO SETTINGS
+         ═══════════════════════════════════════════════════ -->
+    <title>Ultra Age AI: God Mode Age Calculator &amp; Life Analytics (Free)</title>
+    <meta name="title"       content="Ultra Age AI: God Mode Age Calculator &amp; Life Analytics (Free)">
+    <meta name="description" content="Calculate your exact age, biological stats, and cosmic age in real-time. Ultra Age AI provides 100% client-side privacy with advanced life analytics and death timer.">
+    <meta name="keywords"    content="age calculator pro, biological age checker, life progress bar, death timer, zodiac finder, cosmic age calculator, ultra age ai, online tools bd, trusted tools web">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/calc-age-calculator.html" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type"         content="website">
+    <meta property="og:url"          content="https://trustedtoolsweb.com/calc-age-calculator.html">
+    <meta property="og:title"        content="Ultra Age AI - God Mode Analytics">
+    <meta property="og:description"  content="Discover your exact age down to the second, consumption stats, and bio-rhythms. 100% Client-side privacy.">
+    <meta property="og:image"        content="https://trustedtoolsweb.com/assets/tools/calc/calc-age-calculator/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="Ultra Age AI Dashboard Preview">
+    <meta property="og:site_name"    content="Trusted Tools Web">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/calc-age-calculator.html">
+    <meta name="twitter:title"       content="Ultra Age AI - God Mode Analytics">
+    <meta name="twitter:description" content="Calculate your life analytics, biological age, and cosmic time instantly. Privacy-first age calculator.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/calc/calc-age-calculator/og-banner.webp">
+
+    <!-- Favicon -->
+    <link rel="icon"             type="image/webp" href="../../assets/tools/calc/calc-age-calculator/favicon.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/tools/calc/calc-age-calculator/favicon.webp">
+
+    <!-- Font Awesome -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ✅ GLOBAL CSS FRAMEWORK — Single stylesheet for all tools -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+    
+     <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- Schema Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Ultra Age AI God Mode",
+        "url": "https://trustedtoolsweb.com/calc-age-calculator.html",
+        "description": "An advanced client-side age analytics tool providing biological, cosmic, and consumption statistics in real-time.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "5.2",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "Real-time age calculation, Biological stats, Cosmic age, Leap year correction, Privacy focused",
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/calc/calc-age-calculator/og-banner.webp"
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-box"></div>
+
+    <!-- Global Header (populated by global.js) -->
+    <header id="global-header" class="site-header"></header>
+
+
+    <main>
+        <!-- ═══════════════════════════════════════════════
+             MAIN TOOL CONTAINER
+             ═══════════════════════════════════════════════ -->
+        <div class="container animated-entry">
+
+            <!-- Privacy Badge -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Privacy
+            </div>
+
+            <!-- Tool Title -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-clock-rotate-left"></i> Ultra Age AI <span>God Mode</span>
+            </h1>
+            <p class="subtitle">Advanced Biological &amp; Chronological Analytics. Calculated in Real-Time.</p>
+
+            <!-- [AD SLOT] Top Banner -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+
+            <!-- ═══════════════════════
+                 INPUT SECTION
+                 ═══════════════════════ -->
+            <div class="input-wrapper">
+                <div class="multi-input-grid">
+
+                    <!-- Date of Birth — ID used by script.js -->
+                    <div>
+                        <label><i class="fa-regular fa-calendar"></i> Date of Birth</label>
+                        <input type="date" id="dobInput">
+                    </div>
+
+                    <!-- Time of Birth — ID used by script.js -->
+                    <div>
+                        <label><i class="fa-regular fa-clock"></i> Time of Birth (Optional)</label>
+                        <input type="time" id="tobInput" value="00:00">
+                    </div>
+
+                </div><!-- /multi-input-grid -->
+
+                <div class="btn-area">
+    <button class="btn btn-primary" onclick="startAnalysis()">
+        <i class="fa-solid fa-rocket"></i> Analyze Life Stream
+    </button>
+</div>
+
+
+            </div><!-- /input-wrapper -->
+
+
+            <!-- ═══════════════════════
+                 RESULT SECTION
+                 Hidden by default — script.js reveals via id="resultBox"
+                 ═══════════════════════ -->
+            <div id="resultBox">
+
+                <!-- Hero: Main Age Display & Live Timer -->
+                <div class="hero-age">
+                    <div class="text-hero-label">CURRENT EXISTENCE DURATION</div>
+                    <div class="exact-age" id="mainAge">0 Years</div>
+                    <div class="timer-box" id="liveTimer">00:00:00:00</div>
+
+                    <!-- Life Progress Bar -->
+                    <div class="mt-xl" style="text-align:left;">
+                        <div class="flex-between" style="font-size:12px; margin-bottom:5px;">
+                            <span class="text-muted">Life Progress (Assuming 80 Years)</span>
+                            <span id="progressText" style="font-weight:bold; color:var(--brand-primary);">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="lifeProgressBar"></div>
+                        </div>
+                        <div class="flex-between text-muted mt-sm" style="font-size:10px;">
+                            <span>Birth</span>
+                            <span>80 Yrs</span>
+                        </div>
+                    </div>
+                </div><!-- /hero-age -->
+
+
+                <!-- ═══════════════════════
+                     STATS GRID — 5 Cards
+                     All IDs preserved for script.js
+                     ═══════════════════════ -->
+                <div class="grid-system">
+
+                    <!-- Card 1: Time Breakdown -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa-regular fa-clock text-primary"></i> Time Expansion
+                        </div>
+                        <div class="stat-row"><span>Months Alive</span>  <span class="stat-val" id="totalMonths">0</span></div>
+                        <div class="stat-row"><span>Weeks Alive</span>   <span class="stat-val" id="totalWeeks">0</span></div>
+                        <div class="stat-row"><span>Days Alive</span>    <span class="stat-val" id="totalDays">0</span></div>
+                        <div class="stat-row"><span>Hours Alive</span>   <span class="stat-val" id="totalHours">0</span></div>
+                        <div class="stat-row"><span>Minutes Alive</span> <span class="stat-val" id="totalMinutes">0</span></div>
+                        <div class="stat-row"><span>Seconds Alive</span> <span class="stat-val" id="totalSeconds">0</span></div>
+                    </div>
+
+                    <!-- Card 2: Consumption Stats -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-utensils text-orange"></i> Estimated Consumption
+                        </div>
+                        <div class="stat-row"><span>Food Eaten</span>   <span class="stat-val" id="foodKg">0 kg</span></div>
+                        <div class="stat-row"><span>Water Drank</span>  <span class="stat-val" id="waterL">0 L</span></div>
+                        <div class="stat-row"><span>Steps Walked</span> <span class="stat-val" id="steps">0</span></div>
+                        <div class="stat-row"><span>Dreams Seen</span>  <span class="stat-val" id="dreams">0</span></div>
+                        <div class="stat-row"><span>Words Spoken</span> <span class="stat-val" id="words">0</span></div>
+                        <div class="stat-row text-small-label" style="margin-top:5px;">*Based on global human averages</div>
+                    </div>
+
+                    <!-- Card 3: Biological Stats -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-heart-pulse text-success"></i> Bio-Engine Status
+                        </div>
+                        <div class="stat-row"><span>Heartbeats</span>    <span class="stat-val text-primary" id="bioHearts">0</span></div>
+                        <div class="stat-row"><span>Breaths Taken</span> <span class="stat-val" id="bioBreaths">0</span></div>
+                        <div class="stat-row"><span>Blood Pumped</span>  <span class="stat-val" id="bioBlood">0 L</span></div>
+                        <div class="stat-row"><span>Hair Growth</span>   <span class="stat-val" id="bioHair">0 m</span></div>
+                        <div class="stat-row"><span>Cells Replaced</span><span class="stat-val">~ Billions</span></div>
+                    </div>
+
+                    <!-- Card 4: Cosmic Age -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-user-astronaut text-accent-secondary"></i> Cosmic Age
+                        </div>
+                        <div class="stat-row"><span>Mercury Age</span> <span class="stat-val" id="ageMerc">0</span></div>
+                        <div class="stat-row"><span>Venus Age</span>   <span class="stat-val" id="ageVen">0</span></div>
+                        <div class="stat-row"><span>Mars Age</span>    <span class="stat-val" id="ageMars">0</span></div>
+                        <div class="stat-row"><span>Jupiter Age</span> <span class="stat-val" id="ageJup">0</span></div>
+                        <div class="stat-row border-top-subtle" style="margin-top:5px; padding-top:10px;">
+                            <span>Next Birthday:</span>
+                            <span class="stat-val text-success" id="nextBday">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Mystical Stats -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-wand-magic-sparkles text-accent-purple"></i> Mystical Stats
+                        </div>
+                        <div class="stat-row"><span>Dog Years</span>   <span class="stat-val" id="dogAge">0</span></div>
+                        <div class="stat-row"><span>Cat Years</span>   <span class="stat-val" id="catAge">0</span></div>
+                        <div class="stat-row"><span>Zodiac Sign</span> <span class="stat-val text-accent-cyan" id="zodiac">--</span></div>
+                        <div class="stat-row"><span>Birthstone</span>  <span class="stat-val" id="stone">--</span></div>
+                        <div class="stat-row"><span>Season (BD)</span> <span class="stat-val" id="season">--</span></div>
+                    </div>
+
+                </div><!-- /grid-system -->
+
+
+                <!-- Result Action Buttons -->
+                <div class="btn-area">
+    <button class="btn btn-primary bg-btn-export" onclick="downloadTxt()">
+        <i class="fa-solid fa-file-export"></i> Export Report
+    </button>
+    <button class="btn btn-primary bg-btn-print" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print Data
+    </button>
+</div>
+
+
+            </div><!-- /resultBox -->
+
+
+            <!-- [AD SLOT] Bottom Banner -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+
+            <!-- ═══════════════════════════════════════════════
+                 SEO INFO SECTION
+                 ═══════════════════════════════════════════════ -->
+            <section class="info-section-wrapper">
+
+                <!-- User Guide -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-circle-question"></i> User Guide: How to Operate</h2>
+                    <p><strong>Ultra Age AI God Mode</strong> generates complex chronological and biological analytics in real-time. Follow these steps to extract your life data:</p>
+                    <ul class="guide-list">
+                        <li>
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <div>
+                                <strong>Step 1: Input Biological Data</strong><br>
+                                Click on the calendar icon in the first box and accurately select your <strong>Date of Birth</strong> (Year, Month, and Day).
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <div>
+                                <strong>Step 2: Time Synchronization (Optional)</strong><br>
+                                For precision down to the second, enter your exact <strong>Time of Birth</strong>. If unknown, you can leave it at default (00:00).
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-rocket"></i>
+                            <div>
+                                <strong>Step 3: Initiate Analysis</strong><br>
+                                Click the <strong>"Analyze Life Stream"</strong> button. The AI engine will instantly calculate your biological and cosmic age metrics.
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            <div>
+                                <strong>Step 4: Export Data</strong><br>
+                                Once the results are generated, you can use the <strong>"Export Report"</strong> button to download a detailed <code>.txt</code> file of your life stats for offline storage.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Technical Architecture -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-microchip"></i> Technical Architecture: How It Works</h2>
+                    <p><strong>Ultra Age AI God Mode</strong> is not a standard date calculator. It is built upon a high-precision <span class="tech-highlight">Client-Side JavaScript Engine</span> that utilizes your device's processing power to render analytics in real-time.</p>
+                    <h3>1. Precision Time Calculation</h3>
+                    <p>The system calculates the exact delta between your input <code>Date of Birth</code> and the current atomic time (<code>Date.now()</code>). Unlike basic calculators, our algorithm explicitly accounts for Leap Years (366 days) and the Gregorian calendar's varying month lengths (28, 30, or 31 days) to prevent rounding errors.</p>
+                    <h3>2. Real-Time Logic Loop</h3>
+                    <p>Using the JavaScript <code>setInterval</code> method, the engine refreshes the data every 1000 milliseconds (1 second). This allows you to watch your life's duration tick upwards in real-time without refreshing the page.</p>
+                </div>
+
+                <!-- Biological Algorithms -->
+             <div class="info-card">
+    <h2><i class="fa-solid fa-heart-pulse"></i> Biological &amp; Vital Algorithms</h2>
+    
+    <div style="display:flex; flex-direction:column; align-items:center; gap:25px;">
+        
+        <div>
+            <img src="../../assets/tools/calc/calc-age-calculator/bio-vector.webp"
+                 alt="Human biological anatomy digital illustration"
+                 width="120" height="120" loading="lazy"
+                 style="border-radius:12px; box-shadow:0 0 20px rgba(35,134,54,0.2);">
+        </div>
+
+        <div style="width:100%; text-align:left;">
+            <p>The numbers displayed in the "Bio-Engine Status" and "Consumption" cards are derived from global medical averages applied to your specific lifespan:</p>
+            <ul>
+                <li><strong>Heart &amp; Breath:</strong> Calculated using the medical baseline of 75 heartbeats/min and 16 breaths/min.</li>
+                <li><strong>Metabolic Output:</strong> Based on the average human consumption of 1.5kg of food and 2 Liters of water per day.</li>
+                <li><strong>Cellular Growth:</strong> Estimates hair growth based on the biological average of 0.4mm per day.</li>
+            </ul>
+        </div>
+        
+    </div>
+</div>
+
+
+                <!-- Cosmic Relativity -->
+             <div class="info-card">
+    <h2><i class="fa-solid fa-user-astronaut"></i> Cosmic Relativity (Space Time)</h2>
+    
+    <div style="display:flex; flex-direction:column; align-items:center; gap:25px;">
+        
+        <div>
+            <img src="../../assets/tools/calc/calc-age-calculator/cosmic-vector.webp"
+                 alt="Solar system planetary orbit illustration"
+                 width="120" height="120" loading="lazy"
+                 style="border-radius:50%; box-shadow:0 0 20px rgba(209,36,255,0.2); border:1px solid rgba(255,255,255,0.1);">
+        </div>
+
+        <div style="width:100%; text-align:left;">
+            <p>Time is relative to your location in the solar system. We calculate your "Cosmic Age" using orbital constants relative to Earth:</p>
+            <ul>
+                <li><strong>Mars Age:</strong> Since Mars takes 1.88 Earth years to orbit the Sun, your age is divided by 1.88.</li>
+                <li><strong>Jupiter Age:</strong> Jupiter's orbit is much slower (11.86 Earth years), making you significantly younger there.</li>
+                <li><strong>Venus Age:</strong> Venus orbits faster (0.62 Earth years), making you older on Venus than on Earth.</li>
+            </ul>
+        </div>
+        
+    </div>
+</div>
+
+                <!-- Seasonal & Fun Analytics -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Seasonal &amp; Fun Analytics</h2>
+                    <p>This section analyzes your birth month to determine your Zodiac sign, Birthstone, and the specific Season (based on the 6-Season cycle used in South Asia/Bangladesh). Additionally, it uses complex tiered formulas to calculate accurate <strong>Dog Years</strong> and <strong>Cat Years</strong> (accounting for rapid maturation in the first 2 years of a pet's life).</p>
+                </div>
+
+                <!-- Leap Year -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-calendar-days"></i> The Leap Year Anomaly: Why Precision Matters</h2>
+                    <p>Most simple age calculators fail because they treat every year as 365 days. However, the Earth actually takes 365.2422 days to orbit the Sun. To fix this drift, the Gregorian calendar adds a 29th day to February every four years.</p>
+                    <p><strong>Ultra Age AI</strong> accounts for every single leap year (366 days) that has occurred since your birth. Whether you were born on a leap day or just lived through them, our engine adds those extra 24 hours to your total survival time, ensuring your "Total Hours" and "Seconds" are mathematically perfect.</p>
+                </div>
+
+                <!-- Heart Metronome -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-heart-pulse"></i> Your Heart: The Biological Metronome</h2>
+                    <p>The human heart is a tireless engine. On average, it beats about 100,000 times a day. The figure displayed in your results is based on a resting heart rate of 75 beats per minute (BPM).</p>
+                    <p>While this is an average, athletes may have lower numbers, and stress can raise them. Seeing this number in the millions or billions puts into perspective just how much work your body does automatically, every single second, to keep you alive. It's a reminder to take care of your cardiovascular health.</p>
+                </div>
+
+                <!-- Why Count in Seconds -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-hourglass-half"></i> Why Count in Seconds?</h2>
+                    <p>We usually measure our lives in years, which makes time feel slow and abundant. But when you switch the metric to seconds or weeks, the perspective shifts dramatically.</p>
+                    <p>Seeing your age tick up in real-time (Seconds Alive) creates a psychological effect known as <strong>"Temporal Salience."</strong> It makes the passing of time feel tangible and urgent. This tool isn't just about counting numbers; it's about visualizing the flow of your life to inspire better time management and productivity.</p>
+                </div>
+
+                <!-- Time Relativity -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-planet-ringed"></i> Time Relativity: Age is Just a Number (on Earth)</h2>
+                    <p>Your age is strictly defined by how many times Earth has orbited the Sun since you were born. But if you lived on another planet, your age would be radically different due to "Orbital Periods."</p>
+                    <ul>
+                        <li><strong>Mercury:</strong> Orbits the sun in just 88 days. If you are 20 on Earth, you'd be an elder of 83 on Mercury!</li>
+                        <li><strong>Jupiter:</strong> Takes nearly 12 Earth years to complete one orbit. A 24-year-old human would be a mere toddler of 2 years old on the Gas Giant.</li>
+                    </ul>
+                    <p>This section of the tool uses real NASA orbital data to calculate your extraterrestrial age.</p>
+                </div>
+
+                <!-- Client-Side Privacy -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-user-shield"></i> Why Client-Side Processing is Safer</h2>
+                    <p>In an era where data breaches are common, <strong>Ultra Age AI</strong> takes a different approach. Traditional tools send your birth date to a backend server to calculate the result. This creates a digital footprint.</p>
+                    <p>Our "God Mode" engine runs 100% on your device's browser (Client-Side). Your personal date of birth never leaves your phone or computer. Once the page loads, you can even turn off your internet, and the tool will continue to function perfectly. This is the gold standard of digital privacy.</p>
+                </div>
+
+                <!-- Sleep -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-bed"></i> The Third of Your Life You Don't Remember</h2>
+                    <p>Humans spend approximately 33% of their lives sleeping. If our tool shows you have lived for 30 years, you have likely spent about 10 of those years asleep!</p>
+                    <p>The "Dreams Seen" statistic in our tool is based on the REM (Rapid Eye Movement) cycle. An average person has 3 to 5 dreams per night, though most are forgotten immediately. Over a lifetime, this adds up to hundreds of thousands of mental voyages that exist only in your subconscious.</p>
+                </div>
+
+                <!-- Hydration -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-glass-water"></i> Hydration Analytics: Your Water Footprint</h2>
+                    <p>Water is the essence of biology. The average adult needs about 2 to 2.5 liters of water daily for optimal kidney function and cellular health. The "Water Drank" stat calculates your lifetime fluid intake.</p>
+                    <p>Interestingly, this number only accounts for direct drinking. If we included the water used to grow the food you've eaten (virtual water footprint), the number would be 100 times higher! This metric serves as a fun reminder to stay hydrated.</p>
+                </div>
+
+                <!-- Life Progress Bar explanation -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-battery-half"></i> Decoding the "Life Progress" Bar</h2>
+                    <p>You might notice a percentage bar showing your life's progress. We use a baseline of <strong>80 Years</strong> for this calculation. Why?</p>
+                    <p>According to global life expectancy data (which varies from 72 to 85 depending on the region), 80 is a standard statistical average for a modern human lifespan. This bar isn't a prediction of mortality but a visualization of time spent versus time remaining, designed to motivate you to make the most of the remaining percentage.</p>
+                </div>
+
+                <!-- Dog Years -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-paw"></i> The Myth of "7 Dog Years"</h2>
+                    <p>A common myth is that one human year equals seven dog years. Science tells us it's more complex. Pets mature very quickly in their first two years.</p>
+                    <p><strong>Ultra Age AI</strong> uses the newer "ln-scale" formula. For example, a 1-year-old dog is physiologically similar to a 15-year-old human teenager, not a 7-year-old child. Our tool applies this non-linear aging curve to give you a scientifically comparison of your age in the animal kingdom.</p>
+                </div>
+
+                <!-- Performance -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-bolt"></i> Performance: 0.001ms Latency</h2>
+                    <p>We optimized the JavaScript code to ensure zero lag. When you input your date, the calculation happens in less than a millisecond.</p>
+                    <p>The real-time timer uses the browser's <code>requestAnimationFrame</code> or <code>setInterval</code> method to sync with your system clock. This ensures that the "Seconds Alive" counter doesn't drift over time, keeping your analytics accurate to the atomic second as long as the tab remains open.</p>
+                </div>
+
+                <!-- Food -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-utensils"></i> A Mountain of Food</h2>
+                    <p>The "Food Eaten" stat might shock you. An average human consumes about 1.5kg to 2kg of food daily. Over a lifetime of 80 years, this accumulates to nearly 30-50 tonnes of organic matter!</p>
+                    <p>To visualize this: 30 tonnes is roughly the weight of 5 adult African Elephants. Your body has processed this massive amount of energy to keep your heart beating and your brain thinking every single day since you were born.</p>
+                </div>
+
+                <!-- Privacy Policy -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-shield-halved"></i> Privacy &amp; Data Policy</h2>
+                    <ol>
+                        <li><strong>Zero Data Collection:</strong> This tool is "Client-Side Only." Your birth date is processed locally in your browser and is <strong>never</strong> sent to any server or database.</li>
+                        <li><strong>Offline Capable:</strong> Once loaded, the tool works entirely without an internet connection, ensuring maximum privacy.</li>
+                        <li><strong>Data Sovereignty:</strong> You can download your data using the "Export Report" feature, which generates a purely local <code>.txt</code> file on your device.</li>
+                    </ol>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="info-card" style="border-left: 4px solid var(--accent-yellow);">
+                    <h2 style="border-left:none; padding-left:0;">
+                        <i class="fa-solid fa-triangle-exclamation" style="color:var(--accent-yellow);"></i>
+                        Disclaimer &amp; Data Accuracy
+                    </h2>
+                    <p>Please note the following regarding the analytics generated by <strong>Ultra Age AI</strong>:</p>
+                    <ul style="list-style:disc; padding-left:20px; color:var(--text-muted); line-height:1.6;">
+                        <li style="margin-bottom:10px;">
+                            <strong>Not Medical Advice:</strong> The biological statistics displayed (Heartbeats, Breaths, Blood Pumped, etc.) are mathematical approximations based on global medical averages (e.g., average heart rate of 75 bpm). This tool <strong>does not</strong> measure your actual physiological state and should strictly be used for educational or entertainment purposes only.
+                        </li>
+                        <li style="margin-bottom:10px;">
+                            <strong>Estimation Logic:</strong> Consumption metrics (Food, Water, Steps) are derived from standard human activity models. Your actual lifestyle and habits may vary significantly from these estimated figures.
+                        </li>
+                        <li>
+                            <strong>No Liability:</strong> Trusted Tools Web is not responsible for any decisions made based on these calculations. The "Death Timer" or "Life Progress" features are hypothetical visualizations based on an average human lifespan of 80 years.
+                        </li>
+                    </ul>
+                </div>
+
+            </section><!-- /info-section-wrapper -->
+
+
+            <!-- ═══════════════════════════════════════════════
+                 RELATED TOOLS SECTION (Dynamic)
+                 ═══════════════════════════════════════════════ -->
+            <div class="container" style="margin-top:50px;">
+                <!--
+                    [USER CONFIG]:
+                    data-category  → folder category of this tool (e.g. "calc", "pdf", "dev")
+                    data-current-page → filename of this page
+                -->
+                <div id="dynamic-related-tools"
+                     data-category="calc"
+                     data-current-page="calc-age-calculator.html">
+                </div>
+            </div>
+            <script type="module" src="../../assets/js/related-tools.js"></script>
+
+        </div><!-- /container -->
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+
+    <!-- Global Footer (populated by global.js) -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- Ad System (must load before global.js) -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global JS (header, footer, theme toggle) -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- Tool JS — All JS logic intact, no changes -->
+    <script src="../../assets/tools/calc/calc-age-calculator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

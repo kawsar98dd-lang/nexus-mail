@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ================================================================
+         [SYSTEM]: Analytics & Site Config Loader (Do Not Remove)
+         These scripts must load FIRST to initialize site-wide config,
+         analytics tracking, and meta-tag injection before render.
+    ================================================================ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ================================================================
+         [USER CONFIG]: Page Title & SEO Meta Tags
+         Fully optimized for:
+           - Image Steganography
+           - Hide text in image
+           - AES-256 image encryption
+           - Offline steganography tool
+           - Stegano Vault, LSB steganography
+    ================================================================ -->
+    <title>Stegano Vault ULTRA MAX — AES-256 Image Steganography & Text Hiding Tool | Trusted Tools Web</title>
+    <meta name="title"         content="Stegano Vault ULTRA MAX — AES-256 Image Steganography & Text Hiding Tool | Trusted Tools Web">
+    <meta name="description"   content="Hide encrypted secret messages inside any image using military-grade AES-256 encryption + LSB steganography. 100% client-side, offline-ready. No server, no data leaks. The most advanced free image steganography tool online.">
+    <meta name="keywords"      content="image steganography, hide text in image, AES-256 image encryption, offline steganography, LSB steganography, steganography tool online, hide message in photo, image encryption tool, secret message in image, stegano vault, pixel steganography, canvas steganography, free steganography tool, trusted tools web">
+    <meta name="author"        content="Trusted Tools Web">
+    <meta name="robots"        content="index, follow">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- [USER CONFIG]: Canonical URL -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/sec-steganography.html" />
+
+    <!-- ================================================================
+         Open Graph Meta Tags (Facebook, LinkedIn, Slack, Discord unfurl)
+    ================================================================ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/sec-steganography.html">
+    <meta property="og:title"       content="Stegano Vault ULTRA MAX — Hide Encrypted Secrets Inside Images">
+    <meta property="og:description" content="Military-grade AES-256 encryption meets LSB image steganography. Hide any text inside a PNG pixel-perfectly. 100% client-side & free forever.">
+    <meta property="og:image"       content="../../assets/tools/sec/sec-steganography/img/og-cover.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+
+    <!-- ================================================================
+         Twitter Card Meta Tags
+    ================================================================ -->
+    <meta property="twitter:card"        content="summary_large_image">
+    <meta property="twitter:url"         content="https://trustedtoolsweb.com/sec-steganography.html">
+    <meta property="twitter:title"       content="Stegano Vault ULTRA MAX — AES-256 Image Steganography">
+    <meta property="twitter:description" content="Hide AES-256 encrypted secrets inside images. No server. No uploads. Totally free & offline-capable.">
+    <meta property="twitter:image"       content="../../assets/tools/sec/sec-steganography/img/og-cover.webp">
+
+    <!-- ================================================================
+         [USER CONFIG]: Favicons & Theme Color
+    ================================================================ -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+    <meta name="theme-color" content="#00ff88">
+
+    <!-- ================================================================
+         External Libraries: FontAwesome & Custom Fonts (Local Paths)
+         [DEV NOTE]: All library paths use local assets — no CDN needed.
+    ================================================================ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <!-- JetBrains Mono: Ideal monospace for code/security tool aesthetics -->
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+
+    <!-- ================================================================
+         CryptoJS (Local): Powers AES-256 encryption/decryption.
+         [DEV NOTE]: Loaded BEFORE global.css and tool scripts so that
+                     the CryptoJS global is available to script.js at init.
+    ================================================================ -->
+    <script src="../../assets/library/crypto/crypto-js/crypto-js.min.js"></script>
+
+    <!-- ================================================================
+         Global Stylesheet: CSS variables, base resets, layout, header/footer
+    ================================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- ================================================================
+         Tools Template Stylesheet:
+         Universal modular component library for all tool pages.
+         Contains all reusable UI classes + Stegano Vault unique styles.
+    ================================================================ -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ================================================================
+         JSON-LD Structured Data Schema
+         Types: WebApplication + HowTo for Google Rich Results
+    ================================================================ -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Stegano Vault ULTRA MAX — AES-256 Image Steganography",
+        "url": "https://trustedtoolsweb.com/sec-steganography.html",
+        "description": "A premium, 100% client-side image steganography tool. Hide AES-256 encrypted secret messages inside PNG/JPG images using LSB (Least Significant Bit) pixel manipulation. Features real-time capacity analysis, drag-and-drop upload, and lossless PNG export.",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge.",
+        "image": "https://trustedtoolsweb.com/assets/tools/sec/sec-steganography/img/og-cover.webp",
+        "featureList": [
+          "AES-256 Encryption before pixel embedding",
+          "LSB (Least Significant Bit) Steganography",
+          "Real-time Capacity Analyzer",
+          "Drag-and-Drop Image Upload",
+          "Lossless PNG Export",
+          "100% Client-Side Processing",
+          "Offline Ready"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "category": "Free Tool"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "Trusted Tools Web",
+          "url": "https://trustedtoolsweb.com"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Hide an Encrypted Message Inside an Image",
+        "description": "Step-by-step guide to using Stegano Vault ULTRA MAX to encode AES-256 encrypted text into an image using LSB steganography.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload Carrier Image",
+            "text": "Drag and drop or click to upload any PNG or JPG image that will act as the secret message carrier."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Enter Secret Message",
+            "text": "Type the secret text you want to hide inside the image. Check the real-time capacity analyzer to ensure it fits."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Set AES-256 Password",
+            "text": "Enter a strong password. Your message will be AES-256 encrypted BEFORE being embedded into the image pixels."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Encode & Download",
+            "text": "Click 'Encode & Lock'. The tool embeds your encrypted message into the image pixels and exports a lossless PNG for download."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 5,
+            "name": "Decode the Secret",
+            "text": "Switch to the Decode tab. Upload the stegano image, enter the password, and click 'Decode & Reveal' to extract your message."
+          }
+        ]
+      }
+    ]
+    </script>
+
+</head>
+
+<body>
+
+    <!-- ================================================================
+         [SYSTEM]: Global Header — Populated by global.js (Do Not Remove)
+    ================================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ================================================================
+         MAIN CONTENT WRAPPER
+         The <main> tag itself acts as the centered max-width page wrapper
+         per tools-template.css Section 3 layout rules.
+    ================================================================ -->
+    <main class="tool-main-wrapper">
+
+        <!-- ============================================================
+             TOP AD SLOT
+             [USER CONFIG]: Managed by ads-manager.js
+        ============================================================ -->
+        <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+        <!-- ============================================================
+             TOOL HERO HEADER
+             Contains the animated badge, H1 title, subtitle, and
+             feature pills — all styled via the .stv- prefix classes
+             defined in tools-template.css Section 57.
+        ============================================================ -->
+        <section class="stv-hero">
+            <div class="container animated-entry">
+
+                <!-- Animated "GOD MODE" badge with live status dot -->
+                <div class="stv-badge">
+                    <span class="stv-badge-dot"></span>
+                    <span>GOD MODE TOOL</span>
+                    <span class="stv-badge-sep">|</span>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>CATEGORY: SECURITY</span>
+                </div>
+
+                <!-- Main H1 tool title — gradient span via .tool-title rules -->
+                <h1 class="tool-title">
+                    <i class="fa-solid fa-vault"></i>
+                    Stegano Vault <span>ULTRA MAX</span>
+                </h1>
+
+                <!-- Subtitle: tagline with 100% Client-Side Processing callout -->
+                <p class="subtitle">
+                    Military-grade <strong>AES-256 Encryption</strong> + <strong>LSB Image Steganography</strong>.<br>
+                    Hide encrypted secrets inside pixels. <strong>100% Client-Side Processing.</strong> Zero Server. Zero Leaks.
+                </p>
+
+                <!-- Feature pills row: quick-scan highlights for users -->
+                <div class="stv-pills">
+                    <span class="stv-pill"><i class="fa-solid fa-lock"></i> AES-256</span>
+                    <span class="stv-pill"><i class="fa-solid fa-eye-slash"></i> LSB Steganography</span>
+                    <span class="stv-pill"><i class="fa-solid fa-microchip"></i> Client-Side</span>
+                    <span class="stv-pill"><i class="fa-solid fa-wifi"></i> Offline Ready</span>
+                    <span class="stv-pill"><i class="fa-solid fa-file-image"></i> PNG Export</span>
+                </div>
+
+            </div>
+        </section><!-- /.stv-hero -->
+
+        <!-- ============================================================
+             MAIN TOOL INTERFACE
+             Contains the tab switcher + encode/decode panels.
+        ============================================================ -->
+        <section class="stv-interface-section">
+            <div class="container animated-entry">
+
+                <!-- ---- TAB SWITCHER ----
+                     Two tabs: Encode (hide message) and Decode (reveal message).
+                     JS targets .tab-btn[data-tab] and #panel-encode / #panel-decode.
+                -->
+                <div class="stv-tab-switcher tab-nav" role="tablist" aria-label="Tool Modes">
+                    <button class="tab-btn active stv-tab-btn" id="tab-encode" role="tab"
+                            aria-selected="true" aria-controls="panel-encode" data-tab="encode">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Encode</span>
+                        <small>Hide Message</small>
+                    </button>
+                    <button class="tab-btn stv-tab-btn" id="tab-decode" role="tab"
+                            aria-selected="false" aria-controls="panel-decode" data-tab="decode">
+                        <i class="fa-solid fa-unlock-keyhole"></i>
+                        <span>Decode</span>
+                        <small>Reveal Message</small>
+                    </button>
+                </div>
+
+                <!-- ================================================================
+                     ENCODE PANEL
+                     Tab panel: hide an AES-256 encrypted message inside an image.
+                     ID must remain "panel-encode" — targeted by UIController.switchTab().
+                ================================================================ -->
+                <div class="tab-panel active stv-panel" id="panel-encode" role="tabpanel" aria-labelledby="tab-encode">
+                    <div class="stv-panel-grid">
+
+                        <!-- LEFT COLUMN: Image Upload + Preview + Capacity Analyzer -->
+                        <div class="stv-panel-col">
+
+                            <!-- CARRIER IMAGE CARD -->
+                            <div class="card stv-card">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-image"></i>
+                                    <h2>Carrier Image</h2>
+                                    <span class="badge badge-info stv-card-badge">Step 1</span>
+                                </div>
+                                <div class="stv-card-body">
+
+                                    <!-- Drag-and-Drop Upload Zone
+                                         ID "encode-drop-zone" and class "drag-over"
+                                         are targeted by ImageHandler.bindEvents() in script.js -->
+                                    <div class="stv-drop-zone" id="encode-drop-zone"
+                                         role="button" tabindex="0"
+                                         aria-label="Upload carrier image. Drag and drop or click.">
+                                        <div class="stv-drop-inner">
+                                            <div class="stv-drop-icon">
+                                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                            </div>
+                                            <p class="stv-drop-title">Drag &amp; Drop Image</p>
+                                            <p class="stv-drop-sub">or click to browse</p>
+                                            <p class="stv-drop-types">PNG · JPG · WEBP · BMP</p>
+                                        </div>
+                                        <!-- Hidden file input — triggered by drop zone click event -->
+                                        <input type="file" id="encode-file-input"
+                                               accept="image/png,image/jpeg,image/webp,image/bmp"
+                                               hidden aria-hidden="true">
+                                    </div>
+
+                                    <!-- Image Preview Area
+                                         Hidden by default; revealed after upload via JS.
+                                         IDs: encode-preview-wrap, encode-canvas, encode-image-meta, encode-clear-btn -->
+                                    <div class="stv-preview-wrap" id="encode-preview-wrap" hidden>
+                                        <canvas id="encode-canvas" aria-label="Uploaded image preview"></canvas>
+                                        <div class="stv-image-meta" id="encode-image-meta"></div>
+                                        <!-- Clear/Remove button — triggers ImageHandler.clear() -->
+                                        <button class="btn btn-danger stv-clear-btn" id="encode-clear-btn"
+                                                aria-label="Remove image">
+                                            <i class="fa-solid fa-xmark"></i> Remove
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div><!-- /.card (Carrier Image) -->
+
+                            <!-- CAPACITY ANALYZER CARD
+                                 Displays real-time pixel capacity for the loaded image.
+                                 All IDs are targeted by CapacityAnalyzer in script.js. -->
+                            <div class="card stv-card" id="capacity-card">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-gauge-high"></i>
+                                    <h2>Capacity Analyzer</h2>
+                                    <span class="badge badge-success stv-card-badge">Live</span>
+                                </div>
+                                <div class="stv-card-body">
+
+                                    <!-- Progress bar: shows char usage vs. max capacity -->
+                                    <div class="stv-cap-bar-wrap" aria-live="polite">
+                                        <div class="stv-cap-track">
+                                            <!-- Width driven by CapacityAnalyzer.update() in JS -->
+                                            <div class="stv-cap-fill" id="capacity-bar-fill" style="width:0%"></div>
+                                        </div>
+                                        <div class="stv-cap-stats">
+                                            <span id="capacity-used">0</span> chars used /
+                                            <span id="capacity-total">—</span> chars max
+                                        </div>
+                                    </div>
+
+                                    <!-- Pixel-by-pixel dimension & byte details -->
+                                    <div class="stv-cap-details" id="capacity-details">
+                                        <div class="stv-cap-stat">
+                                            <i class="fa-solid fa-ruler-combined"></i>
+                                            <span id="cap-dimensions">Upload an image to analyze</span>
+                                        </div>
+                                        <div class="stv-cap-stat">
+                                            <i class="fa-solid fa-database"></i>
+                                            <span id="cap-bytes">—</span>
+                                        </div>
+                                        <div class="stv-cap-stat">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                            <span>3 bits hidden per pixel (R, G, B LSBs)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Over-capacity alert — shown when message exceeds image limit -->
+                                    <div class="stv-cap-alert" id="capacity-alert" hidden aria-live="assertive">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                        <span id="capacity-alert-msg">Message exceeds image capacity.</span>
+                                    </div>
+
+                                </div>
+                            </div><!-- /.card (Capacity Analyzer) -->
+
+                        </div><!-- /.stv-panel-col (left) -->
+
+                        <!-- RIGHT COLUMN: Secret Message + AES-256 Settings + Encode Action -->
+                        <div class="stv-panel-col">
+
+                            <!-- SECRET MESSAGE CARD -->
+                            <div class="card stv-card">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-envelope-open-text"></i>
+                                    <h2>Secret Message</h2>
+                                    <span class="badge badge-warning stv-card-badge">Step 2</span>
+                                </div>
+                                <div class="stv-card-body">
+
+                                    <!-- Secret text input with live character counter -->
+                                    <div class="stv-field-group">
+                                        <label for="encode-message" class="stv-field-label">
+                                            <i class="fa-solid fa-keyboard"></i> Your Secret Text
+                                        </label>
+                                        <div class="stv-textarea-wrap">
+                                            <!-- ID "encode-message" is read by bindEncodeEvents() -->
+                                            <textarea
+                                                id="encode-message"
+                                                class="input-control stv-textarea"
+                                                placeholder="Type your secret message here… It will be AES-256 encrypted BEFORE being hidden in the image pixels."
+                                                rows="7"
+                                                spellcheck="false"
+                                                aria-describedby="char-count-label"
+                                            ></textarea>
+                                            <!-- Live character count — updated by input event in JS -->
+                                            <div class="stv-textarea-footer">
+                                                <span id="char-count-label" aria-live="polite">
+                                                    <i class="fa-solid fa-text-size"></i>
+                                                    <span id="char-count">0</span> characters
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!-- /.card (Secret Message) -->
+
+                            <!-- AES-256 ENCRYPTION SETTINGS CARD -->
+                            <div class="card stv-card">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-key"></i>
+                                    <h2>AES-256 Encryption</h2>
+                                    <span class="badge badge-danger stv-card-badge">Step 3</span>
+                                </div>
+                                <div class="stv-card-body">
+
+                                    <!-- Encryption password field with show/hide toggle -->
+                                    <div class="stv-field-group">
+                                        <label for="encode-password" class="stv-field-label">
+                                            <i class="fa-solid fa-lock"></i> Encryption Password
+                                        </label>
+                                        <!-- Password wrap: input + toggle button side by side -->
+                                        <div class="stv-password-wrap">
+                                            <input
+                                                type="password"
+                                                id="encode-password"
+                                                class="input-control stv-field-input"
+                                                placeholder="Enter a strong password (min 8 chars)"
+                                                autocomplete="new-password"
+                                                aria-describedby="password-strength-label"
+                                            >
+                                            <!-- Toggle visibility — data-target must match input ID -->
+                                            <button class="stv-toggle-password toggle-password"
+                                                    type="button"
+                                                    aria-label="Toggle password visibility"
+                                                    data-target="encode-password">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
+                                        <!-- Animated password strength meter bar -->
+                                        <div class="stv-strength-wrap" aria-live="polite">
+                                            <div class="stv-strength-track">
+                                                <!-- Width + color set by PasswordHelper.updateStrength() -->
+                                                <div class="stv-strength-fill" id="encode-strength-fill"></div>
+                                            </div>
+                                            <span class="stv-strength-label" id="password-strength-label">Enter password</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Confirm password field -->
+                                    <div class="stv-field-group">
+                                        <label for="encode-password-confirm" class="stv-field-label">
+                                            <i class="fa-solid fa-lock-keyhole"></i> Confirm Password
+                                        </label>
+                                        <div class="stv-password-wrap">
+                                            <input
+                                                type="password"
+                                                id="encode-password-confirm"
+                                                class="input-control stv-field-input"
+                                                placeholder="Re-enter password to confirm"
+                                                autocomplete="new-password"
+                                            >
+                                            <button class="stv-toggle-password toggle-password"
+                                                    type="button"
+                                                    aria-label="Toggle confirm password visibility"
+                                                    data-target="encode-password-confirm">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
+                                        <!-- Password match status — class toggled by PasswordHelper.updateMatch() -->
+                                        <div class="match-status stv-match-status" id="password-match-status" aria-live="polite"></div>
+                                    </div>
+
+                                    <!-- Encryption algorithm info badge -->
+                                    <div class="stv-algo-badge">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                        <div>
+                                            <strong>AES-256-CBC</strong> via CryptoJS
+                                            <small>PBKDF2 key derivation · HMAC-SHA256</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!-- /.card (AES-256 Encryption) -->
+
+                            <!-- ENCODE ACTION CARD
+                                 Contains the primary encode button, download area,
+                                 and error display. -->
+                            <div class="card stv-card stv-action-card">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                    <h2>Encode &amp; Export</h2>
+                                    <span class="badge badge-primary stv-card-badge">Step 4</span>
+                                </div>
+                                <div class="stv-card-body">
+
+                                    <!-- Primary encode button — triggers SteganoVault.runEncode() -->
+                                    <div class="btn-area">
+                                        <button class="btn btn-primary stv-action-btn" id="encode-btn"
+                                                aria-label="Encode message into image">
+                                            <span class="btn-idle">
+                                                <i class="fa-solid fa-lock"></i>
+                                                Encode &amp; Lock Image
+                                            </span>
+                                            <span class="btn-loading" hidden>
+                                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                                Processing pixels…
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Download area: revealed after successful encode via JS
+                                         ID "encode-download-area" toggled hidden/visible by runEncode() -->
+                                    <div class="stv-download-area" id="encode-download-area" hidden aria-live="polite">
+                                        <div class="stv-download-success">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <div>
+                                                <strong>Message encoded successfully!</strong>
+                                                <small>Download your stegano image (lossless PNG)</small>
+                                            </div>
+                                        </div>
+                                        <!-- Download link — href and download attr set by JS -->
+                                        <a id="encode-download-link" class="btn btn-success stv-download-btn" download="stegano-vault-output.png">
+                                            <i class="fa-solid fa-download"></i>
+                                            Download Stegano PNG
+                                        </a>
+                                        <!-- Preview thumbnail of the encoded output image -->
+                                        <div class="stv-output-preview-wrap">
+                                            <img id="encode-output-preview" src="" alt="Encoded steganography image output" loading="lazy">
+                                        </div>
+                                    </div>
+
+                                    <!-- Inline error display — shown by UIController.showError() -->
+                                    <div class="stv-tool-error" id="encode-error" hidden role="alert"></div>
+
+                                </div>
+                            </div><!-- /.card (Encode & Export) -->
+
+                        </div><!-- /.stv-panel-col (right) -->
+
+                    </div><!-- /.stv-panel-grid -->
+                </div><!-- /#panel-encode -->
+
+                <!-- ================================================================
+                     DECODE PANEL
+                     Tab panel: extract and decrypt the hidden message from an image.
+                     ID must remain "panel-decode" — targeted by UIController.switchTab().
+                ================================================================ -->
+                <div class="tab-panel stv-panel" id="panel-decode" role="tabpanel" aria-labelledby="tab-decode" hidden>
+                    <div class="stv-panel-grid">
+
+                        <!-- LEFT COLUMN: Stegano Image Upload -->
+                        <div class="stv-panel-col">
+
+                            <!-- STEGANO IMAGE UPLOAD CARD -->
+                            <div class="card stv-card">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-image-slash"></i>
+                                    <h2>Stegano Image</h2>
+                                    <span class="badge badge-info stv-card-badge">Step 1</span>
+                                </div>
+                                <div class="stv-card-body">
+
+                                    <!-- Decode Drop Zone — same structure as encode drop zone -->
+                                    <div class="stv-drop-zone" id="decode-drop-zone"
+                                         role="button" tabindex="0"
+                                         aria-label="Upload stegano image to decode. Drag and drop or click.">
+                                        <div class="stv-drop-inner">
+                                            <div class="stv-drop-icon">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>
+                                            <p class="stv-drop-title">Upload Stegano Image</p>
+                                            <p class="stv-drop-sub">Drop the encoded PNG here</p>
+                                            <p class="stv-drop-types">PNG recommended for lossless decode</p>
+                                        </div>
+                                        <input type="file" id="decode-file-input"
+                                               accept="image/png,image/jpeg,image/webp,image/bmp"
+                                               hidden aria-hidden="true">
+                                    </div>
+
+                                    <!-- Decode image preview — revealed after upload -->
+                                    <div class="stv-preview-wrap" id="decode-preview-wrap" hidden>
+                                        <canvas id="decode-canvas" aria-label="Uploaded stegano image preview"></canvas>
+                                        <div class="stv-image-meta" id="decode-image-meta"></div>
+                                        <button class="btn btn-danger stv-clear-btn" id="decode-clear-btn"
+                                                aria-label="Remove decode image">
+                                            <i class="fa-solid fa-xmark"></i> Remove
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div><!-- /.card (Stegano Image) -->
+
+                        </div><!-- /.stv-panel-col (left) -->
+
+                        <!-- RIGHT COLUMN: Decryption Password + Decode Action + Result -->
+                        <div class="stv-panel-col">
+
+                            <!-- DECRYPTION PASSWORD CARD -->
+                            <div class="card stv-card">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-key-skeleton"></i>
+                                    <h2>Decryption Password</h2>
+                                    <span class="badge badge-warning stv-card-badge">Step 2</span>
+                                </div>
+                                <div class="stv-card-body">
+
+                                    <!-- Decode password field with visibility toggle -->
+                                    <div class="stv-field-group">
+                                        <label for="decode-password" class="stv-field-label">
+                                            <i class="fa-solid fa-unlock"></i> Enter the Secret Password
+                                        </label>
+                                        <div class="stv-password-wrap">
+                                            <input
+                                                type="password"
+                                                id="decode-password"
+                                                class="input-control stv-field-input"
+                                                placeholder="Password used when encoding"
+                                                autocomplete="current-password"
+                                            >
+                                            <button class="stv-toggle-password toggle-password"
+                                                    type="button"
+                                                    aria-label="Toggle decode password visibility"
+                                                    data-target="decode-password">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Decode button — triggers SteganoVault.runDecode() -->
+                                    <div class="btn-area" style="margin-top: 8px;">
+                                        <button class="btn btn-primary stv-action-btn" id="decode-btn"
+                                                aria-label="Decode hidden message from image">
+                                            <span class="btn-idle">
+                                                <i class="fa-solid fa-unlock-keyhole"></i>
+                                                Decode &amp; Reveal Secret
+                                            </span>
+                                            <span class="btn-loading" hidden>
+                                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                                Scanning pixels…
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Decode inline error display -->
+                                    <div class="stv-tool-error" id="decode-error" hidden role="alert"></div>
+
+                                </div>
+                            </div><!-- /.card (Decryption Password) -->
+
+                            <!-- DECODED MESSAGE OUTPUT CARD
+                                 Hidden by default; revealed by runDecode() on success.
+                                 ID "decode-result-card" toggled by JS. -->
+                            <div class="card stv-card" id="decode-result-card" hidden aria-live="polite">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-envelope-open-text"></i>
+                                    <h2>Revealed Message</h2>
+                                    <span class="badge badge-success stv-card-badge">Decrypted</span>
+                                </div>
+                                <div class="stv-card-body">
+                                    <!-- Decoded plaintext output — textContent set by runDecode() -->
+                                    <div class="stv-decoded-wrap">
+                                        <pre id="decode-output" class="stv-decoded-output" aria-label="Decoded secret message"></pre>
+                                    </div>
+                                    <!-- Action buttons: copy or download the decoded text -->
+                                    <div class="btn-area stv-decode-actions">
+                                        <button class="btn btn-secondary" id="copy-decoded-btn"
+                                                aria-label="Copy decoded message">
+                                            <i class="fa-solid fa-copy"></i> Copy Text
+                                        </button>
+                                        <button class="btn btn-success" id="download-decoded-btn"
+                                                aria-label="Download decoded message as text file">
+                                            <i class="fa-solid fa-download"></i> Download .txt
+                                        </button>
+                                    </div>
+                                </div>
+                            </div><!-- /.card (Revealed Message) -->
+
+                        </div><!-- /.stv-panel-col (right) -->
+
+                    </div><!-- /.stv-panel-grid -->
+                </div><!-- /#panel-decode -->
+
+            </div><!-- /.container -->
+        </section><!-- /.stv-interface-section -->
+
+        <!-- ============================================================
+             BOTTOM AD SLOT
+        ============================================================ -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- ============================================================
+             INFORMATIONAL SECTIONS
+             Usage Guide | Security Knowledge Base | FAQ
+             Wrapped in .info-section-wrapper per tools-template.css.
+        ============================================================ -->
+        <section class="info-section-wrapper">
+            <div class="container">
+
+                <!-- ---- USAGE GUIDE ---- -->
+                <div class="stv-section-header">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <h2>Usage Guide</h2>
+                </div>
+
+                <!-- 5-step card grid — each step has a number, icon, heading, body -->
+                <div class="stv-steps-grid">
+
+                    <!-- Step 1 -->
+                    <div class="stv-step-card">
+                        <div class="stv-step-num">01</div>
+                        <div class="stv-step-icon"><i class="fa-solid fa-image"></i></div>
+                        <h4>Upload Carrier Image</h4>
+                        <p>Drag &amp; drop any PNG, JPG, WEBP, or BMP image. Larger images = more storage capacity for your secret. Check the live Capacity Analyzer to see exactly how many characters your image can hold.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="stv-step-card">
+                        <div class="stv-step-num">02</div>
+                        <div class="stv-step-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                        <h4>Write Your Secret</h4>
+                        <p>Type any secret text — messages, passwords, API keys, coordinates, notes. The live character counter updates as you type. The tool handles Unicode, special characters, and multi-line text.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="stv-step-card">
+                        <div class="stv-step-num">03</div>
+                        <div class="stv-step-icon"><i class="fa-solid fa-key"></i></div>
+                        <h4>Set AES-256 Password</h4>
+                        <p>Choose a strong password. Your message is AES-256-CBC encrypted FIRST, then the ciphertext is embedded into pixels. Even if someone extracts the data, they cannot read it without your password.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="stv-step-card">
+                        <div class="stv-step-num">04</div>
+                        <div class="stv-step-icon"><i class="fa-solid fa-download"></i></div>
+                        <h4>Download Stegano PNG</h4>
+                        <p>Hit "Encode &amp; Lock". The tool injects encrypted data into the Least Significant Bits of each pixel's R, G, B channels, then exports a lossless PNG. Share it like any normal image — nobody will suspect a thing.</p>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="stv-step-card">
+                        <div class="stv-step-num">05</div>
+                        <div class="stv-step-icon"><i class="fa-solid fa-unlock-keyhole"></i></div>
+                        <h4>Decode Anytime</h4>
+                        <p>Switch to the Decode tab. Upload the stegano PNG, enter the same password, and hit "Decode &amp; Reveal" to instantly extract and decrypt your hidden message. All client-side. No internet needed.</p>
+                    </div>
+
+                </div><!-- /.stv-steps-grid -->
+
+                <!-- ---- SECURITY KNOWLEDGE BASE ---- -->
+                <div class="stv-section-header" style="margin-top: 60px;">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h2>Security Knowledge Base</h2>
+                </div>
+
+                <!-- 2-column feature grid using existing .info-card components -->
+                <div class="stv-feature-grid">
+
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-eye-slash" style="color:var(--accent-green);"></i> What is LSB Steganography?</h3>
+                        <p>LSB (Least Significant Bit) steganography works by replacing the least important bit of each color channel value in an image's pixels. Since changing 1 bit out of 8 shifts a color value by only 1 (e.g., 200 → 201), the visual difference is completely imperceptible to the human eye. We use the R, G, and B channels of each pixel, hiding 3 bits per pixel with zero visible change.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-lock" style="color:var(--accent-blue);"></i> AES-256 Dual-Layer Protection</h3>
+                        <p>Before any pixel manipulation occurs, your message is encrypted using <strong>AES-256-CBC</strong> via the industry-standard CryptoJS library. This means the data hidden in pixels is already ciphertext — completely unreadable without the password. Even if an attacker extracts all pixel data using the same tool, they still cannot recover your message without the correct key.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-microchip" style="color:var(--accent-purple);"></i> Why PNG? The Lossless Requirement</h3>
+                        <p>JPEG compression is lossy — it discards "unimportant" data during compression, which is exactly where steganographic data lives (LSBs). This destroys hidden messages. PNG uses lossless compression (DEFLATE), preserving every single bit perfectly. This is why Stegano Vault always exports as <code>.png</code> even if you upload a <code>.jpg</code>.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-shield-halved" style="color:var(--accent-orange);"></i> Client-Side: Your Data Never Leaves</h3>
+                        <p>Every single operation — image reading, encryption, pixel manipulation, and file export — happens entirely within your browser using the HTML5 Canvas API and CryptoJS. No data is transmitted to any server. No logs are kept. The tool works offline after the page loads. You can even air-gap the entire tool on a USB drive.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-chart-bar" style="color:var(--accent-green);"></i> Capacity Formula Explained</h3>
+                        <p>The maximum number of characters you can encode depends directly on the image's pixel count. Formula: <code>maxChars = Math.floor((width × height × 3) / 8) - 32</code>. The 3 factor accounts for R, G, B channels (3 bits/pixel). The 8 divides bits into bytes. The 32-byte overhead accommodates the AES delimiter and length header we prepend to the data stream.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-circle-question" style="color:var(--accent-blue);"></i> Steganalysis Resistance</h3>
+                        <p>Since we only modify the LSBs and the hidden data is encrypted (and thus appears as random noise), statistical analysis of the image's color histogram will show minimal anomalies. This makes detection by basic steganalysis tools significantly harder compared to hiding plaintext, which would create detectable patterns in the LSB plane.</p>
+                    </div>
+
+                </div><!-- /.stv-feature-grid -->
+
+                <!-- ---- FAQ SECTION ---- -->
+                <div class="info-card stv-faq-wrapper" style="margin-top:40px; position: relative; overflow: hidden;">
+
+                    <!-- Decorative gradient background orb (aria-hidden: purely cosmetic) -->
+                    <div class="stv-faq-orb" aria-hidden="true"></div>
+
+                    <h2 class="stv-faq-heading">
+                        <i class="fa-solid fa-comments"></i> Frequently Asked Questions
+                    </h2>
+
+                    <!-- FAQ accordion items — native <details>/<summary> for accessibility -->
+                    <div class="stv-faq-container">
+
+                        <details class="stv-faq-item">
+                            <summary class="stv-faq-question">
+                                Is Stegano Vault completely free?
+                                <i class="fa-solid fa-chevron-down stv-faq-chevron"></i>
+                            </summary>
+                            <div class="stv-faq-answer">
+                                <p><strong>Yes, 100% free forever.</strong> There are no paywalls, premium tiers, API limits, or watermarks on your exported images. Every feature — including AES-256 encryption, capacity analysis, and lossless PNG export — is available to all users with zero restrictions.</p>
+                            </div>
+                        </details>
+
+                        <details class="stv-faq-item">
+                            <summary class="stv-faq-question">
+                                Can someone detect that my image contains a hidden message?
+                                <i class="fa-solid fa-chevron-down stv-faq-chevron"></i>
+                            </summary>
+                            <div class="stv-faq-answer">
+                                <p>Visually, no. The changes to individual pixels are too subtle for human vision to perceive. However, a forensic steganalysis tool that examines statistical anomalies in the LSB plane of an image may theoretically detect that steganography was used. To maximize covertness, use large, complex images (photos with lots of detail) and keep your hidden message small relative to the image's total capacity.</p>
+                            </div>
+                        </details>
+
+                        <details class="stv-faq-item">
+                            <summary class="stv-faq-question">
+                                What happens if I lose my password?
+                                <i class="fa-solid fa-chevron-down stv-faq-chevron"></i>
+                            </summary>
+                            <div class="stv-faq-answer">
+                                <p>The message is <strong>permanently unrecoverable</strong> without the password. AES-256 is a symmetric cipher — without the key, brute-forcing is computationally infeasible (2<sup>256</sup> possible keys). There is no "forgot password" option, no backdoor, and no recovery mechanism. Store your password safely — we recommend a password manager.</p>
+                            </div>
+                        </details>
+
+                        <details class="stv-faq-item">
+                            <summary class="stv-faq-question">
+                                Why must I use PNG for decoding?
+                                <i class="fa-solid fa-chevron-down stv-faq-chevron"></i>
+                            </summary>
+                            <div class="stv-faq-answer">
+                                <p>JPEG is a lossy format — it discards pixel data during compression, destroying the LSB information where your secret is stored. Always share and decode using the <strong>lossless PNG file</strong> that Stegano Vault exports. If you convert the PNG to JPEG before sharing, the hidden message will be permanently destroyed and unrecoverable.</p>
+                            </div>
+                        </details>
+
+                        <details class="stv-faq-item">
+                            <summary class="stv-faq-question">
+                                How large of a secret message can I hide?
+                                <i class="fa-solid fa-chevron-down stv-faq-chevron"></i>
+                            </summary>
+                            <div class="stv-faq-answer">
+                                <p>It depends entirely on your image dimensions. A typical 1920×1080 image (≈2 megapixels) can hide approximately <strong>720,000 bytes</strong> (≈720KB) of data. The Capacity Analyzer on the Encode tab shows you the exact maximum in real time after uploading your image. For small messages (passwords, notes), even a 100×100 thumbnail provides plenty of space.</p>
+                            </div>
+                        </details>
+
+                        <details class="stv-faq-item">
+                            <summary class="stv-faq-question">
+                                Does this tool work offline?
+                                <i class="fa-solid fa-chevron-down stv-faq-chevron"></i>
+                            </summary>
+                            <div class="stv-faq-answer">
+                                <p><strong>Yes.</strong> After the initial page load (which fetches the CSS, JS, and CryptoJS library), all processing is 100% local. You can disable your internet connection and continue encoding/decoding images indefinitely. For maximum security, you can save this page as an HTML file and run it entirely offline on an air-gapped machine.</p>
+                            </div>
+                        </details>
+
+                    </div><!-- /.stv-faq-container -->
+                </div><!-- /.stv-faq-wrapper -->
+
+            </div><!-- /.container -->
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ============================================================
+             RELATED TOOLS SECTION
+             [USER CONFIG]: data-category and data-current-page set here.
+             The related-tools.js module auto-populates this div.
+        ============================================================ -->
+        <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="sec"
+                 data-current-page="sec-steganography.html">
+            </div>
+        </div>
+        <!-- Related Tools Module — must remain type="module" -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /.tool-main-wrapper -->
+
+    <!-- ================================================================
+         [USER CONFIG]: Global Footer — Populated by global.js
+    ================================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ================================================================
+         [SYSTEM]: Ad Manager — Must load BEFORE global.js
+    ================================================================ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ================================================================
+         [SYSTEM]: Global Logic (header, footer, theme switcher, toast system)
+         The global toast system (window.showToast) is initialized here.
+    ================================================================ -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ================================================================
+         Tool-Specific Script
+         [DEV NOTE]: Loaded LAST so the full DOM and global.js toast system
+                     are both ready before SteganoVault.init() fires.
+                     CryptoJS is already available (loaded in <head>).
+    ================================================================ -->
+    <script src="../../assets/tools/sec/sec-steganography/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

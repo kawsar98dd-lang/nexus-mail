@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <title>Contact Us - Trusted Tools Web | Get Support</title>
+    <meta name="description" content="Contact the Trusted Tools Web team. Found a bug or have a feature request? Reach out to us directly for fast support.">
+    <meta name="keywords" content="contact trusted tools web, support, bug report, feature request, md kawsar contact">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/contact">
+    <meta property="og:title" content="Contact Us - We are here to help">
+    <meta property="og:description" content="Have questions or suggestions? Connect with the Trusted Tools Web development team.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/images/contact-cover.png">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/contact.html">
+    
+    <link rel="stylesheet" href="../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+
+    <style>
+        /* --- CSS Variable Configuration --- */
+        :root {
+            /* Palette Primitives */
+            --white: #ffffff;
+            --purple-light: #a5b4fc;
+            --dark-blue-text: #2c3e50;
+            --light-grey-bg: #f8f9fa;
+            --dark-grey-text: #333333;
+
+            /* Semantic Mappings */
+            --card-title-color: var(--white);
+            --input-text-color: var(--white);
+            --gradient-text-start: var(--white);
+            --gradient-text-end: var(--purple-light);
+            --social-hover-text: var(--white);
+        }
+
+        /* Light Mode Overrides */
+        body.light-mode {
+            --card-title-color: var(--dark-blue-text);
+            /* Overriding existing global vars for local context if necessary, 
+               plus local semantic vars */
+            --input-bg: var(--light-grey-bg); 
+            --input-text-color: var(--dark-grey-text);
+        }
+
+        /* --- Extracted Utility Classes (Replaces Inline Styles) --- */
+        .section-header {
+            text-align: center; 
+            margin-bottom: 40px;
+        }
+
+        .page-headline {
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
+            background: linear-gradient(135deg, var(--gradient-text-start), var(--gradient-text-end)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-subheadline {
+            color: var(--text-color); 
+            opacity: 0.9;
+        }
+
+        .link-accent {
+            color: var(--accent-color); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            margin-top: 5px; 
+            display: inline-block;
+        }
+
+        .text-accent-mt {
+            color: var(--accent-color); 
+            margin-top: 5px;
+        }
+
+        .select-input {
+            cursor: pointer;
+        }
+
+        .btn-icon-right {
+            margin-left: 8px;
+        }
+
+        /* --- Page Specific Styles --- */
+        .page-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* Left Side: Info */
+        .info-card {
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            height: 100%;
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .info-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--card-title-color);
+        }
+
+        .info-text {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            background: var(--primary-color);
+            color: var(--social-hover-text);
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Right Side: Form */
+        .form-card {
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--input-text-color);
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="global-header" class="site-header"></header>
+
+
+    <div class="page-container animated-entry">
+        
+        <div class="section-header">
+            <h1 class="page-headline">Get in Touch</h1>
+            <p class="page-subheadline">We'd love to hear from you. Here is how you can reach us.</p>
+        </div>
+
+        <div class="contact-grid">
+            
+            <div class="info-card">
+                <div class="info-item">
+                    <i class="fa-solid fa-comments info-icon"></i>
+                    <h3 class="info-title">Chat with Developer</h3>
+                    <p class="info-text">For the fastest response, message me directly on Telegram. I'm usually active during business hours.</p>
+                    <a href="https://t.me/Md_Kawser2" target="_blank" class="link-accent">Open Telegram <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-envelope info-icon"></i>
+                    <h3 class="info-title">Email Support</h3>
+                    <p class="info-text">Have a formal inquiry or partnership proposal? Drop us an email.</p>
+                    <p class="info-text text-accent-mt">contact@trustedtoolsweb.com</p>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-bug info-icon"></i>
+                    <h3 class="info-title">Report a Bug</h3>
+                    <p class="info-text">Found something broken? Please let us know so we can fix it immediately for everyone.</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1Ftz4p1nov/" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="form-card delay-1">
+                <form id="contactForm" onsubmit="handleContact(event)">
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-input" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <select class="form-input select-input">
+                            <option>General Inquiry</option>
+                            <option>Bug Report</option>
+                            <option>Feature Request</option>
+                            <option>Advertising / Partnership</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input" placeholder="How can we help you today?..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message <i class="fa-solid fa-paper-plane btn-icon-right"></i></button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer id="global-footer"></footer>
+
+  <script type="module" src="../assets/js/global.js"></script>
+
+<script>
+      // Simple Client-Side Handler to simulate email opening
+        function handleContact(e) {
+            e.preventDefault();
+            const inputs = e.target.querySelectorAll('input, select, textarea');
+            const name = inputs[0].value;
+            const subject = inputs[2].value;
+            const body = inputs[3].value;
+
+            // Construct Mailto Link
+            const mailtoLink = `mailto:contact@trustedtoolsweb.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Hi Trusted Tools Team,\n\n" + body + "\n\nRegards,\n" + name)}`;
+            
+            window.location.href = mailtoLink;
+            
+            // Optional: Reset form
+            setTimeout(() => {
+                alert("Thank you! Your default email client should open now.");
+                e.target.reset();
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>

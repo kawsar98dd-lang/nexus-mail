@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ============================================================
+         [SYSTEM]: Analytics & Meta Management Loaders
+         Must remain at the very top — loads site config, auto-injects
+         meta tags, and initializes analytics before page renders.
+    ============================================================ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ── Charset & Viewport ── -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ============================================================
+         SEO META TAGS
+         Optimized title, description, and keywords for maximum
+         search engine visibility and click-through rate.
+    ============================================================ -->
+    <title>SQL Studio ULTRA MAX — Free Offline Browser SQLite Analyzer | Trusted Tools Web</title>
+    <meta name="title"       content="SQL Studio ULTRA MAX — Free Offline Browser SQLite Analyzer | Trusted Tools Web">
+    <meta name="description" content="The most powerful 100% offline SQL IDE in your browser. Import CSV or JSON files, auto-build SQLite tables via WebAssembly, write SQL with syntax highlighting, visualize results as charts, and export to CSV, JSON, ZIP, PDF or SQL dump — zero server, total privacy.">
+    <meta name="keywords"    content="offline SQL analyzer, CSV to SQL browser, client-side SQLite, WebAssembly SQL editor, JSON to SQL, free SQL query tool, browser SQLite IDE, no server SQL, private data analysis, CSV query online, sql.js, PapaParse, Ace Editor SQL, data visualizer browser">
+    <meta name="author"      content="Trusted Tools Web">
+    <meta name="robots"      content="index, follow">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- ── Canonical URL ── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/tools/dev/dev-sql-studio/" />
+
+    <!-- ============================================================
+         OPEN GRAPH — Social Share Previews
+    ============================================================ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/tools/dev/dev-sql-studio/">
+    <meta property="og:title"       content="SQL Studio ULTRA MAX — Offline Browser SQLite Analyzer | Trusted Tools Web">
+    <meta property="og:description" content="Drop CSV/JSON → Auto-build SQLite tables in WebAssembly → Query with SQL syntax highlighting → Visualize as charts → Export CSV, JSON, ZIP, PDF, SQL Dump. 100% offline. Zero servers. Total privacy.">
+    <meta property="og:image"       content="../../assets/tools/dev/dev-sql-studio/img/og-cover.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+
+    <!-- ============================================================
+         TWITTER CARD — X/Twitter Share Previews
+    ============================================================ -->
+    <meta property="twitter:card"        content="summary_large_image">
+    <meta property="twitter:url"         content="https://trustedtoolsweb.com/tools/dev/dev-sql-studio/">
+    <meta property="twitter:title"       content="SQL Studio ULTRA MAX — Offline Browser SQLite Analyzer">
+    <meta property="twitter:description" content="Drop CSV/JSON → SQLite in-browser → Query → Visualize → Export. 100% offline, zero server, total privacy. Powered by WebAssembly.">
+    <meta property="twitter:image"       content="../../assets/tools/dev/dev-sql-studio/img/og-cover.webp">
+
+    <!-- ── Favicons & Theme Color ── -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+    <meta name="theme-color" content="#00e5ff">
+
+    <!-- ── PWA Manifest ── -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- ============================================================
+         EXTERNAL LIBRARIES (Local Copies — CDN Fallbacks Preserved)
+         Font Awesome icons, Fira Code monospace font, Inter UI font.
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+
+    <!-- ============================================================
+         GLOBAL STYLESHEET  (header, footer, theme, base reset)
+         TOOLS TEMPLATE CSS (all reusable tool UI components)
+         NOTE: No separate style.css — all tool styles live in
+         tools-template.css as per the two-file CSS architecture.
+    ============================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ============================================================
+         JSON-LD STRUCTURED DATA (Schema.org)
+         Dual schema: WebApplication for Google Rich Results +
+         HowTo for step-by-step search feature eligibility.
+    ============================================================ -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "SQL Studio ULTRA MAX - Offline CSV/JSON to SQL Database Analyzer",
+        "url": "https://trustedtoolsweb.com/tools/dev/dev-sql-studio/",
+        "description": "A professional, 100% client-side offline SQL IDE that lets developers and data analysts drop CSV or JSON files directly into a WebAssembly-powered SQLite engine in the browser. Write and execute SQL queries with a Monaco-style code editor, visualize results as interactive charts, and export to CSV, JSON, ZIP, SQL dump, or PDF — all without a server, API key, or internet connection.",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Database Tool",
+        "operatingSystem": "Any (Browser-based)",
+        "browserRequirements": "Requires a modern browser with WebAssembly support (Chrome 57+, Firefox 52+, Safari 11+, Edge 16+).",
+        "image": "https://trustedtoolsweb.com/assets/tools/dev/dev-sql-studio/img/og-cover.webp",
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/dev/dev-sql-studio/img/og-cover.webp",
+        "softwareVersion": "1.0.0",
+        "datePublished": "2025-01-01",
+        "dateModified": "2025-07-01",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "category": "Free Tool"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "Trusted Tools Web",
+          "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": [
+          "100% Offline & Private — Zero server communication, all processing in your browser",
+          "WebAssembly SQLite Engine powered by sql.js for real in-browser SQL execution",
+          "Drag & Drop CSV and JSON file import with automatic table creation",
+          "Professional Ace Editor with SQL syntax highlighting and auto-completion",
+          "Live Data Visualizer: Bar, Line, and Doughnut charts from query results",
+          "Advanced Export: CSV, JSON, ZIP Archive, SQL Dump, and PDF Report",
+          "Query Profiler: Execution time in milliseconds and row count per query",
+          "Pre-built SQL Templates: Find Duplicates, Group by Date, Top N, Joins",
+          "1-Click Mock Data Injector: 1000 rows of realistic fake data for testing",
+          "Multi-table support: load multiple files as separate database tables",
+          "Dark Mode and Light Mode with seamless CSS variable transitions",
+          "Fully Responsive layout for desktop, tablet, and mobile"
+        ],
+        "keywords": "offline SQL analyzer, CSV to SQL, browser SQLite, WebAssembly database, JSON to SQL, client side database, no server SQL, private data analysis"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Analyze CSV/JSON Data with SQL in Your Browser — No Server Required",
+        "description": "Step-by-step guide to importing CSV or JSON files, querying them with SQL, and exporting results using SQL Studio ULTRA MAX.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Drop Your Data File",
+            "text": "Drag and drop a .csv or .json file onto the drop zone in the Database Builder panel, or click to browse. The tool automatically detects column types and creates a named SQLite table using WebAssembly — all inside your browser."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Explore Your Tables",
+            "text": "The sidebar instantly shows your loaded tables with their column names and data types. Click any table name to auto-generate a SELECT * query in the editor."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Write and Run SQL",
+            "text": "Use the professional Ace code editor with SQL syntax highlighting to write any query: SELECT, JOIN, GROUP BY, WHERE, subqueries, and more. Hit Ctrl+Enter or the Run Query button to execute."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Visualize Results",
+            "text": "Switch to the Charts tab to instantly visualize your query results as a Bar, Line, or Doughnut chart using Chart.js. The first column becomes labels; numeric columns become datasets."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 5,
+            "name": "Export Your Data",
+            "text": "Use the Export panel to download results as CSV, JSON, a full SQL Dump of your database, a ZIP archive, or a formatted PDF report — all generated client-side with zero privacy compromise."
+          }
+        ]
+      }
+    ]
+    </script>
+
+    <!-- ── Theme Pre-Load: Apply saved theme before first paint to prevent FOUC ── -->
+    <script>
+        if (localStorage.getItem('siteTheme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- ============================================================
+         GLOBAL HEADER
+         Injected by global.js — contains logo, navigation, and
+         the global theme toggle (dark/light mode switch).
+    ============================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+
+        <!-- ============================================================
+             SECTION: HERO BANNER
+             Full-width banner with grid overlay, security badge,
+             tool title, subtitle, feature tag pills, and vector image.
+        ============================================================ -->
+        <div class="sqs-hero-banner animated-entry">
+            <!-- Decorative animated grid overlay (CSS-only) -->
+            <div class="sqs-hero-grid-overlay"></div>
+
+            <!-- Hero text content — centered on mobile, left-aligned on desktop -->
+            <div class="sqs-hero-content">
+
+                <!-- Security badge: communicates 100% offline / private processing -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>100% Client-Side Processing — Zero Server, Zero Upload, Zero Tracking</span>
+                </div>
+
+                <!-- Main tool title with gradient accent on key phrase -->
+                <h1 class="tool-title">
+                    <i class="fa-solid fa-database"></i>
+                    SQL Studio <span>ULTRA MAX</span>
+                </h1>
+
+                <!-- Tool subtitle — one-line value proposition -->
+                <p class="subtitle">
+                    Drop CSV &amp; JSON → Build SQLite tables in WebAssembly → Query with a pro SQL editor → Visualize → Export anywhere. The complete offline data lab, entirely in your browser.
+                </p>
+
+                <!-- Feature tag pills — visual summary of key capabilities -->
+                <div class="sqs-hero-tags">
+                    <span class="sqs-hero-tag"><i class="fa-brands fa-firefox-browser"></i> WebAssembly SQLite</span>
+                    <span class="sqs-hero-tag"><i class="fa-solid fa-file-csv"></i> CSV &amp; JSON Import</span>
+                    <span class="sqs-hero-tag"><i class="fa-solid fa-chart-bar"></i> Live Charts</span>
+                    <span class="sqs-hero-tag"><i class="fa-solid fa-file-export"></i> CSV / JSON / PDF / ZIP</span>
+                    <span class="sqs-hero-tag"><i class="fa-solid fa-lock"></i> Zero Data Sent</span>
+                </div>
+            </div>
+
+            <!-- Hero vector illustration (hides gracefully if missing) -->
+            <div class="sqs-hero-visual">
+                <img src="../../assets/tools/dev/dev-sql-studio/img/vector.webp"
+                     alt="SQL Studio ULTRA MAX — Offline Browser SQLite Analyzer illustration"
+                     class="sqs-hero-vector"
+                     loading="lazy"
+                     onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <!-- [SYSTEM]: Top Ad Slot -->
+        <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+        <!-- ============================================================
+             SECTION: MAIN APPLICATION WRAPPER (.studio-app)
+             Three-panel IDE layout:
+               Left  → Sidebar (table browser + SQL templates)
+               Center → Editor + results (takes remaining space)
+        ============================================================ -->
+        <div class="sqs-app" id="studioApp">
+
+            <!-- ── LEFT SIDEBAR: Database Browser & SQL Templates ── -->
+            <aside class="sqs-sidebar" id="studioSidebar">
+
+                <!-- ── Sidebar Panel: Loaded Database Tables ── -->
+                <div class="sqs-sidebar-section">
+                    <div class="sqs-sidebar-header">
+                        <i class="fa-solid fa-table-list"></i>
+                        <span>Database Tables</span>
+                        <!-- Trash button clears all in-memory tables (wired to clearDatabase() in JS) -->
+                        <button class="sqs-sidebar-icon-btn" id="clearDbBtn" title="Clear all tables from memory">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <!-- Table entries injected by updateTableBrowser() in JS -->
+                    <div class="sqs-table-browser" id="tableBrowser">
+                        <div class="sqs-empty-state">
+                            <i class="fa-solid fa-database"></i>
+                            <p>No tables loaded yet.<br>Drop a file above to start.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Sidebar Panel: SQL Query Templates ── -->
+                <div class="sqs-sidebar-section">
+                    <div class="sqs-sidebar-header">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>SQL Templates</span>
+                    </div>
+                    <!-- Template buttons injected by renderTemplates() in JS -->
+                    <div class="sqs-templates-list" id="templatesList"></div>
+                </div>
+
+            </aside>
+
+            <!-- ── CENTER: SQL Editor + Results Panel ── -->
+            <section class="sqs-center">
+
+                <!-- ── Drop Zone Panel: File Import Area ── -->
+                <div class="sqs-drop-zone-panel" id="dropZonePanel">
+                    <div class="sqs-drop-zone" id="dropZone">
+                        <div class="sqs-drop-zone-inner">
+                            <!-- Upload cloud icon — visual cue for drag-and-drop -->
+                            <i class="fa-solid fa-cloud-arrow-up sqs-drop-icon"></i>
+                            <p class="sqs-drop-title">Drop CSV or JSON files here</p>
+                            <p class="sqs-drop-sub">or click to browse — files stay 100% local, never uploaded</p>
+
+                            <!-- Hidden native file input; triggered by Browse Files button -->
+                            <input type="file" id="fileInput" accept=".csv,.json" multiple hidden>
+
+                            <!-- Action buttons inside drop zone -->
+                            <div class="sqs-drop-actions">
+                                <button class="sqs-btn-browse" onclick="document.getElementById('fileInput').click()">
+                                    <i class="fa-solid fa-folder-open"></i> Browse Files
+                                </button>
+                                <button class="sqs-btn-mock" id="mockDataBtn" title="Inject 1000 rows of realistic mock data for testing">
+                                    <i class="fa-solid fa-flask-vial"></i> Inject Mock Data (1000 rows)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File load progress bar — shown/hidden via JS showProgress() -->
+                    <div class="sqs-load-progress" id="loadProgress" style="display:none;">
+                        <div class="sqs-progress-track">
+                            <div class="sqs-progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="sqs-progress-label" id="progressLabel">Parsing file…</span>
+                    </div>
+                </div>
+
+                <!-- ── SQL Editor Panel ── -->
+                <div class="sqs-editor-panel">
+                    <div class="sqs-editor-toolbar">
+                        <!-- Left side: editor label + keyboard shortcut hint -->
+                        <div class="sqs-toolbar-left">
+                            <span class="sqs-editor-label"><i class="fa-solid fa-terminal"></i> SQL Query Editor</span>
+                            <kbd class="sqs-editor-shortcut">Ctrl+Enter to Run</kbd>
+                        </div>
+                        <!-- Right side: Format, Clear, and Run Query action buttons -->
+                        <div class="sqs-toolbar-right">
+                            <button class="sqs-btn-toolbar" id="formatSqlBtn" title="Format / Beautify SQL">
+                                <i class="fa-solid fa-align-left"></i> Format
+                            </button>
+                            <button class="sqs-btn-toolbar" id="clearEditorBtn" title="Clear editor">
+                                <i class="fa-solid fa-eraser"></i> Clear
+                            </button>
+                            <button class="sqs-btn-run" id="runQueryBtn" title="Execute SQL (Ctrl+Enter)">
+                                <i class="fa-solid fa-play"></i> Run Query
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Ace Editor mount point — JS calls ace.edit('aceEditor') on this div -->
+                    <div id="aceEditor"></div>
+                </div>
+
+                <!-- ── Query Profiler Status Bar ── -->
+                <!-- Shows execution status dot, timing, row count, and table count -->
+                <div class="sqs-profiler-bar" id="profilerBar">
+                    <div class="sqs-profiler-item" id="profilerStatus">
+                        <i class="fa-solid fa-circle-dot sqs-profiler-dot idle"></i>
+                        <span>Ready</span>
+                    </div>
+                    <div class="sqs-profiler-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <span id="profilerTime">— ms</span>
+                    </div>
+                    <div class="sqs-profiler-item">
+                        <i class="fa-solid fa-table-rows"></i>
+                        <span id="profilerRows">— rows</span>
+                    </div>
+                    <div class="sqs-profiler-item">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span id="profilerTables">0 tables</span>
+                    </div>
+                    <div class="sqs-profiler-spacer"></div>
+                    <div class="sqs-profiler-item sqs-profiler-hint">
+                        <i class="fa-solid fa-keyboard"></i> Ctrl+Enter runs query
+                    </div>
+                </div>
+
+                <!-- ── Results Panel: Tabbed output (Table / Chart / Export) ── -->
+                <div class="sqs-results-panel">
+
+                    <!-- Tab navigation bar -->
+                    <div class="sqs-results-tabs">
+                        <button class="sqs-results-tab active" data-tab="results-table">
+                            <i class="fa-solid fa-table"></i> Results
+                        </button>
+                        <button class="sqs-results-tab" data-tab="results-chart">
+                            <i class="fa-solid fa-chart-bar"></i> Chart
+                        </button>
+                        <button class="sqs-results-tab" data-tab="results-export">
+                            <i class="fa-solid fa-file-export"></i> Export
+                        </button>
+                    </div>
+
+                    <!-- ── TAB 1: Results Table ── -->
+                    <!-- Shows query data as a scrollable HTML table -->
+                    <div class="sqs-tab-content active" id="results-table">
+                        <div class="sqs-results-table-wrap" id="resultsTableWrapper">
+
+                            <!-- Empty state: shown before any query is run -->
+                            <div class="sqs-results-empty" id="resultsEmptyState">
+                                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                                <p>Query results will appear here.<br>Run a SQL query to get started.</p>
+                            </div>
+
+                            <!-- Error state: shown on SQL execution errors -->
+                            <div class="sqs-results-error" id="resultsError" style="display:none;">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <div class="sqs-error-content">
+                                    <strong>SQL Error</strong>
+                                    <code id="errorMessage"></code>
+                                </div>
+                            </div>
+
+                            <!-- Scrollable table container — populated by renderResultsTable() -->
+                            <div class="sqs-table-scroll" id="tableScrollContainer" style="display:none;">
+                                <table class="sqs-data-table" id="resultsDataTable">
+                                    <thead id="tableHead"></thead>
+                                    <tbody id="tableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── TAB 2: Chart Visualizer ── -->
+                    <!-- Renders Chart.js bar/line/doughnut from query results -->
+                    <div class="sqs-tab-content" id="results-chart">
+                        <div class="sqs-chart-controls">
+                            <div class="sqs-chart-ctrl-group">
+                                <label for="chartType">Chart Type</label>
+                                <select id="chartType">
+                                    <option value="bar">Bar</option>
+                                    <option value="line">Line</option>
+                                    <option value="doughnut">Doughnut</option>
+                                </select>
+                            </div>
+                            <div class="sqs-chart-ctrl-group">
+                                <label for="chartLabelCol">Label Column</label>
+                                <select id="chartLabelCol">
+                                    <option value="">— auto —</option>
+                                </select>
+                            </div>
+                            <div class="sqs-chart-ctrl-group">
+                                <label for="chartValueCol">Value Column</label>
+                                <select id="chartValueCol">
+                                    <option value="">— auto —</option>
+                                </select>
+                            </div>
+                            <!-- Render Chart button — calls renderChart() in JS -->
+                            <button class="sqs-btn-render-chart" id="renderChartBtn">
+                                <i class="fa-solid fa-chart-line"></i> Render Chart
+                            </button>
+                        </div>
+
+                        <!-- Canvas wrapper — Chart.js canvas rendered here -->
+                        <div class="sqs-chart-canvas-wrap">
+                            <div class="sqs-chart-empty" id="chartEmptyState">
+                                <i class="fa-solid fa-chart-area"></i>
+                                <p>Run a query and click Render Chart<br>to visualize your data.</p>
+                            </div>
+                            <!-- canvas#vizChart is targeted directly by Chart.js in JS -->
+                            <canvas id="vizChart" style="display:none;"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- ── TAB 3: Export Panel ── -->
+                    <!-- 6 export format cards — each triggers a JS export function -->
+                    <div class="sqs-tab-content" id="results-export">
+                        <div class="sqs-export-grid">
+
+                            <!-- Export: CSV -->
+                            <button class="sqs-export-card" id="exportCsvBtn">
+                                <div class="sqs-export-icon"><i class="fa-solid fa-file-csv"></i></div>
+                                <div class="sqs-export-info">
+                                    <strong>CSV</strong>
+                                    <span>Comma-separated values, opens in Excel</span>
+                                </div>
+                            </button>
+
+                            <!-- Export: JSON -->
+                            <button class="sqs-export-card" id="exportJsonBtn">
+                                <div class="sqs-export-icon"><i class="fa-solid fa-file-code"></i></div>
+                                <div class="sqs-export-info">
+                                    <strong>JSON</strong>
+                                    <span>Array of row objects, perfect for APIs</span>
+                                </div>
+                            </button>
+
+                            <!-- Export: SQL Dump -->
+                            <button class="sqs-export-card" id="exportSqlBtn">
+                                <div class="sqs-export-icon"><i class="fa-solid fa-database"></i></div>
+                                <div class="sqs-export-info">
+                                    <strong>SQL Dump</strong>
+                                    <span>Full CREATE TABLE + INSERT statements</span>
+                                </div>
+                            </button>
+
+                            <!-- Export: ZIP Archive (CSV + JSON + SQL bundled) -->
+                            <button class="sqs-export-card" id="exportZipBtn">
+                                <div class="sqs-export-icon"><i class="fa-solid fa-file-zipper"></i></div>
+                                <div class="sqs-export-info">
+                                    <strong>ZIP Archive</strong>
+                                    <span>CSV + JSON + SQL all bundled together</span>
+                                </div>
+                            </button>
+
+                            <!-- Export: PDF Report -->
+                            <button class="sqs-export-card" id="exportPdfBtn">
+                                <div class="sqs-export-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="sqs-export-info">
+                                    <strong>PDF Report</strong>
+                                    <span>Formatted table with query header &amp; stats</span>
+                                </div>
+                            </button>
+
+                            <!-- Action: Copy results as JSON to clipboard -->
+                            <button class="sqs-export-card" id="copyJsonBtn">
+                                <div class="sqs-export-icon"><i class="fa-solid fa-clipboard"></i></div>
+                                <div class="sqs-export-info">
+                                    <strong>Copy JSON</strong>
+                                    <span>Copy results as JSON to clipboard</span>
+                                </div>
+                            </button>
+                        </div>
+
+                        <!-- Privacy notice below export grid -->
+                        <p class="sqs-export-notice">
+                            <i class="fa-solid fa-lock"></i> All exports are generated 100% in your browser. No data is transmitted to any server.
+                        </p>
+                    </div>
+
+                </div><!-- /sqs-results-panel -->
+
+            </section>
+
+        </div><!-- /sqs-app -->
+
+        <!-- [SYSTEM]: Bottom Ad Slot -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- ============================================================
+             SECTION: SEO INFO / ARTICLE CONTENT
+             This section is not interactive — it serves SEO purposes by
+             providing rich textual content about the tool for search
+             engines and the CodeCanyon usage guide for buyers.
+        ============================================================ -->
+        <section class="info-section-wrapper">
+
+            <!-- ── Usage Guide ── -->
+            <div class="info-card" style="margin-bottom: 40px;">
+                <h2 class="info-section-title">
+                    <i class="fa-solid fa-book-open"></i> Complete Usage Guide
+                </h2>
+
+                <!-- 4-step how-to guide using pws-step-wrapper (reusable from Section 31) -->
+                <div class="pws-step-wrapper">
+                    <div class="pws-step-card">
+                        <div class="pws-step-num">1</div>
+                        <h4>Import Your Data</h4>
+                        <p>Drag &amp; drop any <code>.csv</code> or <code>.json</code> file onto the drop zone. The tool auto-detects column types and creates a real SQLite table in WebAssembly memory. Or click <strong>Inject Mock Data</strong> to start instantly.</p>
+                    </div>
+                    <div class="pws-step-card">
+                        <div class="pws-step-num">2</div>
+                        <h4>Write SQL</h4>
+                        <p>Use the professional Ace code editor with SQL syntax highlighting. Click any table in the sidebar to auto-generate a preview query. Press <code>Ctrl+Enter</code> or click <strong>Run Query</strong>.</p>
+                    </div>
+                    <div class="pws-step-card">
+                        <div class="pws-step-num">3</div>
+                        <h4>Visualize Results</h4>
+                        <p>Switch to the <strong>Chart</strong> tab to instantly render Bar, Line, or Doughnut charts from your query results. Choose which columns map to labels and values.</p>
+                    </div>
+                    <div class="pws-step-card">
+                        <div class="pws-step-num">4</div>
+                        <h4>Export Anywhere</h4>
+                        <p>Download results as <strong>CSV</strong>, <strong>JSON</strong>, a full <strong>SQL Dump</strong>, a <strong>ZIP archive</strong>, or a formatted <strong>PDF report</strong> — all generated in-browser, zero data sent.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Feature Detail Cards — 2-column responsive grid ── -->
+            <div class="pws-feature-grid">
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-microchip" style="color:#00e5ff;"></i> WebAssembly SQLite Engine</h3>
+                    <p>Powered by <strong>sql.js</strong>, a port of SQLite compiled to WebAssembly. This gives you a real, standards-compliant SQL database engine running at near-native speed inside your browser tab. Supports all SQLite SQL syntax including JOINs, subqueries, window functions, and aggregate functions.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-file-csv" style="color:#4ade80;"></i> Smart CSV/JSON Parser</h3>
+                    <p>Uses <strong>PapaParse</strong> to handle files up to hundreds of megabytes. Auto-detects column data types (INTEGER, REAL, TEXT) by sampling the first rows, creates properly typed SQLite schemas, and provides a progress indicator for large files.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-code" style="color:#a78bfa;"></i> Professional Code Editor</h3>
+                    <p>Built on <strong>Ace Editor</strong> — the same engine powering Cloud9 and CodePen. Enjoy SQL syntax highlighting, code folding, line numbers, auto-indent, bracket matching, and keyboard shortcuts that developers actually expect.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-shield-halved" style="color:#f97316;"></i> 100% Private by Design</h3>
+                    <p>Your data <em>never</em> leaves your device. There is no server, no API, no analytics on your queries or files. SQL Studio ULTRA MAX processes everything using browser-native WebAssembly and JavaScript. Close the tab — your data is gone.</p>
+                </div>
+            </div>
+
+            <!-- ── FAQ Section ── -->
+            <div class="info-card" style="margin-top: 40px;">
+                <h2 class="info-section-title">
+                    <i class="fa-solid fa-comments"></i> Frequently Asked Questions
+                </h2>
+                <div class="pws-faq-container">
+
+                    <details class="pws-faq-item">
+                        <summary class="pws-faq-question">How large a CSV file can I load? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="pws-faq-answer"><p>SQL Studio ULTRA MAX uses streaming parsing via PapaParse and processes files in chunks to stay memory-efficient. In practice, files up to <strong>50–100 MB</strong> work smoothly on modern devices. Very large files (&gt;100 MB) may slow down depending on your device's RAM. For best performance, filter your data first using the SQL query engine rather than loading your entire dataset.</p></div>
+                    </details>
+
+                    <details class="pws-faq-item">
+                        <summary class="pws-faq-question">Can I load multiple files and JOIN them? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="pws-faq-answer"><p>Yes! Each dropped file becomes a separate SQLite table named after the file. Drop <code>users.csv</code> and <code>orders.csv</code> and immediately write: <code>SELECT u.name, COUNT(o.id) FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.name</code>. Full multi-table SQL is supported.</p></div>
+                    </details>
+
+                    <details class="pws-faq-item">
+                        <summary class="pws-faq-question">What SQL syntax is supported? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="pws-faq-answer"><p>SQL Studio runs a full SQLite engine, so all <strong>SQLite-compatible SQL</strong> is supported: SELECT, INSERT, UPDATE, DELETE, CREATE TABLE, DROP TABLE, WITH (CTEs), window functions (ROW_NUMBER, RANK, LEAD, LAG), JSON functions, datetime functions, GROUP BY, HAVING, ORDER BY, LIMIT, OFFSET, subqueries, and all standard aggregate functions.</p></div>
+                    </details>
+
+                    <details class="pws-faq-item">
+                        <summary class="pws-faq-question">Does this work offline after the first load? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="pws-faq-answer"><p>Yes. SQL Studio ULTRA MAX is a <strong>Progressive Web App (PWA)</strong>. After the first visit, all assets (including the WebAssembly SQLite binary) are cached by the service worker. You can use it fully offline — on a plane, in a basement, anywhere — without any internet connection.</p></div>
+                    </details>
+
+                    <details class="pws-faq-item">
+                        <summary class="pws-faq-question">What JSON format does it accept? <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="pws-faq-answer"><p>The tool accepts two JSON shapes: an <strong>array of objects</strong> (most common — e.g. <code>[{"id":1,"name":"Alice"}]</code>) where each object's keys become columns; or a <strong>root-level object with an array property</strong> (the tool will find the first array and use that). Nested objects are automatically JSON-stringified into a TEXT column.</p></div>
+                    </details>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ============================================================
+             SECTION: RELATED TOOLS
+             Dynamically injected by related-tools.js based on the
+             data-category and data-current-page attributes.
+        ============================================================ -->
+        <div class="container" style="margin-top: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="dev"
+                 data-current-page="dev-sql-studio">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <!-- ============================================================
+         GLOBAL FOOTER
+         Injected by global.js — contains links, copyright, social.
+    ============================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ============================================================
+         [SYSTEM]: Global Scripts
+         Load order is critical:
+           1. ads-manager.js  → must come before global.js
+           2. global.js       → injects header/footer, toast system, theme toggle
+           3. Tool libraries  → Chart.js, JSZip, FileSaver, jsPDF
+           4. script.js       → tool-specific logic (must be last)
+    ============================================================ -->
+
+    <!-- [SYSTEM]: Ad Manager (Must load before global.js) -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+   <!-- [SYSTEM]: Global Logic (theme, toast, header/footer injection) -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- Tool Library Dependencies (local copies) -->
+    <script src="../../assets/library/data-viz/chartjs/chart.min.js"></script>
+    <script src="../../assets/library/file-archiver/jszip/jszip.min.js"></script>
+    <script src="../../assets/library/file-archiver/filesaver/FileSaver.min.js"></script>
+    <script src="../../assets/library/pdf-engine/jspdf/jspdf.umd.min.js"></script>
+
+
+    <!-- ============================================================
+         CDN FALLBACK SCRIPTS
+         These will be localized before final CodeCanyon submission.
+         Kept as-is per project architecture rules.
+    ============================================================ -->
+        <script src="../../assets/library/db-engine/sqljs/sql-wasm.js"></script>
+    
+    <script src="../../assets/library/parsers-text/papaparse/papaparse.min.js"></script>
+    
+    <script src="../../assets/library/code-editor/ace/ace.js"></script>
+    <script src="../../assets/library/code-editor/ace/mode-sql.js"></script>
+    <script src="../../assets/library/code-editor/ace/theme-one_dark.js"></script>
+    <script src="../../assets/library/code-editor/ace/theme-chrome.js"></script>
+    <script src="../../assets/library/code-editor/ace/ext-language_tools.js"></script>
+
+
+
+    <!-- Tool-Specific Logic Script -->
+    <script src="../../assets/tools/dev/dev-sql-studio/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

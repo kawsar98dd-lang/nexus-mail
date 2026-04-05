@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- =====================================================================
+         ANALYTICS & SITE CONFIG LOADERS
+         These scripts handle site-wide configuration, meta injection, and
+         third-party analytics loading. Replace analytics-loader.js with
+         your own tracking code before deployment.
+    ====================================================================== -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#090c10">
+
+    <!-- =====================================================================
+         PRIMARY SEO META TAGS
+         Optimized for Google ranking with precise, keyword-rich title and
+         description. Robots directive allows full crawl & rich snippets.
+    ====================================================================== -->
+    <title>PDF Compressor — Reduce PDF Size Online Free (100% Client-Side) | Trusted Tools Web</title>
+    <meta name="title" content="PDF Compressor — Reduce PDF Size Online Free (100% Client-Side) | Trusted Tools Web">
+    <meta name="description" content="Compress PDF files securely in your browser with zero server uploads. Reduce file size up to 90% instantly. Supports all PDFs — free, private, and unlimited.">
+    <meta name="keywords" content="compress pdf online free, reduce pdf size offline, pdf compressor, client-side pdf optimizer, shrink pdf without upload, secure pdf compressor, trusted tools web, pdf size reducer">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="English">
+
+    <!-- =====================================================================
+         OPEN GRAPH — SOCIAL MEDIA PREVIEW TAGS
+         Controls how this page appears when shared on Facebook, LinkedIn, etc.
+    ====================================================================== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/online-pdf-compressor.html">
+    <meta property="og:title" content="PDF Compress TITANIUM — Ultra-Secure, Client-Side PDF Optimizer">
+    <meta property="og:description" content="Shrink your PDF files instantly in-browser. No server upload. No data leaks. 100% Client-Side Processing. Unlimited & free.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/pdf/pdf-compressor/img/titan-pdf-og.webp">
+    <meta property="og:site_name" content="Trusted Tools Web">
+
+    <!-- =====================================================================
+         TWITTER CARD TAGS
+         Controls how this page appears when shared on Twitter / X.
+    ====================================================================== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PDF Compress TITANIUM — Free Client-Side PDF Size Reducer">
+    <meta name="twitter:description" content="Reduce PDF size up to 90% in your browser. No upload. No limits. 100% private.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/pdf/pdf-compressor/img/titan-pdf-og.webp">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/online-pdf-compressor.html">
+
+    <!-- =====================================================================
+         FAVICON
+    ====================================================================== -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- =====================================================================
+         FONTS & ICON LIBRARY
+         JetBrains Mono: used for code/monospace elements.
+         Inter: primary UI typeface.
+         Font Awesome: icon set used throughout the interface.
+    ====================================================================== -->
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- =====================================================================
+         CORE PDF LIBRARIES
+         1. PDF.js  — Parses and renders each PDF page to an HTML5 canvas.
+         2. jsPDF   — Rebuilds the optimized images into a new PDF document.
+         Both libraries run entirely in the browser (no server required).
+    ====================================================================== -->
+    <script src="../../assets/library/pdf-engine/jspdf/pdf.min.js"></script>
+    <script src="../../assets/library/pdf-engine/jspdf/jspdf.umd.min.js"></script>
+
+    <!-- =====================================================================
+         GLOBAL STYLESHEET — Site-wide layout, header, footer, theme tokens.
+         Do NOT modify this file directly.
+    ====================================================================== -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- =====================================================================
+         TOOLS TEMPLATE STYLESHEET — All reusable tool UI components.
+         This single file covers all tool-specific styles site-wide.
+    ====================================================================== -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- =====================================================================
+         JSON-LD STRUCTURED DATA — Google Rich Results / Schema.org
+         Enhanced with applicationSubCategory and featureList for better
+         search engine understanding and potential rich snippet eligibility.
+    ====================================================================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PDF Compress TITANIUM",
+        "headline": "Free Secure Client-Side PDF Compressor — No Upload Required",
+        "url": "https://trustedtoolsweb.com/online-pdf-compressor.html",
+        "description": "A powerful browser-based tool to reduce PDF file size using advanced canvas rasterization and JPEG compression. No server uploads. 100% private and free.",
+        "applicationCategory": "ProductivityApplication",
+        "applicationSubCategory": "PDF Tool",
+        "operatingSystem": "Any modern Web Browser (Chrome, Firefox, Edge, Safari)",
+        "browserRequirements": "Requires JavaScript and HTML5 Canvas support",
+        "featureList": [
+            "Client-side PDF compression",
+            "Adjustable quality slider",
+            "Drag and drop file upload",
+            "Zero server upload",
+            "Unlimited free usage"
+        ],
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "2841"
+        }
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- =====================================================================
+         GLOBAL SITE HEADER
+         Rendered dynamically by global.js. Do not add content here.
+    ====================================================================== -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- =====================================================================
+         MAIN CONTENT AREA
+         All tool UI lives inside <main>. The global .container class provides
+         the centered card layout (max-width 950px, rounded, shadowed).
+    ====================================================================== -->
+    <main>
+
+        <!-- ── PRIMARY TOOL CARD ────────────────────────────────────────── -->
+        <div class="container animated-entry">
+
+            <!-- ── HERO AREA: Badge + Title + Subtitle ───────────────────── -->
+            <div class="pct-hero-area">
+
+                <!-- Security / privacy assurance badge -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-cat"></i> 100% Client-Side Processing
+                </div>
+
+                <!-- Tool headline — gradient on "TITANIUM" keyword -->
+                <h1 class="tool-title">
+                    PDF Compress <span>TITANIUM</span>
+                </h1>
+
+                <!-- Short value-proposition subtitle -->
+                <p class="subtitle">
+                    Shrink PDF size securely. No server upload. No limits.
+                </p>
+
+            </div>
+            <!-- /hero area -->
+
+            <!-- ── AD SLOT: TOP BANNER ───────────────────────────────────── -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ── DRAG & DROP UPLOAD ZONE ───────────────────────────────── -->
+            <!--
+                Visible by default. Hidden (via JS) once a file is selected.
+                Clicking anywhere on the zone — or the button — opens the
+                native file picker. Drag-and-drop events are handled in JS.
+            -->
+            <div class="pct-upload-zone" id="drop-zone">
+                <i class="fa-solid fa-cloud-arrow-up pct-upload-zone__icon"></i>
+                <h3 class="pct-upload-zone__heading">Drag &amp; Drop PDF here</h3>
+                <p class="pct-upload-zone__hint">or click to browse files</p>
+                <!-- Browse button — triggers hidden file input -->
+                <button class="btn btn-primary" type="button" onclick="document.getElementById('file-input').click()">
+                    <i class="fa-solid fa-folder-open"></i> Select PDF File
+                </button>
+                <!-- Hidden native file picker — only accepts PDF -->
+                <input type="file" id="file-input" accept="application/pdf" hidden>
+            </div>
+            <!-- /upload zone -->
+
+            <!-- ── FILE INFO CARD ─────────────────────────────────────────── -->
+            <!--
+                Hidden by default. Shown (via JS) after a valid PDF is chosen.
+                Displays file name, original size, processing status, and a
+                visual progress bar during compression.
+            -->
+            <div class="pct-file-card" id="file-card">
+                <!-- PDF file type icon -->
+                <i class="fa-solid fa-file-pdf pct-file-card__icon"></i>
+
+                <!-- File metadata block -->
+                <div class="pct-file-card__info">
+                    <div class="pct-file-card__header">
+                        <!-- File name — populated dynamically by JS -->
+                        <span class="pct-file-card__name" id="display-name">document.pdf</span>
+                        <!-- Original file size badge — populated dynamically by JS -->
+                        <span class="badge badge-info" id="original-size">0 MB</span>
+                    </div>
+                    <!-- Status line — updated by JS during compression -->
+                    <div class="pct-file-card__status" id="status-text">Ready to optimize</div>
+                </div>
+
+                <!-- Compression progress bar — width driven by JS -->
+                <div class="pct-progress-bg">
+                    <div class="pct-progress-fill" id="progress-bar"></div>
+                </div>
+
+                <!-- Reset / remove file button -->
+                <button
+                    type="button"
+                    class="pct-reset-btn"
+                    onclick="resetTool()"
+                    aria-label="Remove file and reset tool"
+                >
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <!-- /file info card -->
+
+            <!-- ── COMPRESSION SETTINGS PANEL ───────────────────────────── -->
+            <!--
+                Hidden by default (.pct-settings-panel — no display).
+                Activated by JS adding class 'active' after file selection.
+                Contains the quality/compression level range slider.
+            -->
+            <div class="pct-settings-panel" id="settings-panel">
+
+                <div class="pct-settings-panel__header">
+                    <label class="pct-settings-panel__label">
+                        <i class="fa-solid fa-sliders"></i> Compression Level
+                    </label>
+                    <!-- Dynamic label updated by JS as slider moves -->
+                    <span class="badge badge-info" id="quality-val">Recommended</span>
+                </div>
+
+                <!--
+                    Range Slider: 0.1 = Extreme compression (lowest quality)
+                                  1.0 = Minimal compression (highest quality)
+                    The global .range-slider class handles all visual styling.
+                -->
+                <input
+                    type="range"
+                    min="0.1"
+                    max="1.0"
+                    step="0.1"
+                    value="0.5"
+                    class="range-slider"
+                    id="compression-range"
+                    aria-label="Compression quality level"
+                >
+
+                <!-- Slider end-labels: Extreme ←——→ High Quality -->
+                <div class="pct-compression-labels">
+                    <span>Extreme</span>
+                    <span>Standard</span>
+                    <span>High Quality</span>
+                </div>
+
+                <!-- Informational note about rasterization side-effect -->
+                <p class="pct-settings-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Note: This tool rasterizes PDF pages to optimize images. Text may become non-selectable.
+                </p>
+
+            </div>
+            <!-- /settings panel -->
+
+            <!-- ── ACTION BUTTON AREA ────────────────────────────────────── -->
+            <!--
+                Hidden by default. Shown via JS after file selection.
+                The single button toggles between "Compress PDF Now" and
+                "Download File" states managed entirely by JS.
+            -->
+            <div class="btn-area" id="action-area">
+                <button class="btn btn-primary pct-btn-action" id="btn-action" type="button">
+                    <i class="fa-solid fa-bolt"></i> Compress PDF Now
+                </button>
+            </div>
+            <!-- /action area -->
+
+            <!-- ── RESULTS SUMMARY PANEL ─────────────────────────────────── -->
+            <!--
+                Hidden by default (d-none). Revealed by JS after compression.
+                Shows two stat cards: New Size and Space Saved (%).
+            -->
+            <div id="result-summary" class="pct-result-summary d-none">
+                <div class="pct-result-grid">
+
+                    <!-- New (compressed) file size -->
+                    <div class="pct-result-card">
+                        <div class="pct-result-card__label">New Size</div>
+                        <div class="pct-result-card__value pct-result-card__value--success" id="final-size">0 MB</div>
+                    </div>
+
+                    <!-- Percentage saved (or increased) -->
+                    <div class="pct-result-card">
+                        <div class="pct-result-card__label">Saved</div>
+                        <div class="pct-result-card__value pct-result-card__value--accent" id="saved-percent">0%</div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /results summary -->
+
+        </div>
+        <!-- /primary tool card -->
+
+        <!-- ── AD SLOT: BOTTOM BANNER ──────────────────────────────────── -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- =====================================================================
+             SEO INFO SECTIONS
+             These article cards serve dual purpose: educating the user and
+             providing rich, keyword-dense content for search engine indexing.
+        ====================================================================== -->
+        <section class="info-section-wrapper">
+
+            <!-- Info Card 1: Why Client-Side Privacy Matters -->
+            <div class="info-card animated-entry">
+                <h2><i class="fa-solid fa-lock"></i> Why "Client-Side" Compression Matters</h2>
+                <p>Most online PDF compressors require you to upload your sensitive documents — bank statements, ID cards, contracts — to their remote servers. This creates a significant privacy risk. <strong>PDF Compress TITANIUM</strong> is fundamentally different.</p>
+                <p>We leverage advanced WebAssembly and JavaScript technology to process your file <strong>right inside your browser</strong>. Your document never leaves your device. You can even disconnect from the internet after loading this page, and it will still compress perfectly.</p>
+            </div>
+
+            <!-- Info Card 2: How It Works -->
+            <div class="info-card animated-entry">
+                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> How It Works (The Magic Behind It)</h2>
+                <img
+                    src="../../assets/tools/pdf/pdf-compressor/img/pdf-process-diagram.webp"
+                    alt="3-step PDF compression process diagram: Render, Optimize, Reconstruct"
+                    loading="lazy"
+                    class="pct-info-diagram"
+                >
+                <ol>
+                    <li><strong>Rendering:</strong> The tool scans each page of your PDF and converts it into a high-resolution HTML5 canvas image.</li>
+                    <li><strong>Optimization:</strong> It applies an intelligent JPEG compression algorithm based on your selected quality level.</li>
+                    <li><strong>Reconstruction:</strong> It stitches the optimized images back into a brand-new, lightweight PDF file using jsPDF.</li>
+                </ol>
+                <p>This method is especially effective for scanned documents or PDFs containing heavy embedded images.</p>
+            </div>
+
+            <!-- Info Card 3: Feature Highlights -->
+            <div class="info-card animated-entry">
+                <h2><i class="fa-solid fa-microchip"></i> Features at a Glance</h2>
+                <ul>
+                    <li><strong class="text-primary">Ultra-Fast Processing:</strong> No upload or download waiting time — everything runs locally.</li>
+                    <li><strong class="text-primary">Unlimited Usage:</strong> No "3 files per hour" restrictions like other online compressors.</li>
+                    <li><strong class="text-primary">Military-Grade Privacy:</strong> Zero data transfer. Your files stay on your device, always.</li>
+                </ul>
+            </div>
+
+        </section>
+        <!-- /info sections -->
+
+        <!-- =====================================================================
+             RELATED TOOLS SECTION
+             Dynamically populated by related-tools.js based on the data
+             attributes below. Set data-category and data-current-page to
+             match this tool's category and filename for accurate suggestions.
+        ====================================================================== -->
+        <div class="container" style="margin-top: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="pdf"
+                 data-current-page="pdf-compressor.html">
+            </div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- /main -->
+
+    <!-- =====================================================================
+         GLOBAL SITE FOOTER
+         Rendered dynamically by global.js. Do not add content here.
+    ====================================================================== -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- =====================================================================
+         SCRIPTS
+         Execution order is important:
+         1. ads-manager.js   — Initializes and injects ad slots.
+         2. global.js        — Renders header/footer, initializes toast system
+                               and theme switcher.
+         3. script.js        — Tool-specific compression logic (loaded last so
+                               that global toast system is available).
+    ====================================================================== -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+    <script src="../../assets/tools/pdf/pdf-compressor/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

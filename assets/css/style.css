@@ -1,0 +1,593 @@
+/* ==========================================================================
+   TRUSTED TOOLS WEB - HOMEPAGE SPECIFIC STYLES (style.css)
+   
+   লোড অর্ডার: style.css আগে → global.css পরে
+   
+   মূল সমস্যা যা এই ফাইলে সমাধান করা হয়েছে:
+   ─────────────────────────────────────────────
+   global.css এর body { } এ দুটো variable ব্যবহার হয়:
+     • background-color: var(--bg-dark)      ← style.css এ এই নাম নেই
+     • color:            var(--text-color)    ← style.css এ এই নাম নেই
+   
+   global.css পরে load হওয়ায় তার body { } সবসময় জেতে।
+   তাই style.css এ --bg-main / --text-main ব্যবহার করলে কাজ হয় না।
+   
+   সমাধান: style.css এর :root এবং body.light-mode তে
+   global.css এর variable নামগুলোও (--bg-dark, --text-color ইত্যাদি)
+   একসাথে define করতে হবে, যাতে দুই জায়গাতেই সঠিক মান যায়।
+   ========================================================================== */
+
+
+/* =========================================
+   1. UNIFIED THEME VARIABLES
+   (style.css + global.css উভয়ের variable
+   একই জায়গায় define করা হলো)
+   ========================================= */
+:root {
+    /* --- Homepage-specific variables --- */
+    --bg-main:          #0d0d0d;
+    --bg-card:          #161b22;
+    --bg-card-hover:    #1a1a1a;
+    --bg-input:         #0d1117;
+    --text-main:        #e0e0e0;
+    --text-muted:       #a1a1aa;
+    --text-light:       #ffffff;
+    --shadow-color:     rgba(0, 0, 0, 0.5);
+
+    /* --- global.css এর variable নামগুলো mirror করা --- */
+    /* global.css এর body এই নামগুলো ব্যবহার করে,
+       তাই এগুলো এখানেও set করা দরকার            */
+    --bg-dark:          #0d0d0d;   /* = --bg-main */
+    --text-color:       #e0e0e0;   /* = --text-main */
+    --container-bg:     #161b22;   /* = --bg-card */
+    --input-bg:         #0d1117;   /* = --bg-input */
+    --border-color:     rgba(255, 255, 255, 0.08);
+
+    /* --- Brand Accents --- */
+    --accent-cyan:      #00e5ff;
+    --accent-magenta:   #d124ff;
+    --accent-color:     #00e5ff;   /* global.css এর নাম */
+    --accent-secondary: #d124ff;   /* global.css এর নাম */
+    --gradient-primary: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+}
+
+
+/* =========================================
+   FIX: LIGHT MODE — সব variable একসাথে
+   
+   global.css এর body.light-mode শুধু --bg-dark,
+   --text-color ইত্যাদি set করে। কিন্তু style.css
+   এর elements গুলো --bg-main, --text-main ব্যবহার
+   করে। তাই উভয় নাম এখানে set করা হলো।
+   ========================================= */
+body.light-mode {
+    /* --- Homepage variable নামে Light mode --- */
+    --bg-main:          #f4f6f8 !important;
+    --bg-card:          #ffffff !important;
+    --bg-card-hover:    #f9fafb !important;
+    --bg-input:         #ffffff !important;
+    --text-main:        #1f2937 !important;
+    --text-muted:       #64748b !important;
+    --text-light:       #111827 !important;
+    --shadow-color:     rgba(0, 0, 0, 0.05) !important;
+
+    /* --- global.css variable নামে Light mode ---
+       global.css এর body { background: var(--bg-dark) }
+       এই variable টাকেও update করতে হবে,
+       নইলে body এর background পরিবর্তন হবে না   */
+    --bg-dark:          #f4f6f8 !important;
+    --text-color:       #1f2937 !important;
+    --container-bg:     #ffffff !important;
+    --input-bg:         #ffffff !important;
+    --border-color:     rgba(0, 0, 0, 0.1) !important;
+
+    /* --- Accent update for light mode --- */
+    --accent-cyan:      #0284c7 !important;
+    --accent-color:     #0284c7 !important;
+    --gradient-primary: linear-gradient(90deg, #0284c7, #7c3aed) !important;
+}
+
+/* Light mode এ body এর background ও color
+   explicitly set করা — variable নির্ভরতা ছাড়া */
+body.light-mode {
+    background-color: #f4f6f8 !important;
+    color:            #1f2937 !important;
+}
+
+
+/* =========================================
+   2. BASE BODY STYLES
+   ========================================= */
+body {
+    /* global.css এর body { background: var(--bg-dark) } এর সাথে
+       মিলিয়ে রাখার জন্য transition যোগ করা হলো */
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    /* global.css body { align-items: center } fix —
+       এটা telegram bar ও hero section কে সরু করে দেয় */
+    align-items: stretch !important;
+}
+
+/* Light mode text overrides */
+body.light-mode .tool-title  { color: #111827; }
+body.light-mode .seo-title   { color: #111827; }
+body.light-mode .tg-text     { color: #111827 !important; }
+body.light-mode .text-main,
+body.light-mode .tool-desc   { color: #1f2937; }
+
+
+/* =========================================
+   3. GENERIC RESETS & LAYOUT
+   ========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+.hidden { display: none !important; }
+
+.container {
+    width: 100%; max-width: 1200px;
+    margin: 0 auto; padding: 0 20px;
+}
+
+
+/* =========================================
+   FIX: TELEGRAM BAR — পূর্ণ প্রস্থ
+   global.css এর body { align-items: center }
+   telegram bar কে সরু করে দেয়।
+   ========================================= */
+.telegram-bar {
+    position: sticky; top: 0; z-index: 1000;
+
+    /* Full width fix */
+    width: 100% !important;
+    align-self: stretch;
+    box-sizing: border-box;
+
+    background: rgba(10, 10, 10, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    padding: 10px 20px;
+    display: flex; justify-content: center; align-items: center; gap: 15px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+body.light-mode .telegram-bar {
+    background: rgba(255, 255, 255, 0.96) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.tg-content { display: flex; align-items: center; gap: 8px; }
+.tg-icon-pulse { color: #0088cc; font-size: 1.3rem; animation: pulse-tg 2s infinite; }
+.tg-text { color: #fff; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+
+.tg-btn {
+    background: linear-gradient(90deg, #0088cc, #00aaff);
+    color: white; padding: 6px 18px; border-radius: 50px;
+    font-weight: 700; font-size: 0.8rem;
+    display: flex; align-items: center; gap: 5px; transition: 0.3s;
+    white-space: nowrap;
+}
+.tg-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 136, 204, 0.5); }
+
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero-header {
+    width: 100%;
+    align-self: stretch;
+    padding: 80px 20px 60px;
+    text-align: center;
+    background-image: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.95)),
+                      url('../img/hero-bg.jpg');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    min-height: 450px; position: relative;
+    overflow: visible; /* typewriter text breakout এর জন্য */
+    border-bottom: 1px solid var(--border-color);
+    transition: background-image 0.3s ease;
+}
+body.light-mode .hero-header {
+    background-image: linear-gradient(rgba(244, 246, 248, 0.9), rgba(244, 246, 248, 0.97)),
+                      url('../img/hero-bg.jpg') !important;
+}
+.hero-header::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw; height: 60vw; max-width: 400px; max-height: 400px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+    filter: blur(50px); z-index: 0; pointer-events: none;
+}
+
+.hero-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+}
+
+
+/* =========================================
+   FIX: TYPEWRITER TEXT & RESPONSIVENESS
+   Removed the 100vw hack to prevent horizontal scrolling 
+   and adjusted typography for optimal mobile rendering.
+   ========================================= */
+.typewriter-container {
+    /* Uses 100% of parent width instead of viewport width (vw) 
+       to prevent the text from shifting off-screen on mobile */
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 10px 12px;
+    overflow: hidden;
+}
+
+.typewriter-text {
+    font-family: 'Outfit', 'Courier New', monospace;
+    /* Adjusted clamp() values: 
+       min: 1.2rem (fits perfectly on 320px mobile screens)
+       preferred: 5vw (scales smoothly)
+       max: 4rem (large enough for desktop) */
+    font-size: clamp(1.2rem, 5vw, 4rem);
+    color: var(--text-light, #ffffff);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    /* Ensures text stays on a single line */
+    overflow: hidden;
+    border-right: 4px solid var(--accent-cyan, #00e5ff);
+    width: 0;
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 auto;
+    animation:
+        typing 3s steps(20, end) forwards,
+        blink-caret 0.75s step-end infinite,
+        glowText 3s ease-in-out infinite alternate;
+}
+
+body.light-mode .typewriter-text {
+    color: #0f172a !important;
+    text-shadow: none !important;
+    border-right-color: #0284c7;
+    animation:
+        typing 3s steps(20, end) forwards,
+        blink-caret-light 0.75s step-end infinite;
+}
+
+.typewriter-text .highlight {
+    color: var(--accent-cyan, #00e5ff);
+}
+
+body.light-mode .typewriter-text .highlight {
+    color: #0284c7;
+}
+
+/* =========================================
+   10. RESPONSIVE (MOBILE) - UPDATED
+   ========================================= */
+@media (max-width: 768px) {
+    /* ... (Keep your other existing 768px styles like .site-logo, .telegram-bar etc.) ... */
+    
+    .typewriter-container {
+        padding: 15px 10px 5px;
+    }
+    
+    .typewriter-text {
+        /* Scaled down font size for standard mobile view */
+        font-size: clamp(1.1rem, 6vw, 2rem);
+        letter-spacing: 1px;
+        animation: typing 3s steps(20, end) forwards,
+            blink-caret 0.75s step-end infinite !important;
+    }
+    
+    body.light-mode .typewriter-text {
+        animation: typing 3s steps(20, end) forwards,
+            blink-caret-light 0.75s step-end infinite !important;
+    }
+}
+
+@media (max-width: 380px) {
+    /* ... (Keep your other existing 380px styles) ... */
+    
+    .typewriter-text {
+        /* Extra small size for devices like iPhone SE or older Androids */
+        font-size: clamp(0.9rem, 5.5vw, 1.2rem);
+        letter-spacing: 0;
+    }
+}
+
+/* =========================================
+   5. SEARCH BAR
+   ========================================= */
+.search-container {
+    position: relative; max-width: 600px;
+    margin: -40px auto 40px auto; z-index: 10;
+}
+.search-input {
+    width: 100%; padding: 16px 20px 16px 55px; border-radius: 50px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-input, var(--input-bg));
+    color: var(--text-main, var(--text-color));
+    font-size: 1.1rem; backdrop-filter: blur(10px);
+    transition: all 0.3s ease; box-shadow: 0 10px 30px var(--shadow-color);
+}
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+}
+.search-icon {
+    position: absolute; left: 20px; top: 50%;
+    transform: translateY(-50%); color: var(--accent-cyan); font-size: 1.2rem;
+}
+body.light-mode .search-input {
+    background: #ffffff !important;
+    color: #1f2937 !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+
+/* =========================================
+   6. CATEGORY BUTTONS
+   ========================================= */
+.category-wrapper {
+    display: flex; justify-content: center; gap: 10px;
+    margin-bottom: 40px; flex-wrap: wrap;
+}
+.cat-btn {
+    background: var(--bg-card, var(--container-bg));
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 10px 22px; border-radius: 30px;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    transition: 0.3s; display: flex; align-items: center; gap: 8px;
+}
+.cat-btn:hover, .cat-btn.active {
+    background: var(--gradient-primary) !important;
+    color: #000 !important;
+    border-color: transparent !important;
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
+}
+body.light-mode .cat-btn {
+    background: #ffffff !important;
+    color: #64748b !important;
+    border-color: rgba(0,0,0,0.12) !important;
+}
+body.light-mode .cat-btn:hover,
+body.light-mode .cat-btn.active {
+    background: linear-gradient(90deg, #0284c7, #7c3aed) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+}
+
+
+/* =========================================
+   7. SECTION TITLE & TOOLS GRID
+   ========================================= */
+.section-title {
+    border-left: 5px solid var(--accent-cyan);
+    padding-left: 15px; color: var(--text-light);
+    margin-bottom: 25px;
+}
+body.light-mode .section-title { color: #0f172a; }
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px; padding-bottom: 50px;
+}
+
+.tool-card {
+    content-visibility: auto; contain-intrinsic-size: 280px 200px;
+    background-color: var(--bg-card, var(--container-bg)) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 16px; padding: 25px; text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer; text-decoration: none;
+    color: var(--text-main, var(--text-color));
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+    transform: translateZ(0); will-change: transform, box-shadow;
+}
+.tool-card:hover {
+    background-color: var(--bg-card-hover) !important;
+    transform: translateY(-10px) translateZ(0);
+    box-shadow: 0 15px 35px var(--shadow-color),
+                0 0 25px color-mix(in srgb, var(--c1, #00e5ff) 20%, transparent);
+    border-color: var(--c1, var(--accent-cyan));
+}
+.tool-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--c1, var(--accent-cyan)), var(--c2, var(--accent-magenta)));
+    opacity: 0; transition: opacity 0.3s ease;
+}
+.tool-card:hover::before { opacity: 1; }
+.card-theme-vars { display: contents; }
+
+.card-badge {
+    background: linear-gradient(90deg, var(--c1, #00e5ff), var(--c2, #d124ff));
+    color: white; font-weight: 800;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--c1, #00e5ff) 50%, transparent);
+    font-size: 0.65rem; padding: 2px 8px; border-radius: 4px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+}
+.badge-container { position: absolute; top: 12px; right: 12px; z-index: 5; }
+
+.icon { font-size: 3rem; margin-bottom: 15px; display: block; position: relative; transform: translateZ(0); }
+.icon-main {
+    font-size: 1.6em;
+    background: -webkit-linear-gradient(45deg, var(--c1, #00e5ff), var(--c2, #d124ff));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 8px color-mix(in srgb, var(--c1, #00e5ff) 40%, transparent));
+}
+.icon-sub1 {
+    position: absolute; top: -12px; right: -14px; font-size: 0.6em;
+    color: #fff; background: #090c10; padding: 4px; border-radius: 50%;
+    border: 1px solid var(--c1, #00e5ff);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--c1, #00e5ff) 60%, transparent);
+    animation: float 3s ease-in-out infinite; transform: translateZ(0);
+}
+body.light-mode .icon-sub1 { background: #fff !important; color: var(--c1, #0284c7) !important; }
+.icon-sub2 {
+    position: absolute; bottom: -6px; left: -10px; font-size: 0.55em;
+    color: var(--c2, #d124ff); background: #161b22; padding: 3px 5px;
+    border-radius: 6px; border: 1px solid var(--c2, #d124ff);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+body.light-mode .icon-sub2 { background: #f1f5f9 !important; }
+
+.tool-title {
+    font-size: 1.3rem; font-weight: 700; margin-top: 12px; margin-bottom: 10px;
+    color: var(--text-light, #fff); transition: color 0.3s ease;
+}
+body.light-mode .tool-title { color: #0f172a !important; }
+
+.title-span {
+    background: linear-gradient(to right, var(--c1, #00e5ff), var(--c2, #d124ff));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    font-weight: 900; text-transform: uppercase;
+}
+.tool-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+
+/* =========================================
+   8. SEO SECTION
+   ========================================= */
+.seo-card {
+    background: linear-gradient(145deg, var(--bg-card, var(--container-bg)), var(--bg-input, var(--input-bg)));
+    border: 1px solid var(--border-color);
+    border-radius: 15px; padding: 40px; position: relative;
+    overflow: hidden; box-shadow: 0 10px 30px var(--shadow-color);
+    transition: background 0.3s ease;
+}
+body.light-mode .seo-card {
+    background: linear-gradient(145deg, #ffffff, #f8fafc) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+.seo-card::after {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+}
+.seo-title {
+    font-size: 2rem; color: var(--text-light, #fff);
+    margin-bottom: 10px; text-transform: capitalize; transition: color 0.3s ease;
+}
+body.light-mode .seo-title { color: #0f172a !important; }
+.seo-line { width: 60px; height: 4px; background: var(--gradient-primary); border-radius: 2px; }
+.seo-content p { color: var(--text-muted); line-height: 1.7; margin-bottom: 15px; font-size: 1.05rem; }
+
+.features-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color);
+}
+.feature-item {
+    display: flex; align-items: center; gap: 15px; padding: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px; border: 1px solid var(--border-color); transition: 0.3s;
+}
+body.light-mode .feature-item {
+    background: #f9fafb !important; border-color: #e2e8f0 !important;
+}
+.feature-item:hover {
+    border-color: var(--accent-cyan) !important;
+    transform: translateY(-3px);
+    background: rgba(0, 229, 255, 0.05) !important;
+}
+body.light-mode .feature-item:hover {
+    background: rgba(2, 132, 199, 0.05) !important;
+    border-color: #0284c7 !important;
+}
+.feature-item i { font-size: 1.5rem; color: var(--accent-cyan); }
+.feature-item span { font-size: 0.95rem; color: var(--text-main, var(--text-color)); }
+
+
+/* =========================================
+   9. ANIMATIONS
+   ========================================= */
+@keyframes pulse-tg   { 50% { opacity: 0.7; transform: scale(1.1); } }
+@keyframes typing     { from { width: 0; } to { width: 100%; } }
+@keyframes blink-caret { 50% { border-color: transparent; } }
+@keyframes blink-caret-light { 50% { border-color: transparent; } }
+@keyframes glowText {
+    from { text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); }
+    to   { text-shadow: 0 0 35px rgba(0, 229, 255, 1), 0 0 15px var(--accent-magenta); }
+}
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes float {
+    0%, 100% { transform: translateY(0px) translateZ(0); }
+    50%       { transform: translateY(-5px) translateZ(0); }
+}
+
+.site-logo {
+    max-width: 300px; width: 100%; height: auto;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.4));
+    border-radius: 10px;
+    transition: filter 0.3s ease;
+}
+body.light-mode .site-logo {
+    filter: drop-shadow(0 4px 15px rgba(0,0,0,0.15));
+}
+
+
+/* =========================================
+   10. RESPONSIVE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    .site-logo { max-width: 220px; margin-bottom: 20px; }
+
+    .category-wrapper {
+        justify-content: flex-start; overflow-x: auto;
+        padding-bottom: 10px; white-space: nowrap; scrollbar-width: none;
+    }
+    .category-wrapper::-webkit-scrollbar { display: none; }
+
+    .telegram-bar { justify-content: space-between; padding: 8px 15px; }
+    .tg-text { display: none; }
+    .tg-content::after {
+        content: "Join Channel";
+        color: var(--text-light, #fff);
+        font-size: 0.85rem; font-weight: 600;
+    }
+    body.light-mode .tg-content::after { color: #1f2937; }
+
+    .typewriter-container { padding: 15px 10px 5px; }
+    .typewriter-text {
+        font-size: clamp(1.1rem, 6vw, 2rem);
+        letter-spacing: 1px;
+        animation: typing 3s steps(20, end) forwards,
+                   blink-caret 0.75s step-end infinite !important;
+    }
+    body.light-mode .typewriter-text {
+        animation: typing 3s steps(20, end) forwards,
+                   blink-caret-light 0.75s step-end infinite !important;
+    }
+
+    .hero-header {
+        padding: 40px 15px 60px;
+        background-attachment: scroll !important;
+        min-height: 300px;
+    }
+    .seo-card { padding: 25px; }
+    .features-list { grid-template-columns: 1fr; }
+    .tool-card:hover { transform: translateY(-5px) translateZ(0); }
+    .icon-sub1 { animation: none; }
+}
+
+@media (max-width: 380px) {
+    .tools-grid { grid-template-columns: 1fr; }
+    .typewriter-text {
+        font-size: clamp(0.9rem, 5.5vw, 1.2rem);
+        letter-spacing: 0;
+    }
+}

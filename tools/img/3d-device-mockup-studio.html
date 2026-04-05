@@ -1,0 +1,525 @@
+<!-- 
+    ============================================================
+    PRODUCT  : 3D Mockup STUDIO MAX — God Mode Device Mockup Generator
+    AUTHOR   : MD KAWSAR
+    TOOL ID  : img-3d-mockup
+    VERSION  : 1.0 (CodeCanyon Release — Ad System Integrated)
+    STACK    : Three.js r128 WebGL · 100% Client-Side · No Server
+    ============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ─── SITE CONFIG & ANALYTICS (loaded first so config is available globally) ─── -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ─── CHARACTER SET & VIEWPORT ─── -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ─── PRIMARY SEO META TAGS ─── -->
+    <title>3D Mockup STUDIO MAX — Free WebGL Device Mockup Generator | Export 4K PNG</title>
+    <meta name="title"       content="3D Mockup STUDIO MAX — Free WebGL Device Mockup Generator | Export 4K PNG">
+    <meta name="description" content="Generate stunning 3D iPhone and MacBook mockups instantly in your browser. Upload your screenshot, map it onto a photorealistic 3D device, customize lighting and backgrounds, then export at 4K resolution — 100% client-side, no server, no watermarks, completely free.">
+    <meta name="keywords"    content="3d mockup generator, free 3d mockup, iphone mockup online, macbook mockup free, device mockup tool, app screenshot mockup, webgl mockup generator, three.js mockup, client-side mockup, 4k mockup export, no watermark mockup, glassmorphism background mockup, app store screenshot mockup, online device mockup creator, trusted tools web">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- ─── CANONICAL URL ─── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/assets/tools/img/img-3d-mockup/img-3d-mockup.html" />
+
+    <!-- ─── OPEN GRAPH (Facebook / LinkedIn) ─── -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/assets/tools/img/img-3d-mockup/img-3d-mockup.html">
+    <meta property="og:title"       content="3D Mockup STUDIO MAX — God Mode Device Mockup Generator">
+    <meta property="og:description" content="Drop your screenshot, see it live on a 3D iPhone or MacBook rendered in WebGL. Export at 4K PNG instantly. Zero server. Zero watermarks. 100% private and free.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/img/img-3d-mockup/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="3D Mockup STUDIO MAX — Live 3D iPhone and MacBook Mockup Generator in WebGL">
+    <meta property="og:site_name"    content="Trusted Tools Web">
+
+    <!-- ─── TWITTER CARD ─── -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/assets/tools/img/img-3d-mockup/img-3d-mockup.html">
+    <meta name="twitter:title"       content="3D Mockup STUDIO MAX — God Mode Device Mockup Generator">
+    <meta name="twitter:description" content="Generate photorealistic 3D iPhone & MacBook mockups for free. Upload screenshot → Live 3D preview → Export 4K PNG. No server. No signup. No watermark.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/img/img-3d-mockup/og-banner.webp">
+
+    <!-- ─── FAVICON ─── -->
+    <link rel="icon"             type="image/webp" href="../../assets/tools/img/img-3d-mockup/favicon.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/tools/img/img-3d-mockup/favicon.webp">
+
+    <!-- ─── JSON-LD STRUCTURED DATA ─── -->
+    <!-- WebApplication schema improves rich results in Google Search for web tools -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebApplication",
+                "name": "3D Mockup STUDIO MAX",
+                "url": "https://trustedtoolsweb.com/assets/tools/img/img-3d-mockup/img-3d-mockup.html",
+                "description": "A premium, 100% client-side 3D device mockup generator. Upload your app screenshot and instantly map it onto an interactive 3D iPhone or MacBook rendered via Three.js WebGL. Customize lighting, backgrounds (glassmorphism, gradients), device colors, and export at 4K (3840x2160) resolution — all natively in the browser without any server.",
+                "applicationCategory": "DesignApplication",
+                "operatingSystem": "All",
+                "browserRequirements": "Requires JavaScript and WebGL support",
+                "softwareVersion": "1.0",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD",
+                    "availability": "https://schema.org/InStock"
+                },
+                "author": {
+                    "@type": "Person",
+                    "name": "MD KAWSAR",
+                    "url": "https://trustedtoolsweb.com"
+                },
+                "featureList": [
+                    "Interactive 3D WebGL Device Rendering via Three.js r128",
+                    "Live Screenshot Texture Mapping on iPhone and MacBook",
+                    "Drag-and-drop image upload with FileReader API",
+                    "Custom OrbitControls for 360° device rotation and pinch-to-zoom",
+                    "Glassmorphism, Gradient, Mesh, Solid, and Dark Studio backgrounds",
+                    "Claymorphism device color themes (8 presets)",
+                    "Adjustable ambient, directional, and rim lighting via sliders",
+                    "4K PNG Export (3840x2160) natively via canvas.toDataURL()",
+                    "100% client-side — no server, no data upload, no watermarks",
+                    "Offline capable after initial library load"
+                ],
+                "screenshot": "https://trustedtoolsweb.com/assets/tools/img/img-3d-mockup/og-banner.webp"
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Does 3D Mockup STUDIO MAX upload my images to a server?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Absolutely not. All processing happens 100% inside your browser using the FileReader API and Three.js WebGL. Your screenshots are never transmitted to any server."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is the maximum export resolution?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You can export mockups at 4K resolution (3840x2160 pixels) as a lossless PNG directly from the WebGL canvas, with no watermarks."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Which device models are supported?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Currently supports a procedural iPhone-style smartphone model and a MacBook-style laptop model, both rendered in real-time 3D WebGL via Three.js r128."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Does this tool work offline?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. After the initial page load (which fetches Three.js from CDN), the entire tool — rendering, texture mapping, lighting, and 4K export — runs offline without any internet connection."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What image formats are supported for upload?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "PNG, JPEG, WebP, and GIF are all supported. Maximum file size is 50MB."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <!-- ─── FONT AWESOME (icons used throughout the tool UI) ─── -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ─── GLOBAL STYLESHEET (site-wide: header, footer, theme, base reset) ─── -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- ─── TOOLS TEMPLATE STYLESHEET (all reusable tool UI components) ─── -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ─── THREE.JS r128 (WebGL 3D engine — must load before script.js) ─── -->
+    <script src="../../assets/library/3d-engine/threejs/three.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- ======================================================
+         GLOBAL HEADER
+         Injected dynamically by global.js (site nav, logo, theme toggle).
+    ====================================================== -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ======================================================
+         MAIN CONTENT AREA
+         Centered page wrapper — max-width 950px (from main tag styles).
+    ====================================================== -->
+    <main>
+
+        <!-- ── TOOL CARD CONTAINER (animated fade-in on load) ── -->
+        <div class="container animated-entry">
+
+            <!-- ── SECURITY / PRIVACY BADGE ── -->
+            <!-- Signals to users that no data leaves the browser -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing — Your Images Never Leave Your Device
+            </div>
+
+            <!-- ── TOOL TITLE ── -->
+            <h1 class="tool-title text-center">
+                <i class="fa-solid fa-cube"></i> 3D Mockup <span>STUDIO MAX</span>
+            </h1>
+
+            <!-- ── TOOL SUBTITLE ── -->
+            <p class="subtitle text-center">
+                Drop your screenshot. Watch it live on a 3D device. Export in stunning 4K. Zero server. Zero compromise.
+            </p>
+
+            <!-- ── [AD SYSTEM] TOP BANNER SLOT ── -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+
+            <!-- ==================================================
+                 MAIN TOOL WORKSPACE
+                 Two-panel layout: LEFT = WebGL canvas, RIGHT = controls.
+                 On mobile, panels stack vertically.
+            ================================================== -->
+            <div class="mck-workspace">
+
+                <!-- ── LEFT PANEL: 3D Canvas Area ── -->
+                <!-- Three.js renders into #mockupCanvas; overlay sits on top until image is loaded -->
+                <div class="mck-canvas-panel">
+
+                    <!-- Drop Zone Overlay (visible until user uploads a screenshot) -->
+                    <div class="mck-drop-overlay" id="dropOverlay">
+                        <div class="mck-drop-inner">
+                            <i class="fa-solid fa-image"></i>
+                            <p>Drop Screenshot Here</p>
+                            <span>or click to browse</span>
+                        </div>
+                        <!-- Hidden file input — triggered programmatically by btnUploadTrigger -->
+                        <input type="file" id="imageFileInput" accept="image/png,image/jpeg,image/webp,image/gif" aria-label="Upload screenshot">
+                    </div>
+
+                    <!-- WebGL Canvas — Three.js renderer targets this element directly -->
+                    <canvas id="mockupCanvas" aria-label="Interactive 3D device mockup canvas"></canvas>
+
+                    <!-- Canvas Interaction Hint (shown after image is loaded) -->
+                    <div class="mck-canvas-hint" id="canvasHint" style="display:none;">
+                        <i class="fa-solid fa-rotate"></i> Drag to rotate &nbsp;|&nbsp;
+                        <i class="fa-solid fa-magnifying-glass-plus"></i> Scroll / Pinch to zoom
+                    </div>
+
+                </div>
+                <!-- END LEFT PANEL -->
+
+
+                <!-- ── RIGHT PANEL: Control Sidebar ── -->
+                <aside class="mck-control-panel" aria-label="Mockup controls">
+
+                    <!-- CONTROL SECTION: Device Model Selection -->
+                    <div class="mck-ctrl-section">
+                        <h3 class="mck-ctrl-title">
+                            <i class="fa-solid fa-mobile-screen-button"></i> Device Model
+                        </h3>
+                        <!-- Toggle group — JS uses .device-btn class and data-device attr -->
+                        <div class="mck-device-toggle" role="group" aria-label="Select device model">
+                            <button class="mck-device-btn active" id="btnPhone" data-device="phone" title="iPhone Style Smartphone">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                <span>iPhone</span>
+                            </button>
+                            <button class="mck-device-btn" id="btnLaptop" data-device="laptop" title="MacBook Style Laptop">
+                                <i class="fa-solid fa-laptop"></i>
+                                <span>MacBook</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CONTROL SECTION: Device Color / Claymorphism Theme -->
+                    <div class="mck-ctrl-section">
+                        <h3 class="mck-ctrl-title">
+                            <i class="fa-solid fa-palette"></i> Device Color
+                        </h3>
+                        <!-- Swatch group — JS uses .color-swatch class and data-color attr -->
+                        <div class="mck-swatch-group" id="colorSwatchGroup" role="group" aria-label="Device color theme">
+                            <button class="mck-swatch active" data-color="#1a1a2e" style="background:#1a1a2e;" title="Midnight Black"  aria-label="Midnight Black"></button>
+                            <button class="mck-swatch"        data-color="#e8e8e8" style="background:#e8e8e8;" title="Silver White"   aria-label="Silver White"></button>
+                            <button class="mck-swatch"        data-color="#c9a96e" style="background:#c9a96e;" title="Desert Gold"    aria-label="Desert Gold"></button>
+                            <button class="mck-swatch"        data-color="#4a90d9" style="background:#4a90d9;" title="Sky Blue"       aria-label="Sky Blue"></button>
+                            <button class="mck-swatch"        data-color="#7c5cbf" style="background:#7c5cbf;" title="Deep Purple"    aria-label="Deep Purple"></button>
+                            <button class="mck-swatch"        data-color="#e85d75" style="background:#e85d75;" title="Rose"           aria-label="Rose"></button>
+                            <button class="mck-swatch"        data-color="#2ecc71" style="background:#2ecc71;" title="Mint Green"     aria-label="Mint Green"></button>
+                            <button class="mck-swatch"        data-color="#ff6b35" style="background:#ff6b35;" title="Tangerine"      aria-label="Tangerine"></button>
+                        </div>
+                    </div>
+
+                    <!-- CONTROL SECTION: Background Style -->
+                    <div class="mck-ctrl-section">
+                        <h3 class="mck-ctrl-title">
+                            <i class="fa-solid fa-fill-drip"></i> Background Style
+                        </h3>
+                        <!-- Style picker — JS uses .bg-style-btn class and data-bg attr -->
+                        <div class="mck-bg-group" id="bgStyleGroup" role="group" aria-label="Background style">
+                            <button class="mck-bg-btn active" data-bg="glassmorphism" title="Glassmorphism">
+                                <i class="fa-solid fa-circle-half-stroke"></i> Glass
+                            </button>
+                            <button class="mck-bg-btn" data-bg="gradient" title="Gradient">
+                                <i class="fa-solid fa-swatchbook"></i> Gradient
+                            </button>
+                            <button class="mck-bg-btn" data-bg="solid" title="Solid Color">
+                                <i class="fa-solid fa-square"></i> Solid
+                            </button>
+                            <button class="mck-bg-btn" data-bg="dark" title="Studio Dark">
+                                <i class="fa-solid fa-moon"></i> Dark
+                            </button>
+                            <button class="mck-bg-btn" data-bg="mesh" title="Mesh Gradient">
+                                <i class="fa-solid fa-layer-group"></i> Mesh
+                            </button>
+                        </div>
+
+                        <!-- Gradient Color Pickers: shown when bgStyle is 'gradient' or 'mesh' -->
+                        <!-- JS toggles display via #gradientPickers id -->
+                        <div class="mck-color-pickers" id="gradientPickers">
+                            <label>Color A <input type="color" id="gradColorA" value="#6c63ff"></label>
+                            <label>Color B <input type="color" id="gradColorB" value="#f093fb"></label>
+                        </div>
+
+                        <!-- Solid Color Picker: shown when bgStyle is 'solid' -->
+                        <!-- JS toggles display via #solidPicker id -->
+                        <div class="mck-solid-picker" id="solidPicker" style="display:none;">
+                            <label>Background <input type="color" id="solidColor" value="#0f0f1a"></label>
+                        </div>
+                    </div>
+
+                    <!-- CONTROL SECTION: Lighting Sliders -->
+                    <!-- JS binds these via bindSlider() using element IDs -->
+                    <div class="mck-ctrl-section">
+                        <h3 class="mck-ctrl-title">
+                            <i class="fa-solid fa-sun"></i> Lighting
+                        </h3>
+                        <div class="mck-slider-group">
+
+                            <!-- Ambient Light (soft fill from all directions) -->
+                            <label for="ambientSlider">
+                                <span>Ambient</span>
+                                <span class="mck-slider-val" id="ambientVal">0.60</span>
+                            </label>
+                            <input class="range-slider" type="range" id="ambientSlider" min="0" max="2" step="0.05" value="0.6" aria-label="Ambient light intensity">
+
+                            <!-- Directional (Key) Light (main shadow-casting source) -->
+                            <label for="directionalSlider">
+                                <span>Directional</span>
+                                <span class="mck-slider-val" id="directionalVal">1.20</span>
+                            </label>
+                            <input class="range-slider" type="range" id="directionalSlider" min="0" max="4" step="0.1" value="1.2" aria-label="Directional light intensity">
+
+                            <!-- Rim Light (colored back-light for depth) -->
+                            <label for="rimSlider">
+                                <span>Rim Light</span>
+                                <span class="mck-slider-val" id="rimVal">0.40</span>
+                            </label>
+                            <input class="range-slider" type="range" id="rimSlider" min="0" max="2" step="0.05" value="0.4" aria-label="Rim light intensity">
+
+                        </div>
+                    </div>
+
+                    <!-- CONTROL SECTION: Rotation Controls -->
+                    <div class="mck-ctrl-section">
+                        <h3 class="mck-ctrl-title">
+                            <i class="fa-solid fa-arrows-rotate"></i> Rotation
+                        </h3>
+                        <!-- JS targets #btnResetRotation and #btnAutoRotate by id -->
+                        <div class="mck-rotation-group">
+                            <button class="mck-reset-btn" id="btnResetRotation" title="Reset device to default angle">
+                                <i class="fa-solid fa-rotate-left"></i> Reset Angle
+                            </button>
+                            <button class="mck-reset-btn" id="btnAutoRotate" title="Toggle auto-rotate animation">
+                                <i class="fa-solid fa-circle-play"></i> Auto-Spin
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CONTROL SECTION: Upload & Export Actions -->
+                    <div class="mck-ctrl-section mck-action-section">
+                        <!-- Upload button triggers hidden #imageFileInput click via JS -->
+                        <button class="btn btn-primary" id="btnUploadTrigger">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Screenshot
+                        </button>
+                        <!-- Export button — disabled until a screenshot is loaded -->
+                        <button class="btn btn-primary bg-btn-export" id="btnExport4K" disabled>
+                            <i class="fa-solid fa-file-image"></i> Export 4K PNG
+                        </button>
+                        <!-- Informational hint below export button -->
+                        <p class="mck-export-hint">
+                            Exports at 3840 × 2160 px &nbsp;·&nbsp; Lossless &nbsp;·&nbsp; No watermark
+                        </p>
+                    </div>
+
+                </aside>
+                <!-- END RIGHT PANEL -->
+
+            </div>
+            <!-- END MAIN TOOL WORKSPACE -->
+
+
+            <!-- ── [AD SYSTEM] MID-CONTENT SLOT ── -->
+            <div class="ad-slot" data-ad-slot="mid-content"></div>
+
+
+            <!-- ==================================================
+                 INFO / SEO CONTENT SECTION
+                 Long-form editorial articles explaining the tool's
+                 technology, privacy model, use cases, and limitations.
+                 Critical for organic search ranking.
+            ================================================== -->
+            <section class="info-section-wrapper" aria-label="Tool information and articles">
+
+                <!-- Article 1: How WebGL Works -->
+                <div class="info-card">
+                    <img src="../../assets/tools/img/img-3d-mockup/info-vector1.webp"
+                         alt="Three.js WebGL 3D engine rendering a device mockup in a browser"
+                         class="mck-info-img" loading="lazy">
+                    <h2><i class="fa-solid fa-microchip"></i> How the WebGL 3D Engine Works — Entirely Offline</h2>
+                    <p>Under the hood of <strong>3D Mockup STUDIO MAX</strong> is <strong>Three.js</strong>, one of the world's most powerful open-source WebGL libraries. WebGL (Web Graphics Library) is a JavaScript API that directly communicates with your device's GPU through your browser, enabling real-time 3D rendering without any plugins or installations.</p>
+                    <p>When you load this tool, Three.js initializes a <strong>Scene</strong>, a <strong>PerspectiveCamera</strong>, and an antialiased <strong>WebGLRenderer</strong> — the three foundational pillars of any 3D application. The device models (iPhone, MacBook) are constructed procedurally using <code>BoxGeometry</code> with custom material layers and <code>MeshStandardMaterial</code>, which supports physically-based rendering (PBR). This means light interacts with the device surface the way it would in the real world — reflecting off glossy surfaces and casting subtle shadows.</p>
+                    <p>Most impressively, after the initial page load, this entire 3D engine runs <strong>100% offline</strong>. You can disconnect your internet, and the tool continues to function perfectly — rotating devices, mapping textures, adjusting lighting, and exporting 4K images.</p>
+                </div>
+
+                <!-- Article 2: Screenshot Texture Mapping -->
+                <div class="info-card">
+                    <img src="../../assets/tools/img/img-3d-mockup/info-vector2.webp"
+                         alt="Screenshot being mapped as a Three.js texture onto an iPhone screen face"
+                         class="mck-info-img" loading="lazy">
+                    <h2><i class="fa-solid fa-image"></i> Screenshot Texture Mapping: From File to 3D Screen</h2>
+                    <p>The magic of this tool lies in how it maps your screenshot onto the device's screen face. When you drop an image file, the browser's native <strong>FileReader API</strong> reads it as a Data URL — a base64-encoded blob that exists only in memory. This data URL is then fed into <code>THREE.TextureLoader</code>, which decodes it into a GPU-compatible texture.</p>
+                    <p>The device geometry is built so that the "screen" face of the phone or laptop corresponds to a specific UV coordinate region. The texture is applied exclusively to that face using <strong>material groups</strong> on the <code>BufferGeometry</code> — meaning the body of the device keeps its Claymorphism material while only the screen face receives your uploaded screenshot as a live texture.</p>
+                    <p>The result is a photorealistic illusion: your flat screenshot becomes a glowing screen on a three-dimensional device that you can spin 360° with your mouse or touch. This technique, known as <strong>UV texture projection</strong>, is the same method used by professional 3D studios in Blender and Cinema4D, brought directly to your browser at zero cost.</p>
+                </div>
+
+                <!-- Article 3: Client-Side Privacy -->
+                <div class="info-card">
+                    <img src="../../assets/tools/img/img-3d-mockup/info-vector3.webp"
+                         alt="Privacy shield protecting user images with client-side processing"
+                         class="mck-info-img" loading="lazy">
+                    <h2><i class="fa-solid fa-user-shield"></i> Client-Side Privacy: Your Images Never Leave Your Device</h2>
+                    <p>In most online mockup generators, you click "Upload," and your screenshot travels to a remote server where it is processed, temporarily stored, and often retained for analytics or AI training. This is a significant privacy risk for designers working on unreleased apps, confidential dashboards, or proprietary software.</p>
+                    <p><strong>3D Mockup STUDIO MAX</strong> was architected from the ground up to eliminate this risk entirely. There is <strong>no backend server</strong>. There is <strong>no upload endpoint</strong>. There is <strong>no network request</strong> when you drop your image. Everything — texture loading, 3D rendering, lighting calculations, and the final 4K export — runs exclusively within your browser's JavaScript sandbox and GPU context. Your file system is accessed only through the browser's sandboxed <code>FileReader</code> API, which has no ability to send data anywhere without your explicit action.</p>
+                    <p>This architecture is called a <strong>Pure Client-Side Application (CSA)</strong>, and it represents the gold standard of digital tool design for privacy-conscious professionals.</p>
+                </div>
+
+                <!-- Article 4: Step-by-Step Guide -->
+                <div class="info-card">
+                    <img src="../../assets/tools/img/img-3d-mockup/info-vector4.webp"
+                         alt="Step-by-step guide showing how to use the 3D mockup generator"
+                         class="mck-info-img" loading="lazy">
+                    <h2><i class="fa-solid fa-list-check"></i> How to Use 3D Mockup STUDIO MAX: A Step-by-Step Guide</h2>
+                    <p>Creating a professional 3D device mockup takes less than 60 seconds with this tool. Here is the complete workflow:</p>
+                    <ol>
+                        <li><strong>Select a Device:</strong> In the right control panel, choose between the iPhone-style smartphone or the MacBook-style laptop model. The 3D scene will instantly swap the geometry.</li>
+                        <li><strong>Upload Your Screenshot:</strong> Click the drop zone on the canvas or the "Upload Screenshot" button. You can also <em>drag and drop</em> your image file directly onto the canvas. Supported formats: PNG, JPEG, WebP.</li>
+                        <li><strong>See it Live:</strong> Your screenshot is instantly mapped as a live texture onto the device screen. Use your mouse (click + drag) or touch (two fingers) to rotate the device and inspect it from any angle.</li>
+                        <li><strong>Customize the Style:</strong> Pick a device color from the Claymorphism swatches, choose a background style (Glassmorphism, Gradient, Mesh, Solid, or Dark Studio), and fine-tune the ambient and directional lighting with the sliders.</li>
+                        <li><strong>Export in 4K:</strong> Click the "Export 4K PNG" button. The renderer silently upsizes to 3840×2160, captures a lossless frame, and triggers a download — all in under a second. The canvas then reverts to its display size seamlessly.</li>
+                    </ol>
+                </div>
+
+                <!-- Article 5: 4K Export Engine -->
+                <div class="info-card">
+                    <img src="../../assets/tools/img/img-3d-mockup/info-vector5.webp"
+                         alt="4K export button and high resolution PNG download from WebGL canvas"
+                         class="mck-info-img" loading="lazy">
+                    <h2><i class="fa-solid fa-file-image"></i> The 4K Export Engine: How Browser-Native High-Res Works</h2>
+                    <p>Exporting a high-resolution image from a WebGL canvas without a server is a technique that leverages a powerful but often overlooked browser capability: the <strong>HTMLCanvasElement.toDataURL()</strong> method. When called, it encodes the current pixel buffer of the canvas as a base64 PNG or JPEG string, entirely in memory.</p>
+                    <p>The trick to achieving 4K resolution is that Three.js's <code>WebGLRenderer</code> supports <strong>dynamic resizing</strong>. At the moment you click "Export 4K PNG," the tool executes the following sequence in a single synchronous block: it saves the current display dimensions, resizes the renderer to 3840×2160 pixels, calls <code>renderer.render(scene, camera)</code> to draw one frame at that resolution into the off-screen buffer, calls <code>canvas.toDataURL("image/png", 1.0)</code> to capture that buffer as a lossless PNG data URL, triggers an anchor click to download the file, and finally restores the renderer to its original display dimensions. This entire operation takes less than 500 milliseconds on modern hardware.</p>
+                    <p>The output is a full 4K PNG file with <strong>zero compression artifacts</strong> and absolutely <strong>no watermarks</strong> — production-ready for your App Store listings, Dribbble shots, Behance portfolios, or marketing landing pages.</p>
+                </div>
+
+                <!-- Article 6: Business Impact -->
+                <div class="info-card">
+                    <img src="../../assets/tools/img/img-3d-mockup/info-vector6.webp"
+                         alt="Great app mockups increasing conversion rates in app store listings"
+                         class="mck-info-img" loading="lazy">
+                    <h2><i class="fa-solid fa-chart-line"></i> The Business Impact of a Great Device Mockup</h2>
+                    <p>A raw screenshot communicates <em>what</em> an app does. A professional 3D mockup communicates <em>that it belongs</em> — that it is polished, intentional, and worth downloading. The psychological principle at work is called <strong>Aesthetic-Usability Effect</strong>: users consistently perceive visually appealing designs as more usable and trustworthy, even before they interact with the product.</p>
+                    <p>For App Store and Google Play listings, the preview screenshots are often the single highest-leverage conversion element on the page — more impactful than the description text or even the star rating for first-time visitors. Studies across ASO (App Store Optimization) practitioners have documented significant lifts in conversion rates when flat screenshots are replaced with contextualized device mockups, particularly those that incorporate lifestyle backgrounds or 3D perspective angles.</p>
+                    <p>For product designers showcasing work on Dribbble, Behance, or LinkedIn, a 3D mockup immediately elevates a portfolio piece from "here's a screen" to "here's a product experience." It signals craft and attention to detail — qualities that clients and hiring managers are scanning for in a crowded marketplace. With <strong>3D Mockup STUDIO MAX</strong>, generating that level of visual polish now takes under a minute, for free, with no design software required.</p>
+                </div>
+
+                <!-- Article 7: Disclaimer -->
+                <div class="info-card mck-disclaimer-card">
+                    <h2>
+                        <i class="fa-solid fa-triangle-exclamation mck-warn-icon"></i> WebGL Compatibility &amp; Disclaimer
+                    </h2>
+                    <p>Please note the following regarding <strong>3D Mockup STUDIO MAX</strong>:</p>
+                    <ul class="mck-disclaimer-list">
+                        <li><strong>WebGL Required:</strong> This tool requires a browser with WebGL 1.0+ support. All modern browsers (Chrome 56+, Firefox 51+, Safari 15+, Edge 79+) support WebGL. If you see a blank canvas, your browser or device may have WebGL disabled.</li>
+                        <li><strong>Device Models are Procedural:</strong> The iPhone and MacBook shapes are stylized procedural representations built from Three.js geometry. They are not official Apple CAD models and are intended for illustrative and marketing mockup purposes only.</li>
+                        <li><strong>Export Performance:</strong> 4K export requires rendering a 3840×2160 frame. On older devices or low-memory systems, this may take a few seconds. Do not close the browser tab during export.</li>
+                        <li><strong>No Liability:</strong> Trusted Tools Web is not responsible for any commercial use of generated mockups. Users are responsible for ensuring they have the rights to the screenshots they upload and for compliance with App Store or brand guidelines when publishing mockup images.</li>
+                    </ul>
+                </div>
+
+            </section>
+            <!-- END INFO / SEO SECTION -->
+
+
+            <!-- ── RELATED TOOLS (dynamically injected by related-tools.js) ── -->
+            <div style="margin-top: 50px;">
+                <div id="dynamic-related-tools"
+                     data-category="img"
+                     data-current-page="img-3d-mockup.html">
+                </div>
+            </div>
+            <script type="module" src="../../assets/js/related-tools.js"></script>
+
+        </div>
+        <!-- END .container -->
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- END MAIN -->
+
+
+    <!-- ======================================================
+         GLOBAL FOOTER
+         Injected dynamically by global.js.
+    ====================================================== -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+
+    <!-- ── [AD SYSTEM] Ads Manager Script ── -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ── GLOBAL JS (theme toggle, global toast, header/footer injection) ── -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ── INIT LOG (confirms the page loaded successfully in console) ── -->
+    <script>
+        console.log("3D Mockup STUDIO MAX — Tool Initialized.");
+    </script>
+
+    <!-- ── html2canvas (2D overlay capture utility, kept for potential future use) ── -->
+    <script src="../../assets/library/canvas-engine/html2canvas.min.js"></script>
+
+    <!-- ── TOOL CORE SCRIPT (loaded last — Three.js must be available first) ── -->
+    <script src="../../assets/tools/img/img-3d-mockup/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

@@ -1,0 +1,910 @@
+<!-- 
+    ============================================================
+    PRODUCT  : Ultra Name Generator Pro
+    VERSION  : 3.1.0 (Offline Gold Master)
+    AUTHOR   : MD KAWSAR
+    LICENSE  : Commercial / CodeCanyon
+    FILE     : tool-random-name.html
+    PURPOSE  : Client-side random user profile & JSON data
+               generator for developers, QA testers, and
+               designers. Supports all 195 global countries.
+               100% offline — zero external API dependency.
+    CHANGELOG: v3.1.0
+               - Injected mock-engine/name-database.js
+               - Expanded region <select> to all 195 countries
+                 grouped by continent via <optgroup>
+    ============================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ── Analytics & Config Loaders ── -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <!-- Responsive viewport — permits up to 5× zoom for accessibility -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#161b22">
+
+    <!-- ══════════════════════════════════════════════════════
+         PRIMARY SEO META TAGS
+         Target keywords: random name generator, mock user
+         profile, JSON data generator, developer testing tool
+    ══════════════════════════════════════════════════════ -->
+    <title>Random Name Generator & JSON Profile Creator — Free Dev Tool | Trusted Tools Web</title>
+    <meta name="title"       content="Random Name Generator & JSON Profile Creator — Free Dev Tool | Trusted Tools Web">
+    <meta name="description" content="Generate authentic random user profiles, names, and emails for Bangladesh, USA, India & 195 global regions. Free JSON & TXT export for developers and QA testers. 100% client-side — no data stored.">
+    <meta name="keywords"    content="random name generator, json data generator, mock user profile, fake data generator, bangladesh name generator, developer tools, qa testing data, synthetic data, randomuser, trusted tools web">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- ── Open Graph / Facebook ── -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/tool-random-name.html">
+    <meta property="og:title"       content="Ultra Name Generator Pro — Free Random Profile Creator | Trusted Tools Web">
+    <meta property="og:description" content="Instantly generate 500 mock user profiles with names, emails & regions for software testing. Export as JSON or TXT. 100% private & client-side.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/tool/tool-random-name/img/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"   content="Ultra Name Generator Pro — Random User Data Interface">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+    <meta property="og:locale"      content="en_US">
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/tool-random-name.html">
+    <meta name="twitter:title"       content="Ultra Name Generator Pro | Trusted Tools Web">
+    <meta name="twitter:description" content="Generate secure random user data for testing. No server storage. Supports JSON export & 195 global regions. Try free now.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/tool/tool-random-name/img/og-banner.webp">
+    <meta name="twitter:creator"     content="@trustedtoolsweb">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/tool-random-name.html" />
+
+    <!-- ── Favicons ── -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ── Web Fonts ── -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+
+    <!-- ══════════════════════════════════════════════════════
+         JSON-LD STRUCTURED DATA
+         Schema: SoftwareApplication — helps search engines
+         display rich results (star ratings, pricing, etc.)
+    ══════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Ultra Name Generator Pro",
+        "url": "https://trustedtoolsweb.com/tool-random-name.html",
+        "image": "https://trustedtoolsweb.com/assets/tools/tool/tool-random-name/img/og-banner.webp",
+        "description": "A powerful, 100% client-side tool to generate random user profiles, JSON data, and mock addresses for developers and QA testers. Supports all 195 countries including Bangladesh, India, USA, and more.",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Testing & QA Tools",
+        "operatingSystem": "Any (Web Browser)",
+        "browserRequirements": "Requires JavaScript",
+        "featureList": [
+            "Generate up to 500 random user profiles per batch",
+            "Supports all 195 global countries with authentic names",
+            "Export data as JSON or TXT",
+            "100% client-side — no data ever sent to a server",
+            "Copy individual fields or full rows with one click",
+            "100% offline — zero dependency on external APIs"
+        ],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "120",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+
+    <!-- ── Icon Library ── -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ══════════════════════════════════════════════════════
+         STYLESHEETS
+         1. global.css   — Site-wide layout, header, footer
+         2. tools-template.css — All reusable tool UI classes
+         No per-tool stylesheet is used (per project spec).
+    ══════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════════════════════
+         GLOBAL HEADER
+         Injected dynamically by global.js
+    ══════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ══════════════════════════════════════════════════════
+         MAIN CONTENT AREA
+         Centered column layout — max-width handled by <main>
+    ══════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ── Primary Tool Card ── -->
+        <div class="container animated-entry">
+
+            <!-- ── Hero / Title Section ── -->
+            <!-- Security badge — reassures users that data stays local -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- Main tool heading with gradient brand span -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-user-secret"></i> Ultra Name <span>Generator Pro</span>
+            </h1>
+
+            <!-- Subtitle — brief value proposition -->
+            <p class="subtitle">
+                Create Authentic User Data, Emails &amp; Profiles for Testing.&nbsp;No Data Stored.
+            </p>
+
+            <!-- ── Ad Slot: Top Banner ── -->
+            <!-- [BUYER GUIDE] Replace data-ad-slot value with your ad network slot ID -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ════════════════════════════════════════════════
+                 CONTROL PANEL
+                 Two-column grid for Region + Gender selects,
+                 followed by a full-width Quantity input.
+            ════════════════════════════════════════════════ -->
+            <div class="multi-input-grid">
+
+                <!-- ════════════════════════════════════════════
+                     REGION DROPDOWN
+                     All 195 UN-recognised sovereign states,
+                     grouped by continent via <optgroup>.
+                     Values are ISO 3166-1 alpha-2 country codes.
+                     The JS name-database.js file maps each code
+                     to its localised name arrays.
+                ════════════════════════════════════════════ -->
+                <div class="input-wrapper">
+                    <label><i class="fas fa-globe"></i> Target Region</label>
+                    <select id="region" class="input-control">
+
+                        <!-- ── Global catch-all ── -->
+                        <option value="all">🌍 Global Random (All 195 Countries)</option>
+
+                        <!-- ══════════════════════════════════
+                             AFRICA  (54 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── Africa ──">
+                            <option value="dz">🇩🇿 Algeria</option>
+                            <option value="ao">🇦🇴 Angola</option>
+                            <option value="bj">🇧🇯 Benin</option>
+                            <option value="bw">🇧🇼 Botswana</option>
+                            <option value="bf">🇧🇫 Burkina Faso</option>
+                            <option value="bi">🇧🇮 Burundi</option>
+                            <option value="cv">🇨🇻 Cabo Verde</option>
+                            <option value="cm">🇨🇲 Cameroon</option>
+                            <option value="cf">🇨🇫 Central African Republic</option>
+                            <option value="td">🇹🇩 Chad</option>
+                            <option value="km">🇰🇲 Comoros</option>
+                            <option value="cd">🇨🇩 Congo (DR)</option>
+                            <option value="cg">🇨🇬 Congo (Republic)</option>
+                            <option value="ci">🇨🇮 Côte d'Ivoire</option>
+                            <option value="dj">🇩🇯 Djibouti</option>
+                            <option value="eg">🇪🇬 Egypt</option>
+                            <option value="gq">🇬🇶 Equatorial Guinea</option>
+                            <option value="er">🇪🇷 Eritrea</option>
+                            <option value="sz">🇸🇿 Eswatini</option>
+                            <option value="et">🇪🇹 Ethiopia</option>
+                            <option value="ga">🇬🇦 Gabon</option>
+                            <option value="gm">🇬🇲 Gambia</option>
+                            <option value="gh">🇬🇭 Ghana</option>
+                            <option value="gn">🇬🇳 Guinea</option>
+                            <option value="gw">🇬🇼 Guinea-Bissau</option>
+                            <option value="ke">🇰🇪 Kenya</option>
+                            <option value="ls">🇱🇸 Lesotho</option>
+                            <option value="lr">🇱🇷 Liberia</option>
+                            <option value="ly">🇱🇾 Libya</option>
+                            <option value="mg">🇲🇬 Madagascar</option>
+                            <option value="mw">🇲🇼 Malawi</option>
+                            <option value="ml">🇲🇱 Mali</option>
+                            <option value="mr">🇲🇷 Mauritania</option>
+                            <option value="mu">🇲🇺 Mauritius</option>
+                            <option value="ma">🇲🇦 Morocco</option>
+                            <option value="mz">🇲🇿 Mozambique</option>
+                            <option value="na">🇳🇦 Namibia</option>
+                            <option value="ne">🇳🇪 Niger</option>
+                            <option value="ng">🇳🇬 Nigeria</option>
+                            <option value="rw">🇷🇼 Rwanda</option>
+                            <option value="st">🇸🇹 São Tomé &amp; Príncipe</option>
+                            <option value="sn">🇸🇳 Senegal</option>
+                            <option value="sc">🇸🇨 Seychelles</option>
+                            <option value="sl">🇸🇱 Sierra Leone</option>
+                            <option value="so">🇸🇴 Somalia</option>
+                            <option value="za">🇿🇦 South Africa</option>
+                            <option value="ss">🇸🇸 South Sudan</option>
+                            <option value="sd">🇸🇩 Sudan</option>
+                            <option value="tz">🇹🇿 Tanzania</option>
+                            <option value="tg">🇹🇬 Togo</option>
+                            <option value="tn">🇹🇳 Tunisia</option>
+                            <option value="ug">🇺🇬 Uganda</option>
+                            <option value="zm">🇿🇲 Zambia</option>
+                            <option value="zw">🇿🇼 Zimbabwe</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             AMERICAS — NORTH &amp; CENTRAL  (23 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── North &amp; Central America ──">
+                            <option value="ag">🇦🇬 Antigua &amp; Barbuda</option>
+                            <option value="bs">🇧🇸 Bahamas</option>
+                            <option value="bb">🇧🇧 Barbados</option>
+                            <option value="bz">🇧🇿 Belize</option>
+                            <option value="ca">🇨🇦 Canada</option>
+                            <option value="cr">🇨🇷 Costa Rica</option>
+                            <option value="cu">🇨🇺 Cuba</option>
+                            <option value="dm">🇩🇲 Dominica</option>
+                            <option value="do">🇩🇴 Dominican Republic</option>
+                            <option value="sv">🇸🇻 El Salvador</option>
+                            <option value="gd">🇬🇩 Grenada</option>
+                            <option value="gt">🇬🇹 Guatemala</option>
+                            <option value="ht">🇭🇹 Haiti</option>
+                            <option value="hn">🇭🇳 Honduras</option>
+                            <option value="jm">🇯🇲 Jamaica</option>
+                            <option value="mx">🇲🇽 Mexico</option>
+                            <option value="ni">🇳🇮 Nicaragua</option>
+                            <option value="pa">🇵🇦 Panama</option>
+                            <option value="kn">🇰🇳 Saint Kitts &amp; Nevis</option>
+                            <option value="lc">🇱🇨 Saint Lucia</option>
+                            <option value="vc">🇻🇨 Saint Vincent &amp; the Grenadines</option>
+                            <option value="tt">🇹🇹 Trinidad &amp; Tobago</option>
+                            <option value="us">🇺🇸 United States</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             AMERICAS — SOUTH  (12 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── South America ──">
+                            <option value="ar">🇦🇷 Argentina</option>
+                            <option value="bo">🇧🇴 Bolivia</option>
+                            <option value="br">🇧🇷 Brazil</option>
+                            <option value="cl">🇨🇱 Chile</option>
+                            <option value="co">🇨🇴 Colombia</option>
+                            <option value="ec">🇪🇨 Ecuador</option>
+                            <option value="gy">🇬🇾 Guyana</option>
+                            <option value="py">🇵🇾 Paraguay</option>
+                            <option value="pe">🇵🇪 Peru</option>
+                            <option value="sr">🇸🇷 Suriname</option>
+                            <option value="uy">🇺🇾 Uruguay</option>
+                            <option value="ve">🇻🇪 Venezuela</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             ASIA — CENTRAL  (5 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── Central Asia ──">
+                            <option value="kz">🇰🇿 Kazakhstan</option>
+                            <option value="kg">🇰🇬 Kyrgyzstan</option>
+                            <option value="tj">🇹🇯 Tajikistan</option>
+                            <option value="tm">🇹🇲 Turkmenistan</option>
+                            <option value="uz">🇺🇿 Uzbekistan</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             ASIA — EAST  (6 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── East Asia ──">
+                            <option value="cn">🇨🇳 China</option>
+                            <option value="jp">🇯🇵 Japan</option>
+                            <option value="mn">🇲🇳 Mongolia</option>
+                            <option value="kp">🇰🇵 North Korea</option>
+                            <option value="kr">🇰🇷 South Korea</option>
+                            <option value="tw">🇹🇼 Taiwan</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             ASIA — SOUTH  (8 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── South Asia ──">
+                            <option value="af">🇦🇫 Afghanistan</option>
+                            <option value="bd">🇧🇩 Bangladesh</option>
+                            <option value="bt">🇧🇹 Bhutan</option>
+                            <option value="in">🇮🇳 India</option>
+                            <option value="mv">🇲🇻 Maldives</option>
+                            <option value="np">🇳🇵 Nepal</option>
+                            <option value="pk">🇵🇰 Pakistan</option>
+                            <option value="lk">🇱🇰 Sri Lanka</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             ASIA — SOUTH EAST  (11 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── South East Asia ──">
+                            <option value="bn">🇧🇳 Brunei</option>
+                            <option value="kh">🇰🇭 Cambodia</option>
+                            <option value="tl">🇹🇱 East Timor (Timor-Leste)</option>
+                            <option value="id">🇮🇩 Indonesia</option>
+                            <option value="la">🇱🇦 Laos</option>
+                            <option value="my">🇲🇾 Malaysia</option>
+                            <option value="mm">🇲🇲 Myanmar</option>
+                            <option value="ph">🇵🇭 Philippines</option>
+                            <option value="sg">🇸🇬 Singapore</option>
+                            <option value="th">🇹🇭 Thailand</option>
+                            <option value="vn">🇻🇳 Vietnam</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             ASIA — WEST / MIDDLE EAST  (18 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── Western Asia &amp; Middle East ──">
+                            <option value="am">🇦🇲 Armenia</option>
+                            <option value="az">🇦🇿 Azerbaijan</option>
+                            <option value="bh">🇧🇭 Bahrain</option>
+                            <option value="cy">🇨🇾 Cyprus</option>
+                            <option value="ge">🇬🇪 Georgia</option>
+                            <option value="iq">🇮🇶 Iraq</option>
+                            <option value="ir">🇮🇷 Iran</option>
+                            <option value="il">🇮🇱 Israel</option>
+                            <option value="jo">🇯🇴 Jordan</option>
+                            <option value="kw">🇰🇼 Kuwait</option>
+                            <option value="lb">🇱🇧 Lebanon</option>
+                            <option value="om">🇴🇲 Oman</option>
+                            <option value="qa">🇶🇦 Qatar</option>
+                            <option value="sa">🇸🇦 Saudi Arabia</option>
+                            <option value="sy">🇸🇾 Syria</option>
+                            <option value="tr">🇹🇷 Turkey</option>
+                            <option value="ae">🇦🇪 UAE</option>
+                            <option value="ye">🇾🇪 Yemen</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             EUROPE — WESTERN  (10 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── Western Europe ──">
+                            <option value="at">🇦🇹 Austria</option>
+                            <option value="be">🇧🇪 Belgium</option>
+                            <option value="fr">🇫🇷 France</option>
+                            <option value="de">🇩🇪 Germany</option>
+                            <option value="ie">🇮🇪 Ireland</option>
+                            <option value="lu">🇱🇺 Luxembourg</option>
+                            <option value="mc">🇲🇨 Monaco</option>
+                            <option value="nl">🇳🇱 Netherlands</option>
+                            <option value="ch">🇨🇭 Switzerland</option>
+                            <option value="gb">🇬🇧 United Kingdom</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             EUROPE — NORTHERN  (10 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── Northern Europe ──">
+                            <option value="dk">🇩🇰 Denmark</option>
+                            <option value="ee">🇪🇪 Estonia</option>
+                            <option value="fi">🇫🇮 Finland</option>
+                            <option value="is">🇮🇸 Iceland</option>
+                            <option value="lv">🇱🇻 Latvia</option>
+                            <option value="lt">🇱🇹 Lithuania</option>
+                            <option value="no">🇳🇴 Norway</option>
+                            <option value="se">🇸🇪 Sweden</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             EUROPE — SOUTHERN  (15 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── Southern Europe ──">
+                            <option value="al">🇦🇱 Albania</option>
+                            <option value="ad">🇦🇩 Andorra</option>
+                            <option value="ba">🇧🇦 Bosnia &amp; Herzegovina</option>
+                            <option value="hr">🇭🇷 Croatia</option>
+                            <option value="gr">🇬🇷 Greece</option>
+                            <option value="va">🇻🇦 Holy See (Vatican)</option>
+                            <option value="it">🇮🇹 Italy</option>
+                            <option value="xk">🇽🇰 Kosovo</option>
+                            <option value="mt">🇲🇹 Malta</option>
+                            <option value="me">🇲🇪 Montenegro</option>
+                            <option value="mk">🇲🇰 North Macedonia</option>
+                            <option value="pt">🇵🇹 Portugal</option>
+                            <option value="sm">🇸🇲 San Marino</option>
+                            <option value="rs">🇷🇸 Serbia</option>
+                            <option value="si">🇸🇮 Slovenia</option>
+                            <option value="es">🇪🇸 Spain</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             EUROPE — EASTERN  (10 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── Eastern Europe ──">
+                            <option value="by">🇧🇾 Belarus</option>
+                            <option value="bg">🇧🇬 Bulgaria</option>
+                            <option value="cz">🇨🇿 Czech Republic</option>
+                            <option value="hu">🇭🇺 Hungary</option>
+                            <option value="md">🇲🇩 Moldova</option>
+                            <option value="pl">🇵🇱 Poland</option>
+                            <option value="ro">🇷🇴 Romania</option>
+                            <option value="ru">🇷🇺 Russia</option>
+                            <option value="sk">🇸🇰 Slovakia</option>
+                            <option value="ua">🇺🇦 Ukraine</option>
+                        </optgroup>
+
+                        <!-- ══════════════════════════════════
+                             OCEANIA  (14 countries)
+                        ══════════════════════════════════ -->
+                        <optgroup label="── Oceania ──">
+                            <option value="au">🇦🇺 Australia</option>
+                            <option value="fj">🇫🇯 Fiji</option>
+                            <option value="ki">🇰🇮 Kiribati</option>
+                            <option value="mh">🇲🇭 Marshall Islands</option>
+                            <option value="fm">🇫🇲 Micronesia</option>
+                            <option value="nr">🇳🇷 Nauru</option>
+                            <option value="nz">🇳🇿 New Zealand</option>
+                            <option value="pw">🇵🇼 Palau</option>
+                            <option value="pg">🇵🇬 Papua New Guinea</option>
+                            <option value="ws">🇼🇸 Samoa</option>
+                            <option value="sb">🇸🇧 Solomon Islands</option>
+                            <option value="to">🇹🇴 Tonga</option>
+                            <option value="tv">🇹🇻 Tuvalu</option>
+                            <option value="vu">🇻🇺 Vanuatu</option>
+                        </optgroup>
+
+                    </select>
+                </div>
+
+                <!-- Gender dropdown — filters results by gender preference -->
+                <div class="input-wrapper">
+                    <label><i class="fas fa-venus-mars"></i> Gender</label>
+                    <select id="gender" class="input-control">
+                        <option value="all">Both Genders</option>
+                        <option value="male">Male Only</option>
+                        <option value="female">Female Only</option>
+                    </select>
+                </div>
+
+            </div><!-- /.multi-input-grid -->
+
+            <!-- Quantity input — standalone full-width row -->
+            <div class="input-wrapper mb-20">
+                <label><i class="fas fa-layer-group"></i> Quantity (Max 500)</label>
+                <input type="number" id="quantity" value="10" min="1" max="500" class="input-control">
+            </div>
+
+            <!-- Primary action button — triggers the data generation flow -->
+            <div class="btn-area">
+                <button class="btn btn-primary" id="generateBtn" onclick="app.generateData()">
+                    <i class="fa-solid fa-bolt"></i> GENERATE DATA
+                </button>
+            </div>
+
+            <!-- ════════════════════════════════════════════════
+                 TERMINAL / DATA CONSOLE
+                 Displays a live status bar and the result list.
+                 id="terminal"      — outer shell (used by CSS)
+                 id="output-area"   — where result rows are injected
+                 id="loader"        — spinner shown during generation
+                 id="status-txt"    — inline status label in the bar
+            ════════════════════════════════════════════════ -->
+            <div class="ung-terminal" id="terminal">
+
+                <!-- Terminal top bar: title + status text + clear button -->
+                <div class="ung-terminal-bar">
+                    <span>
+                        <i class="fas fa-terminal"></i> Data Console
+                        <!-- Live status label updated by JS -->
+                        <span id="status-txt" class="ung-status-txt">IDLE</span>
+                    </span>
+                    <!-- Clear button resets the output area -->
+                    <button class="btn btn-secondary ung-clear-btn" onclick="app.clearConsole()">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+
+                <!-- Result list — populated by renderResults() in JS -->
+                <div id="output-area">
+                    <!-- Default empty state shown before any generation -->
+                    <div class="ung-empty-state">
+                        <i class="fas fa-database"></i>
+                        <span class="ung-empty-title">Ready to Initialize</span>
+                        <small class="ung-empty-hint">Select region and quantity to begin</small>
+                    </div>
+                </div>
+
+                <!-- Loading spinner — shown while generation is running -->
+                <div id="loader" style="display:none;" class="ung-loader-wrap">
+                    <i class="fas fa-circle-notch fa-spin ung-loader-icon"></i>
+                    <p class="ung-loader-label">SYNTHESIZING PROFILES...</p>
+                </div>
+
+            </div><!-- /.ung-terminal -->
+
+            <!-- ════════════════════════════════════════════════
+                 EXPORT / ACTION BUTTONS
+                 These appear below the terminal after results
+                 are generated. All three trigger public methods
+                 on the app module.
+            ════════════════════════════════════════════════ -->
+            <div class="btn-area mt-md">
+                <!-- Copy pipe-separated plain text list -->
+                <button class="btn btn-secondary" onclick="app.copyAll()">
+                    <i class="fas fa-list"></i> Copy List
+                </button>
+                <!-- Copy full JSON array to clipboard -->
+                <button class="btn btn-secondary" onclick="app.copyJSON()">
+                    <i class="fas fa-code"></i> Copy JSON
+                </button>
+                <!-- Download a formatted .txt report file -->
+                <button class="btn btn-primary bg-btn-export" onclick="app.exportTXT()">
+                    <i class="fas fa-file-export"></i> Save TXT
+                </button>
+            </div>
+
+            <!-- ── Ad Slot: Bottom Banner ── -->
+            <!-- [BUYER GUIDE] Replace data-ad-slot value with your ad network slot ID -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        </div><!-- /.container -->
+
+        <!-- ══════════════════════════════════════════════════════
+             SEO INFORMATIONAL CONTENT SECTION
+             Rich editorial content for search engine indexing.
+             Uses the shared .info-section-wrapper & .info-card
+             classes from tools-template.css.
+        ══════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper">
+
+            <!-- Visual Workflow card with feature image -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-purple);"></i> Visual Workflow</h2>
+                <p>See how easily you can generate complex datasets for your projects.</p>
+
+                <div class="ung-feature-img-wrap">
+                    <img
+                        src="../../assets/tools/tool/tool-random-name/img/feature-graphic.webp"
+                        alt="How to use Ultra Name Generator Pro — Step by Step Guide"
+                        loading="lazy"
+                        width="900"
+                        height="500"
+                    >
+                </div>
+                <p class="ung-feature-caption">
+                    <em>Optimized for Developers: From Region Selection to JSON Export.</em>
+                </p>
+            </div>
+
+            <!-- Why choose this tool -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-star"></i> Why Choose Ultra Name Generator Pro?</h2>
+                <p>Creating dummy data manually is time-consuming and prone to errors. Whether you are a software engineer in Dhaka, a QA tester in New York, or a student learning database management, our tool simplifies your workflow. Unlike basic generators, we focus on <strong>Regional Authenticity</strong> and <strong>Data Security</strong>.</p>
+
+                <div class="ung-feature-grid">
+                    <div>
+                        <h3><i class="fas fa-globe-asia"></i> Localized for South Asia</h3>
+                        <p>Most generators only support Western names. We have built a custom algorithm that generates authentic names for <strong>Bangladesh, India, Nepal, and Pakistan</strong>, complying with local cultural naming conventions.</p>
+                    </div>
+                    <div>
+                        <h3><i class="fas fa-file-code"></i> Developer-Ready Formats</h3>
+                        <p>Need to seed a MongoDB or MySQL database? Don't just copy names. Use our <strong>"Copy JSON"</strong> or <strong>"Save TXT"</strong> feature to get structured data arrays ready for your API testing or backend integration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step-by-step how-to guide -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-list-check"></i> How to Generate Valid Test Data</h2>
+                <p>Follow these simple steps to create up to 500 unique user profiles instantly:</p>
+                <ul>
+                    <li><strong>Step 1:</strong> Select your target region from the dropdown (e.g., 'Bangladesh' or 'Global Random').</li>
+                    <li><strong>Step 2:</strong> Choose the gender preference if specific testing requires it.</li>
+                    <li><strong>Step 3:</strong> Set the quantity (Max 500 per batch to ensure browser performance).</li>
+                    <li><strong>Step 4:</strong> Click <strong>"GENERATE DATA"</strong>. You can then copy individual fields or export the entire dataset using the buttons at the bottom.</li>
+                </ul>
+                <p class="text-muted mt-sm" style="font-size: 0.9em;">
+                    <em><strong>Pro Tip:</strong> Use the "Global Random" mode to stress-test your application's ability to handle international character sets (Unicode), such as Cyrillic, Arabic, or Bengali scripts.</em>
+                </p>
+            </div>
+
+            <!-- Technical deep-dive for developers -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-laptop-code"></i> Technical Insights for Developers</h2>
+
+                <h3>JSON Structure for NoSQL Databases</h3>
+                <p>Modern application development often relies on NoSQL databases like MongoDB or Firebase. Our tool generates data in a clean, key-value pair JSON format. This means you can generate 500 profiles, click "Copy JSON," and directly import the array into your database collection without needing to write custom parsing scripts or format converters.</p>
+
+                <h3>Stress Testing with Unicode Characters</h3>
+                <p>One of the most common bugs in software development is improper handling of non-Latin characters. By selecting regions like 'Bangladesh' (Bengali script), 'Russia' (Cyrillic), or 'Japan' (Kanji), you can test if your application's database encoding (UTF-8) and frontend font rendering are working correctly under diverse linguistic inputs.</p>
+
+                <h3>Validating Email Regex Patterns</h3>
+                <p>The email addresses generated here follow standard RFC-compliant formats. This is crucial for testing your input forms' validation logic (Regex) to ensure legitimate users aren't accidentally blocked by overly aggressive filters.</p>
+
+                <h3>Zero-Latency Client-Side Performance</h3>
+                <p>Unlike server-side generators that require API calls for every request, our engine runs entirely in your browser's JavaScript environment. This architecture eliminates network latency, allowing you to generate and regenerate massive datasets instantly, even if you are offline or on a slow connection.</p>
+            </div>
+
+            <!-- QA use cases -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-bug"></i> QA &amp; Testing Use Cases</h2>
+
+                <h3>UI Layout &amp; Breakpoint Testing</h3>
+                <p>Long names can break user interfaces. A name like "Christopher" fits easily, but "Md. Asaduzzaman Chowdhury" might overflow your mobile navigation bar. Use our South Asian name sets to test how your responsive design handles long, multi-word names on smaller screens like iPhone SE or older Android devices.</p>
+
+                <h3>Pagination &amp; List Handling</h3>
+                <p>When building admin dashboards or user tables, testing pagination logic requires a significant volume of data. Instead of manually typing 50 rows, generate 500 rows instantly. This helps you verify if your "Next Page" buttons, sorting algorithms, and search filters are functioning efficiently with large datasets.</p>
+
+                <h3>Form Auto-Fill &amp; Input Validation</h3>
+                <p>QA engineers often need to fill out registration forms hundreds of times to find bugs. Using our "Copy Row" feature, you can quickly grab a complete persona (Name, Email, Age, Gender) to speed up manual regression testing sessions without mental fatigue.</p>
+            </div>
+
+            <!-- Mockup / Design use case -->
+            <div class="info-card">
+                <h3>Mockup Realism for Client Demos</h3>
+                <p>Lorem Ipsum text often distracts clients during presentations. Presenting a design with real-looking names like "Nusrat Jahan" or "Robert Smith" makes wireframes feel like finished products. It helps stakeholders visualize the final user experience more accurately.</p>
+            </div>
+
+            <!-- Security & Privacy section -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-user-shield"></i> Security, Privacy &amp; Ethics</h2>
+
+                <h3>GDPR &amp; Privacy Compliance</h3>
+                <p>Using real user data for testing environments is a major security violation and breaches GDPR/CCPA regulations. This tool provides "Synthetic Data"—information that looks real but belongs to no one. This allows your team to test freely without risking data leaks or privacy lawsuits.</p>
+
+                <h3>Protection Against Identity Theft</h3>
+                <p>We deliberately exclude sensitive real-world identifiers like actual Social Security Numbers (SSN) or real credit card details. Our goal is to provide enough data for functional testing while maintaining a safe boundary that prevents the misuse of the tool for illegal activities.</p>
+
+                <h3>No Server-Side Logging</h3>
+                <p>In an era of digital surveillance, we prioritize your anonymity. Since the generation logic is executed locally on your device, we have zero knowledge of what data you generated or how you are using it. There are no server logs, no database records, and no tracking of your generated outputs.</p>
+
+                <h3>Ethical AI Training Data</h3>
+                <p>For students and researchers training basic machine learning models (e.g., simple classification tasks), finding unbiased datasets can be hard. Our diverse region selection helps in creating balanced datasets that include representation from underrepresented regions like South East Asia and Africa, reducing bias in initial model training.</p>
+            </div>
+
+            <!-- Extended use-case library -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-database"></i> JSON Seeding for NoSQL Databases</h3>
+                <p>Developers often waste hours manually creating dummy data for MongoDB or Firebase. Our tool solves this by generating structured JSON arrays instantly. You can generate 500 user profiles, hit "Copy JSON," and import them directly into your database collection. It's the fastest way to populate your backend for pagination and query testing.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-language"></i> Unicode &amp; Charset Stress Testing</h3>
+                <p>Does your application crash when a user enters a name in Bengali, Kanji, or Cyrillic? Global software needs to handle UTF-8 encoding correctly. Use our 'Bangladesh', 'Japan', or 'Russia' modes to inject non-Latin characters into your input fields. This ensures your database, PDF invoices, and UI fonts render international text without glitches.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-ruler-combined"></i> UI Breakpoint &amp; Layout Testing</h3>
+                <p>A design might look perfect with "John Doe," but what happens with "Muhammad Asaduzzaman Chowdhury"? Long names often break navigation bars and mobile tables. Use our generator to create realistic, lengthy names to test your CSS overflow properties and responsive breakpoints before your users face the issue.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-filter"></i> Testing Regex &amp; Input Validation</h3>
+                <p>Simple test inputs often bypass strict validation logic. Our engine generates RFC-compliant email formats. This helps QA engineers verify if their Regular Expressions (Regex) for email and phone number validation are accurate or if they are accidentally blocking legitimate users.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-server"></i> Zero-Latency Client-Side Architecture</h3>
+                <p>Most online generators rely on server requests, which slows down the process and risks data logging. We built this tool on a 100% Client-Side JavaScript architecture. This means the generation logic runs entirely in your browser's RAM. You get zero latency, instant results, and it works perfectly even when you are offline.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-user-shield"></i> GDPR Compliant Synthetic Data</h3>
+                <p>Using real production data in a staging environment is a massive security risk and a violation of GDPR/CCPA. Synthetic data is the legal solution. Our tool generates profiles that are statistically realistic but factually non-existent. This allows your team to perform rigorous testing without the liability of handling PII (Personally Identifiable Information).</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-laptop-code"></i> Frontend Mocking Before Backend</h3>
+                <p>Frontend teams often get stuck waiting for backend APIs to be ready. Don't wait. Use our generator to create a JSON object of users and mock the API response locally. This allows you to build, style, and test your user profile components and dashboards in parallel with backend development.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-presentation-screen"></i> Professional Client Demos</h3>
+                <p>Lorem Ipsum text kills the immersion of a product demo. Showing a client a dashboard filled with "User 1" and "Test Data" looks unfinished. Using realistic names and addresses from our tool makes your prototypes look polished and production-ready, helping stakeholders visualize the final product better.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-bug"></i> Catching Edge Cases Early</h3>
+                <p>Bugs love to hide in edge cases. What happens if a name contains an apostrophe (like O'Connor)? Does it break your SQL query? Our diverse datasets include names with hyphens and special characters, helping you sanitize inputs and secure your application against SQL injection and XSS vulnerabilities.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-magnifying-glass-chart"></i> Search &amp; Sorting Algorithms</h3>
+                <p>You can't properly test a search bar or a sorting filter with just 5 items. You need volume. Generate 500 items instantly with our tool to stress-test your search indexing speed and sorting logic (A-Z, Age, etc.). This ensures your application remains performant as your user base grows.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-robot"></i> Ethical AI Training Sets</h3>
+                <p>Training a Machine Learning model requires unbiased data. If your dataset is only Western-centric, your AI will be biased. Our tool offers diverse regional options—from South Asia to Africa—allowing researchers to create balanced, inclusive datasets for training initial classification models.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-bolt"></i> Rapid Regression Testing</h3>
+                <p>QA engineers often need to fill out the same registration form hundreds of times to reproduce a bug. Mental fatigue leads to mistakes. Use our "Copy Row" feature to grab a complete identity (Name, Email, Age) in one click, speeding up your manual testing cycles significantly.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-file-csv"></i> CSV Compatibility for Excel &amp; Sheets</h3>
+                <p>Not every tool accepts JSON. For non-technical stakeholders using Excel or Google Sheets, you can use our "Copy List" feature formatted with pipe separators. This allows for easy text-to-column conversion, bridging the gap between developers and business analysts during data review sessions.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-shield-virus"></i> Testing Input Sanitization (XSS)</h3>
+                <p>Security testing is vital. By generating and manually modifying names to include special characters, developers can test if their input fields are properly sanitizing data to prevent Cross-Site Scripting (XSS) attacks. Our raw text output makes it easy to grab and tweak data for security audits.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-infinity"></i> Infinite Scroll Performance</h3>
+                <p>Building a social feed or an admin dashboard with infinite scrolling? You need volume to test memory leaks and rendering lag. Generate batch after batch of users with our tool to stress-test your frontend framework's (React/Vue) ability to handle DOM recycling and heavy lists.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-wifi"></i> Offline-First Capability</h3>
+                <p>Coding on a plane or with unstable internet? Since Ultra Name Generator Pro loads the entire database into your browser's cache, you can continue generating test data without a single byte of internet usage. It is the ultimate tool for remote developers and digital nomads.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Educational &amp; Academic Use</h3>
+                <p>Computer Science teachers and SQL instructors love this tool. It allows students to generate their own unique datasets for database normalization assignments, ensuring that no two students have the exact same answers, while keeping the data structure consistent for grading.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-keyboard"></i> Testing Form Autofill Behavior</h3>
+                <p>Browsers often struggle with identifying correct input fields for autofill. By using our generated data to fill out your forms, you can verify if Chrome or Safari correctly identifies your "First Name" vs "Full Name" fields, improving the User Experience (UX) for your actual customers.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-globe"></i> Localization (L10n) Testing</h3>
+                <p>Software often breaks when formatting phone numbers or addresses for different regions. Our tool provides region-specific formats (e.g., specific country codes for mobile numbers), helping you verify that your application's input masks and formatting logic work globally, not just in the US.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-universal-access"></i> Accessibility (a11y) Verification</h3>
+                <p>Screen readers process text differently based on language. By generating names from different origins (like French or Vietnamese), you can test if your text-to-speech software pronounces them intelligibly, ensuring your app remains accessible to a diverse user base.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-network-wired"></i> Bandwidth Conservation</h3>
+                <p>Cloud-based mock data APIs charge per call or throttle your usage. By moving the logic to the client-side, we save your bandwidth and API quotas. You can hit the "Generate" button thousands of times without worrying about hitting a rate limit or incurring extra costs.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-venus-mars"></i> Data Consistency Checks</h3>
+                <p>Our algorithm attempts to match gender with appropriate names (e.g., "Liam" as Male, "Emma" as Female). This consistency is crucial for testing logic in applications that rely on gender-based personalization, such as email marketing templates or profile avatars.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-pen-ruler"></i> Rapid Prototyping</h3>
+                <p>Designers using Figma or Adobe XD often need quick text to fill mockups. Instead of installing heavy plugins, simply keep this tab open. Generate a list, copy it, and paste it directly into your design tool to see how real content flows within your components.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-ban"></i> Avoiding API Bans</h3>
+                <p>Many public APIs (like RandomUser.me) will ban your IP if you request data too frequently during stress testing. Since our tool runs locally after the initial load, you are immune to IP bans, ensuring your testing workflow is never interrupted by a 429 "Too Many Requests" error.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-desktop"></i> Cross-Platform Compatibility</h3>
+                <p>Whether you are on Windows, macOS, Linux, or even a Chromebook, our tool works identically. This ensures that every developer on your team, regardless of their OS, has access to the exact same standard of test data, unifying your QA process.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-cart-shopping"></i> E-commerce Checkout Testing</h3>
+                <p>Testing guest checkouts requires fresh data every time. Using our generator, you can quickly fill out shipping and billing names for hundreds of test orders without reusing the same "Test User" string, which often triggers duplicate order fraud detection systems in development environments.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-arrow-down-a-z"></i> Frontend Sorting Logic</h3>
+                <p>Testing alphabetical sorting on the frontend requires a mix of names starting with different letters. Our randomized engine ensures a good distribution of initials (A-Z), allowing you to rigorously test your table sorting and filtering algorithms.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-memory"></i> Efficient Memory Management</h3>
+                <p>Unlike heavy desktop applications that consume GBs of RAM to generate data, our lightweight JavaScript engine uses minimal resources. You can keep this tool running in a background tab all day without slowing down your IDE or local development server.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-rotate"></i> Session Storage Testing</h3>
+                <p>Developers often need to test if user data persists across page reloads using LocalStorage or SessionStorage. Quickly generate a user profile, save it to your app's storage, and refresh your app to verify data persistence logic without manual entry.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-users-gear"></i> Built by Developers, For Developers</h3>
+                <p>We understand the pain of "dummy data." This tool was crafted specifically to address the pain points of modern web development—speed, privacy, and format flexibility. It evolves based on feedback from the developer community to stay relevant with modern tech stacks.</p>
+            </div>
+
+            <!-- FAQ card -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions (FAQ)</h2>
+
+                <h3 class="ung-faq-q">Is the generated data real?</h3>
+                <p>No. While the names and emails look realistic, they are 100% algorithmically generated. This data is for <strong>software testing, prototyping, and educational purposes only</strong>. It should not be used for illegal verification or identity theft.</p>
+
+                <h3 class="ung-faq-q">Do you store any of this data?</h3>
+                <p>Absolutely not. We value your privacy. This tool operates using <strong>Client-Side Logic</strong>, meaning the data is generated inside your own browser using JavaScript. No information is sent to or stored on our servers.</p>
+
+                <h3 class="ung-faq-q">Can I use this for commercial projects?</h3>
+                <p>Yes, the <strong>Ultra Name Generator Pro</strong> is free to use for both personal and commercial software testing projects. You do not need to provide attribution, although sharing our tool with your team is appreciated.</p>
+
+                <h3 class="ung-faq-q">Why includes specific countries like Bangladesh?</h3>
+                <p>We noticed a lack of high-quality test data tools for South Asian developers. By including region-specific logic, we help developers from these regions build more inclusive and accurately tested applications.</p>
+            </div>
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ══════════════════════════════════════════════════════
+             RELATED TOOLS GRID
+             Dynamically injected by related-tools.js based on
+             the data-category and data-current-page attributes.
+        ══════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top: 50px;">
+            <!--
+                IMPORTANT (Buyer Guide):
+                • data-category    → set to the category of the current tool page
+                • data-current-page → set to the filename of this page
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="tool"
+                 data-current-page="tool-random-name.html">
+            </div>
+        </div>
+
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+        <!-- Tools Comment Section -->
+        <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">
+            <div class="container">
+                <div class="trusted-comments-widget" data-page-id="auto">
+                    <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                        <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>
+                        <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- /main -->
+
+    <!-- ══════════════════════════════════════════════════════
+         GLOBAL FOOTER
+         Injected dynamically by global.js
+    ══════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ══════════════════════════════════════════════════════
+         TOOL JAVASCRIPT
+         Load order is critical:
+         1. name-database.js  — Offline name data for all 195
+                                countries. Must load BEFORE
+                                script.js so the app module can
+                                access window.nameDatabase.
+         2. script.js         — App IIFE that consumes nameDatabase
+                                and drives all UI interactions.
+         3. global.js         — Site-wide header / footer / utils.
+    ══════════════════════════════════════════════════════ -->
+    <script src="../../assets/library/mock-engine/name-database.js"></script>
+    <script src="../../assets/tools/tool/tool-random-name/script.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ── Comment js ── -->
+    <script type="module" src="../../assets/js/comments.js" defer></script>
+
+</body>
+</html>

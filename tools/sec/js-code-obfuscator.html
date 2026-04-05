@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ================================================================
+         [SYSTEM]: Analytics & Site Config Loader (Do Not Remove)
+         These scripts must load first to initialize site-wide tracking
+         and configuration before any other logic executes.
+    ================================================================ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ================================================================
+         [USER CONFIG]: Primary SEO Meta Tags
+         Optimized for: JavaScript Obfuscator, JS Code Protector,
+         Client-Side JS Encryptor, Hide JS in Image, JS Time Bomb,
+         Code Steganography, Anti-Debugging, Domain Lock JavaScript
+    ================================================================ -->
+    <title>JS Code Armor — Free JavaScript Obfuscator & Code Protector | Trusted Tools Web</title>
+    <meta name="title" content="JS Code Armor — Free JavaScript Obfuscator & Code Protector | Trusted Tools Web">
+    <meta name="description" content="Protect your JavaScript source code with military-grade obfuscation. Control Flow Flattening, String Encryption, Anti-Debugging, JS Time-Bomb expiry logic, and unique Image Steganography (hide JS inside PNG). 100% Free, Secure & 100% Client-Side Processing.">
+    <meta name="keywords" content="javascript obfuscator, js code protector, client-side js encryptor, hide js in image, js time bomb, code steganography, javascript encryption, anti-debugging js, domain lock javascript, obfuscate javascript online, free js obfuscator, control flow flattening, string encryption js, trusted tools web">
+    <meta name="author" content="Trusted Tools Web">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- [USER CONFIG]: Canonical URL — update if path changes -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/sec-js-obfuscator.html" />
+
+    <!-- ================================================================
+         Open Graph Meta Tags (Facebook, LinkedIn, Slack, Discord)
+    ================================================================ -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/sec-js-obfuscator.html">
+    <meta property="og:title" content="JS Code Armor — JavaScript Obfuscator & Protector | Trusted Tools Web">
+    <meta property="og:description" content="Military-grade JS obfuscation with God Mode: Time-Bomb expiry & Image Steganography. 100% Client-Side. Free Forever. No upload, no server, no risk.">
+    <meta property="og:image" content="../../assets/tools/sec/sec-js-obfuscator/img/og-cover.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ================================================================
+         Twitter Card Meta Tags
+    ================================================================ -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://trustedtoolsweb.com/sec-js-obfuscator.html">
+    <meta property="twitter:title" content="JS Code Armor — JavaScript Obfuscator | Trusted Tools Web">
+    <meta property="twitter:description" content="Protect JS with Time-Bomb & Steganography. 100% Free & Client-Side. Military-grade obfuscation in your browser.">
+    <meta property="twitter:image" content="../../assets/tools/sec/sec-js-obfuscator/img/og-cover.webp">
+
+    <!-- ================================================================
+         [USER CONFIG]: Favicons & Theme Color
+    ================================================================ -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+    <meta name="theme-color" content="#00ff88">
+
+    <!-- ================================================================
+         External Libraries: FontAwesome Icons & JetBrains Mono Font
+         [DEV NOTE]: Already localized — no CDN dependency for these.
+    ================================================================ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <!-- JetBrains Mono: Monospace font for code editor aesthetics -->
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+
+    <!-- ================================================================
+         CDN Libraries: JavaScript Obfuscator & Monaco Editor
+         [DEV NOTE]: For offline/PWA use, localize these before release:
+           - javascript-obfuscator → /assets/library/js-obfuscator/
+           - monaco-editor         → /assets/library/monaco-editor/
+    ================================================================ -->
+    <!-- JavaScript Obfuscator browser build (core engine) -->
+<script src="../../assets/library/javascript-obfuscator/index.browser.js"></script>
+    <!-- Monaco Editor loader — provides IDE-quality syntax highlighting -->
+   <script src="../../assets/library/monaco-editor/min/vs/loader.js"></script>
+
+    <!-- ================================================================
+         [SYSTEM]: Global Stylesheet + Universal Tool Component Stylesheet
+         global.css      → Header, footer, theme, base reset, variables
+         tools-template.css → All reusable tool UI components
+    ================================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ================================================================
+         JSON-LD Structured Data Schema
+         Types: WebApplication + HowTo — generates Google Rich Results
+    ================================================================ -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "JS Code Armor - JavaScript Obfuscator & Code Protector",
+        "url": "https://trustedtoolsweb.com/sec-js-obfuscator.html",
+        "description": "A professional, client-side JavaScript obfuscator and code protector with God Mode features including Time-Bomb expiry logic and Image Steganography for hiding obfuscated JS inside PNG images. 100% free and 100% client-side.",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge.",
+        "image": "https://trustedtoolsweb.com/assets/tools/sec/sec-js-obfuscator/img/og-cover.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "category": "Free Tool"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "Trusted Tools Web",
+          "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "JavaScript Obfuscation, Control Flow Flattening, String Encryption, Dead Code Injection, Anti-Debugging, Self-Defending, Domain Lock, Time-Bomb Expiry, Image Steganography, Monaco Code Editor, Analysis Report"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Obfuscate and Protect JavaScript Code Online",
+        "description": "Step-by-step guide to protecting your JavaScript source code using JS Code Armor.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Paste Source Code",
+            "text": "Paste your JavaScript source code into the Monaco editor panel on the left side."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Choose Protection Level",
+            "text": "Select your desired protection level: Stealth, Balanced, Fortress, or God Mode."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Configure God Mode",
+            "text": "Optionally enable God Mode features: set a Time-Bomb expiry date or enable Ninja Mode Steganography to hide the code inside a PNG image."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Obfuscate & Download",
+            "text": "Click 'Obfuscate & Protect', then copy, download, or use the HTML Wrap output for your project."
+          }
+        ]
+      }
+    ]
+    </script>
+
+    <!-- Inline script: apply saved theme before render to prevent Flash Of Unstyled Content (FOUC) -->
+    <script>
+        if (localStorage.getItem('siteTheme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- ================================================================
+         [SYSTEM]: Global Site Header
+         Dynamically populated by global.js — do not add static content.
+    ================================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+
+        <!-- ============================================================
+             TWO-COLUMN TOOL LAYOUT WRAPPER
+             Left: Input/Config panel | Right: Output/Preview panel
+        ============================================================ -->
+        <div class="jca-layout-wrapper animated-entry">
+
+            <!-- ============================================================
+                 LEFT PANEL: Configuration & Code Input
+                 Contains: hero, protection presets, Monaco editor,
+                 toggle settings, God Mode panel, action buttons.
+            ============================================================ -->
+            <div class="container" id="input-panel">
+
+                <!-- ── Hero: Security Badge ─────────────────────────────── -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-halved"></i> CODE ARMOR ACTIVE
+                    <span class="jca-badge-dot"></span>
+                </div>
+
+                <!-- ── Tool Title ────────────────────────────────────────── -->
+                <h1 class="tool-title">
+                    <i class="fa-solid fa-user-secret"></i>
+                    JS Code <span>Armor</span>
+                </h1>
+
+                <!-- ── Subtitle: 100% Client-Side Processing note ────────── -->
+                <p class="subtitle">
+                    Military-Grade JavaScript Obfuscation &amp; Protection. God Mode Included.
+                    <br><span class="badge badge-success" style="font-size:11px; margin-top:6px; display:inline-flex;">
+                        <i class="fa-solid fa-lock"></i>&nbsp; 100% Client-Side Processing
+                    </span>
+                </p>
+
+                <!-- ============================================================
+                     [SYSTEM]: Top Ad Slot
+                     Hidden by default; activated and filled by ads-manager.js
+                ============================================================ -->
+                <div class="ad-slot" data-ad-slot="top-banner">
+                    <!-- [DEV NOTE]: Ad content injected dynamically -->
+                </div>
+
+                <!-- ============================================================
+                     PROTECTION LEVEL SELECTOR
+                     Four preset pills — Stealth / Balanced / Fortress / God Mode.
+                     The active pill is highlighted and its preset is applied via JS.
+                ============================================================ -->
+                <div class="jca-level-box">
+                    <div class="jca-section-label">
+                        <i class="fa-solid fa-gauge-high"></i> Protection Level
+                    </div>
+                    <div class="jca-level-pills" id="levelPills">
+
+                        <!-- Stealth: minimal obfuscation, fastest output -->
+                        <button class="jca-level-pill" data-level="low" onclick="setLevel('low')">
+                            <i class="fa-solid fa-shield"></i> Stealth
+                        </button>
+
+                        <!-- Balanced: default preset — good performance/security tradeoff -->
+                        <button class="jca-level-pill active" data-level="medium" onclick="setLevel('medium')">
+                            <i class="fa-solid fa-shield-halved"></i> Balanced
+                        </button>
+
+                        <!-- Fortress: maximum standard protection, all toggles on -->
+                        <button class="jca-level-pill" data-level="high" onclick="setLevel('high')">
+                            <i class="fa-solid fa-shield-virus"></i> Fortress
+                        </button>
+
+                        <!-- God Mode: enables Time-Bomb + Steganography features -->
+                        <button class="jca-level-pill jca-pill-god" data-level="god" onclick="setLevel('god')">
+                            <i class="fa-solid fa-bolt"></i> God Mode
+                        </button>
+
+                    </div>
+                </div><!-- /.jca-level-box -->
+
+                <!-- ============================================================
+                     CODE EDITOR AREA
+                     Monaco editor mounts into #monacoEditor at runtime.
+                     Falls back to a styled <textarea> if Monaco CDN fails.
+                ============================================================ -->
+                <div class="jca-editor-wrapper">
+
+                    <!-- Editor toolbar: language badge, traffic-light dots, clear button -->
+                    <div class="jca-editor-toolbar">
+                        <span class="jca-lang-badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+                        <div class="jca-editor-dots">
+                            <span class="jca-dot jca-dot-red"></span>
+                            <span class="jca-dot jca-dot-yellow"></span>
+                            <span class="jca-dot jca-dot-green"></span>
+                        </div>
+                        <button class="jca-editor-clear-btn" onclick="clearEditor()" title="Clear Editor">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Monaco editor mount point (height set inline for editor bootstrap) -->
+                    <div id="monacoEditor" style="height: 280px;"></div>
+
+                    <!-- Fallback textarea: shown only when Monaco fails to load -->
+                    <textarea id="fallbackEditor"
+                              class="jca-fallback-editor input-control"
+                              placeholder="// Paste your JavaScript code here...&#10;// Example:&#10;function greet(name) {&#10;    return 'Hello, ' + name + '!';&#10;}"
+                              style="display:none;"></textarea>
+
+                </div><!-- /.jca-editor-wrapper -->
+
+                <!-- ============================================================
+                     STANDARD PROTECTION SETTINGS
+                     Six toggle cards controlling obfuscation feature flags.
+                     Each maps to a corresponding option in buildObfuscatorOptions().
+                ============================================================ -->
+                <div class="jca-settings-section">
+                    <div class="jca-section-label">
+                        <i class="fa-solid fa-sliders"></i> Standard Protection
+                    </div>
+                    <div class="jca-settings-grid">
+
+                        <!-- Toggle: Control Flow Flattening -->
+                        <label class="jca-toggle-card" title="Transforms code logic into a complex state machine, making reverse engineering extremely difficult.">
+                            <div class="jca-toggle-info">
+                                <i class="fa-solid fa-code-branch jca-toggle-icon"></i>
+                                <div>
+                                    <div class="jca-toggle-title">Control Flow Flattening</div>
+                                    <div class="jca-toggle-desc">Converts logic into a state machine</div>
+                                </div>
+                            </div>
+                            <div class="jca-toggle-switch">
+                                <input type="checkbox" id="opt_controlFlow" checked>
+                                <span class="jca-toggle-slider"></span>
+                            </div>
+                        </label>
+
+                        <!-- Toggle: String Encryption -->
+                        <label class="jca-toggle-card" title="Encrypts all string literals using Base64 or RC4 encoding, hiding readable text from source inspection.">
+                            <div class="jca-toggle-info">
+                                <i class="fa-solid fa-key jca-toggle-icon"></i>
+                                <div>
+                                    <div class="jca-toggle-title">String Encryption</div>
+                                    <div class="jca-toggle-desc">Encodes all string literals</div>
+                                </div>
+                            </div>
+                            <div class="jca-toggle-switch">
+                                <input type="checkbox" id="opt_stringEnc" checked>
+                                <span class="jca-toggle-slider"></span>
+                            </div>
+                        </label>
+
+                        <!-- Toggle: Dead Code Injection -->
+                        <label class="jca-toggle-card" title="Inserts random, unreachable code blocks to confuse deobfuscators and analysis tools.">
+                            <div class="jca-toggle-info">
+                                <i class="fa-solid fa-skull jca-toggle-icon"></i>
+                                <div>
+                                    <div class="jca-toggle-title">Dead Code Injection</div>
+                                    <div class="jca-toggle-desc">Injects fake unreachable code</div>
+                                </div>
+                            </div>
+                            <div class="jca-toggle-switch">
+                                <input type="checkbox" id="opt_deadCode">
+                                <span class="jca-toggle-slider"></span>
+                            </div>
+                        </label>
+
+                        <!-- Toggle: Anti-Debugging -->
+                        <label class="jca-toggle-card" title="Adds self-defending code that detects DevTools and debuggers, breaking execution if tampering is detected.">
+                            <div class="jca-toggle-info">
+                                <i class="fa-solid fa-bug-slash jca-toggle-icon"></i>
+                                <div>
+                                    <div class="jca-toggle-title">Anti-Debugging</div>
+                                    <div class="jca-toggle-desc">Detects &amp; breaks DevTools access</div>
+                                </div>
+                            </div>
+                            <div class="jca-toggle-switch">
+                                <input type="checkbox" id="opt_antiDebug">
+                                <span class="jca-toggle-slider"></span>
+                            </div>
+                        </label>
+
+                        <!-- Toggle: Self-Defending (Tamper Protection) -->
+                        <label class="jca-toggle-card" title="The obfuscated code becomes self-defending: if the code is modified (e.g., prettified), it breaks itself.">
+                            <div class="jca-toggle-info">
+                                <i class="fa-solid fa-fingerprint jca-toggle-icon"></i>
+                                <div>
+                                    <div class="jca-toggle-title">Self-Defending</div>
+                                    <div class="jca-toggle-desc">Breaks if tampered or prettified</div>
+                                </div>
+                            </div>
+                            <div class="jca-toggle-switch">
+                                <input type="checkbox" id="opt_selfDefend">
+                                <span class="jca-toggle-slider"></span>
+                            </div>
+                        </label>
+
+                        <!-- Toggle: Identifier Renaming -->
+                        <label class="jca-toggle-card" title="Renames all variables, functions, and class names to short, meaningless identifiers.">
+                            <div class="jca-toggle-info">
+                                <i class="fa-solid fa-shuffle jca-toggle-icon"></i>
+                                <div>
+                                    <div class="jca-toggle-title">Identifier Renaming</div>
+                                    <div class="jca-toggle-desc">Renames variables &amp; functions</div>
+                                </div>
+                            </div>
+                            <div class="jca-toggle-switch">
+                                <input type="checkbox" id="opt_renameId" checked>
+                                <span class="jca-toggle-slider"></span>
+                            </div>
+                        </label>
+
+                    </div><!-- /.jca-settings-grid -->
+
+                    <!-- Domain Lock: Optional input to restrict code to a specific hostname -->
+                    <div class="input-wrapper" style="margin-top: 15px;">
+                        <label for="opt_domainLock" class="jca-section-label" style="margin-bottom:8px; font-size:13px;">
+                            <i class="fa-solid fa-lock"></i> Domain Lock
+                            <span style="font-weight:400; color: var(--text-muted);">(optional — restrict code to your domain)</span>
+                        </label>
+                        <input type="text" id="opt_domainLock" class="input-control"
+                               placeholder="e.g. yourdomain.com (leave blank to disable)"
+                               autocomplete="off">
+                    </div>
+
+                </div><!-- /.jca-settings-section -->
+
+                <!-- ============================================================
+                     GOD MODE FEATURES PANEL
+                     Expanded when "God Mode" preset is selected or
+                     the godModeToggle checkbox is checked.
+                     Contains: Time-Bomb & Ninja Mode (Steganography).
+                ============================================================ -->
+                <div class="jca-godmode-panel" id="godModePanel">
+
+                    <!-- God Mode panel header with master enable toggle -->
+                    <div class="jca-godmode-header">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>GOD MODE — Advanced Weapons</span>
+                        <div class="jca-godmode-toggle-wrap">
+                            <input type="checkbox" id="godModeToggle" onchange="toggleGodMode(this.checked)">
+                            <label for="godModeToggle" class="jca-godmode-toggle-label">Enable</label>
+                        </div>
+                    </div>
+
+                    <!-- God Mode collapsible feature body -->
+                    <div class="jca-godmode-body" id="godModeBody">
+
+                        <!-- ── Feature: Time-Bomb ──────────────────────── -->
+                        <div class="jca-feature" id="feature_timebomb">
+                            <div class="jca-feature-header">
+                                <div class="jca-feature-title">
+                                    <i class="fa-solid fa-bomb jca-feature-icon jca-icon-timebomb"></i>
+                                    <div>
+                                        <div class="jca-feature-name">Time-Bomb</div>
+                                        <div class="jca-feature-desc">Code auto-destructs after expiry date</div>
+                                    </div>
+                                </div>
+                                <div class="jca-toggle-switch">
+                                    <input type="checkbox" id="timebombEnabled" onchange="toggleFeatureUI('timebomb', this.checked)">
+                                    <span class="jca-toggle-slider"></span>
+                                </div>
+                            </div>
+
+                            <!-- Time-Bomb config: shown when toggle is enabled -->
+                            <div class="jca-feature-config" id="timebomb_config" style="display:none;">
+                                <div class="multi-input-grid">
+                                    <div class="input-wrapper">
+                                        <label for="timebombDate" class="jca-input-label">Expiry Date &amp; Time</label>
+                                        <input type="datetime-local" id="timebombDate" class="input-control">
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <label for="timebombAction" class="jca-input-label">On Expiry Action</label>
+                                        <select id="timebombAction" class="input-control">
+                                            <option value="silence">Silent Fail (return nothing)</option>
+                                            <option value="redirect">Redirect to URL</option>
+                                            <option value="alert">Show Alert &amp; Stop</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Redirect URL field — conditionally shown when action = redirect -->
+                                <div class="input-wrapper" id="timebombRedirectGroup" style="display:none;">
+                                    <label for="timebombRedirect" class="jca-input-label">Redirect URL</label>
+                                    <input type="text" id="timebombRedirect" class="input-control"
+                                           placeholder="https://yourdomain.com/expired">
+                                </div>
+                                <!-- Time-Bomb info preview box -->
+                                <div class="jca-timebomb-preview">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    A <code>Date.now()</code> check will be injected at the top of your script.
+                                    After <strong id="timebombDateDisplay">the selected date</strong>,
+                                    the code will execute the chosen expiry action.
+                                </div>
+                            </div>
+                        </div><!-- /.jca-feature timebomb -->
+
+                        <!-- ── Divider between God Mode features ─────────── -->
+                        <div class="jca-feature-divider"></div>
+
+                        <!-- ── Feature: Ninja Mode — Image Steganography ── -->
+                        <div class="jca-feature" id="feature_stego">
+                            <div class="jca-feature-header">
+                                <div class="jca-feature-title">
+                                    <i class="fa-solid fa-eye-slash jca-feature-icon jca-icon-stego"></i>
+                                    <div>
+                                        <div class="jca-feature-name">Ninja Mode — Steganography</div>
+                                        <div class="jca-feature-desc">Hide obfuscated JS inside a PNG image's pixels</div>
+                                    </div>
+                                </div>
+                                <div class="jca-toggle-switch">
+                                    <input type="checkbox" id="stegoEnabled" onchange="toggleFeatureUI('stego', this.checked)">
+                                    <span class="jca-toggle-slider"></span>
+                                </div>
+                            </div>
+
+                            <!-- Steganography config: shown when toggle is enabled -->
+                            <div class="jca-feature-config" id="stego_config" style="display:none;">
+                                <div class="jca-stego-info-box">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <p>Your obfuscated JavaScript will be encoded into the RGB pixel values of a generated
+                                    PNG image using the HTML5 Canvas API. A companion <strong>decoder script</strong>
+                                    will also be provided to extract and execute the hidden code.</p>
+                                </div>
+                                <div class="multi-input-grid">
+                                    <div class="input-wrapper">
+                                        <label for="stegoWidth" class="jca-input-label">Image Width (px)</label>
+                                        <input type="number" id="stegoWidth" class="input-control"
+                                               value="256" min="64" max="2048">
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <label for="stegoSecret" class="jca-input-label">Embed Secret Key (optional)</label>
+                                        <input type="text" id="stegoSecret" class="input-control"
+                                               placeholder="e.g. my-secret-key-2026">
+                                    </div>
+                                </div>
+                                <!-- Hidden canvas for steganography pixel encoding — not visible -->
+                                <canvas id="stegoCanvas" style="display:none;"></canvas>
+                                <!-- Stego output preview — shown after obfuscation runs with stego enabled -->
+                                <div id="stegoPreviewArea" style="display:none;">
+                                    <div class="jca-stego-output-grid">
+                                        <div>
+                                            <div class="jca-stego-label">Generated Image (contains hidden JS)</div>
+                                            <img id="stegoImgPreview" src="" alt="Steganography carrier output image"
+                                                 class="jca-stego-img-preview">
+                                        </div>
+                                        <div>
+                                            <div class="jca-stego-label">Decoder Script</div>
+                                            <textarea id="stegoDecoderOutput"
+                                                      class="jca-stego-decoder-text input-control"
+                                                      readonly></textarea>
+                                            <div class="btn-area" style="margin-top:8px;">
+                                                <button class="btn btn-secondary" onclick="copyCode('stegoDecoderOutput')">
+                                                    <i class="fa-solid fa-copy"></i> Copy Decoder
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-area">
+                                        <button class="btn btn-success" onclick="downloadStegoImage()">
+                                            <i class="fa-solid fa-image"></i> Download Carrier Image (.png)
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.jca-feature stego -->
+
+                    </div><!-- /#godModeBody -->
+                </div><!-- /#godModePanel -->
+
+                <!-- ============================================================
+                     ACTION BUTTONS
+                     Reset clears all state; Obfuscate runs the full pipeline.
+                ============================================================ -->
+                <div class="btn-area">
+                    <button class="btn btn-secondary" onclick="resetAll()" aria-label="Reset All">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
+                    <button class="btn btn-primary" onclick="runObfuscation()" id="obfuscateBtn" aria-label="Obfuscate Code">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span id="obfusBtnText">Obfuscate &amp; Protect</span>
+                    </button>
+                </div>
+
+                <!-- ============================================================
+                     PROGRESS / STATUS BAR
+                     Hidden by default; shown during obfuscation pipeline.
+                     Controlled by startProgress() / setProgressStatus() / completeProgress().
+                ============================================================ -->
+                <div class="jca-progress-wrap" id="progressWrap" style="display:none;">
+                    <div class="jca-progress-track">
+                        <div class="jca-progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="jca-progress-status" id="progressStatus">Initializing engine...</div>
+                </div>
+
+            </div><!-- /#input-panel -->
+
+
+            <!-- ============================================================
+                 RIGHT PANEL: Output & Preview
+                 Three tabs: Obfuscated JS Output | Analysis Report | HTML Wrap
+            ============================================================ -->
+            <div class="jca-preview-panel">
+
+                <!-- Tab Navigation Bar -->
+                <div class="jca-tab-bar">
+                    <button class="jca-tab-btn active" data-mode="output" onclick="setTab('output')">
+                        <i class="fa-solid fa-code"></i> Output
+                    </button>
+                    <button class="jca-tab-btn" data-mode="analysis" onclick="setTab('analysis')">
+                        <i class="fa-solid fa-chart-bar"></i> Analysis
+                    </button>
+                    <button class="jca-tab-btn" data-mode="wrap" onclick="setTab('wrap')">
+                        <i class="fa-solid fa-file-code"></i> HTML Wrap
+                    </button>
+                </div>
+
+                <!-- ── Tab Content: Obfuscated JS Output ─────────────────── -->
+                <div id="view-output" class="jca-preview-content active">
+                    <div class="jca-output-toolbar">
+                        <span class="jca-output-label">PROTECTED JAVASCRIPT</span>
+                        <div class="jca-output-actions">
+                            <!-- Copy JS button — disabled until obfuscation completes -->
+                            <button class="btn btn-secondary jca-btn-sm" onclick="copyCode('outputCode')" id="copyOutputBtn" disabled>
+                                <i class="fa-solid fa-copy"></i> Copy JS
+                            </button>
+                            <!-- Download .js file button — disabled until obfuscation completes -->
+                            <button class="btn btn-secondary jca-btn-sm" onclick="downloadJS()" id="dlOutputBtn" disabled>
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Monaco output editor mount point (readonly) -->
+                    <div id="monacoOutput" style="height: 320px; border-radius: 0 0 8px 8px;"></div>
+                    <!-- Fallback output textarea — shown if Monaco fails to load -->
+                    <textarea id="outputCode"
+                              class="jca-fallback-editor jca-output-fallback input-control"
+                              readonly
+                              placeholder="// Obfuscated code will appear here...&#10;// Click 'Obfuscate &amp; Protect' to begin."
+                              style="display:none; height: 320px;"></textarea>
+                    <!-- Empty state placeholder — shown before first obfuscation run -->
+                    <div class="jca-output-empty" id="outputEmptyState">
+                        <i class="fa-solid fa-user-secret" style="font-size: 48px; opacity:0.2;"></i>
+                        <p>Protected code will appear here</p>
+                        <small>Paste your JS on the left and click Obfuscate</small>
+                    </div>
+                </div>
+
+                <!-- ── Tab Content: Analysis Report ──────────────────────── -->
+                <div id="view-analysis" class="jca-preview-content">
+                    <div class="jca-analysis-report" id="analysisReport">
+                        <div class="jca-analysis-empty">
+                            <i class="fa-solid fa-chart-bar" style="font-size: 40px; opacity:0.2;"></i>
+                            <p>Run obfuscation to see the analysis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Tab Content: HTML Script Wrapper ──────────────────── -->
+                <div id="view-wrap" class="jca-preview-content">
+                    <div class="jca-output-toolbar">
+                        <span class="jca-output-label">HTML SCRIPT WRAPPER</span>
+                        <!-- Copy HTML wrap button — disabled until obfuscation completes -->
+                        <button class="btn btn-secondary jca-btn-sm" onclick="copyCode('outputWrapCode')" id="copyWrapBtn" disabled>
+                            <i class="fa-solid fa-copy"></i> Copy HTML
+                        </button>
+                    </div>
+                    <textarea id="outputWrapCode"
+                              class="jca-fallback-editor jca-output-fallback input-control"
+                              readonly
+                              placeholder="&lt;!-- HTML wrapper will appear here after obfuscation --&gt;"
+                              style="height:320px;"></textarea>
+                </div>
+
+            </div><!-- /.jca-preview-panel -->
+
+        </div><!-- /.jca-layout-wrapper -->
+
+        <!-- ============================================================
+             [SYSTEM]: Bottom Ad Slot (Revenue Integration)
+             Managed by ads-manager.js
+        ============================================================ -->
+        <div class="ad-slot" data-ad-slot="bottom-banner">
+            <!-- [DEV NOTE]: Ad content injected dynamically -->
+        </div>
+
+        <!-- ============================================================
+             [USER CONFIG]: SEO Information / Usage Guide Section
+             Provides detailed documentation for users and search engines.
+        ============================================================ -->
+        <section class="info-section-wrapper">
+
+            <!-- ── Usage Guide Card ──────────────────────────────────── -->
+            <div class="info-card mb-30">
+                <h2 class="jca-guide-heading">
+                    <i class="fa-solid fa-book-open"></i> Complete Usage Guide: From Source to Fortress
+                </h2>
+                <div class="jca-step-wrapper">
+
+                    <div class="jca-step-card">
+                        <div class="jca-step-num">1</div>
+                        <h4 class="text-inverse" style="margin-bottom: 10px;">Paste Your Code</h4>
+                        <p class="text-muted" style="font-size: 13px;">
+                            Paste your JavaScript source code into the Monaco editor on the left. The editor
+                            supports full syntax highlighting. You can also paste minified code — all formats are accepted.
+                        </p>
+                    </div>
+
+                    <div class="jca-step-card">
+                        <div class="jca-step-num">2</div>
+                        <h4 class="text-inverse" style="margin-bottom: 10px;">Choose Protection Level</h4>
+                        <p class="text-muted" style="font-size: 13px;">
+                            Select a preset: <strong>Stealth</strong> for fast, light obfuscation.
+                            <strong>Balanced</strong> for everyday use. <strong>Fortress</strong>
+                            for maximum resistance. <strong>God Mode</strong> unlocks Time-Bomb and Steganography.
+                        </p>
+                    </div>
+
+                    <div class="jca-step-card">
+                        <div class="jca-step-num">3</div>
+                        <h4 class="text-inverse" style="margin-bottom: 10px;">Configure God Mode</h4>
+                        <p class="text-muted" style="font-size: 13px;">
+                            Enable the <strong>Time-Bomb</strong> to set an expiry date — your code will
+                            self-destruct after the deadline. Enable <strong>Ninja Mode</strong> to encode
+                            your JS into a PNG image using Canvas-based steganography.
+                        </p>
+                    </div>
+
+                    <div class="jca-step-card">
+                        <div class="jca-step-num">4</div>
+                        <h4 class="text-inverse" style="margin-bottom: 10px;">Deploy Protected Code</h4>
+                        <p class="text-muted" style="font-size: 13px;">
+                            Copy the obfuscated JS or download the <code>.js</code> file. Use the
+                            <strong>HTML Wrap</strong> tab to get a ready-to-paste <code>&lt;script&gt;</code>
+                            tag for your HTML pages.
+                        </p>
+                    </div>
+
+                </div><!-- /.jca-step-wrapper -->
+            </div>
+
+            <!-- ── Section Heading: Security Knowledge Base ────────── -->
+            <div class="jca-kb-heading">
+                <i class="fa-solid fa-graduation-cap"></i> Security Knowledge Base
+            </div>
+
+            <!-- ── Feature Grid: Six knowledge cards ────────────────── -->
+            <div class="grid-system">
+
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-code-branch" style="color:#00ff88;"></i> Control Flow Flattening</h3>
+                    <p>This technique transforms your logical code structure (if/else, loops, function calls) into a
+                    dispatcher-based state machine. A <code>while</code> loop cycles through states, making it
+                    near-impossible to read the execution order without dynamic analysis. Performance impact: moderate,
+                    especially on large files.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-bomb" style="color:#ff4444;"></i> Time-Bomb Logic</h3>
+                    <p>The Time-Bomb injects a <code>Date.now()</code> guard at the top of your script. If the current
+                    timestamp exceeds the programmed expiry, the script silently fails, redirects users, or shows an
+                    alert. Ideal for demo licensing, time-limited SaaS embeds, and trial code distribution.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-eye-slash" style="color:#a855f7;"></i> Image Steganography</h3>
+                    <p>Our Ninja Mode converts each character of your obfuscated JS string to its UTF-16 char code and
+                    distributes it across the RGB channels of a PNG image's pixels. The code is invisible to the human
+                    eye. The companion decoder script uses <code>canvas.getImageData()</code> to reconstruct and execute
+                    the hidden payload at runtime.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-bug-slash" style="color:#f59e0b;"></i> Anti-Debugging Explained</h3>
+                    <p>When DevTools or a debugger is detected (via <code>debugger</code> statements and performance
+                    timing tricks), the self-defending wrapper enters an infinite loop or throws a fatal error. This
+                    makes step-through analysis in Chrome DevTools or Node.js inspector impossible without disabling
+                    the protection first.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-lock" style="color:#38bdf8;"></i> Domain Locking</h3>
+                    <p>A domain whitelist check is injected into the obfuscated wrapper. The code reads
+                    <code>window.location.hostname</code> and compares it against your allowed domains. If accessed
+                    from an unauthorized origin (e.g., someone copies your JS to their site), execution is
+                    immediately halted.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-circle-question" style="color:#e879f9;"></i> Is Client-Side Obfuscation Safe?</h3>
+                    <p>Yes — 100% of processing happens in your browser. Your source code never leaves your device or
+                    touches any server. All obfuscation is performed via the <code>javascript-obfuscator</code> library
+                    (WASM-powered) running entirely in your browser's JavaScript engine.</p>
+                </div>
+
+            </div><!-- /.grid-system -->
+
+            <!-- ── FAQ Section Card ───────────────────────────────── -->
+            <div class="info-card mt-xl" style="position: relative; overflow: hidden;">
+                <!-- Decorative radial glow (purely visual) -->
+                <div class="jca-faq-glow" aria-hidden="true"></div>
+                <h2 class="jca-guide-heading">
+                    <i class="fa-solid fa-comments"></i> Frequently Asked Questions
+                </h2>
+                <div class="jca-faq-container">
+
+                    <details class="jca-faq-item">
+                        <summary class="jca-faq-question">
+                            Is JS Code Armor completely free?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="jca-faq-answer">
+                            <p><strong>Yes.</strong> JS Code Armor is 100% free forever with no paywalls,
+                            API limits, or watermarks. All features including God Mode are unlocked for every user.</p>
+                        </div>
+                    </details>
+
+                    <details class="jca-faq-item">
+                        <summary class="jca-faq-question">
+                            Can obfuscated code be reversed (deobfuscated)?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="jca-faq-answer">
+                            <p>Technically, any obfuscated code can be reversed with enough time and effort —
+                            obfuscation is a deterrent, not encryption. However, with Control Flow Flattening +
+                            String Encryption + Self-Defending enabled, the effort required is dramatically
+                            increased, making it economically impractical for most attackers.</p>
+                        </div>
+                    </details>
+
+                    <details class="jca-faq-item">
+                        <summary class="jca-faq-question">
+                            Will obfuscated code work in all browsers?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="jca-faq-answer">
+                            <p>Yes. The generated code is standard ES5/ES6 JavaScript and runs in all modern
+                            browsers including Chrome, Firefox, Safari, and Edge. However,
+                            <strong>Anti-Debugging</strong> and <strong>Self-Defending</strong> may slightly
+                            impact performance — use them wisely in production.</p>
+                        </div>
+                    </details>
+
+                    <details class="jca-faq-item">
+                        <summary class="jca-faq-question">
+                            How does the Image Steganography decoder work?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="jca-faq-answer">
+                            <p>The decoder script creates a hidden HTML5 <code>&lt;canvas&gt;</code> element,
+                            loads the carrier image, reads the pixel RGBA data using <code>getImageData()</code>,
+                            reconstructs the original character codes from the RGB channels, and uses
+                            <code>eval()</code> or <code>Function()</code> to execute the recovered code in
+                            the current scope.</p>
+                        </div>
+                    </details>
+
+                    <details class="jca-faq-item">
+                        <summary class="jca-faq-question">
+                            Is my source code safe? Does it get stored anywhere?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="jca-faq-answer">
+                            <p>Absolutely safe. All processing uses client-side JavaScript only. Your code never
+                            leaves your browser, is never transmitted to any server, and is never stored in any
+                            database or analytics system. You can even use this tool offline after the page loads.</p>
+                        </div>
+                    </details>
+
+                </div><!-- /.jca-faq-container -->
+            </div><!-- /.info-card (FAQ) -->
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ============================================================
+             RELATED TOOLS SECTION
+             Dynamically populated by related-tools.js using data attributes.
+             [USER CONFIG]: Update data-current-page if filename changes.
+        ============================================================ -->
+        <div class="container" style="margin-top: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="sec"
+                 data-current-page="sec-js-obfuscator.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <!-- ================================================================
+         [USER CONFIG]: Global Footer
+         Dynamically populated by global.js — do not add static content.
+    ================================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ================================================================
+         [SYSTEM]: Ad Manager — Must load BEFORE global.js
+    ================================================================ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ================================================================
+         [SYSTEM]: Global Logic (header, footer, theme toggle, etc.)
+    ================================================================ -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ================================================================
+         Tool-Specific Script — JS Code Armor Core Logic
+    ================================================================ -->
+    <script src="../../assets/tools/sec/sec-js-obfuscator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

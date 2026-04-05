@@ -1,197 +1,241 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
+    
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MD KAWSER | Official Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #0f2027;
-            --secondary-color: #203a43;
-            --accent-color: #2c5364;
-            --text-color: #333;
-            --bg-color: #f4f7f6;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        /* Header & Hero Section */
-        header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
-            color: white;
-            text-align: center;
-            padding: 4rem 1rem;
-            border-bottom: 5px solid #00d2ff;
-        }
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-        }
-        header p {
-            font-size: 1.2rem;
-            color: #bbf0f3;
-        }
-        /* Container */
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 20px;
-        }
-        /* Section Styles */
-        .section {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .section-title {
-            color: var(--accent-color);
-            border-bottom: 2px solid #00d2ff;
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* Info Grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-        .info-item {
-            background: #fdfdfd;
-            border-left: 4px solid var(--accent-color);
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-        .info-item strong {
-            color: var(--primary-color);
-        }
-        /* Social & Contact Links */
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .social-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: opacity 0.3s;
-        }
-        .social-btn:hover {
-            opacity: 0.8;
-        }
-        .fb-btn { background: #1877F2; }
-        .github-btn { background: #333; }
-        .mail-btn { background: #D44638; }
-        .wa-btn { background: #25D366; }
-        .codecanyon-btn { background: #82b541; }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: var(--primary-color);
-            color: white;
-            margin-top: 40px;
-        }
-        
-        /* Mobile Responsive */
-        @media (min-width: 768px) {
-            .info-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#090c10">
+    <title>Trusted Tools Web - 50+ Free Developer & SEO Utilities</title>
+    <meta name="title" content="Trusted Tools Web - 50+ Free Developer & SEO Utilities">
+    <meta name="description" content="Access secure, fast, and free online tools: Titan Authenticator, QR Code Gen, SEO Analyzers, Image Compressors, and Developer Utilities. Privacy-first & client-side processing.">
+    <meta name="keywords" content="trusted tools, free online tools, titan authenticator, qr code generator, seo tools, image compressor, json formatter, password generator, bangla tools, hsc ict tools">
+    <meta name="author" content="MD.KAWSER">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://trustedtoolsweb.com/">
+    
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp" sizes="32x32">
+<link rel="icon" type="image/webp" href="assets/img/logo.webp" sizes="16x16">
+<link rel="apple-touch-icon" href="assets/img/logo.webp">
+<link rel="shortcut icon" href="assets/img/logo.webp" type="image/webp">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/">
+    <meta property="og:title" content="Trusted Tools Web - Secure & Free Utilities">
+    <meta property="og:description" content="Use 50+ pro tools for free: Authenticator, QR Gen, SEO Tools & more. No install required.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/img/og-banner.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://trustedtoolsweb.com/">
+    <meta property="twitter:title" content="Trusted Tools Web - Secure Utilities">
+    <meta property="twitter:description" content="Fast, privacy-focused online tools for developers and students. Try now for free.">
+    <meta property="twitter:image" content="https://trustedtoolsweb.com/assets/img/og-banner.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="preload" href="assets/library/fontawesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="assets/library/fontawesome/css/all.min.css"></noscript>
+
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <link rel="stylesheet" href="assets/css/global.css">
+
+    
 </head>
 <body>
 
-    <header>
-        <h1>MD KAWSER</h1>
-        <p>HSC Student | Mobile Web Developer | Creator of TrustedToolsWeb</p>
-    </header>
+<!-- ============================================================
+     FIX 2: TELEGRAM BAR — placed as a direct child of <body>,
+     OUTSIDE any container or section, so it is never constrained.
+     style.css gives it width: 100% + align-self: stretch.
+     ============================================================ -->
+<div class="telegram-bar">
+    <div class="tg-content">
+        <i class="fa-brands fa-telegram tg-icon-pulse"></i>
+        <span class="tg-text">🚀 Join Official Channel for Updates & Support</span>
+    </div>
+    <a href="https://t.me/TrustedToolsWeb" target="_blank" class="tg-btn">
+        <span>Join Now</span> 
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+</div>
 
-    <div class="container">
-        
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-user"></i> আমার সম্পর্কে</h2>
-            <p>আসসালামু আলাইকুম! আমি <strong>মোঃ কাউসার</strong>। আমি এইচএসসি (HSC) ২০২৬ ব্যাচের একজন বিজ্ঞান বিভাগের (জীববিজ্ঞান) শিক্ষার্থী। পড়াশোনার পাশাপাশি কোডিং এবং ওয়েব ডেভেলপমেন্ট আমার প্যাশন। সবচেয়ে মজার ব্যাপার হলো, আমি আমার সম্পূর্ণ ডেভেলপমেন্ট জার্নি এবং বড় বড় প্রজেক্টগুলো একটি অ্যান্ড্রয়েড ফোন ব্যবহার করেই তৈরি করছি। আমি সব সময় নতুন প্রযুক্তি শিখতে এবং নিজের স্কিলকে উন্নত করতে ভালোবাসি।</p>
+<!-- ============================================================
+     HERO SECTION
+     FIX 3: The .typewriter-container now uses width: 100vw with
+     left: 50% / transform: translateX(-50%) in style.css to break
+     past the hero-content column width and span the full screen.
+     The hero-header itself also has overflow: visible so the text
+     is never clipped.
+     ============================================================ -->
+<section class="hero-header">
+    <div class="hero-content">
+
+        <!-- Hero dashboard image — kept inside hero-content, centered -->
+        <img
+            src="assets/img/hero-dashboard.webp"
+            alt="Trusted Tools Dashboard"
+            class="site-logo"
+            width="300"
+            height="170"
+            fetchpriority="high"
+        >
+
+        <!-- 
+            TYPEWRITER WRAPPER:
+            .typewriter-container in style.css breaks this element out to 100vw
+            via position relative + left 50% + transform translateX(-50%).
+            This makes the text span the full screen width regardless of how
+            wide the hero image or hero-content column is.
+        -->
+        <div class="typewriter-container">
+            <h1 class="typewriter-text">Trusted<span class="highlight">Tools</span>Web.Com</h1>
         </div>
 
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-laptop-code"></i> প্রজেক্ট ও ক্যারিয়ার</h2>
-            <div class="info-grid">
-                <div class="info-item">
-                    <h3><i class="fas fa-globe"></i> TrustedToolsWeb</h3>
-                    <p>এটি আমার বর্তমান মেগা প্রজেক্ট। এটি একটি অ্যাডভান্সড ওয়েব টুলস প্ল্যাটফর্ম, যার ডেভেলপমেন্ট প্রায় শেষের দিকে।</p>
-                </div>
-                <div class="info-item">
-                    <h3><i class="fas fa-shopping-cart"></i> CodeCanyon টার্গেট</h3>
-                    <p>আমার তৈরি করা <strong>TrustedToolsWeb</strong> প্রজেক্টটি খুব শীঘ্রই বিশ্বের অন্যতম জনপ্রিয় মার্কেটপ্লেস <em>CodeCanyon</em>-এ বিক্রির জন্য লঞ্চ করার প্রস্তুতি নিচ্ছি।</p>
-                </div>
-            </div>
-        </div>
+        <p class="hero-subtitle">Secure, Fast &amp; Free Utility Dashboard</p>
+    </div>
+</section>
 
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-mobile-alt"></i> ডেভেলপমেন্ট গিয়ার</h2>
-            <ul>
-                <li><strong>ডিভাইস:</strong> অ্যান্ড্রয়েড স্মার্টফোন</li>
-                <li><strong>প্লাটফর্ম:</strong> mdkawserbd.eu.cc (অফিসিয়াল পোর্টফোলিও)</li>
-                <li><strong>স্ট্যাটাস:</strong> HSC 26 Science Student & Full-Stack Learner</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-address-card"></i> কানেক্ট থাকুন (My IDs)</h2>
-            <p>যেকোনো কাজের প্রয়োজনে বা প্রজেক্টের আপডেটের জন্য নিচের মাধ্যমগুলোতে আমার সাথে যোগাযোগ করতে পারেন:</p>
-            
-            <div class="social-links">
-                <a href="#" class="social-btn fb-btn" target="_blank">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
-                
-                <a href="https://wa.me/আপনার_হোয়াটসঅ্যাপ_নম্বর" class="social-btn wa-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                
-                <a href="mailto:আপনার_ইমেইল@gmail.com" class="social-btn mail-btn">
-                    <i class="fas fa-envelope"></i> Email Me
-                </a>
-                
-                <a href="#" class="social-btn github-btn" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-
-                <a href="#" class="social-btn codecanyon-btn" target="_blank">
-                    <i class="fas fa-code"></i> CodeCanyon Profile
-                </a>
-            </div>
-        </div>
-
+<div class="container">
+    
+    <div class="search-container">
+        <span class="search-icon">🔍</span>
+     <input type="text" id="toolSearch" class="search-input" aria-label="Search Tools" placeholder="Search for tools (e.g., Titan, QR, Image, JSON)...">
     </div>
 
-    <footer>
-        <p>&copy; 2026 MD KAWSER | mdkawserbd.eu.cc | All Rights Reserved.</p>
-    </footer>
+    <div class="category-wrapper">
+    <button class="cat-btn active" data-filter="all">
+        <i class="fa-solid fa-layer-group"></i> All Tools
+    </button>
+    
+    <!-- sec- files -->
+    <button class="cat-btn" data-filter="sec">
+        <i class="fa-solid fa-user-secret"></i> Security
+    </button>
+    
+    <!-- dev- files -->
+    <button class="cat-btn" data-filter="dev">
+        <i class="fa-solid fa-code"></i> Developer
+    </button>
+    
+    <!-- seo- files -->
+    <button class="cat-btn" data-filter="seo">
+        <i class="fa-solid fa-magnifying-glass-chart"></i> SEO
+    </button>
+    
+    <!-- img- files -->
+    <button class="cat-btn" data-filter="img">
+        <i class="fa-solid fa-image"></i> Image Tools
+    </button>
+    
+    <!-- media- files -->
+    <button class="cat-btn" data-filter="media">
+        <i class="fa-solid fa-photo-film"></i> Media/Audio
+    </button>
+    
+    <!-- pdf- files -->
+    <button class="cat-btn" data-filter="pdf">
+        <i class="fa-solid fa-file-pdf"></i> PDF Tools
+    </button>
+    
+    <!-- calc- files (Replacing Student) -->
+    <button class="cat-btn" data-filter="calc">
+        <i class="fa-solid fa-calculator"></i> Calculators
+    </button>
+    
+    <!-- text- files -->
+    <button class="cat-btn" data-filter="text">
+        <i class="fa-solid fa-font"></i> Text Tools
+    </button>
+    
+    <!-- tool- files (Replacing Identity) -->
+    <button class="cat-btn" data-filter="tool">
+        <i class="fa-solid fa-toolbox"></i> Utilities
+    </button>
+    
+      <!-- tool- doc files -->
+        <button class="cat-btn" data-filter="doc">
+        <i class="fa-solid fa-file-lines"></i> Documents
+    </button>
 
+</div>
+
+ <h2 class="section-title">Available Tools</h2>
+
+<!-- JS fills this grid dynamically -->
+<div class="tools-grid" id="toolsGrid">
+</div>
+
+
+    </div> <div class="container" style="margin-top: 60px; margin-bottom: 20px;">
+   
+   
+    <div class="seo-card">
+        <div class="seo-header">
+            <h2 class="seo-title">Why Choose <span style="color: var(--accent-cyan);">Trusted Tools Web?</span></h2>
+            <div class="seo-line"></div>
+        </div>
+        
+        <div class="seo-content">
+            <p>
+                Welcome to <strong>Trusted Tools Web</strong>, your ultimate destination for secure, fast, and free digital utilities. In today's data-driven world, finding online tools that respect your privacy can be challenging. Our platform is engineered with a <strong>"Privacy-First"</strong> architecture, meaning most of our tools—like the <em>Titan Authenticator</em>, <em>Password Generator</em>, and <em>Image Compressor</em>—process data locally on your device via client-side JavaScript. Your sensitive information never leaves your browser.
+            </p>
+            <p>
+                Whether you are a developer debugging code with our <strong>JSON Formatter Pro</strong>, a student creating citations, or a professional needing a quick <strong>QR Code Generator</strong>, we have optimized every tool for speed and accuracy.
+            </p>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span><strong>100% Secure:</strong> No server-side data storage for sensitive tools.</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span><strong>Blazing Fast:</strong> Optimized algorithms for instant results without lag.</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <span><strong>Responsive:</strong> Works perfectly on Desktop, Android, and iOS devices.</span>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #8b949e;">
+                We are constantly updating our repository with new utilities like SEO Word Counters, Unit Converters, and Web Developer tools. Bookmark us today and experience a cleaner, safer web utility platform.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="trusted-comments-widget" data-page-id="home"></div>
+</div>
+
+
+
+
+    <!-- Global Footer (populated by global.js) -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+
+<script src="assets/js/site-config.js"></script>
+<script src="assets/js/meta-manager.js"></script>
+<script src="assets/js/analytics-loader.js"></script>
+
+<script type="module" src="assets/js/script.js" defer></script>
+<script type="module" src="assets/js/comments.js" defer></script>
+<script type="module" src="assets/js/home-tools.js"></script>
+   <!-- Global JS (header, footer, theme toggle) -->
+    <script type="module" src="assets/js/global.js"></script>
+    
 </body>
+
 </html>

@@ -1,0 +1,22 @@
+{
+  "name": "SQL Studio ULTRA MAX",
+  "short_name": "SQL Studio",
+  "description": "Offline CSV/JSON to SQL Database Analyzer — WebAssembly SQLite in your browser.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0d0f17",
+  "theme_color": "#00e5ff",
+  "icons": [
+    {
+      "src": "../../assets/img/logo.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "../../assets/img/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ],
+  "categories": ["developer", "productivity", "utilities"]
+}

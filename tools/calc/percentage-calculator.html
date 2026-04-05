@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PercentCalc">
+
+    <!-- Analytics Script Loader -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- Meta Tags for SEO and Responsive Design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#161b22">
+
+    <!-- Page Title & Meta Descriptions -->
+    <title>Percentage Master Pro Max - Secure Online Discount, GST & Finance Calculator</title>
+    <meta name="title" content="Percentage Master Pro Max - Secure Online Discount, GST & Finance Calculator">
+    <meta name="description" content="Calculate Discount, GST/VAT, Profit Margin, and Compound Interest instantly. 100% Free, Secure Client-Side Tool. No Ads, No Data Storage. Works Offline.">
+    <meta name="keywords" content="percentage calculator, discount calculator, gst calculator online, profit margin tool, cgpa to percentage, compound interest calculator, math tools, trusted tools web, privacy focused calculator">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <!-- Open Graph Tags (Social Media Sharing) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/calc-percentage.html">
+    <meta property="og:title" content="Percentage Master Pro Max - Secure Math Tools">
+    <meta property="og:description" content="Calculate Discounts, GST, Marks, and Finance securely. No data stored. Works offline.">
+    <meta property="og:image" content="../../assets/tools/calc/calc-percentage/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://trustedtoolsweb.com/calc-percentage.html">
+    <meta property="twitter:title" content="Percentage Master Pro Max - Secure Math Tools">
+    <meta property="twitter:description" content="Calculate Discounts, GST, Marks, and Finance securely. No data stored. Works offline.">
+    <meta property="twitter:image" content="../../assets/tools/calc/calc-percentage/og-banner.webp">
+
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/calc-percentage.html" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/img/logo.webp">
+
+    <!-- External Libraries (FontAwesome & Google Fonts) -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Outfit/fonts.css">
+
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- Tools Template Stylesheet (All tool UI components) -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- JSON-LD Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Percentage Master Pro Max",
+      "url": "https://trustedtoolsweb.com/calc-percentage.html",
+      "description": "A secure, client-side percentage and finance calculator suite offering high-precision math tools for discounts, GST, and profit margins.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "MD KAWSAR"
+      },
+      "image": "https://trustedtoolsweb.com/assets/tools/calc/calc-percentage/og-banner.webp",
+      "featureList": "Discount Calculator, GST Calculator, Profit Margin Tool, Compound Interest Calculator"
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- Global Header Placeholder -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+
+        <!-- Hero Section: Title and Introduction -->
+        <div class="container animated-entry">
+            <div class="security-badge"><i class="fa-solid fa-shield-halved"></i> 100% Client-Side Secure</div>
+            <h1 class="tool-title">Percentage <span>Master Calc.</span></h1>
+            <p class="subtitle">Calculate Discounts, Growth, GST & Finance in Seconds. No Ads.</p>
+        </div>
+
+        <!-- Top Ad Slot: Placed after Intro, before Tools -->
+        <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+        <!-- Main Calculator Grid -->
+        <div class="pct-calculator-grid animated-entry">
+
+            <!-- Tool 1: General Percentage -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-percent"></i></div>
+                    <div class="pct-card-title">General Percentage</div>
+                </div>
+                <div class="pct-input-group">
+                    <label>What is</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="gen-percent" placeholder="e.g. 15">
+                        <span class="pct-suffix">%</span>
+                    </div>
+                </div>
+                <div class="pct-input-group">
+                    <label>of</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="gen-value" placeholder="e.g. 5000">
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcGeneral()">Calculate</button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-gen">
+                    <div class="pct-result-label">Result</div>
+                    <div class="pct-result-value result-value" onclick="copyToClipboard(this.innerText)">0</div>
+                    <div class="copy-hint pct-copy-hint">Click to Copy</div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Smart Discount -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-tags"></i></div>
+                    <div class="pct-card-title">Smart Discount</div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Original Price</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="disc-price" placeholder="e.g. 1200">
+                    </div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Discount</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="disc-percent" placeholder="e.g. 20">
+                        <span class="pct-suffix">%</span>
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcDiscount()">Calculate Price</button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-disc">
+                    <div class="pct-result-label">You Save: <span id="saved-amount" class="text-accent-cyan">0</span></div>
+                    <div class="pct-result-value result-value" onclick="copyToClipboard(this.innerText)">0</div>
+                    <div class="copy-hint pct-copy-hint">Click to Copy Final Price</div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Marks & GPA -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="pct-card-title">Marks / GPA</div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Marks Obtained</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="marks-obt" placeholder="e.g. 450">
+                    </div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Total Marks</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="marks-total" placeholder="e.g. 500">
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcMarks()">Check Result</button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-marks">
+                    <div class="pct-result-label">Your Percentage</div>
+                    <div class="pct-result-value result-value" onclick="copyToClipboard(this.innerText)">0%</div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Growth / Decline -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="pct-card-title">Growth / Decline</div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Initial Value (Old)</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="change-old" placeholder="e.g. 50">
+                    </div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Final Value (New)</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="change-new" placeholder="e.g. 75">
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcChange()">Calculate Change</button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-change">
+                    <div class="pct-result-label">Difference: <span id="diff-val" class="text-accent-cyan">0</span></div>
+                    <div class="pct-result-value result-value" id="res-change" onclick="copyToClipboard(this.innerText)">0%</div>
+                </div>
+            </div>
+
+            <!-- Tool 5: GST / VAT Calculator -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <div class="pct-card-title">GST / VAT Calc</div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Base Amount</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="gst-amount" placeholder="e.g. 1000">
+                    </div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Tax Rate</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="gst-rate" placeholder="e.g. 15">
+                        <span class="pct-suffix">%</span>
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcGST(true)">
+                        <i class="fa-solid fa-plus"></i> Add Tax
+                    </button>
+                    <button class="btn btn-secondary pct-btn-calc" onclick="calcGST(false)">
+                        <i class="fa-solid fa-minus"></i> Remove Tax
+                    </button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-gst">
+                    <div class="pct-result-label">Tax Amount: <span id="gst-val" class="text-accent-cyan">0</span></div>
+                    <div class="pct-result-value result-value" onclick="copyToClipboard(this.innerText)">0</div>
+                    <div class="copy-hint pct-copy-hint">Total Amount</div>
+                </div>
+            </div>
+
+            <!-- Tool 6: Tip Splitter -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <div class="pct-card-title">Tip &amp; Split</div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Bill Amount</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="tip-bill" placeholder="e.g. 2500">
+                    </div>
+                </div>
+                <div class="pct-dual-row">
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="tip-percent" placeholder="Tip %">
+                    </div>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="tip-people" placeholder="People">
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcTip()">Calculate Share</button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-tip">
+                    <div class="pct-result-label">
+                        Tip: <span id="total-tip" class="text-accent-cyan">0</span>
+                        &nbsp;|&nbsp;
+                        Total: <span id="total-bill" class="text-accent-cyan">0</span>
+                    </div>
+                    <div class="pct-result-value result-value" onclick="copyToClipboard(this.innerText)">0</div>
+                    <div class="copy-hint pct-copy-hint">Per Person Pay</div>
+                </div>
+            </div>
+
+            <!-- Tool 7: Profit Margin -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="pct-card-title">Profit Margin</div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Cost Price</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="margin-cost" placeholder="e.g. 50">
+                    </div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Selling Price</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="margin-sell" placeholder="e.g. 80">
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcMargin()">Check Profit</button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-margin">
+                    <div class="pct-result-label">Profit: <span id="margin-profit" class="text-accent-cyan">0</span></div>
+                    <div class="pct-result-value result-value" onclick="copyToClipboard(this.innerText)">0%</div>
+                    <div class="copy-hint pct-copy-hint">Profit Margin</div>
+                </div>
+            </div>
+
+            <!-- Tool 8: Compound Interest -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div class="pct-card-title">Compound Interest</div>
+                </div>
+                <div class="pct-input-group">
+                    <label>Principal Amount</label>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="ci-principal" placeholder="e.g. 10000">
+                    </div>
+                </div>
+                <div class="pct-dual-row">
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="ci-rate" placeholder="Rate %">
+                    </div>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="ci-time" placeholder="Years">
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcCI()">Project Growth</button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-ci">
+                    <div class="pct-result-label">Interest Earned: <span id="ci-interest" class="text-accent-cyan">0</span></div>
+                    <div class="pct-result-value result-value" onclick="copyToClipboard(this.innerText)">0</div>
+                    <div class="copy-hint pct-copy-hint">Total Maturity Value</div>
+                </div>
+            </div>
+
+            <!-- Tool 9: Fraction to Percentage -->
+            <div class="calc-card card">
+                <div class="card-header">
+                    <div class="pct-card-icon"><i class="fa-solid fa-divide"></i></div>
+                    <div class="pct-card-title">Fraction to %</div>
+                </div>
+                <div class="pct-fraction-row">
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="frac-num" placeholder="Numerator">
+                    </div>
+                    <span class="pct-fraction-slash">/</span>
+                    <div class="pct-input-wrapper">
+                        <input type="number" id="frac-den" placeholder="Denominator">
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button class="btn btn-primary pct-btn-calc" onclick="calcFraction()">Convert</button>
+                </div>
+                <div class="pct-result-box result-box" id="res-box-frac">
+                    <div class="pct-result-label">Decimal: <span id="frac-decimal" class="text-accent-cyan">0</span></div>
+                    <div class="pct-result-value result-value" onclick="copyToClipboard(this.innerText)">0%</div>
+                </div>
+            </div>
+
+        </div><!-- /.pct-calculator-grid -->
+
+        <!-- Bottom Ad Slot: Placed after Main Tool Grid, before SEO/Info -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- Informational SEO Content Section -->
+        <section class="info-section-wrapper">
+
+            <div class="pct-feature-img-wrapper">
+                <img src="../../assets/img/tools/percentage-calc/feature-vector.webp"
+                     alt="Secure Financial Calculation Illustration"
+                     class="pct-feature-img">
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-user-shield"></i> Your Privacy is Our Priority</h2>
+                <p>In a world where every click is tracked, we chose a different path. <strong>Percentage Master Pro Max</strong> is built on a "Client-Side" architecture. This is a fancy way of saying that <strong>your data never leaves your phone or computer.</strong></p>
+                <p>Whether you are calculating your business profit margins, sensitive tax (GST/VAT) amounts, or your exam grades—everything happens right inside your browser. We don't have a server database, so we couldn't store your data even if we wanted to. It's fast, secure, and completely private.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-lightbulb"></i> Real-Life Problems Solved Here</h2>
+                <p>Math shouldn't be a headache. We designed these tools to solve everyday challenges instantly:</p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check pct-list-icon"></i> <strong>For Smart Shoppers:</strong> During festival sales, shops often confuse you with "Flat 20% + Extra 10% off". Use our <em>Smart Discount</em> tool to find the exact price you need to pay before reaching the cash counter.</li>
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check pct-list-icon"></i> <strong>For Students &amp; Job Seekers:</strong> Converting your CGPA to percentage or calculating purely obtained marks is crucial for job applications. Our <em>Marks Calculator</em> gives you the precise percentage without complex formulas.</li>
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check pct-list-icon"></i> <strong>For Business Owners:</strong> "Revenue" is not "Profit". Use the <em>Profit Margin</em> tool to understand your actual earnings after costs. Also, easily add or remove VAT/GST from any amount to prepare accurate invoices.</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-chart-line"></i> The Power of Compound Interest</h2>
+                <p>Albert Einstein reportedly called compound interest the "eighth wonder of the world." It's not just about saving; it's about growing your wealth exponentially.</p>
+                <p>Many people underestimate how much a small monthly saving can grow over 10 or 20 years. Use our <em>Compound Interest Calculator</em> to visualize your financial future. Whether you are planning for retirement, a new home, or your child's education, seeing the numbers can motivate you to start saving today.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-book-open"></i> How to Master Your Numbers (Step-by-Step)</h2>
+                <p>You don't need to be a math genius to use these tools. We've designed everything to work with just two or three clicks. Here is a quick guide on how to handle different situations:</p>
+
+                <div style="margin-top: 25px;">
+
+                    <div class="pct-info-divider">
+                        <h3 class="info-card h3">🛍️ For Shopping &amp; Discounts</h3>
+                        <p style="font-size: 0.9rem;">See a product with a price tag and a discount sticker? Here is how to find the real price:</p>
+                        <ol class="pct-info-list">
+                            <li>Go to the <strong>Smart Discount</strong> card.</li>
+                            <li>Enter the tag price in the "Original Price" box (e.g., 1200).</li>
+                            <li>Type the discount amount in the "%" box (e.g., 25).</li>
+                            <li>Click <strong>Calculate Price</strong>. You will instantly see exactly how much cash you need to pay and how much you saved.</li>
+                        </ol>
+                    </div>
+
+                    <div class="pct-info-divider">
+                        <h3 class="info-card h3">💼 For Business &amp; Billing (VAT/GST)</h3>
+                        <p style="font-size: 0.9rem;">Dealing with invoices? You often need to add tax or figure out the price before tax.</p>
+                        <ul style="list-style: none; padding-left: 0; color: var(--text-muted); font-size: 0.9rem;">
+                            <li style="margin-bottom: 8px;">👉 <strong>To Add Tax:</strong> Enter the amount and tax rate, then hit the <span class="text-primary">+ Add Tax</span> button.</li>
+                            <li>👉 <strong>To Remove Tax:</strong> If a product sells for 500 (inclusive of VAT) and you want the base cost, enter 500 and the tax rate, then click <span class="text-danger">- Remove Tax</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="pct-info-divider">
+                        <h3 class="info-card h3">🎓 For Students (Exam Results)</h3>
+                        <p style="font-size: 0.9rem;">Got your marksheet but confused about the overall percentage?</p>
+                        <ol class="pct-info-list">
+                            <li>Open the <strong>Marks / GPA</strong> tool.</li>
+                            <li>Type the marks you got in the first box (e.g., 450).</li>
+                            <li>Type the total marks of the exam in the second box (e.g., 500).</li>
+                            <li>Hit <strong>Check Result</strong>. Now you know exactly where you stand!</li>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <h3 class="info-card h3">📈 Checking Profit Margins</h3>
+                        <p style="font-size: 0.9rem;">Don't just guess your profit. Be precise.</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Simply enter your <strong>Cost Price</strong> (what you paid to buy/make it) and your <strong>Selling Price</strong>. The tool will show you the profit percentage. If the result is negative, it means you are making a loss!</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-tags"></i> The Trap of "Double Discounts"</h2>
+                <p>You often see signs like "50% + 20% OFF". It sounds like a flat 70% discount, right? <strong>Wrong.</strong> Retailers calculate the first 50% off the original price, and then the next 20% off the <em>new</em> reduced price.</p>
+                <p>For a $100 item, the first discount drops it to $50. The second 20% discount is taken from that $50 (which is $10), making the final price $40. The actual total discount is 60%, not 70%. Use our <em>Smart Discount Calculator</em> to verify the final price before you head to the checkout.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-briefcase"></i> Margin vs. Markup: Do You Know the Difference?</h2>
+                <p>This is where many new businesses lose money. <strong>Markup</strong> is the percentage you add to your cost to get a selling price. <strong>Margin</strong> is the percentage of the selling price that is profit.</p>
+                <p>If you buy a pen for $100 and sell it for $150, your Markup is 50%. However, your Margin is only 33.33%. Our <em>Profit Margin Tool</em> calculates the actual margin so you don't overestimate your profits.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-coins"></i> The Magic "Rule of 72"</h2>
+                <p>Want a quick mental math trick? To find out how many years it will take to double your money at a specific interest rate, simply divide 72 by that rate.</p>
+                <p>For example, if you get a 6% return: 72 ÷ 6 = 12 years. While this mental trick is great for estimation, our <em>Compound Interest Calculator</em> gives you the exact down-to-the-cent projection for serious financial planning.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-hand-holding-dollar"></i> Tipping: Pre-Tax or Post-Tax?</h2>
+                <p>A common debate in restaurants is whether to tip on the bill <em>before</em> tax or <em>after</em> tax. Etiquette experts suggest tipping on the <strong>pre-tax amount</strong>, as tax is a government fee, not a service provided by the waiter.</p>
+                <p>However, many card machines suggest tips based on the total (tax-included) amount. Use our <em>Tip Calculator</em> to enter the base bill amount and ensure you are tipping fairly without overpaying on taxes.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-arrow-trend-down"></i> Understanding "Negative Growth" (Inflation)</h2>
+                <p>We often use percentage calculators to see how much our investments grew. But have you considered inflation? If your bank gives you 5% interest but inflation is at 6%, your purchasing power has actually decreased by 1%.</p>
+                <p>You can use the <em>Growth/Decline Calculator</em> to compare your income rise against the inflation rate to see if you are actually getting richer or just maintaining the status quo.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-file-invoice"></i> Inclusive vs. Exclusive Tax: Why It Matters</h2>
+                <p>Freelancers often make a mistake by quoting a price without clarifying if tax is included. If you agree to $1000 "inclusive of 15% VAT", you are actually only earning $869.56.</p>
+                <p>Always calculate your "Base Price" using our <em>Reverse Tax Tool</em> (Remove Tax button) before sending a quote. This ensures you take home the amount you actually intended to earn.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-graduation-cap"></i> Does CGPA Accuracy Matter?</h2>
+                <p>When applying for scholarships abroad, a slight difference in percentage calculation can make or break your application. Some universities use a flat multiplier (like x9.5), while others use complex formulas.</p>
+                <p>Our <em>Marks Calculator</em> helps you convert your raw scores directly into percentages, giving you a clear picture of where you stand globally, irrespective of your local grading system.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-money-bill-wave"></i> The Truth About Your 20% Raise</h2>
+                <p>Getting a 20% hike sounds amazing. But remember, as your income bracket increases, your tax liability might also increase disproportionately. A 20% gross raise might only result in a 12-15% net increase in your bank account.</p>
+                <p>Use the <em>General Percentage Tool</em> to calculate your expected new salary, and then subtract estimated taxes to avoid disappointment on payday.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-kitchen-set"></i> Baker's Math: Percentages in the Kitchen</h2>
+                <p>Professional bakers don't just use recipes; they use percentages. In "Baker's Percentages," flour is always 100%, and other ingredients are calculated relative to the flour weight.</p>
+                <p>For example, 60% hydration means water weight is 60% of the flour weight. Our tools allow home cooks to scale recipes up or down accurately without ruining the dough consistency.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-brain"></i> Why $9.99 Feels Cheaper than $10</h2>
+                <p>This is known as the "Left-Digit Effect." Our brains process the first number we see with more weight. Even though the difference is just $0.01 (which is practically 0% difference), a product priced at $199 feels significantly cheaper than $200.</p>
+                <p>As a savvy shopper, use the <em>Percentage Change Calculator</em> to see the real difference. You'll often find that the discount is psychological rather than financial.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-landmark"></i> Flat Rate vs. Reducing Balance Interest</h2>
+                <p>Banks often advertise a "low" flat interest rate on loans. Beware! A 10% flat rate can be more expensive than a 16% reducing balance rate.</p>
+                <p>In a flat rate, you pay interest on the full principal for the entire tenure. In reducing balance, you pay interest only on what you still owe. Always check the effective percentage cost before signing loan documents.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-ruler-combined"></i> Precision in Construction: Fractions to Decimals</h2>
+                <p>In DIY projects or construction, measurements often come in fractions (like 3/8 of an inch), but digital tools and laser cutters require decimals (0.375).</p>
+                <p>A small rounding error here can lead to gaps in furniture or structural weakness. Use the <em>Fraction to %/Decimal Tool</em> to get precise conversions instantly, ensuring your project fits together perfectly.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-chart-bar"></i> The 50% Loss Trap</h2>
+                <p>If your stock portfolio drops by 50%, how much does it need to grow to get back to even? Most people think 50%. <strong>Incorrect.</strong></p>
+                <p>If $100 drops to $50 (50% loss), you need that $50 to grow by another $50 to reach $100 again. That is a <strong>100% gain</strong>. This asymmetry of percentages is crucial for risk management in trading.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-laptop-code"></i> Buffer Time Calculation</h2>
+                <p>Project managers often advise adding a "buffer" to your timelines. A standard rule is to calculate your best estimate and add 20% for unexpected delays.</p>
+                <p>If you think a coding task takes 10 hours, adding 20% brings it to 12 hours. This simple percentage calculation helps you meet deadlines consistently and builds client trust.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-heart-pulse"></i> Why Percentage Matters More Than Weight</h2>
+                <p>In fitness, losing "weight" isn't the goal; losing "fat" is. Someone might weigh the same but look completely different due to a change in Body Fat Percentage.</p>
+                <p>Tracking the percentage drop in body measurements is a far more accurate way to track health progress than just staring at the scale number, which fluctuates with water weight.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-stairs"></i> The Theory of Marginal Gains</h2>
+                <p>James Clear, author of Atomic Habits, speaks about getting 1% better every day. It sounds small, but mathematically, 1.01 to the power of 365 is 37.78.</p>
+                <p>This means if you improve by just 1% daily, you will be 37 times better by the end of the year. Our <em>Compound Growth</em> concept applies to self-improvement just as much as it applies to money.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-battery-half"></i> Why the Last 1% Lasts Forever</h2>
+                <p>Ever noticed your phone stays on 100% for a long time, then drops quickly, and hangs on at 1%? Battery percentage is an estimation based on voltage, which isn't linear.</p>
+                <p>While we can't fix your battery, understanding that percentages in technology are often "estimates" rather than "exact counts" helps manage anxiety when your device hits the red zone.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Calculating Simple ROI</h2>
+                <p>ROI is the ultimate metric for any business decision. The formula is: <em>(Net Profit / Total Investment) × 100</em>.</p>
+                <p>Whether you are running ads or buying new equipment, if your ROI percentage is lower than a safe bank deposit rate, the investment might not be worth the risk. Use our tools to quickly check the viability of your spending.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-shield-virus"></i> Why "Client-Side" is the Future of Privacy</h2>
+                <p>Most online calculators send your data to a remote server to process it. This creates a digital footprint. <strong>Percentage Master Pro Max</strong> is different.</p>
+                <p>We use JavaScript to process numbers directly on your device's CPU. This means your financial data, grades, or business margins never leave your browser. It's the digital equivalent of using a physical calculator in a locked room—100% private.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</h2>
+
+                <div style="margin-bottom: 15px;">
+                    <strong class="pct-faq-q">Is this calculator free to use?</strong>
+                    <p>Yes, absolutely. All tools on Trusted Tools Web are 100% free forever. We do not charge any subscription fees, and there are no hidden costs.</p>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <strong class="pct-faq-q">Do I need an internet connection?</strong>
+                    <p>For the first load, yes. But once the page is open, our Progressive Web App (PWA) technology allows you to use every calculator <strong>offline</strong>. You can turn off your data and still calculate taxes or discounts.</p>
+                </div>
+
+                <div>
+                    <strong class="pct-faq-q">How accurate are the results?</strong>
+                    <p>We use standard mathematical formulas (verified by financial experts) for all calculations. However, for large banking transactions or legal tax filings, we always recommend consulting with a professional advisor.</p>
+                </div>
+            </div>
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- Related Tools Section -->
+        <div class="container" style="margin-top: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="calc"
+                 data-current-page="calc-percentage.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+    <!-- Floating History Button -->
+    <button class="history-btn" onclick="toggleHistory()" title="View History">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+    </button>
+
+    <!-- Side Panel for Calculation History -->
+    <div class="history-panel" id="historyPanel">
+        <div class="history-header">
+            <h2 class="history-title">Calculation History</h2>
+            <i class="fa-solid fa-xmark history-close" onclick="toggleHistory()"></i>
+        </div>
+        <div id="historyList" style="flex:1; overflow-y:auto;">
+            <div class="history-empty-text">No history yet.</div>
+        </div>
+        <button class="btn btn-danger history-clear-btn" onclick="clearHistory()">Clear All</button>
+    </div>
+
+  
+    <!-- Global Footer -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- Ads Manager Script: Must be loaded before Global JS -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global Scripts -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- Tool Script -->
+    <script src="../../assets/tools/calc/calc-percentage/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

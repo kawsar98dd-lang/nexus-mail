@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Trusted Tools Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --sidebar-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #00f3ff;
+            --border: #30363d;
+            --code-bg: #010409;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            line-height: 1.6;
+        }
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        .sidebar-brand {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .sidebar-brand span { color: var(--accent); }
+        .nav-link {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+            background: rgba(0, 243, 255, 0.05);
+            border-right: 3px solid var(--accent);
+        }
+        
+        /* Main Content Styles */
+        .content {
+            margin-left: 260px;
+            padding: 40px 60px;
+            max-width: 900px;
+            width: 100%;
+        }
+        section {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+        h1, h2, h3 { color: #fff; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; margin-top: 0; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        
+        .badge {
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--accent);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+        }
+        
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            color: #79c0ff;
+            font-size: 0.9rem;
+        }
+        code { font-family: monospace; }
+        .inline-code {
+            background: var(--sidebar-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #ff7b72;
+            font-size: 0.9em;
+        }
+        
+        /* Alert Boxes */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            background: rgba(35, 134, 54, 0.1);
+            border-left: 4px solid #238636;
+            color: #c9d1d9;
+        }
+        .alert.warning { background: rgba(210, 153, 34, 0.1); border-color: #d29922; }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .content { margin-left: 0; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            Trusted Tools <span>Web</span>
+            <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: normal; margin-top: 5px;">v1.0.0 - Documentation</div>
+        </div>
+        <a href="#intro" class="nav-link active">1. Introduction</a>
+        <a href="#installation" class="nav-link">2. Installation & Setup</a>
+        <a href="#structure" class="nav-link">3. Folder Structure</a>
+        <a href="#customization" class="nav-link">4. Customization (Logo/Colors)</a>
+        <a href="#monetization" class="nav-link">5. Ads & Analytics</a>
+        <a href="#tools" class="nav-link">6. Managing Tools</a>
+        <a href="#support" class="nav-link">7. Support & Credits</a>
+    </nav>
+
+    <main class="content">
+        
+        <section id="intro">
+            <h1>Documentation</h1>
+            <p>Thank you for purchasing <strong>Trusted Tools Web</strong>. This documentation will guide you through the installation, customization, and management of the script.</p>
+            
+            <div class="alert">
+                <strong><span style="color:#238636;">✓</span> 100% Client-Side Architecture:</strong> This application processes all data inside the user's browser. It does not require PHP, MySQL, or any backend server to function.
+            </div>
+            
+            <ul>
+                <li><strong>Author:</strong> MD.KAWSER</li>
+                <li><strong>Created:</strong> February 2026</li>
+                <li><strong>Platform:</strong> HTML5, CSS3, Vanilla JS</li>
+            </ul>
+        </section>
+
+        <section id="installation">
+            <h2>2. Installation & Setup</h2>
+            <p>Because this project is entirely static (HTML/JS/CSS), installation is incredibly simple. You can host it on any standard web host, cPanel, or modern cloud platforms like Cloudflare Pages, GitHub Pages, or Netlify.</p>
+            
+            <h3>Steps to Go Live:</h3>
+            <ol>
+                <li>Unzip the downloaded package.</li>
+                <li>Open the <code>Code-Canon-Project</code> folder.</li>
+                <li>Upload all files and folders (including <code>index.html</code>, <code>assets</code>, <code>tools</code>) to your server's public directory (e.g., <code>public_html</code> or <code>htdocs</code>).</li>
+                <li>Visit your domain. The site is now live!</li>
+            </ol>
+
+            <div class="alert warning">
+                <strong>Note for Local Testing:</strong> Due to modern browser security (CORS), opening <code>index.html</code> directly from your hard drive might block some JavaScript (like dynamic headers). Please use a local server (e.g., VS Code Live Server or Spck Editor's built-in preview).
+            </div>
+        </section>
+
+        <section id="structure">
+            <h2>3. Folder Structure</h2>
+            <p>Understanding the directory structure is crucial for making modifications.</p>
+<pre>
+Root/
+├── index.html            // Main Homepage
+├── assets/               // Global CSS, JS, Images, and Local Libraries
+│   ├── css/              // Global and Style CSS
+│   ├── js/               // Core Engine (global.js, tools-data.js, etc.)
+│   └── library/          // 100% Locally hosted third-party libraries
+├── components/           // Header and Footer HTML files
+├── pages/                // Static info pages (About, Contact, Privacy)
+└── tools/                // All individual tools categorized
+    ├── calc/             // Calculators
+    ├── dev/              // Developer Tools
+    ├── img/              // Image Tools
+    └── sec/              // Security Tools
+</pre>
+        </section>
+
+        <section id="customization">
+            <h2>4. Customization</h2>
+            
+            <h3>Changing the Website Name & Logo</h3>
+            <p>The header and footer are dynamically injected across all pages via JavaScript. To change the brand name or links, edit the <code>assets/js/global.js</code> file.</p>
+            <p>Find the <code>loadGlobalHeader</code> function:</p>
+<pre>
+// In assets/js/global.js
+headerEl.innerHTML = `
+    &lt;div class="header-content"&gt;
+        &lt;a href="${root}index.html" class="header-logo"&gt;
+            &lt;i class="fa-solid fa-shield-halved"&gt;&lt;/i&gt; Your Brand &lt;span&gt;Name&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+`;
+</pre>
+
+            <h3>Changing Global Colors</h3>
+            <p>All primary colors are controlled by CSS variables. Open <code>assets/css/global.css</code> and edit the <code>:root</code> variables at the top of the file.</p>
+        </section>
+
+        <section id="monetization">
+            <h2>5. Ads & Analytics Configuration</h2>
+            <p>We built a centralized system so you don't have to edit 40+ individual HTML files to add your tracking or ad codes.</p>
+
+            <h3>Google Analytics (or any tracking code)</h3>
+            <p>Open <code>assets/js/analytics-loader.js</code> and paste your Google Analytics snippet (gtag) or other tracking scripts inside.</p>
+
+            <h3>AdSense / Banner Ads Configuration</h3>
+            <p>The script uses an intelligent ad-slot system. Open <code>assets/js/ads-manager.js</code>. You will find predefined ad slots like <code>top-banner</code> and <code>bottom-banner</code>. Simply replace the placeholder HTML with your Google AdSense code or custom banner images.</p>
+<pre>
+// Example inside ads-manager.js
+const AD_UNITS = {
+    'top-banner': '&lt;!-- Your AdSense Code Here --&gt;',
+    'bottom-banner': '&lt;!-- Your AdSense Code Here --&gt;'
+};
+</pre>
+        </section>
+
+        <section id="tools">
+            <h2>6. Managing Tools Grid</h2>
+            <p>The homepage grid and "Related Tools" sections are populated dynamically using a JSON array. If you want to change the title, description, or icons of a tool on the homepage, open <code>assets/js/tools-data.js</code>.</p>
+            
+<pre>
+{
+    link: "tools/sec/sec-2fa-code.html", // Tool URL
+    category: "sec",                     // Category for filtering
+    classes: "tool-card titan-card",
+    dataName: "keywords for search function",
+    html: `...`                          // The visual card design
+}
+</pre>
+        </section>
+
+        <section id="support">
+            <h2>7. Support & Credits</h2>
+            <p>If you face any bugs or critical issues, feel free to reach out. Note that custom development (adding new tools specific to your needs) is not covered under standard support.</p>
+            
+            <ul>
+                <li><strong>Developer Contact:</strong> <a href="https://t.me/Md_Kawser2" target="_blank" style="color:var(--accent)">Telegram (@Md_Kawser2)</a></li>
+                <li><strong>Community:</strong> <a href="https://t.me/TrustedToolsWeb" target="_blank" style="color:var(--accent)">Join Telegram Channel</a></li>
+            </ul>
+            
+            <p style="margin-top: 30px; color: var(--text-muted); font-size: 0.9rem;">
+                Thank you once again for choosing Trusted Tools Web. If you like the product, please consider leaving a 5-star rating! ⭐⭐⭐⭐⭐
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+        // Simple active link highlight for sidebar
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                links.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         ANALYTICS & SITE CONFIGURATION
+         These scripts must load first so site-wide config, meta injection,
+         and analytics tracking are ready before any content renders.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         CORE META TAGS — SEO, VIEWPORT & COMPATIBILITY
+         DO NOT EDIT these tags. They are managed globally.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#0d1117">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PAGE TITLE & SEO META DATA
+         Optimised for "free screen recorder online 2026" keyword cluster.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <title>Screen Recorder Ultra Pro — Free 4K Capture, No Watermark | TrustedTools</title>
+    <meta name="title"       content="Free Online Screen Recorder — 4K Capture, No Watermark | TrustedTools">
+    <meta name="description" content="Record your screen in 4K with Facecam, system audio & live drawing tools — entirely in your browser. No download, no watermark, no time limit. 100% client-side privacy.">
+    <meta name="keywords"    content="screen recorder online, free screen capture, 4k video recorder, browser screen recorder, audio recorder web, facecam recorder, no watermark screen recorder, webrtc screen record, trusted tools web, record screen without software">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         FAVICON
+    ═══════════════════════════════════════════════════════════════════ -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         OPEN GRAPH — Facebook / LinkedIn / WhatsApp rich preview
+    ═══════════════════════════════════════════════════════════════════ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/media-screen-recorder.html">
+    <meta property="og:title"       content="Screen Recorder Ultra Pro — Record 4K Video Free, No Watermark">
+    <meta property="og:description" content="Record your screen in 4K with Facecam, live drawing, and audio mixing. Zero watermark. 100% client-side privacy. Trusted Tools Web.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/media/media-screen-recorder/img/cover-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         TWITTER CARD — Twitter / X rich preview
+    ═══════════════════════════════════════════════════════════════════ -->
+    <meta property="twitter:card"        content="summary_large_image">
+    <meta property="twitter:url"         content="https://trustedtoolsweb.com/media-screen-recorder.html">
+    <meta property="twitter:title"       content="Screen Recorder Ultra Pro — 4K Studio Tool | TrustedTools">
+    <meta property="twitter:description" content="Record 4K video securely in browser. No watermark. Facecam, audio mix & live draw. Try it now on TrustedToolsWeb.">
+    <meta property="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/media/media-screen-recorder/img/cover-banner.webp">
+
+    <!-- Canonical URL — prevents duplicate-content penalties -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/media-screen-recorder.html">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         EXTERNAL LIBRARIES — FontAwesome icon set
+         Keep as-is; will be localised before final CodeCanyon submission.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL STYLESHEETS — Two-file CSS architecture (strict)
+         1. global.css     → site-wide layout, header, footer, theme vars
+         2. tools-template.css → all tool UI components (modular, reusable)
+         No other stylesheet links are permitted on this page.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SCHEMA MARKUP — JSON-LD structured data
+         WebApplication schema signals to Google this is a free, usable app.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Screen Recorder Ultra Pro",
+        "url": "https://trustedtoolsweb.com/media-screen-recorder.html",
+        "description": "A professional, browser-based 4K screen recording utility with facecam overlay, real-time audio mixing, live annotation drawing tools, and a built-in teleprompter. 100% client-side — no uploads, no watermarks.",
+        "image": "https://trustedtoolsweb.com/assets/tools/media/media-screen-recorder/img/cover-banner.webp",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "browserRequirements": "Chrome 74+, Firefox 66+, Edge 79+",
+        "featureList": "4K screen capture, facecam overlay, system audio mix, microphone mix, live drawing toolbar, teleprompter, screenshot, no watermark, no time limit",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "1042"
+        }
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL HEADER
+         Populated dynamically by global.js (navigation, theme toggle, etc.)
+    ═══════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         FULL-SCREEN COUNTDOWN OVERLAY
+         Shown for 3 seconds after permissions are granted, before actual
+         recording begins, so the presenter can prepare.
+         JS targets: #countdownOverlay
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="scr-countdown-overlay" id="countdownOverlay"></div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         FULL-SCREEN DRAWING CANVAS
+         Transparent overlay rendered on top of everything during draw mode.
+         JS targets: #drawingCanvas
+    ═══════════════════════════════════════════════════════════════════ -->
+    <canvas id="drawingCanvas" class="scr-draw-canvas"></canvas>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         FLOATING DRAWING TOOLBAR
+         Pen, eraser, colour picker, clear and close controls.
+         Shown only when draw mode is active.
+         JS targets: #drawToolbar, #toolPen, #toolEraser, #colorPicker
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="scr-draw-toolbar" id="drawToolbar">
+        <!-- Pen tool button — active by default -->
+        <button class="scr-draw-btn active" id="toolPen"
+                onclick="ScreenRecorderApp.setDrawMode('pen', this)"
+                aria-label="Pen Tool">
+            <i class="fa-solid fa-pen"></i>
+        </button>
+
+        <!-- Eraser tool button -->
+        <button class="scr-draw-btn" id="toolEraser"
+                onclick="ScreenRecorderApp.setDrawMode('eraser', this)"
+                aria-label="Eraser Tool">
+            <i class="fa-solid fa-eraser"></i>
+        </button>
+
+        <!-- Native colour-picker input — styled to a circle via CSS -->
+        <input type="color" class="scr-color-picker" id="colorPicker"
+               value="#00e5ff" aria-label="Color Picker">
+
+        <!-- Clear entire canvas -->
+        <button class="scr-draw-btn"
+                onclick="ScreenRecorderApp.clearCanvas()"
+                aria-label="Clear Canvas">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+
+        <!-- Close / hide drawing toolbar -->
+        <button class="scr-draw-btn"
+                onclick="ScreenRecorderApp.toggleDrawing(false)"
+                aria-label="Close Drawing Tools">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         DRAGGABLE FACECAM OVERLAY
+         Floating webcam feed that the user can reposition anywhere on screen.
+         The inner control bar (shape + filter) fades in on hover via CSS.
+         JS targets: #facecamBox, #facecamVideo
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="scr-facecam-box" id="facecamBox">
+        <!-- Live webcam video feed — mirrored horizontally for natural feel -->
+        <video id="facecamVideo" autoplay muted playsinline
+               class="scr-facecam-video"></video>
+
+        <!-- Hover-revealed quick-action controls (shape + filter toggle) -->
+        <div class="scr-facecam-controls">
+            <i class="fa-solid fa-shapes scr-facecam-icon"
+               onclick="ScreenRecorderApp.toggleCamShape()"
+               title="Change Shape"></i>
+            <i class="fa-solid fa-wand-magic-sparkles scr-facecam-icon"
+               onclick="ScreenRecorderApp.toggleCamFilter()"
+               title="Apply Filter"></i>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         DRAGGABLE TELEPROMPTER / SCRIPT READER
+         Floating note panel the presenter drags close to their camera lens.
+         JS targets: #teleprompterBox, #teleDrag
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="scr-teleprompter-box" id="teleprompterBox">
+        <!-- Drag handle header — contains label and close button -->
+        <div class="scr-tele-header" id="teleDrag">
+            <span><i class="fa-solid fa-file-lines"></i> SCRIPT / NOTES</span>
+            <i class="fa-solid fa-xmark scr-tele-close"
+               onclick="ScreenRecorderApp.toggleTeleprompter()"></i>
+        </div>
+        <!-- Resizable script textarea -->
+        <textarea class="scr-tele-content"
+                  placeholder="Paste your script here... Drag to move."></textarea>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         MAIN CONTENT WRAPPER
+         All visible page content (tool UI + SEO article) lives inside <main>.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+             PRIMARY TOOL CARD
+             Fade-in animation applied via .animated-entry.
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <div class="container animated-entry">
+
+            <!-- ── HERO / TITLE AREA ─────────────────────────────────── -->
+            <div class="text-center mb-20">
+
+                <!-- Privacy / client-side processing badge -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    100% Client-Side Processing
+                </div>
+
+                <!-- App icon with verified checkmark badge -->
+                <div class="scr-icon-wrap">
+                    <img src="../../assets/tools/media/media-screen-recorder/img/recorder-icon.webp"
+                         alt="Screen Recorder App Icon"
+                         class="scr-app-icon">
+                    <!-- Green verified badge overlaid at bottom-right of icon -->
+                    <div class="scr-verified-badge">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                </div>
+
+                <!-- Main tool heading — gradient on "Ultra Pro" via .tool-title span -->
+                <h1 class="tool-title mt-sm">
+                    Screen Recorder <span>Ultra Pro</span>
+                </h1>
+
+                <!-- Short benefit subtitle -->
+                <p class="subtitle">
+                    Record 4K Screen &amp; Audio with Facecam. No Watermark. No Limits.
+                </p>
+
+                <!-- Keyboard shortcut hint bar -->
+                <div class="scr-hotkey-hint">
+                    <i class="fa-solid fa-keyboard"></i>
+                    Hotkeys: <kbd>Alt+R</kbd> Start &bull; <kbd>Alt+S</kbd> Stop &bull; <kbd>Alt+P</kbd> Pause
+                </div>
+
+            </div>
+            <!-- /HERO -->
+
+            <!-- ── TOP AD SLOT ───────────────────────────────────────── -->
+            <!-- [ADS] Centralized Top Ad Slot — managed by ads-manager.js -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+
+            <!-- ── STUDIO CONFIG SETTINGS PANEL ─────────────────────── -->
+            <!--
+                Settings panel housing all recording configuration controls:
+                Microphone toggle + gain, Webcam toggle, Pro tools, Quality selector.
+                JS reads IDs: #micToggle, #micGain, #camToggle, #drawToggle, #qualitySelect
+            -->
+            <div class="scr-settings-panel">
+
+                <!-- Panel section label badge -->
+                <span class="scr-section-badge">STUDIO CONFIG</span>
+
+                <!-- AUDIO SOURCE — microphone toggle + gain slider -->
+                <div class="scr-setting-item">
+                    <label class="scr-setting-label">Audio Source</label>
+
+                    <!-- Microphone on/off toggle button -->
+                    <button class="scr-toggle-btn" id="micToggle"
+                            onclick="ScreenRecorderApp.toggleMic()">
+                        <span><i class="fa-solid fa-microphone"></i> Microphone</span>
+                        <i class="fa-solid fa-toggle-off" id="micIcon"></i>
+                    </button>
+
+                    <!-- Gain slider row — volume-low icon + range input -->
+                    <div class="scr-gain-row">
+                        <i class="fa-solid fa-volume-low scr-gain-icon"></i>
+                        <!--
+                            Range input: min 0 → max 3 in 0.1 steps.
+                            Default value 1.5 = 150% boost (good for voiceover over game audio).
+                            JS ID: #micGain
+                        -->
+                        <input type="range" id="micGain"
+                               min="0" max="3" step="0.1" value="1.5"
+                               class="range-slider"
+                               title="Mic Volume"
+                               aria-label="Microphone Volume">
+                    </div>
+                </div>
+
+                <!-- WEBCAM OVERLAY — facecam on/off toggle -->
+                <div class="scr-setting-item">
+                    <label class="scr-setting-label">Webcam Overlay</label>
+                    <button class="scr-toggle-btn" id="camToggle"
+                            onclick="ScreenRecorderApp.toggleCam()">
+                        <span><i class="fa-solid fa-video"></i> Facecam</span>
+                        <i class="fa-solid fa-toggle-off" id="camIcon"></i>
+                    </button>
+                </div>
+
+                <!-- PRO TOOLS — teleprompter + screen draw toggles -->
+                <div class="scr-setting-item">
+                    <label class="scr-setting-label">Pro Tools</label>
+
+                    <!-- Open teleprompter floating panel -->
+                    <button class="scr-toggle-btn mb-10"
+                            onclick="ScreenRecorderApp.toggleTeleprompter()">
+                        <span><i class="fa-solid fa-align-left"></i> Script Reader</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+
+                    <!-- Activate on-screen drawing toolbar -->
+                    <button class="scr-toggle-btn" id="drawToggle"
+                            onclick="ScreenRecorderApp.toggleDrawing(true)">
+                        <span><i class="fa-solid fa-palette"></i> Screen Draw</span>
+                        <i class="fa-solid fa-pen-fancy"></i>
+                    </button>
+                </div>
+
+                <!-- VIDEO QUALITY SELECTOR -->
+                <div class="scr-setting-item">
+                    <label class="scr-setting-label">Quality</label>
+                    <!-- JS ID: #qualitySelect — values drive bitrate in _setupMediaRecorder() -->
+                    <select id="qualitySelect" class="input-control" aria-label="Video Quality">
+                        <option value="4k">Ultimate 4K (High Bitrate)</option>
+                        <option value="1080p" selected>Full HD (1080p)</option>
+                        <option value="720p">Standard HD (720p)</option>
+                    </select>
+                </div>
+
+            </div>
+            <!-- /STUDIO CONFIG PANEL -->
+
+
+            <!-- ── AUDIO VISUALIZER ──────────────────────────────────── -->
+            <!--
+                Frequency-bar canvas — hidden until microphone is active.
+                JS targets: #visContainer, #audioVis (canvas element)
+            -->
+            <div class="scr-visualizer-container" id="visContainer">
+                <canvas id="audioVis" width="800" height="60"></canvas>
+            </div>
+
+
+            <!-- ── RECORDING STATUS BAR (timer + blink dot) ──────────── -->
+            <!--
+                Displays HH:MM:SS elapsed time and a pulsing red REC indicator.
+                JS targets: #recDot (dot visibility), #timerDisplay (text)
+            -->
+            <div class="scr-status-bar">
+                <div class="scr-rec-dot" id="recDot"></div>
+                <div class="scr-timer" id="timerDisplay">00:00:00</div>
+            </div>
+
+
+            <!-- ── VIDEO PREVIEW WRAPPER ─────────────────────────────── -->
+            <!--
+                Holds the <video> element that shows a live preview during
+                recording and the playback review once recording is stopped.
+                JS targets: #videoWrapper (show/hide), #preview (src/srcObject)
+            -->
+            <div class="scr-video-wrapper" id="videoWrapper">
+                <video id="preview" autoplay muted controls playsinline
+                       class="scr-preview-video"></video>
+            </div>
+
+
+            <!-- ── MAIN RECORDING CONTROL BUTTONS ───────────────────── -->
+            <!--
+                All interactive control buttons must stay inside .btn-area.
+                JS targets:
+                  #startBtn  — initiates recording / resets after stop
+                  #pauseBtn  — pause / resume toggle (hidden initially)
+                  #snapBtn   — take PNG screenshot (hidden initially)
+                  #stopBtn   — stops recording (disabled initially)
+                  #downloadBtn — anchor tag for saving the video blob
+            -->
+            <div class="btn-area mt-md">
+
+                <!-- START / NEW RECORD button -->
+                <button class="btn btn-primary scr-ctrl-btn" id="startBtn"
+                        onclick="ScreenRecorderApp.initiateRecording()">
+                    <i class="fa-solid fa-circle-play"></i> Start Recording
+                </button>
+
+                <!-- PAUSE / RESUME toggle — hidden until recording is active -->
+                <button class="btn btn-info scr-ctrl-btn d-none" id="pauseBtn"
+                        onclick="ScreenRecorderApp.togglePause()">
+                    <i class="fa-solid fa-pause"></i> Pause
+                </button>
+
+                <!-- SCREENSHOT icon button — hidden until recording is active -->
+                <button class="btn btn-secondary scr-ctrl-btn scr-snap-btn d-none" id="snapBtn"
+                        onclick="ScreenRecorderApp.takeScreenshot()"
+                        title="Take Screenshot"
+                        aria-label="Take Screenshot">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+
+                <!-- STOP button — disabled until recording starts -->
+                <button class="btn btn-danger scr-ctrl-btn" id="stopBtn"
+                        onclick="ScreenRecorderApp.stopRecording()" disabled>
+                    <i class="fa-solid fa-stop"></i> Stop
+                </button>
+
+                <!-- DOWNLOAD / SAVE VIDEO anchor — hidden until recording stops -->
+                <a id="downloadBtn" class="btn btn-success scr-ctrl-btn d-none">
+                    <i class="fa-solid fa-download"></i> Save Video
+                </a>
+
+            </div>
+            <!-- /CONTROL BUTTONS -->
+
+
+            <!-- ── BOTTOM AD SLOT ────────────────────────────────────── -->
+            <!-- [ADS] Centralized Bottom Ad Slot — managed by ads-manager.js -->
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        </div>
+        <!-- /PRIMARY TOOL CARD -->
+
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+             SEO CONTENT SECTION
+             Long-form article content that explains the tool, provides
+             a how-to guide, and answers FAQs for organic search ranking.
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="info-section-wrapper animated-entry">
+
+            <!-- Why This Is the Best Screen Recorder -->
+            <div class="info-card scr-accent-border">
+                <h2><i class="fa-solid fa-crown"></i> Why This is the Best Screen Recorder for 2026</h2>
+                <p>
+                    Welcome to <strong>Screen Recorder Ultra Pro</strong>. We built this tool because we were tired of
+                    downloading heavy software just to record a 5-minute tutorial. Most online recorders limit you to
+                    720p or put a giant watermark on your work.
+                </p>
+                <p>
+                    We decided to change that. This tool uses your browser's own power (built on modern WebRTC
+                    technology) to capture <strong>4K Crystal Clear Video</strong> directly. It's lightweight,
+                    privacy-focused, and completely free. Whether you are a student recording a lecture, a gamer
+                    capturing a kill-streak, or a professional making a presentation — this tool is designed for you.
+                </p>
+            </div>
+
+            <!-- Step-by-Step How-To Guide -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-list-check"></i> How to Record Like a Pro (Step-by-Step)</h2>
+                <p>If you are new to browser-based recording, don't worry. It is easier than installing software.
+                   Follow these simple steps:</p>
+
+                <!-- Guide infographic image -->
+                <div class="text-center mb-20 mt-md">
+                    <img src="../../assets/tools/media/media-screen-recorder/img/how-to-guide.webp"
+                         alt="Step-by-step guide infographic for screen recording"
+                         class="scr-guide-img">
+                </div>
+
+                <!-- Numbered instruction list -->
+                <ol class="scr-guide-ol">
+                    <li>
+                        <strong>Configure Your Source:</strong> First, toggle the <em>Microphone</em> or
+                        <em>Facecam</em> buttons above if you need them. Adjust the mic volume using the slider
+                        to avoid distortion.
+                    </li>
+                    <li>
+                        <strong>Select Screen Area:</strong> Click the "Start Recording" button. Your browser will
+                        ask what to share. You can choose the <span class="tech-highlight">Entire Screen</span>,
+                        a specific <span class="tech-highlight">Window</span>, or just a
+                        <span class="tech-highlight">Browser Tab</span>.
+                    </li>
+                    <li>
+                        <strong>Important for Audio:</strong> If you want to record the sound coming from your
+                        computer (like game audio or a video call), make sure to check the tiny box labelled
+                        <strong>"Share system audio"</strong> in the popup window.
+                    </li>
+                    <li>
+                        <strong>Edit &amp; Save:</strong> Once you hit "Stop", play the video to preview it.
+                        If you are happy, click "Save Video" to download the WebM file instantly to your device.
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Privacy / Client-Side Advantage card -->
+            <div class="info-card scr-privacy-card">
+                <h2 class="text-success">
+                    <i class="fa-solid fa-user-shield"></i> Your Data Stays on Your Device
+                </h2>
+                <p>
+                    In an era of data leaks, we take your privacy seriously. Unlike other online tools that upload
+                    your video to a cloud server for processing, <strong>Screen Recorder Ultra Pro</strong> works
+                    entirely <em>Client-Side</em>.
+                </p>
+                <p>
+                    This means the video is rendered using your computer's RAM and Processor.
+                    <strong>We (the developers) never see your screen, your face, or hear your audio.</strong>
+                    Once you close this tab, the recording data is wiped from memory forever. It is safe for
+                    recording banking transactions, private chats, or confidential work meetings.
+                </p>
+            </div>
+
+            <!-- Troubleshooting & Pro Tips -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-screwdriver-wrench"></i> Troubleshooting &amp; Pro Tips</h2>
+                <p>Sometimes browsers can be tricky. Here are some solutions to common issues users face:</p>
+
+                <!-- Three-column trouble-tip grid (collapses to 1 col on mobile via CSS) -->
+                <div class="scr-tips-grid mt-md">
+
+                    <div class="scr-tip-card scr-tip-accent">
+                        <strong class="scr-tip-title text-accent-cyan">Video has no sound?</strong>
+                        <span class="scr-tip-text">
+                            Browser security often blocks system audio by default. When the "Share Screen" popup
+                            appears, look for the checkbox at the bottom left corner.
+                            <strong>Note for macOS users:</strong> Chrome only allows system audio recording from
+                            "Chrome Tabs", not the entire desktop.
+                        </span>
+                    </div>
+
+                    <div class="scr-tip-card scr-tip-primary">
+                        <strong class="scr-tip-title text-primary">Video is lagging?</strong>
+                        <span class="scr-tip-text">
+                            Recording 4K requires a decent processor. If your video stutters, try closing other
+                            tabs or switch the quality to <strong>1080p</strong> from the settings panel. This
+                            usually fixes the frame-drop issues.
+                        </span>
+                    </div>
+
+                    <div class="scr-tip-card scr-tip-accent">
+                        <strong class="scr-tip-title text-accent-cyan">How to edit the video?</strong>
+                        <span class="scr-tip-text">
+                            The file saves as <strong>.WEBM</strong>. You can play it in VLC Player or upload it
+                            directly to YouTube. To edit, you can use free tools like CapCut or convert it to MP4
+                            using CloudConvert if your editor doesn't support WebM.
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Gamer tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-gamepad"></i> For Gamers: Recording Without the "FPS Drop"</h3>
+                <p>
+                    One of the biggest complaints from gamers is that recording software slows down their PC. Heavy
+                    apps like OBS can eat up your CPU, causing your game to lag. Because this tool runs natively in
+                    the browser using <strong>Hardware Acceleration</strong>, it puts minimal load on your system.
+                    It has been tested while playing graphic-intensive games, and the 60 FPS recording stays smooth
+                    because it bypasses the need for background processes. Capture that pentakill without sacrificing
+                    gameplay performance.
+                </p>
+            </div>
+
+            <!-- Teleprompter tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-person-chalkboard"></i> The Secret to Flawless Presentations: The Built-in Teleprompter</h3>
+                <p>
+                    Have you ever watched a tutorial where the speaker keeps looking down at their notes? It breaks
+                    the connection with the audience. The <strong>Draggable Script Reader</strong> solves exactly
+                    this. Simply paste your speech into the floating box and drag it right next to your camera lens
+                    on the screen. This way, it looks like you are looking directly at your viewers while reading
+                    your lines perfectly — a game-changer for teachers and content creators.
+                </p>
+            </div>
+
+            <!-- Audio mixing tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-sliders"></i> Mastering Audio Balance: Mixing Voice and System Sound</h3>
+                <p>
+                    Bad audio ruins a good video. A common issue with basic recorders is that the game sound often
+                    drowns out your voice. In the settings panel above, you will see a
+                    <strong>"Mic Volume" slider</strong>. Set it to around 1.5x if you are recording gameplay.
+                    This boosts your vocals over the background noise. Since this tool mixes the audio channels
+                    in real-time before the file is even created, you save hours of post-production editing.
+                </p>
+            </div>
+
+            <!-- IT / no-install tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-building"></i> Why IT Departments Love This Tool (No Install Needed)</h3>
+                <p>
+                    If you are working on a school computer or a corporate laptop, you probably don't have
+                    "Administrator Privileges" to install software. Since this is a pure web application, you don't
+                    need to install anything. You just open the link, record your bug report or presentation, and
+                    download it. It leaves no trace on the computer's registry — the perfect solution for strict
+                    office environments.
+                </p>
+            </div>
+
+            <!-- Live annotations tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-pen-nib"></i> Live Annotations: Teaching Concepts Visually</h3>
+                <p>
+                    Explaining complex software or code? Verbal instructions aren't always enough. The
+                    <strong>Screen Draw Toolbar</strong> lets you highlight buttons, circle errors, or draw arrows
+                    in real-time while you record. Instead of saying "click the button on the top right," you can
+                    just circle it — significantly increasing viewer retention for educators and developers.
+                </p>
+            </div>
+
+            <!-- Facecam / personal brand tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-id-card-clip"></i> Building Your Personal Brand with Facecam</h3>
+                <p>
+                    People connect with faces, not just screens. The <strong>Facecam Overlay</strong> isn't just a
+                    static box — you can drag it to any corner so it doesn't block important content. A
+                    shape-shifter feature (Circle vs. Rectangle) lets you match your aesthetic. Putting your face
+                    in the corner adds a layer of emotion that text simply cannot convey.
+                </p>
+            </div>
+
+            <!-- Snapshot / thumbnail tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-image"></i> Instant Thumbnails: The "Snapshot" Feature</h3>
+                <p>
+                    Here is a pro tip for YouTubers: don't take a separate photo for your thumbnail. While you are
+                    recording, if you see a perfect moment on screen, hit the <strong>Camera Icon</strong> button
+                    on the control bar. It instantly grabs a high-quality PNG of your screen (including your
+                    facecam and drawings), ensuring your thumbnail matches your video content perfectly.
+                </p>
+            </div>
+
+            <!-- Client-side security tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-file-shield"></i> Safe for Sensitive Data: The Client-Side Advantage</h3>
+                <p>
+                    Many "free" online recorders secretly upload your video to their servers to watermark it.
+                    This tool uses <strong>Blob Storage technology</strong> within your browser. The video file
+                    is constructed byte-by-byte on your own RAM. Until you click "Save," the file doesn't exist
+                    anywhere else. This "Zero-Server" architecture is the gold standard for digital privacy.
+                </p>
+            </div>
+
+            <!-- WebM format explainer -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-file-video"></i> Why .WebM is Better Than MP4 for the Web</h3>
+                <p>
+                    The file downloads as .WebM because we chose the <strong>VP9 Codec</strong> for the best
+                    balance of quality-to-filesize. An MP4 of 4K content might be 500 MB, but the same quality
+                    in WebM could be just 200 MB — faster uploads to YouTube, Discord, or Slack. If you
+                    absolutely need MP4, almost all modern video editors accept WebM, so compatibility is rarely
+                    an issue.
+                </p>
+            </div>
+
+            <!-- Offline recording tip -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-wifi"></i> Recording Without Internet? Yes, It's Possible</h3>
+                <p>
+                    Since the core logic of this recorder is loaded into your browser's cache, you don't need
+                    an active internet connection to record once the page is loaded. If your Wi-Fi drops in the
+                    middle of a session, <strong>you won't lose your video</strong>. You can finish, stop the
+                    recording, and save the file completely offline — crucial when you can't risk a connection
+                    drop ruining a long session.
+                </p>
+            </div>
+
+            <!-- FAQ card -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</h2>
+
+                <!-- FAQ item 1 -->
+                <div class="scr-faq-item">
+                    <h3 class="scr-faq-q">Is there a watermark on the video?</h3>
+                    <p class="scr-faq-a">
+                        No. We believe your content belongs to you. Even on the free version, there are zero
+                        watermarks and no time limits on your recording.
+                    </p>
+                </div>
+
+                <!-- FAQ item 2 -->
+                <div class="scr-faq-item">
+                    <h3 class="scr-faq-q">Does it work on Mobile?</h3>
+                    <p class="scr-faq-a">
+                        Currently, mobile operating systems (iOS and Android) do not allow browser websites to
+                        access the screen recording API for security reasons. This tool is optimised for Windows,
+                        macOS, and Linux desktops.
+                    </p>
+                </div>
+
+                <!-- FAQ item 3 -->
+                <div class="scr-faq-item">
+                    <h3 class="scr-faq-q">Why is the file format .WebM?</h3>
+                    <p class="scr-faq-a">
+                        WebM is a modern video format designed for the web. It provides high-quality video with
+                        much smaller file sizes compared to MP4. It is natively supported by YouTube, so you can
+                        upload directly without converting.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+        <!-- /SEO CONTENT SECTION -->
+
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+             RELATED TOOLS GRID
+             Dynamically populated by related-tools.js based on category.
+             data-category and data-current-page drive the filter logic.
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <div class="container" style="margin-top: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="media"
+                 data-current-page="media-screen-recorder.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+        <!-- /RELATED TOOLS GRID -->
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+    <!-- /MAIN CONTENT WRAPPER -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL FOOTER
+         Populated dynamically by global.js.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SCRIPTS — Load order matters:
+         1. ads-manager.js  → injects ad slots into .ad-slot containers
+         2. global.js       → header, footer, theme toggle, global toast system
+         3. script.js       → tool-specific ScreenRecorderPro class
+    ═══════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+    <script src="../../assets/tools/media/media-screen-recorder/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

@@ -1,0 +1,184 @@
+"If you want to change the PWA shortcuts, open the manifest.json file and replace the existing shortcuts with your preferred ones from the shortcuts-reference.txt file. Remember, it is recommended to keep only 4 to 5 shortcuts."
+
+
+
+    {
+      "name": "Audio Studio",
+      "url": "/media-audio-cutter.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/media-audio-cutter.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "TextPro Max",
+      "url": "/text-fancy-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/text-fancy-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Thumbnail Grabber",
+      "url": "/img-youtube-thumbnail.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/img-youtube-thumbnail.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Link Shortener",
+      "url": "/seo-link-shortener.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/seo-link-shortener.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "QR Studio",
+      "url": "/img-qr-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/img-qr-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Image Titanium",
+      "url": "/img-compressor.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/img-compressor.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Meta Gen",
+      "url": "/seo-meta-tags.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/seo-meta-tags.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Speech To Text",
+      "url": "/text-from-speech.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/text-from-speech.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Screen Recorder",
+      "url": "/media-screen-recorder.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/media-screen-recorder.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Handwriter",
+      "url": "/text-handwriting-converter.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/text-handwriting-converter.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Secure Avatar",
+      "url": "/tool-profile-picture.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/tool-profile-picture.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Name Generator",
+      "url": "/tool-random-name.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/tool-random-name.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Smart EMI",
+      "url": "/calc-loan-emi.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/calc-loan-emi.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "IP Lookup",
+      "url": "/sec-ip-lookup.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/sec-ip-lookup.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Tone Generator",
+      "url": "/media-tone-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/media-tone-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Sitemap Gen",
+      "url": "/seo-sitemap-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/seo-sitemap-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Meme Generator",
+      "url": "/img-meme-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/img-meme-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "JSON Architect",
+      "url": "/dev-json-formatter.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/dev-json-formatter.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Word Counter",
+      "url": "/text-word-counter.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/text-word-counter.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Gmail Alias",
+      "url": "/tool-email-alias-gen.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/tool-email-alias-gen.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Robots Gen",
+      "url": "/seo-robots-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/seo-robots-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Favicon Gen",
+      "url": "/seo-favicon-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/seo-favicon-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Password Gen",
+      "url": "/sec-password-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/sec-password-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Age Calculator",
+      "url": "/calc-age-calculator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/calc-age-calculator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Cookie Converter",
+      "url": "/dev-cookie-converter.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/dev-cookie-converter.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Markdown Editor",
+      "url": "/dev-markdown-editor.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/dev-markdown-editor.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Diff Checker",
+      "url": "/text-diff-checker.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/text-diff-checker.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "TextNova Core",
+      "url": "/text-editor-advanced.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/text-editor-advanced.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Typing Speed",
+      "url": "/text-typing-speed-test.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/text-typing-speed-test.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Hashtag Gen",
+      "url": "/seo-hashtag-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/seo-hashtag-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Percentage Calc",
+      "url": "/calc-percentage.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/calc-percentage.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Speed Test",
+      "url": "/dev-internet-speed-test.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/dev-internet-speed-test.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Ultra TTS",
+      "url": "/text-to-speech.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/text-to-speech.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Mock Data Gen",
+      "url": "/dev-mock-json-generator.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/dev-mock-json-generator.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Focus Timer",
+      "url": "/tool-focus-timer.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/tool-focus-timer.webp", "sizes": "192x192", "type": "image/webp" }]
+    },
+    {
+      "name": "Code Converter",
+      "url": "/dev-code-converter.html",
+      "icons": [{ "src": "../../assets/img/all-web-icon/dev-code-converter.webp", "sizes": "192x192", "type": "image/webp" }]
+    },

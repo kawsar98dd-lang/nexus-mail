@@ -1,0 +1,8 @@
+/* Rajdhani - Tech Stats/Data Font (Variable) */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('rajdhani.woff2') format('woff2');
+}

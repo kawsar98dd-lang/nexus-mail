@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         [SYSTEM]: Core System Scripts — Analytics & Meta Manager
+         Must load first; do NOT reorder or remove these.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ── Character Set & Viewport ── -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         PRIMARY SEO META TAGS
+         Highly optimised for Google ranking: unique title, rich description,
+         focused keyword set, authorship, and crawl directives.
+    ══════════════════════════════════════════════════════════════════ -->
+    <title>Meta Gen Ultra — Free SEO Meta Tag Generator, SERP Preview & Social Card Builder</title>
+    <meta name="title"        content="Meta Gen Ultra — Free SEO Meta Tag Generator, SERP Preview & Social Card Builder">
+    <meta name="description"  content="Generate pixel-perfect Google Title Tags, Meta Descriptions, Open Graph, and Twitter Cards instantly. Live SERP preview, real-time SEO scoring, and zero data upload. 100% Free & Client-Side.">
+    <meta name="keywords"     content="seo meta tag generator, open graph builder, twitter card preview, google serp simulator, meta description tool, title tag optimizer, social card generator, free seo tools, trusted tools web">
+    <meta name="author"       content="Trusted Tools Web">
+    <meta name="robots"       content="index, follow">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- ── Canonical URL ── -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/seo-meta-tags.html" />
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         OPEN GRAPH — Facebook, LinkedIn, Discord, Slack unfurl data
+    ══════════════════════════════════════════════════════════════════ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/seo-meta-tags.html">
+    <meta property="og:title"       content="Meta Gen Ultra — SEO Meta Tag Generator | Trusted Tools Web">
+    <meta property="og:description" content="Build perfect SEO meta tags and preview them live as a Google SERP result or social card. Fast, free, and 100% client-side.">
+    <meta property="og:image"       content="../../assets/tools/seo/seo-meta-tags/img/og-cover.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         TWITTER CARD — Large image card for Twitter / X
+    ══════════════════════════════════════════════════════════════════ -->
+    <meta property="twitter:card"        content="summary_large_image">
+    <meta property="twitter:url"         content="https://trustedtoolsweb.com/seo-meta-tags.html">
+    <meta property="twitter:title"       content="Meta Gen Ultra — SEO Meta Tag Generator">
+    <meta property="twitter:description" content="Live SERP preview, social card builder, and instant HTML export. Secure, client-side, 100% Free.">
+    <meta property="twitter:image"       content="../../assets/tools/seo/seo-meta-tags/img/og-cover.webp">
+
+    <!-- ── Favicon & Theme Color ── -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+    <meta name="theme-color" content="#ff0055">
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         EXTERNAL LIBRARIES (CDN — to be localised before final submission)
+    ══════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Fira-Code/fonts.css">
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         GLOBAL STYLESHEETS — Two-File CSS Architecture (do NOT add more)
+         global.css       → site-wide layout, header, footer, theme vars
+         tools-template.css → all tool UI components (reusable, modular)
+    ══════════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         JSON-LD STRUCTURED DATA
+         WebApplication + HowTo schemas improve rich-result eligibility
+         and provide Google with machine-readable feature descriptions.
+    ══════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Meta Gen Ultra",
+        "url": "https://trustedtoolsweb.com/seo-meta-tags.html",
+        "description": "A free, secure, client-side SEO Meta Tag Generator with live Google SERP preview, Open Graph social card builder, real-time SEO scoring, and one-click HTML export.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Compatible with Chrome, Firefox, Safari, and Edge.",
+        "image": "https://trustedtoolsweb.com/assets/tools/seo/seo-meta-tags/img/og-cover.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "category": "Free Tool"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "Trusted Tools Web",
+          "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": [
+          "Live Google SERP Preview",
+          "Facebook / Twitter Social Card Preview",
+          "Real-time Pixel-Accurate Title Width Counter",
+          "SEO Score Meter (Google Standards 2026)",
+          "Open Graph Tag Generator",
+          "Twitter Card Generator",
+          "Keyword Tag Builder (CSV / Paste Support)",
+          "Theme Color Picker",
+          "One-Click HTML Export",
+          "Zero Data Upload — 100% Client-Side"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Generate SEO Meta Tags with Meta Gen Ultra",
+        "description": "Follow these four steps to produce Google-optimised meta tags and deploy them to your website.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Enter Page Title & Description",
+            "text": "Type your page title. Watch the pixel-width counter stay in the Green Zone (≤600 px) to prevent Google truncation. Write a compelling 160-character meta description."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Add Keywords",
+            "text": "Type keywords and press Enter or comma to create tags. Paste a comma-separated list or Excel data for bulk import."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Configure Social & Advanced Fields",
+            "text": "Paste your OG Image URL (1200×630 px recommended). Fill in the Canonical URL, Author, Robots directive, and Theme Color for complete tag coverage."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Preview & Export",
+            "text": "Check the Live SEO Score. Switch preview tabs to inspect the Google SERP result and social card. Click Copy HTML or Download to get the ready-to-paste head code."
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Meta Gen Ultra free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Meta Gen Ultra is 100% free forever with no paywalls, subscription limits, or watermarks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why doesn't my Facebook image show?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The most common cause is a missing og:image tag or incorrect image dimensions. Facebook recommends 1200×630 px. Images that are too small may be ignored or shown as a thumbnail."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data safe when using Meta Gen Ultra?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. The tool runs entirely in your browser using client-side JavaScript. No data is transmitted to or stored on any server."
+            }
+          }
+        ]
+      }
+    ]
+    </script>
+
+    <!-- ── Early Theme Restoration (prevents flash-of-wrong-theme) ── -->
+    <script>
+        if (localStorage.getItem('siteTheme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL HEADER
+         Injected by global.js — do NOT add content inside this element.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <main>
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             TWO-COLUMN TOOL LAYOUT WRAPPER
+             Left: input form panel  |  Right: live preview panel
+        ═══════════════════════════════════════════════════════════════ -->
+        <div class="mgu-layout-wrapper animated-entry">
+
+            <!-- ═══════════════════════════════════════════════════════
+                 LEFT PANEL — Input Form
+            ═══════════════════════════════════════════════════════ -->
+            <div class="container">
+
+                <!-- ── Hero / Title Area ── -->
+                <div class="security-badge">
+                    <i class="fa-solid fa-lock"></i> 100% Client-Side Processing
+                </div>
+
+                <h1 class="tool-title">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    Meta Gen <span>Ultra Pro</span>
+                </h1>
+                <p class="subtitle">
+                    Architect Perfect SEO Tags, Social Cards &amp; Schema. Boost Ranking Instantly.
+                </p>
+
+                <!-- ── Top Ad Slot (managed by ads-manager.js) ── -->
+                <!-- Hidden by default; activated by assets/js/ads-manager.js -->
+                <div class="ad-slot" data-ad-slot="top-banner">
+                    <!-- [DEV NOTE]: Ad content injected here at runtime -->
+                </div>
+
+                <!-- ── Live SEO Score Meter ──────────────────────────
+                     Displays a real-time score (0–100) calculated from
+                     title pixel width, description length, and OG image.
+                ──────────────────────────────────────────────────── -->
+                <div class="mgu-score-box">
+                    <div class="mgu-score-label-group">
+                        <div class="mgu-score-title">LIVE SEO SCORE</div>
+                        <small class="text-muted" style="font-size: 11px;">Google Standards (2026)</small>
+                    </div>
+                    <div class="mgu-score-bar-wrap">
+                        <div class="mgu-score-bar-bg">
+                            <div class="mgu-score-bar-fill" id="scoreFill"></div>
+                        </div>
+                    </div>
+                    <div class="mgu-score-value" id="scoreText">0/100</div>
+                </div>
+
+                <!-- ── Page Title Input ──────────────────────────────
+                     Label + pixel-width counter + text input.
+                     JS updates #titleCount in real-time via updateAll().
+                ──────────────────────────────────────────────────── -->
+                <div class="mgu-input-group">
+                    <label for="siteTitle">Page Title (Title Tag)</label>
+                    <span class="char-count" id="titleCount">0 / 600px</span>
+                    <input
+                        class="input-control"
+                        type="text"
+                        id="siteTitle"
+                        placeholder="e.g. Best AI Tools 2026 - Ultimate Guide"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <!-- ── Meta Description Input ────────────────────────
+                     Textarea; JS counts characters via #descCount.
+                ──────────────────────────────────────────────────── -->
+                <div class="mgu-input-group">
+                    <label for="siteDesc">Meta Description</label>
+                    <span class="char-count" id="descCount">0 / 160</span>
+                    <textarea
+                        class="input-control"
+                        id="siteDesc"
+                        placeholder="Write a click-worthy summary including keywords..."
+                        autocomplete="off"
+                    ></textarea>
+                </div>
+
+                <!-- ── Keyword Tag System ────────────────────────────
+                     #tagContainer: interactive pill-tag input area.
+                     JS handles Enter / comma / paste to add tags.
+                     #siteKeywords: hidden input holding comma-joined list.
+                ──────────────────────────────────────────────────── -->
+                <div class="mgu-input-group">
+                    <label for="tagInput">Keywords (Press Enter, Comma, or Paste)</label>
+                    <div class="mgu-tag-container" id="tagContainer">
+                        <input
+                            type="text"
+                            class="mgu-tag-input"
+                            id="tagInput"
+                            placeholder="Add keyword..."
+                            autocomplete="off"
+                        >
+                    </div>
+                    <!-- Hidden input that holds the comma-separated keyword string -->
+                    <input type="hidden" id="siteKeywords">
+                </div>
+
+                <!-- ── Two-Column Row: Robots + Author ─────────────── -->
+                <div class="multi-input-grid">
+
+                    <!-- Robots meta directive selector -->
+                    <div class="mgu-input-group">
+                        <label for="siteRobots">Robots</label>
+                        <select class="input-control" id="siteRobots">
+                            <option value="index, follow">Index, Follow (Default)</option>
+                            <option value="noindex, follow">NoIndex, Follow (Private)</option>
+                            <option value="index, nofollow">Index, NoFollow</option>
+                            <option value="noindex, nofollow">NoIndex, NoFollow</option>
+                        </select>
+                    </div>
+
+                    <!-- Author / Brand name for the author meta tag -->
+                    <div class="mgu-input-group">
+                        <label for="siteAuthor">Author / Brand</label>
+                        <input
+                            class="input-control"
+                            type="text"
+                            id="siteAuthor"
+                            placeholder="Company Name"
+                            autocomplete="off"
+                        >
+                    </div>
+
+                </div><!-- /.multi-input-grid -->
+
+                <!-- ── Section Divider: Social & Advanced ──────────── -->
+                <div class="mgu-section-divider">
+                    <i class="fa-solid fa-share-nodes"></i> Social &amp; Advanced
+                </div>
+
+                <!-- ── OG Image URL Input ─────────────────────────── -->
+                <div class="mgu-input-group">
+                    <label for="ogImage">Social Image URL (OG:Image)</label>
+                    <input
+                        class="input-control"
+                        type="text"
+                        id="ogImage"
+                        placeholder="https://example.com/image.jpg (recommended: 1200×630 px)"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <!-- ── Two-Column Row: Canonical URL + Theme Color ─── -->
+                <div class="multi-input-grid">
+
+                    <!-- Canonical URL -->
+                    <div class="mgu-input-group">
+                        <label for="siteUrl">Canonical URL</label>
+                        <input
+                            class="input-control"
+                            type="text"
+                            id="siteUrl"
+                            placeholder="https://example.com/page"
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <!-- Theme Color: color picker + read-only hex display -->
+                    <div class="mgu-input-group">
+                        <label for="siteTheme">Theme Color</label>
+                        <div class="mgu-color-row">
+                            <input
+                                type="color"
+                                id="siteTheme"
+                                value="#ff0055"
+                                class="mgu-color-picker"
+                                aria-label="Pick theme color"
+                            >
+                            <input
+                                type="text"
+                                id="themeHex"
+                                value="#ff0055"
+                                readonly
+                                class="input-control mgu-hex-input"
+                                aria-label="Hex value of selected theme color"
+                            >
+                        </div>
+                    </div>
+
+                </div><!-- /.multi-input-grid -->
+
+                <!-- ── Action Buttons ────────────────────────────────
+                     All buttons wrapped in .btn-area for proper spacing.
+                     Reset: danger  |  Copy: success  |  Download: export
+                ──────────────────────────────────────────────────── -->
+                <div class="btn-area">
+                    <button
+                        class="btn btn-danger"
+                        onclick="resetForm()"
+                        aria-label="Reset all form fields"
+                    >
+                        <i class="fa-solid fa-trash-can"></i> Reset
+                    </button>
+                    <button
+                        class="btn btn-success"
+                        onclick="copyCode('outputCode')"
+                        aria-label="Copy generated HTML to clipboard"
+                    >
+                        <i class="fa-solid fa-copy"></i> Copy HTML
+                    </button>
+                    <button
+                        class="btn btn-primary bg-btn-export"
+                        onclick="downloadCode()"
+                        aria-label="Download generated HTML file"
+                    >
+                        <i class="fa-solid fa-download"></i> Download
+                    </button>
+                </div>
+
+            </div><!-- /.container (left panel) -->
+
+
+            <!-- ═══════════════════════════════════════════════════════
+                 RIGHT PANEL — Live Preview
+                 Three tabs: Google SERP | Social Card | Raw HTML Code
+            ═══════════════════════════════════════════════════════ -->
+            <div class="mgu-preview-panel">
+
+                <!-- ── Tab Navigation ── -->
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-mode="google"   onclick="setTab('google')">
+                        <i class="fa-brands fa-google"></i> Google
+                    </button>
+                    <button class="tab-btn"        data-mode="facebook" onclick="setTab('facebook')">
+                        <i class="fa-brands fa-facebook-f"></i> Social
+                    </button>
+                    <button class="tab-btn"        data-mode="code"     onclick="setTab('code')">
+                        <i class="fa-solid fa-code"></i> Code
+                    </button>
+                </div><!-- /.tab-nav -->
+
+                <!-- ── Tab Panel: Google SERP Preview ────────────────
+                     Simulates how the page will appear in Google results.
+                     Uses pixel-truncated title and 160-char description.
+                ──────────────────────────────────────────────────── -->
+                <div id="view-google" class="preview-content active">
+                    <label class="mgu-preview-label">GOOGLE SEARCH RESULT</label>
+                    <div class="mgu-preview-card mgu-google-preview">
+                        <!-- Breadcrumb cite row (favicon + domain) -->
+                        <div class="mgu-g-cite">
+                            <div class="mgu-g-icon">
+                                <i class="fa-solid fa-earth-americas" style="color:#5f6368;"></i>
+                            </div>
+                            <span id="prevGoogleUrl">example.com</span>
+                            <i class="fa-solid fa-ellipsis-vertical" style="margin-left:auto; font-size:14px; color:#5f6368;"></i>
+                        </div>
+                        <!-- Blue clickable title (pixel-accurate truncation) -->
+                        <a href="javascript:void(0)" class="mgu-g-title" id="prevGoogleTitle">
+                            Page Title Example
+                        </a>
+                        <!-- Meta description snippet -->
+                        <div class="mgu-g-desc" id="prevGoogleDesc">
+                            This is how your description will look on Google search results. Keep it relevant...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Tab Panel: Social Card Preview ────────────────
+                     Mimics Facebook / LinkedIn / Twitter link unfurl card.
+                     Shows OG image, domain, title, and description.
+                ──────────────────────────────────────────────────── -->
+                <div id="view-facebook" class="preview-content">
+                    <label class="mgu-preview-label">FACEBOOK / LINKEDIN / TWITTER</label>
+                    <div class="mgu-preview-card mgu-social-preview">
+                        <!-- OG Image area; JS replaces placeholder with real image -->
+                        <div class="mgu-social-img-box" id="prevSocialImg">
+                            <i class="fa-regular fa-image" style="font-size: 48px; opacity:0.3;"></i>
+                        </div>
+                        <!-- Social card text block -->
+                        <div class="mgu-social-text">
+                            <div class="mgu-s-domain" id="prevSocialDomain">EXAMPLE.COM</div>
+                            <div class="mgu-s-title"  id="prevSocialTitle">Title Placeholder</div>
+                            <div class="mgu-s-desc"   id="prevSocialDesc">Description placeholder...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Tab Panel: Generated HTML Code ────────────────
+                     Read-only textarea rendered in Fira Code monospace.
+                     Populated by generateCode() on every updateAll() call.
+                ──────────────────────────────────────────────────── -->
+                <div id="view-code" class="preview-content">
+                    <label class="mgu-preview-label">GENERATED HTML (HEAD)</label>
+                    <textarea
+                        id="outputCode"
+                        class="mgu-code-output"
+                        readonly
+                        aria-label="Generated HTML meta tag code"
+                    ></textarea>
+                </div>
+
+            </div><!-- /.mgu-preview-panel (right panel) -->
+
+        </div><!-- /.mgu-layout-wrapper -->
+
+
+        <!-- ── Bottom Ad Slot (managed by ads-manager.js) ── -->
+        <!-- Hidden by default; activated by assets/js/ads-manager.js -->
+        <div class="ad-slot" data-ad-slot="bottom-banner">
+            <!-- [DEV NOTE]: Ad content injected here at runtime -->
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             SEO INFORMATION SECTION
+             Step guide + knowledge base + FAQ for content richness and
+             improved organic ranking via long-form topical coverage.
+        ═══════════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper">
+
+            <!-- ── Complete Usage Guide (Step Cards) ── -->
+            <div class="info-card mb-30">
+                <h2 class="mgu-info-heading">
+                    <i class="fa-solid fa-book-open"></i> Complete Usage Guide: From Draft to Deploy
+                </h2>
+
+                <div class="mgu-step-grid">
+
+                    <!-- Step 1 -->
+                    <div class="mgu-step-card">
+                        <div class="mgu-step-num">1</div>
+                        <h4>Primary SEO Tags</h4>
+                        <p>
+                            Enter your <strong>Page Title</strong>. Aim for the "Green Zone"
+                            (approx 600 px width) to prevent Google truncation.
+                            A concise 160-character description drives CTR.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="mgu-step-card">
+                        <div class="mgu-step-num">2</div>
+                        <h4>Smart Keyword Input</h4>
+                        <p>
+                            Type keywords and press <code class="tech-highlight">Enter</code>.
+                            Or <strong>Paste</strong> a comma-separated list (or from Excel)
+                            to create tags instantly.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="mgu-step-card">
+                        <div class="mgu-step-num">3</div>
+                        <h4>Social &amp; Visuals</h4>
+                        <p>
+                            Paste your image URL (OG:Image). Switch the <strong>Preview Tab</strong>
+                            to "Social" to verify the 1.91:1 aspect ratio looks perfect
+                            on Facebook &amp; LinkedIn.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="mgu-step-card">
+                        <div class="mgu-step-num">4</div>
+                        <h4>Generate &amp; Deploy</h4>
+                        <p>
+                            Review the <strong>Live Score</strong>. Click <strong>Copy HTML</strong>
+                            to save. Paste inside the <code class="tech-highlight">&lt;head&gt;</code>
+                            tag of your website code.
+                        </p>
+                    </div>
+
+                </div><!-- /.mgu-step-grid -->
+            </div><!-- /.info-card -->
+
+            <!-- ── Advanced SEO Knowledge Base heading ── -->
+            <div class="mgu-kb-heading">
+                <i class="fa-solid fa-graduation-cap"></i> Advanced SEO Knowledge Base
+            </div>
+
+            <!-- ── Knowledge Base Cards Grid ── -->
+            <div class="mgu-feature-grid">
+
+                <div class="info-card">
+                    <h3>
+                        <i class="fa-solid fa-maximize" style="color:var(--accent-cyan);"></i>
+                        The "Fold" &amp; Descriptions
+                    </h3>
+                    <p>
+                        Meta descriptions don't directly impact rankings, but they determine
+                        Click-Through Rate (CTR). A strong CTR signals relevance to Google.
+                        Place your primary keyword early and treat the description as ad copy
+                        to win the click.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>
+                        <i class="fa-brands fa-slack" style="color:#e01e5a;"></i>
+                        Optimizing for Slack &amp; Discord
+                    </h3>
+                    <p>
+                        Teams share links via chat apps daily. These platforms rely on
+                        <code class="tech-highlight">og:image</code> and
+                        <code class="tech-highlight">twitter:card</code>. Our tool ensures
+                        your link "unfurls" correctly with a large image, making your content
+                        look professional and trustworthy in private channels.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>
+                        <i class="fa-solid fa-quote-left" style="color:var(--accent-purple);"></i>
+                        Punctuation &amp; Pixel Width
+                    </h3>
+                    <p>
+                        Google truncates titles by pixel width, not character count. A "W"
+                        takes more space than an "i". Using pipes (<code class="tech-highlight">|</code>)
+                        instead of hyphens (<code class="tech-highlight">-</code>) saves pixels.
+                        Our tool calculates this exact pixel width using the Arial font metric
+                        used in SERPs.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>
+                        <i class="fa-solid fa-battery-half" style="color:var(--accent-green);"></i>
+                        Mobile &amp; Dark Mode
+                    </h3>
+                    <p>
+                        The <code class="tech-highlight">theme-color</code> meta tag changes
+                        the browser address bar color on mobile devices. By matching your
+                        site's header color you provide a native app-like experience that
+                        increases user retention and reduces bounce rates.
+                    </p>
+                </div>
+
+            </div><!-- /.mgu-feature-grid -->
+
+            <!-- ── FAQ Section ── -->
+            <div class="info-card mt-xl" style="position: relative; overflow: hidden;">
+
+                <!-- Decorative radial glow (purely cosmetic) -->
+                <div class="mgu-faq-glow" aria-hidden="true"></div>
+
+                <h2 class="mgu-info-heading" style="border-color: var(--accent-cyan);">
+                    <i class="fa-solid fa-comments"></i> Frequently Asked Questions
+                </h2>
+
+                <div class="mgu-faq-container">
+
+                    <details class="mgu-faq-item">
+                        <summary class="mgu-faq-question">
+                            Is this SEO Meta Tag Generator free?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="mgu-faq-answer">
+                            <p>
+                                Yes, <strong>Meta Gen Ultra</strong> is 100% free forever.
+                                There are no hidden paywalls, subscription limits, or watermarks.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="mgu-faq-item">
+                        <summary class="mgu-faq-question">
+                            Why doesn't my Facebook image show?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="mgu-faq-answer">
+                            <p>
+                                Likely a missing <code class="tech-highlight">og:image</code> tag
+                                or wrong dimensions. Facebook recommends 1200×630 px. If your
+                                image is too small, Facebook might ignore it or display a small
+                                thumbnail instead.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="mgu-faq-item">
+                        <summary class="mgu-faq-question">
+                            Is my data safe?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="mgu-faq-answer">
+                            <p>
+                                Absolutely. We use <strong>Client-Side JavaScript</strong>.
+                                Your titles, descriptions, and strategies never leave your
+                                browser and are never stored on our servers.
+                            </p>
+                        </div>
+                    </details>
+
+                </div><!-- /.mgu-faq-container -->
+
+            </div><!-- /.info-card (FAQ) -->
+
+        </section><!-- /.info-section-wrapper -->
+
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             RELATED TOOLS SECTION
+             data-category and data-current-page control which tool cards
+             are injected by related-tools.js at runtime.
+        ═══════════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top: 50px;">
+            <div
+                id="dynamic-related-tools"
+                data-category="seo"
+                data-current-page="seo-meta-tags.html"
+            ></div>
+        </div>
+
+        <!-- Related tools dynamic loader (module) -->
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         GLOBAL FOOTER
+         Injected by global.js — do NOT add content inside this element.
+    ═══════════════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ── Ad Manager must load BEFORE global.js for slot initialisation ── -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ── Global Logic (theme, header, footer, toast system) ── -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ── Tool-Specific Application Script ── -->
+    <script src="../../assets/tools/seo/seo-meta-tags/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

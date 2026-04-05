@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Dashboard — Trusted Tools Web Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── CSS Custom Properties ───────────────────────────────── */
+    :root {
+      --accent:       #6ee7b7;
+      --accent-dim:   #34d399;
+      --accent-glow:  rgba(52, 211, 153, 0.18);
+      --danger:       #f87171;
+      --warn:         #fbbf24;
+      --bg:           #060d18;
+      --bg-2:         #0b1628;
+      --bg-3:         #0f1e35;
+      --surface:      rgba(11, 22, 40, 0.9);
+      --border:       rgba(110, 231, 183, 0.10);
+      --border-hover: rgba(110, 231, 183, 0.25);
+      --text-primary: #e2e8f0;
+      --text-muted:   #64748b;
+      --text-dim:     #94a3b8;
+      --sidebar-w:    260px;
+      --header-h:     64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(110,231,183,0.15); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(110,231,183,0.3); }
+
+    h1, h2, h3, h4, .font-display { font-family: 'Syne', sans-serif; }
+
+    /* ── Page-level shimmer guard (prevents flash before auth check) ── */
+    #pageGuard {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.4s ease;
+    }
+    #pageGuard.hidden { opacity: 0; pointer-events: none; }
+
+    .guard-spinner {
+      width: 36px; height: 36px;
+      border: 2px solid rgba(110,231,183,0.15);
+      border-top-color: var(--accent-dim);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Layout shell ────────────────────────────────────────── */
+    .app-shell {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      min-height: 100vh;
+      background: var(--bg-2);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 200;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar top glow */
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 180px;
+      background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(52,211,153,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 1.25rem 1rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .brand-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, rgba(52,211,153,0.2), rgba(99,102,241,0.15));
+      border: 1px solid rgba(110,231,183,0.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .brand-text { flex: 1; min-width: 0; }
+    .brand-text .name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .brand-text .label {
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Nav section label */
+    .nav-label {
+      font-size: 0.63rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 1.25rem 1.25rem 0.4rem;
+    }
+
+    /* Nav items */
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 1.25rem;
+      margin: 0.1rem 0.75rem;
+      border-radius: 10px;
+      color: var(--text-dim);
+      font-size: 0.875rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+      position: relative;
+      border: none;
+      background: none;
+      width: calc(100% - 1.5rem);
+      text-align: left;
+    }
+
+    .nav-item:hover {
+      background: rgba(110,231,183,0.06);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: rgba(52,211,153,0.1);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: -0.75rem;
+      top: 50%; transform: translateY(-50%);
+      width: 3px; height: 60%;
+      background: var(--accent-dim);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .nav-icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      opacity: 0.75;
+    }
+    .nav-item.active .nav-icon,
+    .nav-item:hover .nav-icon { opacity: 1; }
+
+    /* Nav badge (for counts) */
+    .nav-badge {
+      margin-left: auto;
+      background: rgba(248,113,113,0.15);
+      color: var(--danger);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.1rem 0.4rem;
+      border-radius: 20px;
+      border: 1px solid rgba(248,113,113,0.2);
+    }
+
+    /* Sidebar footer */
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 1rem 0.75rem;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+    }
+
+    .user-avatar {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #34d399, #6366f1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .user-info { flex: 1; min-width: 0; }
+    .user-email {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-role {
+      font-size: 0.62rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Mobile overlay ──────────────────────────────────────── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 199;
+    }
+
+    /* ── Main content wrapper ────────────────────────────────── */
+    .main-wrap {
+      flex: 1;
+      margin-left: var(--sidebar-w);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: margin-left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ── Top header ──────────────────────────────────────────── */
+    .top-header {
+      height: var(--header-h);
+      background: rgba(6,13,24,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--text-dim);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .breadcrumb .crumb-active {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    .breadcrumb svg { opacity: 0.4; }
+
+    /* Header right actions */
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .header-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .header-btn:hover {
+      background: var(--accent-glow);
+      border-color: var(--border-hover);
+      color: var(--accent);
+    }
+
+    /* Live indicator dot */
+    .live-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.73rem;
+      color: var(--accent-dim);
+      padding: 0.3rem 0.7rem;
+      background: rgba(52,211,153,0.08);
+      border: 1px solid rgba(52,211,153,0.18);
+      border-radius: 20px;
+    }
+    .live-dot .dot {
+      width: 6px; height: 6px;
+      background: var(--accent-dim);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ── Content area ────────────────────────────────────────── */
+    .content-area {
+      flex: 1;
+      padding: 1.75rem 1.5rem;
+      max-width: 900px;
+    }
+
+    /* Section panel */
+    .panel {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      animation: panelIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .panel-head-icon {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      background: rgba(52,211,153,0.1);
+      border: 1px solid rgba(110,231,183,0.18);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .panel-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .panel-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .panel-body { padding: 1.4rem; }
+
+    /* ── Form elements ───────────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-grid .span-2 { grid-column: 1 / -1; }
+
+    .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .field-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(110,231,183,0.7);
+    }
+
+    .field-hint {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      margin-top: -0.2rem;
+    }
+
+    .field-input,
+    .field-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      padding: 0.65rem 0.9rem;
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .field-input:focus,
+    .field-textarea:focus {
+      border-color: rgba(110,231,183,0.4);
+      background: rgba(255,255,255,0.055);
+      box-shadow: 0 0 0 3px rgba(52,211,153,0.08);
+    }
+    .field-input::placeholder,
+    .field-textarea::placeholder { color: rgba(100,116,139,0.4); }
+    .field-textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+    /* Character counter */
+    .char-counter {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-align: right;
+      margin-top: 0.25rem;
+      transition: color 0.2s;
+    }
+    .char-counter.warn  { color: var(--warn); }
+    .char-counter.over  { color: var(--danger); }
+
+    /* Logo preview */
+    .logo-preview-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .logo-preview {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      object-fit: contain;
+      display: none;
+    }
+    .logo-preview.visible { display: block; }
+    .logo-preview-label {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Form actions ────────────────────────────────────────── */
+    .form-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1.25rem;
+    }
+
+    .btn-save {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      background: linear-gradient(135deg, #34d399, #10b981);
+      color: #022c22;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(52,211,153,0.3);
+    }
+    .btn-save:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(52,211,153,0.4); }
+    .btn-save:active:not(:disabled) { transform: translateY(0); }
+    .btn-save:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .btn-reset {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.1rem;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-dim);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-reset:hover { background: rgba(255,255,255,0.07); color: var(--text-primary); }
+
+    .save-status {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* ── Stats cards (Dashboard overview) ───────────────────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .stat-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+      animation: panelIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 60px; height: 60px;
+      background: radial-gradient(circle at 100% 0%, var(--accent-glow), transparent 70%);
+    }
+    .stat-card:nth-child(2) { animation-delay: 0.05s; }
+    .stat-card:nth-child(3) { animation-delay: 0.1s; }
+    .stat-card:nth-child(4) { animation-delay: 0.15s; }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .stat-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .stat-tag {
+      font-size: 0.68rem;
+      color: var(--accent-dim);
+      margin-top: 0.3rem;
+    }
+
+    /* ── Toast notifications ─────────────────────────────────── */
+    #toastContainer {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      pointer-events: none;
+    }
+
+    .toast {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      min-width: 260px;
+      max-width: 340px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      pointer-events: all;
+      animation: toastIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .toast.out { animation: toastOut 0.25s ease forwards; }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(20px) scale(0.96); }
+      to   { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes toastOut {
+      to { opacity: 0; transform: translateX(20px) scale(0.95); }
+    }
+
+    .toast-success {
+      background: rgba(6, 30, 20, 0.92);
+      border: 1px solid rgba(52,211,153,0.3);
+      color: #6ee7b7;
+    }
+    .toast-error {
+      background: rgba(30, 6, 6, 0.92);
+      border: 1px solid rgba(248,113,113,0.3);
+      color: #fca5a5;
+    }
+    .toast-info {
+      background: rgba(6, 15, 30, 0.92);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: #a5b4fc;
+    }
+
+    .toast-icon { flex-shrink: 0; margin-top: 1px; }
+    .toast-body { flex: 1; }
+    .toast-title { font-weight: 600; font-size: 0.83rem; margin-bottom: 0.1rem; }
+    .toast-msg   { font-size: 0.78rem; opacity: 0.8; line-height: 1.4; }
+    .toast-close {
+      background: none; border: none; cursor: pointer;
+      color: inherit; opacity: 0.5; flex-shrink: 0;
+      padding: 0; line-height: 1;
+      transition: opacity 0.15s;
+    }
+    .toast-close:hover { opacity: 1; }
+
+    /* ── Content section tabs (future-proof) ─────────────────── */
+    .section-view { display: none; }
+    .section-view.active { display: block; }
+
+    /* ── Coming soon placeholder ─────────────────────────────── */
+    .coming-soon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      text-align: center;
+      gap: 0.75rem;
+    }
+    .coming-soon-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+    .coming-soon h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .coming-soon p {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      max-width: 280px;
+      line-height: 1.5;
+    }
+
+    /* ── Spinner (inline button) ─────────────────────────────── */
+    .btn-spinner {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(2,44,34,0.3);
+      border-top-color: #022c22;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(calc(-1 * var(--sidebar-w)));
+      }
+      .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 8px 0 40px rgba(0,0,0,0.5);
+      }
+      .sidebar-overlay.open { display: block; }
+      .main-wrap { margin-left: 0; }
+      .hamburger { display: flex; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .span-2 { grid-column: 1; }
+      .content-area { padding: 1.25rem 1rem; }
+      .live-dot { display: none; }
+      .header-btn { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .form-actions { flex-wrap: wrap; }
+      .save-status { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Auth guard overlay — hidden by dashboard.js once auth is confirmed -->
+  <div id="pageGuard">
+    <div class="guard-spinner"></div>
+  </div>
+
+  <!-- Toast container (populated by site-config-manager.js) -->
+  <div id="toastContainer" aria-live="polite"></div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  APP SHELL                                                 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <!-- ── Sidebar overlay (mobile) ───────────────────────── -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  SIDEBAR                                               -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin navigation">
+
+      <!-- Brand -->
+      <div class="sidebar-brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <div class="name">Trusted Tools Web</div>
+          <div class="label">Admin Panel</div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav style="flex:1; padding: 0.75rem 0;">
+
+        <div class="nav-label">Main</div>
+
+        <!-- Dashboard overview -->
+        <button class="nav-item active" data-section="dashboard" aria-current="page">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Dashboard
+        </button>
+
+        <div class="nav-label">Configuration</div>
+
+        <!-- Site Config -->
+        <button class="nav-item" data-section="site-config">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            <path d="M16 12a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4"/>
+          </svg>
+          Site Config
+        </button>
+
+        <!-- Ads Manager -->
+        <button class="nav-item" data-section="ads">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          Ads Manager
+          <span class="nav-badge">STEP 3</span>
+        </button>
+
+        <!-- Comments -->
+        <button class="nav-item" data-section="comments">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Comments
+          <span class="nav-badge">STEP 4</span>
+        </button>
+
+        <div class="nav-label">System</div>
+
+        <!-- Visit Site -->
+        <a class="nav-item" href="../index.html" target="_blank" rel="noopener">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Visit Live Site
+        </a>
+
+        <!-- Logout -->
+        <button class="nav-item" id="logoutBtn" style="color: #f87171;">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f87171;">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Sign Out
+        </button>
+
+      </nav>
+
+      <!-- Sidebar footer: user info -->
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="user-avatar" id="userAvatarInitial">?</div>
+          <div class="user-info">
+            <div class="user-email" id="userEmailDisplay">Loading…</div>
+            <div class="user-role">Owner · Administrator</div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  MAIN WRAPPER                                          -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <div class="main-wrap" id="mainWrap">
+
+      <!-- ── Top Header ────────────────────────────────────── -->
+      <header class="top-header">
+        <!-- Hamburger (mobile) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <span>Admin</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <span class="crumb-active" id="breadcrumbLabel">Dashboard</span>
+        </div>
+
+        <!-- Right actions -->
+        <div class="header-right">
+          <div class="live-dot">
+            <span class="dot"></span>
+            Firebase Connected
+          </div>
+          <!-- Refresh button -->
+          <button class="header-btn" id="refreshBtn" title="Reload current section data" aria-label="Refresh">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ── Content Area ───────────────────────────────────── -->
+      <main class="content-area" id="contentArea">
+
+        <!-- ════════════════════════════════════════════════════ -->
+        <!--  VIEW: DASHBOARD OVERVIEW                            -->
+        <!-- ════════════════════════════════════════════════════ -->
+        <div class="section-view active" id="view-dashboard">
+
+          <div style="margin-bottom:1.4rem;">
+            <h1 style="font-size:1.4rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">
+              Good to have you back 👋
+            </h1>
+            <p style="font-size:0.85rem;color:var(--text-muted);">
+              Manage your Trusted Tools Web site from one place.
+            </p>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Sections</div>
+              <div class="stat-value">4</div>
+              <div class="stat-tag">Config modules</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Site Config</div>
+              <div class="stat-value" id="statConfigStatus">—</div>
+              <div class="stat-tag">Firestore status</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Ads Manager</div>
+              <div class="stat-value">STEP 3</div>
+              <div class="stat-tag">Coming next</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Comments</div>
+              <div class="stat-value">STEP 4</div>
+              <div class="stat-tag">Coming next</div>
+            </div>
+          </div>
+
+          <!-- Quick actions -->
+          <div class="panel" style="animation-delay:0.1s;">
+            <div class="panel-head">
+              <div class="panel-head-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div>
+                <div class="panel-title">Quick Actions</div>
+                <div class="panel-sub">Jump to a configuration section</div>
+              </div>
+            </div>
+            <div class="panel-body" style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+              <button class="btn-reset" data-section="site-config" style="font-size:0.82rem;">
+                ⚙️ &nbsp;Edit Site Config
+              </button>
+              <button class="btn-reset" data-section="ads" style="font-size:0.82rem;">
+                📢 &nbsp;Manage Ads
+              </button>
+              <button class="btn-reset" data-section="comments" style="font-size:0.82rem;">
+                💬 &nbsp;Moderate Comments
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ════════════════════════════════════════════════════ -->
+        <!--  VIEW: SITE CONFIGURATION                            -->
+        <!-- ════════════════════════════════════════════════════ -->
+        <div class="section-view" id="view-site-config">
+
+          <div style="margin-bottom:1.4rem;">
+            <h1 style="font-size:1.4rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">
+              Site Configuration
+            </h1>
+            <p style="font-size:0.85rem;color:var(--text-muted);">
+              These values are saved to Firestore and read by the frontend automatically.
+            </p>
+          </div>
+
+          <!-- ── General Settings panel ──────────────────────── -->
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-head-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div>
+                <div class="panel-title">General Settings</div>
+                <div class="panel-sub">Firestore path: <code style="font-size:0.7rem;color:var(--accent);background:rgba(52,211,153,0.08);padding:0.1rem 0.35rem;border-radius:4px;">site-config / main</code></div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="form-grid">
+
+                <!-- Site Title -->
+                <div class="field-group">
+                  <label class="field-label" for="fieldSiteTitle">Site Title</label>
+                  <p class="field-hint">Displayed in the browser tab and SEO title tags.</p>
+                  <input
+                    class="field-input" type="text" id="fieldSiteTitle"
+                    placeholder="e.g. Trusted Tools Web"
+                    maxlength="70"
+                    data-field="siteTitle"
+                  />
+                  <div class="char-counter" id="cc-siteTitle">0 / 70</div>
+                </div>
+
+                <!-- Tagline -->
+                <div class="field-group">
+                  <label class="field-label" for="fieldTagline">Tagline</label>
+                  <p class="field-hint">Short description shown under the hero heading.</p>
+                  <input
+                    class="field-input" type="text" id="fieldTagline"
+                    placeholder="e.g. 500+ Free Web Tools"
+                    maxlength="100"
+                    data-field="tagline"
+                  />
+                  <div class="char-counter" id="cc-tagline">0 / 100</div>
+                </div>
+
+                <!-- Contact Email -->
+                <div class="field-group">
+                  <label class="field-label" for="fieldContactEmail">Contact Email</label>
+                  <p class="field-hint">Shown on the contact page and in support links.</p>
+                  <input
+                    class="field-input" type="email" id="fieldContactEmail"
+                    placeholder="contact@yourdomain.com"
+                    data-field="contactEmail"
+                  />
+                </div>
+
+                <!-- Site URL -->
+                <div class="field-group">
+                  <label class="field-label" for="fieldSiteUrl">Site URL</label>
+                  <p class="field-hint">Your live domain (used for canonical tags & OG).</p>
+                  <input
+                    class="field-input" type="url" id="fieldSiteUrl"
+                    placeholder="https://yourdomain.com"
+                    data-field="siteUrl"
+                  />
+                </div>
+
+                <!-- Logo URL -->
+                <div class="field-group span-2">
+                  <label class="field-label" for="fieldLogoUrl">Logo URL</label>
+                  <p class="field-hint">Full URL to your logo image (WebP / PNG / SVG recommended).</p>
+                  <input
+                    class="field-input" type="url" id="fieldLogoUrl"
+                    placeholder="https://yourdomain.com/assets/img/logo.webp"
+                    data-field="logoUrl"
+                  />
+                  <!-- Live logo preview -->
+                  <div class="logo-preview-wrap">
+                    <img class="logo-preview" id="logoPreview" alt="Logo preview" />
+                    <span class="logo-preview-label" id="logoPreviewLabel">Enter a URL above to preview your logo.</span>
+                  </div>
+                </div>
+
+                <!-- Meta Description -->
+                <div class="field-group span-2">
+                  <label class="field-label" for="fieldMetaDesc">Meta Description</label>
+                  <p class="field-hint">Appears in Google search results. Keep between 120–160 characters.</p>
+                  <textarea
+                    class="field-textarea" id="fieldMetaDesc"
+                    placeholder="A concise description of your site for search engines…"
+                    maxlength="200"
+                    data-field="metaDescription"
+                  ></textarea>
+                  <div class="char-counter" id="cc-metaDescription">0 / 160 recommended</div>
+                </div>
+
+                <!-- Footer Copyright -->
+                <div class="field-group span-2">
+                  <label class="field-label" for="fieldFooterCopy">Footer Copyright Text</label>
+                  <p class="field-hint">Shown in the site footer. You can include the year.</p>
+                  <input
+                    class="field-input" type="text" id="fieldFooterCopy"
+                    placeholder="e.g. © 2025 Trusted Tools Web. All rights reserved."
+                    maxlength="120"
+                    data-field="footerCopyright"
+                  />
+                  <div class="char-counter" id="cc-footerCopyright">0 / 120</div>
+                </div>
+
+              </div><!-- /form-grid -->
+
+              <!-- Actions -->
+              <div class="form-actions">
+                <button class="btn-save" id="btnSaveConfig">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Save Configuration
+                </button>
+                <button class="btn-reset" id="btnResetConfig">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+                  Reset
+                </button>
+                <span class="save-status" id="saveStatus"></span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /view-site-config -->
+
+<!--
+  ============================================================
+  STEP 3 — ADS MANAGER  |  admin/dashboard.html
+  ============================================================
+  INSTRUCTIONS FOR INTEGRATION:
+  Find this block in dashboard.html:
+
+      <div class="section-view" id="view-ads">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="coming-soon"> ... </div>
+          </div>
+        </div>
+      </div>
+
+  Replace the ENTIRE block above with the markup below.
+  ============================================================
+-->
+
+<div class="section-view" id="view-ads">
+
+  <!-- ── Page heading ──────────────────────────────────────── -->
+  <div style="margin-bottom:1.4rem;">
+    <h1 style="font-size:1.4rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">
+      Ads Manager
+    </h1>
+    <p style="font-size:0.85rem;color:var(--text-muted);">
+      Paste your AdSense publisher code or any custom ad-network HTML/JS below.
+      Changes are saved to <code style="font-size:0.75rem;color:var(--accent);background:rgba(52,211,153,0.08);padding:0.1rem 0.35rem;border-radius:4px;">ads / main</code> in Firestore.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  PANEL 1 — GLOBAL CONTROLS                            -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0s;">
+    <div class="panel-head">
+      <div class="panel-head-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="16"/>
+          <line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="panel-title">Global Ad Settings</div>
+        <div class="panel-sub">Master switch — overrides all individual slots when disabled.</div>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <!-- Enable Ads toggle row -->
+      <div class="ads-toggle-row">
+
+        <div class="ads-toggle-info">
+          <div class="ads-toggle-label">Enable Ads Globally</div>
+          <div class="ads-toggle-hint">
+            When OFF, no ad code is injected anywhere on the site,
+            regardless of individual slot content.
+          </div>
+        </div>
+
+        <!-- Toggle switch (pure CSS + checkbox) -->
+        <label class="toggle-switch" for="adsGlobalEnabled" aria-label="Enable ads globally">
+          <input type="checkbox" id="adsGlobalEnabled" />
+          <span class="toggle-track">
+            <span class="toggle-thumb"></span>
+          </span>
+        </label>
+
+      </div>
+
+      <!-- AdSense Publisher ID helper row -->
+      <div class="form-grid" style="margin-top:1.25rem;">
+        <div class="field-group">
+          <label class="field-label" for="fieldPublisherId">AdSense Publisher ID</label>
+          <p class="field-hint">
+            Your Google AdSense ID (e.g. <code style="color:var(--accent);font-size:0.75rem;">ca-pub-0000000000000000</code>).
+            Optional — only needed if you use AdSense auto-ads.
+          </p>
+          <input
+            class="field-input" type="text" id="fieldPublisherId"
+            placeholder="ca-pub-0000000000000000"
+            maxlength="30"
+            data-ads-field="publisherId"
+            spellcheck="false"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="fieldAdNetwork">Ad Network</label>
+          <p class="field-hint">
+            Choose your primary ad network for reference labelling.
+            Does not affect the injected code.
+          </p>
+          <select class="field-input" id="fieldAdNetwork" data-ads-field="adNetwork"
+            style="cursor:pointer;appearance:none;-webkit-appearance:none;
+                   background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222%22><polyline points=%226 9 12 15 18 9%22/></svg>');
+                   background-repeat:no-repeat;background-position:right 0.75rem center;
+                   padding-right:2.5rem;">
+            <option value="">— Select Network —</option>
+            <option value="adsense">Google AdSense</option>
+            <option value="mediavine">Mediavine</option>
+            <option value="ezoic">Ezoic</option>
+            <option value="adthrive">AdThrive / Raptive</option>
+            <option value="custom">Custom / Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  PANEL 2 — AD SLOTS                                   -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.07s;">
+    <div class="panel-head">
+      <div class="panel-head-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div>
+        <div class="panel-title">Ad Slot Code</div>
+        <div class="panel-sub">
+          Paste your full <code style="font-size:0.7rem;color:var(--accent);">&lt;script&gt;</code>
+          or <code style="font-size:0.7rem;color:var(--accent);">&lt;ins&gt;</code> tags into the
+          relevant slots below. HTML is saved verbatim.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div class="form-grid">
+
+        <!-- ── Header Ad ──────────────────────────────────── -->
+        <div class="field-group span-2">
+          <div class="ads-slot-header">
+            <div>
+              <label class="field-label" for="fieldHeaderAd">Header Ad Slot</label>
+              <p class="field-hint">
+                Injected in the <code style="color:var(--accent);font-size:0.75rem;">&lt;header&gt;</code>
+                region — typically a 728×90 Leaderboard or Responsive banner.
+              </p>
+            </div>
+            <!-- Per-slot enable toggle -->
+            <label class="slot-toggle" for="slotHeaderEnabled" title="Enable this slot">
+              <input type="checkbox" id="slotHeaderEnabled" data-ads-field="slotHeaderEnabled" />
+              <span class="slot-toggle-track"><span class="slot-toggle-thumb"></span></span>
+              <span class="slot-toggle-label">Enable</span>
+            </label>
+          </div>
+          <textarea
+            class="field-textarea ads-code-area" id="fieldHeaderAd"
+            placeholder="<!-- Paste your Header Ad code here -->"
+            data-ads-field="headerAd"
+            rows="5"
+            spellcheck="false"
+            autocorrect="off"
+            autocapitalize="off"
+          ></textarea>
+          <div class="ads-code-meta" id="meta-headerAd">
+            <span class="ads-byte-count" id="bytes-headerAd">0 bytes</span>
+            <button class="ads-clear-btn" data-clear-field="fieldHeaderAd" type="button">Clear</button>
+          </div>
+        </div>
+
+        <!-- ── Footer Ad ──────────────────────────────────── -->
+        <div class="field-group span-2">
+          <div class="ads-slot-header">
+            <div>
+              <label class="field-label" for="fieldFooterAd">Footer Ad Slot</label>
+              <p class="field-hint">
+                Injected just before the closing
+                <code style="color:var(--accent);font-size:0.75rem;">&lt;/footer&gt;</code> tag.
+                Typically a 728×90 or sticky footer banner.
+              </p>
+            </div>
+            <label class="slot-toggle" for="slotFooterEnabled" title="Enable this slot">
+              <input type="checkbox" id="slotFooterEnabled" data-ads-field="slotFooterEnabled" />
+              <span class="slot-toggle-track"><span class="slot-toggle-thumb"></span></span>
+              <span class="slot-toggle-label">Enable</span>
+            </label>
+          </div>
+          <textarea
+            class="field-textarea ads-code-area" id="fieldFooterAd"
+            placeholder="<!-- Paste your Footer Ad code here -->"
+            data-ads-field="footerAd"
+            rows="5"
+            spellcheck="false"
+            autocorrect="off"
+            autocapitalize="off"
+          ></textarea>
+          <div class="ads-code-meta" id="meta-footerAd">
+            <span class="ads-byte-count" id="bytes-footerAd">0 bytes</span>
+            <button class="ads-clear-btn" data-clear-field="fieldFooterAd" type="button">Clear</button>
+          </div>
+        </div>
+
+        <!-- ── Sidebar Ad ─────────────────────────────────── -->
+        <div class="field-group">
+          <div class="ads-slot-header">
+            <div>
+              <label class="field-label" for="fieldSidebarAd">Sidebar Ad Slot</label>
+              <p class="field-hint">
+                Shown in the tool sidebar. Typically a
+                300×250 Medium Rectangle.
+              </p>
+            </div>
+            <label class="slot-toggle" for="slotSidebarEnabled" title="Enable this slot">
+              <input type="checkbox" id="slotSidebarEnabled" data-ads-field="slotSidebarEnabled" />
+              <span class="slot-toggle-track"><span class="slot-toggle-thumb"></span></span>
+              <span class="slot-toggle-label">Enable</span>
+            </label>
+          </div>
+          <textarea
+            class="field-textarea ads-code-area" id="fieldSidebarAd"
+            placeholder="<!-- Paste your Sidebar Ad code here -->"
+            data-ads-field="sidebarAd"
+            rows="7"
+            spellcheck="false"
+            autocorrect="off"
+            autocapitalize="off"
+          ></textarea>
+          <div class="ads-code-meta" id="meta-sidebarAd">
+            <span class="ads-byte-count" id="bytes-sidebarAd">0 bytes</span>
+            <button class="ads-clear-btn" data-clear-field="fieldSidebarAd" type="button">Clear</button>
+          </div>
+        </div>
+
+        <!-- ── In-Tool Ad ─────────────────────────────────── -->
+        <div class="field-group">
+          <div class="ads-slot-header">
+            <div>
+              <label class="field-label" for="fieldInToolAd">In-Tool Ad Slot</label>
+              <p class="field-hint">
+                Injected inside each tool's content area.
+                Typically a 300×250 or Native ad unit.
+              </p>
+            </div>
+            <label class="slot-toggle" for="slotInToolEnabled" title="Enable this slot">
+              <input type="checkbox" id="slotInToolEnabled" data-ads-field="slotInToolEnabled" />
+              <span class="slot-toggle-track"><span class="slot-toggle-thumb"></span></span>
+              <span class="slot-toggle-label">Enable</span>
+            </label>
+          </div>
+          <textarea
+            class="field-textarea ads-code-area" id="fieldInToolAd"
+            placeholder="<!-- Paste your In-Tool Ad code here -->"
+            data-ads-field="inToolAd"
+            rows="7"
+            spellcheck="false"
+            autocorrect="off"
+            autocapitalize="off"
+          ></textarea>
+          <div class="ads-code-meta" id="meta-inToolAd">
+            <span class="ads-byte-count" id="bytes-inToolAd">0 bytes</span>
+            <button class="ads-clear-btn" data-clear-field="fieldInToolAd" type="button">Clear</button>
+          </div>
+        </div>
+
+      </div><!-- /form-grid -->
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  PANEL 3 — FORM ACTIONS                               -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.14s;">
+    <div class="panel-body" style="padding-top:1rem;padding-bottom:1rem;">
+      <div class="form-actions" style="border-top:none;padding-top:0;margin-top:0;">
+        <button class="btn-save" id="btnSaveAds">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Save Ad Configuration
+        </button>
+        <button class="btn-reset" id="btnResetAds">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"/>
+            <path d="M3.51 15a9 9 0 1 0 .49-4.5"/>
+          </svg>
+          Reset
+        </button>
+        <span class="save-status" id="adsSaveStatus"></span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /view-ads -->
+
+
+<!--
+  ============================================================
+  STYLES — Paste these inside the <style> block in
+           dashboard.html (before the closing </style> tag).
+  ============================================================
+-->
+<style id="ads-manager-styles">
+
+  /* ── Toggle switch (global Enable Ads) ────────────────── */
+  .ads-toggle-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1rem 1.1rem;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .ads-toggle-info { flex: 1; min-width: 0; }
+
+  .ads-toggle-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  .ads-toggle-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── Big toggle switch ─────────────────────────────────── */
+  .toggle-switch {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+  }
+  .toggle-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+  .toggle-track {
+    width: 48px; height: 26px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 13px;
+    position: relative;
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+    display: block;
+  }
+  .toggle-switch input:checked ~ .toggle-track {
+    background: rgba(52,211,153,0.25);
+    border-color: rgba(52,211,153,0.5);
+    box-shadow: 0 0 0 3px rgba(52,211,153,0.1);
+  }
+
+  .toggle-thumb {
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 18px; height: 18px;
+    background: rgba(148,163,184,0.6);
+    border-radius: 50%;
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.25s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .toggle-switch input:checked ~ .toggle-track .toggle-thumb {
+    transform: translateX(22px);
+    background: var(--accent-dim);
+  }
+
+  /* ── Per-slot header (label + mini toggle) ─────────────── */
+  .ads-slot-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── Small slot toggle ─────────────────────────────────── */
+  .slot-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+  .slot-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+  .slot-toggle-track {
+    width: 34px; height: 18px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 9px;
+    position: relative;
+    display: block;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .slot-toggle input:checked ~ .slot-toggle-track {
+    background: rgba(52,211,153,0.2);
+    border-color: rgba(52,211,153,0.4);
+  }
+
+  .slot-toggle-thumb {
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 12px; height: 12px;
+    background: rgba(100,116,139,0.7);
+    border-radius: 50%;
+    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
+  }
+  .slot-toggle input:checked ~ .slot-toggle-track .slot-toggle-thumb {
+    transform: translateX(16px);
+    background: var(--accent-dim);
+  }
+
+  .slot-toggle-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    user-select: none;
+    font-weight: 500;
+  }
+  .slot-toggle input:checked ~ .slot-toggle-label { color: var(--accent); }
+
+  /* ── Code textarea ──────────────────────────────────────── */
+  .ads-code-area {
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace !important;
+    font-size: 0.78rem !important;
+    line-height: 1.65 !important;
+    color: #a5f3c4 !important;
+    background: rgba(0, 20, 12, 0.5) !important;
+    border-color: rgba(52,211,153,0.12) !important;
+    min-height: 120px;
+    resize: vertical;
+    tab-size: 2;
+  }
+  .ads-code-area:focus {
+    border-color: rgba(52,211,153,0.4) !important;
+    background: rgba(0,20,12,0.65) !important;
+    box-shadow: 0 0 0 3px rgba(52,211,153,0.07) !important;
+  }
+  .ads-code-area::placeholder { color: rgba(100,116,139,0.35) !important; }
+
+  /* ── Code meta row (byte count + clear) ────────────────── */
+  .ads-code-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.35rem;
+  }
+
+  .ads-byte-count {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  .ads-clear-btn {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .ads-clear-btn:hover {
+    color: var(--danger);
+    background: rgba(248,113,113,0.08);
+  }
+
+  /* ── Disabled slot overlay ──────────────────────────────── */
+  .field-group.slot-disabled .ads-code-area {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .field-group.slot-disabled .ads-code-meta {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* ── Global ads disabled — dim everything ───────────────── */
+  .ads-globally-disabled .panel:not(:first-child) {
+    opacity: 0.45;
+    pointer-events: none;
+    user-select: none;
+  }
+
+</style>
+
+
+  <!-- ============================================================
+     STEP 4 — Comments Manager | Trusted Tools Web Admin Panel
+     Replace your existing:
+       <div class="section-view" id="view-comments">...</div>
+     with the block below (keep the outer div, replace its contents).
+     ============================================================ -->
+
+<div class="section-view" id="view-comments">
+
+  <!-- ── Page Header ─────────────────────────────────────────── -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+    <div>
+      <h2 class="text-2xl font-bold text-slate-100 tracking-tight flex items-center gap-3">
+        <!-- Comment bubble icon -->
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+          <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+          </svg>
+        </span>
+        Comments Manager
+      </h2>
+      <p class="text-sm text-slate-400 mt-1 ml-12">Moderate, approve, and delete user-submitted comments.</p>
+    </div>
+
+    <!-- Summary Stats Bar -->
+    <div class="flex items-center gap-3 flex-wrap">
+      <div id="cm-stat-total"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-xs text-slate-400">
+        <span class="w-2 h-2 rounded-full bg-slate-500"></span>
+        <span>Total: <strong class="text-slate-200 font-semibold" id="cm-count-total">—</strong></span>
+      </div>
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        <span>Pending: <strong class="font-semibold" id="cm-count-pending">—</strong></span>
+      </div>
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Approved: <strong class="font-semibold" id="cm-count-approved">—</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Toolbar: Search + Filter ────────────────────────────── -->
+  <div class="flex flex-col sm:flex-row gap-3 mb-5">
+
+    <!-- Search -->
+    <div class="relative flex-1">
+      <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+        <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+      </span>
+      <input
+        id="cm-search"
+        type="text"
+        placeholder="Search by user, tool, or comment…"
+        class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60 text-sm text-slate-200
+               placeholder-slate-500 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/30
+               transition-all duration-200"
+      />
+    </div>
+
+    <!-- Status Filter -->
+    <select
+      id="cm-filter-status"
+      class="px-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60 text-sm text-slate-300
+             focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/30
+             transition-all duration-200 cursor-pointer min-w-[150px]"
+    >
+      <option value="all">All Statuses</option>
+      <option value="pending">Pending</option>
+      <option value="approved">Approved</option>
+    </select>
+
+    <!-- Refresh Button -->
+    <button
+      id="cm-btn-refresh"
+      title="Refresh comments"
+      class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60
+             text-sm text-slate-300 hover:bg-slate-700/80 hover:text-slate-100 hover:border-slate-600
+             active:scale-95 transition-all duration-200"
+    >
+      <svg id="cm-refresh-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      Refresh
+    </button>
+  </div>
+
+  <!-- ── Loading Spinner ──────────────────────────────────────── -->
+  <div id="cm-loading" class="hidden flex-col items-center justify-center py-20 gap-4">
+    <div class="relative w-12 h-12">
+      <!-- Outer ring -->
+      <div class="absolute inset-0 rounded-full border-2 border-slate-700/50"></div>
+      <!-- Spinning arc -->
+      <div class="absolute inset-0 rounded-full border-2 border-transparent border-t-emerald-400 animate-spin"></div>
+      <!-- Inner glow dot -->
+      <div class="absolute inset-3 rounded-full bg-emerald-400/10 flex items-center justify-center">
+        <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+      </div>
+    </div>
+    <p class="text-sm text-slate-400 animate-pulse">Fetching comments…</p>
+  </div>
+
+  <!-- ── Empty State ──────────────────────────────────────────── -->
+  <div id="cm-empty" class="hidden flex-col items-center justify-center py-20 gap-4">
+    <div class="w-16 h-16 rounded-2xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center">
+      <svg class="w-8 h-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+      </svg>
+    </div>
+    <div class="text-center">
+      <p class="text-slate-300 font-medium" id="cm-empty-title">No comments found</p>
+      <p class="text-sm text-slate-500 mt-1" id="cm-empty-sub">Comments submitted by users will appear here.</p>
+    </div>
+  </div>
+
+  <!-- ── Data Table ───────────────────────────────────────────── -->
+  <div id="cm-table-wrapper" class="hidden">
+    <!-- Table container with styled scrollbar -->
+    <div class="overflow-x-auto rounded-2xl border border-slate-700/50 shadow-xl shadow-black/20
+                [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-slate-800
+                [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">
+      <table class="w-full min-w-[900px] text-sm border-collapse">
+
+        <!-- Table Head -->
+        <thead>
+          <tr class="bg-slate-800/90 border-b border-slate-700/60">
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
+              User Info
+            </th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
+              Tool Name
+            </th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              Comment
+            </th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
+              Date
+            </th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
+              Status
+            </th>
+            <th class="text-center px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
+              Actions
+            </th>
+          </tr>
+        </thead>
+
+        <!-- Table Body — rows injected by JS -->
+        <tbody id="cm-table-body" class="divide-y divide-slate-700/40">
+          <!-- Populated dynamically by comments-manager.js -->
+        </tbody>
+
+      </table>
+    </div>
+
+    <!-- Pagination / Count Footer -->
+    <div class="flex items-center justify-between mt-4 px-1">
+      <p class="text-xs text-slate-500" id="cm-table-meta">Showing — results</p>
+      <!-- Extend with pagination buttons here if needed in the future -->
+    </div>
+  </div>
+
+  <!-- ── Delete Confirmation Modal ───────────────────────────── -->
+  <!--
+    Rendered inline; JS toggles visibility.
+    Kept inside the section so it's only present when this view is active.
+  -->
+  <div id="cm-delete-modal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+    role="dialog" aria-modal="true" aria-labelledby="cm-modal-title">
+
+    <!-- Backdrop -->
+    <div id="cm-modal-backdrop"
+      class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+    <!-- Modal Card -->
+    <div class="relative z-10 w-full max-w-sm rounded-2xl border border-slate-700/60 bg-[#0c1628]
+                shadow-2xl shadow-black/50 p-6 flex flex-col gap-5
+                animate-[fadeInScale_0.2s_ease-out]">
+
+      <!-- Icon + Title -->
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20
+                    flex items-center justify-center">
+          <svg class="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+          </svg>
+        </div>
+        <div>
+          <h3 id="cm-modal-title" class="text-base font-semibold text-slate-100">Delete Comment?</h3>
+          <p class="text-sm text-slate-400 mt-1">
+            This action is <strong class="text-slate-300">permanent</strong> and cannot be undone.
+            The comment will be removed from Firestore immediately.
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-3 justify-end pt-1">
+        <button id="cm-modal-cancel"
+          class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 bg-slate-700/60 border border-slate-600/50
+                 hover:bg-slate-700 hover:text-slate-100 active:scale-95 transition-all duration-200">
+          Cancel
+        </button>
+        <button id="cm-modal-confirm"
+          class="px-4 py-2 rounded-xl text-sm font-medium text-white bg-red-600 border border-red-500/50
+                 hover:bg-red-500 active:scale-95 transition-all duration-200 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+          </svg>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#view-comments -->
+
+<!--
+  ═══════════════════════════════════════════════════════════════
+  PASTE THIS IN YOUR <style> or <head> (once, anywhere in dashboard.html)
+  Adds the modal entrance animation and the row hover glow.
+  ═══════════════════════════════════════════════════════════════
+-->
+<style>
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95) translateY(8px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0);   }
+  }
+  /* Subtle row hover highlight */
+  #cm-table-body tr {
+    transition: background-color 0.15s ease;
+  }
+  #cm-table-body tr:hover {
+    background-color: rgba(52, 211, 153, 0.04); /* emerald-400 at 4% */
+  }
+  /* Spin class for the refresh button icon */
+  .cm-spin {
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+      </main><!-- /content-area -->
+    </div><!-- /main-wrap -->
+  </div><!-- /app-shell -->
+
+  <!-- ─── Firebase SDK (v9 compat) ──────────────────────────────────── -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+  <!-- ─── Admin modules (order matters) ─────────────────────────────── -->
+   <script src="js/firebase-config.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/site-config-manager.js"></script>
+  <script src="js/ads-manager.js"></script>
+  <script src="js/comments-manager.js"></script>
+  </body>
+</html>

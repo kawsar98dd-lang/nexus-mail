@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ============================================================
+         [ANALYTICS] Site Configuration & Tracking Scripts
+         Must be loaded first for proper analytics initialization.
+         ============================================================ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- [VIEWPORT] Optimized for Mobile & PWA — allows user scaling up to 5× -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#090c10">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ============================================================
+         [SEO] Ultra-Optimized Meta Tags for P2P File Sharing Tool
+         Targeting: WebRTC file transfer, encrypted file sharing,
+         zero-server P2P browser tools, AES-256 file encryption.
+         ============================================================ -->
+    <title>P2P Share Vault ULTRA – Encrypted WebRTC File Transfer, Zero Server | Trusted Tools Web</title>
+    <meta name="title" content="P2P Share Vault ULTRA – Encrypted WebRTC File Transfer, Zero Server | Trusted Tools Web">
+    <meta name="description" content="Transfer files securely between devices with zero servers using WebRTC P2P technology. AES-256 encrypted, QR code pairing, large file chunking & folder ZIP support. 100% browser-based — no uploads, no cloud, no account required.">
+    <meta name="keywords" content="p2p file transfer, webrtc file sharing, secure file transfer no server, browser to browser file share, encrypted file transfer, zero server file sharing, aes 256 file encryption, qr code file transfer, large file transfer tool, offline file sharing, peer to peer browser, p2p share vault, trusted tools web, free secure file transfer, no upload file sharing">
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
+    <meta name="rating" content="general">
+    <meta name="category" content="Security, File Transfer, Privacy">
+
+    <!-- [SOCIAL] Open Graph Tags for Facebook, LinkedIn, etc. -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/sec/sec-p2p-share.html">
+    <meta property="og:title" content="P2P Share Vault ULTRA – Zero-Server Encrypted File Transfer">
+    <meta property="og:description" content="Send files directly between browsers with military-grade AES-256 encryption. No servers. No uploads. Pure WebRTC peer-to-peer. QR code pairing supported.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/sec/sec-p2p-share/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:locale" content="en_US">
+
+    <!-- [TWITTER] Twitter Card Tags for rich link previews -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://trustedtoolsweb.com/sec/sec-p2p-share.html">
+    <meta name="twitter:title" content="P2P Share Vault ULTRA – Encrypted WebRTC File Transfer">
+    <meta name="twitter:description" content="Zero-server, AES-256 encrypted P2P file sharing. Transfer any file between browsers via WebRTC. No cloud. No leaks.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/sec/sec-p2p-share/img/og-banner.webp">
+    <meta name="twitter:creator" content="@TrustedToolsWeb">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/sec/sec-p2p-share.html">
+
+    <!-- [FAVICON] -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- [FONTS] Inter (UI text) + JetBrains Mono (SDP/code areas) -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Inter/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+
+    <!-- [ICONS] FontAwesome — deferred for performance -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css" media="print" onload="this.media='all'" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <noscript><link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css"></noscript>
+
+    <!-- ============================================================
+         [STYLESHEETS] Global + Tools Template (TWO-FILE CSS SYSTEM)
+         global.css      → Header, footer, theme, base reset
+         tools-template.css → All reusable tool UI components
+         ============================================================ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ============================================================
+         [SCHEMA] JSON-LD Structured Data — SoftwareApplication
+         Helps Google understand this is a fully functional web app.
+         ============================================================ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "P2P Share Vault ULTRA",
+        "headline": "P2P Share Vault ULTRA - Zero-Server WebRTC Encrypted File Transfer",
+        "alternativeHeadline": "Browser-to-Browser Secure File Sharing with AES-256",
+        "url": "https://trustedtoolsweb.com/sec/sec-p2p-share.html",
+        "description": "A 100% client-side, zero-server WebRTC peer-to-peer file sharing application with AES-256 encryption, QR code pairing, large file chunking, and folder ZIP compression. No data ever leaves your browser to a third-party server.",
+        "applicationCategory": "SecurityApplication",
+        "applicationSubCategory": "FileTransfer",
+        "operatingSystem": "Web Browser, Android, iOS, Windows, macOS, Linux",
+        "softwareVersion": "1.0.0",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "featureList": [
+            "Zero-Server WebRTC P2P Connection",
+            "AES-256 File Encryption",
+            "QR Code Pairing System",
+            "Large File Chunking (64KB chunks)",
+            "Folder ZIP Compression via JSZip",
+            "Real-Time Speed & ETA Dashboard",
+            "Circular Progress Indicator",
+            "Dark/Light Mode Support",
+            "100% Client-Side Processing",
+            "No File Size Limits",
+            "No Account or Sign-up Required"
+        ],
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/sec/sec-p2p-share/img/og-banner.webp",
+        "image": "https://trustedtoolsweb.com/assets/tools/sec/sec-p2p-share/img/og-banner.webp"
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- ============================================================
+         GLOBAL HEADER — Injected by global.js (theme, nav, logo)
+         ============================================================ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ============================================================
+         MAIN CONTENT AREA
+         All tool UI is contained within this <main> element.
+         max-width and centering are handled by global styles.
+         ============================================================ -->
+    <main id="main-content" class="main-content">
+
+        <!-- ============================================================
+             [HERO SECTION] Tool Title, Badge, Subtitle & App Icon
+             ============================================================ -->
+        <div class="container animated-entry">
+
+            <!-- Security badge — "100% Client-Side Processing" trust signal -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>ZERO SERVER &middot; AES-256 &middot; WEBRTC &middot; 100% Client-Side Processing</span>
+            </div>
+
+            <!-- Main tool title with gradient highlight on "ULTRA" -->
+            <h1 class="tool-title text-center">
+                <i class="fa-solid fa-vault"></i>
+                P2P Share Vault <span>ULTRA</span>
+            </h1>
+
+            <!-- Subtitle / tool description -->
+            <p class="subtitle">
+                Military-grade encrypted file transfer. Browser to browser. No servers. No cloud. No compromise.
+            </p>
+
+            <!-- Tool app icon — decorative, shown below subtitle -->
+            <img src="../../assets/tools/sec/sec-p2p-share/img/app-icon.webp"
+                 alt="P2P Share Vault ULTRA App Icon"
+                 class="p2p-app-icon"
+                 width="64" height="64"
+                 loading="eager" decoding="async">
+
+        </div><!-- /hero container -->
+
+        <!-- ============================================================
+             [TOP AD SLOT] Above-the-fold banner advertisement
+             ============================================================ -->
+        <div class="container">
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+        </div>
+
+        <!-- ============================================================
+             [CONNECTION STATUS BAR]
+             Displays real-time WebRTC connection state: connected,
+             connecting, disconnected, or error. Includes reset button.
+             ============================================================ -->
+        <div class="container">
+            <div class="p2p-status-bar" id="statusBar">
+
+                <!-- Left: Status dot + label -->
+                <div class="p2p-status-indicator" id="statusIndicator">
+                    <span class="p2p-status-dot" id="statusDot"></span>
+                    <span class="p2p-status-label" id="statusLabel">NOT CONNECTED</span>
+                </div>
+
+                <!-- Center: Descriptive meta text -->
+                <div class="p2p-status-meta" id="statusMeta">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Generate an Offer to start a secure session</span>
+                </div>
+
+                <!-- Right: Reset connection action -->
+                <div class="p2p-status-actions">
+                    <button class="btn-icon p2p-reset-btn" id="btnResetConnection" title="Reset Connection">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div><!-- /status bar container -->
+
+        <!-- ============================================================
+             [MAIN APPLICATION PANEL]
+             Two-column grid: Left = WebRTC handshake setup,
+             Right = File transfer dashboard and queue.
+             ============================================================ -->
+        <div class="container">
+            <div class="p2p-app-grid">
+
+                <!-- ====================================================
+                     LEFT PANEL — WebRTC Connection Setup (Sender/Receiver)
+                     ==================================================== -->
+                <div class="p2p-panel p2p-panel-left" id="panelConnection">
+
+                    <!-- Tab Navigation: Sender / Receiver toggle -->
+                    <div class="p2p-panel-tabs">
+                        <button class="p2p-panel-tab active" data-tab="tab-offer">
+                            <i class="fa-solid fa-satellite-dish"></i> Sender
+                        </button>
+                        <button class="p2p-panel-tab" data-tab="tab-answer">
+                            <i class="fa-solid fa-tower-broadcast"></i> Receiver
+                        </button>
+                    </div>
+
+                    <!-- ================================================
+                         SENDER TAB — WebRTC Offer Generation Flow
+                         Step 1: Enter key → Step 2: Generate offer →
+                         Step 3: Paste receiver's answer → Connect
+                         ================================================ -->
+                    <div class="p2p-tab-content active" id="tab-offer">
+
+                        <!-- Tab header: icon + title + description -->
+                        <div class="p2p-tab-header">
+                            <div class="p2p-tab-icon">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </div>
+                            <div>
+                                <h3>Create Secure Session</h3>
+                                <p class="p2p-tab-desc">You will send files. Generate an offer and share it with the receiver.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 1: AES-256 Encryption Key input -->
+                        <div class="p2p-form-group">
+                            <label class="p2p-form-label">
+                                <i class="fa-solid fa-key"></i> Encryption Key (AES-256)
+                                <span class="badge badge-danger p2p-label-badge">Required</span>
+                            </label>
+                            <div class="p2p-input-row">
+                                <input type="password" id="encryptionKey" class="input-control"
+                                       placeholder="Enter a strong secret passphrase..."
+                                       autocomplete="off" spellcheck="false">
+                                <!-- Toggle password visibility -->
+                                <button class="btn-icon" id="btnToggleKey" title="Show/Hide Key">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <!-- Generate a random secure key -->
+                                <button class="btn-icon" id="btnGenKey" title="Generate Random Key">
+                                    <i class="fa-solid fa-dice"></i>
+                                </button>
+                            </div>
+                            <p class="p2p-form-hint">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                Share this key securely with the receiver BEFORE connecting.
+                            </p>
+                        </div>
+
+                        <!-- Step 2: Generate WebRTC Offer SDP -->
+                        <div class="p2p-form-group">
+                            <label class="p2p-form-label">
+                                <i class="fa-solid fa-code-branch"></i> Step 1: Generate WebRTC Offer
+                            </label>
+                            <div class="btn-area">
+                                <button class="btn btn-primary p2p-btn-full" id="btnGenerateOffer">
+                                    <i class="fa-solid fa-bolt"></i> Generate Offer SDP
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- SDP Offer Output — hidden until offer is generated -->
+                        <div class="p2p-sdp-box" id="offerBox" style="display:none;">
+                            <div class="p2p-sdp-box-header">
+                                <span><i class="fa-solid fa-file-code"></i> Your SDP Offer</span>
+                                <div class="p2p-sdp-box-actions">
+                                    <!-- Copy offer SDP to clipboard -->
+                                    <button class="btn-icon" id="btnCopyOffer" title="Copy Offer">
+                                        <i class="fa-solid fa-copy"></i>
+                                    </button>
+                                    <!-- Toggle QR code display -->
+                                    <button class="btn-icon" id="btnShowQR" title="Show QR Code">
+                                        <i class="fa-solid fa-qrcode"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Readonly textarea showing the offer SDP -->
+                            <textarea id="offerSDP" class="p2p-sdp-textarea" readonly
+                                      placeholder="Offer SDP will appear here..."></textarea>
+                            <!-- QR Code container — toggled by btnShowQR -->
+                            <div id="qrContainer" class="p2p-qr-container" style="display:none;">
+                                <p class="p2p-qr-label">Receiver scans this QR to get the Offer</p>
+                                <div id="qrCodeOffer"></div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Paste Receiver's Answer — hidden until offer generated -->
+                        <div class="p2p-form-group" id="answerInputGroup" style="display:none;">
+                            <label class="p2p-form-label">
+                                <i class="fa-solid fa-reply"></i> Step 2: Paste Receiver's Answer
+                            </label>
+                            <textarea id="answerSDP" class="p2p-sdp-textarea"
+                                      placeholder="Paste the SDP Answer from the receiver here..."
+                                      rows="5"></textarea>
+                            <div class="p2p-btn-row">
+                                <!-- Establish the secure channel using the pasted answer -->
+                                <button class="btn btn-primary p2p-btn-full" id="btnConnectWithAnswer">
+                                    <i class="fa-solid fa-link"></i> Establish Secure Channel
+                                </button>
+                                <!-- Scan QR code containing the answer SDP -->
+                                <button class="btn btn-secondary p2p-btn-icon-only" id="btnScanAnswerQR" title="Scan QR Answer">
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div><!-- /tab-offer -->
+
+                    <!-- ================================================
+                         RECEIVER TAB — WebRTC Answer Generation Flow
+                         Step 1: Enter same key → Step 2: Paste/scan offer
+                         → Step 3: Generate & send back Answer SDP
+                         ================================================ -->
+                    <div class="p2p-tab-content" id="tab-answer">
+
+                        <!-- Tab header: icon + title + description -->
+                        <div class="p2p-tab-header">
+                            <div class="p2p-tab-icon p2p-tab-icon-green">
+                                <i class="fa-solid fa-inbox"></i>
+                            </div>
+                            <div>
+                                <h3>Join Secure Session</h3>
+                                <p class="p2p-tab-desc">You will receive files. Paste or scan the sender's offer to connect.</p>
+                            </div>
+                        </div>
+
+                        <!-- Encryption Key — must match the sender's key exactly -->
+                        <div class="p2p-form-group">
+                            <label class="p2p-form-label">
+                                <i class="fa-solid fa-key"></i> Encryption Key (AES-256)
+                                <span class="badge badge-danger p2p-label-badge">Required</span>
+                            </label>
+                            <div class="p2p-input-row">
+                                <input type="password" id="recvEncryptionKey" class="input-control"
+                                       placeholder="Enter the same key as the sender..."
+                                       autocomplete="off" spellcheck="false">
+                                <!-- Toggle password visibility for receiver key -->
+                                <button class="btn-icon" id="btnToggleRecvKey" title="Show/Hide Key">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Paste or scan the sender's Offer SDP -->
+                        <div class="p2p-form-group">
+                            <label class="p2p-form-label">
+                                <i class="fa-solid fa-paste"></i> Paste Sender's Offer SDP
+                            </label>
+                            <textarea id="recvOfferSDP" class="p2p-sdp-textarea"
+                                      placeholder="Paste the SDP Offer from the sender here..."
+                                      rows="5"></textarea>
+                            <div class="p2p-btn-row">
+                                <!-- Generate the WebRTC Answer SDP -->
+                                <button class="btn btn-primary p2p-btn-full" id="btnGenerateAnswer">
+                                    <i class="fa-solid fa-handshake"></i> Generate Answer SDP
+                                </button>
+                                <!-- Scan QR code from the sender's screen -->
+                                <button class="btn btn-secondary p2p-btn-icon-only" id="btnScanOfferQR" title="Scan QR Offer">
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- SDP Answer Output — hidden until answer is generated -->
+                        <div class="p2p-sdp-box" id="answerBox" style="display:none;">
+                            <div class="p2p-sdp-box-header">
+                                <span><i class="fa-solid fa-file-code"></i> Your SDP Answer</span>
+                                <div class="p2p-sdp-box-actions">
+                                    <!-- Copy answer SDP to clipboard -->
+                                    <button class="btn-icon" id="btnCopyAnswer" title="Copy Answer">
+                                        <i class="fa-solid fa-copy"></i>
+                                    </button>
+                                    <!-- Toggle QR display for the answer -->
+                                    <button class="btn-icon" id="btnShowAnswerQR" title="Show Answer QR">
+                                        <i class="fa-solid fa-qrcode"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Readonly textarea showing the generated answer SDP -->
+                            <textarea id="answerSDPOutput" class="p2p-sdp-textarea" readonly
+                                      placeholder="Answer SDP will appear here..."></textarea>
+                            <!-- Answer QR Code container — toggled by btnShowAnswerQR -->
+                            <div id="qrAnswerContainer" class="p2p-qr-container" style="display:none;">
+                                <p class="p2p-qr-label">Sender scans this QR to complete the handshake</p>
+                                <div id="qrCodeAnswer"></div>
+                            </div>
+                            <!-- Success hint instructing receiver to send back the answer -->
+                            <p class="p2p-form-hint p2p-hint-success">
+                                <i class="fa-solid fa-circle-check"></i>
+                                Copy this answer and send it back to the Sender.
+                            </p>
+                        </div>
+
+                    </div><!-- /tab-answer -->
+
+                </div><!-- /p2p-panel-left -->
+
+                <!-- ====================================================
+                     RIGHT PANEL — File Transfer Dashboard & Queue
+                     Locked behind a "connection required" overlay until
+                     the WebRTC handshake is successfully completed.
+                     ==================================================== -->
+                <div class="p2p-panel p2p-panel-right" id="panelTransfer">
+
+                    <!-- Awaiting connection overlay — shown when not connected -->
+                    <div class="p2p-overlay-required" id="overlayRequired">
+                        <div class="p2p-overlay-icon">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                        </div>
+                        <h3>Awaiting Secure Connection</h3>
+                        <p>Complete the WebRTC handshake on the left panel to unlock file transfer.</p>
+                        <!-- Animated orbit ring decoration -->
+                        <div class="p2p-orbit-ring"></div>
+                    </div>
+
+                    <!-- File Transfer UI — hidden until secure channel is established -->
+                    <div class="p2p-transfer-ui" id="transferUI" style="display:none;">
+
+                        <!-- ============================================
+                             DROP ZONE — Drag & drop or browse files/folders
+                             ============================================ -->
+                        <div class="p2p-drop-zone" id="dropZone">
+                            <div class="p2p-drop-zone-icon">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <h3 class="p2p-drop-zone-title">Drop Files or Folders Here</h3>
+                            <p class="p2p-drop-zone-sub">Or click to browse. All files encrypted with AES-256 before transmission.</p>
+                            <!-- Hidden file inputs — triggered by buttons below -->
+                            <input type="file" id="fileInput" multiple style="display:none;">
+                            <input type="file" id="folderInput" webkitdirectory multiple style="display:none;">
+                            <div class="btn-area">
+                                <!-- Browse individual files -->
+                                <button class="btn btn-primary" id="btnBrowseFiles">
+                                    <i class="fa-solid fa-file-arrow-up"></i> Select Files
+                                </button>
+                                <!-- Browse an entire folder (zipped via JSZip) -->
+                                <button class="btn btn-secondary" id="btnBrowseFolder">
+                                    <i class="fa-solid fa-folder-open"></i> Select Folder
+                                </button>
+                            </div>
+                        </div><!-- /drop-zone -->
+
+                        <!-- ============================================
+                             FILE QUEUE — Listed files ready to be sent
+                             ============================================ -->
+                        <div class="p2p-file-queue" id="fileQueue" style="display:none;">
+                            <div class="p2p-queue-header">
+                                <h4><i class="fa-solid fa-layer-group"></i> Transfer Queue</h4>
+                                <div class="p2p-queue-actions">
+                                    <!-- Clear all files from the queue -->
+                                    <button class="btn-icon" id="btnClearQueue" title="Clear Queue">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                    <!-- Begin sending all queued files -->
+                                    <button class="btn btn-primary p2p-btn-sm" id="btnSendAll">
+                                        <i class="fa-solid fa-rocket"></i> Send All
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Dynamically populated queue items by renderQueueItem() -->
+                            <div class="p2p-queue-list" id="queueList"></div>
+                        </div><!-- /file-queue -->
+
+                        <!-- ============================================
+                             LIVE DASHBOARD — Real-time transfer metrics
+                             Circular progress, speed, ETA, chunk count
+                             ============================================ -->
+                        <div class="p2p-dashboard" id="liveDashboard" style="display:none;">
+                            <div class="p2p-dashboard-header">
+                                <h4><i class="fa-solid fa-gauge-high"></i> Live Transfer Dashboard</h4>
+                                <!-- Phase badge: ENCRYPTING / TRANSMITTING / COMPLETE -->
+                                <span class="p2p-dash-phase" id="dashPhase">ENCRYPTING</span>
+                            </div>
+
+                            <div class="p2p-dashboard-grid">
+
+                                <!-- Circular SVG Progress Indicator -->
+                                <div class="p2p-dash-card p2p-dash-progress-card">
+                                    <div class="p2p-circular-progress-wrapper">
+                                        <svg class="p2p-circular-progress" viewBox="0 0 120 120" id="progressSVG">
+                                            <!-- Track ring (background) -->
+                                            <circle class="p2p-cp-track" cx="60" cy="60" r="52"/>
+                                            <!-- Animated fill arc — strokeDashoffset updated by JS -->
+                                            <circle class="p2p-cp-fill" cx="60" cy="60" r="52" id="cpFill"/>
+                                            <!-- Centered percentage text -->
+                                            <text class="p2p-cp-percent" x="60" y="60" text-anchor="middle"
+                                                  dominant-baseline="middle" id="cpPercent">0%</text>
+                                            <!-- Sub-label below percentage -->
+                                            <text class="p2p-cp-label" x="60" y="78" text-anchor="middle"
+                                                  id="cpLabel">PROGRESS</text>
+                                        </svg>
+                                    </div>
+                                </div><!-- /progress card -->
+
+                                <!-- Speed & Stats Cards -->
+                                <div class="p2p-dash-stats">
+
+                                    <!-- Transfer Speed card with animated speedometer bar -->
+                                    <div class="p2p-stat-card" id="statSpeed">
+                                        <div class="p2p-stat-icon"><i class="fa-solid fa-bolt"></i></div>
+                                        <div class="p2p-stat-body">
+                                            <span class="p2p-stat-value" id="speedValue">0.00</span>
+                                            <span class="p2p-stat-unit">MB/s</span>
+                                        </div>
+                                        <div class="p2p-stat-label">Transfer Speed</div>
+                                        <!-- Animated bar reflecting current speed vs 50MB/s max -->
+                                        <div class="p2p-speedometer-bar">
+                                            <div class="p2p-speedometer-fill" id="speedometerFill"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ETA card -->
+                                    <div class="p2p-stat-card">
+                                        <div class="p2p-stat-icon"><i class="fa-solid fa-clock"></i></div>
+                                        <div class="p2p-stat-body">
+                                            <span class="p2p-stat-value" id="etaValue">--:--</span>
+                                        </div>
+                                        <div class="p2p-stat-label">ETA</div>
+                                    </div>
+
+                                    <!-- Bytes transferred card -->
+                                    <div class="p2p-stat-card">
+                                        <div class="p2p-stat-icon"><i class="fa-solid fa-database"></i></div>
+                                        <div class="p2p-stat-body">
+                                            <span class="p2p-stat-value" id="sizeValue">0</span>
+                                            <span class="p2p-stat-unit" id="sizeUnit">KB</span>
+                                        </div>
+                                        <div class="p2p-stat-label">Transferred</div>
+                                    </div>
+
+                                    <!-- Chunks sent card -->
+                                    <div class="p2p-stat-card">
+                                        <div class="p2p-stat-icon"><i class="fa-solid fa-file-zipper"></i></div>
+                                        <div class="p2p-stat-body">
+                                            <span class="p2p-stat-value" id="chunksValue">0</span>
+                                        </div>
+                                        <div class="p2p-stat-label">Chunks Sent</div>
+                                    </div>
+
+                                </div><!-- /p2p-dash-stats -->
+                            </div><!-- /p2p-dashboard-grid -->
+
+                            <!-- Linear progress bar track -->
+                            <div class="p2p-progress-track">
+                                <div class="p2p-progress-fill" id="progressFill"></div>
+                                <!-- Glowing leading edge of the progress fill -->
+                                <div class="p2p-progress-glow" id="progressGlow"></div>
+                            </div>
+                            <!-- Progress meta: current file name + bytes transferred -->
+                            <div class="p2p-progress-meta">
+                                <span id="currentFileName"><i class="fa-solid fa-file-shield"></i> Awaiting...</span>
+                                <span id="progressText">0 / 0 bytes</span>
+                            </div>
+
+                        </div><!-- /live-dashboard -->
+
+                        <!-- ============================================
+                             RECEIVED FILES SECTION
+                             Shown on receiver side when files arrive.
+                             ============================================ -->
+                        <div class="p2p-received-section" id="receivedSection" style="display:none;">
+                            <div class="p2p-received-header">
+                                <h4><i class="fa-solid fa-inbox"></i> Received Files</h4>
+                                <!-- Count badge — updated dynamically -->
+                                <span class="badge badge-success" id="receivedCount">0</span>
+                            </div>
+                            <!-- Dynamically populated by addReceivedFileToUI() -->
+                            <div class="p2p-received-list" id="receivedList"></div>
+                        </div><!-- /received-section -->
+
+                    </div><!-- /p2p-transfer-ui -->
+
+                </div><!-- /p2p-panel-right -->
+
+            </div><!-- /p2p-app-grid -->
+        </div><!-- /main app container -->
+
+        <!-- ============================================================
+             [MID AD SLOT] Between app and SEO info section
+             ============================================================ -->
+        <div class="container mt-md">
+            <div class="ad-slot" data-ad-slot="mid-banner"></div>
+        </div>
+
+        <!-- ============================================================
+             [SEO INFO SECTION] Educational content for users & search engines
+             Explains the tool, how to use it, technology, and comparisons.
+             ============================================================ -->
+        <section class="info-section-wrapper">
+
+            <!-- What is P2P Share Vault ULTRA? -->
+            <div class="info-card animated-entry">
+                <h2><i class="fa-solid fa-shield-virus"></i> What is P2P Share Vault ULTRA?</h2>
+                <p>P2P Share Vault ULTRA is a cutting-edge, 100% browser-based file transfer tool that uses <strong>WebRTC (Web Real-Time Communication)</strong> to create a direct, encrypted tunnel between two browsers — with absolutely no server in the middle. Your files never touch any third-party server. They travel from your browser directly to the receiver's browser.</p>
+                <p>Every byte of your data is encrypted using <strong>AES-256</strong> (the same standard used by governments and military organizations) before transmission. Even if a sophisticated attacker intercepts your WebRTC packets, the data is unreadable without your secret passphrase. This is the pinnacle of privacy-first file sharing.</p>
+            </div>
+
+            <!-- Step-by-step usage guide -->
+            <div class="info-card animated-entry delay-1">
+                <h2><i class="fa-solid fa-book-open"></i> How to Transfer Files: Step-by-Step Guide</h2>
+                <img src="../../assets/tools/sec/sec-p2p-share/img/og-banner.webp"
+                     loading="lazy" decoding="async" width="1200" height="630"
+                     alt="P2P Share Vault ULTRA How It Works — WebRTC browser-to-browser file transfer diagram"
+                     style="width:100%; height:auto; aspect-ratio:16/9; margin:20px 0; border-radius:12px; border: 1px solid var(--border-main);">
+
+                <h3>For the Sender (Person A)</h3>
+                <ol style="color: var(--text-muted); line-height: 2;">
+                    <li>Go to the <strong>Sender</strong> tab. Enter a strong <strong>Encryption Key</strong> (passphrase). Share this with the receiver via phone or messaging app.</li>
+                    <li>Click <strong>"Generate Offer SDP"</strong>. A block of cryptographic session text (SDP) will appear.</li>
+                    <li>Copy the Offer SDP and send it to the receiver (via email, chat, etc.) — or click the <strong>QR button</strong> for the receiver to scan.</li>
+                    <li>Wait for the receiver to send back an <strong>Answer SDP</strong>. Paste it into the "Paste Answer" field and click <strong>"Establish Secure Channel"</strong>.</li>
+                    <li>Once connected, drop your files into the transfer zone and click <strong>"Send All"</strong>. Done!</li>
+                </ol>
+
+                <h3>For the Receiver (Person B)</h3>
+                <ol style="color: var(--text-muted); line-height: 2;">
+                    <li>Go to the <strong>Receiver</strong> tab. Enter the <strong>same Encryption Key</strong> as the sender.</li>
+                    <li>Paste the sender's <strong>Offer SDP</strong> into the text box (or click the camera icon to scan the QR code).</li>
+                    <li>Click <strong>"Generate Answer SDP"</strong>. An Answer SDP will be generated.</li>
+                    <li>Copy the Answer SDP and send it back to the sender.</li>
+                    <li>The connection is established automatically. Files will download automatically when received.</li>
+                </ol>
+            </div>
+
+            <!-- Technology stack explanation -->
+            <div class="info-card animated-entry delay-2">
+                <h2><i class="fa-solid fa-microchip"></i> Under the Hood: The Technology Stack</h2>
+                <h3>1. WebRTC SDP Handshake (Zero-Server)</h3>
+                <p>WebRTC requires an initial "handshake" to establish the peer connection. Normally, a "signaling server" handles this. Our "Paranoid Mode" eliminates this by having you <strong>manually copy/paste SDP (Session Description Protocol) text</strong>. This means zero metadata, zero logs, and zero server infrastructure involved. We use Google's free STUN servers (<code>stun:stun.l.google.com:19302</code>) only for NAT traversal, which is required for devices behind routers.</p>
+                <h3>2. AES-256 Encryption Pipeline</h3>
+                <p>Before any chunk is sent over the data channel, it is encrypted using <strong>CryptoJS AES-256</strong> with your passphrase. The receiver uses the same key to decrypt each incoming chunk. The plaintext file never leaves your RAM. The AES key is derived from your passphrase using a secure hashing function and is never transmitted.</p>
+                <h3>3. Large File Chunking (64KB Slices)</h3>
+                <p>WebRTC data channels have a practical message size limit. We solve this by splitting your file into <strong>64KB chunks</strong> using the <code>FileReader.readAsArrayBuffer()</code> API. Each chunk is encrypted, tagged with a sequence number and file metadata, then sent individually. The receiver reassembles them in order using a <code>Blob</code> and triggers an auto-download via FileSaver.</p>
+                <h3>4. Folder ZIP on the Fly</h3>
+                <p>When you drag and drop a folder, <strong>JSZip</strong> compresses the entire folder structure into a single <code>.zip</code> file in your browser's memory. This zip is then chunked and encrypted for transfer. The receiver gets a single zip file containing the full folder structure.</p>
+            </div>
+
+            <!-- Comparison table -->
+            <div class="info-card animated-entry">
+                <h2><i class="fa-solid fa-scale-balanced"></i> P2P Share Vault vs. Traditional Services</h2>
+                <div style="overflow-x:auto;">
+                    <table class="p2p-comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>P2P Share Vault ULTRA</th>
+                                <th>WeTransfer / Dropbox</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Server Storage</td>
+                                <td class="p2p-cmp-good"><i class="fa-solid fa-check"></i> Zero (P2P)</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> Stored on servers</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> Stored on servers</td>
+                            </tr>
+                            <tr>
+                                <td>Encryption</td>
+                                <td class="p2p-cmp-good"><i class="fa-solid fa-check"></i> AES-256 E2E</td>
+                                <td class="p2p-cmp-warn"><i class="fa-solid fa-minus"></i> In-Transit only</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> Minimal</td>
+                            </tr>
+                            <tr>
+                                <td>File Size Limit</td>
+                                <td class="p2p-cmp-good"><i class="fa-solid fa-check"></i> Unlimited</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> 2GB - 5GB limit</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> ~25MB</td>
+                            </tr>
+                            <tr>
+                                <td>Privacy</td>
+                                <td class="p2p-cmp-good"><i class="fa-solid fa-check"></i> Maximum</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> Data analyzed</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> Scanned for ads</td>
+                            </tr>
+                            <tr>
+                                <td>Sign-up Required</td>
+                                <td class="p2p-cmp-good"><i class="fa-solid fa-check"></i> Never</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> For large files</td>
+                                <td class="p2p-cmp-bad"><i class="fa-solid fa-xmark"></i> Yes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section><!-- /info-section-wrapper -->
+
+        <!-- ============================================================
+             [BOTTOM AD SLOT]
+             ============================================================ -->
+        <div class="container">
+            <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+        </div>
+
+        <!-- ============================================================
+             RELATED TOOLS SECTION
+             Dynamically populated by related-tools.js based on category.
+             data-category: "sec" — security tools
+             data-current-page: This tool's filename (to exclude self)
+             ============================================================ -->
+        <div class="container" style="margin-top: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="sec"
+                 data-current-page="sec-p2p-share.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main-content -->
+
+    <!-- ============================================================
+         GLOBAL FOOTER — Injected by global.js
+         ============================================================ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ============================================================
+         QR SCANNER OVERLAY
+         Full-screen camera overlay for scanning SDP QR codes.
+         Uses Html5Qrcode library targeting the #reader element.
+         ============================================================ -->
+    <div id="scanner-overlay" class="p2p-scanner-overlay p2p-hidden">
+        <div class="p2p-scanner-close">
+            <!-- Close scanner and stop camera stream -->
+            <button id="btnCloseScanner" class="btn btn-secondary">
+                <i class="fa-solid fa-xmark"></i> CLOSE
+            </button>
+        </div>
+        <!-- Camera viewfinder frame with corner markers -->
+        <div class="p2p-scanner-frame">
+            <div class="p2p-scanner-corners">
+                <span class="p2p-corner p2p-corner-tl"></span>
+                <span class="p2p-corner p2p-corner-tr"></span>
+                <span class="p2p-corner p2p-corner-bl"></span>
+                <span class="p2p-corner p2p-corner-br"></span>
+            </div>
+            <!-- Html5Qrcode mounts the camera stream into this element -->
+            <div id="reader"></div>
+        </div>
+        <p class="p2p-scanner-hint">
+            <i class="fa-solid fa-qrcode"></i> Point camera at the QR Code
+        </p>
+    </div><!-- /scanner-overlay -->
+
+    <!-- ============================================================
+         TRANSFER COMPLETE OVERLAY
+         Shown when all files have been sent or a file has been received.
+         Features an animated SVG checkmark ring.
+         ============================================================ -->
+    <div id="successOverlay" class="p2p-success-overlay p2p-hidden">
+        <div class="p2p-success-card">
+            <!-- Animated SVG ring with checkmark -->
+            <div class="p2p-success-icon">
+                <svg viewBox="0 0 100 100" class="p2p-success-ring">
+                    <circle cx="50" cy="50" r="45" class="p2p-success-circle-track"/>
+                    <circle cx="50" cy="50" r="45" class="p2p-success-circle-fill"/>
+                    <polyline points="25,52 42,68 75,35" class="p2p-success-check"/>
+                </svg>
+            </div>
+            <!-- Dynamic title and message set by showSuccessOverlay() -->
+            <h2 id="successTitle">Transfer Complete!</h2>
+            <p id="successMessage">All files transferred successfully.</p>
+            <!-- Close the success overlay -->
+            <button class="btn btn-success" id="btnSuccessClose">
+                <i class="fa-solid fa-check"></i> Awesome!
+            </button>
+        </div>
+    </div><!-- /success-overlay -->
+
+    <!-- ============================================================
+         GLOBAL SCRIPTS
+         ============================================================ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ============================================================
+         TOOL LIBRARIES (localised before CodeCanyon submission)
+         - CryptoJS  : AES-256 encryption/decryption
+         - JSZip     : In-browser folder ZIP compression
+         - FileSaver : Cross-browser file download trigger
+         - QRCode.js : QR code generation from SDP text
+         - Html5QRCode : Camera-based QR code scanning
+         ============================================================ -->
+    <script src="../../assets/library/crypto/crypto-js/crypto-js.min.js" defer></script>
+    <script src="../../assets/library/file-archiver/jszip/jszip.min.js" defer></script>
+    <script src="../../assets/library/file-archiver/filesaver/FileSaver.min.js" defer></script>
+    <script src="../../assets/library/qr-engine/qrcodejs/qrcode.min.js" defer></script>
+    <script src="../../assets/library/qr-engine/qrcode/html5-qrcode.min.js" defer></script>
+
+    <!-- TOOL CORE SCRIPT -->
+    <script src="../../assets/tools/sec/sec-p2p-share/script.js" defer></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

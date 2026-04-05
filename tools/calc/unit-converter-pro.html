@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 
+    ================================================================
+    OmniConvert Ultra - Production Release v2.4 (Feb 2026)
+    [MONETIZATION READY VERSION]
+    Optimized for AdSense, Adsterra & Media.net
+    ================================================================
+    -->
+
+    <!-- Analytics Script Loader -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <!-- Viewport settings for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+    <!-- [USER CONFIG]: SEO Settings -->
+    <title>OmniConvert Ultra | Best Free Unit Converter & Currency Exchange Tool</title>
+    <meta name="description" content="Use OmniConvert Ultra for free real-time Currency Exchange, Engineering Unit Conversion, Physics Calculation & Scientific Calculator. The most secure and fast PWA tool for students and professionals.">
+    <meta name="keywords" content="Unit Converter, Currency Converter, USD to BDT, Live Exchange Rates, Scientific Calculator, Engineering Converter, Physics Tools, Length Converter, Weight Converter, Temperature Calculator, Free Online Tools, OmniConvert Pro, HTML5 Tools, Secure Web App">
+    <meta name="author" content="TrustedToolsWeb">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Canonical Link for SEO Authority -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/calc-unit-converter.html" />
+
+    <!-- Open Graph Data -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/calc-unit-converter.html">
+    <meta property="og:title" content="OmniConvert Ultra - All-in-One Conversion Tool">
+    <meta property="og:description" content="Convert anything instantly: Currency, Length, Weight, Temperature with live charts. Secure and Ad-free experience.">
+    <meta property="og:image" content="https://trustedtoolsweb.com/assets/tools/calc/calc-unit-converter/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/webp">
+
+    <!-- Twitter Card Data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://trustedtoolsweb.com/calc-unit-converter.html">
+    <meta name="twitter:title" content="OmniConvert Ultra - Precision Tools">
+    <meta name="twitter:description" content="Convert anything instantly with zero latency. PWA supported.">
+    <meta name="twitter:image" content="https://trustedtoolsweb.com/assets/tools/calc/calc-unit-converter/img/og-banner.webp">
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/webp" sizes="64x64" href="../../assets/tools/calc/calc-unit-converter/img/favicon.webp">
+    <link rel="apple-touch-icon" href="../../assets/tools/calc/calc-unit-converter/img/icon-512.webp">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "OmniConvert Ultra",
+        "url": "https://trustedtoolsweb.com/calc-unit-converter.html",
+        "image": "https://trustedtoolsweb.com/assets/tools/calc/calc-unit-converter/img/og-banner.webp",
+        "description": "A professional unit converter and scientific calculator with real-time currency exchange rates.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR"
+        }
+    }
+    </script>
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Outfit/fonts.css">
+
+    <!-- Math.js for complex calculations -->
+    <script src="../../assets/tools/calc/calc-unit-converter/math.min.js"></script>
+
+    <!-- Chart.js for Currency Graphs -->
+    <script src="../../assets/library/data-viz/chartjs/chart.min.js"></script>
+
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <!-- Tool Component Stylesheet -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+</head>
+
+<body>
+
+<!-- Global Header Hook (Populated by global.js if present) -->
+<header id="global-header" class="site-header"></header>
+
+<!-- Top Progress Bar -->
+<div id="loader"></div>
+
+<!-- ============================================================
+     MAIN TOOL CARD
+     ============================================================ -->
+<main>
+    <div class="container animated-entry">
+
+        <!-- ── Smart Search Bar ── -->
+        <div class="ocu-search-wrapper">
+            <div class="ocu-search-box">
+                <!-- [USER CONFIG]: Change placeholder text here -->
+                <input
+                    type="text"
+                    id="globalSearch"
+                    class="ocu-search-input"
+                    placeholder="Smart Search (e.g., '10 kg to lbs')"
+                    oninput="smartSearch(this.value)"
+                    autocomplete="off"
+                >
+                <i class="fa-solid fa-search ocu-search-icon"></i>
+            </div>
+        </div>
+
+        <!-- ── Category Icon Slider ── -->
+        <div class="ocu-cat-wrapper">
+            <div class="ocu-cat-slider" id="catSlider"></div>
+        </div>
+
+        <!-- ============================================================
+             [CENTRALIZED AD SYSTEM] - ENTRY POINT
+             Position: Top Banner (High Visibility)
+             ============================================================ -->
+        <div class="ocu-monetization-slot" data-ad-slot="top-banner"></div>
+
+        <!-- ── Main Converter Card ── -->
+        <div class="ocu-main-card">
+
+            <!-- ── IO Container (From / Swap / To) ── -->
+            <div class="ocu-io-container">
+
+                <!-- Source Unit Box (From) -->
+                <div class="ocu-io-box">
+                    <div class="ocu-io-header">
+                        <span class="text-small-label">From</span>
+                        <!-- Microphone for voice input -->
+                        <i class="fa-solid fa-microphone ocu-mic-icon" onclick="startDictation()" title="Voice input"></i>
+                    </div>
+                    <div class="ocu-io-flex">
+                        <!-- Unit selector dropdown trigger -->
+                        <div class="ocu-unit-select-btn" onclick="openModal('from')">
+                            <span id="uFromDisp">Unit</span>
+                            <i class="fa-solid fa-chevron-down ocu-chevron"></i>
+                        </div>
+                        <!-- Numerical input -->
+                        <input
+                            type="text"
+                            inputmode="decimal"
+                            class="ocu-main-input"
+                            id="inpFrom"
+                            placeholder="0"
+                            autocomplete="off"
+                        >
+                    </div>
+                </div>
+
+                <!-- Swap Button (Centre Circle) -->
+                <div class="ocu-swap-circle" onclick="swap()" title="Swap units">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                </div>
+
+                <!-- Target Unit Box (To) -->
+                <div class="ocu-io-box ocu-io-box--to">
+                    <div class="ocu-io-header">
+                        <span class="text-small-label">To</span>
+                        <!-- Copy result to clipboard -->
+                        <i class="fa-regular fa-copy ocu-copy-icon" onclick="copyResult()" title="Copy result"></i>
+                    </div>
+                    <div class="ocu-io-flex">
+                        <!-- Unit selector dropdown trigger -->
+                        <div class="ocu-unit-select-btn" onclick="openModal('to')">
+                            <span id="uToDisp">Unit</span>
+                            <i class="fa-solid fa-chevron-down ocu-chevron"></i>
+                        </div>
+                        <!-- Numerical output -->
+                        <input
+                            type="text"
+                            inputmode="decimal"
+                            class="ocu-main-input"
+                            id="inpTo"
+                            placeholder="0"
+                            autocomplete="off"
+                        >
+                    </div>
+                </div>
+
+            </div><!-- /.ocu-io-container -->
+
+            <!-- Formula Display: "1 USD = 122 BDT [LIVE]" -->
+            <div class="ocu-formula" id="formula"></div>
+
+            <!-- ── Hidden Calculator Keypad ── -->
+            <div class="ocu-calc-panel" id="calcPanel">
+                <div class="ocu-calc-btn" onclick="calcInput('7')">7</div>
+                <div class="ocu-calc-btn" onclick="calcInput('8')">8</div>
+                <div class="ocu-calc-btn" onclick="calcInput('9')">9</div>
+                <div class="ocu-calc-btn ocu-calc-op" onclick="calcInput('/')">÷</div>
+
+                <div class="ocu-calc-btn" onclick="calcInput('4')">4</div>
+                <div class="ocu-calc-btn" onclick="calcInput('5')">5</div>
+                <div class="ocu-calc-btn" onclick="calcInput('6')">6</div>
+                <div class="ocu-calc-btn ocu-calc-op" onclick="calcInput('*')">×</div>
+
+                <div class="ocu-calc-btn" onclick="calcInput('1')">1</div>
+                <div class="ocu-calc-btn" onclick="calcInput('2')">2</div>
+                <div class="ocu-calc-btn" onclick="calcInput('3')">3</div>
+                <div class="ocu-calc-btn ocu-calc-op" onclick="calcInput('-')">-</div>
+
+                <div class="ocu-calc-btn" onclick="calcInput('.')">.</div>
+                <div class="ocu-calc-btn" onclick="calcInput('0')">0</div>
+                <div class="ocu-calc-btn ocu-calc-op" onclick="calcSolve()">=</div>
+                <div class="ocu-calc-btn ocu-calc-op" onclick="calcInput('+')">+</div>
+            </div>
+
+            <!-- ── Currency Trend Chart (Visible only for Currency category) ── -->
+            <div class="ocu-chart-container" id="chartBox">
+                <canvas id="conversionChart"></canvas>
+            </div>
+
+            <!-- ── Bottom Tool Action Buttons ── -->
+            <div class="ocu-controls">
+                <button class="ocu-tool-btn" onclick="toggleCalc()" id="btnCalc">
+                    <i class="fa-solid fa-calculator"></i> Calc
+                </button>
+                <button class="ocu-tool-btn" onclick="clearAll()">
+                    <i class="fa-solid fa-eraser"></i> Clear
+                </button>
+                <button class="ocu-tool-btn" onclick="toggleHistory()">
+                    <i class="fa-solid fa-clock-rotate-left"></i> History
+                </button>
+                <button class="ocu-tool-btn" onclick="toggleTheme()">
+                    <i id="themeIcon" class="fa-solid fa-sun"></i> Theme
+                </button>
+            </div>
+
+        </div><!-- /.ocu-main-card -->
+
+        <!-- ── Inline History Panel (Toggled by History button) ── -->
+        <div id="historyPanel" class="ocu-history-panel" style="display:none;">
+            <div class="ocu-history-head">
+                <span class="ocu-history-title">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Recent Calculations
+                </span>
+                <i class="fa-solid fa-trash ocu-history-clear-icon" onclick="clearHist()" title="Clear all history"></i>
+            </div>
+            <div id="historyList" class="ocu-history-list"></div>
+        </div>
+
+        <!-- ============================================================
+             [CENTRALIZED AD SYSTEM] - EXIT POINT
+             Position: Bottom Banner (After Interaction)
+             ============================================================ -->
+        <div class="ocu-monetization-slot" data-ad-slot="bottom-banner"></div>
+
+    </div><!-- /.container -->
+</main>
+
+<!-- ============================================================
+     UNIT SELECTION MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="unitModal">
+    <div class="ocu-modal-box">
+
+        <!-- Modal Header -->
+        <div class="ocu-modal-header">
+            <h3 class="ocu-modal-title">Select Unit</h3>
+            <button class="btn-icon ocu-modal-close-btn" onclick="closeModal()" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Modal Search -->
+        <input
+            type="text"
+            id="modalSearch"
+            class="input-control ocu-modal-search"
+            placeholder="Filter units..."
+            oninput="filterModalList(this.value)"
+            autocomplete="off"
+        >
+
+        <!-- Unit Options List (Injected by JS) -->
+        <div class="ocu-unit-list" id="modalList"></div>
+
+    </div>
+</div>
+
+<!-- ============================================================
+     SEO CONTENT SECTION
+     ============================================================ -->
+<section class="info-section-wrapper">
+    <div class="info-card">
+
+        <article>
+            <h2 class="ocu-section-title">OmniConvert Ultra: Precision Tools for Professionals &amp; Students</h2>
+            <p class="subtitle mt-sm">
+                In a world full of basic calculators, <strong>OmniConvert Ultra</strong> stands out as a
+                privacy-focused, offline-capable utility designed for accuracy. Whether you are a
+                <strong>civil engineer</strong> calculating structural loads, a <strong>freelancer</strong>
+                converting USD to BDT, or a <strong>physics student</strong> solving thermodynamic equations,
+                this tool provides instant results without the lag of server-side processing.
+            </p>
+        </article>
+
+        <!-- Use-Case Grid -->
+        <div class="ocu-use-case-grid">
+            <div class="card ocu-use-case-card">
+                <div class="ocu-icon-box"><i class="fa-solid fa-hard-hat"></i></div>
+                <h3>For Engineers</h3>
+                <p>Convert pressure (Pascal to Bar), power (Watts to HP), and length instantly. Essential for on-site calculations where internet might be unstable.</p>
+            </div>
+            <div class="card ocu-use-case-card">
+                <div class="ocu-icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>For Freelancers</h3>
+                <p>Real-time exchange rates for USD, EUR, GBP, and BDT. Perfect for calculating remittance and project earnings with up-to-date market data.</p>
+            </div>
+            <div class="card ocu-use-case-card">
+                <div class="ocu-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>For Students</h3>
+                <p>Solve complex unit conversions for Physics and Chemistry. Features include Scientific Notation support for managing atomic-scale calculations.</p>
+            </div>
+        </div>
+
+        <!-- Details: Tech Specs + Knowledge Hub -->
+        <div class="ocu-details-wrapper">
+
+            <!-- Tech Specs -->
+            <div class="card ocu-tech-specs">
+                <h3 class="text-accent-cyan mb-10">
+                    <i class="fa-solid fa-server"></i> Why Choose This Tool?
+                </h3>
+                <ul class="ocu-spec-list">
+                    <li>
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <strong>Zero Latency:</strong> Instant DOM-based rendering.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <strong>PWA Ready:</strong> Works like a mobile app.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <strong>Data Saving:</strong> Caches API responses locally.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <strong>Scientific Grade:</strong> Powered by Math.js library.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Knowledge Hub -->
+            <div class="ocu-knowledge-hub">
+                <h3 class="ocu-hub-title">Knowledge Base</h3>
+                <div class="ocu-article-grid">
+
+                    <article class="card ocu-kb-article">
+                        <h4><i class="fa-solid fa-house-chimney text-accent-cyan"></i> Real Estate: Sq. Feet vs. Meters</h4>
+                        <p>When buying property, confusion often arises between "Square Feet" (Imperial) and "Square Meters" (Metric). A slight miscalculation in floor area can cost thousands. Use our Area Converter to instantly translate architectural drawings.</p>
+                    </article>
+
+                    <article class="card ocu-kb-article">
+                        <h4><i class="fa-solid fa-money-bill-trend-up text-accent-cyan"></i> Freelancer's Forex Guide</h4>
+                        <p>For freelancers on Upwork or Fiverr, exchange rate volatility is a concern. Before withdrawing USD or EUR, check real-time rates against your local currency to know exactly when the market is favorable.</p>
+                    </article>
+
+                    <article class="card ocu-kb-article">
+                        <h4><i class="fa-solid fa-wifi text-accent-cyan"></i> Mbps vs. MBps: Internet Speeds</h4>
+                        <p>ISPs sell speed in "Megabits" (Mbps), but file downloads show "Megabytes" (MB). There is a factor of 8 difference. Use our Data Converter to calculate actual download times for large files.</p>
+                    </article>
+
+                    <article class="card ocu-kb-article">
+                        <h4><i class="fa-solid fa-server text-accent-cyan"></i> Storage: Binary vs. Decimal</h4>
+                        <p>Ever noticed a 1TB drive shows only 931GB on Windows? This is the difference between decimal (1000) and binary (1024) calculations. Our Storage Converter uses the standard binary (1024) logic for accuracy.</p>
+                    </article>
+
+                    <article class="card ocu-kb-article">
+                        <h4><i class="fa-solid fa-gas-pump text-accent-cyan"></i> Fuel Economy: MPG vs. km/L</h4>
+                        <p>Comparing car efficiency? The US uses MPG, while Asia uses km/L. These are inverse ratios. Our Fuel Converter handles the complex logic to show you which car is truly more efficient.</p>
+                    </article>
+
+                    <article class="card ocu-kb-article">
+                        <h4><i class="fa-solid fa-microchip text-accent-cyan"></i> Nanotech &amp; Physics</h4>
+                        <p>In semiconductors, units like Nanometers are standard. Regular calculators fail with such small numbers. Our tool supports Scientific Notation, making it easy to handle atomic-scale calculations.</p>
+                    </article>
+
+                </div>
+            </div>
+
+        </div><!-- /.ocu-details-wrapper -->
+
+    </div><!-- /.info-card -->
+</section>
+
+<!-- ============================================================
+     FAQ SECTION
+     ============================================================ -->
+<section class="info-section-wrapper">
+    <div class="info-card">
+
+        <div class="text-center mb-20">
+            <h2 class="ocu-section-title">Common Queries &amp; Support</h2>
+            <p class="subtitle mt-sm">Got questions? We have straight answers. No jargon, just facts.</p>
+        </div>
+
+        <div class="ocu-faq-grid">
+
+            <details class="ocu-faq-card">
+                <summary class="ocu-faq-summary">
+                    <span>Is the Currency Converter accurate for real-time trading?</span>
+                    <i class="fa-solid fa-chevron-down ocu-faq-arrow"></i>
+                </summary>
+                <div class="ocu-faq-body">
+                    <p>Our tool fetches exchange rates from reliable global financial APIs every 24 hours. It is perfect for freelancers and travelers. For banking transactions, verify with your bank.</p>
+                </div>
+            </details>
+
+            <details class="ocu-faq-card">
+                <summary class="ocu-faq-summary">
+                    <span>How do I use this app offline?</span>
+                    <i class="fa-solid fa-chevron-down ocu-faq-arrow"></i>
+                </summary>
+                <div class="ocu-faq-body">
+                    <p>OmniConvert Ultra is built as a PWA. Once loaded, the core calculation engines are cached locally, allowing you to use it without internet.</p>
+                </div>
+            </details>
+
+            <details class="ocu-faq-card">
+                <summary class="ocu-faq-summary">
+                    <span>Is my financial data private?</span>
+                    <i class="fa-solid fa-chevron-down ocu-faq-arrow"></i>
+                </summary>
+                <div class="ocu-faq-body">
+                    <p><strong>Absolutely.</strong> All calculations happen Client-Side using JavaScript directly on your device. We do not store or transmit your data.</p>
+                </div>
+            </details>
+
+        </div><!-- /.ocu-faq-grid -->
+
+    </div><!-- /.info-card -->
+</section>
+
+<!-- ============================================================
+     RELATED TOOLS SECTION
+     ============================================================ -->
+<div class="container mt-xl">
+    <!--
+        IMPORTANT:
+        1. Set data-category to the category of the current page (e.g., "calc").
+        2. Set data-current-page to the filename of the current page.
+    -->
+    <div id="dynamic-related-tools"
+         data-category="calc"
+         data-current-page="calc-unit-converter.html">
+    </div>
+</div>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section> 
+
+<script type="module" src="../../assets/js/related-tools.js"></script>
+
+<!-- Global Footer -->
+<footer id="global-footer" class="cyber-footer"></footer>
+
+<!-- Centralized Ad System Loader -->
+<script src="../../assets/js/ads-manager.js"></script>
+
+<!-- Global Module Script -->
+<script type="module" src="../../assets/js/global.js"></script>
+
+<!-- ============================================================
+     OmniConvert Ultra — Core Engine
+     ============================================================ -->
+ <script src="../../assets/tools/calc/calc-unit-converter/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script> 
+  </body>
+</html>

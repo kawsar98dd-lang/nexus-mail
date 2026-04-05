@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# ইন্টারনাল বা অপ্রয়োজনীয় ফাইল ব্লক করা হলো
+Disallow: /components/
+Disallow: /pages/
+Disallow: /README.md
+Disallow: /_redirects
+Disallow: /.htaccess
+Disallow: /upload.php
+# Disallow: /sitemap.xml  <-- এই লাইনটি মুছে ফেলা হয়েছে
+# Disallow: /robots.txt   <-- এই লাইনটি মুছে ফেলা হয়েছে
+
+# গুগলকে স্টাইল এবং স্ক্রিপ্ট পড়ার অনুমতি দেওয়া হলো (SEO এর জন্য জরুরি)
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/img/
+
+# সাইটম্যাপ লোকেশন
+Sitemap: https://trustedtoolsweb.com/sitemap.xml

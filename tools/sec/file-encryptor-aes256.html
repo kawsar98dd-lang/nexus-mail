@@ -1,0 +1,607 @@
+<!-- 
+    ============================================================
+    PRODUCT NAME: Data Vault ULTRA MAX: AES-256 File Encryptor
+    AUTHOR: MD KAWSAR
+    DESCRIPTION: A zero-knowledge, 100% client-side AES-256 file 
+                 encryptor/decryptor with Decoy Vault (Plausible 
+                 Deniability) architecture. No server uploads ever.
+    VERSION: 1.0 (CodeCanyon Release Build)
+    FRAMEWORK: TrustedToolsWeb Global CSS v2.0
+    ============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- External Scripts: Analytics (Must be first) -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ═══════════════════════════════════════════════════
+         [USER CONFIG] SEO SETTINGS
+         ═══════════════════════════════════════════════════ -->
+    <title>Data Vault ULTRA MAX: AES-256 File Encryptor &amp; Decryptor (Offline, Zero-Knowledge)</title>
+    <meta name="title"       content="Data Vault ULTRA MAX: AES-256 File Encryptor &amp; Decryptor (Offline, Zero-Knowledge)">
+    <meta name="description" content="Encrypt and decrypt any file with military-grade AES-256 encryption, 100% offline in your browser. Features Decoy Vault (plausible deniability), zero-knowledge architecture, and a real-password vs fake-password dual-vault system. No file ever leaves your device.">
+    <meta name="keywords"    content="secure file encryptor, AES-256 decryption, zero knowledge file locker, offline privacy tool, file encryption browser, client-side encryption, plausible deniability vault, decoy vault, AES encryption tool, file locker online, secure file storage, privacy tool, end to end encryption files, trusted tools web">
+    <meta name="author"      content="MD KAWSAR">
+    <meta name="robots"      content="index, follow, max-image-preview:large">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://trustedtoolsweb.com/sec-file-encryptor.html" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type"         content="website">
+    <meta property="og:url"          content="https://trustedtoolsweb.com/sec-file-encryptor.html">
+    <meta property="og:title"        content="Data Vault ULTRA MAX — AES-256 File Encryptor (Offline)">
+    <meta property="og:description"  content="Military-grade AES-256 file encryption, offline and zero-knowledge. Unique Decoy Vault feature for plausible deniability. No file ever uploads to a server.">
+    <meta property="og:image"        content="https://trustedtoolsweb.com/assets/tools/sec/sec-file-encryptor/og-banner.webp">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="Data Vault ULTRA MAX — AES-256 File Encryptor Preview">
+    <meta property="og:site_name"    content="Trusted Tools Web">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/sec-file-encryptor.html">
+    <meta name="twitter:title"       content="Data Vault ULTRA MAX — AES-256 File Encryptor (Offline)">
+    <meta name="twitter:description" content="Encrypt any file with AES-256 in your browser. No uploads, no servers. Decoy Vault for plausible deniability. 100% Zero-Knowledge.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/sec/sec-file-encryptor/og-banner.webp">
+
+    <!-- Favicon -->
+    <link rel="icon"             type="image/webp" href="../../assets/tools/sec/sec-file-encryptor/favicon.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/tools/sec/sec-file-encryptor/favicon.webp">
+
+    <!-- Font Awesome -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ✅ GLOBAL CSS FRAMEWORK — Single stylesheet for all tools -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- Global Layout CSS -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+   
+    <!-- Schema Markup (JSON-LD) — WebApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Data Vault ULTRA MAX: AES-256 File Encryptor",
+        "url": "https://trustedtoolsweb.com/sec-file-encryptor.html",
+        "description": "A zero-knowledge, 100% client-side AES-256 file encryption and decryption tool. Features plausible deniability via the Decoy Vault system. No file ever leaves your browser.",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "featureList": "AES-256 Encryption, AES-256 Decryption, Decoy Vault, Plausible Deniability, Zero-Knowledge Architecture, Offline Processing, Client-Side Only, No Server Upload, Mobile Friendly",
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/sec/sec-file-encryptor/og-banner.webp",
+        "keywords": "secure file encryptor, AES-256 decryption, zero knowledge file locker, offline privacy tool, file encryption browser"
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-box"></div>
+
+    <!-- Global Header (populated by global.js) -->
+    <header id="global-header" class="site-header"></header>
+
+
+    <main>
+
+        <!-- ═══════════════════════════════════════════════
+             AD SLOT — TOP BANNER
+             ═══════════════════════════════════════════════ -->
+        <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+
+        <!-- ═══════════════════════════════════════════════
+             MAIN TOOL CONTAINER
+             ═══════════════════════════════════════════════ -->
+        <div class="container animated-entry">
+
+            <!-- Security Badge -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> AES-256 · Zero-Knowledge · 100% Offline
+            </div>
+
+            <!-- Tool Title -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-vault"></i> Data Vault <span>ULTRA MAX</span>
+            </h1>
+            <p class="subtitle">Military-Grade AES-256 File Encryption &amp; Decryption. Runs entirely in your browser — no uploads, no servers, no compromise.</p>
+
+            <!-- ─────────────────────────────────────────
+                 MODE TABS: Encrypt / Decrypt
+                 ───────────────────────────────────────── -->
+            <div class="vault-tabs" role="tablist" aria-label="Operation Mode">
+                <button class="vault-tab active" id="tab-encrypt" role="tab" aria-selected="true" aria-controls="panel-encrypt" onclick="switchMode('encrypt')">
+                    <i class="fa-solid fa-lock"></i> Encrypt File
+                </button>
+                <button class="vault-tab" id="tab-decrypt" role="tab" aria-selected="false" aria-controls="panel-decrypt" onclick="switchMode('decrypt')">
+                    <i class="fa-solid fa-lock-open"></i> Decrypt File
+                </button>
+            </div>
+
+
+            <!-- ═══════════════════════════════════════════
+                 ENCRYPT PANEL
+                 ═══════════════════════════════════════════ -->
+            <div id="panel-encrypt" class="vault-panel active" role="tabpanel" aria-labelledby="tab-encrypt">
+
+                <!-- Decoy Vault Toggle -->
+                <div class="decoy-toggle-row">
+                    <label class="decoy-toggle-label" for="decoyModeToggle">
+                        <i class="fa-solid fa-masks-theater"></i>
+                        Enable Decoy Vault <span class="badge-new">PRO</span>
+                    </label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="decoyModeToggle" onchange="toggleDecoyMode()">
+                        <span class="toggle-track">
+                            <span class="toggle-thumb"></span>
+                        </span>
+                    </div>
+                </div>
+                <p class="decoy-hint" id="decoyHintText">
+                    <i class="fa-solid fa-circle-info"></i> Enable Decoy Vault to set a real password + a fake "decoy" password. If coerced, give the decoy — it will decrypt a harmless dummy file instead.
+                </p>
+
+
+                <!-- ── FILE DROP ZONE (Real File) ── -->
+                <div class="dropzone-wrapper">
+                    <div class="dropzone-label">
+                        <i class="fa-solid fa-file-shield"></i>
+                        <span id="realFileLabel">Real File to Encrypt</span>
+                    </div>
+                    <div class="dropzone" id="dropzoneReal"
+                         tabindex="0" role="button"
+                         aria-label="Drop your real file here or click to browse"
+                         ondragover="handleDragOver(event, 'dropzoneReal')"
+                         ondragleave="handleDragLeave('dropzoneReal')"
+                         ondrop="handleDrop(event, 'realFileInput')"
+                         onclick="document.getElementById('realFileInput').click()"
+                         onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('realFileInput').click()">
+                        <div class="dropzone-icon">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <div class="dropzone-text">
+                            <strong>Drop your file here</strong>
+                            <span>or <u>click to browse</u></span>
+                        </div>
+                        <div class="dropzone-meta" id="realFileMeta"></div>
+                    </div>
+                    <input type="file" id="realFileInput" hidden onchange="handleFileSelect('realFileInput', 'dropzoneReal', 'realFileMeta')">
+                </div>
+
+
+                <!-- ── DECOY FILE DROP ZONE (hidden unless Decoy Mode on) ── -->
+                <div class="dropzone-wrapper" id="decoyFileSection" style="display:none;">
+                    <div class="dropzone-label decoy-label">
+                        <i class="fa-solid fa-ghost"></i>
+                        <span>Dummy / Decoy File</span>
+                        <span class="label-tag">shown when Fake Password entered</span>
+                    </div>
+                    <div class="dropzone dropzone--decoy" id="dropzoneDecoy"
+                         tabindex="0" role="button"
+                         aria-label="Drop your decoy file here or click to browse"
+                         ondragover="handleDragOver(event, 'dropzoneDecoy')"
+                         ondragleave="handleDragLeave('dropzoneDecoy')"
+                         ondrop="handleDrop(event, 'decoyFileInput')"
+                         onclick="document.getElementById('decoyFileInput').click()"
+                         onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('decoyFileInput').click()">
+                        <div class="dropzone-icon">
+                            <i class="fa-solid fa-masks-theater"></i>
+                        </div>
+                        <div class="dropzone-text">
+                            <strong>Drop your decoy file here</strong>
+                            <span>or <u>click to browse</u></span>
+                        </div>
+                        <div class="dropzone-meta" id="decoyFileMeta"></div>
+                    </div>
+                    <input type="file" id="decoyFileInput" hidden onchange="handleFileSelect('decoyFileInput', 'dropzoneDecoy', 'decoyFileMeta')">
+                </div>
+
+
+                <!-- ── PASSWORD FIELDS ── -->
+                <div class="password-grid" id="encryptPasswordGrid">
+
+                    <!-- Real Password -->
+                    <div class="field-group">
+                        <label class="field-label" for="realPassword">
+                            <i class="fa-solid fa-key"></i> Real Password
+                        </label>
+                        <div class="password-input-wrap">
+                            <input type="password" id="realPassword" class="vault-input"
+                                   placeholder="Enter your real encryption password"
+                                   autocomplete="new-password" spellcheck="false">
+                            <button class="eye-btn" type="button" onclick="toggleVisibility('realPassword', this)" aria-label="Toggle password visibility">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="strength-bar-wrap">
+                            <div class="strength-bar" id="strengthBarReal"></div>
+                        </div>
+                        <span class="strength-label" id="strengthLabelReal"></span>
+                    </div>
+
+                    <!-- Decoy Password (hidden unless Decoy Mode on) -->
+                    <div class="field-group" id="decoyPasswordField" style="display:none;">
+                        <label class="field-label decoy-label" for="decoyPassword">
+                            <i class="fa-solid fa-ghost"></i> Fake / Decoy Password
+                        </label>
+                        <div class="password-input-wrap">
+                            <input type="password" id="decoyPassword" class="vault-input vault-input--decoy"
+                                   placeholder="Enter the decoy password"
+                                   autocomplete="new-password" spellcheck="false">
+                            <button class="eye-btn" type="button" onclick="toggleVisibility('decoyPassword', this)" aria-label="Toggle decoy password visibility">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div><!-- /password-grid -->
+
+
+                <!-- ── OUTPUT FILENAME ── -->
+                <div class="field-group" style="margin-top: 16px;">
+                    <label class="field-label" for="encryptOutputName">
+                        <i class="fa-solid fa-file-export"></i> Output Filename
+                    </label>
+                    <input type="text" id="encryptOutputName" class="vault-input"
+                           placeholder="e.g. my-vault (leave blank to auto-name)"
+                           spellcheck="false">
+                </div>
+
+
+                <!-- ── PROGRESS BAR ── -->
+                <div class="progress-wrapper" id="encryptProgressWrapper" style="display:none;">
+                    <div class="progress-track">
+                        <div class="progress-fill" id="encryptProgressFill"></div>
+                    </div>
+                    <span class="progress-label" id="encryptProgressLabel">Encrypting…</span>
+                </div>
+
+
+                <!-- ── ACTION BUTTON ── -->
+                <button class="btn btn-encrypt" id="btnEncrypt" onclick="runEncrypt()">
+                    <i class="fa-solid fa-lock"></i>
+                    <span id="btnEncryptText">Encrypt &amp; Download</span>
+                </button>
+
+            </div><!-- /panel-encrypt -->
+
+
+            <!-- ═══════════════════════════════════════════
+                 DECRYPT PANEL
+                 ═══════════════════════════════════════════ -->
+            <div id="panel-decrypt" class="vault-panel" role="tabpanel" aria-labelledby="tab-decrypt">
+
+                <!-- ── FILE DROP ZONE (Encrypted File) ── -->
+                <div class="dropzone-wrapper">
+                    <div class="dropzone-label">
+                        <i class="fa-solid fa-file-lock"></i>
+                        <span>Encrypted .vault File</span>
+                    </div>
+                    <div class="dropzone" id="dropzoneVault"
+                         tabindex="0" role="button"
+                         aria-label="Drop your encrypted .vault file here or click to browse"
+                         ondragover="handleDragOver(event, 'dropzoneVault')"
+                         ondragleave="handleDragLeave('dropzoneVault')"
+                         ondrop="handleDrop(event, 'vaultFileInput')"
+                         onclick="document.getElementById('vaultFileInput').click()"
+                         onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('vaultFileInput').click()">
+                        <div class="dropzone-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="dropzone-text">
+                            <strong>Drop your .vault file here</strong>
+                            <span>or <u>click to browse</u></span>
+                        </div>
+                        <div class="dropzone-meta" id="vaultFileMeta"></div>
+                    </div>
+                    <input type="file" id="vaultFileInput" accept=".vault" hidden onchange="handleFileSelect('vaultFileInput', 'dropzoneVault', 'vaultFileMeta')">
+                </div>
+
+
+                <!-- ── DECRYPT PASSWORD ── -->
+                <div class="field-group" style="margin-top: 16px;">
+                    <label class="field-label" for="decryptPassword">
+                        <i class="fa-solid fa-key"></i> Decryption Password
+                    </label>
+                    <div class="password-input-wrap">
+                        <input type="password" id="decryptPassword" class="vault-input"
+                               placeholder="Enter real or decoy password"
+                               autocomplete="current-password" spellcheck="false">
+                        <button class="eye-btn" type="button" onclick="toggleVisibility('decryptPassword', this)" aria-label="Toggle password visibility">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- ── PROGRESS BAR ── -->
+                <div class="progress-wrapper" id="decryptProgressWrapper" style="display:none;">
+                    <div class="progress-track">
+                        <div class="progress-fill progress-fill--cyan" id="decryptProgressFill"></div>
+                    </div>
+                    <span class="progress-label" id="decryptProgressLabel">Decrypting…</span>
+                </div>
+
+
+                <!-- ── ACTION BUTTON ── -->
+                <button class="btn btn-decrypt" id="btnDecrypt" onclick="runDecrypt()">
+                    <i class="fa-solid fa-lock-open"></i>
+                    <span id="btnDecryptText">Decrypt &amp; Download</span>
+                </button>
+
+            </div><!-- /panel-decrypt -->
+
+
+            <!-- ═══════════════════════════════════════════
+                 VAULT STATUS CARD (shows after action)
+                 ═══════════════════════════════════════════ -->
+            <div class="vault-status-card" id="vaultStatusCard" style="display:none;" aria-live="polite">
+                <div class="vault-status-icon" id="vaultStatusIcon"></div>
+                <div class="vault-status-body">
+                    <p class="vault-status-title" id="vaultStatusTitle"></p>
+                    <p class="vault-status-sub"   id="vaultStatusSub"></p>
+                </div>
+            </div>
+
+
+            <!-- ─────────────────────────────────────────
+                 HOW-TO QUICK GUIDE
+                 ───────────────────────────────────────── -->
+            <div class="how-to-strip">
+                <div class="how-to-step">
+                    <div class="how-to-num">1</div>
+                    <p>Choose <strong>Encrypt</strong> or <strong>Decrypt</strong> mode</p>
+                </div>
+                <div class="how-to-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="how-to-step">
+                    <div class="how-to-num">2</div>
+                    <p>Drop your file &amp; type a strong password</p>
+                </div>
+                <div class="how-to-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="how-to-step">
+                    <div class="how-to-num">3</div>
+                    <p>Hit the button — file downloads instantly</p>
+                </div>
+            </div>
+
+        </div><!-- /container -->
+
+
+        <!-- ═══════════════════════════════════════════════
+             AD SLOT — MID PAGE
+             ═══════════════════════════════════════════════ -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+
+
+        <!-- ═══════════════════════════════════════════════
+             SEO INFO SECTION
+             ═══════════════════════════════════════════════ -->
+        <div class="container">
+            <section class="info-section-wrapper" aria-label="Information & Guide">
+
+                <!-- Vault Hero Image -->
+                <div class="info-hero-img">
+                    <img src="../../assets/tools/sec/sec-file-encryptor/vault-vector.webp"
+                         alt="Data Vault ULTRA MAX — AES-256 encrypted vault illustration"
+                         loading="lazy" width="600" height="320">
+                </div>
+
+                <!-- 1. How to Use -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-circle-play"></i> How to Use Data Vault ULTRA MAX</h2>
+                    <p><strong>Encrypting a file</strong> is a three-step process designed to be effortless yet uncompromisingly secure:</p>
+                    <ol>
+                        <li><strong>Select "Encrypt File" mode</strong> — click the Encrypt tab at the top of the tool.</li>
+                        <li><strong>Drop or browse your file</strong> — any file type is supported: documents, images, archives, videos, PDFs, code files, databases, and more. The file is read entirely in your browser's memory.</li>
+                        <li><strong>Enter a strong password</strong> — the strength meter updates in real-time. Use a combination of uppercase letters, lowercase letters, numbers, and symbols for maximum entropy.</li>
+                        <li><strong>Click "Encrypt &amp; Download"</strong> — within seconds, a <code>.vault</code> file is generated and downloaded to your device. This file is fully encrypted and unreadable without the correct password.</li>
+                    </ol>
+                    <p><strong>Decrypting a file</strong> is equally simple: switch to "Decrypt File" mode, drop the <code>.vault</code> file, enter the same password, and click Decrypt. The original file is restored and downloaded.</p>
+                </div>
+
+                <!-- 2. What is AES-256 -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-microchip"></i> What is AES-256 Encryption?</h2>
+                    <p><strong>AES (Advanced Encryption Standard)</strong> is the gold standard cipher used by the United States government, the NSA, military organizations, and Fortune 500 companies to protect classified and sensitive data. The "256" refers to the key length in bits.</p>
+                    <p>To understand just how secure AES-256 is: a brute-force attack would require testing 2<sup>256</sup> possible keys. Even if every atom in the observable universe were a supercomputer running since the Big Bang, it would still not be enough time to crack a single AES-256 key by brute force. This is why cryptographers consider AES-256 to be <strong>quantum-resistant</strong> for the foreseeable future.</p>
+                    <p>Data Vault ULTRA MAX uses AES-256 in <strong>CBC (Cipher Block Chaining)</strong> mode via the industry-standard <code>CryptoJS</code> library, with a unique random IV (Initialization Vector) generated for every single encryption operation, ensuring that encrypting the same file with the same password twice always produces a completely different output.</p>
+                </div>
+
+                <!-- 3. Decoy Vault -->
+                <div class="info-card" style="border-left: 4px solid var(--accent-purple);">
+                    <h2><i class="fa-solid fa-masks-theater"></i> The Decoy Vault: Plausible Deniability Explained</h2>
+                    <img src="../../assets/tools/sec/sec-file-encryptor/decoy-vector.webp"
+                         alt="Decoy Vault plausible deniability illustration"
+                         loading="lazy" width="500" height="260"
+                         style="margin: 16px auto; border-radius: var(--radius-md); max-width: 100%;">
+                    <p>The <strong>Decoy Vault</strong> is an advanced privacy feature inspired by the concept of <em>plausible deniability</em>, used in high-security contexts worldwide. Here's how it works:</p>
+                    <ul>
+                        <li><strong>Real Password + Real File:</strong> The sensitive document you truly need to protect.</li>
+                        <li><strong>Fake/Decoy Password + Dummy File:</strong> An innocent-looking file (e.g., a grocery list, a holiday photo) paired with a harmless decoy password.</li>
+                    </ul>
+                    <p>When you encrypt in Decoy Vault mode, both the real file and the dummy file are bundled together into a single <code>.vault</code> container. The magic: entering the <strong>Real Password</strong> at decryption yields the real file. Entering the <strong>Fake Password</strong> yields the dummy file — with <strong>zero error messages</strong> and <strong>zero indication</strong> that a real file even exists. A coerced user can hand over the decoy password without revealing anything sensitive.</p>
+                    <p>This is the same concept used in full-disk encryption tools like VeraCrypt and is considered a best-practice security pattern for journalists, activists, and privacy-conscious professionals.</p>
+                </div>
+
+                <!-- 4. Zero-Knowledge Architecture -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-eye-slash"></i> Zero-Knowledge Architecture: What It Means</h2>
+                    <p>The term <strong>"Zero-Knowledge"</strong> means that no party other than you — not the server, not the developer, not any intermediary — can ever read, access, or recover your files or passwords. It is not a marketing slogan; it is a technical guarantee enforced by the architecture itself.</p>
+                    <p>In the case of Data Vault ULTRA MAX, zero-knowledge is achieved because:</p>
+                    <ul>
+                        <li><strong>No file is ever transmitted.</strong> Your file is read by the browser's File Reader API directly into your device's RAM. It never touches a network socket.</li>
+                        <li><strong>No password is ever stored.</strong> The password you type exists only in a JavaScript variable in your browser's memory for the duration of the operation, then is discarded.</li>
+                        <li><strong>No telemetry.</strong> The tool contains no analytics that log filenames, file sizes, or password hashes.</li>
+                        <li><strong>Offline capable.</strong> After the initial page load, you can disable your Wi-Fi and the tool continues to function perfectly, because 100% of the encryption logic runs locally.</li>
+                    </ul>
+                </div>
+
+                <!-- 5. Client-Side vs Cloud -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-server"></i> Why Client-Side Encryption is Safer Than Cloud Services</h2>
+                    <p>Many popular "cloud encryption" services advertise security while secretly holding the keys themselves. This is called <strong>server-side encryption</strong> — they encrypt your data, but <em>they control the key</em>. This means a court order, a data breach, a rogue employee, or a company acquisition can expose your files.</p>
+                    <p>Client-side encryption reverses this model. The encryption happens on your machine, before any data could theoretically leave it. The server (if any) receives only ciphertext — random bytes that are mathematically useless without your password. Since Data Vault ULTRA MAX transmits nothing at all, even this vector is eliminated.</p>
+                    <p>Consider the contrast: a cloud encryption service that suffers a database breach exposes millions of user files because the provider held keys centrally. With a client-side tool, a breach of the provider's servers reveals nothing — because your data was never there to begin with.</p>
+                </div>
+
+                <!-- 6. The .vault File Format -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-file-code"></i> Inside the .vault File Format</h2>
+                    <p>The <code>.vault</code> file produced by Data Vault ULTRA MAX is a self-contained, structured binary container. Its format is designed to be portable, verifiable, and tamper-evident. Here's what it contains:</p>
+                    <ul>
+                        <li><strong>Magic Header:</strong> A 12-byte signature (<code>DATAVAULT10</code>) that identifies the file as a valid vault container and specifies the version.</li>
+                        <li><strong>Random Salt (32 bytes):</strong> Used by the PBKDF2 key derivation function to harden the password against rainbow table attacks.</li>
+                        <li><strong>Random IV (16 bytes):</strong> A unique Initialization Vector for the AES-CBC cipher, ensuring every encryption is unique.</li>
+                        <li><strong>Metadata JSON (encrypted):</strong> Contains the original filename and MIME type, encrypted alongside the payload.</li>
+                        <li><strong>Encrypted Payload:</strong> The AES-256-CBC encrypted binary content of your original file.</li>
+                        <li><strong>Decoy Segment (optional):</strong> If Decoy Vault mode was used, a second independently-salted and encrypted segment for the dummy file is appended.</li>
+                    </ul>
+                    <p>This custom format means <code>.vault</code> files can only be opened by compatible software — they cannot be accidentally opened or executed by the operating system.</p>
+                </div>
+
+                <!-- 7. Password Strength Guide -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-shield-virus"></i> Creating an Uncrackable Password</h2>
+                    <p>The encryption cipher is only as strong as the password protecting it. A short or predictable password can be brute-forced even if the cipher itself is unbreakable. Here are best practices enforced and encouraged by our real-time strength meter:</p>
+                    <ul>
+                        <li><strong>Length:</strong> A minimum of 16 characters is recommended. Each additional character exponentially increases the search space for an attacker.</li>
+                        <li><strong>Diversity:</strong> Mix uppercase (A–Z), lowercase (a–z), numbers (0–9), and symbols (!@#$%^&amp;*). Avoid dictionary words.</li>
+                        <li><strong>Uniqueness:</strong> Do not reuse passwords from other services. A compromised password from a leaked database could be used against your vault.</li>
+                        <li><strong>Passphrases:</strong> A randomly chosen four-word passphrase (e.g., "correct-horse-battery-staple") can be both memorable and high-entropy.</li>
+                        <li><strong>Never write it down unencrypted.</strong> Consider using a reputable offline password manager to store your vault keys.</li>
+                    </ul>
+                    <p>The PBKDF2 key derivation function used internally (with 100,000 iterations and SHA-512) further hardens even a moderately weak password against rapid brute-force attacks.</p>
+                </div>
+
+                <!-- 8. Supported File Types -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-folder-open"></i> Supported File Types &amp; Size Considerations</h2>
+                    <p>Data Vault ULTRA MAX supports <strong>any file type</strong> without restriction. The tool is agnostic to file format — it encrypts raw bytes. Common use cases include:</p>
+                    <ul>
+                        <li><strong>Documents:</strong> PDF, DOCX, XLSX, PPTX, TXT, CSV, and any office format.</li>
+                        <li><strong>Media:</strong> JPEG, PNG, WebP, MP4, MOV, MP3, FLAC, and other media files.</li>
+                        <li><strong>Archives:</strong> ZIP, RAR, 7Z, TAR.GZ — you can archive multiple files first and then encrypt the archive.</li>
+                        <li><strong>Code &amp; Data:</strong> SQL databases, JSON exports, source code files, SSH keys, and certificates.</li>
+                        <li><strong>System Files:</strong> Any binary file, including disk images and executables.</li>
+                    </ul>
+                    <p><strong>Size limitations:</strong> Since all processing happens in-browser, performance is constrained by your device's available RAM. Files up to <strong>200MB</strong> are processed smoothly on modern devices. For very large files (500MB+), we recommend archiving and splitting into smaller chunks before encryption to avoid potential browser memory pressure on low-end mobile devices.</p>
+                </div>
+
+                <!-- 9. Technical Implementation -->
+                <div class="info-card">
+                    <h2><i class="fa-solid fa-code"></i> Technical Implementation Details</h2>
+                    <p>Data Vault ULTRA MAX is built with <strong>100% vanilla JavaScript (ES6+)</strong> and relies on only two trusted open-source libraries:</p>
+                    <ul>
+                        <li><strong>CryptoJS</strong> — A well-audited JavaScript cryptography library providing AES-256-CBC encryption, PBKDF2 key derivation, and SHA-512 hashing. It has been downloaded billions of times and is used in production by major companies worldwide.</li>
+                        <li><strong>FileSaver.js</strong> — A standard library for triggering file downloads from browser memory (Blob objects) across all browsers and mobile platforms, including iOS Safari.</li>
+                    </ul>
+                    <p>The <strong>File Reader API</strong> reads your file into an <code>ArrayBuffer</code>, which is then converted to a CryptoJS-compatible <code>WordArray</code> for cipher operations. After encryption, the result is converted back to a <code>Uint8Array</code> and wrapped in a <code>Blob</code> for download. No external CDN calls are made during operation — all libraries are loaded from your local server path.</p>
+                </div>
+
+                <!-- 10. Privacy & Legal -->
+                <div class="info-card" style="border-left: 4px solid var(--accent-yellow);">
+                    <h2 style="border-left:none; padding-left:0;">
+                        <i class="fa-solid fa-triangle-exclamation" style="color:var(--accent-yellow);"></i>
+                        Legal Disclaimer &amp; Responsible Use
+                    </h2>
+                    <p>Data Vault ULTRA MAX is a tool designed to help individuals and organizations protect their own private data from unauthorized access, theft, and surveillance. Please note the following:</p>
+                    <ul style="list-style:disc; padding-left:20px; color:var(--text-muted); line-height:1.6;">
+                        <li style="margin-bottom:10px;">
+                            <strong>Legal Responsibility:</strong> The tool is provided for lawful privacy purposes only. Using encryption to conceal illegal activities is a violation of this tool's terms of use and may be illegal in your jurisdiction.
+                        </li>
+                        <li style="margin-bottom:10px;">
+                            <strong>Password Recovery:</strong> There is absolutely no password recovery mechanism. If you lose your password, your encrypted file cannot be recovered by anyone — including the developer. Store your passwords securely.
+                        </li>
+                        <li style="margin-bottom:10px;">
+                            <strong>Decoy Vault:</strong> The Decoy Vault feature is intended for legitimate privacy and security use cases (journalism, activism, corporate data protection). It is not intended to facilitate the obstruction of lawful investigations.
+                        </li>
+                        <li>
+                            <strong>No Warranty:</strong> Trusted Tools Web provides this tool on an "as-is" basis. While we are confident in the cryptographic implementation, we recommend that users independently verify the security of any tool used for sensitive data.
+                        </li>
+                    </ul>
+                </div>
+
+            </section><!-- /info-section-wrapper -->
+
+
+            <!-- ═══════════════════════════════════════════════
+                 RELATED TOOLS SECTION (Dynamic)
+                 ═══════════════════════════════════════════════ -->
+            <div class="container" style="margin-top:50px;">
+                <!--
+                    [USER CONFIG]:
+                    data-category  → folder category of this tool (e.g. "sec")
+                    data-current-page → filename of this page
+                -->
+                <div id="dynamic-related-tools"
+                     data-category="sec"
+                     data-current-page="sec-file-encryptor.html">
+                </div>
+            </div>
+            <script type="module" src="../../assets/js/related-tools.js"></script>
+
+        </div><!-- /container -->
+
+        <!-- Tools Comment Section -->
+        <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">
+            <div class="container">
+                <div class="trusted-comments-widget" data-page-id="auto">
+                    <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                        <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>
+                        <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Global Footer (populated by global.js) -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- Ad System (must load before global.js) -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- Global JS (header, footer, theme toggle) -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ── Required Libraries ── -->
+    <script src="../../assets/library/crypto/crypto-js/crypto-js.min.js"></script>
+    <script src="../../assets/library/file-archiver/filesaver/FileSaver.min.js"></script>
+
+    <!-- Tool JS — All logic is self-contained, heavily commented -->
+    <script src="../../assets/tools/sec/sec-file-encryptor/script.js"></script>
+
+    <!-- ── Comment JS ── -->
+    <script type="module" src="../../assets/js/comments.js" defer></script>
+
+</body>
+</html>

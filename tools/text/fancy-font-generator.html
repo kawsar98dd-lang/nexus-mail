@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--
+    =======================================================================
+    ANALYTICS & EXTERNAL SCRIPTS
+    [USER CONFIG]: Replace 'analytics-loader.js' with your own tracking script.
+    =======================================================================
+
+    How to Setup Online Backgrounds (Unsplash API):
+    1. Create a free account at unsplash.com/developers.
+    2. Create a "New Application" to get your Access Key.
+    3. Open script.js and find the variable UNSPLASH_ACCESS_KEY.
+    4. Paste your key inside the quotes.
+    Note: Your app starts in "Demo Mode" (50 requests/hour). Apply for
+    Production in your Unsplash dashboard for higher limits.
+    =======================================================================
+    -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <!-- ── CHARSET, VIEWPORT & COMPATIBILITY ── -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--
+    =======================================================================
+    SEO METADATA — Enhanced for CodeCanyon & Search Rankings
+    =======================================================================
+    -->
+    <title>TextPro Max: Fancy Font Generator, Glitch Text & Typography Studio | Trusted Tools Web</title>
+    <meta name="title" content="TextPro Max: Fancy Font Generator, Glitch Text & Typography Studio | Trusted Tools Web">
+    <meta name="description" content="Create aesthetic fancy fonts, Zalgo glitch text, ASCII art, Morse code, and typography images instantly. 100% free, secure, and client-side — no server uploads, no data leaks. Perfect for Instagram, TikTok, gaming & social media.">
+    <meta name="keywords" content="fancy font generator, glitch text maker, zalgo text, instagram font changer, typography maker, ascii art generator, morse code translator, text to image, json beautifier, text repeater, trusted tools web, md kawsar, textpro max, unicode text, social media fonts">
+
+    <meta name="author" content="MD KAWSAR">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/fancy-text-generator.html" />
+
+    <!-- ── OPEN GRAPH (Facebook, LinkedIn, Discord) ── -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trustedtoolsweb.com/fancy-text-generator.html">
+    <meta property="og:title" content="TextPro Max Studio — Fancy Fonts, Glitch Art & Typography | Trusted Tools Web">
+    <meta property="og:description" content="Generate aesthetic fonts, Zalgo glitch effects, ASCII art & typography images. 100% client-side privacy — your text never leaves your browser.">
+    <meta property="og:image" content="../../assets/tools/text/text-fancy-generator/img/og-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Trusted Tools Web">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ── TWITTER CARD ── -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TrustedToolsWeb">
+    <meta name="twitter:url" content="https://trustedtoolsweb.com/fancy-text-generator.html">
+    <meta name="twitter:title" content="TextPro Max Studio — Fancy Fonts & Glitch Art">
+    <meta name="twitter:description" content="Generate aesthetic fonts, glitch effects, Morse code & typography images securely. 100% client-side privacy.">
+    <meta name="twitter:image" content="../../assets/tools/text/text-fancy-generator/img/og-banner.webp">
+
+    <!-- ── PWA & MOBILE ── -->
+    <meta name="theme-color" content="#0d0d0d">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ── FAVICON ── -->
+    <link rel="icon" type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon" href="../../assets/img/logo.webp">
+
+    <!-- ── FONT LIBRARIES (Localized for CodeCanyon) ── -->
+    <link rel="stylesheet" href="../../assets/library/fonts/Outfit/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/JetBrains-Mono/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Dancing-Script/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Lobster/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Oswald/fonts.css">
+    <link rel="stylesheet" href="../../assets/library/fonts/Bangers/fonts.css">
+
+    <!-- ── ICON LIBRARY ── -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+
+    <!-- ── GLOBAL STYLESHEET (Site-wide layout, header, footer, theme) ── -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+
+    <!-- ── TOOL TEMPLATE STYLESHEET (All reusable UI components) ── -->
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!--
+    =======================================================================
+    SCHEMA.ORG STRUCTURED DATA — WebApplication (Enhanced for SEO)
+    =======================================================================
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "TextPro Max Studio",
+      "url": "https://trustedtoolsweb.com/fancy-text-generator.html",
+      "description": "A secure, fully client-side text manipulation studio featuring fancy Unicode fonts, Zalgo glitch art, ASCII block text, Morse code translation, JSON beautification, text repeater, and a Canvas-powered typography image export tool.",
+      "applicationCategory": "UtilityApplication",
+      "applicationSubCategory": "TextTool",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript. Recommended: Chrome, Firefox, Edge, Safari.",
+      "image": "https://trustedtoolsweb.com/assets/tools/text/text-fancy-generator/img/og-banner.webp",
+      "screenshot": "https://trustedtoolsweb.com/assets/tools/text/text-fancy-generator/img/og-banner.webp",
+      "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+      },
+      "author": {
+          "@type": "Person",
+          "name": "MD KAWSAR",
+          "url": "https://trustedtoolsweb.com"
+      },
+      "publisher": {
+          "@type": "Organization",
+          "name": "Trusted Tools Web",
+          "url": "https://trustedtoolsweb.com"
+      },
+      "featureList": [
+          "Fancy Unicode Font Generator",
+          "Zalgo Glitch Text Maker",
+          "ASCII Block Art Generator",
+          "Morse Code Translator",
+          "Text to Image (Canvas Studio)",
+          "JSON Beautifier",
+          "Text Repeater",
+          "Speech-to-Text Dictation",
+          "Text-to-Speech Reader",
+          "Draft Manager with LocalStorage",
+          "Find & Replace",
+          "Symbol Picker"
+      ],
+      "keywords": "fancy font generator, glitch text, zalgo text, ascii art, morse code, text to image, typography"
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════════════════════
+         GLOBAL HEADER — Injected dynamically by global.js
+    ════════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ════════════════════════════════════════════════════════════
+         SIDEBAR OVERLAY — Dark backdrop; clicking it closes the
+         sidebar drawer on mobile and desktop.
+    ════════════════════════════════════════════════════════════ -->
+    <div class="tpm-sidebar-overlay" onclick="TextProCore.toggleSidebar()"></div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         SIDEBAR DRAWER — Saved Drafts Panel
+         Opens from the left edge; lists all localStorage drafts.
+         "New Draft" button creates a fresh empty document.
+    ════════════════════════════════════════════════════════════ -->
+    <div class="tpm-sidebar" id="sidebar">
+        <!-- Sidebar Header: title + close button -->
+        <div class="tpm-sidebar-header">
+            <span><i class="fa-solid fa-folder-open"></i> SAVED DRAFTS</span>
+            <button class="tpm-mini-btn" onclick="TextProCore.toggleSidebar()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- New Draft CTA -->
+        <button class="tpm-sidebar-new-btn" onclick="TextProCore.createNewDraft()">
+            <i class="fa-solid fa-plus"></i> New Draft
+        </button>
+
+        <!-- Dynamic draft list — rendered by renderDraftList() in script.js -->
+        <div class="tpm-draft-list" id="draftList"></div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         MAIN CONTENT AREA
+    ════════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ── PRIMARY TOOL CARD ── -->
+        <div class="container animated-entry">
+
+            <!-- ── HERO / TITLE SECTION ── -->
+
+            <!-- Security badge: reassures users data stays client-side -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+            </div>
+
+            <!-- Tool title with gradient accent on "Max Studio" -->
+            <h1 class="tool-title">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> TextPro <span>Max Studio</span>
+            </h1>
+
+            <!-- Subtitle description -->
+            <p class="subtitle">
+                Ultimate Web Utility for Fancy Fonts, Glitch Art &amp; Typography. No Server Uploads.
+            </p>
+
+            <!-- ── AD SLOT: TOP BANNER ── -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ════════════════════════════════════════════════════
+                 MAIN EDITOR AREA
+                 Contains: stat bar, control buttons, textarea,
+                 find/replace bar, action toolbar, utility chips,
+                 navigation tabs, and all content panels.
+            ════════════════════════════════════════════════════ -->
+            <div class="tpm-editor-wrapper">
+
+                <!-- ── EDITOR TOP BAR: stat counter + control buttons ── -->
+                <div class="tpm-editor-controls">
+
+                    <!-- Live character / word counter (updated on every keystroke) -->
+                    <span class="tpm-stat-text" id="counts">0 CHARS / 0 WORDS</span>
+
+                    <!-- Icon control buttons: import file, image studio, paste, clear -->
+                    <div class="tpm-control-btns">
+                        <!-- Hidden file input; triggered by the import button below -->
+                        <input type="file" id="fileInput" accept=".txt,.md,.js,.json"
+                               style="display: none;"
+                               onchange="TextProCore.handleFileImport(this)">
+
+                        <!-- Import File button -->
+                        <button class="tpm-mini-btn"
+                                onclick="document.getElementById('fileInput').click()"
+                                title="Import File">
+                            <i class="fa-solid fa-file-import"></i>
+                        </button>
+
+                        <!-- Open Image Studio (Canvas export) -->
+                        <button class="tpm-mini-btn tpm-mini-btn--accent"
+                                onclick="TextProCore.openImageStudio()"
+                                title="Text to Image Studio">
+                            <i class="fa-solid fa-image"></i>
+                        </button>
+
+                        <!-- Paste from clipboard -->
+                        <button class="tpm-mini-btn"
+                                onclick="TextProCore.pasteText()"
+                                title="Paste from Clipboard">
+                            <i class="fa-solid fa-paste"></i>
+                        </button>
+
+                        <!-- Clear all text (with confirm dialog) -->
+                        <button class="tpm-mini-btn tpm-mini-btn--danger"
+                                onclick="TextProCore.clearText()"
+                                title="Clear All Text">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ── MAIN TEXTAREA ── -->
+                <!-- id="input" is required by script.js — do NOT rename -->
+                <textarea id="input"
+                          class="tpm-textarea"
+                          placeholder="Type or paste your text here to begin magic..."
+                          spellcheck="false"></textarea>
+
+                <!-- ── FIND & REPLACE BAR ── -->
+                <!-- Hidden by default; toggled via toggleFindReplace() -->
+                <div id="findReplaceBar" class="tpm-find-replace-bar" style="display:none;">
+                    <input type="text"   id="findTxt" class="tpm-fr-input" placeholder="Find...">
+                    <input type="text"   id="repTxt"  class="tpm-fr-input" placeholder="Replace with...">
+                    <button class="btn btn-primary tpm-fr-go-btn"
+                            onclick="TextProCore.execFindReplace()">GO</button>
+                </div>
+            </div><!-- /.tpm-editor-wrapper -->
+
+            <!-- ════════════════════════════════════════════════════
+                 ACTION TOOLBAR
+                 Horizontally scrollable row of action buttons for
+                 copy, save, undo/redo, symbols, TTS, STT, find.
+            ════════════════════════════════════════════════════ -->
+            <div class="tpm-toolbar-scroll">
+                <button class="tpm-tool-btn tpm-tool-btn--primary"
+                        onclick="TextProCore.copyInput()">
+                    <i class="fa-solid fa-copy"></i> Copy All
+                </button>
+                <button class="tpm-tool-btn"
+                        onclick="TextProCore.downloadText()">
+                    <i class="fa-solid fa-download"></i> Save .txt
+                </button>
+                <button class="tpm-tool-btn"
+                        onclick="TextProCore.undo()">
+                    <i class="fa-solid fa-rotate-left"></i> Undo
+                </button>
+                <button class="tpm-tool-btn"
+                        onclick="TextProCore.redo()">
+                    <i class="fa-solid fa-rotate-right"></i> Redo
+                </button>
+                <button class="tpm-tool-btn"
+                        onclick="TextProCore.openSymbolPicker()">
+                    <i class="fa-regular fa-face-smile"></i> Symbols
+                </button>
+                <!-- id="speakBtn" required by script.js -->
+                <button class="tpm-tool-btn" id="speakBtn"
+                        onclick="TextProCore.toggleSpeak()">
+                    <i class="fa-solid fa-volume-high"></i> Listen
+                </button>
+                <!-- id="micBtn" required by script.js -->
+                <button class="tpm-tool-btn" id="micBtn"
+                        onclick="TextProCore.toggleSpeech()">
+                    <i class="fa-solid fa-microphone"></i> Dictate
+                </button>
+                <button class="tpm-tool-btn"
+                        onclick="TextProCore.toggleFindReplace()">
+                    <i class="fa-solid fa-magnifying-glass"></i> Find
+                </button>
+            </div>
+
+            <!-- ════════════════════════════════════════════════════
+                 UTILITY CHIPS
+                 One-tap text transformation shortcuts (uppercase,
+                 slug, JSON beautify, email extractor, etc.)
+            ════════════════════════════════════════════════════ -->
+            <div class="tpm-utility-chips">
+                <div class="tpm-chip" onclick="TextProCore.textUtil('upper')">UPPERCASE</div>
+                <div class="tpm-chip" onclick="TextProCore.textUtil('lower')">lowercase</div>
+                <div class="tpm-chip" onclick="TextProCore.textUtil('title')">Title Case</div>
+                <div class="tpm-chip" onclick="TextProCore.textUtil('slug')">URL Slug</div>
+                <div class="tpm-chip" onclick="TextProCore.textUtil('clean')">Clean Space</div>
+                <div class="tpm-chip" onclick="TextProCore.textUtil('reverse')">Reverse Text</div>
+                <div class="tpm-chip" onclick="TextProCore.textUtil('json')">Beautify JSON</div>
+                <div class="tpm-chip" onclick="TextProCore.textUtil('extract-email')">Extract Emails</div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════════
+                 NAVIGATION TABS
+                 Switches between the seven output content panels.
+                 Active state managed via setTab() in script.js.
+            ════════════════════════════════════════════════════ -->
+            <div class="tpm-tabs">
+                <button class="tpm-tab active"
+                        onclick="TextProCore.setTab('fonts', this)">
+                    <i class="fa-solid fa-font"></i> Fancy Fonts
+                </button>
+                <button class="tpm-tab"
+                        onclick="TextProCore.setTab('repeater', this)">
+                    <i class="fa-solid fa-repeat"></i> Repeater
+                </button>
+                <button class="tpm-tab"
+                        onclick="TextProCore.setTab('glitch', this)">
+                    <i class="fa-solid fa-bug"></i> Glitch
+                </button>
+                <button class="tpm-tab"
+                        onclick="TextProCore.setTab('bigtext', this)">
+                    <i class="fa-solid fa-cubes"></i> Big ASCII
+                </button>
+                <button class="tpm-tab"
+                        onclick="TextProCore.setTab('decor', this)">
+                    <i class="fa-solid fa-star"></i> Decorations
+                </button>
+                <button class="tpm-tab"
+                        onclick="TextProCore.setTab('coder', this)">
+                    <i class="fa-solid fa-code"></i> Coder
+                </button>
+                <button class="tpm-tab"
+                        onclick="TextProCore.setTab('morse', this)">
+                    <i class="fa-solid fa-teletype"></i> Morse
+                </button>
+            </div>
+
+            <!-- ════════════════════════════════════════════════════
+                 CONTENT PANELS
+                 Each panel corresponds to one tab. Visibility
+                 toggled by the .active class via setTab().
+            ════════════════════════════════════════════════════ -->
+
+            <!-- PANEL: Fancy Fonts — Unicode alphabet grid -->
+            <!-- id="fonts" required by setTab() -->
+            <div id="fonts" class="tpm-content-area active">
+                <!-- id="fontGrid" populated by renderFonts() -->
+                <div class="tpm-grid-list" id="fontGrid"></div>
+            </div>
+
+            <!-- PANEL: Text Repeater — repeat any text N times -->
+            <!-- id="repeater" required by setTab() -->
+            <div id="repeater" class="tpm-content-area">
+                <!-- Settings card -->
+                <div class="tpm-card">
+                    <div class="tpm-card-label">Turbo Repeater Settings</div>
+                    <div class="tpm-card-inner-stack">
+                        <!-- Optional custom text override -->
+                        <input type="text" id="repText"
+                               placeholder="Text to repeat (Leave empty to use main input)"
+                               class="input-control">
+                        <!-- Count + separator grid -->
+                        <div class="multi-input-grid">
+                            <input type="number" id="repCount"
+                                   value="50" min="1" max="10000"
+                                   class="input-control"
+                                   placeholder="Count">
+                            <!-- id="repSeparator" required by renderRepeater() -->
+                            <select id="repSeparator" class="input-control">
+                                <option value="newline">New Line (1 Per Line)</option>
+                                <option value=" ">Space ( )</option>
+                                <option value=", ">Comma (, )</option>
+                                <option value=". ">Period (. )</option>
+                                <option value=" | ">Pipe ( | )</option>
+                                <option value="">No Space</option>
+                            </select>
+                        </div>
+                        <!-- Generate button -->
+                        <div class="btn-area">
+                            <button class="btn btn-primary"
+                                    onclick="TextProCore.renderRepeater()">
+                                <i class="fa-solid fa-bolt"></i> Generate Repeated Text
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Result card: tap to copy -->
+                <div class="tpm-card tpm-card--clickable"
+                     onclick="TextProCore.copyText(this.querySelector('.tpm-card-text').innerText)">
+                    <div class="tpm-card-label">Result</div>
+                    <!-- id="repOutput" required by renderRepeater() -->
+                    <div class="tpm-card-text tpm-card-text--scroll" id="repOutput"></div>
+                    <div class="tpm-copy-hint">Tap to Copy</div>
+                </div>
+            </div>
+
+            <!-- PANEL: Glitch / Zalgo Text -->
+            <!-- id="glitch" required by setTab() -->
+            <div id="glitch" class="tpm-content-area">
+                <!-- Intensity slider card -->
+                <div class="tpm-card">
+                    <div class="tpm-card-label">Glitch Intensity</div>
+                    <!-- id="g-amt" required by renderGlitch() -->
+                    <input type="range" id="g-amt"
+                           class="range-slider"
+                           min="1" max="100" value="40"
+                           oninput="TextProCore.renderGlitch()">
+                </div>
+                <!-- Output card: tap to copy -->
+                <div class="tpm-card tpm-card--clickable"
+                     onclick="TextProCore.copyText(this.querySelector('.tpm-card-text').innerText)">
+                    <div class="tpm-card-label">Zalgo / Glitch Output</div>
+                    <!-- id="glitchOutput" required by renderGlitch() -->
+                    <div class="tpm-card-text" id="glitchOutput"></div>
+                    <div class="tpm-copy-hint">Tap to Copy</div>
+                </div>
+            </div>
+
+            <!-- PANEL: Big ASCII Block Art -->
+            <!-- id="bigtext" required by setTab() -->
+            <div id="bigtext" class="tpm-content-area">
+                <div class="tpm-card tpm-card--clickable"
+                     onclick="TextProCore.copyText(this.querySelector('.tpm-pre-text').innerText)">
+                    <div class="tpm-card-label">ASCII Block Art</div>
+                    <!-- id="bigTextOutput" required by renderBigText() -->
+                    <pre class="tpm-card-text tpm-pre-text" id="bigTextOutput"></pre>
+                    <div class="tpm-copy-hint">Tap to Copy</div>
+                </div>
+            </div>
+
+            <!-- PANEL: Text Decorations -->
+            <!-- id="decor" required by setTab() -->
+            <div id="decor" class="tpm-content-area">
+                <!-- id="decorGrid" populated by renderDecor() -->
+                <div class="tpm-grid-list" id="decorGrid"></div>
+            </div>
+
+            <!-- PANEL: Coder (Binary, Hex, URL Encode, JSON) -->
+            <!-- id="coder" required by setTab() -->
+            <div id="coder" class="tpm-content-area">
+                <!-- id="coderGrid" populated by renderCoder() -->
+                <div class="tpm-grid-list" id="coderGrid"></div>
+            </div>
+
+            <!-- PANEL: Morse Code Translation -->
+            <!-- id="morse" required by setTab() -->
+            <div id="morse" class="tpm-content-area">
+                <div class="tpm-card tpm-card--clickable"
+                     onclick="TextProCore.copyText(this.querySelector('.tpm-card-text').innerText)">
+                    <div class="tpm-card-label">Morse Code Translation</div>
+                    <!-- id="morseOutput" required by renderMorse() -->
+                    <div class="tpm-card-text" id="morseOutput"></div>
+                    <div class="tpm-copy-hint">Tap to Copy</div>
+                </div>
+            </div>
+
+        </div><!-- /.container -->
+
+        <!-- ── AD SLOT: BOTTOM BANNER ── -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- ════════════════════════════════════════════════════════
+             SEO CONTENT SECTION
+             Rich editorial content for search engine ranking.
+             Uses shared .info-section-wrapper and .info-card classes.
+        ════════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper">
+
+            <!-- Security Architecture article -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-shield-cat"></i> Why TextPro Max is Different? (Security Architecture)</h2>
+                <p>In an era where data breaches are common, <strong>TextPro Max Studio</strong> was built with a "Privacy-First" philosophy. Unlike many online text generators that process your input on their servers (risking data leaks), our tool runs entirely on <strong>Client-Side JavaScript</strong>.</p>
+                <h3>What does "Client-Side" mean for you?</h3>
+                <p>It means the text you type, the passwords you generate, or the JSON data you beautify <strong>never leaves your browser</strong>. Even if you disconnect your internet after loading the page, the tool will function perfectly. We utilize the <span class="tech-highlight">window.localStorage</span> API to save your drafts directly to your device's memory.</p>
+            </div>
+
+            <!-- Feature showcase article -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-layer-group"></i> See What You Can Create</h2>
+                <p>TextPro Max isn't just a text generator; it is a creative suite. Check out the possibilities:</p>
+
+                <!-- Feature image grid -->
+                <div class="tpm-feature-img-grid">
+                    <div class="tpm-feature-box tpm-feature-box--center">
+                        <img src="../../assets/tools/text/text-fancy-generator/img/feature-glitch.webp"
+                             alt="Zalgo Glitch Text Generator Example"
+                             class="tpm-feature-img"
+                             loading="lazy">
+                        <h3>Create Glitch / Zalgo Art</h3>
+                        <p>Perfect for horror-themed comments and edgy usernames.</p>
+                    </div>
+                    <div class="tpm-feature-box tpm-feature-box--center">
+                        <img src="../../assets/tools/text/text-fancy-generator/img/feature-image-studio.webp"
+                             alt="Typography Image Creator Dashboard"
+                             class="tpm-feature-img"
+                             loading="lazy">
+                        <h3>Design Social Media Posts</h3>
+                        <p>Convert simple text into aesthetic images for Instagram/Facebook.</p>
+                    </div>
+                </div>
+
+                <!-- Use-case feature boxes -->
+                <div class="tpm-feature-grid">
+                    <div class="tpm-feature-box">
+                        <strong class="text-accent-cyan">For Social Media Managers</strong>
+                        <p>Stop struggling with ugly captions. Use the <strong>"Image Studio"</strong> to convert text into high-res PNGs for Instagram Stories.</p>
+                    </div>
+                    <div class="tpm-feature-box">
+                        <strong class="text-accent-purple">For Developers &amp; Coders</strong>
+                        <p>Paste minified API responses into the editor and use the <strong>"JSON Beautify"</strong> chip. We use native parsing to format code instantly.</p>
+                    </div>
+                    <div class="tpm-feature-box">
+                        <strong class="text-primary">For Writers &amp; Students</strong>
+                        <p>Use the <strong>Dictation (Speech-to-Text)</strong> feature to draft essays by voice. If your eyes are tired, use the <strong>"Listen"</strong> button.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zero-lag canvas rendering article -->
+            <div class="info-card">
+                <h2><i class="fa-solid fa-paintbrush"></i> Zero-Lag Typography Generation</h2>
+                <p>Most online "text-to-image" tools require server-side rendering, which takes time. TextPro Max utilizes the HTML5 <strong>Canvas API</strong> to render graphics directly on your device's GPU. This means you can adjust font size, shadows, and gradients in real-time with zero latency. The export quality remains lossless PNG.</p>
+            </div>
+
+            <!-- FAQ article -->
+            <div class="info-card">
+                <h2><i class="fa-regular fa-circle-question"></i> Frequently Asked Questions (FAQ)</h2>
+                <h3><i class="fa-solid fa-check"></i> Can I use the generated fonts on Instagram/Facebook?</h3>
+                <p>Yes. The "Fancy Fonts" generated here are not actually fonts but <strong>Unicode Characters</strong>. This means you can copy and paste them into Instagram bios, Facebook posts, Twitter usernames, and even gaming profiles.</p>
+                <h3><i class="fa-solid fa-check"></i> Is the 'Image Studio' copyright free?</h3>
+                <p>Absolutely. The images are rendered locally on your canvas using open-source fonts. You own 100% of the rights to any image you generate using TextPro Max.</p>
+                <h3><i class="fa-solid fa-check"></i> Why does the 'Glitch Text' look messy?</h3>
+                <p>That is the intended effect known as <strong>Zalgo Text</strong>. It works by stacking multiple "combining diacritical marks" on top of a single character.</p>
+            </div>
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ════════════════════════════════════════════════════════
+             RELATED TOOLS GRID
+             Dynamically populated by related-tools.js.
+             data-category targets same-category tools.
+             data-current-page excludes the current page.
+        ════════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top: 50px;">
+            <div id="dynamic-related-tools"
+                 data-category="text"
+                 data-current-page="text-fancy-generator.html">
+            </div>
+        </div>
+
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main -->
+
+    <!-- ════════════════════════════════════════════════════════════
+         IMAGE STUDIO MODAL
+         Full-screen overlay containing the Canvas-based typography
+         image export tool. Controls: ratio, font, colors, Unsplash
+         background search, and gradient picker.
+    ════════════════════════════════════════════════════════════ -->
+    <!-- id="imgModal" required by openImageStudio() / closeImageStudio() -->
+    <div class="modal-overlay" id="imgModal">
+        <div class="tpm-modal-box">
+
+            <!-- Modal header: title + close button -->
+            <div class="tpm-modal-header">
+                <h3 class="tpm-modal-title">
+                    <i class="fa-solid fa-palette"></i> Image Studio
+                </h3>
+                <button class="tpm-mini-btn"
+                        onclick="TextProCore.closeImageStudio()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Canvas preview area -->
+            <div class="tpm-canvas-wrap">
+                <!-- id="exportCanvas" required by renderCanvas() / downloadCanvas() -->
+                <canvas id="exportCanvas" style="max-width:100%; height:auto;"></canvas>
+            </div>
+
+            <!-- Row 1: Canvas size + font style -->
+            <div class="tpm-modal-grid tpm-modal-grid--2col">
+                <div class="tpm-modal-field">
+                    <label class="tpm-modal-label">Canvas Size</label>
+                    <!-- id="imgRatio" required by renderCanvas() -->
+                    <select id="imgRatio"
+                            onchange="TextProCore.renderCanvas()"
+                            class="input-control">
+                        <option value="1:1">Square (IG Post)</option>
+                        <option value="9:16">Story (TikTok)</option>
+                        <option value="16:9">Landscape (YT)</option>
+                    </select>
+                </div>
+                <div class="tpm-modal-field">
+                    <label class="tpm-modal-label">Font Style</label>
+                    <!-- id="imgFont" required by renderCanvas() -->
+                    <select id="imgFont"
+                            onchange="TextProCore.renderCanvas()"
+                            class="input-control">
+                        <option value="Outfit">Clean Modern</option>
+                        <option value="Lobster">Cursive Fancy</option>
+                        <option value="Oswald">Bold Impact</option>
+                        <option value="Bangers">Comic / Fun</option>
+                        <option value="JetBrains Mono">Coding Style</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Row 2: Text color, shadow color, text size -->
+            <div class="tpm-modal-grid tpm-modal-grid--3col">
+                <div class="tpm-modal-field">
+                    <label class="tpm-modal-label">Text Color</label>
+                    <!-- id="imgTextColor" required by renderCanvas() -->
+                    <input type="color" id="imgTextColor"
+                           value="#ffffff"
+                           class="tpm-color-picker"
+                           oninput="TextProCore.renderCanvas()">
+                </div>
+                <div class="tpm-modal-field">
+                    <label class="tpm-modal-label">Shadow</label>
+                    <!-- id="imgShadowColor" required by renderCanvas() -->
+                    <input type="color" id="imgShadowColor"
+                           value="#000000"
+                           class="tpm-color-picker"
+                           oninput="TextProCore.renderCanvas()">
+                </div>
+                <div class="tpm-modal-field">
+                    <label class="tpm-modal-label">Size</label>
+                    <!-- id="imgTextSize" required by renderCanvas() -->
+                    <input type="number" id="imgTextSize"
+                           value="60" min="20" max="150"
+                           class="input-control tpm-size-input"
+                           oninput="TextProCore.renderCanvas()">
+                </div>
+            </div>
+
+            <!-- Background image upload -->
+            <div class="tpm-modal-field mt-sm">
+                <label class="tpm-modal-label">Upload Background (Optional)</label>
+                <input type="file" accept="image/*"
+                       class="input-control"
+                       onchange="TextProCore.handleBgUpload(this)">
+            </div>
+
+            <!-- Unsplash background search -->
+            <div class="tpm-unsplash-section">
+                <label class="tpm-modal-label tpm-modal-label--caps">
+                    Search Online Backgrounds (Unsplash)
+                </label>
+                <div class="tpm-unsplash-row">
+                    <!-- id="uns-search" required by searchUnsplash() -->
+                    <input type="text" id="uns-search"
+                           class="input-control tpm-unsplash-input"
+                           placeholder="e.g. Dark, Neon, Abstract...">
+                    <button class="tpm-mini-btn tpm-mini-btn--purple"
+                            onclick="TextProCore.searchUnsplash()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <!-- id="unsplash-results" required by searchUnsplash() -->
+                <div id="unsplash-results" class="tpm-unsplash-results">
+                    <p class="tpm-unsplash-hint">Type and search for high-quality backgrounds...</p>
+                </div>
+            </div>
+
+            <!-- Text background opacity slider -->
+            <div class="tpm-modal-field mt-sm">
+                <label class="tpm-modal-label">Text Background Opacity</label>
+                <!-- id="textBgOpacity" required by renderCanvas() -->
+                <input type="range" id="textBgOpacity"
+                       class="range-slider"
+                       min="0" max="1" step="0.1" value="0"
+                       oninput="TextProCore.renderCanvas()">
+            </div>
+
+            <!-- Background gradient pickers -->
+            <div class="tpm-modal-field mt-sm">
+                <label class="tpm-modal-label">Background Gradient</label>
+                <div class="tpm-gradient-row">
+                    <!-- id="imgBg1" required by renderCanvas() -->
+                    <input type="color" id="imgBg1"
+                           value="#09090b"
+                           class="tpm-color-picker tpm-color-picker--wide"
+                           oninput="TextProCore.renderCanvas()">
+                    <!-- id="imgBg2" required by renderCanvas() -->
+                    <input type="color" id="imgBg2"
+                           value="#18181b"
+                           class="tpm-color-picker tpm-color-picker--wide"
+                           oninput="TextProCore.renderCanvas()">
+                </div>
+            </div>
+
+            <!-- Save image action -->
+            <div class="btn-area mt-md">
+                <button class="btn btn-success"
+                        onclick="TextProCore.downloadCanvas()">
+                    <i class="fa-solid fa-download"></i> Save Image
+                </button>
+            </div>
+
+        </div><!-- /.tpm-modal-box -->
+    </div><!-- /#imgModal -->
+
+    <!-- ════════════════════════════════════════════════════════════
+         SYMBOL PICKER MODAL
+         Displays a grid of Unicode symbols. Clicking a symbol
+         inserts it at the cursor position in the textarea.
+    ════════════════════════════════════════════════════════════ -->
+    <!-- id="symbolModal" required by openSymbolPicker() -->
+    <div class="modal-overlay" id="symbolModal">
+        <div class="tpm-modal-box tpm-modal-box--sm">
+            <!-- Modal header -->
+            <div class="tpm-modal-header">
+                <h3 class="tpm-modal-title text-accent-cyan">Insert Symbol</h3>
+                <button class="tpm-mini-btn"
+                        onclick="document.getElementById('symbolModal').classList.remove('active')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <!-- id="symbolGrid" populated by renderSymbols() -->
+            <div id="symbolGrid" class="tpm-symbol-grid"></div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         GLOBAL FOOTER — Injected dynamically by global.js
+    ════════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ── AD MANAGER ── -->
+    <script src="../../assets/js/ads-manager.js"></script>
+
+    <!-- ── GLOBAL JS (theme toggle, toast system, header/footer injection) ── -->
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ── TOOL ENGINE ── -->
+    <script src="../../assets/tools/text/text-fancy-generator/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>

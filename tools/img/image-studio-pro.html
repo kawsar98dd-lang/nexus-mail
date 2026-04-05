@@ -1,0 +1,608 @@
+<!-- 
+    ============================================================
+    PRODUCT  : Ultra Image Titanium (SaaS Edition)
+    VERSION  : 4.0.0 (Gold Master — CodeCanyon Release Build)
+    AUTHOR   : MD KAWSAR | Trusted Tools Web
+    DATE     : February 15, 2026
+    LICENSE  : Commercial / CodeCanyon Standard
+    ------------------------------------------------------------
+    DESCRIPTION:
+    Enterprise-grade, fully client-side (Wasm) image processor.
+    Features: Multi-threaded concurrency, binary-search compression,
+    HEIC conversion, EXIF scrubbing, crop/rotate/flip editor,
+    bulk ZIP export, orientation-aware PDF export, and
+    Offline PWA readiness — zero server uploads.
+    ============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ════════════════════════════════════════════════════════
+         SITE INFRASTRUCTURE — config, meta-manager, analytics
+         (injected before <head> content per project architecture)
+    ════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/site-config.js"></script>
+    <script src="../../assets/js/meta-manager.js"></script>
+    <script src="../../assets/js/analytics-loader.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ════════════════════════════════════════════════════════
+         PRIMARY SEO META TAGS
+         Optimized for: image compressor, HEIC converter,
+         privacy-focused client-side tool, WebP converter.
+    ════════════════════════════════════════════════════════ -->
+    <title>Ultra Image Titanium – Free Secure Image Compressor & HEIC Converter | Trusted Tools Web</title>
+    <meta name="title"       content="Ultra Image Titanium – Free Secure Image Compressor & HEIC Converter | Trusted Tools Web">
+    <meta name="description" content="Compress JPG, PNG, WebP and convert HEIC files entirely in your browser. 100% privacy-focused, client-side image tool — no server uploads, no data leaks. Free, unlimited, and blazing fast.">
+    <meta name="keywords"    content="image compressor, heic to jpg converter, png compressor, webp converter, client-side image tool, offline photo editor, privacy-focused image optimizer, exif remover, bulk image resize, trusted tools web, ultra image titanium, free image compressor">
+    <meta name="author"      content="MD KAWSAR | Trusted Tools Web">
+    <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="theme-color" content="#0d1117">
+
+    <!-- ════════════════════════════════════════════════════════
+         OPEN GRAPH / FACEBOOK SOCIAL SHARING TAGS
+    ════════════════════════════════════════════════════════ -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://trustedtoolsweb.com/img-compressor.html">
+    <meta property="og:title"       content="Ultra Image Titanium – Privacy-First Image Compressor & Converter">
+    <meta property="og:description" content="Compress, convert & edit images securely in your browser. 100% client-side privacy. Zero server uploads. Supports JPG, PNG, WebP, HEIC.">
+    <meta property="og:image"       content="https://trustedtoolsweb.com/assets/tools/img/img-compressor/img/og-banner.jpg">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name"   content="Trusted Tools Web">
+
+    <!-- ════════════════════════════════════════════════════════
+         TWITTER CARD TAGS
+    ════════════════════════════════════════════════════════ -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:url"         content="https://trustedtoolsweb.com/img-compressor.html">
+    <meta name="twitter:title"       content="Ultra Image Titanium – Secure Image Compressor">
+    <meta name="twitter:description" content="Edit and compress images locally. No data ever leaves your device. Free & unlimited.">
+    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/img/img-compressor/img/og-banner.jpg">
+
+    <link rel="canonical" href="https://trustedtoolsweb.com/img-compressor.html">
+
+    <!-- ════════════════════════════════════════════════════════
+         STRUCTURED DATA — Schema.org JSON-LD
+         Type: SoftwareApplication — improves rich results in
+         Google Search for free tools / web apps.
+    ════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Ultra Image Titanium",
+        "headline": "Secure Client-Side Image Compressor & HEIC Converter",
+        "url": "https://trustedtoolsweb.com/img-compressor.html",
+        "description": "A secure, privacy-focused image processing tool that runs entirely in the browser. Compress JPG/PNG/WebP, convert HEIC, crop, rotate, flip, add watermarks, and strip EXIF — without any server uploads.",
+        "applicationCategory": "MultimediaApplication",
+        "applicationSubCategory": "Image Editor",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires a modern browser with Canvas API support",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "MD KAWSAR",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Trusted Tools Web",
+            "url": "https://trustedtoolsweb.com"
+        },
+        "image": "https://trustedtoolsweb.com/assets/tools/img/img-compressor/img/og-banner.jpg",
+        "featureList": [
+            "Offline Capability",
+            "HEIC Conversion",
+            "Batch Compression",
+            "EXIF / GPS Metadata Removal",
+            "Binary Search Quality Optimization",
+            "ZIP Bulk Download",
+            "Orientation-Aware PDF Export",
+            "Image Crop, Rotate, Flip Editor",
+            "Custom Watermark",
+            "Side-by-Side Compare Slider"
+        ],
+        "screenshot": "https://trustedtoolsweb.com/assets/tools/img/img-compressor/img/og-banner.jpg"
+    }
+    </script>
+
+    <!-- ════════════════════════════════════════════════════════
+         FAVICON
+    ════════════════════════════════════════════════════════ -->
+    <link rel="icon"             type="image/webp" href="../../assets/img/logo.webp">
+    <link rel="apple-touch-icon"                   href="../../assets/img/logo.webp">
+
+    <!-- ════════════════════════════════════════════════════════
+         EXTERNAL LIBRARY STYLESHEETS
+         (kept as-is; will be localized before CodeCanyon submit)
+    ════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/library/media-vision/cropperjs/cropper.min.css">
+
+    <!-- ════════════════════════════════════════════════════════
+         TRUSTED TOOLS WEB — TWO-FILE CSS SYSTEM (DO NOT CHANGE)
+         global.css        → site-wide layout, header, footer
+         tools-template.css → all tool UI components (modular)
+    ════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/tools-template.css">
+
+    <!-- ════════════════════════════════════════════════════════
+         DEFERRED LIBRARY SCRIPTS
+         confetti → success celebration animation
+         jspdf    → PDF export engine
+         jszip    → ZIP archive builder
+         heic2any → HEIC-to-JPEG browser decoder
+         cropper  → visual crop interface
+    ════════════════════════════════════════════════════════ -->
+    <script src="../../assets/library/core-ui/canvas-confetti/confetti.browser.min.js" defer></script>
+    <script src="../../assets/library/pdf-engine/jspdf/jspdf.umd.min.js"               defer></script>
+    <script src="../../assets/library/file-archiver/jszip/jszip.min.js"                 defer></script>
+    <script src="../../assets/library/media-vision/heic2any/heic2any.min.js"            defer></script>
+    <script src="../../assets/library/media-vision/cropperjs/cropper.min.js"            defer></script>
+
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════════════════
+         GLOBAL LOADER OVERLAY
+         Displayed during heavy async operations (HEIC decode,
+         PDF build, etc.). Aria-live for screen reader support.
+    ════════════════════════════════════════════════════════ -->
+    <div class="uit-loader-overlay" id="globalLoader" role="alert" aria-busy="true" aria-label="Processing images">
+        <div class="uit-loader-spinner"></div>
+        <p class="uit-loader-text">PROCESSING...</p>
+        <p id="progressText" class="uit-loader-pct">0%</p>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+         GLOBAL HEADER — injected by global.js (DO NOT TOUCH)
+    ════════════════════════════════════════════════════════ -->
+    <header id="global-header" class="site-header"></header>
+
+    <!-- ════════════════════════════════════════════════════════
+         MAIN CONTENT AREA
+    ════════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- ── PRIMARY TOOL CARD ── -->
+        <div class="container animated-entry">
+
+            <!-- ── HERO / TITLE SECTION ── -->
+            <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% Client-Side Processing
+            </div>
+
+            <h1 class="tool-title">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Ultra Image <span>Titanium</span>
+            </h1>
+            <p class="subtitle">Compress, Edit &amp; Convert Images Securely — Zero Server Uploads.</p>
+
+            <!-- ════════════════════════════════════════════════
+                 AD SLOT — TOP BANNER
+                 Managed by the centralized Trusted Tools Ad System.
+            ════════════════════════════════════════════════ -->
+            <div class="ad-slot" data-ad-slot="top-banner"></div>
+
+            <!-- ════════════════════════════════════════════════
+                 UPLOAD / DROP ZONE
+                 Accepts JPG, PNG, WebP, HEIC via click or drag-drop.
+                 Keyboard-accessible (tabindex + keydown handler).
+            ════════════════════════════════════════════════ -->
+            <div class="uit-dropzone" id="dropZone"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Upload files area. Click or drag and drop images here.">
+
+                <!-- Hidden native file picker — triggered programmatically -->
+                <input type="file" id="fileInput" multiple
+                       accept="image/jpeg,image/png,image/webp,.heic,image/heic"
+                       style="display:none;">
+
+                <i class="fa-solid fa-cloud-arrow-up uit-dropzone-icon"></i>
+                <h2 class="uit-dropzone-title">Click or Drag Images Here</h2>
+                <p class="uit-dropzone-sub">Supports JPG, PNG, WEBP, HEIC &bull; Max Quality Retention</p>
+
+                <div class="uit-dropzone-badges">
+                    <span class="tech-highlight"><i class="fa-solid fa-bolt"></i> AI Compression</span>
+                    <span class="tech-highlight"><i class="fa-solid fa-lock"></i> Privacy First</span>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════
+                 MAIN WORKSPACE GRID
+                 Two-column layout: Controls (left) + Preview (right).
+                 Hidden by default; revealed after files are loaded.
+            ════════════════════════════════════════════════ -->
+            <div class="uit-workspace-grid" id="workspace">
+
+                <!-- ── LEFT COLUMN: ALL CONTROLS ── -->
+                <div class="uit-controls-col">
+
+                    <!-- ── Single Download (shown only when 1 file processed) ── -->
+                    <button class="btn btn-success" id="dlSingle" style="display:none;">
+                        <i class="fa-solid fa-download"></i> Download Image
+                    </button>
+
+                    <!-- ── ENGINE SETTINGS CARD ── -->
+                    <div class="uit-control-card">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-microchip"></i> Core Engine</span>
+                            <!-- Live quality percentage display -->
+                            <span id="qDisp" class="badge badge-primary">80%</span>
+                        </div>
+
+                        <!-- Compression Level slider -->
+                        <label for="quality" class="text-small-label">Compression Level</label>
+                        <input type="range" id="quality" class="range-slider" min="1" max="100" value="80" aria-label="Compression Quality">
+
+                        <!-- Output Format selector -->
+                        <div class="mt-sm">
+                            <label for="format" class="text-small-label">Output Format</label>
+                            <select id="format" class="input-control" style="margin-top:5px;">
+                                <option value="image/jpeg">JPEG (Universal)</option>
+                                <option value="image/webp">WebP (Ultra Light)</option>
+                                <option value="image/png">PNG (Lossless)</option>
+                            </select>
+                        </div>
+
+                        <!-- Target KB input (optional) -->
+                        <div class="mt-sm">
+                            <label for="targetKB" class="text-small-label">Target Size (KB) — Optional</label>
+                            <input type="number" id="targetKB" class="input-control" placeholder="Auto Optimize (e.g., 50)" style="margin-top:5px;">
+                        </div>
+
+                        <!-- Resize inputs with aspect-ratio lock -->
+                        <div class="uit-resize-block">
+                            <div class="uit-resize-header">
+                                <label class="text-small-label">Resize Image (px)</label>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="aspectLock" checked>
+                                    <label for="aspectLock" class="text-accent-cyan" style="font-size:10px; cursor:pointer;">Lock Ratio</label>
+                                </div>
+                            </div>
+                            <!-- Two-column grid for width / height -->
+                            <div class="multi-input-grid">
+                                <input type="number" id="inpWidth"  class="input-control" placeholder="Width"  aria-label="Width in pixels"  style="font-size:12px;">
+                                <input type="number" id="inpHeight" class="input-control" placeholder="Height" aria-label="Height in pixels" style="font-size:12px;">
+                            </div>
+                        </div>
+                    </div><!-- /.uit-control-card (Engine) -->
+
+                    <!-- ── ADJUSTMENTS CARD ── -->
+                    <div class="uit-control-card">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-sliders"></i> Adjustments</span>
+                            <!-- Inline reset button — not a CTA, so kept minimal -->
+                            <button id="resetFiltersBtn" class="uit-reset-btn" aria-label="Reset all filters">RESET</button>
+                        </div>
+
+                        <!-- Transform action icon-buttons (crop, rotate, flip) -->
+                        <div class="uit-icon-btn-grid mb-10">
+                            <button class="btn-icon" id="btnCrop"   title="Crop Image"          aria-label="Crop Image">         <i class="fa-solid fa-crop-simple"></i>      </button>
+                            <button class="btn-icon" id="btnRotate" title="Rotate 90 Degrees"   aria-label="Rotate Image">        <i class="fa-solid fa-rotate-right"></i>     </button>
+                            <button class="btn-icon" id="btnFlipH"  title="Flip Horizontal"     aria-label="Flip Horizontal">     <i class="fa-solid fa-arrows-left-right"></i></button>
+                            <button class="btn-icon" id="btnFlipV"  title="Flip Vertical"       aria-label="Flip Vertical">       <i class="fa-solid fa-arrows-up-down"></i>   </button>
+                        </div>
+
+                        <!-- Brightness range -->
+                        <label for="brightness" class="text-small-label">Brightness</label>
+                        <input type="range" id="brightness" class="range-slider" min="0" max="200" value="100">
+
+                        <!-- Contrast range -->
+                        <label for="contrast" class="text-small-label">Contrast</label>
+                        <input type="range" id="contrast" class="range-slider" min="0" max="200" value="100">
+                    </div><!-- /.uit-control-card (Adjustments) -->
+
+                    <!-- ── SECURITY / METADATA CARD ── -->
+                    <div class="uit-control-card">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-lock"></i> Security</span>
+                        </div>
+
+                        <!-- Watermark text input -->
+                        <label for="wmText" class="visually-hidden">Watermark Text</label>
+                        <input type="text" id="wmText" class="input-control mb-10" placeholder="Add Watermark Text...">
+
+                        <!-- EXIF strip toggle -->
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="stripExif" checked>
+                            <label for="stripExif" class="text-muted" style="font-size:12px; cursor:pointer;">Scrub GPS / EXIF Data</label>
+                        </div>
+                    </div><!-- /.uit-control-card (Security) -->
+
+                    <!-- ── PRIMARY ACTION BUTTON ── -->
+                    <div class="btn-area">
+                        <button class="btn btn-primary" id="btnProcessBatch">
+                            <i class="fa-solid fa-bolt"></i> Process Batch
+                        </button>
+                    </div>
+
+                    <!-- ── BULK EXPORT BUTTONS ── -->
+                    <div class="btn-area mt-sm">
+                        <button class="btn btn-secondary" id="dlZip" disabled>
+                            <i class="fa-solid fa-file-zipper"></i> ZIP
+                        </button>
+                        <button class="btn btn-secondary" id="dlPdf" disabled>
+                            <i class="fa-solid fa-file-pdf"></i> PDF
+                        </button>
+                    </div>
+
+                </div><!-- /.uit-controls-col -->
+
+                <!-- ── RIGHT COLUMN: LIVE PREVIEW ── -->
+                <div class="uit-preview-col">
+                    <div class="uit-control-card uit-preview-card">
+
+                        <!-- Preview card header with file queue count -->
+                        <div class="card-header">
+                            <span>Live Preview</span>
+                            <span id="fileCount" class="text-accent-cyan">0 FILES</span>
+                        </div>
+
+                        <!-- ── BEFORE / AFTER COMPARE SLIDER ── -->
+                        <div class="uit-preview-wrapper" id="previewBox">
+
+                            <!-- Original image layer (background, full width) -->
+                            <div class="uit-img-layer">
+                                <img id="imgOrig"
+                                     src="../../assets/tools/img/img-compressor/img/placeholder-preview.webp"
+                                     alt="Original Image Preview">
+                            </div>
+
+                            <!-- Compressed image layer (clipped by inline width, set by JS slider) -->
+                            <div class="uit-img-layer uit-img-overlay" id="imgOverlay">
+                                <img id="imgComp"
+                                     src="../../assets/tools/img/img-compressor/img/placeholder-preview.webp"
+                                     alt="Compressed Image Preview">
+                            </div>
+
+                            <!-- Accessible invisible range input overlaid on preview for dragging -->
+                            <label for="compareSlider" class="visually-hidden">Comparison Slider</label>
+                            <input type="range" id="compareSlider"
+                                   min="0" max="100" value="50"
+                                   class="uit-compare-range"
+                                   aria-label="Drag to compare original vs compressed image">
+
+                            <!-- Visual drag handle indicator -->
+                            <div class="uit-compare-handle" id="sliderHandle">
+                                <i class="fa-solid fa-arrows-left-right"></i>
+                            </div>
+                        </div><!-- /.uit-preview-wrapper -->
+
+                        <!-- ── FILE SIZE STATS STRIP ── -->
+                        <div class="uit-stats-strip">
+                            <!-- Original file size -->
+                            <div class="uit-stat-cell">
+                                <div class="uit-stat-label">ORIGINAL</div>
+                                <div id="sizeOrig" class="uit-stat-value">-</div>
+                            </div>
+                            <!-- Compressed file size (highlighted) -->
+                            <div class="uit-stat-cell uit-stat-cell--optimized">
+                                <div class="uit-stat-label text-accent-cyan">OPTIMIZED</div>
+                                <div id="sizeNew" class="uit-stat-value">-</div>
+                            </div>
+                            <!-- Savings percentage -->
+                            <div class="uit-stat-cell uit-stat-cell--saved">
+                                <div class="uit-stat-label text-success">SAVED</div>
+                                <div id="sizeSaved" class="uit-stat-value">0%</div>
+                            </div>
+                        </div><!-- /.uit-stats-strip -->
+
+                    </div><!-- /.uit-control-card (Preview) -->
+                </div><!-- /.uit-preview-col -->
+
+            </div><!-- /.uit-workspace-grid -->
+
+            <!-- ════════════════════════════════════════════════
+                 CYBER PROGRESS PANEL
+                 Reveals during batch processing to display
+                 per-file progress, percentage and status logs.
+            ════════════════════════════════════════════════ -->
+            <div id="cyberProgressPanel" class="uit-progress-panel">
+                <div class="uit-progress-header">
+                    <span><i class="fa-solid fa-microchip"></i> CORE_PROCESSING</span>
+                    <span id="cyberPercentText" class="uit-progress-pct">0%</span>
+                </div>
+                <div class="uit-progress-track">
+                    <div id="cyberProgressBar" class="uit-progress-fill"></div>
+                </div>
+                <div id="cyberStatusText" class="uit-status-log">SYSTEM READY...</div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════
+                 PROCESSED RESULTS LIST
+                 Dynamically populated by JS after batch processing.
+                 Each row has a filename, size, and mini download btn.
+            ════════════════════════════════════════════════ -->
+            <div id="resultList" class="uit-result-list" style="display:none;"></div>
+
+        </div><!-- /.container -->
+
+        <!-- ════════════════════════════════════════════════════
+             AD SLOT — BOTTOM BANNER
+        ════════════════════════════════════════════════════ -->
+        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
+
+        <!-- ════════════════════════════════════════════════════
+             SEO CONTENT SECTION
+             Provides ranking-quality editorial content for
+             Google indexing: architecture overview, workflow
+             guide, and FAQ — all in structured article markup.
+        ════════════════════════════════════════════════════ -->
+        <section class="info-section-wrapper">
+
+            <!-- ── Article 1: Architecture / Privacy ── -->
+            <article class="info-card">
+                <h2><i class="fa-solid fa-layer-group"></i> Ultra Image Titanium: The Architecture of Privacy</h2>
+                <p>
+                    In an era where data sovereignty is paramount, <strong>Ultra Image Titanium</strong> redefines
+                    image processing. Unlike traditional SaaS tools that offload processing to remote cloud servers,
+                    Titanium operates as a <strong>Client-Side Wasm Application</strong>.
+                </p>
+                <p style="margin-top:15px;">
+                    This means the compression engine (Algorithm: <em>Titanium-Quant</em>) is downloaded once to
+                    your browser's temporary memory. From that moment on, every pixel is manipulated locally on your
+                    CPU/GPU. Your sensitive photos, contracts, or IDs <strong>never leave your device</strong>.
+                    This architecture ensures <span class="tech-highlight">Zero-Knowledge Privacy</span> and
+                    enterprise-grade security compliance.
+                </p>
+            </article>
+
+            <!-- ── Article 2: Workflow Guide (numbered steps) ── -->
+            <article class="info-card">
+                <h2><i class="fa-solid fa-book-open"></i> Advanced Workflow Guide</h2>
+
+                <!-- Step-by-step guide grid using shared bgr-step classes for style reuse -->
+                <div class="uit-workflow-steps">
+
+                    <div class="uit-workflow-step">
+                        <div class="bgr-step-num">1</div>
+                        <div>
+                            <h3 class="uit-step-title">Multi-Threaded Ingestion</h3>
+                            <p class="uit-step-body">
+                                Drag &amp; drop up to 50 files. Our engine utilizes <strong>Web Workers</strong>
+                                to parse JPG, PNG, WEBP, and even Apple's High-Efficiency Image Container (HEIC)
+                                concurrently without freezing your UI.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="uit-workflow-step">
+                        <div class="bgr-step-num">2</div>
+                        <div>
+                            <h3 class="uit-step-title">Binary Search Optimization</h3>
+                            <p class="uit-step-body">
+                                Define a hard limit (e.g., "50 KB"). The core engine performs a binary search
+                                iteration, compressing and re-measuring the blob until it hits your exact target
+                                size with the highest possible visual fidelity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="uit-workflow-step">
+                        <div class="bgr-step-num">3</div>
+                        <div>
+                            <h3 class="uit-step-title">Secure Metadata Scrubbing</h3>
+                            <p class="uit-step-body">
+                                Toggle "Scrub GPS/EXIF" to automatically strip geolocation tags, camera models,
+                                and shutter settings — crucial for photographers sharing work publicly.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="uit-workflow-step">
+                        <div class="bgr-step-num">4</div>
+                        <div>
+                            <h3 class="uit-step-title">Smart Export</h3>
+                            <p class="uit-step-body">
+                                Download optimized files individually, as a bulk <strong>ZIP archive</strong>,
+                                or compile them into a <strong>PDF document</strong>. The PDF engine automatically
+                                detects landscape vs. portrait orientation for a professional layout.
+                            </p>
+                        </div>
+                    </div>
+
+                </div><!-- /.uit-workflow-steps -->
+            </article>
+
+            <!-- ── Article 3: FAQ ── -->
+            <article class="info-card">
+                <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions (FAQ)</h2>
+
+                <div class="uit-faq-list">
+
+                    <div class="uit-faq-item">
+                        <h3 class="uit-faq-q">Q: How does the HEIC conversion work?</h3>
+                        <p class="uit-faq-a">
+                            We utilize a Wasm-compiled decoder (<span class="tech-highlight">heic2any</span>)
+                            that runs directly in your browser tab. It converts the HEIC buffer to a raw JPEG
+                            blob before our compression engine takes over. No data is sent to a backend.
+                        </p>
+                    </div>
+
+                    <div class="uit-faq-item">
+                        <h3 class="uit-faq-q">Q: Why is there no "Upload" progress bar?</h3>
+                        <p class="uit-faq-a">
+                            Because there is no upload! Files are read from your disk into the browser's
+                            allocated RAM instantly. The progress bar you see is for <strong>CPU Processing</strong>,
+                            not data transfer.
+                        </p>
+                    </div>
+
+                </div><!-- /.uit-faq-list -->
+            </article>
+
+        </section><!-- /.info-section-wrapper -->
+
+        <!-- ════════════════════════════════════════════════════
+             RELATED TOOLS GRID
+             Dynamically injected by related-tools.js based on
+             data-category and data-current-page attributes.
+        ════════════════════════════════════════════════════ -->
+        <div class="container" style="margin-top:50px;">
+            <!--
+                IMPORTANT:
+                data-category    → category of this tool ("img")
+                data-current-page → filename of this page
+            -->
+            <div id="dynamic-related-tools"
+                 data-category="img"
+                 data-current-page="img-compressor.html">
+            </div>
+        </div>
+        <script type="module" src="../../assets/js/related-tools.js"></script>
+
+  <!-- Tools Comment Section -->  <section class="ttw-comments-section animated-entry delay-2" aria-label="User Discussion">     <div class="container">         <div class="trusted-comments-widget" data-page-id="auto">             <div class="ttw-skeleton-loader" style="text-align: center; padding: 40px; color: var(--text-muted);">                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-cyan);"></i>                 <p style="margin-top: 15px; font-weight: 500;">Initializing secure discussion portal...</p>             </div>         </div>     </div> </section>       </main><!-- /main -->
+
+    <!-- ════════════════════════════════════════════════════════
+         GLOBAL FOOTER — injected by global.js (DO NOT TOUCH)
+    ════════════════════════════════════════════════════════ -->
+    <footer id="global-footer" class="cyber-footer"></footer>
+
+    <!-- ════════════════════════════════════════════════════════
+         CROPPER MODAL
+         Full-screen overlay with Cropper.js integration.
+         Confirm (Apply Crop) or cancel the crop operation.
+    ════════════════════════════════════════════════════════ -->
+    <div id="cropModal" class="uit-crop-modal"
+         role="dialog" aria-modal="true" aria-label="Image Cropping Interface">
+
+        <!-- Cropper.js target image inside a dark canvas area -->
+        <div class="uit-crop-canvas-wrap">
+            <img id="cropTarget" src="" alt="Crop Target" style="max-width:100%; display:block;">
+        </div>
+
+        <!-- Modal action buttons -->
+        <div class="btn-area" style="justify-content:flex-end;">
+            <button class="btn btn-secondary" id="btnCancelCrop">Cancel</button>
+            <button class="btn btn-primary"   id="btnApplyCrop" ><i class="fa-solid fa-check"></i> Apply Crop</button>
+        </div>
+
+    </div><!-- /#cropModal -->
+
+    <!-- ════════════════════════════════════════════════════════
+         GLOBAL JS INFRASTRUCTURE (DO NOT TOUCH)
+    ════════════════════════════════════════════════════════ -->
+    <script src="../../assets/js/ads-manager.js"></script>
+    <script type="module" src="../../assets/js/global.js"></script>
+
+    <!-- ════════════════════════════════════════════════════════
+         TOOL ENGINE SCRIPT
+    ════════════════════════════════════════════════════════ -->
+    <script src="../../assets/tools/img/img-compressor/script.js"></script>
+
+  <!-- ── Comment js ── --> <script type="module" src="../../assets/js/comments.js" defer></script>  </body>
+</html>
