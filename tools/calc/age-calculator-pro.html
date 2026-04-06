@@ -23,34 +23,79 @@
 
     <!-- ═══════════════════════════════════════════════════
          [USER CONFIG] SEO SETTINGS
+         All branding fields (title suffix, og:site_name, author,
+         canonical URL, og:url) are injected dynamically by
+         meta-manager.js using the buyer's Firebase config.
+         Only edit the tool-specific fields below.
          ═══════════════════════════════════════════════════ -->
-    <title>Ultra Age AI: God Mode Age Calculator &amp; Life Analytics (Free)</title>
-    <meta name="title"       content="Ultra Age AI: God Mode Age Calculator &amp; Life Analytics (Free)">
-    <meta name="description" content="Calculate your exact age, biological stats, and cosmic age in real-time. Ultra Age AI provides 100% client-side privacy with advanced life analytics and death timer.">
-    <meta name="keywords"    content="age calculator pro, biological age checker, life progress bar, death timer, zodiac finder, cosmic age calculator, ultra age ai, online tools bd, trusted tools web">
-    <meta name="author"      content="MD KAWSAR">
+
+    <!--
+        TITLE: Pure tool name only — NO brand suffix.
+        meta-manager.js appends " - ${SITE_CONFIG.brandName}" automatically.
+    -->
+    <title>Ultra Age AI: God Mode Age Calculator</title>
+    <meta name="title"       content="Ultra Age AI: God Mode Age Calculator">
+
+    <!--
+        DESCRIPTION: 150-160 characters, CTR-focused.
+        Answers the user's search intent ("how old am I exactly?")
+        and signals unique value (biological stats, cosmic age, privacy).
+    -->
+    <meta name="description" content="Find your exact age in seconds, heartbeats, and cosmic years. Free age calculator with biological stats, life progress bar &amp; 100% client-side privacy.">
+
+    <!--
+        KEYWORDS: Long-tail, tool-specific only.
+        Brand names removed — Google ignores keywords, but buyers
+        should not see competitor/original brand names here.
+    -->
+    <meta name="keywords"    content="exact age calculator, age in seconds calculator, biological age checker, cosmic age calculator, life progress bar, heartbeats since birth, age in dog years, leap year age calculator, death timer online, zodiac age finder, how many days old am i, seconds alive counter">
+
+    <!--
+        AUTHOR: Left for meta-manager.js to overwrite from SITE_CONFIG.author.
+        The static value here acts as an immediate fallback before Firebase loads.
+    -->
+    <meta name="author"      content="">
     <meta name="robots"      content="index, follow, max-image-preview:large">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://trustedtoolsweb.com/calc-age-calculator.html" />
+    <!--
+        CANONICAL: Left blank — meta-manager.js writes window.location.href
+        (stripped of query strings) to guarantee it always matches the buyer's domain.
+    -->
+    <link rel="canonical" href="" />
 
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type"         content="website">
-    <meta property="og:url"          content="https://trustedtoolsweb.com/calc-age-calculator.html">
-    <meta property="og:title"        content="Ultra Age AI - God Mode Analytics">
-    <meta property="og:description"  content="Discover your exact age down to the second, consumption stats, and bio-rhythms. 100% Client-side privacy.">
-    <meta property="og:image"        content="https://trustedtoolsweb.com/assets/tools/calc/calc-age-calculator/og-banner.webp">
+    <!--
+        og:url: Left blank — meta-manager.js injects the clean current URL.
+    -->
+    <meta property="og:url"          content="">
+    <meta property="og:title"        content="Ultra Age AI: God Mode Age Calculator">
+    <meta property="og:description"  content="Calculate your exact age in seconds, heartbeats &amp; cosmic years. Biological stats, life progress bar, and zodiac — 100% client-side privacy.">
+    <!--
+        og:image: Relative path only — meta-manager.js prepends SITE_CONFIG.baseUrl.
+        Do NOT include the root domain here.
+    -->
+    <meta property="og:image"        content="assets/tools/calc/calc-age-calculator/og-banner.webp">
     <meta property="og:image:width"  content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt"    content="Ultra Age AI Dashboard Preview">
-    <meta property="og:site_name"    content="Trusted Tools Web">
+    <meta property="og:image:alt"    content="Ultra Age AI God Mode Dashboard Preview">
+    <!--
+        og:site_name: Left blank — meta-manager.js injects SITE_CONFIG.ogSiteName.
+    -->
+    <meta property="og:site_name"    content="">
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:url"         content="https://trustedtoolsweb.com/calc-age-calculator.html">
-    <meta name="twitter:title"       content="Ultra Age AI - God Mode Analytics">
-    <meta name="twitter:description" content="Calculate your life analytics, biological age, and cosmic time instantly. Privacy-first age calculator.">
-    <meta name="twitter:image"       content="https://trustedtoolsweb.com/assets/tools/calc/calc-age-calculator/og-banner.webp">
+    <!--
+        twitter:url, twitter:site, twitter:creator: All injected by meta-manager.js.
+    -->
+    <meta name="twitter:url"         content="">
+    <meta name="twitter:title"       content="Ultra Age AI: God Mode Age Calculator">
+    <meta name="twitter:description" content="Calculate your exact age in seconds, heartbeats &amp; cosmic years. Biological stats, life progress bar, and zodiac — 100% client-side privacy.">
+    <!--
+        twitter:image: Relative path — meta-manager.js prepends baseUrl.
+    -->
+    <meta name="twitter:image"       content="assets/tools/calc/calc-age-calculator/og-banner.webp">
 
     <!-- Favicon -->
     <link rel="icon"             type="image/webp" href="../../assets/tools/calc/calc-age-calculator/favicon.webp">
@@ -66,13 +111,23 @@
      <link rel="stylesheet" href="../../assets/css/global.css">
 
     <!-- Schema Markup (JSON-LD) -->
+    <!--
+        WHITE-LABEL NOTES:
+        • "url"         → left "" — meta-manager.js syncs with window.location.href
+        • "author.name" → left "" — meta-manager.js syncs with SITE_CONFIG.author
+        • "author.url"  → left "" — meta-manager.js syncs with SITE_CONFIG.baseUrl
+        • "screenshot"  → relative path — meta-manager.js resolves to absolute URL
+
+        SEO FOCUS: featureList is rich and keyword-dense for Google Rich Snippets.
+        Do NOT change @type, applicationCategory, offers, or featureList.
+    -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Ultra Age AI God Mode",
-        "url": "https://trustedtoolsweb.com/calc-age-calculator.html",
-        "description": "An advanced client-side age analytics tool providing biological, cosmic, and consumption statistics in real-time.",
+        "name": "Ultra Age AI: God Mode Age Calculator",
+        "url": "",
+        "description": "An advanced client-side age analytics tool. Enter your date of birth to instantly calculate your exact age in years, months, days, hours, minutes, and seconds — alongside biological stats (heartbeats, breaths, blood pumped), consumption metrics, cosmic age on every planet, zodiac sign, and a real-time life progress bar. 100% privacy-first: no data ever leaves your device.",
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "All",
         "browserRequirements": "Requires JavaScript",
@@ -85,11 +140,25 @@
         },
         "author": {
             "@type": "Person",
-            "name": "MD KAWSAR",
-            "url": "https://trustedtoolsweb.com"
+            "name": "",
+            "url": ""
         },
-        "featureList": "Real-time age calculation, Biological stats, Cosmic age, Leap year correction, Privacy focused",
-        "screenshot": "https://trustedtoolsweb.com/assets/tools/calc/calc-age-calculator/og-banner.webp"
+        "featureList": [
+            "Real-time age calculation with leap year correction",
+            "Exact age in years, months, weeks, days, hours, minutes, seconds",
+            "Live seconds-alive counter updated every second",
+            "Life progress bar based on 80-year baseline",
+            "Biological stats: heartbeats, breaths taken, blood pumped, hair growth",
+            "Consumption analytics: food eaten, water drank, steps walked, dreams seen",
+            "Cosmic age calculator using NASA orbital data for Mercury, Venus, Mars, Jupiter",
+            "Dog years and cat years using non-linear ln-scale formula",
+            "Zodiac sign, birthstone, and seasonal analytics",
+            "Next birthday countdown",
+            "Export full life report as .txt file",
+            "100% client-side processing — birth date never sent to any server",
+            "Works offline after initial page load"
+        ],
+        "screenshot": "assets/tools/calc/calc-age-calculator/og-banner.webp"
     }
     </script>
 
@@ -489,7 +558,7 @@
                             <strong>Estimation Logic:</strong> Consumption metrics (Food, Water, Steps) are derived from standard human activity models. Your actual lifestyle and habits may vary significantly from these estimated figures.
                         </li>
                         <li>
-                            <strong>No Liability:</strong> Trusted Tools Web is not responsible for any decisions made based on these calculations. The "Death Timer" or "Life Progress" features are hypothetical visualizations based on an average human lifespan of 80 years.
+                            <strong>No Liability:</strong> The tool operator is not responsible for any decisions made based on these calculations. The "Death Timer" or "Life Progress" features are hypothetical visualizations based on an average human lifespan of 80 years.
                         </li>
                     </ul>
                 </div>
@@ -508,7 +577,7 @@
                 -->
                 <div id="dynamic-related-tools"
                      data-category="calc"
-                     data-current-page="calc-age-calculator.html">
+                     data-current-page="age-calculator-pro.html">
                 </div>
             </div>
             <script type="module" src="../../assets/js/related-tools.js"></script>

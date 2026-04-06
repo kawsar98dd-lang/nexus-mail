@@ -1,83 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Dashboard — Trusted Tools Web Admin</title>
   <meta name="robots" content="noindex, nofollow" />
-
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
+  
   <!-- Google Fonts: Syne (display) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
-
+  
   <style>
     /* ── CSS Custom Properties ───────────────────────────────── */
     :root {
-      --accent:       #6ee7b7;
-      --accent-dim:   #34d399;
-      --accent-glow:  rgba(52, 211, 153, 0.18);
-      --danger:       #f87171;
-      --warn:         #fbbf24;
-      --bg:           #060d18;
-      --bg-2:         #0b1628;
-      --bg-3:         #0f1e35;
-      --surface:      rgba(11, 22, 40, 0.9);
-      --border:       rgba(110, 231, 183, 0.10);
+      --accent: #6ee7b7;
+      --accent-dim: #34d399;
+      --accent-glow: rgba(52, 211, 153, 0.18);
+      --danger: #f87171;
+      --warn: #fbbf24;
+      --bg: #060d18;
+      --bg-2: #0b1628;
+      --bg-3: #0f1e35;
+      --surface: rgba(11, 22, 40, 0.9);
+      --border: rgba(110, 231, 183, 0.10);
       --border-hover: rgba(110, 231, 183, 0.25);
       --text-primary: #e2e8f0;
-      --text-muted:   #64748b;
-      --text-dim:     #94a3b8;
-      --sidebar-w:    260px;
-      --header-h:     64px;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --sidebar-w: 260px;
+      --header-h: 64px;
     }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
+    
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html,
+    body {
       height: 100%;
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text-primary);
       overflow-x: hidden;
     }
-
+    
     /* Scrollbar styling */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(110,231,183,0.15); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(110,231,183,0.3); }
-
-    h1, h2, h3, h4, .font-display { font-family: 'Syne', sans-serif; }
-
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(110, 231, 183, 0.15);
+      border-radius: 3px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(110, 231, 183, 0.3);
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    .font-display {
+      font-family: 'Syne', sans-serif;
+    }
+    
     /* ── Page-level shimmer guard (prevents flash before auth check) ── */
     #pageGuard {
-      position: fixed; inset: 0; z-index: 9999;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
       background: var(--bg);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: opacity 0.4s ease;
     }
-    #pageGuard.hidden { opacity: 0; pointer-events: none; }
-
+    
+    #pageGuard.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
     .guard-spinner {
-      width: 36px; height: 36px;
-      border: 2px solid rgba(110,231,183,0.15);
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(110, 231, 183, 0.15);
       border-top-color: var(--accent-dim);
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
+    
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
     /* ── Layout shell ────────────────────────────────────────── */
     .app-shell {
       display: flex;
       min-height: 100vh;
     }
-
+    
     /* ── Sidebar ─────────────────────────────────────────────── */
     .sidebar {
       width: var(--sidebar-w);
@@ -87,23 +128,27 @@
       display: flex;
       flex-direction: column;
       position: fixed;
-      top: 0; left: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      bottom: 0;
       z-index: 200;
       transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
       overflow-y: auto;
       overflow-x: hidden;
     }
-
+    
     /* Sidebar top glow */
     .sidebar::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 180px;
-      background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(52,211,153,0.07) 0%, transparent 70%);
+      background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(52, 211, 153, 0.07) 0%, transparent 70%);
       pointer-events: none;
     }
-
+    
     .sidebar-brand {
       display: flex;
       align-items: center;
@@ -112,18 +157,25 @@
       border-bottom: 1px solid var(--border);
       flex-shrink: 0;
     }
-
+    
     .brand-icon {
-      width: 38px; height: 38px;
-      background: linear-gradient(135deg, rgba(52,211,153,0.2), rgba(99,102,241,0.15));
-      border: 1px solid rgba(110,231,183,0.2);
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(99, 102, 241, 0.15));
+      border: 1px solid rgba(110, 231, 183, 0.2);
       border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-
-    .brand-text { flex: 1; min-width: 0; }
+    
+    .brand-text {
+      flex: 1;
+      min-width: 0;
+    }
+    
     .brand-text .name {
       font-family: 'Syne', sans-serif;
       font-size: 0.9rem;
@@ -133,6 +185,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    
     .brand-text .label {
       font-size: 0.65rem;
       color: var(--accent);
@@ -140,7 +193,7 @@
       text-transform: uppercase;
       font-weight: 500;
     }
-
+    
     /* Nav section label */
     .nav-label {
       font-size: 0.63rem;
@@ -150,7 +203,7 @@
       color: var(--text-muted);
       padding: 1.25rem 1.25rem 0.4rem;
     }
-
+    
     /* Nav items */
     .nav-item {
       display: flex;
@@ -171,48 +224,54 @@
       width: calc(100% - 1.5rem);
       text-align: left;
     }
-
+    
     .nav-item:hover {
-      background: rgba(110,231,183,0.06);
+      background: rgba(110, 231, 183, 0.06);
       color: var(--text-primary);
     }
-
+    
     .nav-item.active {
-      background: rgba(52,211,153,0.1);
+      background: rgba(52, 211, 153, 0.1);
       color: var(--accent);
       font-weight: 500;
     }
-
+    
     .nav-item.active::before {
       content: '';
       position: absolute;
       left: -0.75rem;
-      top: 50%; transform: translateY(-50%);
-      width: 3px; height: 60%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 60%;
       background: var(--accent-dim);
       border-radius: 0 2px 2px 0;
     }
-
+    
     .nav-icon {
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
       flex-shrink: 0;
       opacity: 0.75;
     }
+    
     .nav-item.active .nav-icon,
-    .nav-item:hover .nav-icon { opacity: 1; }
-
+    .nav-item:hover .nav-icon {
+      opacity: 1;
+    }
+    
     /* Nav badge (for counts) */
     .nav-badge {
       margin-left: auto;
-      background: rgba(248,113,113,0.15);
+      background: rgba(248, 113, 113, 0.15);
       color: var(--danger);
       font-size: 0.65rem;
       font-weight: 600;
       padding: 0.1rem 0.4rem;
       border-radius: 20px;
-      border: 1px solid rgba(248,113,113,0.2);
+      border: 1px solid rgba(248, 113, 113, 0.2);
     }
-
+    
     /* Sidebar footer */
     .sidebar-footer {
       margin-top: auto;
@@ -220,29 +279,36 @@
       border-top: 1px solid var(--border);
       flex-shrink: 0;
     }
-
+    
     .user-card {
       display: flex;
       align-items: center;
       gap: 0.65rem;
       padding: 0.6rem 0.75rem;
       border-radius: 10px;
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
     }
-
+    
     .user-avatar {
-      width: 32px; height: 32px;
+      width: 32px;
+      height: 32px;
       border-radius: 8px;
       background: linear-gradient(135deg, #34d399, #6366f1);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 0.8rem;
       font-weight: 700;
       color: #fff;
       flex-shrink: 0;
     }
-
-    .user-info { flex: 1; min-width: 0; }
+    
+    .user-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
     .user-email {
       font-size: 0.72rem;
       color: var(--text-dim);
@@ -250,21 +316,23 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    
     .user-role {
       font-size: 0.62rem;
       color: var(--accent);
       letter-spacing: 0.06em;
     }
-
+    
     /* ── Mobile overlay ──────────────────────────────────────── */
     .sidebar-overlay {
       display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.6);
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(4px);
       z-index: 199;
     }
-
+    
     /* ── Main content wrapper ────────────────────────────────── */
     .main-wrap {
       flex: 1;
@@ -274,11 +342,11 @@
       min-height: 100vh;
       transition: margin-left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
-
+    
     /* ── Top header ──────────────────────────────────────────── */
     .top-header {
       height: var(--header-h);
-      background: rgba(6,13,24,0.85);
+      background: rgba(6, 13, 24, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
@@ -290,7 +358,7 @@
       top: 0;
       z-index: 100;
     }
-
+    
     /* Hamburger */
     .hamburger {
       display: none;
@@ -301,14 +369,16 @@
       background: none;
       border: none;
     }
+    
     .hamburger span {
       display: block;
-      width: 20px; height: 2px;
+      width: 20px;
+      height: 2px;
       background: var(--text-dim);
       border-radius: 2px;
       transition: transform 0.25s, opacity 0.25s;
     }
-
+    
     /* Breadcrumb */
     .breadcrumb {
       display: flex;
@@ -317,12 +387,16 @@
       font-size: 0.82rem;
       color: var(--text-muted);
     }
+    
     .breadcrumb .crumb-active {
       color: var(--text-primary);
       font-weight: 500;
     }
-    .breadcrumb svg { opacity: 0.4; }
-
+    
+    .breadcrumb svg {
+      opacity: 0.4;
+    }
+    
     /* Header right actions */
     .header-right {
       margin-left: auto;
@@ -330,25 +404,27 @@
       align-items: center;
       gap: 0.75rem;
     }
-
+    
     .header-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px; height: 36px;
+      width: 36px;
+      height: 36px;
       border-radius: 9px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
       color: var(--text-dim);
       cursor: pointer;
       transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
+    
     .header-btn:hover {
       background: var(--accent-glow);
       border-color: var(--border-hover);
       color: var(--accent);
     }
-
+    
     /* Live indicator dot */
     .live-dot {
       display: flex;
@@ -357,28 +433,40 @@
       font-size: 0.73rem;
       color: var(--accent-dim);
       padding: 0.3rem 0.7rem;
-      background: rgba(52,211,153,0.08);
-      border: 1px solid rgba(52,211,153,0.18);
+      background: rgba(52, 211, 153, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.18);
       border-radius: 20px;
     }
+    
     .live-dot .dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       background: var(--accent-dim);
       border-radius: 50%;
       animation: pulse-dot 2s ease infinite;
     }
+    
     @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.5; transform: scale(0.8); }
-    }
 
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+    
     /* ── Content area ────────────────────────────────────────── */
     .content-area {
       flex: 1;
       padding: 1.75rem 1.5rem;
       max-width: 900px;
     }
-
+    
     /* Section panel */
     .panel {
       background: var(--bg-2);
@@ -388,71 +476,94 @@
       margin-bottom: 1.25rem;
       animation: panelIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
+    
     @keyframes panelIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-
+    
     .panel-head {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       padding: 1.1rem 1.4rem;
       border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
+      background: rgba(255, 255, 255, 0.02);
     }
+    
     .panel-head-icon {
-      width: 34px; height: 34px;
+      width: 34px;
+      height: 34px;
       border-radius: 9px;
-      background: rgba(52,211,153,0.1);
-      border: 1px solid rgba(110,231,183,0.18);
-      display: flex; align-items: center; justify-content: center;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(110, 231, 183, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent);
       flex-shrink: 0;
     }
+    
     .panel-title {
       font-family: 'Syne', sans-serif;
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--text-primary);
     }
+    
     .panel-sub {
       font-size: 0.78rem;
       color: var(--text-muted);
       margin-top: 0.1rem;
     }
-
-    .panel-body { padding: 1.4rem; }
-
+    
+    .panel-body {
+      padding: 1.4rem;
+    }
+    
     /* ── Form elements ───────────────────────────────────────── */
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
-    .form-grid .span-2 { grid-column: 1 / -1; }
-
-    .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
-
+    
+    .form-grid .span-2 {
+      grid-column: 1 / -1;
+    }
+    
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    
     .field-label {
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: rgba(110,231,183,0.7);
+      color: rgba(110, 231, 183, 0.7);
     }
-
+    
     .field-hint {
       font-size: 0.73rem;
       color: var(--text-muted);
       margin-top: -0.2rem;
     }
-
+    
     .field-input,
     .field-textarea {
       width: 100%;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.09);
       border-radius: 10px;
       padding: 0.65rem 0.9rem;
       color: var(--text-primary);
@@ -461,16 +572,25 @@
       outline: none;
       transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     }
+    
     .field-input:focus,
     .field-textarea:focus {
-      border-color: rgba(110,231,183,0.4);
-      background: rgba(255,255,255,0.055);
-      box-shadow: 0 0 0 3px rgba(52,211,153,0.08);
+      border-color: rgba(110, 231, 183, 0.4);
+      background: rgba(255, 255, 255, 0.055);
+      box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.08);
     }
+    
     .field-input::placeholder,
-    .field-textarea::placeholder { color: rgba(100,116,139,0.4); }
-    .field-textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
-
+    .field-textarea::placeholder {
+      color: rgba(100, 116, 139, 0.4);
+    }
+    
+    .field-textarea {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.6;
+    }
+    
     /* Character counter */
     .char-counter {
       font-size: 0.7rem;
@@ -479,9 +599,15 @@
       margin-top: 0.25rem;
       transition: color 0.2s;
     }
-    .char-counter.warn  { color: var(--warn); }
-    .char-counter.over  { color: var(--danger); }
-
+    
+    .char-counter.warn {
+      color: var(--warn);
+    }
+    
+    .char-counter.over {
+      color: var(--danger);
+    }
+    
     /* Logo preview */
     .logo-preview-wrap {
       display: flex;
@@ -489,20 +615,26 @@
       gap: 0.75rem;
       margin-top: 0.5rem;
     }
+    
     .logo-preview {
-      width: 48px; height: 48px;
+      width: 48px;
+      height: 48px;
       border-radius: 10px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       object-fit: contain;
       display: none;
     }
-    .logo-preview.visible { display: block; }
+    
+    .logo-preview.visible {
+      display: block;
+    }
+    
     .logo-preview-label {
       font-size: 0.73rem;
       color: var(--text-muted);
     }
-
+    
     /* ── Form actions ────────────────────────────────────────── */
     .form-actions {
       display: flex;
@@ -512,7 +644,7 @@
       border-top: 1px solid var(--border);
       margin-top: 1.25rem;
     }
-
+    
     .btn-save {
       display: inline-flex;
       align-items: center;
@@ -528,18 +660,29 @@
       border-radius: 10px;
       cursor: pointer;
       transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 16px rgba(52,211,153,0.3);
+      box-shadow: 0 4px 16px rgba(52, 211, 153, 0.3);
     }
-    .btn-save:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(52,211,153,0.4); }
-    .btn-save:active:not(:disabled) { transform: translateY(0); }
-    .btn-save:disabled { opacity: 0.55; cursor: not-allowed; }
-
+    
+    .btn-save:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(52, 211, 153, 0.4);
+    }
+    
+    .btn-save:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    
+    .btn-save:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    
     .btn-reset {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
       padding: 0.65rem 1.1rem;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text-dim);
       font-family: 'DM Sans', sans-serif;
       font-size: 0.875rem;
@@ -549,14 +692,18 @@
       cursor: pointer;
       transition: background 0.15s, color 0.15s;
     }
-    .btn-reset:hover { background: rgba(255,255,255,0.07); color: var(--text-primary); }
-
+    
+    .btn-reset:hover {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
+    }
+    
     .save-status {
       font-size: 0.78rem;
       color: var(--text-muted);
       margin-left: auto;
     }
-
+    
     /* ── Stats cards (Dashboard overview) ───────────────────── */
     .stats-grid {
       display: grid;
@@ -564,7 +711,7 @@
       gap: 1rem;
       margin-bottom: 1.25rem;
     }
-
+    
     .stat-card {
       background: var(--bg-2);
       border: 1px solid var(--border);
@@ -574,17 +721,29 @@
       position: relative;
       overflow: hidden;
     }
+    
     .stat-card::after {
       content: '';
       position: absolute;
-      top: 0; right: 0;
-      width: 60px; height: 60px;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
       background: radial-gradient(circle at 100% 0%, var(--accent-glow), transparent 70%);
     }
-    .stat-card:nth-child(2) { animation-delay: 0.05s; }
-    .stat-card:nth-child(3) { animation-delay: 0.1s; }
-    .stat-card:nth-child(4) { animation-delay: 0.15s; }
-
+    
+    .stat-card:nth-child(2) {
+      animation-delay: 0.05s;
+    }
+    
+    .stat-card:nth-child(3) {
+      animation-delay: 0.1s;
+    }
+    
+    .stat-card:nth-child(4) {
+      animation-delay: 0.15s;
+    }
+    
     .stat-label {
       font-size: 0.7rem;
       color: var(--text-muted);
@@ -593,6 +752,7 @@
       font-weight: 600;
       margin-bottom: 0.4rem;
     }
+    
     .stat-value {
       font-family: 'Syne', sans-serif;
       font-size: 1.6rem;
@@ -600,12 +760,13 @@
       color: var(--text-primary);
       line-height: 1;
     }
+    
     .stat-tag {
       font-size: 0.68rem;
       color: var(--accent-dim);
       margin-top: 0.3rem;
     }
-
+    
     /* ── Toast notifications ─────────────────────────────────── */
     #toastContainer {
       position: fixed;
@@ -617,7 +778,7 @@
       gap: 0.6rem;
       pointer-events: none;
     }
-
+    
     .toast {
       display: flex;
       align-items: flex-start;
@@ -629,52 +790,98 @@
       font-size: 0.85rem;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
       pointer-events: all;
       animation: toastIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
-    .toast.out { animation: toastOut 0.25s ease forwards; }
-
+    
+    .toast.out {
+      animation: toastOut 0.25s ease forwards;
+    }
+    
     @keyframes toastIn {
-      from { opacity: 0; transform: translateX(20px) scale(0.96); }
-      to   { opacity: 1; transform: translateX(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.96);
+      }
+      
+      to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
     }
+    
     @keyframes toastOut {
-      to { opacity: 0; transform: translateX(20px) scale(0.95); }
+      to {
+        opacity: 0;
+        transform: translateX(20px) scale(0.95);
+      }
     }
-
+    
     .toast-success {
       background: rgba(6, 30, 20, 0.92);
-      border: 1px solid rgba(52,211,153,0.3);
+      border: 1px solid rgba(52, 211, 153, 0.3);
       color: #6ee7b7;
     }
+    
     .toast-error {
       background: rgba(30, 6, 6, 0.92);
-      border: 1px solid rgba(248,113,113,0.3);
+      border: 1px solid rgba(248, 113, 113, 0.3);
       color: #fca5a5;
     }
+    
     .toast-info {
       background: rgba(6, 15, 30, 0.92);
-      border: 1px solid rgba(99,102,241,0.3);
+      border: 1px solid rgba(99, 102, 241, 0.3);
       color: #a5b4fc;
     }
-
-    .toast-icon { flex-shrink: 0; margin-top: 1px; }
-    .toast-body { flex: 1; }
-    .toast-title { font-weight: 600; font-size: 0.83rem; margin-bottom: 0.1rem; }
-    .toast-msg   { font-size: 0.78rem; opacity: 0.8; line-height: 1.4; }
+    
+    .toast-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    
+    .toast-body {
+      flex: 1;
+    }
+    
+    .toast-title {
+      font-weight: 600;
+      font-size: 0.83rem;
+      margin-bottom: 0.1rem;
+    }
+    
+    .toast-msg {
+      font-size: 0.78rem;
+      opacity: 0.8;
+      line-height: 1.4;
+    }
+    
     .toast-close {
-      background: none; border: none; cursor: pointer;
-      color: inherit; opacity: 0.5; flex-shrink: 0;
-      padding: 0; line-height: 1;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.5;
+      flex-shrink: 0;
+      padding: 0;
+      line-height: 1;
       transition: opacity 0.15s;
     }
-    .toast-close:hover { opacity: 1; }
-
+    
+    .toast-close:hover {
+      opacity: 1;
+    }
+    
     /* ── Content section tabs (future-proof) ─────────────────── */
-    .section-view { display: none; }
-    .section-view.active { display: block; }
-
+    .section-view {
+      display: none;
+    }
+    
+    .section-view.active {
+      display: block;
+    }
+    
     /* ── Coming soon placeholder ─────────────────────────────── */
     .coming-soon {
       display: flex;
@@ -685,88 +892,129 @@
       text-align: center;
       gap: 0.75rem;
     }
+    
     .coming-soon-icon {
-      width: 52px; height: 52px;
+      width: 52px;
+      height: 52px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.4rem;
       margin-bottom: 0.25rem;
     }
+    
     .coming-soon h3 {
       font-family: 'Syne', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       color: var(--text-primary);
     }
+    
     .coming-soon p {
       font-size: 0.83rem;
       color: var(--text-muted);
       max-width: 280px;
       line-height: 1.5;
     }
-
+    
     /* ── Spinner (inline button) ─────────────────────────────── */
     .btn-spinner {
       display: inline-block;
-      width: 14px; height: 14px;
-      border: 2px solid rgba(2,44,34,0.3);
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(2, 44, 34, 0.3);
       border-top-color: #022c22;
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
     }
-
+    
     /* ── Responsive ──────────────────────────────────────────── */
     @media (max-width: 768px) {
       .sidebar {
         transform: translateX(calc(-1 * var(--sidebar-w)));
       }
+      
       .sidebar.open {
         transform: translateX(0);
-        box-shadow: 8px 0 40px rgba(0,0,0,0.5);
+        box-shadow: 8px 0 40px rgba(0, 0, 0, 0.5);
       }
-      .sidebar-overlay.open { display: block; }
-      .main-wrap { margin-left: 0; }
-      .hamburger { display: flex; }
-      .form-grid { grid-template-columns: 1fr; }
-      .form-grid .span-2 { grid-column: 1; }
-      .content-area { padding: 1.25rem 1rem; }
-      .live-dot { display: none; }
-      .header-btn { display: none; }
+      
+      .sidebar-overlay.open {
+        display: block;
+      }
+      
+      .main-wrap {
+        margin-left: 0;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-grid .span-2 {
+        grid-column: 1;
+      }
+      
+      .content-area {
+        padding: 1.25rem 1rem;
+      }
+      
+      .live-dot {
+        display: none;
+      }
+      
+      .header-btn {
+        display: none;
+      }
     }
-
+    
     @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .form-actions { flex-wrap: wrap; }
-      .save-status { margin-left: 0; width: 100%; }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .form-actions {
+        flex-wrap: wrap;
+      }
+      
+      .save-status {
+        margin-left: 0;
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
-
+  
   <!-- Auth guard overlay — hidden by dashboard.js once auth is confirmed -->
   <div id="pageGuard">
     <div class="guard-spinner"></div>
   </div>
-
+  
   <!-- Toast container (populated by site-config-manager.js) -->
   <div id="toastContainer" aria-live="polite"></div>
-
+  
   <!-- ══════════════════════════════════════════════════════════ -->
   <!--  APP SHELL                                                 -->
   <!-- ══════════════════════════════════════════════════════════ -->
   <div class="app-shell">
-
+    
     <!-- ── Sidebar overlay (mobile) ───────────────────────── -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
+    
     <!-- ══════════════════════════════════════════════════════ -->
     <!--  SIDEBAR                                               -->
     <!-- ══════════════════════════════════════════════════════ -->
     <aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin navigation">
-
+      
       <!-- Brand -->
       <div class="sidebar-brand">
         <div class="brand-icon">⚡</div>
@@ -775,73 +1023,77 @@
           <div class="label">Admin Panel</div>
         </div>
       </div>
-
+      
       <!-- Navigation -->
       <nav style="flex:1; padding: 0.75rem 0;">
-
+        
         <div class="nav-label">Main</div>
-
+        
         <!-- Dashboard overview -->
         <button class="nav-item active" data-section="dashboard" aria-current="page">
           <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
           </svg>
           Dashboard
         </button>
-
+        
         <div class="nav-label">Configuration</div>
-
+        
         <!-- Site Config -->
         <button class="nav-item" data-section="site-config">
           <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
-            <path d="M16 12a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4"/>
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+            <path d="M16 12a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4" />
           </svg>
           Site Config
         </button>
-
+        
         <!-- Ads Manager -->
         <button class="nav-item" data-section="ads">
           <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
           </svg>
           Ads Manager
           <span class="nav-badge">STEP 3</span>
         </button>
-
+        
         <!-- Comments -->
         <button class="nav-item" data-section="comments">
           <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
           Comments
           <span class="nav-badge">STEP 4</span>
         </button>
-
+        
         <div class="nav-label">System</div>
-
+        
         <!-- Visit Site -->
         <a class="nav-item" href="../index.html" target="_blank" rel="noopener">
           <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
           </svg>
           Visit Live Site
         </a>
-
+        
         <!-- Logout -->
         <button class="nav-item" id="logoutBtn" style="color: #f87171;">
           <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f87171;">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-            <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
           </svg>
           Sign Out
         </button>
-
+        
       </nav>
-
+      
       <!-- Sidebar footer: user info -->
       <div class="sidebar-footer">
         <div class="user-card">
@@ -852,28 +1104,30 @@
           </div>
         </div>
       </div>
-
+      
     </aside>
-
+    
     <!-- ══════════════════════════════════════════════════════ -->
     <!--  MAIN WRAPPER                                          -->
     <!-- ══════════════════════════════════════════════════════ -->
     <div class="main-wrap" id="mainWrap">
-
+      
       <!-- ── Top Header ────────────────────────────────────── -->
       <header class="top-header">
         <!-- Hamburger (mobile) -->
         <button class="hamburger" id="hamburgerBtn" aria-label="Toggle sidebar">
           <span></span><span></span><span></span>
         </button>
-
+        
         <!-- Breadcrumb -->
         <div class="breadcrumb">
           <span>Admin</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
           <span class="crumb-active" id="breadcrumbLabel">Dashboard</span>
         </div>
-
+        
         <!-- Right actions -->
         <div class="header-right">
           <div class="live-dot">
@@ -882,19 +1136,22 @@
           </div>
           <!-- Refresh button -->
           <button class="header-btn" id="refreshBtn" title="Reload current section data" aria-label="Refresh">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10" />
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+            </svg>
           </button>
         </div>
       </header>
-
+      
       <!-- ── Content Area ───────────────────────────────────── -->
       <main class="content-area" id="contentArea">
-
+        
         <!-- ════════════════════════════════════════════════════ -->
         <!--  VIEW: DASHBOARD OVERVIEW                            -->
         <!-- ════════════════════════════════════════════════════ -->
         <div class="section-view active" id="view-dashboard">
-
+          
           <div style="margin-bottom:1.4rem;">
             <h1 style="font-size:1.4rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">
               Good to have you back 👋
@@ -903,7 +1160,7 @@
               Manage your Trusted Tools Web site from one place.
             </p>
           </div>
-
+          
           <!-- Quick stats -->
           <div class="stats-grid">
             <div class="stat-card">
@@ -927,12 +1184,14 @@
               <div class="stat-tag">Coming next</div>
             </div>
           </div>
-
+          
           <!-- Quick actions -->
           <div class="panel" style="animation-delay:0.1s;">
             <div class="panel-head">
               <div class="panel-head-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
               </div>
               <div>
                 <div class="panel-title">Quick Actions</div>
@@ -951,147 +1210,433 @@
               </button>
             </div>
           </div>
+          
+        </div>
+        
+<!-- ════════════════════════════════════════════════════════════
+     VIEW: SITE CONFIGURATION  |  #view-site-config
+     ════════════════════════════════════════════════════════════
+     DROP-IN REPLACEMENT — paste this entire block to replace
+     the existing <div class="section-view" id="view-site-config">
+     …</div> in dashboard.html.
 
+     All 16 Firestore keys are mapped via data-field="…" attributes:
+       brandName · siteTitle · tagline · author · baseUrl
+       mainSiteUrl · contactEmail · defaultDescription
+       footerCopyright · themeColor · facebookAppId
+       twitterHandle · ogSiteName · defaultOGImage · favicon · appleIcon
+
+     JS counterpart: site-config-manager.js (v2)
+     Firestore path: site-config / main
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="section-view" id="view-site-config">
+
+  <!-- ── Page heading ──────────────────────────────────────── -->
+  <div style="margin-bottom:1.4rem;">
+    <h1 style="font-size:1.4rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">
+      Site Configuration
+    </h1>
+    <p style="font-size:0.85rem;color:var(--text-muted);">
+      All values are saved to
+      <code style="font-size:0.75rem;color:var(--accent);background:rgba(52,211,153,0.08);padding:0.1rem 0.35rem;border-radius:4px;">site-config / main</code>
+      in Firestore and applied to every page instantly via the dynamic config engine.
+    </p>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 1 — BASIC BRANDING
+       Firestore keys: brandName · siteTitle · tagline · author
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0s;">
+    <div class="panel-head">
+      <div class="panel-head-icon">
+        <!-- Sparkles / brand icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="panel-title">Basic Branding</div>
+        <div class="panel-sub">Core identity fields — shown in titles, footers, and schema markup.</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="form-grid">
+
+        <!-- brandName -->
+        <div class="field-group">
+          <label class="field-label" for="fieldBrandName">Brand Name</label>
+          <p class="field-hint">
+            Your project or company name. Used in JSON-LD schema, footer, and
+            as the fallback for <code style="color:var(--accent);font-size:0.72rem;">siteTitle</code>.
+          </p>
+          <input class="field-input" type="text" id="fieldBrandName"
+            placeholder="e.g. Trusted Tools Web"
+            maxlength="70" autocomplete="off"
+            data-field="brandName" />
+          <div class="char-counter" id="cc-brandName">0 / 70</div>
         </div>
 
-        <!-- ════════════════════════════════════════════════════ -->
-        <!--  VIEW: SITE CONFIGURATION                            -->
-        <!-- ════════════════════════════════════════════════════ -->
-        <div class="section-view" id="view-site-config">
+        <!-- siteTitle -->
+        <div class="field-group">
+          <label class="field-label" for="fieldSiteTitle">Site Title</label>
+          <p class="field-hint">
+            Appended to every page title: <em>"Page Name - Site Title"</em>.
+            Also used in the browser tab.
+          </p>
+          <input class="field-input" type="text" id="fieldSiteTitle"
+            placeholder="e.g. Trusted Tools Web"
+            maxlength="70" autocomplete="off"
+            data-field="siteTitle" />
+          <div class="char-counter" id="cc-siteTitle">0 / 70</div>
+        </div>
 
-          <div style="margin-bottom:1.4rem;">
-            <h1 style="font-size:1.4rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">
-              Site Configuration
-            </h1>
-            <p style="font-size:0.85rem;color:var(--text-muted);">
-              These values are saved to Firestore and read by the frontend automatically.
-            </p>
+        <!-- tagline -->
+        <div class="field-group">
+          <label class="field-label" for="fieldTagline">Tagline</label>
+          <p class="field-hint">Short phrase shown under the hero heading on the homepage.</p>
+          <input class="field-input" type="text" id="fieldTagline"
+            placeholder="e.g. 500+ Free Privacy-First Web Tools"
+            maxlength="120" autocomplete="off"
+            data-field="tagline" />
+          <div class="char-counter" id="cc-tagline">0 / 120</div>
+        </div>
+
+        <!-- author -->
+        <div class="field-group">
+          <label class="field-label" for="fieldAuthor">Author / Creator Name</label>
+          <p class="field-hint">
+            Injected into <code style="color:var(--accent);font-size:0.72rem;">meta[name="author"]</code>
+            and JSON-LD <code style="color:var(--accent);font-size:0.72rem;">author.name</code> on every page.
+          </p>
+          <input class="field-input" type="text" id="fieldAuthor"
+            placeholder="e.g. Your Name"
+            maxlength="80" autocomplete="off"
+            data-field="author" />
+          <div class="char-counter" id="cc-author">0 / 80</div>
+        </div>
+
+      </div><!-- /form-grid -->
+    </div><!-- /panel-body -->
+  </div><!-- /panel — Basic Branding -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 2 — SEO & META
+       Firestore keys: baseUrl · mainSiteUrl · contactEmail
+                       defaultDescription · footerCopyright · themeColor
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.05s;">
+    <div class="panel-head">
+      <div class="panel-head-icon">
+        <!-- Search / SEO icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <div>
+        <div class="panel-title">SEO &amp; Meta</div>
+        <div class="panel-sub">Controls canonical URLs, meta description, theme colour, and contact info.</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="form-grid">
+
+        <!-- baseUrl -->
+        <div class="field-group">
+          <label class="field-label" for="fieldBaseUrl">Base URL <span style="color:var(--danger);">*</span></label>
+          <p class="field-hint">
+            Your live domain — <strong>no trailing slash</strong>.
+            Used for canonical links, OG URLs, and absolute image paths.
+          </p>
+          <input class="field-input" type="url" id="fieldBaseUrl"
+            placeholder="https://yourdomain.com"
+            autocomplete="off"
+            data-field="baseUrl" />
+        </div>
+
+        <!-- mainSiteUrl -->
+        <div class="field-group">
+          <label class="field-label" for="fieldMainSiteUrl">Main Site / Portfolio URL</label>
+          <p class="field-hint">
+            Link to your personal site or portfolio (used in footer links and JSON-LD
+            <code style="color:var(--accent);font-size:0.72rem;">author.url</code>).
+          </p>
+          <input class="field-input" type="url" id="fieldMainSiteUrl"
+            placeholder="https://yourportfolio.com"
+            autocomplete="off"
+            data-field="mainSiteUrl" />
+        </div>
+
+        <!-- contactEmail -->
+        <div class="field-group">
+          <label class="field-label" for="fieldContactEmail">Contact Email</label>
+          <p class="field-hint">Shown on the contact page and in support links.</p>
+          <input class="field-input" type="email" id="fieldContactEmail"
+            placeholder="contact@yourdomain.com"
+            autocomplete="off"
+            data-field="contactEmail" />
+        </div>
+
+        <!-- themeColor -->
+        <div class="field-group">
+          <label class="field-label" for="fieldThemeColor">Theme Colour</label>
+          <p class="field-hint">
+            Sets <code style="color:var(--accent);font-size:0.72rem;">meta[name="theme-color"]</code>
+            — controls the browser chrome colour on mobile.
+          </p>
+          <!-- Colour swatch + hex input side-by-side -->
+          <div style="display:flex;align-items:center;gap:0.6rem;">
+            <input type="color" id="fieldThemeColorPicker"
+              style="width:38px;height:38px;border:1px solid rgba(255,255,255,0.09);border-radius:8px;
+                     background:rgba(255,255,255,0.035);padding:2px;cursor:pointer;flex-shrink:0;"
+              data-color-for="fieldThemeColor" />
+            <input class="field-input" type="text" id="fieldThemeColor"
+              placeholder="#0d1117"
+              maxlength="20" autocomplete="off"
+              data-field="themeColor"
+              style="flex:1;" />
           </div>
+        </div>
 
-          <!-- ── General Settings panel ──────────────────────── -->
-          <div class="panel">
-            <div class="panel-head">
-              <div class="panel-head-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              </div>
-              <div>
-                <div class="panel-title">General Settings</div>
-                <div class="panel-sub">Firestore path: <code style="font-size:0.7rem;color:var(--accent);background:rgba(52,211,153,0.08);padding:0.1rem 0.35rem;border-radius:4px;">site-config / main</code></div>
-              </div>
-            </div>
-            <div class="panel-body">
-              <div class="form-grid">
+        <!-- defaultDescription — full width -->
+        <div class="field-group span-2">
+          <label class="field-label" for="fieldDefaultDesc">Default Meta Description</label>
+          <p class="field-hint">
+            Fallback description for pages without their own meta tag.
+            Aim for <strong>150–160 characters</strong> for best CTR in Google results.
+          </p>
+          <textarea class="field-textarea" id="fieldDefaultDesc"
+            placeholder="A concise, engaging description of your site for search engines…"
+            maxlength="200"
+            data-field="defaultDescription"></textarea>
+          <div class="char-counter" id="cc-defaultDescription">0 / 160 recommended</div>
+        </div>
 
-                <!-- Site Title -->
-                <div class="field-group">
-                  <label class="field-label" for="fieldSiteTitle">Site Title</label>
-                  <p class="field-hint">Displayed in the browser tab and SEO title tags.</p>
-                  <input
-                    class="field-input" type="text" id="fieldSiteTitle"
-                    placeholder="e.g. Trusted Tools Web"
-                    maxlength="70"
-                    data-field="siteTitle"
-                  />
-                  <div class="char-counter" id="cc-siteTitle">0 / 70</div>
-                </div>
+        <!-- footerCopyright — full width -->
+        <div class="field-group span-2">
+          <label class="field-label" for="fieldFooterCopy">Footer Copyright Text</label>
+          <p class="field-hint">Shown in the site footer. You can include the year.</p>
+          <input class="field-input" type="text" id="fieldFooterCopy"
+            placeholder="e.g. © 2025 Trusted Tools Web. All rights reserved."
+            maxlength="120" autocomplete="off"
+            data-field="footerCopyright" />
+          <div class="char-counter" id="cc-footerCopyright">0 / 120</div>
+        </div>
 
-                <!-- Tagline -->
-                <div class="field-group">
-                  <label class="field-label" for="fieldTagline">Tagline</label>
-                  <p class="field-hint">Short description shown under the hero heading.</p>
-                  <input
-                    class="field-input" type="text" id="fieldTagline"
-                    placeholder="e.g. 500+ Free Web Tools"
-                    maxlength="100"
-                    data-field="tagline"
-                  />
-                  <div class="char-counter" id="cc-tagline">0 / 100</div>
-                </div>
+      </div><!-- /form-grid -->
+    </div><!-- /panel-body -->
+  </div><!-- /panel — SEO & Meta -->
 
-                <!-- Contact Email -->
-                <div class="field-group">
-                  <label class="field-label" for="fieldContactEmail">Contact Email</label>
-                  <p class="field-hint">Shown on the contact page and in support links.</p>
-                  <input
-                    class="field-input" type="email" id="fieldContactEmail"
-                    placeholder="contact@yourdomain.com"
-                    data-field="contactEmail"
-                  />
-                </div>
 
-                <!-- Site URL -->
-                <div class="field-group">
-                  <label class="field-label" for="fieldSiteUrl">Site URL</label>
-                  <p class="field-hint">Your live domain (used for canonical tags & OG).</p>
-                  <input
-                    class="field-input" type="url" id="fieldSiteUrl"
-                    placeholder="https://yourdomain.com"
-                    data-field="siteUrl"
-                  />
-                </div>
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 3 — SOCIAL MEDIA & OPEN GRAPH
+       Firestore keys: facebookAppId · twitterHandle · ogSiteName
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.10s;">
+    <div class="panel-head">
+      <div class="panel-head-icon">
+        <!-- Share / social icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/>
+          <circle cx="6" cy="12" r="3"/>
+          <circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+      </div>
+      <div>
+        <div class="panel-title">Social Media &amp; Open Graph</div>
+        <div class="panel-sub">Controls how your pages appear when shared on Facebook, X (Twitter), and other platforms.</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="form-grid">
 
-                <!-- Logo URL -->
-                <div class="field-group span-2">
-                  <label class="field-label" for="fieldLogoUrl">Logo URL</label>
-                  <p class="field-hint">Full URL to your logo image (WebP / PNG / SVG recommended).</p>
-                  <input
-                    class="field-input" type="url" id="fieldLogoUrl"
-                    placeholder="https://yourdomain.com/assets/img/logo.webp"
-                    data-field="logoUrl"
-                  />
-                  <!-- Live logo preview -->
-                  <div class="logo-preview-wrap">
-                    <img class="logo-preview" id="logoPreview" alt="Logo preview" />
-                    <span class="logo-preview-label" id="logoPreviewLabel">Enter a URL above to preview your logo.</span>
-                  </div>
-                </div>
+        <!-- facebookAppId -->
+        <div class="field-group">
+          <label class="field-label" for="fieldFbAppId">Facebook App ID</label>
+          <p class="field-hint">
+            Your Meta / Facebook App ID. Sets
+            <code style="color:var(--accent);font-size:0.72rem;">meta[property="fb:app_id"]</code>
+            for Facebook Analytics and Insights.
+          </p>
+          <input class="field-input" type="text" id="fieldFbAppId"
+            placeholder="e.g. 123456789012345"
+            maxlength="20" autocomplete="off"
+            data-field="facebookAppId" />
+        </div>
 
-                <!-- Meta Description -->
-                <div class="field-group span-2">
-                  <label class="field-label" for="fieldMetaDesc">Meta Description</label>
-                  <p class="field-hint">Appears in Google search results. Keep between 120–160 characters.</p>
-                  <textarea
-                    class="field-textarea" id="fieldMetaDesc"
-                    placeholder="A concise description of your site for search engines…"
-                    maxlength="200"
-                    data-field="metaDescription"
-                  ></textarea>
-                  <div class="char-counter" id="cc-metaDescription">0 / 160 recommended</div>
-                </div>
+        <!-- twitterHandle -->
+        <div class="field-group">
+          <label class="field-label" for="fieldTwitterHandle">Twitter / X Handle</label>
+          <p class="field-hint">
+            Your site's Twitter handle (include the @).
+            Sets <code style="color:var(--accent);font-size:0.72rem;">twitter:site</code>
+            and <code style="color:var(--accent);font-size:0.72rem;">twitter:creator</code>.
+          </p>
+          <input class="field-input" type="text" id="fieldTwitterHandle"
+            placeholder="@YourSiteHandle"
+            maxlength="50" autocomplete="off"
+            data-field="twitterHandle" />
+        </div>
 
-                <!-- Footer Copyright -->
-                <div class="field-group span-2">
-                  <label class="field-label" for="fieldFooterCopy">Footer Copyright Text</label>
-                  <p class="field-hint">Shown in the site footer. You can include the year.</p>
-                  <input
-                    class="field-input" type="text" id="fieldFooterCopy"
-                    placeholder="e.g. © 2025 Trusted Tools Web. All rights reserved."
-                    maxlength="120"
-                    data-field="footerCopyright"
-                  />
-                  <div class="char-counter" id="cc-footerCopyright">0 / 120</div>
-                </div>
+        <!-- ogSiteName — full width -->
+        <div class="field-group span-2">
+          <label class="field-label" for="fieldOgSiteName">OG Site Name</label>
+          <p class="field-hint">
+            The site name displayed in Open Graph previews (e.g. when a link is shared on
+            Facebook or Telegram). Sets
+            <code style="color:var(--accent);font-size:0.72rem;">og:site_name</code>.
+          </p>
+          <input class="field-input" type="text" id="fieldOgSiteName"
+            placeholder="e.g. Trusted Tools Web - Secure Developer Suite"
+            maxlength="100" autocomplete="off"
+            data-field="ogSiteName" />
+          <div class="char-counter" id="cc-ogSiteName">0 / 100</div>
+        </div>
 
-              </div><!-- /form-grid -->
+      </div><!-- /form-grid -->
+    </div><!-- /panel-body -->
+  </div><!-- /panel — Social Media & OG -->
 
-              <!-- Actions -->
-              <div class="form-actions">
-                <button class="btn-save" id="btnSaveConfig">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  Save Configuration
-                </button>
-                <button class="btn-reset" id="btnResetConfig">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
-                  Reset
-                </button>
-                <span class="save-status" id="saveStatus"></span>
-              </div>
-            </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 4 — ASSETS & ICONS
+       Firestore keys: defaultOGImage · favicon · appleIcon
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.15s;">
+    <div class="panel-head">
+      <div class="panel-head-icon">
+        <!-- Image / photo icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </div>
+      <div>
+        <div class="panel-title">Assets &amp; Icons</div>
+        <div class="panel-sub">OG share image, browser favicon, and Apple touch icon. Paths are prepended with Base URL automatically.</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="form-grid">
+
+        <!-- defaultOGImage — full width with live preview -->
+        <div class="field-group span-2">
+          <label class="field-label" for="fieldDefaultOGImage">Default OG Image</label>
+          <p class="field-hint">
+            Relative path or full URL to the fallback social-share image
+            (recommended: <strong>1200 × 630 px</strong> WebP/PNG).
+            Used for <code style="color:var(--accent);font-size:0.72rem;">og:image</code>
+            and <code style="color:var(--accent);font-size:0.72rem;">twitter:image</code>
+            when a page has no custom image.
+            Enter a relative path (e.g. <code style="color:var(--accent);font-size:0.72rem;">assets/img/og-banner.webp</code>)
+            — the engine prepends your Base URL automatically.
+          </p>
+          <input class="field-input" type="text" id="fieldDefaultOGImage"
+            placeholder="assets/img/og-banner.webp  or  https://yourdomain.com/og.webp"
+            autocomplete="off"
+            data-field="defaultOGImage" />
+          <!-- Live OG image preview (same pattern as logoPreview) -->
+          <div class="logo-preview-wrap" style="margin-top:0.6rem;">
+            <img class="logo-preview" id="ogImagePreview"
+              alt="OG image preview"
+              style="width:96px;height:50px;object-fit:cover;border-radius:8px;" />
+            <span class="logo-preview-label" id="ogImagePreviewLabel">
+              Enter a full URL above to preview the OG image.
+            </span>
           </div>
+        </div>
 
-        </div><!-- /view-site-config -->
+        <!-- favicon -->
+        <div class="field-group">
+          <label class="field-label" for="fieldFavicon">Favicon URL / Path</label>
+          <p class="field-hint">
+            Relative or absolute path to the browser tab icon.
+            WebP or PNG recommended
+            (e.g. <code style="color:var(--accent);font-size:0.72rem;">favicon.png</code>).
+          </p>
+          <input class="field-input" type="text" id="fieldFavicon"
+            placeholder="favicon.png  or  assets/img/favicon.webp"
+            autocomplete="off"
+            data-field="favicon" />
+          <!-- Inline favicon preview swatch -->
+          <div class="logo-preview-wrap" style="margin-top:0.5rem;">
+            <img class="logo-preview" id="faviconPreview"
+              alt="Favicon preview"
+              style="width:32px;height:32px;border-radius:6px;" />
+            <span class="logo-preview-label" id="faviconPreviewLabel">
+              Enter a full URL to preview.
+            </span>
+          </div>
+        </div>
 
-<!--
+        <!-- appleIcon -->
+        <div class="field-group">
+          <label class="field-label" for="fieldAppleIcon">Apple Touch Icon URL / Path</label>
+          <p class="field-hint">
+            Icon used when a user saves your site to their iOS home screen.
+            Recommended size: <strong>180 × 180 px</strong>.
+          </p>
+          <input class="field-input" type="text" id="fieldAppleIcon"
+            placeholder="favicon.png  or  assets/img/apple-icon.png"
+            autocomplete="off"
+            data-field="appleIcon" />
+          <!-- Inline apple icon preview swatch -->
+          <div class="logo-preview-wrap" style="margin-top:0.5rem;">
+            <img class="logo-preview" id="appleIconPreview"
+              alt="Apple icon preview"
+              style="width:32px;height:32px;border-radius:8px;" />
+            <span class="logo-preview-label" id="appleIconPreviewLabel">
+              Enter a full URL to preview.
+            </span>
+          </div>
+        </div>
+
+      </div><!-- /form-grid -->
+    </div><!-- /panel-body -->
+  </div><!-- /panel — Assets & Icons -->
+
+
+  <!-- ── Form Actions ─────────────────────────────────────── -->
+  <div class="form-actions">
+    <button class="btn-save" id="btnSaveConfig">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      Save Configuration
+    </button>
+    <button class="btn-reset" id="btnResetConfig">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="1 4 1 10 7 10"/>
+        <path d="M3.51 15a9 9 0 1 0 .49-4.5"/>
+      </svg>
+      Reset
+    </button>
+    <span class="save-status" id="saveStatus"></span>
+  </div>
+
+</div><!-- /#view-site-config -->
+
+        
+        <!--
   ============================================================
   STEP 3 — ADS MANAGER  |  admin/dashboard.html
   ============================================================
@@ -1109,265 +1654,645 @@
   Replace the ENTIRE block above with the markup below.
   ============================================================
 -->
+        
+      <!--
+  ============================================================
+  PRO AD MANAGER — #view-ads  (Redesigned)
+  ============================================================
+  This block is a 1-to-1 UI mapping of AD_CONFIG in
+  trusted-ad-manager.js (v5.1.0).
+
+  HOW TO INTEGRATE:
+    1. Replace the ENTIRE existing:
+         <div class="section-view" id="view-ads">…</div>
+       with the block below.
+
+    2. Paste the <style id="ads-manager-styles-v2"> block into
+       your dashboard.html <style> section (or replace the old
+       <style id="ads-manager-styles"> block entirely).
+
+    3. No JS changes needed yet — every field carries an
+       id + data-ads-field attribute ready for ads-manager.js.
+
+  Firestore target path: ads / main
+  ============================================================
+-->
 
 <div class="section-view" id="view-ads">
 
   <!-- ── Page heading ──────────────────────────────────────── -->
   <div style="margin-bottom:1.4rem;">
     <h1 style="font-size:1.4rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">
-      Ads Manager
+      Pro Ad Manager
     </h1>
     <p style="font-size:0.85rem;color:var(--text-muted);">
-      Paste your AdSense publisher code or any custom ad-network HTML/JS below.
-      Changes are saved to <code style="font-size:0.75rem;color:var(--accent);background:rgba(52,211,153,0.08);padding:0.1rem 0.35rem;border-radius:4px;">ads / main</code> in Firestore.
+      Configure your ad networks. Settings are saved to
+      <code style="font-size:0.75rem;color:var(--accent);background:rgba(52,211,153,0.08);padding:0.1rem 0.35rem;border-radius:4px;">ads / main</code>
+      in Firestore and loaded by <code style="font-size:0.75rem;color:var(--accent);background:rgba(52,211,153,0.08);padding:0.1rem 0.35rem;border-radius:4px;">trusted-ad-manager.js</code> on every page.
     </p>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!--  PANEL 1 — GLOBAL CONTROLS                            -->
-  <!-- ══════════════════════════════════════════════════════ -->
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 1 — GLOBAL OPTIONS & PRIORITY
+       Maps to: AD_CONFIG.options + AD_CONFIG.priority
+  ══════════════════════════════════════════════════════════════ -->
   <div class="panel" style="animation-delay:0s;">
     <div class="panel-head">
       <div class="panel-head-icon">
+        <!-- Sliders / settings icon -->
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="12" y1="8" x2="12" y2="16"/>
-          <line x1="8" y1="12" x2="16" y2="12"/>
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+          <circle cx="8"  cy="6"  r="2" fill="currentColor" stroke="none"/>
+          <circle cx="16" cy="12" r="2" fill="currentColor" stroke="none"/>
+          <circle cx="10" cy="18" r="2" fill="currentColor" stroke="none"/>
         </svg>
       </div>
       <div>
-        <div class="panel-title">Global Ad Settings</div>
-        <div class="panel-sub">Master switch — overrides all individual slots when disabled.</div>
+        <div class="panel-title">Global Options &amp; Priority</div>
+        <div class="panel-sub">
+          Maps to <code style="font-size:0.7rem;color:var(--accent);">AD_CONFIG.options</code> and
+          <code style="font-size:0.7rem;color:var(--accent);">AD_CONFIG.priority</code>
+        </div>
       </div>
     </div>
 
     <div class="panel-body">
-      <!-- Enable Ads toggle row -->
-      <div class="ads-toggle-row">
 
+      <!-- ── Lazy Load toggle ─────────────────────────────── -->
+      <div class="ads-toggle-row" style="margin-bottom:1.25rem;">
         <div class="ads-toggle-info">
-          <div class="ads-toggle-label">Enable Ads Globally</div>
+          <div class="ads-toggle-label">Lazy Load Ads</div>
           <div class="ads-toggle-hint">
-            When OFF, no ad code is injected anywhere on the site,
-            regardless of individual slot content.
+            Uses <code style="color:var(--accent);font-size:0.73rem;">IntersectionObserver</code> to inject
+            ads only when the slot enters the viewport. Improves page-speed scores.
+            Falls back to immediate injection on old browsers.
+            Maps to <code style="color:var(--accent);font-size:0.73rem;">options.lazyLoad</code>.
           </div>
         </div>
-
-        <!-- Toggle switch (pure CSS + checkbox) -->
-        <label class="toggle-switch" for="adsGlobalEnabled" aria-label="Enable ads globally">
-          <input type="checkbox" id="adsGlobalEnabled" />
-          <span class="toggle-track">
-            <span class="toggle-thumb"></span>
-          </span>
+        <label class="toggle-switch" for="adsLazyLoad" aria-label="Enable lazy loading">
+          <input
+            type="checkbox"
+            id="adsLazyLoad"
+            data-ads-field="options.lazyLoad"
+          />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
         </label>
-
       </div>
 
-      <!-- AdSense Publisher ID helper row -->
-      <div class="form-grid" style="margin-top:1.25rem;">
+      <!-- ── Retry options ────────────────────────────────── -->
+      <div class="form-grid" style="margin-bottom:1.5rem;">
+
         <div class="field-group">
-          <label class="field-label" for="fieldPublisherId">AdSense Publisher ID</label>
+          <label class="field-label" for="adsRetryDelay">Retry Delay (ms)</label>
           <p class="field-hint">
-            Your Google AdSense ID (e.g. <code style="color:var(--accent);font-size:0.75rem;">ca-pub-0000000000000000</code>).
-            Optional — only needed if you use AdSense auto-ads.
+            Milliseconds between zero-width retries for AdSense slots.
+            Maps to <code style="color:var(--accent);font-size:0.73rem;">options.retryDelay</code>.
           </p>
           <input
-            class="field-input" type="text" id="fieldPublisherId"
-            placeholder="ca-pub-0000000000000000"
+            class="field-input"
+            type="number"
+            id="adsRetryDelay"
+            data-ads-field="options.retryDelay"
+            min="100"
+            max="5000"
+            step="100"
+            placeholder="500"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="adsMaxRetries">Max Retries</label>
+          <p class="field-hint">
+            Maximum retry attempts per slot before giving up.
+            Maps to <code style="color:var(--accent);font-size:0.73rem;">options.maxRetries</code>.
+          </p>
+          <input
+            class="field-input"
+            type="number"
+            id="adsMaxRetries"
+            data-ads-field="options.maxRetries"
+            min="0"
+            max="20"
+            step="1"
+            placeholder="3"
+            autocomplete="off"
+          />
+        </div>
+
+      </div><!-- /form-grid -->
+
+      <!-- ── Network Priority ─────────────────────────────── -->
+      <div style="margin-bottom:0.5rem;">
+        <div class="field-label" style="margin-bottom:0.6rem;">Network Priority Order</div>
+        <p class="field-hint" style="margin-bottom:0.9rem;">
+          The engine tries networks in this order for each slot. The first
+          <em>enabled</em> network with a matching slot wins.
+          Maps to <code style="color:var(--accent);font-size:0.73rem;">AD_CONFIG.priority</code>.
+        </p>
+
+        <div class="ads-priority-grid">
+
+          <div class="ads-priority-item">
+            <span class="ads-priority-badge">1<sup>st</sup></span>
+            <div class="field-group" style="flex:1;margin:0;">
+              <label class="field-label" for="adsPriority1">1st Choice</label>
+              <select
+                class="field-input ads-priority-select"
+                id="adsPriority1"
+                data-ads-field="priority.0"
+              >
+                <option value="adsterra">Adsterra</option>
+                <option value="adsense">Google AdSense</option>
+                <option value="custom">Custom HTML</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="ads-priority-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+
+          <div class="ads-priority-item">
+            <span class="ads-priority-badge">2<sup>nd</sup></span>
+            <div class="field-group" style="flex:1;margin:0;">
+              <label class="field-label" for="adsPriority2">2nd Choice (Fallback)</label>
+              <select
+                class="field-input ads-priority-select"
+                id="adsPriority2"
+                data-ads-field="priority.1"
+              >
+                <option value="adsterra">Adsterra</option>
+                <option value="adsense" selected>Google AdSense</option>
+                <option value="custom">Custom HTML</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="ads-priority-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+
+          <div class="ads-priority-item">
+            <span class="ads-priority-badge">3<sup>rd</sup></span>
+            <div class="field-group" style="flex:1;margin:0;">
+              <label class="field-label" for="adsPriority3">3rd Choice (Last Resort)</label>
+              <select
+                class="field-input ads-priority-select"
+                id="adsPriority3"
+                data-ads-field="priority.2"
+              >
+                <option value="adsterra">Adsterra</option>
+                <option value="adsense">Google AdSense</option>
+                <option value="custom" selected>Custom HTML</option>
+              </select>
+            </div>
+          </div>
+
+        </div><!-- /ads-priority-grid -->
+      </div>
+
+    </div><!-- /panel-body -->
+  </div><!-- /Panel 1 -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 2 — ADSTERRA NETWORK
+       Maps to: AD_CONFIG.adsterra
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.07s;">
+    <div class="panel-head">
+      <div class="panel-head-icon" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.2);">
+        <!-- Adsterra — star/signal icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="#fbbf24" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <div class="panel-title">Adsterra Network</div>
+        <div class="panel-sub">
+          Maps to <code style="font-size:0.7rem;color:var(--accent);">AD_CONFIG.adsterra</code>
+          — Iframe-isolated banner injection.
+        </div>
+      </div>
+      <!-- Master enable toggle (right-aligned in header) -->
+      <label class="toggle-switch" for="adsterraMasterEnabled" aria-label="Enable Adsterra network">
+        <input
+          type="checkbox"
+          id="adsterraMasterEnabled"
+          data-ads-field="adsterra.enabled"
+          checked
+        />
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
+    </div>
+
+    <div class="panel-body" id="adsterraPanelBody">
+
+      <!-- ── Slot: Top Banner (300×250) ────────────────────── -->
+      <div class="ads-slot-section">
+        <div class="ads-slot-section-title">
+          <div class="ads-slot-tag">top-banner</div>
+          <span>300 × 250 — Medium Rectangle</span>
+        </div>
+        <p class="field-hint" style="margin-bottom:1rem;">
+          Maps to <code style="color:var(--accent);font-size:0.73rem;">adsterra.slots['top-banner']</code>.
+          Displayed above the main tool UI.
+        </p>
+
+        <div class="form-grid">
+
+          <!-- src -->
+          <div class="field-group span-2">
+            <label class="field-label" for="adsterraTopSrc">invoke.js Script URL (src)</label>
+            <p class="field-hint">Full URL from Adsterra dashboard → Banner → Script URL.</p>
+            <input
+              class="field-input"
+              type="url"
+              id="adsterraTopSrc"
+              data-ads-field="adsterra.slots.top-banner.src"
+              placeholder="https://www.highperformanceformat.com/HASH/invoke.js"
+              spellcheck="false"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- key -->
+          <div class="field-group">
+            <label class="field-label" for="adsterraTopKey">atOptions key</label>
+            <p class="field-hint">32-character hash from Adsterra. Maps to <code style="color:var(--accent);font-size:0.73rem;">atOptions.key</code>.</p>
+            <input
+              class="field-input"
+              type="text"
+              id="adsterraTopKey"
+              data-ads-field="adsterra.slots.top-banner.atOptions.key"
+              placeholder="5070c547ef90c09b4238c20a4a95d940"
+              maxlength="64"
+              spellcheck="false"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- width + height -->
+          <div class="field-group">
+            <label class="field-label" for="adsterraTopDims">Dimensions</label>
+            <p class="field-hint">Width × Height in pixels. Default: 300 × 250.</p>
+            <div class="ads-dims-row">
+              <input
+                class="field-input"
+                type="number"
+                id="adsterraTopWidth"
+                data-ads-field="adsterra.slots.top-banner.width"
+                placeholder="300"
+                min="1" max="1200"
+                aria-label="Width"
+              />
+              <span class="ads-dims-sep">×</span>
+              <input
+                class="field-input"
+                type="number"
+                id="adsterraTopHeight"
+                data-ads-field="adsterra.slots.top-banner.height"
+                placeholder="250"
+                min="1" max="1200"
+                aria-label="Height"
+              />
+            </div>
+          </div>
+
+        </div><!-- /form-grid -->
+      </div><!-- /top-banner section -->
+
+      <div class="ads-slot-divider"></div>
+
+      <!-- ── Slot: Bottom Banner (320×50) ──────────────────── -->
+      <div class="ads-slot-section">
+        <div class="ads-slot-section-title">
+          <div class="ads-slot-tag">bottom-banner</div>
+          <span>320 × 50 — Mobile Banner</span>
+        </div>
+        <p class="field-hint" style="margin-bottom:1rem;">
+          Maps to <code style="color:var(--accent);font-size:0.73rem;">adsterra.slots['bottom-banner']</code>.
+          Displayed below the main tool UI.
+        </p>
+
+        <div class="form-grid">
+
+          <!-- src -->
+          <div class="field-group span-2">
+            <label class="field-label" for="adsterraBottomSrc">invoke.js Script URL (src)</label>
+            <p class="field-hint">Full URL from Adsterra dashboard → Banner → Script URL.</p>
+            <input
+              class="field-input"
+              type="url"
+              id="adsterraBottomSrc"
+              data-ads-field="adsterra.slots.bottom-banner.src"
+              placeholder="https://www.highperformanceformat.com/HASH/invoke.js"
+              spellcheck="false"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- key -->
+          <div class="field-group">
+            <label class="field-label" for="adsterraBottomKey">atOptions key</label>
+            <p class="field-hint">32-character hash from Adsterra. Maps to <code style="color:var(--accent);font-size:0.73rem;">atOptions.key</code>.</p>
+            <input
+              class="field-input"
+              type="text"
+              id="adsterraBottomKey"
+              data-ads-field="adsterra.slots.bottom-banner.atOptions.key"
+              placeholder="fcb4441b8ed60640d7288adb340a4ec3"
+              maxlength="64"
+              spellcheck="false"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- width + height -->
+          <div class="field-group">
+            <label class="field-label" for="adsterraBottomDims">Dimensions</label>
+            <p class="field-hint">Width × Height in pixels. Default: 320 × 50.</p>
+            <div class="ads-dims-row">
+              <input
+                class="field-input"
+                type="number"
+                id="adsterraBottomWidth"
+                data-ads-field="adsterra.slots.bottom-banner.width"
+                placeholder="320"
+                min="1" max="1200"
+                aria-label="Width"
+              />
+              <span class="ads-dims-sep">×</span>
+              <input
+                class="field-input"
+                type="number"
+                id="adsterraBottomHeight"
+                data-ads-field="adsterra.slots.bottom-banner.height"
+                placeholder="50"
+                min="1" max="1200"
+                aria-label="Height"
+              />
+            </div>
+          </div>
+
+        </div><!-- /form-grid -->
+      </div><!-- /bottom-banner section -->
+
+    </div><!-- /panel-body -->
+  </div><!-- /Panel 2 -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 3 — GOOGLE ADSENSE
+       Maps to: AD_CONFIG.adsense
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.14s;">
+    <div class="panel-head">
+      <div class="panel-head-icon" style="background:rgba(99,102,241,0.1);border-color:rgba(99,102,241,0.2);">
+        <!-- Google-style G icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="#818cf8" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M17 12h-5v5"/>
+          <path d="M17 12a5 5 0 1 0-5 5"/>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <div class="panel-title">Google AdSense</div>
+        <div class="panel-sub">
+          Maps to <code style="font-size:0.7rem;color:var(--accent);">AD_CONFIG.adsense</code>
+          — Set <code style="font-size:0.7rem;color:var(--accent);">enabled: true</code> once your account is approved.
+        </div>
+      </div>
+      <!-- Master enable toggle -->
+      <label class="toggle-switch" for="adsenseMasterEnabled" aria-label="Enable Google AdSense">
+        <input
+          type="checkbox"
+          id="adsenseMasterEnabled"
+          data-ads-field="adsense.enabled"
+        />
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
+    </div>
+
+    <div class="panel-body" id="adsensePanelBody">
+
+      <!-- Publisher / Client ID -->
+      <div class="form-grid" style="margin-bottom:1.25rem;">
+        <div class="field-group span-2">
+          <label class="field-label" for="adsenseClientId">Publisher Client ID</label>
+          <p class="field-hint">
+            Your AdSense publisher ID. Maps to
+            <code style="color:var(--accent);font-size:0.73rem;">adsense.client_id</code>.
+            Example: <code style="color:var(--accent);font-size:0.73rem;">ca-pub-0000000000000000</code>.
+          </p>
+          <input
+            class="field-input"
+            type="text"
+            id="adsenseClientId"
+            data-ads-field="adsense.client_id"
+            placeholder="ca-pub-XXXXXXXXXXXXXXXX"
             maxlength="30"
-            data-ads-field="publisherId"
+            spellcheck="false"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <!-- Slot IDs -->
+      <div class="ads-slot-section-title" style="margin-bottom:0.85rem;">
+        <div class="ads-slot-tag" style="background:rgba(99,102,241,0.12);color:#818cf8;border-color:rgba(99,102,241,0.2);">slots</div>
+        <span>Ad Slot IDs — <code style="color:var(--accent);font-size:0.73rem;">adsense.slots</code></span>
+      </div>
+
+      <div class="form-grid">
+
+        <div class="field-group">
+          <label class="field-label" for="adsenseSlotTopBanner">top-banner Slot ID</label>
+          <p class="field-hint">Maps to <code style="color:var(--accent);font-size:0.73rem;">adsense.slots['top-banner']</code>.</p>
+          <input
+            class="field-input"
+            type="text"
+            id="adsenseSlotTopBanner"
+            data-ads-field="adsense.slots.top-banner"
+            placeholder="1234567890"
+            maxlength="20"
             spellcheck="false"
             autocomplete="off"
           />
         </div>
 
         <div class="field-group">
-          <label class="field-label" for="fieldAdNetwork">Ad Network</label>
-          <p class="field-hint">
-            Choose your primary ad network for reference labelling.
-            Does not affect the injected code.
-          </p>
-          <select class="field-input" id="fieldAdNetwork" data-ads-field="adNetwork"
-            style="cursor:pointer;appearance:none;-webkit-appearance:none;
-                   background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222%22><polyline points=%226 9 12 15 18 9%22/></svg>');
-                   background-repeat:no-repeat;background-position:right 0.75rem center;
-                   padding-right:2.5rem;">
-            <option value="">— Select Network —</option>
-            <option value="adsense">Google AdSense</option>
-            <option value="mediavine">Mediavine</option>
-            <option value="ezoic">Ezoic</option>
-            <option value="adthrive">AdThrive / Raptive</option>
-            <option value="custom">Custom / Other</option>
-          </select>
+          <label class="field-label" for="adsenseSlotBottomBanner">bottom-banner Slot ID</label>
+          <p class="field-hint">Maps to <code style="color:var(--accent);font-size:0.73rem;">adsense.slots['bottom-banner']</code>.</p>
+          <input
+            class="field-input"
+            type="text"
+            id="adsenseSlotBottomBanner"
+            data-ads-field="adsense.slots.bottom-banner"
+            placeholder="0987654321"
+            maxlength="20"
+            spellcheck="false"
+            autocomplete="off"
+          />
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!--  PANEL 2 — AD SLOTS                                   -->
-  <!-- ══════════════════════════════════════════════════════ -->
-  <div class="panel" style="animation-delay:0.07s;">
+        <div class="field-group">
+          <label class="field-label" for="adsenseSlotInContent">in-content Slot ID</label>
+          <p class="field-hint">Maps to <code style="color:var(--accent);font-size:0.73rem;">adsense.slots['in-content']</code>.</p>
+          <input
+            class="field-input"
+            type="text"
+            id="adsenseSlotInContent"
+            data-ads-field="adsense.slots.in-content"
+            placeholder="1122334455"
+            maxlength="20"
+            spellcheck="false"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="adsenseSlotSidebar">sidebar Slot ID</label>
+          <p class="field-hint">Maps to <code style="color:var(--accent);font-size:0.73rem;">adsense.slots['sidebar']</code>.</p>
+          <input
+            class="field-input"
+            type="text"
+            id="adsenseSlotSidebar"
+            data-ads-field="adsense.slots.sidebar"
+            placeholder="5544332211"
+            maxlength="20"
+            spellcheck="false"
+            autocomplete="off"
+          />
+        </div>
+
+      </div><!-- /form-grid -->
+    </div><!-- /panel-body -->
+  </div><!-- /Panel 3 -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 4 — CUSTOM HTML ADS
+       Maps to: AD_CONFIG.custom
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.21s;">
     <div class="panel-head">
-      <div class="panel-head-icon">
+      <div class="panel-head-icon" style="background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.2);">
+        <!-- Code icon -->
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor" stroke-width="2"
+          fill="none" stroke="#f87171" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
         </svg>
       </div>
-      <div>
-        <div class="panel-title">Ad Slot Code</div>
+      <div style="flex:1;">
+        <div class="panel-title">Custom HTML Ads</div>
         <div class="panel-sub">
-          Paste your full <code style="font-size:0.7rem;color:var(--accent);">&lt;script&gt;</code>
-          or <code style="font-size:0.7rem;color:var(--accent);">&lt;ins&gt;</code> tags into the
-          relevant slots below. HTML is saved verbatim.
+          Maps to <code style="font-size:0.7rem;color:var(--accent);">AD_CONFIG.custom</code>
+          — Paste any raw HTML/JS ad tag. Scripts are re-executed via <code style="font-size:0.7rem;color:var(--accent);">createElement</code>.
         </div>
       </div>
+      <!-- Master enable toggle -->
+      <label class="toggle-switch" for="customMasterEnabled" aria-label="Enable Custom HTML Ads">
+        <input
+          type="checkbox"
+          id="customMasterEnabled"
+          data-ads-field="custom.enabled"
+        />
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
     </div>
 
-    <div class="panel-body">
+    <div class="panel-body" id="customPanelBody">
+
       <div class="form-grid">
 
-        <!-- ── Header Ad ──────────────────────────────────── -->
+        <!-- ── top-banner HTML ──────────────────────────────── -->
         <div class="field-group span-2">
           <div class="ads-slot-header">
             <div>
-              <label class="field-label" for="fieldHeaderAd">Header Ad Slot</label>
+              <label class="field-label" for="customTopBanner">top-banner — Custom HTML</label>
               <p class="field-hint">
-                Injected in the <code style="color:var(--accent);font-size:0.75rem;">&lt;header&gt;</code>
-                region — typically a 728×90 Leaderboard or Responsive banner.
+                Maps to <code style="color:var(--accent);font-size:0.73rem;">custom.slots['top-banner']</code>.
+                Paste your full ad tag including any <code style="color:var(--accent);font-size:0.73rem;">&lt;script&gt;</code> blocks.
               </p>
             </div>
-            <!-- Per-slot enable toggle -->
-            <label class="slot-toggle" for="slotHeaderEnabled" title="Enable this slot">
-              <input type="checkbox" id="slotHeaderEnabled" data-ads-field="slotHeaderEnabled" />
-              <span class="slot-toggle-track"><span class="slot-toggle-thumb"></span></span>
-              <span class="slot-toggle-label">Enable</span>
-            </label>
           </div>
           <textarea
-            class="field-textarea ads-code-area" id="fieldHeaderAd"
-            placeholder="<!-- Paste your Header Ad code here -->"
-            data-ads-field="headerAd"
-            rows="5"
+            class="field-textarea ads-code-area"
+            id="customTopBanner"
+            data-ads-field="custom.slots.top-banner"
+            rows="6"
+            placeholder="<!-- Paste your top-banner ad HTML here -->&#10;<!-- Example: <script async src=&quot;...&quot;></script> -->"
             spellcheck="false"
             autocorrect="off"
             autocapitalize="off"
           ></textarea>
-          <div class="ads-code-meta" id="meta-headerAd">
-            <span class="ads-byte-count" id="bytes-headerAd">0 bytes</span>
-            <button class="ads-clear-btn" data-clear-field="fieldHeaderAd" type="button">Clear</button>
+          <div class="ads-code-meta" id="meta-customTop">
+            <span class="ads-byte-count" id="bytes-customTop">0 bytes</span>
+            <button class="ads-clear-btn" data-clear-field="customTopBanner" type="button">Clear</button>
           </div>
         </div>
 
-        <!-- ── Footer Ad ──────────────────────────────────── -->
+        <!-- ── bottom-banner HTML ──────────────────────────── -->
         <div class="field-group span-2">
           <div class="ads-slot-header">
             <div>
-              <label class="field-label" for="fieldFooterAd">Footer Ad Slot</label>
+              <label class="field-label" for="customBottomBanner">bottom-banner — Custom HTML</label>
               <p class="field-hint">
-                Injected just before the closing
-                <code style="color:var(--accent);font-size:0.75rem;">&lt;/footer&gt;</code> tag.
-                Typically a 728×90 or sticky footer banner.
+                Maps to <code style="color:var(--accent);font-size:0.73rem;">custom.slots['bottom-banner']</code>.
+                Paste your full ad tag including any <code style="color:var(--accent);font-size:0.73rem;">&lt;script&gt;</code> blocks.
               </p>
             </div>
-            <label class="slot-toggle" for="slotFooterEnabled" title="Enable this slot">
-              <input type="checkbox" id="slotFooterEnabled" data-ads-field="slotFooterEnabled" />
-              <span class="slot-toggle-track"><span class="slot-toggle-thumb"></span></span>
-              <span class="slot-toggle-label">Enable</span>
-            </label>
           </div>
           <textarea
-            class="field-textarea ads-code-area" id="fieldFooterAd"
-            placeholder="<!-- Paste your Footer Ad code here -->"
-            data-ads-field="footerAd"
-            rows="5"
+            class="field-textarea ads-code-area"
+            id="customBottomBanner"
+            data-ads-field="custom.slots.bottom-banner"
+            rows="6"
+            placeholder="<!-- Paste your bottom-banner ad HTML here -->&#10;<!-- Example: <script async src=&quot;...&quot;></script> -->"
             spellcheck="false"
             autocorrect="off"
             autocapitalize="off"
           ></textarea>
-          <div class="ads-code-meta" id="meta-footerAd">
-            <span class="ads-byte-count" id="bytes-footerAd">0 bytes</span>
-            <button class="ads-clear-btn" data-clear-field="fieldFooterAd" type="button">Clear</button>
-          </div>
-        </div>
-
-        <!-- ── Sidebar Ad ─────────────────────────────────── -->
-        <div class="field-group">
-          <div class="ads-slot-header">
-            <div>
-              <label class="field-label" for="fieldSidebarAd">Sidebar Ad Slot</label>
-              <p class="field-hint">
-                Shown in the tool sidebar. Typically a
-                300×250 Medium Rectangle.
-              </p>
-            </div>
-            <label class="slot-toggle" for="slotSidebarEnabled" title="Enable this slot">
-              <input type="checkbox" id="slotSidebarEnabled" data-ads-field="slotSidebarEnabled" />
-              <span class="slot-toggle-track"><span class="slot-toggle-thumb"></span></span>
-              <span class="slot-toggle-label">Enable</span>
-            </label>
-          </div>
-          <textarea
-            class="field-textarea ads-code-area" id="fieldSidebarAd"
-            placeholder="<!-- Paste your Sidebar Ad code here -->"
-            data-ads-field="sidebarAd"
-            rows="7"
-            spellcheck="false"
-            autocorrect="off"
-            autocapitalize="off"
-          ></textarea>
-          <div class="ads-code-meta" id="meta-sidebarAd">
-            <span class="ads-byte-count" id="bytes-sidebarAd">0 bytes</span>
-            <button class="ads-clear-btn" data-clear-field="fieldSidebarAd" type="button">Clear</button>
-          </div>
-        </div>
-
-        <!-- ── In-Tool Ad ─────────────────────────────────── -->
-        <div class="field-group">
-          <div class="ads-slot-header">
-            <div>
-              <label class="field-label" for="fieldInToolAd">In-Tool Ad Slot</label>
-              <p class="field-hint">
-                Injected inside each tool's content area.
-                Typically a 300×250 or Native ad unit.
-              </p>
-            </div>
-            <label class="slot-toggle" for="slotInToolEnabled" title="Enable this slot">
-              <input type="checkbox" id="slotInToolEnabled" data-ads-field="slotInToolEnabled" />
-              <span class="slot-toggle-track"><span class="slot-toggle-thumb"></span></span>
-              <span class="slot-toggle-label">Enable</span>
-            </label>
-          </div>
-          <textarea
-            class="field-textarea ads-code-area" id="fieldInToolAd"
-            placeholder="<!-- Paste your In-Tool Ad code here -->"
-            data-ads-field="inToolAd"
-            rows="7"
-            spellcheck="false"
-            autocorrect="off"
-            autocapitalize="off"
-          ></textarea>
-          <div class="ads-code-meta" id="meta-inToolAd">
-            <span class="ads-byte-count" id="bytes-inToolAd">0 bytes</span>
-            <button class="ads-clear-btn" data-clear-field="fieldInToolAd" type="button">Clear</button>
+          <div class="ads-code-meta" id="meta-customBottom">
+            <span class="ads-byte-count" id="bytes-customBottom">0 bytes</span>
+            <button class="ads-clear-btn" data-clear-field="customBottomBanner" type="button">Clear</button>
           </div>
         </div>
 
       </div><!-- /form-grid -->
-    </div>
-  </div>
+    </div><!-- /panel-body -->
+  </div><!-- /Panel 4 -->
 
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!--  PANEL 3 — FORM ACTIONS                               -->
-  <!-- ══════════════════════════════════════════════════════ -->
-  <div class="panel" style="animation-delay:0.14s;">
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANEL 5 — FORM ACTIONS (Save / Reset)
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="panel" style="animation-delay:0.28s;">
     <div class="panel-body" style="padding-top:1rem;padding-bottom:1rem;">
       <div class="form-actions" style="border-top:none;padding-top:0;margin-top:0;">
-        <button class="btn-save" id="btnSaveAds">
+
+        <button class="btn-save" id="btnSaveAds" type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round">
@@ -1375,7 +2300,8 @@
           </svg>
           Save Ad Configuration
         </button>
-        <button class="btn-reset" id="btnResetAds">
+
+        <button class="btn-reset" id="btnResetAds" type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -1384,23 +2310,25 @@
           </svg>
           Reset
         </button>
+
         <span class="save-status" id="adsSaveStatus"></span>
       </div>
     </div>
-  </div>
+  </div><!-- /Panel 5 -->
 
-</div><!-- /view-ads -->
+</div><!-- /#view-ads -->
 
 
-<!--
-  ============================================================
-  STYLES — Paste these inside the <style> block in
-           dashboard.html (before the closing </style> tag).
-  ============================================================
--->
-<style id="ads-manager-styles">
+<!-- ============================================================
+     NEW CSS — Paste inside the <style> block in dashboard.html
+     (replaces or merges with the old <style id="ads-manager-styles">)
+     ============================================================ -->
+<style id="ads-manager-styles-v2">
 
-  /* ── Toggle switch (global Enable Ads) ────────────────── */
+  /* ─────────────────────────────────────────────────────────────
+     Re-used toggle system (unchanged from original)
+  ───────────────────────────────────────────────────────────── */
+
   .ads-toggle-row {
     display: flex;
     align-items: flex-start;
@@ -1411,9 +2339,7 @@
     border: 1px solid var(--border);
     border-radius: 12px;
   }
-
   .ads-toggle-info { flex: 1; min-width: 0; }
-
   .ads-toggle-label {
     font-family: 'Syne', sans-serif;
     font-size: 0.9rem;
@@ -1421,14 +2347,13 @@
     color: var(--text-primary);
     margin-bottom: 0.2rem;
   }
-
   .ads-toggle-hint {
     font-size: 0.78rem;
     color: var(--text-muted);
     line-height: 1.5;
   }
 
-  /* ── Big toggle switch ─────────────────────────────────── */
+  /* Big toggle */
   .toggle-switch {
     display: flex;
     align-items: center;
@@ -1437,7 +2362,6 @@
     position: relative;
   }
   .toggle-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
-
   .toggle-track {
     width: 48px; height: 26px;
     background: rgba(255,255,255,0.08);
@@ -1452,7 +2376,6 @@
     border-color: rgba(52,211,153,0.5);
     box-shadow: 0 0 0 3px rgba(52,211,153,0.1);
   }
-
   .toggle-thumb {
     position: absolute;
     top: 3px; left: 3px;
@@ -1467,63 +2390,135 @@
     background: var(--accent-dim);
   }
 
-  /* ── Per-slot header (label + mini toggle) ─────────────── */
-  .ads-slot-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
+  /* ── Panel header toggle (right-aligned in .panel-head) ──── */
+  .panel-head .toggle-switch {
+    margin-left: auto;
+    flex-shrink: 0;
   }
 
-  /* ── Small slot toggle ─────────────────────────────────── */
-  .slot-toggle {
+  /* ─────────────────────────────────────────────────────────────
+     Priority selector grid
+  ───────────────────────────────────────────────────────────── */
+  .ads-priority-grid {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .ads-priority-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .ads-priority-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    cursor: pointer;
-    flex-shrink: 0;
-    margin-top: 0.15rem;
-  }
-  .slot-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
-
-  .slot-toggle-track {
-    width: 34px; height: 18px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 9px;
-    position: relative;
-    display: block;
-    transition: background 0.2s, border-color 0.2s;
-    flex-shrink: 0;
-  }
-  .slot-toggle input:checked ~ .slot-toggle-track {
-    background: rgba(52,211,153,0.2);
-    border-color: rgba(52,211,153,0.4);
-  }
-
-  .slot-toggle-thumb {
-    position: absolute;
-    top: 2px; left: 2px;
-    width: 12px; height: 12px;
-    background: rgba(100,116,139,0.7);
-    border-radius: 50%;
-    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
-  }
-  .slot-toggle input:checked ~ .slot-toggle-track .slot-toggle-thumb {
-    transform: translateX(16px);
-    background: var(--accent-dim);
-  }
-
-  .slot-toggle-label {
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(52,211,153,0.1);
+    border: 1px solid rgba(110,231,183,0.18);
+    font-family: 'Syne', sans-serif;
     font-size: 0.72rem;
-    color: var(--text-muted);
-    user-select: none;
-    font-weight: 500;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
   }
-  .slot-toggle input:checked ~ .slot-toggle-label { color: var(--accent); }
+  .ads-priority-badge sup {
+    font-size: 0.55rem;
+    vertical-align: super;
+    margin-left: 1px;
+  }
 
-  /* ── Code textarea ──────────────────────────────────────── */
+  .ads-priority-arrow {
+    color: var(--text-muted);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  /* Style the priority selects */
+  .ads-priority-select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222%22><polyline points=%226 9 12 15 18 9%22/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .ads-priority-grid { flex-direction: column; align-items: stretch; }
+    .ads-priority-arrow { display: none; }
+    .ads-priority-item  { min-width: 0; }
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     Slot section within a panel
+  ───────────────────────────────────────────────────────────── */
+  .ads-slot-section {
+    padding: 0.25rem 0 0.5rem;
+  }
+
+  .ads-slot-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+
+  .ads-slot-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.35rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dim);
+  }
+
+  .ads-slot-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.55rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    letter-spacing: 0.04em;
+    background: rgba(52,211,153,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(110,231,183,0.18);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     Dimension input row (W × H)
+  ───────────────────────────────────────────────────────────── */
+  .ads-dims-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ads-dims-row .field-input {
+    flex: 1;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .ads-dims-sep {
+    font-size: 1rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     Code textarea (re-used from original)
+  ───────────────────────────────────────────────────────────── */
   .ads-code-area {
     font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace !important;
     font-size: 0.78rem !important;
@@ -1542,21 +2537,21 @@
   }
   .ads-code-area::placeholder { color: rgba(100,116,139,0.35) !important; }
 
-  /* ── Code meta row (byte count + clear) ────────────────── */
+  /* ─────────────────────────────────────────────────────────────
+     Code meta row (byte count + clear btn)
+  ───────────────────────────────────────────────────────────── */
   .ads-code-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 0.35rem;
   }
-
   .ads-byte-count {
     font-size: 0.68rem;
     color: var(--text-muted);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02em;
   }
-
   .ads-clear-btn {
     font-size: 0.68rem;
     color: var(--text-muted);
@@ -1572,40 +2567,364 @@
     background: rgba(248,113,113,0.08);
   }
 
-  /* ── Disabled slot overlay ──────────────────────────────── */
-  .field-group.slot-disabled .ads-code-area {
-    opacity: 0.4;
-    pointer-events: none;
-  }
-  .field-group.slot-disabled .ads-code-meta {
-    opacity: 0.35;
-    pointer-events: none;
+  /* ─────────────────────────────────────────────────────────────
+     Per-slot header row (label + optional small toggle)
+  ───────────────────────────────────────────────────────────── */
+  .ads-slot-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
   }
 
-  /* ── Global ads disabled — dim everything ───────────────── */
-  .ads-globally-disabled .panel:not(:first-child) {
-    opacity: 0.45;
+  /* ─────────────────────────────────────────────────────────────
+     Disabled-network dim effect
+     JS: add class "ads-network-disabled" to #adsterraPanelBody etc.
+  ───────────────────────────────────────────────────────────── */
+  .ads-network-disabled {
+    opacity: 0.4;
     pointer-events: none;
     user-select: none;
+    transition: opacity 0.25s;
   }
 
 </style>
-
-
-  <!-- ============================================================
+        
+        
+        <!-- ============================================================
      STEP 4 — Comments Manager | Trusted Tools Web Admin Panel
      Replace your existing:
        <div class="section-view" id="view-comments">...</div>
      with the block below (keep the outer div, replace its contents).
      ============================================================ -->
+        
+  <!--
+  ============================================================================
+  Trusted Tools Web — Admin Panel
+  Block   : #view-comments
+  Version : 2.0 (Tabbed: Moderation + Settings)
+  ============================================================================
+  DROP-IN REPLACEMENT for the existing:
+    <div class="section-view" id="view-comments">…</div>
 
+  Also paste the <style> block below once into your dashboard.html <head>
+  (or merge with your existing <style>). The .cm-spin / fadeInScale rules
+  that were previously at the bottom of the file are included here too.
+  ============================================================================
+-->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     STYLES — paste once into <head> or merge with your existing <style>
+     ═══════════════════════════════════════════════════════════════════════ -->
+<style>
+  /* ── Shared animation ───────────────────────────────────────────────── */
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95) translateY(8px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0);   }
+  }
+
+  /* ── Refresh spin ───────────────────────────────────────────────────── */
+  .cm-spin { animation: spin 0.7s linear infinite; }
+
+  /* ── Table row hover glow ───────────────────────────────────────────── */
+  #cm-table-body tr { transition: background-color 0.15s ease; }
+  #cm-table-body tr:hover { background-color: rgba(52,211,153,0.04); }
+
+  /* ══════════════════════════════════════════════════════════════════════
+     TAB SYSTEM
+     ══════════════════════════════════════════════════════════════════════ */
+  .cms-tab-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #64748b;
+    border-radius: 0.65rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    background: none;
+    font-family: inherit;
+  }
+  .cms-tab-btn:hover:not(.active) {
+    color: #94a3b8;
+    background: rgba(255,255,255,0.03);
+  }
+  .cms-tab-btn.active {
+    color: #6ee7b7;
+    background: rgba(52,211,153,0.08);
+    border-color: rgba(110,231,183,0.18);
+  }
+  .cms-tab-btn.active .cms-tab-dot {
+    background: #34d399;
+    box-shadow: 0 0 6px rgba(52,211,153,0.5);
+  }
+  .cms-tab-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #475569;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .cms-tab-panel { display: none; }
+  .cms-tab-panel.active { display: block; }
+
+  /* ══════════════════════════════════════════════════════════════════════
+     SETTINGS PANEL CARDS  (match Ads Manager aesthetic)
+     ══════════════════════════════════════════════════════════════════════ */
+  .cfs-card {
+    background: rgba(11,22,40,0.7);
+    border: 1px solid rgba(110,231,183,0.09);
+    border-radius: 1rem;
+    padding: 1.25rem 1.4rem;
+    transition: border-color 0.2s;
+  }
+  .cfs-card:hover { border-color: rgba(110,231,183,0.18); }
+
+  .cfs-card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #6ee7b7;
+    margin-bottom: 1rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(110,231,183,0.08);
+  }
+  .cfs-card-title svg { opacity: 0.75; }
+
+  .cfs-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #94a3b8;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.02em;
+  }
+  .cfs-hint {
+    font-size: 0.68rem;
+    color: #475569;
+    margin-top: 0.3rem;
+    line-height: 1.5;
+  }
+
+  /* Inputs / Selects / Textareas */
+  .cfs-input,
+  .cfs-select,
+  .cfs-textarea {
+    width: 100%;
+    padding: 0.55rem 0.85rem;
+    border-radius: 0.6rem;
+    background: rgba(15,30,53,0.8);
+    border: 1px solid rgba(110,231,183,0.1);
+    color: #e2e8f0;
+    font-size: 0.8rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+  .cfs-input:focus,
+  .cfs-select:focus,
+  .cfs-textarea:focus {
+    border-color: rgba(52,211,153,0.4);
+    box-shadow: 0 0 0 3px rgba(52,211,153,0.07);
+  }
+  .cfs-input::placeholder,
+  .cfs-textarea::placeholder { color: #334155; }
+  .cfs-textarea {
+    min-height: 90px;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  .cfs-textarea.mono {
+    font-family: 'Fira Code','Cascadia Code','Consolas',monospace;
+    font-size: 0.76rem;
+    color: #a5f3c4;
+    background: rgba(0,20,12,0.5);
+    border-color: rgba(52,211,153,0.12);
+    min-height: 110px;
+  }
+  .cfs-textarea.mono:focus {
+    border-color: rgba(52,211,153,0.4);
+    background: rgba(0,20,12,0.65);
+  }
+  .cfs-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    background-size: 1.1rem;
+    padding-right: 2rem;
+    cursor: pointer;
+  }
+  .cfs-select option { background: #0b1628; }
+
+  /* Number input — tighter width */
+  .cfs-input-num { max-width: 130px; text-align: center; }
+
+  /* ── Toggle switch (re-uses .toggle-switch already in dashboard) ─── */
+  /* If your dashboard doesn't already have this, it is included here  */
+  .toggle-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    gap: 0.55rem;
+  }
+  .toggle-switch input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .toggle-track {
+    width: 38px;
+    height: 20px;
+    border-radius: 10px;
+    background: #1e293b;
+    border: 1px solid rgba(100,116,139,0.3);
+    position: relative;
+    transition: background 0.22s, border-color 0.22s;
+    flex-shrink: 0;
+  }
+  .toggle-track::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #475569;
+    transition: transform 0.22s, background 0.22s;
+  }
+  .toggle-switch input:checked ~ .toggle-track {
+    background: rgba(52,211,153,0.2);
+    border-color: rgba(52,211,153,0.35);
+  }
+  .toggle-switch input:checked ~ .toggle-track::after {
+    transform: translateX(18px);
+    background: #34d399;
+  }
+  .toggle-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    transition: color 0.2s;
+  }
+  .toggle-switch input:checked ~ .toggle-label { color: #e2e8f0; }
+
+  /* ── Row layout within a card ────────────────────────────────────── */
+  .cfs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    align-items: flex-start;
+  }
+  .cfs-col { flex: 1 1 180px; min-width: 0; }
+  .cfs-col-full { flex: 1 1 100%; min-width: 0; }
+
+  /* ── Toggle-only row (label left, toggle right) ─────────────────── */
+  .cfs-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(110,231,183,0.05);
+  }
+  .cfs-toggle-row:last-child { border-bottom: none; }
+  .cfs-toggle-row-label { font-size: 0.8rem; color: #cbd5e1; }
+  .cfs-toggle-row-sub   { font-size: 0.68rem; color: #475569; margin-top: 0.1rem; }
+
+  /* ── Save button ─────────────────────────────────────────────────── */
+  #cfs-save-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, rgba(52,211,153,0.18), rgba(16,185,129,0.12));
+    border: 1px solid rgba(52,211,153,0.3);
+    color: #6ee7b7;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  #cfs-save-btn:hover {
+    background: linear-gradient(135deg, rgba(52,211,153,0.26), rgba(16,185,129,0.2));
+    border-color: rgba(52,211,153,0.45);
+  }
+  #cfs-save-btn:active { transform: scale(0.97); }
+  #cfs-save-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .cfs-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(110,231,183,0.2);
+    border-top-color: #34d399;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+  #cfs-save-btn.loading .cfs-spinner { display: block; }
+  #cfs-save-btn.loading .cfs-save-icon { display: none; }
+
+  /* ── Voice enhance sub-panel ──────────────────────────────────────── */
+  .cfs-sub-panel {
+    background: rgba(6,13,24,0.5);
+    border: 1px solid rgba(110,231,183,0.06);
+    border-radius: 0.65rem;
+    padding: 0.85rem 1rem;
+    margin-top: 0.75rem;
+  }
+  .cfs-sub-panel-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #475569;
+    margin-bottom: 0.65rem;
+  }
+
+  /* ── Feature badge ───────────────────────────────────────────────── */
+  .cfs-feat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.25);
+    color: #a5b4fc;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+</style>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     #view-comments  — full replacement block
+     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="section-view" id="view-comments">
 
-  <!-- ── Page Header ─────────────────────────────────────────── -->
-  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+  <!-- ── Page Header ──────────────────────────────────────────────────── -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
     <div>
       <h2 class="text-2xl font-bold text-slate-100 tracking-tight flex items-center gap-3">
-        <!-- Comment bubble icon -->
         <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
           <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -1614,13 +2933,12 @@
         </span>
         Comments Manager
       </h2>
-      <p class="text-sm text-slate-400 mt-1 ml-12">Moderate, approve, and delete user-submitted comments.</p>
+      <p class="text-sm text-slate-400 mt-1 ml-12">Moderate comments &amp; configure all 15 premium features.</p>
     </div>
 
-    <!-- Summary Stats Bar -->
+    <!-- Summary Stats Bar (always visible) -->
     <div class="flex items-center gap-3 flex-wrap">
-      <div id="cm-stat-total"
-        class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-xs text-slate-400">
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-xs text-slate-400">
         <span class="w-2 h-2 rounded-full bg-slate-500"></span>
         <span>Total: <strong class="text-slate-200 font-semibold" id="cm-count-total">—</strong></span>
       </div>
@@ -1635,149 +2953,577 @@
     </div>
   </div>
 
-  <!-- ── Toolbar: Search + Filter ────────────────────────────── -->
-  <div class="flex flex-col sm:flex-row gap-3 mb-5">
-
-    <!-- Search -->
-    <div class="relative flex-1">
-      <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-        <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
-      </span>
-      <input
-        id="cm-search"
-        type="text"
-        placeholder="Search by user, tool, or comment…"
-        class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60 text-sm text-slate-200
-               placeholder-slate-500 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/30
-               transition-all duration-200"
-      />
-    </div>
-
-    <!-- Status Filter -->
-    <select
-      id="cm-filter-status"
-      class="px-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60 text-sm text-slate-300
-             focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/30
-             transition-all duration-200 cursor-pointer min-w-[150px]"
-    >
-      <option value="all">All Statuses</option>
-      <option value="pending">Pending</option>
-      <option value="approved">Approved</option>
-    </select>
-
-    <!-- Refresh Button -->
-    <button
-      id="cm-btn-refresh"
-      title="Refresh comments"
-      class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60
-             text-sm text-slate-300 hover:bg-slate-700/80 hover:text-slate-100 hover:border-slate-600
-             active:scale-95 transition-all duration-200"
-    >
-      <svg id="cm-refresh-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <!-- ── Tab Navigation ───────────────────────────────────────────────── -->
+  <div class="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900/60 border border-slate-800/80 w-fit mb-6 flex-wrap">
+    <button class="cms-tab-btn active" data-cms-tab="moderation" id="cms-tab-moderation">
+      <span class="cms-tab-dot"></span>
+      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round"
-          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+          d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
       </svg>
-      Refresh
+      Moderation
+    </button>
+    <button class="cms-tab-btn" data-cms-tab="settings" id="cms-tab-settings">
+      <span class="cms-tab-dot"></span>
+      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+      </svg>
+      Settings
+      <span class="cfs-feat-badge">15 Features</span>
     </button>
   </div>
 
-  <!-- ── Loading Spinner ──────────────────────────────────────── -->
-  <div id="cm-loading" class="hidden flex-col items-center justify-center py-20 gap-4">
-    <div class="relative w-12 h-12">
-      <!-- Outer ring -->
-      <div class="absolute inset-0 rounded-full border-2 border-slate-700/50"></div>
-      <!-- Spinning arc -->
-      <div class="absolute inset-0 rounded-full border-2 border-transparent border-t-emerald-400 animate-spin"></div>
-      <!-- Inner glow dot -->
-      <div class="absolute inset-3 rounded-full bg-emerald-400/10 flex items-center justify-center">
-        <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+  <!-- ════════════════════════════════════════════════════════════════════
+       TAB PANEL 1 — MODERATION  (100% original code, zero changes)
+       ════════════════════════════════════════════════════════════════════ -->
+  <div class="cms-tab-panel active" id="cms-panel-moderation">
+
+    <!-- Toolbar: Search + Filter + Refresh -->
+    <div class="flex flex-col sm:flex-row gap-3 mb-5">
+      <!-- Search -->
+      <div class="relative flex-1">
+        <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+          <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+        </span>
+        <input id="cm-search" type="text" placeholder="Search by user, tool, or comment…"
+          class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60 text-sm text-slate-200
+                 placeholder-slate-500 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/30
+                 transition-all duration-200" />
+      </div>
+      <!-- Status Filter -->
+      <select id="cm-filter-status"
+        class="px-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60 text-sm text-slate-300
+               focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/30
+               transition-all duration-200 cursor-pointer min-w-[150px]">
+        <option value="all">All Statuses</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+      </select>
+      <!-- Refresh Button -->
+      <button id="cm-btn-refresh" title="Refresh comments"
+        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/70 border border-slate-700/60
+               text-sm text-slate-300 hover:bg-slate-700/80 hover:text-slate-100 hover:border-slate-600
+               active:scale-95 transition-all duration-200">
+        <svg id="cm-refresh-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+        </svg>
+        Refresh
+      </button>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="cm-loading" class="hidden flex-col items-center justify-center py-20 gap-4">
+      <div class="relative w-12 h-12">
+        <div class="absolute inset-0 rounded-full border-2 border-slate-700/50"></div>
+        <div class="absolute inset-0 rounded-full border-2 border-transparent border-t-emerald-400 animate-spin"></div>
+        <div class="absolute inset-3 rounded-full bg-emerald-400/10 flex items-center justify-center">
+          <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+        </div>
+      </div>
+      <p class="text-sm text-slate-400 animate-pulse">Fetching comments…</p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="cm-empty" class="hidden flex-col items-center justify-center py-20 gap-4">
+      <div class="w-16 h-16 rounded-2xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center">
+        <svg class="w-8 h-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+        </svg>
+      </div>
+      <div class="text-center">
+        <p class="text-slate-300 font-medium" id="cm-empty-title">No comments found</p>
+        <p class="text-sm text-slate-500 mt-1" id="cm-empty-sub">Comments submitted by users will appear here.</p>
       </div>
     </div>
-    <p class="text-sm text-slate-400 animate-pulse">Fetching comments…</p>
-  </div>
 
-  <!-- ── Empty State ──────────────────────────────────────────── -->
-  <div id="cm-empty" class="hidden flex-col items-center justify-center py-20 gap-4">
-    <div class="w-16 h-16 rounded-2xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center">
-      <svg class="w-8 h-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+    <!-- Data Table -->
+    <div id="cm-table-wrapper" class="hidden">
+      <div class="overflow-x-auto rounded-2xl border border-slate-700/50 shadow-xl shadow-black/20
+                  [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-slate-800
+                  [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">
+        <table class="w-full min-w-[900px] text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-800/90 border-b border-slate-700/60">
+              <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">User Info</th>
+              <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">Tool Name</th>
+              <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">Comment</th>
+              <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">Date</th>
+              <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">Status</th>
+              <th class="text-center px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="cm-table-body" class="divide-y divide-slate-700/40">
+            <!-- Populated dynamically by comments-manager.js -->
+          </tbody>
+        </table>
+      </div>
+      <!-- Pagination / Count Footer -->
+      <div class="flex items-center justify-between mt-4 px-1">
+        <p class="text-xs text-slate-500" id="cm-table-meta">Showing — results</p>
+      </div>
+    </div>
+
+  </div><!-- /#cms-panel-moderation -->
+
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       TAB PANEL 2 — SETTINGS  (15 premium config features)
+       ════════════════════════════════════════════════════════════════════ -->
+  <div class="cms-tab-panel" id="cms-panel-settings">
+
+    <!-- Settings intro notice -->
+    <div class="flex items-start gap-3 p-3.5 rounded-xl bg-indigo-500/5 border border-indigo-500/15 mb-6">
+      <svg class="w-4 h-4 text-indigo-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
       </svg>
-    </div>
-    <div class="text-center">
-      <p class="text-slate-300 font-medium" id="cm-empty-title">No comments found</p>
-      <p class="text-sm text-slate-500 mt-1" id="cm-empty-sub">Comments submitted by users will appear here.</p>
-    </div>
-  </div>
-
-  <!-- ── Data Table ───────────────────────────────────────────── -->
-  <div id="cm-table-wrapper" class="hidden">
-    <!-- Table container with styled scrollbar -->
-    <div class="overflow-x-auto rounded-2xl border border-slate-700/50 shadow-xl shadow-black/20
-                [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-slate-800
-                [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">
-      <table class="w-full min-w-[900px] text-sm border-collapse">
-
-        <!-- Table Head -->
-        <thead>
-          <tr class="bg-slate-800/90 border-b border-slate-700/60">
-            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
-              User Info
-            </th>
-            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
-              Tool Name
-            </th>
-            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-              Comment
-            </th>
-            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
-              Date
-            </th>
-            <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
-              Status
-            </th>
-            <th class="text-center px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
-              Actions
-            </th>
-          </tr>
-        </thead>
-
-        <!-- Table Body — rows injected by JS -->
-        <tbody id="cm-table-body" class="divide-y divide-slate-700/40">
-          <!-- Populated dynamically by comments-manager.js -->
-        </tbody>
-
-      </table>
+      <p class="text-xs text-slate-400 leading-relaxed">
+        Changes saved here update the <code class="text-indigo-300 bg-indigo-500/10 px-1 rounded">site-config / main</code>
+        document in Firestore. The frontend <code class="text-indigo-300 bg-indigo-500/10 px-1 rounded">comments.js</code>
+        reads these values on next page load. Firebase config keys are intentionally excluded from this UI for security.
+      </p>
     </div>
 
-    <!-- Pagination / Count Footer -->
-    <div class="flex items-center justify-between mt-4 px-1">
-      <p class="text-xs text-slate-500" id="cm-table-meta">Showing — results</p>
-      <!-- Extend with pagination buttons here if needed in the future -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+      <!-- ── CARD: Admin & General ──────────────────────────────────── -->
+      <div class="cfs-card lg:col-span-2">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+          </svg>
+          Admin &amp; Access
+        </div>
+        <div>
+          <label class="cfs-label" for="cfs-admin-emails">Admin Emails
+            <span class="cfs-feat-badge">Core</span>
+          </label>
+          <textarea id="cfs-admin-emails" class="cfs-textarea"
+            placeholder="kawsar98dd@gmail.com&#10;another@example.com"
+            rows="3"></textarea>
+          <p class="cfs-hint">One Google email per line. These accounts get admin privileges in the comment widget.</p>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 1 — Image Attachments ────────────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+          Feature 1 — Image Attachments (ImgBB)
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Enable Image Uploads</div>
+            <div class="cfs-toggle-row-sub">Allow users to attach images to comments</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-img-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-imgbb-key">ImgBB API Key</label>
+          <input type="text" id="cfs-imgbb-key" class="cfs-input" placeholder="your_imgbb_api_key" />
+          <p class="cfs-hint">Get a free key at <strong class="text-slate-400">api.imgbb.com</strong></p>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-img-maxsize">Max File Size (MB)</label>
+          <input type="number" id="cfs-img-maxsize" class="cfs-input cfs-input-num" min="1" max="50" placeholder="5" />
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-img-expiration">Expiration (seconds, 0 = never)</label>
+          <input type="number" id="cfs-img-expiration" class="cfs-input cfs-input-num" min="0" placeholder="0" />
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 2 — Voice Notes ──────────────────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
+          </svg>
+          Feature 2 — Voice Notes (Cloudinary)
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Enable Voice Recording</div>
+            <div class="cfs-toggle-row-sub">Allow users to attach audio notes</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-voice-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Voice Enhance / Preview UI
+              <span class="cfs-feat-badge">v2.1</span>
+            </div>
+            <div class="cfs-toggle-row-sub">Shows preview panel + Clean Voice toggle before upload</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-voice-enhance-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-cloudinary-name">Cloudinary Cloud Name</label>
+          <input type="text" id="cfs-cloudinary-name" class="cfs-input" placeholder="my_cloud_name" />
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-cloudinary-preset">Upload Preset</label>
+          <input type="text" id="cfs-cloudinary-preset" class="cfs-input" placeholder="ttw_audio_preset" />
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-voice-maxduration">Max Duration (seconds)</label>
+          <input type="number" id="cfs-voice-maxduration" class="cfs-input cfs-input-num" min="10" max="300" placeholder="60" />
+        </div>
+        <!-- Voice Enhance sub-panel -->
+        <div class="cfs-sub-panel" id="cfs-enhance-subpanel">
+          <div class="cfs-sub-panel-title">Web Audio Enhancement Parameters</div>
+          <div class="cfs-row">
+            <div class="cfs-col">
+              <label class="cfs-label" for="cfs-hp-freq">Highpass Freq (Hz)</label>
+              <input type="number" id="cfs-hp-freq" class="cfs-input" placeholder="80" step="10" />
+            </div>
+            <div class="cfs-col">
+              <label class="cfs-label" for="cfs-hp-q">Highpass Q</label>
+              <input type="number" id="cfs-hp-q" class="cfs-input" placeholder="0.707" step="0.1" />
+            </div>
+            <div class="cfs-col">
+              <label class="cfs-label" for="cfs-comp-threshold">Threshold (dBFS)</label>
+              <input type="number" id="cfs-comp-threshold" class="cfs-input" placeholder="-24" />
+            </div>
+            <div class="cfs-col">
+              <label class="cfs-label" for="cfs-comp-knee">Knee (dB)</label>
+              <input type="number" id="cfs-comp-knee" class="cfs-input" placeholder="30" />
+            </div>
+            <div class="cfs-col">
+              <label class="cfs-label" for="cfs-comp-ratio">Ratio</label>
+              <input type="number" id="cfs-comp-ratio" class="cfs-input" placeholder="4" />
+            </div>
+            <div class="cfs-col">
+              <label class="cfs-label" for="cfs-comp-attack">Attack (s)</label>
+              <input type="number" id="cfs-comp-attack" class="cfs-input" placeholder="0.003" step="0.001" />
+            </div>
+            <div class="cfs-col">
+              <label class="cfs-label" for="cfs-comp-release">Release (s)</label>
+              <input type="number" id="cfs-comp-release" class="cfs-input" placeholder="0.25" step="0.05" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 3 — User CRUD ───────────────────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125" />
+          </svg>
+          Feature 3 — User CRUD
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Allow Edit Own Comments</div>
+            <div class="cfs-toggle-row-sub">Users can edit their own submissions</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-crud-edit">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Allow Delete Own Comments</div>
+            <div class="cfs-toggle-row-sub">Users can permanently remove their own submissions</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-crud-delete">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 4 — Telegram Notifications ──────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+          </svg>
+          Feature 4 — Telegram Notifications
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Enable Telegram Alerts</div>
+            <div class="cfs-toggle-row-sub">Notify your bot on every new comment</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-telegram-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-telegram-token">Bot Token</label>
+          <input type="text" id="cfs-telegram-token" class="cfs-input" placeholder="1234567890:AABBccDD..." />
+          <p class="cfs-hint">Obtain from <strong class="text-slate-400">@BotFather</strong> on Telegram</p>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-telegram-chatid">Chat / Channel ID</label>
+          <input type="text" id="cfs-telegram-chatid" class="cfs-input" placeholder="-1001234567890" />
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 5 & 6 — Upvotes & Pin ───────────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
+          </svg>
+          Features 5 &amp; 6 — Upvotes &amp; Pin
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Enable Upvotes / Likes</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-upvotes-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Enable Admin Pin Comment</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-pin-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-upvotes-sort">Default Sort Order</label>
+          <select id="cfs-upvotes-sort" class="cfs-select">
+            <option value="newest">Newest First</option>
+            <option value="mostLiked">Most Liked First</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 7, 8, 9 — Pagination, Anti-Spam, Markdown ─ -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 9.75V10.5" />
+          </svg>
+          Features 7, 8 &amp; 9 — Pagination · Anti-Spam · Markdown
+        </div>
+        <div class="cfs-row">
+          <div class="cfs-col">
+            <label class="cfs-label" for="cfs-pagination-limit">Comments per Page</label>
+            <input type="number" id="cfs-pagination-limit" class="cfs-input" min="1" max="100" placeholder="10" />
+            <p class="cfs-hint">Firestore batch size per "Load More" click</p>
+          </div>
+          <div class="cfs-col">
+            <label class="cfs-label" for="cfs-antispam-cooldown">Anti-Spam Cooldown (s)</label>
+            <input type="number" id="cfs-antispam-cooldown" class="cfs-input" min="0" max="3600" placeholder="30" />
+            <p class="cfs-hint">Seconds between posts per user</p>
+          </div>
+        </div>
+        <div class="cfs-toggle-row mt-3">
+          <div>
+            <div class="cfs-toggle-row-label">Enable Markdown Parsing</div>
+            <div class="cfs-toggle-row-sub">**bold**, *italic*, `code` in comments</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-markdown-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 10 — In-Feed Ads ────────────────────────── -->
+      <div class="cfs-card lg:col-span-2">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 1 1 0-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 0 1-1.44-4.282m3.102.069a18.03 18.03 0 0 1-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 0 1 8.835 2.535M10.34 6.66a23.847 23.847 0 0 1 8.835-2.535m0 0A23.74 23.74 0 0 1 18.795 3m.38 1.125a23.91 23.91 0 0 1 1.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 0 0 1.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 0 1 0 3.46" />
+          </svg>
+          Feature 10 — In-Feed Ads
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-6">
+          <div>
+            <div class="cfs-toggle-row" style="border:none;padding:0;">
+              <div>
+                <div class="cfs-toggle-row-label">Enable In-Feed Ads</div>
+                <div class="cfs-toggle-row-sub">Inject ad HTML after every N comments</div>
+              </div>
+              <label class="toggle-switch ml-4">
+                <input type="checkbox" id="cfs-ads-enabled">
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+            <div class="mt-3">
+              <label class="cfs-label" for="cfs-ads-interval">Inject After N Comments</label>
+              <input type="number" id="cfs-ads-interval" class="cfs-input cfs-input-num" min="1" placeholder="5" />
+            </div>
+          </div>
+          <div class="flex-1">
+            <label class="cfs-label" for="cfs-ads-html">Ad Unit HTML</label>
+            <textarea id="cfs-ads-html" class="cfs-textarea mono" rows="5"
+              placeholder="&lt;!-- Paste your Google AdSense or any banner HTML here --&gt;"></textarea>
+            <p class="cfs-hint">Raw HTML injected into the comment feed. Use your AdSense &lt;ins&gt; tag.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 11 — Profanity Filter ───────────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+          </svg>
+          Feature 11 — Profanity Filter
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Enable Profanity Filter</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-profanity-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-profanity-words">Blocked Words</label>
+          <textarea id="cfs-profanity-words" class="cfs-textarea" rows="4"
+            placeholder="badword1, badword2, spam, scam"></textarea>
+          <p class="cfs-hint">Comma-separated list. Case-insensitive matching. Matched words are replaced with asterisks.</p>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 12 — Badges ──────────────────────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0" />
+          </svg>
+          Feature 12 — User Badges
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Enable Badge System</div>
+            <div class="cfs-toggle-row-sub">Show Admin &amp; Trusted User badges</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-badges-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-badges-threshold">Trusted User Upvote Threshold</label>
+          <input type="number" id="cfs-badges-threshold" class="cfs-input cfs-input-num" min="1" placeholder="10" />
+          <p class="cfs-hint">Users with this many received upvotes earn the "Trusted User" badge.</p>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 13 & 14 — Mentions & GDPR ───────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25" />
+          </svg>
+          Features 13 &amp; 14 — Mentions &amp; GDPR
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Enable @Mention Highlights</div>
+            <div class="cfs-toggle-row-sub">Highlight @username strings in comments</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-mentions-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">GDPR Consent Checkbox</div>
+            <div class="cfs-toggle-row-sub">Show consent checkbox before posting</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-gdpr-consent">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">GDPR Data Export Button</div>
+            <div class="cfs-toggle-row-sub">Show "Export My Data" in the user panel</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-gdpr-export">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="mt-3">
+          <label class="cfs-label" for="cfs-gdpr-text">Consent Checkbox Label Text</label>
+          <textarea id="cfs-gdpr-text" class="cfs-textarea" rows="2"
+            placeholder="I agree that my name and comment will be stored as per the Privacy Policy."></textarea>
+        </div>
+      </div>
+
+      <!-- ── CARD: Feature 15 — SEO Schema ──────────────────────────── -->
+      <div class="cfs-card">
+        <div class="cfs-card-title">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+          Feature 15 — Auto SEO Schema
+        </div>
+        <div class="cfs-toggle-row">
+          <div>
+            <div class="cfs-toggle-row-label">Inject JSON-LD Schema</div>
+            <div class="cfs-toggle-row-sub">Auto-inject DiscussionForumPosting markup into &lt;head&gt;</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfs-seo-enabled">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <p class="cfs-hint mt-3">When enabled, the comment widget automatically generates and injects a valid
+          <code class="text-slate-400 bg-slate-800/60 px-1 rounded">DiscussionForumPosting</code>
+          JSON-LD block into the page <code class="text-slate-400 bg-slate-800/60 px-1 rounded">&lt;head&gt;</code>
+          to improve search engine visibility.</p>
+      </div>
+
+    </div><!-- /settings grid -->
+
+    <!-- Save Bar -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-6 pt-5
+                border-t border-slate-800/80">
+      <p class="text-xs text-slate-500" id="cfs-save-status">Unsaved changes will be lost on page reload.</p>
+      <button id="cfs-save-btn">
+        <span class="cfs-spinner" aria-hidden="true"></span>
+        <svg class="cfs-save-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+        Save Settings to Firestore
+      </button>
     </div>
-  </div>
 
-  <!-- ── Delete Confirmation Modal ───────────────────────────── -->
-  <!--
-    Rendered inline; JS toggles visibility.
-    Kept inside the section so it's only present when this view is active.
-  -->
-  <div id="cm-delete-modal"
-    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4"
-    role="dialog" aria-modal="true" aria-labelledby="cm-modal-title">
+  </div><!-- /#cms-panel-settings -->
 
-    <!-- Backdrop -->
-    <div id="cm-modal-backdrop"
-      class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
-    <!-- Modal Card -->
+  <!-- ── Delete Confirmation Modal (unchanged) ──────────────────────── -->
+  <div id="cm-delete-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+       role="dialog" aria-modal="true" aria-labelledby="cm-modal-title">
+    <div id="cm-modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
     <div class="relative z-10 w-full max-w-sm rounded-2xl border border-slate-700/60 bg-[#0c1628]
-                shadow-2xl shadow-black/50 p-6 flex flex-col gap-5
-                animate-[fadeInScale_0.2s_ease-out]">
-
-      <!-- Icon + Title -->
+                shadow-2xl shadow-black/50 p-6 flex flex-col gap-5 animate-[fadeInScale_0.2s_ease-out]">
       <div class="flex items-start gap-4">
         <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20
                     flex items-center justify-center">
@@ -1794,8 +3540,6 @@
           </p>
         </div>
       </div>
-
-      <!-- Action Buttons -->
       <div class="flex gap-3 justify-end pt-1">
         <button id="cm-modal-cancel"
           class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 bg-slate-700/60 border border-slate-600/50
@@ -1806,7 +3550,8 @@
           class="px-4 py-2 rounded-xl text-sm font-medium text-white bg-red-600 border border-red-500/50
                  hover:bg-red-500 active:scale-95 transition-all duration-200 flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
           </svg>
           Delete
         </button>
@@ -1815,48 +3560,22 @@
   </div>
 
 </div><!-- /#view-comments -->
-
-<!--
-  ═══════════════════════════════════════════════════════════════
-  PASTE THIS IN YOUR <style> or <head> (once, anywhere in dashboard.html)
-  Adds the modal entrance animation and the row hover glow.
-  ═══════════════════════════════════════════════════════════════
--->
-<style>
-  @keyframes fadeInScale {
-    from { opacity: 0; transform: scale(0.95) translateY(8px); }
-    to   { opacity: 1; transform: scale(1)    translateY(0);   }
-  }
-  /* Subtle row hover highlight */
-  #cm-table-body tr {
-    transition: background-color 0.15s ease;
-  }
-  #cm-table-body tr:hover {
-    background-color: rgba(52, 211, 153, 0.04); /* emerald-400 at 4% */
-  }
-  /* Spin class for the refresh button icon */
-  .cm-spin {
-    animation: spin 0.7s linear infinite;
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-</style>
-
+        
       </main><!-- /content-area -->
     </div><!-- /main-wrap -->
   </div><!-- /app-shell -->
-
+  
   <!-- ─── Firebase SDK (v9 compat) ──────────────────────────────────── -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-
+  
   <!-- ─── Admin modules (order matters) ─────────────────────────────── -->
-   <script src="js/firebase-config.js"></script>
+  <script src="js/firebase-config.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/site-config-manager.js"></script>
   <script src="js/ads-manager.js"></script>
   <script src="js/comments-manager.js"></script>
-  </body>
+</body>
+
 </html>

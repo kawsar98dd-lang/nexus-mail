@@ -2,15 +2,21 @@
  * ============================================================
  * Plugin Name:  Trusted Tools Web — Pro Ad Manager
  * Plugin URI:   https://trustedtoolsweb.com
- * Version:      6.0.0
+ * Version:      5.2.0
  * Author:       MD KAWSAR
  * Author URI:   https://trustedtoolsweb.com
  * License:      CodeCanyon Regular / Extended License
- * Description:  Multi-network ad injection engine with Firebase
- *               dynamic configuration, lazy loading, zero-width
- *               retry, mutation recovery, and AdBlocker detection.
- *               Compatible with all modern browsers, legacy
- *               Android WebView, and SPCK Editor preview environment.
+ * Description:  Multi-network ad injection engine with lazy
+ *               loading, zero-width retry, mutation recovery,
+ *               and AdBlocker detection. Compatible with all
+ *               modern browsers, legacy Android WebView, and
+ *               SPCK Editor preview environment.
+ *
+ *               v5.2.0 — Dynamic Firestore configuration.
+ *               The engine now fetches its config from
+ *               Firestore (ads/main) before initialising.
+ *               Falls back to the hardcoded defaults below
+ *               if the fetch fails for any reason.
  * ============================================================
  *
  * Supported Networks:
@@ -19,48 +25,52 @@
  *   - Custom HTML Ads
  *
  * Usage:
- *   1. Drop this file into: assets/js/trusted-ad-manager.js
- *   2. Add to every HTML page before </body>:
- *        <script src="../../assets/js/trusted-ad-manager.js"></script>
- *   3. Place ad slots anywhere in your HTML:
- *        <div class="ad-slot" data-ad-slot="header"></div>
- *        <div class="ad-slot" data-ad-slot="footer"></div>
- *        <div class="ad-slot" data-ad-slot="sidebar"></div>
- *
- * Firestore document:  ads/main
- *   Fields consumed:
- *     globalEnabled        (boolean) — master kill switch
- *     adNetwork            (string)  — "adsterra" | "adsense" | "custom"
- *     publisherId          (string)  — AdSense ca-pub-XXXX or Adsterra key
- *     headerAd             (string)  — Raw HTML/JS for the header slot
- *     footerAd             (string)  — Raw HTML/JS for the footer slot
- *     sidebarAd            (string)  — Raw HTML/JS for the sidebar slot
- *     slotHeaderEnabled    (boolean) — individual header slot toggle
- *     slotFooterEnabled    (boolean) — individual footer slot toggle
- *     slotSidebarEnabled   (boolean) — individual sidebar slot toggle
+ *   1. Drop this file into: assets/js/ads-manager.js
+ *      (replaces the old trusted-ad-manager.js)
+ *   2. Ensure firebase-app-compat.js + firebase-firestore-compat.js
+ *      are loaded BEFORE this file on every page.
+ *   3. Ensure window.SITE_CONFIG (from site-config.js) is also
+ *      available before this file loads.
+ *   4. Place ad slots anywhere in your HTML:
+ *        <div class="ad-slot" data-ad-slot="top-banner"></div>
+ *        <div class="ad-slot" data-ad-slot="bottom-banner"></div>
  *
  * Public API:
- *   TrustedAdManager.refresh()  — re-scan for new slots
+ *   window.TrustedAdManager.refresh()  — re-scan for new slots
  * ============================================================
  */
 
 /* global window, document, firebase */
 
 /* ============================================================
- * SECTION 1 — STATIC FALLBACK AD CONFIGURATION
+ * SECTION 1 — FALLBACK / DEFAULT AD CONFIGURATION
  *
- * These values are used ONLY if the Firestore fetch fails or
- * returns no data. Update them as your local defaults.
- * The live Firestore values from the admin panel take priority.
+ * This object is the hardcoded fallback. It is used as-is if:
+ *   a) Firestore is unreachable (network error, adblocker).
+ *   b) The Firestore document (ads/main) does not exist yet.
+ *   c) Any unexpected error occurs during the fetch.
+ *
+ * When Firestore IS reachable, the fetched document is merged
+ * on top of these defaults, so any field present in Firestore
+ * wins, and any field missing from Firestore keeps its value
+ * from here.
+ *
+ * Edit the values below to set your local defaults.
  * ============================================================ */
 
 var AD_CONFIG = {
 
     // ── Network 1: Adsterra ───────────────────────────────────
     adsterra: {
-        enabled: false,            // Controlled by Firestore globalEnabled
+        enabled: true,
         slots: {
-            'header':  {
+
+            /**
+             * Top Banner — 300x250 Medium Rectangle
+             * Displays above the main tool UI.
+             * Works on all devices: mobile, tablet, desktop.
+             */
+            'top-banner': {
                 type:   'banner',
                 src:    'https://www.highperformanceformat.com/5070c547ef90c09b4238c20a4a95d940/invoke.js',
                 width:  300,
@@ -73,7 +83,13 @@ var AD_CONFIG = {
                     'params': {}
                 }
             },
-            'footer': {
+
+            /**
+             * Bottom Banner — 320x50 Mobile Banner
+             * Displays below the main tool UI.
+             * Ideal for mobile; renders cleanly on desktop too.
+             */
+            'bottom-banner': {
                 type:   'banner',
                 src:    'https://www.highperformanceformat.com/fcb4441b8ed60640d7288adb340a4ec3/invoke.js',
                 width:  320,
@@ -86,46 +102,33 @@ var AD_CONFIG = {
                     'params': {}
                 }
             }
+
         }
     },
 
     // ── Network 2: Google AdSense ─────────────────────────────
     adsense: {
-        enabled:   false,
-        client_id: 'ca-pub-XXXXXXXXXXXXXXXX',
+        enabled: false,                        // Set true when AdSense is approved
+        client_id: 'ca-pub-XXXXXXXXXXXXXXXX',  // Replace with your publisher ID
         slots: {
-            'header':  '',
-            'footer':  '',
-            'sidebar': ''
+            'top-banner':    '1234567890',     // Replace with your ad slot IDs
+            'bottom-banner': '0987654321',
+            'in-content':    '1122334455',
+            'sidebar':       '5544332211'
         }
     },
 
     // ── Network 3: Custom HTML Ad ─────────────────────────────
-    //
-    // This is the PRIMARY network driven by Firestore.
-    // The admin panel saves raw HTML strings (headerAd, footerAd,
-    // sidebarAd) which are loaded here at runtime.
     custom: {
-        enabled: false,
+        enabled: false,                        // Set true to use custom HTML ads
         slots: {
-            'header':  '',
-            'footer':  '',
-            'sidebar': ''
+            'top-banner':    '',               // Paste full ad HTML string here
+            'bottom-banner': ''
         }
     },
 
-    // ── Slot-level enable flags (mirrored from Firestore) ─────
-    //
-    // Each flag corresponds to a Firestore boolean field.
-    // Defaults to false — Firestore must explicitly enable each slot.
-    slots: {
-        header:  false,
-        footer:  false,
-        sidebar: false
-    },
-
     // ── Priority — first enabled network with a matching slot wins
-    priority: ['custom', 'adsense', 'adsterra'],
+    priority: ['adsterra', 'adsense', 'custom'],
 
     // ── Global Options ────────────────────────────────────────
     options: {
@@ -138,154 +141,10 @@ var AD_CONFIG = {
 
 
 /* ============================================================
- * SECTION 2 — FIREBASE CONFIGURATION LOADER
- *
- * Fetches the Firestore document  ads/main  and merges the
- * live values into AD_CONFIG before any ad injection runs.
- *
- * Returns a Promise<boolean>:
- *   true  — config loaded and globalEnabled is true
- *   false — fetch failed, document missing, or globalEnabled false
- * ============================================================ */
-
-/**
- * Fetches ads/main from Firestore, merges fields into AD_CONFIG,
- * and returns whether ad injection should proceed.
- *
- * Safe to call even if Firebase is not initialised:
- * returns false (no ads) so the page is never broken.
- *
- * @returns {Promise<boolean>}
- */
-function _loadFirestoreAdConfig() {
-    return new Promise(function (resolve) {
-
-        // ── Guard: Firebase must be available ─────────────────
-        if (typeof firebase === 'undefined' || typeof firebase.firestore !== 'function') {
-            console.warn('[TrustedAds] Firebase not available — ad injection disabled.');
-            return resolve(false);
-        }
-
-        var db = firebase.firestore();
-
-        db.collection('ads').doc('main').get()
-
-            .then(function (docSnap) {
-
-                // ── Document missing → no ads ─────────────────
-                if (!docSnap.exists) {
-                    console.info('[TrustedAds] ads/main not found in Firestore — no ads injected.');
-                    return resolve(false);
-                }
-
-                var data = docSnap.data();
-
-                // ── Master kill switch ────────────────────────
-                if (data.globalEnabled !== true) {
-                    console.info('[TrustedAds] globalEnabled is false — all ad injection aborted.');
-                    return resolve(false);
-                }
-
-                /* ── Determine active network ──────────────────
-                   The admin sets adNetwork to one of:
-                   "adsterra" | "adsense" | "custom"
-                   We enable ONLY that network and disable the others,
-                   then push the Firestore HTML/key data into it.
-                ─────────────────────────────────────────────── */
-                var network = (typeof data.adNetwork === 'string')
-                    ? data.adNetwork.toLowerCase().trim()
-                    : 'custom';
-
-                // Disable all networks first, then enable the chosen one
-                AD_CONFIG.adsterra.enabled = false;
-                AD_CONFIG.adsense.enabled  = false;
-                AD_CONFIG.custom.enabled   = false;
-
-                // Bubble the chosen network to the front of priority
-                AD_CONFIG.priority = [network, 'adsense', 'adsterra', 'custom']
-                    .filter(function (v, i, a) { return a.indexOf(v) === i; }); // deduplicate
-
-                if (network === 'custom') {
-                    /* ── Custom HTML network ───────────────────
-                       headerAd / footerAd / sidebarAd are raw HTML
-                       strings pasted or generated in the admin panel.
-                    ─────────────────────────────────────────── */
-                    AD_CONFIG.custom.enabled        = true;
-                    AD_CONFIG.custom.slots.header   = (typeof data.headerAd  === 'string') ? data.headerAd  : '';
-                    AD_CONFIG.custom.slots.footer   = (typeof data.footerAd  === 'string') ? data.footerAd  : '';
-                    AD_CONFIG.custom.slots.sidebar  = (typeof data.sidebarAd === 'string') ? data.sidebarAd : '';
-
-                } else if (network === 'adsense') {
-                    /* ── Google AdSense network ────────────────
-                       publisherId maps to client_id.
-                       Slot IDs can optionally come from Firestore
-                       headerAd / footerAd / sidebarAd fields if the
-                       admin stores the numeric slot IDs there.
-                    ─────────────────────────────────────────── */
-                    AD_CONFIG.adsense.enabled = true;
-                    if (typeof data.publisherId === 'string' && data.publisherId.trim()) {
-                        AD_CONFIG.adsense.client_id = data.publisherId.trim();
-                    }
-                    // Allow Firestore to override individual slot IDs
-                    if (typeof data.headerAd  === 'string' && data.headerAd.trim())  { AD_CONFIG.adsense.slots.header  = data.headerAd.trim();  }
-                    if (typeof data.footerAd  === 'string' && data.footerAd.trim())  { AD_CONFIG.adsense.slots.footer  = data.footerAd.trim();  }
-                    if (typeof data.sidebarAd === 'string' && data.sidebarAd.trim()) { AD_CONFIG.adsense.slots.sidebar = data.sidebarAd.trim(); }
-
-                } else if (network === 'adsterra') {
-                    /* ── Adsterra network ──────────────────────
-                       publisherId maps to the Adsterra key.
-                       If the admin stores the full invoke.js URL in
-                       headerAd / footerAd / sidebarAd, we use them
-                       as the src for each slot.
-                    ─────────────────────────────────────────── */
-                    AD_CONFIG.adsterra.enabled = true;
-                    var aKey = (typeof data.publisherId === 'string') ? data.publisherId.trim() : '';
-
-                    // Update key + src only if the admin supplied a publisher ID
-                    if (aKey) {
-                        ['header', 'footer', 'sidebar'].forEach(function (sName) {
-                            var slotCfg = AD_CONFIG.adsterra.slots[sName];
-                            if (slotCfg) {
-                                slotCfg.atOptions['key'] = aKey;
-                                slotCfg.src = 'https://www.highperformanceformat.com/' + aKey + '/invoke.js';
-                            }
-                        });
-                    }
-
-                    // Allow raw HTML overrides for Adsterra slots via the custom mechanism
-                    if (typeof data.headerAd  === 'string' && data.headerAd.trim())  { AD_CONFIG.custom.slots.header  = data.headerAd.trim();  AD_CONFIG.custom.enabled = true; }
-                    if (typeof data.footerAd  === 'string' && data.footerAd.trim())  { AD_CONFIG.custom.slots.footer  = data.footerAd.trim();  AD_CONFIG.custom.enabled = true; }
-                    if (typeof data.sidebarAd === 'string' && data.sidebarAd.trim()) { AD_CONFIG.custom.slots.sidebar = data.sidebarAd.trim(); AD_CONFIG.custom.enabled = true; }
-                }
-
-                /* ── Per-slot enable flags ─────────────────────
-                   Each slot is gated by its own boolean in Firestore.
-                   If the field is missing/non-boolean it defaults to
-                   false (conservative — never show an unwanted ad).
-                ─────────────────────────────────────────────── */
-                AD_CONFIG.slots.header  = data.slotHeaderEnabled  === true;
-                AD_CONFIG.slots.footer  = data.slotFooterEnabled  === true;
-                AD_CONFIG.slots.sidebar = data.slotSidebarEnabled === true;
-
-                console.log('[TrustedAds] ✅ Firestore config merged. Network:', network,
-                    '| Slots:', AD_CONFIG.slots);
-
-                resolve(true);
-            })
-
-            .catch(function (err) {
-                // Network error, permission denied, etc.
-                // Fail safe: no ads rather than a broken page.
-                console.error('[TrustedAds] Firestore fetch failed — no ads injected.', err);
-                resolve(false);
-            });
-    });
-}
-
-
-/* ============================================================
- * SECTION 3 — CORE ENGINE
- * Do not edit below this line unless you know what you are doing.
+ * SECTION 2 — CORE ENGINE
+ * ⚠️  DO NOT EDIT BELOW THIS LINE.
+ * All injection logic is heavily optimised for cross-browser
+ * and legacy WebView compatibility. Changes will break ads.
  * ============================================================ */
 
 var TrustedAdManager = (function () {
@@ -371,20 +230,21 @@ var TrustedAdManager = (function () {
         var slotCfg = cfg.slots[slotType];
         if (!slotCfg) { return false; }
 
+        // Create an isolated iframe element
         var iframe = document.createElement('iframe');
-        iframe.width       = slotCfg.width  || 300;
-        iframe.height      = slotCfg.height || 250;
-        iframe.frameBorder = '0';
-        iframe.scrolling   = 'no';
-        iframe.style.cssText = 'border:none; overflow:hidden; display:block; margin:0 auto; background:transparent;';
+        iframe.width = slotCfg.width || 300;
+        iframe.height = slotCfg.height || 250;
+        iframe.frameBorder = "0";
+        iframe.scrolling = "no";
+        iframe.style.cssText = "border:none; overflow:hidden; display:block; margin:0 auto; background:transparent;";
 
         slot.innerHTML = '';
         slot.appendChild(iframe);
 
-        // Note: closing script tags are split ('</scr' + 'ipt>') to prevent
-        // the browser parser from closing the main document script prematurely.
-        var iframeContent =
-            '<!DOCTYPE html><html><head>' +
+        // Generate the iframe HTML content
+        // Note: The closing script tags are split ('</scr' + 'ipt>')
+        // to prevent the browser parser from closing the main document script prematurely.
+        var iframeContent = '<!DOCTYPE html><html><head>' +
             '<style>body{margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;background:transparent;}</style>' +
             '</head><body>' +
             '<script type="text/javascript">' +
@@ -393,6 +253,7 @@ var TrustedAdManager = (function () {
             '<script type="text/javascript" src="' + slotCfg.src + '"></scr' + 'ipt>' +
             '</body></html>';
 
+        // Safely write the content into the iframe's isolated document
         var iframeDoc = iframe.contentWindow || iframe.contentDocument;
         if (iframeDoc.document) {
             iframeDoc = iframeDoc.document;
@@ -489,28 +350,13 @@ var TrustedAdManager = (function () {
 
     /* ----------------------------------------------------------
      * Core: try each network in priority order for a given slot.
-     *
-     * NEW — per-slot gate:
-     *   Before any network injection is attempted, we check
-     *   AD_CONFIG.slots[slotType]. If the admin has not enabled
-     *   this specific slot in Firestore, _initAd marks it empty
-     *   immediately and returns without injecting anything.
-     *
      * Marks the slot with data-ad-loaded to prevent double inject.
      * ---------------------------------------------------------- */
     function _initAd(slot) {
-        if (slot.getAttribute('data-ad-loaded') === 'true')  { return; }
-        if (slot.getAttribute('data-ad-loaded') === 'empty') { return; }
+        if (slot.getAttribute('data-ad-loaded') === 'true') { return; }
 
         var slotType = slot.getAttribute('data-ad-slot');
         if (!slotType) { return; }
-
-        // ── Per-slot enable check (driven by Firestore) ───────
-        if (AD_CONFIG.slots[slotType] !== true) {
-            slot.setAttribute('data-ad-loaded', 'empty');
-            console.info('[TrustedAds] Slot "' + slotType + '" is disabled — skipping.');
-            return;
-        }
 
         var injected = false;
         var priority = AD_CONFIG.priority;
@@ -560,7 +406,7 @@ var TrustedAdManager = (function () {
 
         setTimeout(function () {
             var blocked = (
-                !bait.offsetParent      ||
+                !bait.offsetParent    ||
                 bait.offsetHeight === 0 ||
                 bait.offsetWidth  === 0
             );
@@ -577,11 +423,6 @@ var TrustedAdManager = (function () {
     /* ----------------------------------------------------------
      * Scan: query all unloaded .ad-slot elements and observe or
      * inject them depending on browser IntersectionObserver support.
-     *
-     * This function is called ONLY after the Firestore fetch resolves,
-     * so AD_CONFIG already contains the live admin panel values.
-     * The MutationObserver also calls this function — by the time
-     * any dynamically added slots appear, the config is ready.
      * ---------------------------------------------------------- */
     function _run() {
         var slots = document.querySelectorAll(
@@ -622,95 +463,34 @@ var TrustedAdManager = (function () {
 
         /**
          * init()
-         * Bootstraps the ad manager. Called automatically at the
-         * bottom of this file — no manual call needed in HTML.
-         *
-         * Flow:
-         *   1. AdBlocker detection runs immediately (no config needed).
-         *   2. Firestore fetch begins in parallel with DOM readiness.
-         *   3. Once BOTH are satisfied, _run() fires.
-         *   4. MutationObserver starts watching only after Firestore
-         *      is resolved, so every dynamically added slot is also
-         *      gated on the live config.
+         * Bootstraps the ad manager. Called by the Firestore
+         * bootstrapper below — NOT called directly here anymore.
          */
         init: function () {
+            _detectAdBlocker();
 
-            // ── AdBlocker detection runs immediately ──────────
-            // It only needs document.body and a setTimeout — no
-            // ad config required.  We attach it to DOMContentLoaded
-            // if the DOM isn't ready yet.
+            // Wait for DOM if script loads in <head>
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', _detectAdBlocker);
+                document.addEventListener('DOMContentLoaded', _run);
             } else {
-                _detectAdBlocker();
+                _run();
             }
 
-            /* ── Wait for: DOM ready  AND  Firestore config ────
-             *
-             * We build two promises and settle them in parallel:
-             *
-             *   domReady      — resolves when DOMContentLoaded fires
-             *                   (or immediately if DOM is already ready)
-             *   firestoreReady — resolves with true/false from
-             *                   _loadFirestoreAdConfig()
-             *
-             * Promise.all waits for both. If Firestore says
-             * globalEnabled is false (resolves with false), we abort
-             * without calling _run() or starting MutationObserver.
-             * ─────────────────────────────────────────────────── */
-            var domReady = new Promise(function (resolve) {
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', resolve, { once: true });
-                } else {
-                    resolve();
-                }
-            });
-
-            var firestoreReady = _loadFirestoreAdConfig();
-
-            Promise.all([domReady, firestoreReady])
-
-                .then(function (results) {
-                    var adsEnabled = results[1]; // boolean from _loadFirestoreAdConfig
-
-                    if (!adsEnabled) {
-                        console.info('[TrustedAds] Ad injection skipped — globalEnabled is false or fetch failed.');
-                        return; // Do NOT start MutationObserver or call _run()
-                    }
-
-                    // ── First scan of existing slots ──────────
-                    _run();
-
-                    // ── Watch for dynamically added .ad-slot elements
-                    // injected by AJAX, related-tools.js, comments.js,
-                    // or any other script. Starts AFTER Firestore config
-                    // is confirmed ready — no race condition possible.
-                    if ('MutationObserver' in window) {
-                        var bodyObserver = new MutationObserver(function () {
-                            _run();
-                        });
-                        bodyObserver.observe(document.body, {
-                            childList: true,
-                            subtree:   true
-                        });
-                    }
-                })
-
-                .catch(function (err) {
-                    // Promise.all itself should not reject (both inner
-                    // promises resolve, never reject), but be defensive.
-                    console.error('[TrustedAds] Unexpected init error — no ads injected.', err);
+            // Watch for dynamically added .ad-slot elements injected
+            // by AJAX, related-tools.js, comments.js, or any other script
+            if ('MutationObserver' in window) {
+                var bodyObserver = new MutationObserver(function () { _run(); });
+                bodyObserver.observe(document.body, {
+                    childList: true,
+                    subtree:   true
                 });
+            }
         },
 
         /**
          * refresh()
          * Manually re-scan the page for new unloaded ad slots.
-         * Safe to call at any time — if config isn't ready yet,
-         * slots will still be unloaded and _run() will catch them
-         * when the Promise.all resolves.
-         *
-         * Example: TrustedAdManager.refresh()
+         * Example: window.TrustedAdManager.refresh()
          */
         refresh: function () { _run(); }
 
@@ -718,5 +498,197 @@ var TrustedAdManager = (function () {
 
 }());
 
-// Auto-initialize on script load
-TrustedAdManager.init();
+// Expose globally so other scripts can call .refresh()
+window.TrustedAdManager = TrustedAdManager;
+
+
+/* ============================================================
+ * SECTION 3 — FIRESTORE BOOTSTRAPPER
+ *
+ * Execution flow:
+ *   1. Safely initialise Firebase (or reuse existing app).
+ *   2. Fetch document: Collection "ads", Document "main".
+ *   3. Deep-merge the fetched data on top of AD_CONFIG.
+ *   4. If adsGlobalEnabled === false in Firestore → abort.
+ *   5. Otherwise → call TrustedAdManager.init().
+ *
+ * Any error in steps 1-3 is silently caught and the engine
+ * falls back to the hardcoded AD_CONFIG from Section 1.
+ * ============================================================ */
+
+(function () {
+
+    'use strict';
+
+    /* ----------------------------------------------------------
+     * _mergeDeep(target, source)
+     *
+     * Recursively merges `source` into `target`. Only plain
+     * objects are merged recursively — arrays and primitives
+     * from `source` overwrite `target` directly.
+     * This ensures that a partial Firestore document (e.g. one
+     * that only stores adsense.client_id) cleanly overwrites
+     * just that field without nuking sibling keys that were not
+     * included in the saved document.
+     * ---------------------------------------------------------- */
+    function _mergeDeep(target, source) {
+        var key;
+        for (key in source) {
+            if (!source.hasOwnProperty(key)) { continue; }
+
+            if (
+                source[key] !== null &&
+                typeof source[key] === 'object' &&
+                !Array.isArray(source[key]) &&
+                target[key] !== null &&
+                typeof target[key] === 'object' &&
+                !Array.isArray(target[key])
+            ) {
+                // Both sides are plain objects — recurse
+                _mergeDeep(target[key], source[key]);
+            } else {
+                // Primitive, array, or null — overwrite
+                target[key] = source[key];
+            }
+        }
+        return target;
+    }
+
+    /* ----------------------------------------------------------
+     * _applyFirestoreData(data)
+     *
+     * Takes the raw Firestore document data object and maps its
+     * fields onto AD_CONFIG.
+     *
+     * Field mapping (mirrors data-ads-field attributes in the UI):
+     *
+     *   Firestore field              → AD_CONFIG path
+     *   ─────────────────────────────────────────────
+     *   adsGlobalEnabled             → (abort flag only — not stored in AD_CONFIG)
+     *   options.lazyLoad             → AD_CONFIG.options.lazyLoad
+     *   options.retryDelay           → AD_CONFIG.options.retryDelay
+     *   options.maxRetries           → AD_CONFIG.options.maxRetries
+     *   priority                     → AD_CONFIG.priority          (array)
+     *   adsterra.enabled             → AD_CONFIG.adsterra.enabled
+     *   adsterra.slots               → AD_CONFIG.adsterra.slots    (deep merged)
+     *   adsense.enabled              → AD_CONFIG.adsense.enabled
+     *   adsense.client_id            → AD_CONFIG.adsense.client_id
+     *   adsense.slots                → AD_CONFIG.adsense.slots     (deep merged)
+     *   custom.enabled               → AD_CONFIG.custom.enabled
+     *   custom.slots                 → AD_CONFIG.custom.slots      (deep merged)
+     *
+     * The entire `data` object is deep-merged, so any field the
+     * dashboard writes to Firestore is automatically picked up
+     * without needing to update this mapping.
+     * ---------------------------------------------------------- */
+    function _applyFirestoreData(data) {
+        // Strip the admin-only flag before merging — it has no
+        // corresponding key in AD_CONFIG and would pollute it.
+        var cleaned = {};
+        var key;
+        for (key in data) {
+            if (!data.hasOwnProperty(key)) { continue; }
+            if (key === 'adsGlobalEnabled') { continue; }
+            cleaned[key] = data[key];
+        }
+        _mergeDeep(AD_CONFIG, cleaned);
+    }
+
+    /* ----------------------------------------------------------
+     * _getFirebaseDb()
+     *
+     * Initialises Firebase (or reuses an existing app) using the
+     * credentials stored in window.SITE_CONFIG.commentSystem.firebase.
+     * Returns the Firestore db instance, or null if anything fails.
+     * ---------------------------------------------------------- */
+    function _getFirebaseDb() {
+        try {
+            // Guard: firebase SDK must be loaded
+            if (typeof firebase === 'undefined') {
+                console.warn('[TrustedAds] Firebase SDK not found. Using default AD_CONFIG.');
+                return null;
+            }
+
+            // Guard: SITE_CONFIG must be available
+            if (
+                !window.SITE_CONFIG ||
+                !window.SITE_CONFIG.commentSystem ||
+                !window.SITE_CONFIG.commentSystem.firebase
+            ) {
+                console.warn('[TrustedAds] window.SITE_CONFIG.commentSystem.firebase not found. Using default AD_CONFIG.');
+                return null;
+            }
+
+            var fbConfig = window.SITE_CONFIG.commentSystem.firebase;
+
+            // Reuse an existing Firebase app to avoid "duplicate app" errors
+            // when multiple scripts on the page initialise Firebase.
+            if (!firebase.apps.length) {
+                firebase.initializeApp(fbConfig);
+            }
+
+            return firebase.firestore();
+
+        } catch (err) {
+            console.warn('[TrustedAds] Firebase init error:', err.message, '— Using default AD_CONFIG.');
+            return null;
+        }
+    }
+
+    /* ----------------------------------------------------------
+     * _bootstrap()
+     *
+     * Main entry point. Fetches ads/main from Firestore, merges
+     * the result into AD_CONFIG, then decides whether to run
+     * the engine or abort based on adsGlobalEnabled.
+     * ---------------------------------------------------------- */
+    function _bootstrap() {
+
+        var db = _getFirebaseDb();
+
+        // ── No Firebase available → run immediately on defaults ──
+        if (!db) {
+            TrustedAdManager.init();
+            return;
+        }
+
+        // ── Attempt Firestore fetch ──────────────────────────────
+        db.collection('ads').doc('main').get()
+
+            .then(function (docSnapshot) {
+
+                if (docSnapshot.exists) {
+                    var data = docSnapshot.data();
+
+                    // Rule 4c: if admin explicitly disabled all ads, abort.
+                    if (data.adsGlobalEnabled === false) {
+                        console.info('[TrustedAds] Ads globally disabled via Firestore. Engine not started.');
+                        return; // ← exit the .then() without calling init()
+                    }
+
+                    // Merge Firestore data on top of default AD_CONFIG
+                    _applyFirestoreData(data);
+                    console.info('[TrustedAds] Configuration loaded from Firestore (ads/main).');
+
+                } else {
+                    // Document doesn't exist yet — use hardcoded defaults
+                    console.info('[TrustedAds] Firestore document ads/main not found. Using default AD_CONFIG.');
+                }
+
+                // Start the engine with whichever config we ended up with
+                TrustedAdManager.init();
+
+            })
+
+            .catch(function (err) {
+                // Network error, permission denied, adblocker blocking Firebase, etc.
+                // Fall back to default config and run anyway — ads > no ads.
+                console.warn('[TrustedAds] Firestore fetch failed (' + err.message + '). Using default AD_CONFIG.');
+                TrustedAdManager.init();
+            });
+    }
+
+    // Kick off the bootstrapper immediately on script load.
+    _bootstrap();
+
+}());

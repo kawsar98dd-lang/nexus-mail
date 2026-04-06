@@ -223,9 +223,9 @@
   }
 
   /* ══════════════════════════════════════════════════════════ */
-  /*  5. REFRESH BUTTON                                         */
-  /*                                                            */
-  /*  Reloads data for the currently active section.            */
+  /* 5. REFRESH BUTTON                                         */
+  /* */
+  /* Reloads data for the currently active section.            */
   /* ══════════════════════════════════════════════════════════ */
 
   if (refreshBtn) {
@@ -241,9 +241,18 @@
         }, 500);
       }
 
-      // Reload current section data
+      // Reload current section data dynamically based on activeSection
       if (activeSection === "site-config" && window.TTW_SiteConfig) {
         window.TTW_SiteConfig.load();
+      } else if (activeSection === "ads" && window.TTW_AdsManager) {
+        window.TTW_AdsManager.load();
+      } else if (activeSection === "comments" && window.TTW_CommentsManager) {
+        window.TTW_CommentsManager.load();
+      }
+      
+      // Show a quick toast to confirm refresh
+      if (window.TTW_Toast) {
+         window.TTW_Toast.info("Refreshing", "Fetching latest data from server...", 2000);
       }
     });
   }
